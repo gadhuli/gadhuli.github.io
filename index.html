@@ -3,7 +3,6 @@
 <head>
 
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <meta
@@ -18,7 +17,6 @@
   content="Gadhuli - Shop Smart. Shop Easy."
 >
 
-<!-- Supabase -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="supabase.js"></script>
 
@@ -54,12 +52,6 @@ header{
   align-items:center;
   justify-content:space-between;
   gap:12px;
-}
-
-.logo{
-  display:flex;
-  align-items:center;
-  text-decoration:none;
 }
 
 .logo img{
@@ -101,10 +93,6 @@ header{
   border-radius:25px;
   outline:none;
   font-size:15px;
-}
-
-.search-box input:focus{
-  border-color:#8f174d;
 }
 
 /* HERO */
@@ -211,7 +199,6 @@ header{
 .product-name{
   font-size:17px;
   font-weight:bold;
-  color:#333;
   margin-bottom:6px;
   min-height:42px;
 }
@@ -230,27 +217,34 @@ header{
 }
 
 .product-buttons{
-  display:flex;
+  display:grid;
+  grid-template-columns:1fr 1fr;
   gap:7px;
 }
 
 .btn{
   border:none;
   border-radius:9px;
-  padding:10px;
+  padding:10px 7px;
   cursor:pointer;
   font-weight:bold;
 }
 
 .cart-btn{
-  flex:1;
   background:#8f174d;
+  color:#fff;
+}
+
+.order-btn{
+  background:#25D366;
   color:#fff;
 }
 
 .details-btn{
   background:#fff0f6;
   color:#8f174d;
+  width:100%;
+  margin-top:7px;
 }
 
 /* FOOTER */
@@ -261,10 +255,6 @@ footer{
   text-align:center;
   padding:25px 15px;
   margin-top:30px;
-}
-
-footer h3{
-  margin-bottom:6px;
 }
 
 /* MODAL */
@@ -362,10 +352,13 @@ footer h3{
   color:#777;
 }
 
-/* ORDER */
+/* ORDER FORM */
 
-.order-form{
-  margin-top:18px;
+.order-form label{
+  display:block;
+  font-weight:bold;
+  color:#8f174d;
+  margin:10px 0 5px;
 }
 
 .order-form input,
@@ -373,10 +366,11 @@ footer h3{
 .order-form select{
   width:100%;
   padding:12px;
-  margin-bottom:10px;
+  margin-bottom:8px;
   border:1px solid #ddd;
   border-radius:8px;
   outline:none;
+  font-size:15px;
 }
 
 .order-form textarea{
@@ -389,8 +383,30 @@ footer h3{
   color:#8f174d;
   padding:10px;
   border-radius:8px;
-  margin-bottom:10px;
+  margin-bottom:12px;
   font-size:14px;
+}
+
+.order-product{
+  background:#fff7fa;
+  border:1px solid #f0c9da;
+  padding:12px;
+  border-radius:10px;
+  margin-bottom:12px;
+}
+
+.order-product strong{
+  color:#8f174d;
+}
+
+.order-total{
+  background:#fff0f6;
+  color:#8f174d;
+  padding:12px;
+  border-radius:9px;
+  margin:10px 0;
+  font-size:18px;
+  font-weight:bold;
 }
 
 .whatsapp-btn{
@@ -460,16 +476,8 @@ footer h3{
 
 @media(max-width:650px){
 
-  .topbar{
-    padding:9px 10px;
-  }
-
   .logo img{
     width:120px;
-  }
-
-  .header-btn{
-    padding:8px 9px;
   }
 
   .hero{
@@ -503,8 +511,8 @@ footer h3{
   }
 
   .btn{
-    padding:8px 5px;
-    font-size:12px;
+    padding:8px 4px;
+    font-size:11px;
   }
 
 }
@@ -521,7 +529,6 @@ footer h3{
 </head>
 
 <body>
-
 
 <!-- HEADER -->
 
@@ -552,7 +559,6 @@ footer h3{
     </div>
 
   </div>
-
 
   <div class="search-box">
 
@@ -587,17 +593,11 @@ footer h3{
     🛍️ Our Products
   </h2>
 
-  <div
-    id="loading"
-    class="status"
-  >
+  <div id="loading" class="status">
     ⏳ Products loading হচ্ছে...
   </div>
 
-  <div
-    id="productsGrid"
-    class="products-grid"
-  ></div>
+  <div id="productsGrid" class="products-grid"></div>
 
   <div
     id="emptyProducts"
@@ -663,39 +663,132 @@ footer h3{
       class="cart-total"
     ></div>
 
-
     <div
-      id="orderArea"
+      id="cartOrderArea"
       class="order-form"
       style="display:none;"
     >
 
       <div class="delivery-info">
-
         🚚 Inside Dhaka Delivery: ৳60<br>
-
         🚚 Outside Dhaka Delivery: ৳120
-
       </div>
 
+      <label>👤 Customer Name</label>
       <input
         type="text"
         id="customerName"
         placeholder="আপনার নাম"
       >
 
+      <label>📱 Phone Number</label>
       <input
         type="tel"
         id="customerPhone"
-        placeholder="Phone Number"
+        placeholder="01XXXXXXXXX"
       >
 
+      <label>🏠 Delivery Address</label>
       <textarea
         id="customerAddress"
-        placeholder="Delivery Address"
+        placeholder="আপনার সম্পূর্ণ Delivery Address"
       ></textarea>
 
+      <label>🚚 Delivery Area</label>
+
       <select id="deliveryArea">
+        <option value="dhaka">
+          Inside Dhaka — ৳60
+        </option>
+
+        <option value="outside">
+          Outside Dhaka — ৳120
+        </option>
+      </select>
+
+      <button
+        class="whatsapp-btn"
+        onclick="orderCartOnWhatsApp()"
+      >
+        📱 WhatsApp এ Order করুন
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- ORDER NOW MODAL -->
+
+<div
+  id="orderModal"
+  class="modal"
+  onclick="closeOutside(event,'orderModal')"
+>
+
+  <div class="modal-content">
+
+    <div class="modal-header">
+
+      <h2>🛍️ Order Now</h2>
+
+      <button
+        class="close"
+        onclick="closeModal('orderModal')"
+      >
+        ×
+      </button>
+
+    </div>
+
+    <div id="singleOrderProduct"></div>
+
+    <div class="order-form">
+
+      <label>👤 Customer Name</label>
+
+      <input
+        type="text"
+        id="singleCustomerName"
+        placeholder="আপনার নাম"
+        required
+      >
+
+      <label>📱 Phone Number</label>
+
+      <input
+        type="tel"
+        id="singleCustomerPhone"
+        placeholder="01XXXXXXXXX"
+        required
+      >
+
+      <label>🏠 Delivery Address</label>
+
+      <textarea
+        id="singleCustomerAddress"
+        placeholder="আপনার সম্পূর্ণ Delivery Address"
+        required
+      ></textarea>
+
+      <label>🔢 Quantity</label>
+
+      <input
+        type="number"
+        id="singleQuantity"
+        value="1"
+        min="1"
+        onchange="updateSingleOrderTotal()"
+      >
+
+      <label>🚚 Delivery Area</label>
+
+      <select
+        id="singleDeliveryArea"
+        onchange="updateSingleOrderTotal()"
+      >
 
         <option value="dhaka">
           Inside Dhaka — ৳60
@@ -707,9 +800,15 @@ footer h3{
 
       </select>
 
+      <div
+        id="singleOrderTotal"
+        class="order-total"
+      >
+      </div>
+
       <button
         class="whatsapp-btn"
-        onclick="orderOnWhatsApp()"
+        onclick="singleOrderOnWhatsApp()"
       >
         📱 WhatsApp এ Order করুন
       </button>
@@ -792,23 +891,16 @@ footer h3{
 <script>
 
 /* =====================================================
-   GADHULI
-   STEP 3
-   SUPABASE DATABASE PRODUCTS
+   GADHULI HOMEPAGE
+   SUPABASE PRODUCTS
+   CART
+   WISHLIST
+   ORDER NOW
+   WHATSAPP
    ===================================================== */
 
-
-/* ---------- DATA ---------- */
-
 let products = [];
-
 let filteredProducts = [];
-
-
-/*
-  Cart এবং Wishlist এখনো LocalStorage-এ থাকবে।
-  শুধু Product data আর LocalStorage থেকে নেওয়া হচ্ছে না।
-*/
 
 let cart = JSON.parse(
   localStorage.getItem("gadhuli_cart") || "[]"
@@ -818,8 +910,10 @@ let wishlist = JSON.parse(
   localStorage.getItem("gadhuli_wishlist") || "[]"
 );
 
+let selectedOrderProduct = null;
 
-/* ---------- SUPABASE CLIENT ---------- */
+
+/* ---------- SUPABASE ---------- */
 
 const db = window.gadhuliSupabase;
 
@@ -836,40 +930,46 @@ async function loadProducts(){
     if(!db){
 
       throw new Error(
-        "Supabase client পাওয়া যায়নি। supabase.js check করুন।"
+        "Supabase client পাওয়া যায়নি।"
       );
 
     }
 
-
-    const { data, error } =
+    const result =
       await db
         .from("products")
-        .select("*")
-        .order("created_at", {
-          ascending:false
-        });
+        .select("*");
 
+    if(result.error){
 
-    if(error){
-
-      throw error;
+      throw result.error;
 
     }
 
+    products = result.data || [];
 
-    products = data || [];
+    /*
+      Newest product আগে দেখানোর চেষ্টা।
+      created_at না থাকলেও website crash করবে না।
+    */
+
+    products.sort(function(a,b){
+
+      if(!a.created_at || !b.created_at){
+        return 0;
+      }
+
+      return new Date(b.created_at) -
+             new Date(a.created_at);
+
+    });
 
     filteredProducts = [...products];
 
-
     loading.style.display = "none";
 
-
     renderProducts();
-
     updateCounts();
-
 
   }catch(error){
 
@@ -878,17 +978,12 @@ async function loadProducts(){
       error
     );
 
-
     loading.innerHTML =
       `
       <div class="error">
-
         ❌ Product load হয়নি।
-
         <br><br>
-
         ${escapeHTML(error.message)}
-
       </div>
       `;
 
@@ -897,44 +992,104 @@ async function loadProducts(){
 }
 
 
-/* ---------- PRODUCT IMAGE ---------- */
+/* =====================================================
+   IMAGE FIX
+   Supabase থেকে images array অথবা JSON string
+   — দুইভাবেই handle করবে
+   ===================================================== */
 
-function getProductImage(product){
+function getProductImages(product){
 
-  if(
-    product &&
-    Array.isArray(product.images) &&
-    product.images.length > 0
-  ){
+  if(!product || !product.images){
 
-    return product.images[0];
+    return [];
 
   }
 
+  let images = product.images;
 
-  return "https://via.placeholder.com/600x600?text=Gadhuli";
+  /*
+    যদি images JSON string হয়
+  */
+
+  if(typeof images === "string"){
+
+    try{
+
+      images = JSON.parse(images);
+
+    }catch(e){
+
+      /*
+        JSON না হলে single URL হিসেবে ধরবে
+      */
+
+      if(
+        images.startsWith("http://") ||
+        images.startsWith("https://")
+      ){
+
+        images = [images];
+
+      }else{
+
+        images = [];
+
+      }
+
+    }
+
+  }
+
+  /*
+    যদি object-এর মধ্যে array থাকে
+  */
+
+  if(
+    images &&
+    typeof images === "object" &&
+    !Array.isArray(images)
+  ){
+
+    if(Array.isArray(images.urls)){
+      images = images.urls;
+    }
+
+  }
+
+  if(!Array.isArray(images)){
+
+    return [];
+
+  }
+
+  return images
+    .map(function(image){
+
+      if(typeof image === "string"){
+        return image.trim();
+      }
+
+      return "";
+
+    })
+    .filter(Boolean);
 
 }
 
 
-/* ---------- PRODUCT IMAGES ---------- */
+function getProductImage(product){
 
-function getProductImages(product){
+  const images =
+    getProductImages(product);
 
-  if(
-    product &&
-    Array.isArray(product.images) &&
-    product.images.length > 0
-  ){
+  if(images.length > 0){
 
-    return product.images;
+    return images[0];
 
   }
 
-
-  return [
-    "https://via.placeholder.com/600x600?text=Gadhuli"
-  ];
+  return "https://via.placeholder.com/600x600?text=Gadhuli";
 
 }
 
@@ -953,9 +1108,7 @@ function renderProducts(){
       "emptyProducts"
     );
 
-
   grid.innerHTML = "";
-
 
   if(!filteredProducts.length){
 
@@ -965,105 +1118,99 @@ function renderProducts(){
 
   }
 
-
   empty.style.display = "none";
 
+  filteredProducts.forEach(function(product){
 
-  filteredProducts.forEach(
-    product => {
+    const liked =
+      wishlist.some(function(id){
 
-      const liked =
-        wishlist.some(
-          id =>
-            String(id) ===
-            String(product.id)
-        );
+        return String(id) ===
+               String(product.id);
 
+      });
 
-      const card =
-        document.createElement("div");
+    const card =
+      document.createElement("div");
 
+    card.className =
+      "product-card";
 
-      card.className =
-        "product-card";
+    card.innerHTML =
+      `
+      <div class="product-image-box">
 
+        <img
+          class="product-image"
+          src="${escapeAttribute(
+            getProductImage(product)
+          )}"
+          alt="${escapeAttribute(
+            product.name || "Gadhuli Product"
+          )}"
+          onerror="this.onerror=null;this.src='https://via.placeholder.com/600x600?text=Gadhuli';"
+        >
 
-      card.innerHTML =
-        `
-        <div class="product-image-box">
+        <button
+          class="wishlist-btn"
+          onclick="toggleWishlist('${escapeAttribute(product.id)}')"
+        >
+          ${liked ? "❤️" : "🤍"}
+        </button>
 
-          <img
-            class="product-image"
-            src="${escapeAttribute(
-              getProductImage(product)
-            )}"
-            alt="${escapeAttribute(
-              product.name || "Gadhuli Product"
-            )}"
-            onerror="this.src='https://via.placeholder.com/600x600?text=Gadhuli'"
-          >
+      </div>
 
+      <div class="product-info">
+
+        <div class="product-name">
+          ${escapeHTML(
+            product.name || "Unnamed Product"
+          )}
+        </div>
+
+        <div class="product-category">
+          ${escapeHTML(
+            product.category || "Product"
+          )}
+        </div>
+
+        <div class="product-price">
+          ৳${Number(
+            product.price || 0
+          ).toLocaleString("en-BD")}
+        </div>
+
+        <div class="product-buttons">
 
           <button
-            class="wishlist-btn"
-            onclick="toggleWishlist('${escapeAttribute(product.id)}')"
+            class="btn cart-btn"
+            onclick="addToCart('${escapeAttribute(product.id)}')"
           >
-            ${liked ? "❤️" : "🤍"}
+            🛒 Add to Cart
+          </button>
+
+          <button
+            class="btn order-btn"
+            onclick="openSingleOrder('${escapeAttribute(product.id)}')"
+          >
+            🛍️ Order Now
           </button>
 
         </div>
 
+        <button
+          class="btn details-btn"
+          onclick="showDetails('${escapeAttribute(product.id)}')"
+        >
+          👁️ Details
+        </button>
 
-        <div class="product-info">
+      </div>
+      `;
 
-          <div class="product-name">
-            ${escapeHTML(
-              product.name || "Unnamed Product"
-            )}
-          </div>
+    grid.appendChild(card);
 
-
-          <div class="product-category">
-            ${escapeHTML(
-              product.category || "Product"
-            )}
-          </div>
-
-
-          <div class="product-price">
-            ৳${Number(
-              product.price || 0
-            ).toLocaleString("en-BD")}
-          </div>
-
-
-          <div class="product-buttons">
-
-            <button
-              class="btn details-btn"
-              onclick="showDetails('${escapeAttribute(product.id)}')"
-            >
-              👁️ Details
-            </button>
-
-
-            <button
-              class="btn cart-btn"
-              onclick="addToCart('${escapeAttribute(product.id)}')"
-            >
-              🛒 Add
-            </button>
-
-          </div>
-
-        </div>
-        `;
-
-
-      grid.appendChild(card);
-
-    }
-  );
+  });
 
 }
 
@@ -1079,98 +1226,81 @@ function searchProducts(){
       .trim()
       .toLowerCase();
 
-
   filteredProducts =
-    products.filter(
-      product => {
+    products.filter(function(product){
 
-        const name =
-          String(
-            product.name || ""
-          ).toLowerCase();
+      const name =
+        String(
+          product.name || ""
+        ).toLowerCase();
 
+      const category =
+        String(
+          product.category || ""
+        ).toLowerCase();
 
-        const category =
-          String(
-            product.category || ""
-          ).toLowerCase();
+      return(
+        name.includes(query) ||
+        category.includes(query)
+      );
 
-
-        return(
-          name.includes(query) ||
-          category.includes(query)
-        );
-
-      }
-    );
-
+    });
 
   renderProducts();
 
 }
 
 
-/* ---------- CART ---------- */
+/* =====================================================
+   CART
+   ===================================================== */
 
 function addToCart(productId){
 
   const product =
-    products.find(
-      p =>
-        String(p.id) ===
-        String(productId)
-    );
+    products.find(function(p){
 
+      return String(p.id) ===
+             String(productId);
+
+    });
 
   if(!product){
 
     alert("Product পাওয়া যায়নি।");
-
     return;
 
   }
 
-
   const existing =
-    cart.find(
-      item =>
-        String(item.id) ===
-        String(productId)
-    );
+    cart.find(function(item){
 
+      return String(item.id) ===
+             String(productId);
+
+    });
 
   if(existing){
 
     existing.quantity =
-      Number(
-        existing.quantity || 1
-      ) + 1;
+      Number(existing.quantity || 1) + 1;
 
   }else{
 
     cart.push({
-
       id:product.id,
-
       quantity:1
-
     });
 
   }
 
-
   saveCart();
-
   updateCounts();
 
-  alert(
-    "🛒 Product Cart-এ যোগ হয়েছে!"
-  );
+  alert("🛒 Product Cart-এ যোগ হয়েছে!");
 
 }
 
-
-/* ---------- SAVE CART ---------- */
 
 function saveCart(){
 
@@ -1182,8 +1312,6 @@ function saveCart(){
 }
 
 
-/* ---------- OPEN CART ---------- */
-
 function openCart(){
 
   renderCart();
@@ -1194,8 +1322,6 @@ function openCart(){
 
 }
 
-
-/* ---------- RENDER CART ---------- */
 
 function renderCart(){
 
@@ -1216,63 +1342,43 @@ function renderCart(){
 
   const orderArea =
     document.getElementById(
-      "orderArea"
+      "cartOrderArea"
     );
-
 
   container.innerHTML = "";
 
-
   let total = 0;
-
   let validItems = [];
 
-
-  cart.forEach(item => {
+  cart.forEach(function(item){
 
     const product =
-      products.find(
-        p =>
-          String(p.id) ===
-          String(item.id)
-      );
+      products.find(function(p){
 
+        return String(p.id) ===
+               String(item.id);
+
+      });
 
     if(!product){
-
       return;
-
     }
 
-
     const quantity =
-      Number(
-        item.quantity || 1
-      );
-
+      Number(item.quantity || 1);
 
     const price =
-      Number(
-        product.price || 0
-      );
+      Number(product.price || 0);
 
-
-    total +=
-      price * quantity;
-
+    total += price * quantity;
 
     validItems.push(item);
 
-
     const div =
-      document.createElement(
-        "div"
-      );
-
+      document.createElement("div");
 
     div.className =
       "cart-item";
-
 
     div.innerHTML =
       `
@@ -1281,30 +1387,24 @@ function renderCart(){
           getProductImage(product)
         )}"
         alt="${escapeAttribute(
-          product.name
+          product.name || ""
         )}"
       >
-
 
       <div class="cart-item-info">
 
         <div class="cart-item-name">
           ${escapeHTML(
-            product.name
+            product.name || ""
           )}
         </div>
 
-
         <div class="cart-item-price">
-
           ৳${price.toLocaleString("en-BD")}
-
           × ${quantity}
-
         </div>
 
       </div>
-
 
       <button
         class="remove-btn"
@@ -1314,34 +1414,26 @@ function renderCart(){
       </button>
       `;
 
-
     container.appendChild(div);
 
   });
-
 
   cart = validItems;
 
   saveCart();
 
-
   if(!cart.length){
 
     empty.style.display = "block";
-
     orderArea.style.display = "none";
-
     totalBox.innerHTML = "";
 
     return;
 
   }
 
-
   empty.style.display = "none";
-
   orderArea.style.display = "block";
-
 
   totalBox.innerHTML =
     `Subtotal: ৳${total.toLocaleString("en-BD")}`;
@@ -1349,45 +1441,479 @@ function renderCart(){
 }
 
 
-/* ---------- REMOVE CART ---------- */
-
 function removeFromCart(productId){
 
   cart =
-    cart.filter(
-      item =>
-        String(item.id) !==
-        String(productId)
-    );
+    cart.filter(function(item){
 
+      return String(item.id) !==
+             String(productId);
+
+    });
 
   saveCart();
-
   updateCounts();
-
   renderCart();
 
 }
 
 
-/* ---------- WISHLIST ---------- */
+/* =====================================================
+   SINGLE PRODUCT ORDER NOW
+   ===================================================== */
+
+function openSingleOrder(productId){
+
+  const product =
+    products.find(function(p){
+
+      return String(p.id) ===
+             String(productId);
+
+    });
+
+  if(!product){
+
+    alert("Product পাওয়া যায়নি।");
+    return;
+
+  }
+
+  selectedOrderProduct = product;
+
+  const images =
+    getProductImages(product);
+
+  const image =
+    images.length
+      ? images[0]
+      : "https://via.placeholder.com/150?text=Gadhuli";
+
+  document.getElementById(
+    "singleOrderProduct"
+  ).innerHTML =
+    `
+    <div class="order-product">
+
+      <img
+        src="${escapeAttribute(image)}"
+        style="
+          width:70px;
+          height:70px;
+          object-fit:cover;
+          border-radius:8px;
+          float:left;
+          margin-right:10px;
+        "
+        onerror="this.onerror=null;this.src='https://via.placeholder.com/150?text=Gadhuli';"
+      >
+
+      <strong>
+        ${escapeHTML(product.name || "Product")}
+      </strong>
+
+      <br>
+
+      <span>
+        ৳${Number(
+          product.price || 0
+        ).toLocaleString("en-BD")}
+      </span>
+
+      <div style="clear:both;"></div>
+
+    </div>
+    `;
+
+  document.getElementById(
+    "singleQuantity"
+  ).value = 1;
+
+  document.getElementById(
+    "singleCustomerName"
+  ).value = "";
+
+  document.getElementById(
+    "singleCustomerPhone"
+  ).value = "";
+
+  document.getElementById(
+    "singleCustomerAddress"
+  ).value = "";
+
+  document.getElementById(
+    "singleDeliveryArea"
+  ).value = "dhaka";
+
+  updateSingleOrderTotal();
+
+  document.getElementById(
+    "orderModal"
+  ).style.display = "flex";
+
+}
+
+
+function updateSingleOrderTotal(){
+
+  if(!selectedOrderProduct){
+    return;
+  }
+
+  const quantity =
+    Math.max(
+      1,
+      Number(
+        document.getElementById(
+          "singleQuantity"
+        ).value || 1
+      )
+    );
+
+  const price =
+    Number(
+      selectedOrderProduct.price || 0
+    );
+
+  const area =
+    document.getElementById(
+      "singleDeliveryArea"
+    ).value;
+
+  const delivery =
+    area === "dhaka"
+      ? 60
+      : 120;
+
+  const subtotal =
+    price * quantity;
+
+  const total =
+    subtotal + delivery;
+
+  document.getElementById(
+    "singleOrderTotal"
+  ).innerHTML =
+    `
+    Product: ৳${subtotal.toLocaleString("en-BD")}
+    <br>
+    Delivery: ৳${delivery.toLocaleString("en-BD")}
+    <br>
+    💵 Total: ৳${total.toLocaleString("en-BD")}
+    `;
+
+}
+
+
+function singleOrderOnWhatsApp(){
+
+  if(!selectedOrderProduct){
+
+    alert("Product পাওয়া যায়নি।");
+    return;
+
+  }
+
+  const name =
+    document
+      .getElementById(
+        "singleCustomerName"
+      )
+      .value.trim();
+
+  const phone =
+    document
+      .getElementById(
+        "singleCustomerPhone"
+      )
+      .value.trim();
+
+  const address =
+    document
+      .getElementById(
+        "singleCustomerAddress"
+      )
+      .value.trim();
+
+  const quantity =
+    Math.max(
+      1,
+      Number(
+        document.getElementById(
+          "singleQuantity"
+        ).value || 1
+      )
+    );
+
+  const area =
+    document.getElementById(
+      "singleDeliveryArea"
+    ).value;
+
+  if(!name || !phone || !address){
+
+    alert(
+      "নাম, Phone Number এবং Address দিন।"
+    );
+
+    return;
+
+  }
+
+  const price =
+    Number(
+      selectedOrderProduct.price || 0
+    );
+
+  const subtotal =
+    price * quantity;
+
+  const delivery =
+    area === "dhaka"
+      ? 60
+      : 120;
+
+  const grandTotal =
+    subtotal + delivery;
+
+  const areaText =
+    area === "dhaka"
+      ? "Inside Dhaka"
+      : "Outside Dhaka";
+
+  let message =
+    "🛍️ *Gadhuli New Order*\n\n";
+
+  message +=
+    "📦 Product: " +
+    selectedOrderProduct.name +
+    "\n";
+
+  message +=
+    "💰 Price: ৳" +
+    price +
+    "\n";
+
+  message +=
+    "🔢 Quantity: " +
+    quantity +
+    "\n\n";
+
+  message +=
+    "👤 Customer: " +
+    name +
+    "\n";
+
+  message +=
+    "📱 Phone: " +
+    phone +
+    "\n";
+
+  message +=
+    "🏠 Address: " +
+    address +
+    "\n";
+
+  message +=
+    "🚚 Delivery: " +
+    areaText +
+    " — ৳" +
+    delivery +
+    "\n\n";
+
+  message +=
+    "💵 *Total: ৳" +
+    grandTotal +
+    "*";
+
+  openWhatsApp(message);
+
+}
+
+
+/* =====================================================
+   CART WHATSAPP ORDER
+   ===================================================== */
+
+function orderCartOnWhatsApp(){
+
+  if(!cart.length){
+
+    alert("Cart empty!");
+    return;
+
+  }
+
+  const name =
+    document
+      .getElementById(
+        "customerName"
+      )
+      .value.trim();
+
+  const phone =
+    document
+      .getElementById(
+        "customerPhone"
+      )
+      .value.trim();
+
+  const address =
+    document
+      .getElementById(
+        "customerAddress"
+      )
+      .value.trim();
+
+  const area =
+    document
+      .getElementById(
+        "deliveryArea"
+      ).value;
+
+  if(!name || !phone || !address){
+
+    alert(
+      "নাম, Phone Number এবং Address দিন।"
+    );
+
+    return;
+
+  }
+
+  const delivery =
+    area === "dhaka"
+      ? 60
+      : 120;
+
+  const areaText =
+    area === "dhaka"
+      ? "Inside Dhaka"
+      : "Outside Dhaka";
+
+  let subtotal = 0;
+
+  let message =
+    "🛍️ *Gadhuli Cart Order*\n\n";
+
+  message +=
+    "👤 Customer: " +
+    name +
+    "\n";
+
+  message +=
+    "📱 Phone: " +
+    phone +
+    "\n";
+
+  message +=
+    "🏠 Address: " +
+    address +
+    "\n";
+
+  message +=
+    "🚚 Delivery: " +
+    areaText +
+    "\n\n";
+
+  message +=
+    "🛒 *Products:*\n";
+
+  cart.forEach(function(item){
+
+    const product =
+      products.find(function(p){
+
+        return String(p.id) ===
+               String(item.id);
+
+      });
+
+    if(!product){
+      return;
+    }
+
+    const quantity =
+      Number(item.quantity || 1);
+
+    const price =
+      Number(product.price || 0);
+
+    const itemTotal =
+      price * quantity;
+
+    subtotal += itemTotal;
+
+    message +=
+      "• " +
+      product.name +
+      " × " +
+      quantity +
+      " = ৳" +
+      itemTotal +
+      "\n";
+
+  });
+
+  const grandTotal =
+    subtotal + delivery;
+
+  message +=
+    "\n💰 Subtotal: ৳" +
+    subtotal;
+
+  message +=
+    "\n🚚 Delivery: ৳" +
+    delivery;
+
+  message +=
+    "\n💵 *Total: ৳" +
+    grandTotal +
+    "*";
+
+  openWhatsApp(message);
+
+}
+
+
+/* ---------- WHATSAPP ---------- */
+
+function openWhatsApp(message){
+
+  const whatsappNumber =
+    "8801333088194";
+
+  const whatsappURL =
+    "https://wa.me/" +
+    whatsappNumber +
+    "?text=" +
+    encodeURIComponent(message);
+
+  window.open(
+    whatsappURL,
+    "_blank"
+  );
+
+}
+
+
+/* =====================================================
+   WISHLIST
+   ===================================================== */
 
 function toggleWishlist(productId){
 
   const index =
-    wishlist.findIndex(
-      id =>
-        String(id) ===
-        String(productId)
-    );
+    wishlist.findIndex(function(id){
 
+      return String(id) ===
+             String(productId);
+
+    });
 
   if(index >= 0){
 
-    wishlist.splice(
-      index,
-      1
-    );
+    wishlist.splice(index,1);
 
   }else{
 
@@ -1395,21 +1921,16 @@ function toggleWishlist(productId){
 
   }
 
-
   localStorage.setItem(
     "gadhuli_wishlist",
     JSON.stringify(wishlist)
   );
 
-
   updateCounts();
-
   renderProducts();
 
 }
 
-
-/* ---------- OPEN WISHLIST ---------- */
 
 function openWishlist(){
 
@@ -1421,8 +1942,6 @@ function openWishlist(){
 
 }
 
-
-/* ---------- RENDER WISHLIST ---------- */
 
 function renderWishlist(){
 
@@ -1436,46 +1955,38 @@ function renderWishlist(){
       "wishlistEmpty"
     );
 
-
   container.innerHTML = "";
-
 
   const items =
     wishlist
-      .map(
-        id =>
-          products.find(
-            p =>
-              String(p.id) ===
-              String(id)
-          )
-      )
-      .filter(Boolean);
+      .map(function(id){
 
+        return products.find(function(p){
+
+          return String(p.id) ===
+                 String(id);
+
+        });
+
+      })
+      .filter(Boolean);
 
   if(!items.length){
 
     empty.style.display = "block";
-
     return;
 
   }
 
-
   empty.style.display = "none";
 
-
-  items.forEach(product => {
+  items.forEach(function(product){
 
     const div =
-      document.createElement(
-        "div"
-      );
-
+      document.createElement("div");
 
     div.className =
       "cart-item";
-
 
     div.innerHTML =
       `
@@ -1484,30 +1995,25 @@ function renderWishlist(){
           getProductImage(product)
         )}"
         alt="${escapeAttribute(
-          product.name
+          product.name || ""
         )}"
       >
-
 
       <div class="cart-item-info">
 
         <div class="cart-item-name">
           ${escapeHTML(
-            product.name
+            product.name || ""
           )}
         </div>
 
-
         <div class="cart-item-price">
-
           ৳${Number(
             product.price || 0
           ).toLocaleString("en-BD")}
-
         </div>
 
       </div>
-
 
       <button
         class="btn cart-btn"
@@ -1517,7 +2023,6 @@ function renderWishlist(){
       </button>
       `;
 
-
     container.appendChild(div);
 
   });
@@ -1525,51 +2030,56 @@ function renderWishlist(){
 }
 
 
-/* ---------- PRODUCT DETAILS ---------- */
+/* =====================================================
+   DETAILS
+   ===================================================== */
 
 function showDetails(productId){
 
   const product =
-    products.find(
-      p =>
-        String(p.id) ===
-        String(productId)
-    );
+    products.find(function(p){
 
+      return String(p.id) ===
+             String(productId);
+
+    });
 
   if(!product){
-
     return;
-
   }
-
 
   const images =
     getProductImages(product);
 
+  const finalImages =
+    images.length
+      ? images
+      : [
+        "https://via.placeholder.com/600x600?text=Gadhuli"
+      ];
 
   const container =
     document.getElementById(
       "productDetails"
     );
 
-
   container.innerHTML =
     `
     <img
       id="detailMainImage"
       class="detail-image"
-      src="${escapeAttribute(images[0])}"
-      alt="${escapeAttribute(product.name)}"
-      onerror="this.src='https://via.placeholder.com/600x600?text=Gadhuli'"
+      src="${escapeAttribute(finalImages[0])}"
+      alt="${escapeAttribute(
+        product.name || ""
+      )}"
+      onerror="this.onerror=null;this.src='https://via.placeholder.com/600x600?text=Gadhuli';"
     >
-
 
     <div class="detail-thumbs">
 
-      ${images.map(
-        (image,index) =>
-          `
+      ${finalImages.map(function(image,index){
+
+        return `
           <img
             class="detail-thumb ${
               index === 0
@@ -1580,40 +2090,30 @@ function showDetails(productId){
             onclick="changeDetailImage(this,'${escapeAttribute(image)}')"
             onerror="this.style.display='none'"
           >
-          `
-      ).join("")}
+        `;
+
+      }).join("")}
 
     </div>
 
-
     <h2 class="detail-name">
-
       ${escapeHTML(
-        product.name
+        product.name || ""
       )}
-
     </h2>
 
-
     <div class="detail-price">
-
       ৳${Number(
         product.price || 0
       ).toLocaleString("en-BD")}
-
     </div>
 
-
-    <p style="color:#777;margin-bottom:15px;">
-
+    <p style="color:#777;margin-bottom:12px;">
       Category:
       ${escapeHTML(
-        product.category ||
-        "Product"
+        product.category || "Product"
       )}
-
     </p>
-
 
     <button
       class="btn cart-btn"
@@ -1622,8 +2122,19 @@ function showDetails(productId){
     >
       🛒 Add to Cart
     </button>
-    `;
 
+    <button
+      class="btn order-btn"
+      style="
+        width:100%;
+        font-size:16px;
+        margin-top:8px;
+      "
+      onclick="closeModal('detailModal');openSingleOrder('${escapeAttribute(product.id)}')"
+    >
+      🛍️ Order Now
+    </button>
+    `;
 
   document.getElementById(
     "detailModal"
@@ -1631,8 +2142,6 @@ function showDetails(productId){
 
 }
 
-
-/* ---------- CHANGE DETAIL IMAGE ---------- */
 
 function changeDetailImage(
   element,
@@ -1643,241 +2152,22 @@ function changeDetailImage(
     "detailMainImage"
   ).src = image;
 
-
   document
-    .querySelectorAll(
-      ".detail-thumb"
-    )
-    .forEach(
-      img =>
-        img.classList.remove(
-          "active"
-        )
-    );
+    .querySelectorAll(".detail-thumb")
+    .forEach(function(img){
 
+      img.classList.remove("active");
 
-  element.classList.add(
-    "active"
-  );
+    });
+
+  element.classList.add("active");
 
 }
 
 
-/* ---------- WHATSAPP ORDER ---------- */
-
-function orderOnWhatsApp(){
-
-  if(!cart.length){
-
-    alert("Cart empty!");
-
-    return;
-
-  }
-
-
-  const name =
-    document
-      .getElementById(
-        "customerName"
-      )
-      .value.trim();
-
-
-  const phone =
-    document
-      .getElementById(
-        "customerPhone"
-      )
-      .value.trim();
-
-
-  const address =
-    document
-      .getElementById(
-        "customerAddress"
-      )
-      .value.trim();
-
-
-  const area =
-    document
-      .getElementById(
-        "deliveryArea"
-      )
-      .value;
-
-
-  if(
-    !name ||
-    !phone ||
-    !address
-  ){
-
-    alert(
-      "নাম, Phone এবং Address দিন।"
-    );
-
-    return;
-
-  }
-
-
-  const delivery =
-    area === "dhaka"
-      ? 60
-      : 120;
-
-
-  let subtotal = 0;
-
-
-  let message =
-    "🛍️ Gadhuli Order\n\n";
-
-
-  message +=
-    "👤 Name: " +
-    name +
-    "\n";
-
-
-  message +=
-    "📞 Phone: " +
-    phone +
-    "\n";
-
-
-  message +=
-    "📍 Address: " +
-    address +
-    "\n\n";
-
-
-  message +=
-    "🛒 Products:\n";
-
-
-  cart.forEach(item => {
-
-    const product =
-      products.find(
-        p =>
-          String(p.id) ===
-          String(item.id)
-      );
-
-
-    if(!product){
-
-      return;
-
-    }
-
-
-    const quantity =
-      Number(
-        item.quantity || 1
-      );
-
-
-    const price =
-      Number(
-        product.price || 0
-      );
-
-
-    const itemTotal =
-      price * quantity;
-
-
-    subtotal +=
-      itemTotal;
-
-
-    message +=
-      "• " +
-      product.name +
-      " × " +
-      quantity +
-      " = ৳" +
-      itemTotal +
-      "\n";
-
-  });
-
-
-  const grandTotal =
-    subtotal + delivery;
-
-
-  message +=
-    "\n💰 Subtotal: ৳" +
-    subtotal;
-
-
-  message +=
-    "\n🚚 Delivery: ৳" +
-    delivery;
-
-
-  message +=
-    "\n💵 Total: ৳" +
-    grandTotal;
-
-
-  /*
-    এখানে তোমার WhatsApp number বসানো আছে।
-    দরকার হলে পরে পরিবর্তন করব।
-  */
-
-  const whatsappNumber =
-    "8801333088194";
-
-
-  const whatsappURL =
-    "https://wa.me/" +
-    whatsappNumber +
-    "?text=" +
-    encodeURIComponent(
-      message
-    );
-
-
-  window.open(
-    whatsappURL,
-    "_blank"
-  );
-
-}
-
-
-/* ---------- COUNTS ---------- */
-
-function updateCounts(){
-
-  document.getElementById(
-    "cartCount"
-  ).textContent =
-    cart.reduce(
-      (sum,item) =>
-        sum +
-        Number(
-          item.quantity || 1
-        ),
-      0
-    );
-
-
-  document.getElementById(
-    "wishlistCount"
-  ).textContent =
-    wishlist.length;
-
-}
-
-
-/* ---------- MODAL ---------- */
+/* =====================================================
+   MODAL
+   ===================================================== */
 
 function closeModal(id){
 
@@ -1888,14 +2178,9 @@ function closeModal(id){
 }
 
 
-function closeOutside(
-  event,
-  id
-){
+function closeOutside(event,id){
 
-  if(
-    event.target.id === id
-  ){
+  if(event.target.id === id){
 
     closeModal(id);
 
@@ -1904,33 +2189,42 @@ function closeOutside(
 }
 
 
-/* ---------- SECURITY ---------- */
+/* =====================================================
+   COUNTS
+   ===================================================== */
+
+function updateCounts(){
+
+  document.getElementById(
+    "cartCount"
+  ).textContent =
+    cart.reduce(function(sum,item){
+
+      return sum +
+        Number(item.quantity || 1);
+
+    },0);
+
+  document.getElementById(
+    "wishlistCount"
+  ).textContent =
+    wishlist.length;
+
+}
+
+
+/* =====================================================
+   SECURITY
+   ===================================================== */
 
 function escapeHTML(value){
 
-  return String(
-    value ?? ""
-  )
-  .replace(
-    /&/g,
-    "&amp;"
-  )
-  .replace(
-    /</g,
-    "&lt;"
-  )
-  .replace(
-    />/g,
-    "&gt;"
-  )
-  .replace(
-    /"/g,
-    "&quot;"
-  )
-  .replace(
-    /'/g,
-    "&#039;"
-  );
+  return String(value ?? "")
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
 
 }
 
@@ -1942,14 +2236,15 @@ function escapeAttribute(value){
 }
 
 
-/* ---------- START ---------- */
+/* =====================================================
+   START
+   ===================================================== */
 
 document.addEventListener(
   "DOMContentLoaded",
   function(){
 
     updateCounts();
-
     loadProducts();
 
   }
