@@ -1,1104 +1,1752 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
 
-<meta name="google-site-verification"
-content="lkVxExaUcJinZDbyNwrJL4Jhc3kjkYTwQXLFYYKu_p8">
+<meta charset="UTF-8">
+
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0"
+>
+
+<meta
+  name="google-site-verification"
+  content="lkVxExaUcJinZDbyNwrJL4Jhc3kjkYTwQXLFYYKu_p8"
+>
 
 <title>Gadhuli | Official Website</title>
 
+<meta
+  name="description"
+  content="Gadhuli - Shop Smart. Shop Easy."
+>
+
+<!-- Supabase -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="supabase.js"></script>
 
 <style>
-*{box-sizing:border-box;margin:0;padding:0;font-family:Arial,sans-serif}
-body{background:#fff7fa;color:#333}
-header{background:#fff;padding:12px 18px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:1000;box-shadow:0 2px 10px #0001}
-.logo{display:flex;align-items:center;gap:10px}
-.logo img{width:45px;height:45px;object-fit:contain;border-radius:10px}
-.logo b{font-size:23px;color:#8f174d}
-.header-buttons{display:flex;gap:6px}
-button{border:0;border-radius:8px;padding:10px 13px;cursor:pointer;background:#8f174d;color:#fff}
-button:active{transform:scale(.97)}
-.hero{background:linear-gradient(135deg,#8f174d,#bd3475);color:#fff;text-align:center;padding:58px 15px}
-.hero h1{font-size:44px;margin-bottom:8px}
-.hero p{font-size:18px}
-.container{width:92%;max-width:1100px;margin:auto}
-.search{margin:25px auto;max-width:650px}
-.search input{width:100%;padding:14px;border:2px solid #8f174d;border-radius:10px;font-size:16px;outline:none}
-h2{color:#8f174d;margin:28px 0 15px}
-.products{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:18px}
-.card{background:#fff;padding:15px;border-radius:14px;box-shadow:0 3px 12px #0001}
-.card img{width:100%;height:205px;object-fit:cover;border-radius:10px;background:#f2d5e1}
-.card h3{color:#8f174d;margin:10px 0}
-.price{font-size:18px;font-weight:bold;margin-bottom:10px}
-.actions{display:flex;gap:7px}
-.actions button{flex:1}
-.wish{background:#f0d6e1;color:#8f174d}
-.box{background:#fff;padding:20px;border-radius:14px;box-shadow:0 3px 12px #0001;margin-bottom:25px}
-input,textarea,select{width:100%;padding:12px;border:1px solid #ddd;border-radius:8px;margin-bottom:10px;outline:none}
-textarea{min-height:95px;resize:vertical}
-.total{font-size:19px;font-weight:bold;color:#8f174d;margin-top:12px}
-.status{margin-top:10px;font-weight:bold;word-break:break-word}
-.admin{display:none;border:2px solid #8f174d}
-.adminitem{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:12px 0;border-bottom:1px solid #eee}
-.admin-actions{display:flex;gap:5px}
-.edit{background:#ead0dc;color:#8f174d}
-.delete{background:#8f174d}
-.empty{color:#777;padding:10px 0}
-.review{padding:12px 0;border-bottom:1px solid #eee}
-.review b{color:#8f174d}
-footer{background:#8f174d;color:#fff;text-align:center;padding:28px;margin-top:40px}
-@media(max-width:600px){
-.hero h1{font-size:34px}
-.logo b{font-size:19px}
-.header-buttons button{padding:8px;font-size:12px}
-.card img{height:190px}
+
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
 }
+
+body{
+  font-family:Arial, sans-serif;
+  background:#fff7fa;
+  color:#333;
+}
+
+header{
+  position:sticky;
+  top:0;
+  z-index:1000;
+  background:white;
+  box-shadow:0 2px 10px rgba(143,23,77,.12);
+}
+
+.topbar{
+  max-width:1200px;
+  margin:auto;
+  padding:12px 15px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+}
+
+.logo{
+  display:flex;
+  align-items:center;
+  text-decoration:none;
+}
+
+.logo img{
+  width:145px;
+  max-height:55px;
+  object-fit:contain;
+}
+
+.header-buttons{
+  display:flex;
+  gap:8px;
+}
+
+.header-btn{
+  border:none;
+  background:#fff0f6;
+  color:#8f174d;
+  border-radius:10px;
+  padding:9px 12px;
+  font-size:16px;
+  cursor:pointer;
+}
+
+.header-btn span{
+  font-size:12px;
+  font-weight:bold;
+}
+
+.search-box{
+  max-width:1200px;
+  margin:auto;
+  padding:0 15px 12px;
+}
+
+.search-box input{
+  width:100%;
+  padding:13px 16px;
+  border:2px solid #f0c9da;
+  border-radius:25px;
+  outline:none;
+  font-size:15px;
+}
+
+.search-box input:focus{
+  border-color:#8f174d;
+}
+
+.hero{
+  max-width:1200px;
+  margin:18px auto;
+  padding:35px 20px;
+  border-radius:18px;
+  background:linear-gradient(135deg,#8f174d,#d52b72,#bd3475);
+  color:white;
+  text-align:center;
+}
+
+.hero h1{
+  font-size:32px;
+  margin-bottom:8px;
+}
+
+.hero p{
+  font-size:17px;
+}
+
+.container{
+  max-width:1200px;
+  margin:auto;
+  padding:10px 15px 40px;
+}
+
+.section-title{
+  color:#8f174d;
+  margin:20px 0 15px;
+  font-size:24px;
+}
+
+.status{
+  text-align:center;
+  padding:30px 10px;
+  color:#777;
+}
+
+.error{
+  color:#c62828;
+}
+
+.products-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:16px;
+}
+
+.product-card{
+  background:white;
+  border-radius:15px;
+  overflow:hidden;
+  box-shadow:0 3px 12px rgba(0,0,0,.08);
+  transition:.2s;
+}
+
+.product-card:hover{
+  transform:translateY(-3px);
+}
+
+.product-image-box{
+  position:relative;
+  width:100%;
+  height:230px;
+  background:#f8f8f8;
+}
+
+.product-image{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.wishlist-btn{
+  position:absolute;
+  right:10px;
+  top:10px;
+  width:38px;
+  height:38px;
+  border:none;
+  border-radius:50%;
+  background:white;
+  font-size:20px;
+  cursor:pointer;
+  box-shadow:0 2px 8px rgba(0,0,0,.15);
+}
+
+.product-info{
+  padding:13px;
+}
+
+.product-name{
+  font-size:17px;
+  font-weight:bold;
+  color:#333;
+  margin-bottom:6px;
+  min-height:42px;
+}
+
+.product-category{
+  color:#888;
+  font-size:13px;
+  margin-bottom:7px;
+}
+
+.product-price{
+  color:#8f174d;
+  font-size:20px;
+  font-weight:bold;
+  margin-bottom:10px;
+}
+
+.product-buttons{
+  display:flex;
+  gap:7px;
+}
+
+.btn{
+  border:none;
+  border-radius:9px;
+  padding:10px;
+  cursor:pointer;
+  font-weight:bold;
+}
+
+.cart-btn{
+  flex:1;
+  background:#8f174d;
+  color:white;
+}
+
+.details-btn{
+  background:#fff0f6;
+  color:#8f174d;
+}
+
+.empty{
+  text-align:center;
+  padding:40px 10px;
+  color:#777;
+}
+
+footer{
+  background:#8f174d;
+  color:white;
+  text-align:center;
+  padding:25px 15px;
+  margin-top:30px;
+}
+
+footer h3{
+  margin-bottom:6px;
+}
+
+.modal{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.55);
+  z-index:2000;
+  align-items:center;
+  justify-content:center;
+  padding:15px;
+}
+
+.modal-content{
+  background:white;
+  width:100%;
+  max-width:500px;
+  max-height:90vh;
+  overflow-y:auto;
+  border-radius:18px;
+  padding:20px;
+}
+
+.modal-header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:15px;
+}
+
+.close{
+  border:none;
+  background:#fff0f6;
+  color:#8f174d;
+  width:35px;
+  height:35px;
+  border-radius:50%;
+  font-size:20px;
+  cursor:pointer;
+}
+
+.cart-item{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:12px 0;
+  border-bottom:1px solid #eee;
+}
+
+.cart-item img{
+  width:65px;
+  height:65px;
+  object-fit:cover;
+  border-radius:8px;
+}
+
+.cart-item-info{
+  flex:1;
+}
+
+.cart-item-name{
+  font-weight:bold;
+}
+
+.cart-item-price{
+  color:#8f174d;
+  font-weight:bold;
+  margin-top:4px;
+}
+
+.remove-btn{
+  border:none;
+  background:#ffe7ef;
+  color:#c2185b;
+  padding:7px 9px;
+  border-radius:7px;
+  cursor:pointer;
+}
+
+.cart-total{
+  text-align:right;
+  margin-top:15px;
+  font-size:20px;
+  font-weight:bold;
+  color:#8f174d;
+}
+
+.order-form{
+  margin-top:18px;
+}
+
+.order-form input,
+.order-form textarea,
+.order-form select{
+  width:100%;
+  padding:12px;
+  margin-bottom:10px;
+  border:1px solid #ddd;
+  border-radius:8px;
+  outline:none;
+}
+
+.order-form textarea{
+  min-height:90px;
+  resize:vertical;
+}
+
+.whatsapp-btn{
+  width:100%;
+  background:#25D366;
+  color:white;
+  padding:13px;
+  border:none;
+  border-radius:9px;
+  font-weight:bold;
+  cursor:pointer;
+  font-size:16px;
+}
+
+.delivery-info{
+  background:#fff0f6;
+  color:#8f174d;
+  padding:10px;
+  border-radius:8px;
+  margin-bottom:10px;
+  font-size:14px;
+}
+
+.detail-image{
+  width:100%;
+  height:320px;
+  object-fit:contain;
+  background:#f8f8f8;
+  border-radius:12px;
+}
+
+.detail-thumbs{
+  display:flex;
+  gap:7px;
+  overflow-x:auto;
+  margin-top:10px;
+}
+
+.detail-thumb{
+  width:65px;
+  height:65px;
+  object-fit:cover;
+  border-radius:8px;
+  cursor:pointer;
+  border:2px solid transparent;
+}
+
+.detail-thumb.active{
+  border-color:#8f174d;
+}
+
+.detail-name{
+  color:#8f174d;
+  font-size:25px;
+  margin-top:15px;
+}
+
+.detail-price{
+  font-size:23px;
+  color:#8f174d;
+  font-weight:bold;
+  margin:10px 0;
+}
+
+@media(max-width:900px){
+  .products-grid{
+    grid-template-columns:repeat(3,1fr);
+  }
+}
+
+@media(max-width:650px){
+  .topbar{
+    padding:9px 10px;
+  }
+
+  .logo img{
+    width:120px;
+  }
+
+  .header-btn{
+    padding:8px 9px;
+  }
+
+  .hero{
+    margin:12px 10px;
+    padding:28px 15px;
+  }
+
+  .hero h1{
+    font-size:25px;
+  }
+
+  .products-grid{
+    grid-template-columns:repeat(2,1fr);
+    gap:10px;
+  }
+
+  .product-image-box{
+    height:180px;
+  }
+
+  .product-info{
+    padding:10px;
+  }
+
+  .product-name{
+    font-size:15px;
+  }
+
+  .product-price{
+    font-size:18px;
+  }
+
+  .btn{
+    padding:8px 5px;
+    font-size:12px;
+  }
+}
+
+@media(max-width:380px){
+  .products-grid{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .product-image-box{
+    height:155px;
+  }
+}
+
 </style>
 </head>
 
 <body>
 
 <header>
-<div class="logo">
-<img src="logo.png" alt="Gadhuli Logo"
-onerror="this.style.display='none'">
-<b>Gadhuli</b>
-</div>
 
-<div class="header-buttons">
-<button type="button" onclick="goTo('wishlist')">❤️</button>
-<button type="button" onclick="goTo('cart')">🛒</button>
-</div>
+  <div class="topbar">
+
+    <a href="#" class="logo">
+      <img src="logo.png" alt="Gadhuli">
+    </a>
+
+    <div class="header-buttons">
+
+      <button
+        class="header-btn"
+        onclick="openWishlist()"
+      >
+        ❤️ <span id="wishlistCount">0</span>
+      </button>
+
+      <button
+        class="header-btn"
+        onclick="openCart()"
+      >
+        🛒 <span id="cartCount">0</span>
+      </button>
+
+    </div>
+
+  </div>
+
+  <div class="search-box">
+
+    <input
+      type="search"
+      id="searchInput"
+      placeholder="🔍 Product search করুন..."
+      oninput="searchProducts()"
+    >
+
+  </div>
+
 </header>
 
+
 <section class="hero">
-<h1>Gadhuli</h1>
-<p>Shop Smart. Shop Easy.</p>
+
+  <h1>Gadhuli</h1>
+
+  <p>Shop Smart. Shop Easy.</p>
+
 </section>
 
-<div class="container">
 
-<div class="search">
-<input id="search" type="text"
-placeholder="🔎 Search products...">
-</div>
+<main class="container">
+
+  <h2 class="section-title">
+    🛍️ Our Products
+  </h2>
+
+  <div
+    id="loading"
+    class="status"
+  >
+    ⏳ Products loading হচ্ছে...
+  </div>
+
+  <div
+    id="productsGrid"
+    class="products-grid"
+  ></div>
+
+  <div
+    id="emptyProducts"
+    class="empty"
+    style="display:none;"
+  >
+    😔 এখনো কোনো Product পাওয়া যায়নি।
+  </div>
+
+</main>
 
-<h2>🛍️ Products</h2>
-<div id="products" class="products"></div>
-
-<h2 id="wishlist">❤️ Wishlist</h2>
-<div id="wishlistBox" class="products"></div>
-
-<h2 id="cart">🛒 Shopping Cart</h2>
-
-<div class="box">
-<div id="cartItems"></div>
-
-<div class="total">
-Subtotal: ৳<span id="subtotal">0</span>
-</div>
-
-<br>
-
-<select id="area">
-<option value="60">Inside Dhaka — ৳60</option>
-<option value="120">Outside Dhaka — ৳120</option>
-</select>
-
-<div class="total">
-Delivery: ৳<span id="delivery">60</span>
-</div>
-
-<div class="total">
-Total: ৳<span id="total">60</span>
-</div>
-</div>
-
-<h2>📦 Place Order</h2>
-
-<div class="box">
-<form id="orderForm">
-
-<input id="customerName"
-placeholder="আপনার নাম" required>
-
-<input id="customerPhone"
-type="tel"
-placeholder="মোবাইল নম্বর" required>
-
-<textarea id="customerAddress"
-placeholder="সম্পূর্ণ ঠিকানা" required></textarea>
-
-<button type="submit">
-WhatsApp দিয়ে Order করুন
-</button>
-
-</form>
-</div>
-
-<h2>⭐ Customer Reviews</h2>
-
-<div class="box">
-
-<form id="reviewForm">
-
-<input id="reviewName"
-placeholder="আপনার নাম" required>
-
-<select id="rating" required>
-<option value="">Rating দিন</option>
-<option value="5">⭐⭐⭐⭐⭐</option>
-<option value="4">⭐⭐⭐⭐</option>
-<option value="3">⭐⭐⭐</option>
-<option value="2">⭐⭐</option>
-<option value="1">⭐</option>
-</select>
-
-<textarea id="reviewText"
-placeholder="আপনার মতামত..." required></textarea>
-
-<button type="submit">Review Submit</button>
-
-</form>
-
-<div id="reviews"></div>
-
-</div>
-
-<h2>🔐 Admin Login</h2>
-
-<div class="box">
-
-<form id="loginForm">
-
-<input id="email"
-type="email"
-placeholder="Admin Email"
-required>
-
-<input id="password"
-type="password"
-placeholder="Password"
-required>
-
-<button type="submit">
-Admin Login
-</button>
-
-</form>
-
-<div id="status" class="status"></div>
-
-</div>
-
-<div id="adminPanel" class="box admin">
-
-<h2>🔐 Gadhuli Admin Panel</h2>
-
-<button type="button" onclick="logout()">
-Logout
-</button>
-
-<br><br>
-
-<h3>➕ Add Product</h3>
-<br>
-
-<form id="productForm">
-
-<input id="pname"
-placeholder="Product Name"
-required>
-
-<input id="price"
-type="number"
-min="1"
-placeholder="Price"
-required>
-
-<label>🖼️ Product Images (3–5)</label>
-
-<input id="images"
-type="file"
-accept="image/*"
-multiple
-required>
-
-<div id="preview"></div>
-  <script>
-document.getElementById("images").addEventListener("change",function(){
-
-const preview=document.getElementById("preview");
-
-preview.innerHTML="";
-
-if(this.files.length<3 || this.files.length>5){
-
-preview.innerHTML=
-"⚠️ ৩–৫টি ছবি select করুন";
-
-return;
-
-}
-
-Array.from(this.files).forEach(function(file){
-
-const img=document.createElement("img");
-
-img.src=URL.createObjectURL(file);
-
-img.style.width="80px";
-img.style.height="80px";
-img.style.objectFit="cover";
-img.style.borderRadius="8px";
-img.style.margin="5px";
-
-preview.appendChild(img);
-
-});
-
-});
-  </script>
-
-<button type="submit">
-Save Product
-</button>
-
-</form>
-
-<br>
-
-<h3>📦 Manage Products</h3>
-<br>
-
-<div id="adminProducts"></div>
-
-</div>
-
-</div>
 
 <footer>
-<h3>Gadhuli</h3>
-<p>Shop Smart. Shop Easy.</p>
-<br>
-<p>© 2026 Gadhuli | Official Website</p>
+
+  <h3>Gadhuli</h3>
+
+  <p>Shop Smart. Shop Easy.</p>
+
+  <p style="margin-top:8px;">
+    © 2026 Gadhuli. All Rights Reserved.
+  </p>
+
 </footer>
 
+
+<!-- CART MODAL -->
+
+<div
+  id="cartModal"
+  class="modal"
+  onclick="closeOutside(event,'cartModal')"
+>
+
+  <div class="modal-content">
+
+    <div class="modal-header">
+
+      <h2>🛒 Your Cart</h2>
+
+      <button
+        class="close"
+        onclick="closeModal('cartModal')"
+      >
+        ×
+      </button>
+
+    </div>
+
+    <div id="cartItems"></div>
+
+    <div
+      id="cartEmpty"
+      class="empty"
+      style="display:none;"
+    >
+      Cart empty 😔
+    </div>
+
+    <div
+      id="cartTotal"
+      class="cart-total"
+    ></div>
+
+    <div
+      id="orderArea"
+      class="order-form"
+      style="display:none;"
+    >
+
+      <div class="delivery-info">
+        🚚 Inside Dhaka Delivery: ৳60<br>
+        🚚 Outside Dhaka Delivery: ৳120
+      </div>
+
+      <input
+        type="text"
+        id="customerName"
+        placeholder="আপনার নাম"
+      >
+
+      <input
+        type="tel"
+        id="customerPhone"
+        placeholder="Phone Number"
+      >
+
+      <textarea
+        id="customerAddress"
+        placeholder="Delivery Address"
+      ></textarea>
+
+      <select id="deliveryArea">
+
+        <option value="dhaka">
+          Inside Dhaka — ৳60
+        </option>
+
+        <option value="outside">
+          Outside Dhaka — ৳120
+        </option>
+
+      </select>
+
+      <button
+        class="whatsapp-btn"
+        onclick="orderOnWhatsApp()"
+      >
+        📱 WhatsApp এ Order করুন
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- WISHLIST MODAL -->
+
+<div
+  id="wishlistModal"
+  class="modal"
+  onclick="closeOutside(event,'wishlistModal')"
+>
+
+  <div class="modal-content">
+
+    <div class="modal-header">
+
+      <h2>❤️ Wishlist</h2>
+
+      <button
+        class="close"
+        onclick="closeModal('wishlistModal')"
+      >
+        ×
+      </button>
+
+    </div>
+
+    <div id="wishlistItems"></div>
+
+    <div
+      id="wishlistEmpty"
+      class="empty"
+      style="display:none;"
+    >
+      Wishlist empty 😔
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- PRODUCT DETAILS MODAL -->
+
+<div
+  id="detailModal"
+  class="modal"
+  onclick="closeOutside(event,'detailModal')"
+>
+
+  <div class="modal-content">
+
+    <div class="modal-header">
+
+      <h2>Product Details</h2>
+
+      <button
+        class="close"
+        onclick="closeModal('detailModal')"
+      >
+        ×
+      </button>
+
+    </div>
+
+    <div id="productDetails"></div>
+
+  </div>
+
+</div>
+
+
 <script>
-document.addEventListener("DOMContentLoaded",function(){
 
-const client=window.gadhuliSupabase;
-const status=document.getElementById("status");
+/* =====================================================
+   GADHULI
+   STEP 3 — SUPABASE PRODUCTS
+   ===================================================== */
 
-if(!client){
-status.innerText="Supabase connection পাওয়া যায়নি ❌";
-status.style.color="red";
-return;
-}
 
-let products;
+/* ---------- GLOBAL DATA ---------- */
 
-try{
-products=JSON.parse(
-localStorage.getItem("gadhuli_products")||"null"
-);
-}catch(e){
-products=null;
-}
+let products = [];
 
-if(!Array.isArray(products)){
-products=[
-{name:"Premium T-Shirt",price:800,image:""},
-{name:"Stylish Watch",price:1200,image:""},
-{name:"Casual Shirt",price:950,image:""}
-];
-}
+let filteredProducts = [];
 
-let cart=[];
-let wishlist=[];
-
-try{
-cart=JSON.parse(
-localStorage.getItem("gadhuli_cart")||"[]"
-);
-if(!Array.isArray(cart))cart=[];
-}catch(e){cart=[]}
-
-try{
-wishlist=JSON.parse(
-localStorage.getItem("gadhuli_wishlist")||"[]"
-);
-if(!Array.isArray(wishlist))wishlist=[];
-}catch(e){wishlist=[]}
-
-function save(){
-localStorage.setItem(
-"gadhuli_products",JSON.stringify(products)
-);
-localStorage.setItem(
-"gadhuli_cart",JSON.stringify(cart)
-);
-localStorage.setItem(
-"gadhuli_wishlist",JSON.stringify(wishlist)
-);
-}
-
-function imageURL(url){
-
-if(Array.isArray(url)){
-return url[0]||
-"https://via.placeholder.com/400x300?text=Gadhuli";
-}
-
-return url||
-"https://via.placeholder.com/400x300?text=Gadhuli";
-
-}
-
-function showProducts(){
-
-const box=document.getElementById("products");
-const q=document.getElementById("search")
-.value.toLowerCase().trim();
-
-box.innerHTML="";
-
-products.forEach(function(p,i){
-
-if(q&&!String(p.name).toLowerCase().includes(q))
-return;
-
-const card=document.createElement("div");
-card.className="card";
-
-card.innerHTML=`
-<img src="${imageURL(p.images||p.image)}"
-alt="${p.name}">
-<h3>${p.name}</h3>
-<div class="price">৳${Number(p.price)}</div>
-<div class="actions">
-<button onclick="addToCart(${i})">
-🛒 Add
-</button>
-<button class="wish"
-onclick="toggleWish(${i})">
-${wishlist.includes(i)?"❤️ Added":"♡ Wishlist"}
-</button>
-</div>
-`;
-
-box.appendChild(card);
-
-});
-
-showWishlist();
-}
-
-window.addToCart=function(i){
-
-if(!products[i])return;
-
-cart.push(i);
-save();
-showCart();
-
-};
-
-window.removeCart=function(i){
-
-cart.splice(i,1);
-save();
-showCart();
-
-};
-
-function showCart(){
-
-const box=document.getElementById("cartItems");
-box.innerHTML="";
-
-let subtotal=0;
-
-cart.forEach(function(productIndex,cartIndex){
-
-const p=products[productIndex];
-
-if(!p)return;
-
-subtotal+=Number(p.price);
-
-const item=document.createElement("div");
-item.className="adminitem";
-
-item.innerHTML=`
-<div>
-<b>${p.name}</b><br>
-৳${p.price}
-</div>
-<button onclick="removeCart(${cartIndex})">
-Remove
-</button>
-`;
-
-box.appendChild(item);
-
-});
-
-if(!cart.length){
-box.innerHTML=
-'<div class="empty">Cart খালি 🛒</div>';
-}
-
-const delivery=Number(
-document.getElementById("area").value
+let cart = JSON.parse(
+  localStorage.getItem("gadhuli_cart") || "[]"
 );
 
-document.getElementById("subtotal")
-.innerText=subtotal;
-
-document.getElementById("delivery")
-.innerText=delivery;
-
-document.getElementById("total")
-.innerText=subtotal+delivery;
-
-}
-
-window.toggleWish=function(i){
-
-const x=wishlist.indexOf(i);
-
-if(x===-1)wishlist.push(i);
-else wishlist.splice(x,1);
-
-save();
-showProducts();
-
-};
-
-function showWishlist(){
-
-const box=document.getElementById("wishlistBox");
-box.innerHTML="";
-
-if(!wishlist.length){
-box.innerHTML=
-'<div class="empty">Wishlist খালি ❤️</div>';
-return;
-}
-
-wishlist.forEach(function(i){
-
-const p=products[i];
-
-if(!p)return;
-
-const card=document.createElement("div");
-card.className="card";
-
-card.innerHTML=`
-<img src="${imageURL(p.images||p.image)}"
-alt="${p.name}">
-<h3>${p.name}</h3>
-<div class="price">৳${p.price}</div>
-<button onclick="addToCart(${i})">
-🛒 Add to Cart
-</button>
-`;
-
-box.appendChild(card);
-
-});
-
-}
-
-window.goTo=function(id){
-
-const el=document.getElementById(id);
-
-if(el){
-el.scrollIntoView({behavior:"smooth"});
-}
-
-};
-
-document.getElementById("search")
-.addEventListener("input",showProducts);
-
-document.getElementById("area")
-.addEventListener("change",showCart);
-
-document.getElementById("orderForm")
-.addEventListener("submit",function(e){
-
-e.preventDefault();
-
-if(!cart.length){
-alert("আগে Cart-এ product যোগ করুন ❌");
-return;
-}
-
-const name=document.getElementById(
-"customerName").value.trim();
-
-const phone=document.getElementById(
-"customerPhone").value.trim();
-
-const address=document.getElementById(
-"customerAddress").value.trim();
-
-let subtotal=0;
-let list="";
-
-cart.forEach(function(i){
-
-const p=products[i];
-
-if(p){
-subtotal+=Number(p.price);
-list+="- "+p.name+" — ৳"+p.price+"\n";
-}
-
-});
-
-const delivery=Number(
-document.getElementById("area").value
+let wishlist = JSON.parse(
+  localStorage.getItem("gadhuli_wishlist") || "[]"
 );
 
-const total=subtotal+delivery;
 
-const message=`🛍️ Gadhuli Order
+/* ---------- SUPABASE CHECK ---------- */
 
-👤 Name: ${name}
-📱 Phone: ${phone}
-📍 Address: ${address}
+if(
+  typeof supabase === "undefined" ||
+  !supabase
+){
 
-📦 Products:
-${list}
+  document.getElementById("loading").innerHTML =
+    "❌ Supabase connection পাওয়া যায়নি।<br>supabase.js check করুন।";
 
-💰 Subtotal: ৳${subtotal}
-🚚 Delivery: ৳${delivery}
-💵 Total: ৳${total}`;
+}
 
-const url=
-"https://wa.me/8801333088194?text="+
-encodeURIComponent(message);
 
-window.open(url,"_blank");
+/* ---------- LOAD PRODUCTS ---------- */
 
-});
+async function loadProducts(){
 
-document.getElementById("reviewForm")
-.addEventListener("submit",function(e){
+  const loading =
+    document.getElementById("loading");
 
-e.preventDefault();
+  const grid =
+    document.getElementById("productsGrid");
 
-let reviews=[];
+  try{
 
-try{
-reviews=JSON.parse(
-localStorage.getItem("gadhuli_reviews")||"[]"
+    loading.style.display = "block";
+
+    const { data, error } =
+      await supabase
+        .from("products")
+        .select("*")
+        .order("created_at", {
+          ascending:false
+        });
+
+    if(error){
+      throw error;
+    }
+
+    products = data || [];
+
+    filteredProducts = [...products];
+
+    loading.style.display = "none";
+
+    renderProducts();
+
+  }catch(error){
+
+    console.error(
+      "Product Load Error:",
+      error
+    );
+
+    loading.innerHTML =
+      `
+      <div class="error">
+        ❌ Product load হয়নি।
+        <br><br>
+        ${escapeHTML(error.message)}
+      </div>
+      `;
+
+  }
+
+}
+
+
+/* ---------- IMAGE URL ---------- */
+
+function getProductImage(product){
+
+  if(
+    product &&
+    Array.isArray(product.images) &&
+    product.images.length > 0
+  ){
+
+    return product.images[0];
+
+  }
+
+  return "https://via.placeholder.com/600x600?text=Gadhuli";
+
+}
+
+
+/* ---------- ALL PRODUCT IMAGES ---------- */
+
+function getProductImages(product){
+
+  if(
+    product &&
+    Array.isArray(product.images) &&
+    product.images.length > 0
+  ){
+
+    return product.images;
+
+  }
+
+  return [
+    "https://via.placeholder.com/600x600?text=Gadhuli"
+  ];
+
+}
+
+
+/* ---------- RENDER PRODUCTS ---------- */
+
+function renderProducts(){
+
+  const grid =
+    document.getElementById("productsGrid");
+
+  const empty =
+    document.getElementById("emptyProducts");
+
+  grid.innerHTML = "";
+
+  if(!filteredProducts.length){
+
+    empty.style.display = "block";
+
+    return;
+
+  }
+
+  empty.style.display = "none";
+
+
+  filteredProducts.forEach(
+    product => {
+
+      const originalIndex =
+        products.findIndex(
+          p => p.id === product.id
+        );
+
+      const liked =
+        wishlist.includes(product.id);
+
+
+      const card =
+        document.createElement("div");
+
+      card.className =
+        "product-card";
+
+
+      card.innerHTML =
+        `
+        <div class="product-image-box">
+
+          <img
+            class="product-image"
+            src="${escapeAttribute(
+              getProductImage(product)
+            )}"
+            alt="${escapeAttribute(
+              product.name || "Gadhuli Product"
+            )}"
+            onerror="this.src='https://via.placeholder.com/600x600?text=Gadhuli'"
+          >
+
+          <button
+            class="wishlist-btn"
+            onclick="toggleWishlist('${escapeAttribute(product.id)}')"
+          >
+            ${liked ? "❤️" : "🤍"}
+          </button>
+
+        </div>
+
+        <div class="product-info">
+
+          <div class="product-name">
+            ${escapeHTML(
+              product.name || "Unnamed Product"
+            )}
+          </div>
+
+          <div class="product-category">
+            ${escapeHTML(
+              product.category || "Product"
+            )}
+          </div>
+
+          <div class="product-price">
+            ৳${Number(product.price || 0).toLocaleString("en-BD")}
+          </div>
+
+          <div class="product-buttons">
+
+            <button
+              class="btn details-btn"
+              onclick="showDetails('${escapeAttribute(product.id)}')"
+            >
+              👁️ Details
+            </button>
+
+            <button
+              class="btn cart-btn"
+              onclick="addToCart('${escapeAttribute(product.id)}')"
+            >
+              🛒 Add
+            </button>
+
+          </div>
+
+        </div>
+        `;
+
+      grid.appendChild(card);
+
+    }
+  );
+
+}
+
+
+/* ---------- SEARCH ---------- */
+
+function searchProducts(){
+
+  const query =
+    document
+      .getElementById("searchInput")
+      .value
+      .trim()
+      .toLowerCase();
+
+
+  filteredProducts =
+    products.filter(product => {
+
+      const name =
+        String(
+          product.name || ""
+        ).toLowerCase();
+
+      const category =
+        String(
+          product.category || ""
+        ).toLowerCase();
+
+      return(
+        name.includes(query) ||
+        category.includes(query)
+      );
+
+    });
+
+
+  renderProducts();
+
+}
+
+
+/* ---------- ADD TO CART ---------- */
+
+function addToCart(productId){
+
+  const product =
+    products.find(
+      p => String(p.id) === String(productId)
+    );
+
+  if(!product){
+
+    alert("Product পাওয়া যায়নি।");
+
+    return;
+
+  }
+
+
+  const exists =
+    cart.find(
+      item =>
+        String(item.id) === String(productId)
+    );
+
+
+  if(exists){
+
+    exists.quantity =
+      Number(exists.quantity || 1) + 1;
+
+  }else{
+
+    cart.push({
+
+      id: product.id,
+
+      quantity: 1
+
+    });
+
+  }
+
+
+  saveCart();
+
+  updateCounts();
+
+  alert("🛒 Product Cart-এ যোগ হয়েছে!");
+
+}
+
+
+/* ---------- SAVE CART ---------- */
+
+function saveCart(){
+
+  localStorage.setItem(
+    "gadhuli_cart",
+    JSON.stringify(cart)
+  );
+
+}
+
+
+/* ---------- OPEN CART ---------- */
+
+function openCart(){
+
+  renderCart();
+
+  document.getElementById(
+    "cartModal"
+  ).style.display = "flex";
+
+}
+
+
+/* ---------- RENDER CART ---------- */
+
+function renderCart(){
+
+  const container =
+    document.getElementById("cartItems");
+
+  const empty =
+    document.getElementById("cartEmpty");
+
+  const totalBox =
+    document.getElementById("cartTotal");
+
+  const orderArea =
+    document.getElementById("orderArea");
+
+
+  container.innerHTML = "";
+
+  let total = 0;
+
+  let validItems = [];
+
+
+  cart.forEach(item => {
+
+    const product =
+      products.find(
+        p =>
+          String(p.id) ===
+          String(item.id)
+      );
+
+
+    if(!product) return;
+
+
+    const quantity =
+      Number(item.quantity || 1);
+
+    const price =
+      Number(product.price || 0);
+
+    total += price * quantity;
+
+    validItems.push(item);
+
+
+    const div =
+      document.createElement("div");
+
+    div.className = "cart-item";
+
+
+    div.innerHTML =
+      `
+      <img
+        src="${escapeAttribute(
+          getProductImage(product)
+        )}"
+        alt="${escapeAttribute(
+          product.name
+        )}"
+        onerror="this.src='https://via.placeholder.com/100?text=G'"
+      >
+
+      <div class="cart-item-info">
+
+        <div class="cart-item-name">
+          ${escapeHTML(product.name)}
+        </div>
+
+        <div class="cart-item-price">
+          ৳${price.toLocaleString("en-BD")}
+          × ${quantity}
+        </div>
+
+      </div>
+
+      <button
+        class="remove-btn"
+        onclick="removeFromCart('${escapeAttribute(product.id)}')"
+      >
+        Remove
+      </button>
+      `;
+
+
+    container.appendChild(div);
+
+  });
+
+
+  cart = validItems;
+
+  saveCart();
+
+
+  if(!cart.length){
+
+    empty.style.display = "block";
+
+    orderArea.style.display = "none";
+
+    totalBox.innerHTML = "";
+
+    return;
+
+  }
+
+
+  empty.style.display = "none";
+
+  orderArea.style.display = "block";
+
+
+  totalBox.innerHTML =
+    `Subtotal: ৳${total.toLocaleString("en-BD")}`;
+
+}
+
+
+/* ---------- REMOVE CART ---------- */
+
+function removeFromCart(productId){
+
+  cart =
+    cart.filter(
+      item =>
+        String(item.id) !==
+        String(productId)
+    );
+
+
+  saveCart();
+
+  updateCounts();
+
+  renderCart();
+
+}
+
+
+/* ---------- WISHLIST ---------- */
+
+function toggleWishlist(productId){
+
+  const id =
+    String(productId);
+
+
+  const index =
+    wishlist.findIndex(
+      item =>
+        String(item) === id
+    );
+
+
+  if(index >= 0){
+
+    wishlist.splice(index,1);
+
+  }else{
+
+    wishlist.push(productId);
+
+  }
+
+
+  localStorage.setItem(
+    "gadhuli_wishlist",
+    JSON.stringify(wishlist)
+  );
+
+
+  updateCounts();
+
+  renderProducts();
+
+}
+
+
+/* ---------- OPEN WISHLIST ---------- */
+
+function openWishlist(){
+
+  renderWishlist();
+
+  document.getElementById(
+    "wishlistModal"
+  ).style.display = "flex";
+
+}
+
+
+/* ---------- RENDER WISHLIST ---------- */
+
+function renderWishlist(){
+
+  const container =
+    document.getElementById(
+      "wishlistItems"
+    );
+
+  const empty =
+    document.getElementById(
+      "wishlistEmpty"
+    );
+
+
+  container.innerHTML = "";
+
+
+  const items =
+    wishlist
+      .map(id =>
+        products.find(
+          p =>
+            String(p.id) ===
+            String(id)
+        )
+      )
+      .filter(Boolean);
+
+
+  if(!items.length){
+
+    empty.style.display = "block";
+
+    return;
+
+  }
+
+
+  empty.style.display = "none";
+
+
+  items.forEach(product => {
+
+    const div =
+      document.createElement("div");
+
+    div.className = "cart-item";
+
+
+    div.innerHTML =
+      `
+      <img
+        src="${escapeAttribute(
+          getProductImage(product)
+        )}"
+        alt="${escapeAttribute(
+          product.name
+        )}"
+      >
+
+      <div class="cart-item-info">
+
+        <div class="cart-item-name">
+          ${escapeHTML(product.name)}
+        </div>
+
+        <div class="cart-item-price">
+          ৳${Number(product.price || 0).toLocaleString("en-BD")}
+        </div>
+
+      </div>
+
+      <button
+        class="btn cart-btn"
+        onclick="addToCart('${escapeAttribute(product.id)}')"
+      >
+        🛒
+      </button>
+      `;
+
+
+    container.appendChild(div);
+
+  });
+
+}
+
+
+/* ---------- PRODUCT DETAILS ---------- */
+
+function showDetails(productId){
+
+  const product =
+    products.find(
+      p =>
+        String(p.id) ===
+        String(productId)
+    );
+
+
+  if(!product) return;
+
+
+  const images =
+    getProductImages(product);
+
+
+  const container =
+    document.getElementById(
+      "productDetails"
+    );
+
+
+  container.innerHTML =
+    `
+    <img
+      id="detailMainImage"
+      class="detail-image"
+      src="${escapeAttribute(images[0])}"
+      alt="${escapeAttribute(product.name)}"
+      onerror="this.src='https://via.placeholder.com/600x600?text=Gadhuli'"
+    >
+
+    <div class="detail-thumbs">
+
+      ${images.map(
+        (image,index) =>
+        `
+        <img
+          class="detail-thumb ${index === 0 ? "active" : ""}"
+          src="${escapeAttribute(image)}"
+          onclick="changeDetailImage(this,'${escapeAttribute(image)}')"
+          onerror="this.style.display='none'"
+        >
+        `
+      ).join("")}
+
+    </div>
+
+    <h2 class="detail-name">
+      ${escapeHTML(product.name)}
+    </h2>
+
+    <div class="detail-price">
+      ৳${Number(product.price || 0).toLocaleString("en-BD")}
+    </div>
+
+    <p style="color:#777;margin-bottom:15px;">
+      Category:
+      ${escapeHTML(product.category || "Product")}
+    </p>
+
+    <button
+      class="btn cart-btn"
+      style="width:100%;font-size:16px;"
+      onclick="addToCart('${escapeAttribute(product.id)}')"
+    >
+      🛒 Add to Cart
+    </button>
+    `;
+
+
+  document.getElementById(
+    "detailModal"
+  ).style.display = "flex";
+
+}
+
+
+/* ---------- CHANGE DETAIL IMAGE ---------- */
+
+function changeDetailImage(
+  element,
+  image
+){
+
+  document.getElementById(
+    "detailMainImage"
+  ).src = image;
+
+
+  document
+    .querySelectorAll(".detail-thumb")
+    .forEach(
+      img =>
+        img.classList.remove("active")
+    );
+
+
+  element.classList.add("active");
+
+}
+
+
+/* ---------- WHATSAPP ORDER ---------- */
+
+function orderOnWhatsApp(){
+
+  if(!cart.length){
+
+    alert("Cart empty!");
+
+    return;
+
+  }
+
+
+  const name =
+    document
+      .getElementById("customerName")
+      .value.trim();
+
+
+  const phone =
+    document
+      .getElementById("customerPhone")
+      .value.trim();
+
+
+  const address =
+    document
+      .getElementById("customerAddress")
+      .value.trim();
+
+
+  const area =
+    document
+      .getElementById("deliveryArea")
+      .value;
+
+
+  if(!name || !phone || !address){
+
+    alert(
+      "নাম, Phone এবং Address দিন।"
+    );
+
+    return;
+
+  }
+
+
+  const delivery =
+    area === "dhaka"
+      ? 60
+      : 120;
+
+
+  let subtotal = 0;
+
+  let message =
+    "🛍️ *Gadhuli Order*%0A%0A";
+
+
+  message +=
+    "👤 Name: " +
+    encodeURIComponent(name) +
+    "%0A";
+
+
+  message +=
+    "📞 Phone: " +
+    encodeURIComponent(phone) +
+    "%0A";
+
+
+  message +=
+    "📍 Address: " +
+    encodeURIComponent(address) +
+    "%0A%0A";
+
+
+  message +=
+    "🛒 *Products:*%0A";
+
+
+  cart.forEach(item => {
+
+    const product =
+      products.find(
+        p =>
+          String(p.id) ===
+          String(item.id)
+      );
+
+
+    if(!product) return;
+
+
+    const quantity =
+      Number(item.quantity || 1);
+
+
+    const price =
+      Number(product.price || 0);
+
+
+    const itemTotal =
+      price * quantity;
+
+
+    subtotal += itemTotal;
+
+
+    message +=
+      "• " +
+      encodeURIComponent(
+        product.name
+      ) +
+      " × " +
+      quantity +
+      " = ৳" +
+      itemTotal +
+      "%0A";
+
+  });
+
+
+  const grandTotal =
+    subtotal + delivery;
+
+
+  message +=
+    "%0A💰 Subtotal: ৳" +
+    subtotal;
+
+
+  message +=
+    "%0A🚚 Delivery: ৳" +
+    delivery;
+
+
+  message +=
+    "%0A💵 *Total: ৳" +
+    grandTotal +
+    "*";
+
+
+  const whatsapp =
+    "https://wa.me/8801333088194?text=" +
+    message;
+
+
+  window.open(
+    whatsapp,
+    "_blank"
+  );
+
+}
+
+
+/* ---------- COUNTS ---------- */
+
+function updateCounts(){
+
+  document.getElementById(
+    "cartCount"
+  ).textContent =
+    cart.reduce(
+      (sum,item) =>
+        sum +
+        Number(item.quantity || 1),
+      0
+    );
+
+
+  document.getElementById(
+    "wishlistCount"
+  ).textContent =
+    wishlist.length;
+
+}
+
+
+/* ---------- MODAL ---------- */
+
+function closeModal(id){
+
+  document.getElementById(
+    id
+  ).style.display = "none";
+
+}
+
+
+function closeOutside(
+  event,
+  id
+){
+
+  if(
+    event.target.id === id
+  ){
+
+    closeModal(id);
+
+  }
+
+}
+
+
+/* ---------- SECURITY HELPERS ---------- */
+
+function escapeHTML(value){
+
+  return String(value ?? "")
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+
+}
+
+
+function escapeAttribute(value){
+
+  return escapeHTML(value);
+
+}
+
+
+/* ---------- START ---------- */
+
+document.addEventListener(
+  "DOMContentLoaded",
+  () => {
+
+    updateCounts();
+
+    loadProducts();
+
+  }
 );
-if(!Array.isArray(reviews))reviews=[];
-}catch(e){
-reviews=[];
-}
 
-reviews.unshift({
-name:document.getElementById("reviewName")
-.value.trim(),
-rating:document.getElementById("rating").value,
-text:document.getElementById("reviewText")
-.value.trim(),
-date:new Date().toLocaleDateString()
-});
 
-localStorage.setItem(
-"gadhuli_reviews",
-JSON.stringify(reviews)
-);
+/* ---------- REFRESH PRODUCTS ----------
+   Admin থেকে Product যোগ করার পর
+   Homepage reload করলে নতুন Product আসবে.
+   -------------------------------------- */
 
-this.reset();
-showReviews();
-
-alert("Review submit হয়েছে ⭐");
-
-});
-
-function showReviews(){
-
-const box=document.getElementById("reviews");
-let reviews=[];
-
-try{
-reviews=JSON.parse(
-localStorage.getItem("gadhuli_reviews")||"[]"
-);
-}catch(e){
-reviews=[];
-}
-
-box.innerHTML="";
-
-if(!reviews.length){
-box.innerHTML=
-'<div class="empty">এখনো কোনো review নেই।</div>';
-return;
-}
-
-reviews.forEach(function(r){
-
-const div=document.createElement("div");
-div.className="review";
-
-div.innerHTML=`
-<b>${r.name}</b><br>
-${"⭐".repeat(Number(r.rating))}<br>
-${r.text}<br>
-<small>${r.date||""}</small>
-`;
-
-box.appendChild(div);
-
-});
-
-}
-
-async function adminCheck(user){
-
-if(!user)return false;
-
-try{
-
-const result=await Promise.race([
-
-client
-.from("admins")
-.select("user_id")
-.eq("user_id",user.id)
-.maybeSingle(),
-
-new Promise(function(_,reject){
-
-setTimeout(function(){
-
-reject(
-new Error("Admin check timeout")
-);
-
-},10000);
-
-})
-
-]);
-
-if(result.error){
-console.error(result.error);
-return false;
-}
-
-return !!result.data;
-
-}catch(error){
-
-console.error(error);
-return false;
-
-}
-
-}
-
-document.getElementById("loginForm")
-.addEventListener("submit",async function(e){
-
-e.preventDefault();
-
-status.innerText="Login হচ্ছে...";
-status.style.color="#8f174d";
-
-const email=document.getElementById(
-"email").value.trim();
-
-const password=document.getElementById(
-"password").value;
-
-try{
-
-const result=await Promise.race([
-
-client.auth.signInWithPassword({
-email:email,
-password:password
-}),
-
-new Promise(function(_,reject){
-
-setTimeout(function(){
-
-reject(
-new Error(
-"Supabase response আসছে না। Internet বা Supabase connection check করুন।"
-)
-);
-
-},15000);
-
-})
-
-]);
-
-if(result.error){
-
-status.innerText=
-"Login failed ❌ "+
-result.error.message;
-
-status.style.color="red";
-return;
-
-}
-
-const user=result.data.user;
-
-if(!user){
-
-status.innerText="User পাওয়া যায়নি ❌";
-status.style.color="red";
-return;
-
-}
-
-const isAdmin=await adminCheck(user);
-
-if(!isAdmin){
-
-await client.auth.signOut();
-
-status.innerText="Admin Access নেই ❌";
-status.style.color="red";
-return;
-
-}
-
-status.innerText="Admin Login সফল হয়েছে ✅";
-status.style.color="green";
-
-document.getElementById("adminPanel")
-.style.display="block";
-
-showAdmin();
-
-}catch(error){
-
-console.error(error);
-
-status.innerText=
-"Login Error ❌ "+error.message;
-
-status.style.color="red";
-
-}
-
-});
-
-window.logout=async function(){
-
-try{
-await client.auth.signOut();
-}catch(error){
-console.error(error);
-}
-
-document.getElementById("adminPanel")
-.style.display="none";
-
-status.innerText="Logout হয়েছে ✅";
-status.style.color="#8f174d";
-
-};
-
-document.getElementById("productForm")
-.addEventListener("submit",async function(e){
-
-e.preventDefault();
-
-const name=document.getElementById(
-"pname").value.trim();
-
-const price=Number(
-document.getElementById("price").value
-);
-
-const files=document.getElementById(
-"images").files;
-
-if(!name||price<=0){
-
-alert("Product name এবং valid price দিন ❌");
-return;
-
-}
-
-if(files.length<3||files.length>5){
-
-alert("৩–৫টি ছবি select করুন ❌");
-return;
-
-}
-
-const button=this.querySelector(
-'button[type="submit"]'
-);
-
-button.disabled=true;
-button.innerText="ছবি Upload হচ্ছে... ⏳";
-
-try{
-
-const imageUrls=[];
-
-for(let i=0;i<files.length;i++){
-
-const file=files[i];
-
-const extension=
-file.name.split(".").pop();
-
-const fileName=
-Date.now()+"-"+Math.random()
-.toString(36)
-.substring(2,10)
-+"."+extension;
-
-const filePath=
-"products/"+fileName;
-
-const uploadResult=
-await client.storage
-.from("product-images")
-.upload(filePath,file,{
-contentType:file.type,
-upsert:false
-});
-
-if(uploadResult.error){
-
-throw uploadResult.error;
-
-}
-
-const publicResult=
-client.storage
-.from("product-images")
-.getPublicUrl(filePath);
-
-imageUrls.push(
-publicResult.data.publicUrl
-);
-
-}
-
-products.push({
-name:name,
-price:price,
-images:imageUrls
-});
-
-save();
-showProducts();
-showAdmin();
-
-this.reset();
-
-document.getElementById("preview")
-.innerHTML="";
-
-alert("Product এবং ছবি Upload হয়েছে ✅");
-
-}catch(error){
-
-console.error(error);
-
-alert(
-"ছবি Upload হয়নি ❌\n"+
-error.message
-);
-
-}finally{
-
-button.disabled=false;
-button.innerText="Save Product";
-
-}
-
-});
-});
-
-function showAdmin(){
-
-const box=document.getElementById(
-"adminProducts"
-);
-
-box.innerHTML="";
-
-if(!products.length){
-
-box.innerHTML=
-'<div class="empty">কোনো product নেই।</div>';
-
-return;
-
-}
-
-products.forEach(function(p,i){
-
-const item=document.createElement("div");
-item.className="adminitem";
-
-item.innerHTML=`
-<div>
-<b>${p.name}</b><br>
-৳${p.price}
-</div>
-
-<div class="admin-actions">
-
-<button class="edit"
-onclick="editProduct(${i})">
-✏️
-</button>
-
-<button class="delete"
-onclick="deleteProduct(${i})">
-🗑️
-</button>
-
-</div>
-`;
-
-box.appendChild(item);
-
-});
-
-}
-
-window.editProduct=function(i){
-
-if(!products[i])return;
-
-const name=prompt(
-"Product Name:",products[i].name
-);
-
-if(name===null)return;
-
-const price=prompt(
-"Price:",products[i].price
-);
-
-if(price===null)return;
-
-const image=prompt(
-"Image URL:",products[i].image||""
-);
-
-if(image===null)return;
-
-const newPrice=Number(price);
-
-if(!name.trim()||newPrice<=0){
-
-alert("Valid product name ও price দিন ❌");
-return;
-
-}
-
-products[i]={
-name:name.trim(),
-price:newPrice,
-image:image.trim()
-};
-
-save();
-showProducts();
-showAdmin();
-
-alert("Product update হয়েছে ✅");
-
-};
-
-window.deleteProduct=function(i){
-
-if(!products[i])return;
-
-if(!confirm(
-`"${products[i].name}" delete করবেন?`
-))return;
-
-products.splice(i,1);
-
-cart=cart.filter(function(x){
-return x>=0&&x<products.length;
-});
-
-wishlist=wishlist.filter(function(x){
-return x>=0&&x<products.length;
-});
-
-save();
-showProducts();
-showCart();
-showAdmin();
-
-alert("Product delete হয়েছে 🗑️");
-
-};
-
-async function checkSession(){
-
-try{
-
-const result=await client.auth.getUser();
-
-if(result.error)return;
-
-const user=result.data.user;
-
-if(!user)return;
-
-if(await adminCheck(user)){
-
-document.getElementById("adminPanel")
-.style.display="block";
-
-status.innerText=
-"Admin already logged in ✅";
-
-status.style.color="green";
-
-showAdmin();
-
-}
-
-}catch(error){
-
-console.error(error);
-
-}
-
-}
-
-showProducts();
-showCart();
-showReviews();
-checkSession();
-
-});
 </script>
 
 </body>
