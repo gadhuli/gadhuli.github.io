@@ -151,22 +151,60 @@ button:disabled{
   display:block;
   color:#777;
   font-size:13px;
-  margin-top:4px;
+  margin-top:5px;
+  margin-bottom:8px;
+}
+
+#images{
+  padding:10px;
+  background:#fff;
+  border:1px dashed #d52b72;
+  cursor:pointer;
 }
 
 #preview{
   display:flex;
   flex-wrap:wrap;
-  margin:5px 0 10px;
+  gap:10px;
+  margin:15px 0 12px;
+}
+
+.preview-box{
+  position:relative;
+  width:90px;
+  height:90px;
 }
 
 .preview-img{
-  width:80px;
-  height:80px;
+  width:90px;
+  height:90px;
   object-fit:cover;
+  border-radius:10px;
+  border:2px solid #f0c9da;
+  display:block;
+}
+
+.preview-number{
+  position:absolute;
+  left:5px;
+  top:5px;
+  background:#8f174d;
+  color:#fff;
+  font-size:12px;
+  font-weight:bold;
+  padding:4px 7px;
+  border-radius:6px;
+}
+
+.image-count{
+  width:100%;
+  background:#fff0f6;
+  color:#8f174d;
+  padding:10px;
   border-radius:8px;
-  margin:5px;
-  border:1px solid #ddd;
+  margin-bottom:10px;
+  font-size:14px;
+  font-weight:bold;
 }
 
 /* PRODUCTS */
@@ -259,6 +297,12 @@ footer{
 
   .actions{
     flex-shrink:0;
+  }
+
+  .preview-box,
+  .preview-img{
+    width:75px;
+    height:75px;
   }
 
 }
@@ -423,11 +467,11 @@ footer{
         <!-- IMAGES -->
 
         <label>
-          🖼️ Product Images (3–5)
+          🖼️ Product Images (1–5)
         </label>
 
         <span class="image-note">
-          ৩ থেকে ৫টি ছবি select করুন
+          ১ থেকে ৫টি ছবি select করুন
         </span>
 
 
@@ -438,6 +482,15 @@ footer{
           multiple
           required
         >
+
+
+        <!-- IMAGE COUNT -->
+
+        <div
+          id="imageCount"
+          class="image-count"
+          style="display:none;"
+        ></div>
 
 
         <!-- PREVIEW -->
@@ -875,9 +928,10 @@ document.addEventListener(
     }
 
 
-    /* =========================
+    /* =====================================================
        IMAGE PREVIEW
-    ========================= */
+       1–5 IMAGES
+    ===================================================== */
 
     document
     .getElementById("images")
@@ -885,10 +939,14 @@ document.addEventListener(
       "change",
       function(){
 
-
         const preview =
           document.getElementById(
             "preview"
+          );
+
+        const imageCount =
+          document.getElementById(
+            "imageCount"
           );
 
 
@@ -896,30 +954,80 @@ document.addEventListener(
           "";
 
 
+        imageCount.style.display =
+          "none";
+
+
         const files =
           Array.from(
-            this.files
+            this.files || []
           );
 
 
-        if(
-          files.length < 3 ||
-          files.length > 5
-        ){
+        /* ---------- NO IMAGE ---------- */
 
-          preview.innerHTML =
-            "<p style='color:red'>" +
-            "⚠️ ৩–৫টি ছবি select করুন" +
-            "</p>";
-
+        if(files.length === 0){
 
           return;
 
         }
 
 
+        /* ---------- MORE THAN 5 ---------- */
+
+        if(files.length > 5){
+
+          imageCount.style.display =
+            "block";
+
+          imageCount.style.color =
+            "#c62828";
+
+          imageCount.innerHTML =
+            "⚠️ সর্বোচ্চ ৫টি ছবি দেওয়া যাবে। আবার select করুন।";
+
+          this.value = "";
+
+          return;
+
+        }
+
+
+        /* ---------- VALID 1–5 ---------- */
+
+        imageCount.style.display =
+          "block";
+
+        imageCount.style.color =
+          "#8f174d";
+
+        imageCount.innerHTML =
+          "🖼️ " +
+          files.length +
+          "টি ছবি selected — সর্বোচ্চ ৫টি";
+
+
+        /* ---------- SHOW PREVIEW ---------- */
+
         files.forEach(
-          function(file){
+          function(file,index){
+
+            if(!file.type.startsWith("image/")){
+
+              return;
+
+            }
+
+
+            const wrapper =
+              document.createElement(
+                "div"
+              );
+
+
+            wrapper.className =
+              "preview-box";
+
 
             const img =
               document.createElement(
@@ -931,14 +1039,42 @@ document.addEventListener(
               "preview-img";
 
 
+            img.alt =
+              "Product Image " +
+              (index + 1);
+
+
             img.src =
               URL.createObjectURL(
                 file
               );
 
 
-            preview.appendChild(
+            const number =
+              document.createElement(
+                "div"
+              );
+
+
+            number.className =
+              "preview-number";
+
+
+            number.innerText =
+              index + 1;
+
+
+            wrapper.appendChild(
               img
+            );
+
+            wrapper.appendChild(
+              number
+            );
+
+
+            preview.appendChild(
+              wrapper
             );
 
           }
@@ -982,13 +1118,15 @@ document.addEventListener(
           );
 
 
+        const imageInput =
+          document.getElementById(
+            "images"
+          );
+
+
         const files =
           Array.from(
-            document
-            .getElementById(
-              "images"
-            )
-            .files
+            imageInput.files || []
           );
 
 
@@ -1016,13 +1154,15 @@ document.addEventListener(
         }
 
 
+        /* 1–5 IMAGES */
+
         if(
-          files.length < 3 ||
+          files.length < 1 ||
           files.length > 5
         ){
 
           alert(
-            "৩–৫টি ছবি select করুন ❌"
+            "১–৫টি ছবি select করুন ❌"
           );
 
           return;
@@ -1282,6 +1422,13 @@ document.addEventListener(
             "";
 
 
+          document
+          .getElementById(
+            "imageCount"
+          ).style.display =
+            "none";
+
+
           await showAdmin();
 
 
@@ -1363,6 +1510,19 @@ document.addEventListener(
         ){
 
           return parsed[0] ||
+            placeholder;
+
+        }
+
+
+        if(
+          parsed &&
+          Array.isArray(
+            parsed.urls
+          )
+        ){
+
+          return parsed.urls[0] ||
             placeholder;
 
         }
@@ -1452,6 +1612,16 @@ document.addEventListener(
 
                       images =
                         parsed;
+
+                    }else if(
+                      parsed &&
+                      Array.isArray(
+                        parsed.urls
+                      )
+                    ){
+
+                      images =
+                        parsed.urls;
 
                     }
 
@@ -1620,7 +1790,7 @@ document.addEventListener(
 
     function escapeHTML(value){
 
-      return String(value)
+      return String(value ?? "")
       .replace(
         /&/g,
         "&amp;"
@@ -1767,7 +1937,7 @@ document.addEventListener(
 
         alert(
           "Product update হয়েছে ✅\n\n" +
-          "ছবি Edit করা যাবে না।"
+          "ছবি Edit করা যাবে না। নতুন Product যোগ করুন।"
         );
 
 
@@ -1855,6 +2025,16 @@ document.addEventListener(
 
               imageList =
                 parsed;
+
+            }else if(
+              parsed &&
+              Array.isArray(
+                parsed.urls
+              )
+            ){
+
+              imageList =
+                parsed.urls;
 
             }
 
