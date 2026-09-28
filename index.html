@@ -1,25 +1,11 @@
-<!DOCTYPE html>
-<html lang="bn">
-<head>
-
-<meta charset="UTF-8">
-
-<meta name="viewport"
+<!DOCTYPE html><html lang="bn">
+<head><meta charset="UTF-8"><meta name="viewport"
 content="width=device-width,initial-scale=1.0">
 
 <meta name="google-site-verification"
 content="lkVxExaUcJinZDbyNwrJL4Jhc3kjkYTwQXLFYYKu_p8">
 
-<title>Gadhuli | Official Website</title>
-
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="supabase.js"></script>
-
-<style>
-
-/* =========================
-   GADHULI DARK PINK THEME
-========================= */
+<title>Gadhuli | Official Website</title><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="supabase.js"></script><style>
 
 *{
   box-sizing:border-box;
@@ -32,8 +18,6 @@ body{
   background:#fff7fa;
   color:#3b1024;
 }
-
-/* HEADER */
 
 header{
   position:sticky;
@@ -94,8 +78,6 @@ header{
   background:#d52b72;
 }
 
-/* HERO */
-
 .hero{
   max-width:1200px;
   margin:18px auto;
@@ -121,8 +103,6 @@ header{
   font-size:16px;
 }
 
-/* CONTAINER */
-
 .container{
   max-width:1200px;
   margin:auto;
@@ -134,6 +114,53 @@ header{
   color:#8f174d;
   margin:15px 0;
 }
+
+
+/* CATEGORY FILTER */
+
+.category-filter{
+  display:flex;
+  gap:8px;
+  overflow-x:auto;
+  padding:5px 2px 13px;
+  margin-bottom:8px;
+  scrollbar-width:none;
+}
+
+.category-filter::-webkit-scrollbar{
+  display:none;
+}
+
+.category-btn{
+  flex-shrink:0;
+  border:1px solid #e9a9c2;
+  background:#fff;
+  color:#8f174d;
+  padding:9px 15px;
+  border-radius:22px;
+  cursor:pointer;
+  font-weight:bold;
+  font-size:13px;
+  white-space:nowrap;
+}
+
+.category-btn:hover{
+  background:#f8d9e5;
+}
+
+.category-btn.active{
+  background:#8f174d;
+  color:#fff;
+  border-color:#8f174d;
+}
+
+.selected-category{
+  color:#8f174d;
+  font-size:14px;
+  margin:0 0 13px;
+  font-weight:bold;
+}
+
 
 /* PRODUCTS */
 
@@ -159,8 +186,6 @@ header{
   box-shadow:
     0 8px 22px rgba(143,23,77,.18);
 }
-
-/* IMAGE SLIDER */
 
 .product-image-box{
   position:relative;
@@ -215,8 +240,6 @@ header{
   transform:scale(1.25);
 }
 
-/* PRODUCT INFO */
-
 .product-info{
   padding:13px;
 }
@@ -235,13 +258,22 @@ header{
   margin-bottom:10px;
 }
 
+.product-category{
+  display:inline-block;
+  background:#f8d9e5;
+  color:#8f174d;
+  padding:4px 8px;
+  border-radius:20px;
+  font-size:11px;
+  font-weight:bold;
+  margin-bottom:10px;
+}
+
 .card-actions{
   display:grid;
   grid-template-columns:1fr 1fr;
   gap:7px;
 }
-
-/* BUTTONS */
 
 .btn{
   border:0;
@@ -284,15 +316,15 @@ header{
   text-align:center;
   padding:50px 15px;
   color:#8f174d;
+  grid-column:1/-1;
 }
 
 .loading{
   text-align:center;
   padding:40px;
   color:#8f174d;
+  grid-column:1/-1;
 }
-
-/* MODAL */
 
 .modal{
   display:none;
@@ -336,8 +368,6 @@ header{
   padding-right:40px;
 }
 
-/* DETAILS */
-
 .detail-main-image{
   width:100%;
   height:320px;
@@ -366,8 +396,6 @@ header{
 .thumb.active{
   border-color:#8f174d;
 }
-
-/* FORM */
 
 .form-group{
   margin-bottom:12px;
@@ -402,8 +430,6 @@ header{
   resize:vertical;
 }
 
-/* CART */
-
 .cart-item{
   display:flex;
   gap:10px;
@@ -430,8 +456,6 @@ header{
   border-left:4px solid #8f174d;
   border-radius:10px;
 }
-
-/* SHARE */
 
 .share-buttons{
   display:grid;
@@ -465,6 +489,7 @@ header{
 .copy:hover{
   background:#6f103b;
 }
+
 
 /* MOBILE */
 
@@ -511,383 +536,331 @@ header{
 
 }
 
-</style>
-</head>
+</style></head><body><!-- HEADER --><header>  <div class="header-inner"><img
+  src="logo.png"
+  class="logo"
+  alt="Gadhuli">
 
+<div class="search-box">
 
-<body>
+  <input
+    type="text"
+    id="searchInput"
+    placeholder="🔎 Product খুঁজুন..."
+    oninput="searchProducts()">
 
+</div>
 
-<!-- =========================
-     HEADER
-========================= -->
+<div class="header-btns">
 
-<header>
+  <button
+    class="icon-btn"
+    onclick="openWishlist()">
+    ❤️
+  </button>
 
-  <div class="header-inner">
+  <button
+    class="icon-btn"
+    onclick="openCart()">
+    🛒
+  </button>
 
-    <img
-      src="logo.png"
-      class="logo"
-      alt="Gadhuli">
+</div>
 
-    <div class="search-box">
-
-      <input
-        type="text"
-        id="searchInput"
-        placeholder="🔎 Product খুঁজুন..."
-        oninput="searchProducts()">
-
-    </div>
-
-    <div class="header-btns">
-
-      <button
-        class="icon-btn"
-        onclick="openWishlist()">
-        ❤️
-      </button>
-
-      <button
-        class="icon-btn"
-        onclick="openCart()">
-        🛒
-      </button>
-
-    </div>
-
-  </div>
-
-</header>
-
-
-<!-- =========================
-     HERO
-========================= -->
-
-<section class="hero">
-
-  <h1>Gadhuli</h1>
-
-  <p>
+  </div></header><!-- HERO --><section class="hero">  <h1>Gadhuli</h1>  <p>
     Shop Smart. Shop Easy. 🌸
-  </p>
-
-</section>
-
-
-<!-- =========================
-     PRODUCTS
-========================= -->
-
-<main class="container">
-
-  <h2 class="section-title">
+  </p></section><!-- PRODUCTS --><main class="container">  <h2 class="section-title">
     🛍️ Our Products
-  </h2>
+  </h2>  <!-- CATEGORY FILTER -->  <div
+    class="category-filter"
+    id="categoryFilter"><button
+  class="category-btn active"
+  data-category=""
+  onclick="setCategory('')">
+  All
+</button>
 
-  <div
+<button
+  class="category-btn"
+  data-category="Men"
+  onclick="setCategory('Men')">
+  Men
+</button>
+
+<button
+  class="category-btn"
+  data-category="Women"
+  onclick="setCategory('Women')">
+  Women
+</button>
+
+<button
+  class="category-btn"
+  data-category="Kids"
+  onclick="setCategory('Kids')">
+  Kids
+</button>
+
+<button
+  class="category-btn"
+  data-category="Electronics"
+  onclick="setCategory('Electronics')">
+  Electronics
+</button>
+
+<button
+  class="category-btn"
+  data-category="Beauty"
+  onclick="setCategory('Beauty')">
+  Beauty
+</button>
+
+<button
+  class="category-btn"
+  data-category="Home"
+  onclick="setCategory('Home')">
+  Home
+</button>
+
+<button
+  class="category-btn"
+  data-category="Others"
+  onclick="setCategory('Others')">
+  Others
+</button>
+
+  </div>  <div
+    id="selectedCategory"
+    class="selected-category">
+    🏷️ Showing: All Categories
+  </div>  <div
     id="productGrid"
-    class="product-grid">
+    class="product-grid"><div class="loading">
+  Products loading... ⏳
+</div>
 
-    <div class="loading">
-      Products loading... ⏳
-    </div>
+  </div></main><!-- DETAILS MODAL --><div
+  class="modal"
+  id="detailsModal">  <div class="modal-box"><button
+  class="close"
+  onclick="closeModal('detailsModal')">
+  ×
+</button>
 
-  </div>
+<h2
+  class="modal-title"
+  id="detailName">
+</h2>
 
-</main>
-
-
-<!-- =========================
-     DETAILS MODAL
-========================= -->
+<img
+  id="detailMainImage"
+  class="detail-main-image"
+  src=""
+  alt="Product">
 
 <div
-  class="modal"
-  id="detailsModal">
+  id="detailThumbs"
+  class="thumbnails">
+</div>
 
-  <div class="modal-box">
+<h3
+  id="detailPrice"
+  class="price"
+  style="margin-top:15px;">
+</h3>
 
-    <button
-      class="close"
-      onclick="closeModal('detailsModal')">
-      ×
-    </button>
+<div style="display:grid;gap:8px;">
 
-    <h2
-      class="modal-title"
-      id="detailName">
-    </h2>
+  <button
+    class="btn btn-primary"
+    id="detailCartBtn">
+    🛒 Add to Cart
+  </button>
 
-    <img
-      id="detailMainImage"
-      class="detail-main-image"
-      src=""
-      alt="Product">
+  <button
+    class="btn btn-green"
+    id="detailOrderBtn">
+    ⚡ Order Now
+  </button>
 
-    <div
-      id="detailThumbs"
-      class="thumbnails">
-    </div>
+  <button
+    class="btn btn-light"
+    id="detailShareBtn">
+    🔗 Share Product
+  </button>
 
-    <h3
-      id="detailPrice"
-      class="price"
-      style="margin-top:15px;">
-    </h3>
-
-    <div style="display:grid;gap:8px;">
-
-      <button
-        class="btn btn-primary"
-        id="detailCartBtn">
-        🛒 Add to Cart
-      </button>
-
-      <button
-        class="btn btn-green"
-        id="detailOrderBtn">
-        ⚡ Order Now
-      </button>
-
-      <button
-        class="btn btn-light"
-        id="detailShareBtn">
-        🔗 Share Product
-      </button>
-
-      <button
-        class="btn btn-light"
-        id="detailResellBtn">
-        🤝 Resell This Product
-      </button>
-
-    </div>
-
-  </div>
+  <button
+    class="btn btn-light"
+    id="detailResellBtn">
+    🤝 Resell This Product
+  </button>
 
 </div>
 
-
-<!-- =========================
-     CART MODAL
-========================= -->
-
-<div
+  </div></div><!-- CART MODAL --><div
   class="modal"
-  id="cartModal">
+  id="cartModal">  <div class="modal-box"><button
+  class="close"
+  onclick="closeModal('cartModal')">
+  ×
+</button>
 
-  <div class="modal-box">
+<h2 class="modal-title">
+  🛒 Your Cart
+</h2>
 
-    <button
-      class="close"
-      onclick="closeModal('cartModal')">
-      ×
-    </button>
+<div id="cartItems"></div>
 
-    <h2 class="modal-title">
-      🛒 Your Cart
-    </h2>
+<div id="cartTotal"></div>
 
-    <div id="cartItems"></div>
+<button
+  class="btn btn-primary full-btn"
+  style="margin-top:12px;"
+  onclick="openOrderFromCart()">
+  Checkout / Order
+</button>
 
-    <div id="cartTotal"></div>
+  </div></div><!-- WISHLIST MODAL --><div
+  class="modal"
+  id="wishlistModal">  <div class="modal-box"><button
+  class="close"
+  onclick="closeModal('wishlistModal')">
+  ×
+</button>
 
-    <button
-      class="btn btn-primary full-btn"
-      style="margin-top:12px;"
-      onclick="openOrderFromCart()">
-      Checkout / Order
-    </button>
+<h2 class="modal-title">
+  ❤️ Wishlist
+</h2>
 
-  </div>
+<div id="wishlistItems"></div>
+
+  </div></div><!-- ORDER MODAL --><div
+  class="modal"
+  id="orderModal">  <div class="modal-box"><button
+  class="close"
+  onclick="closeModal('orderModal')">
+  ×
+</button>
+
+<h2 class="modal-title">
+  📦 Order
+</h2>
+
+<div id="orderProductInfo"></div>
+
+<div class="form-group">
+
+  <label>নাম</label>
+
+  <input
+    id="customerName"
+    type="text"
+    placeholder="আপনার নাম">
 
 </div>
 
+<div class="form-group">
 
-<!-- =========================
-     WISHLIST MODAL
-========================= -->
+  <label>ফোন নম্বর</label>
 
-<div
-  class="modal"
-  id="wishlistModal">
-
-  <div class="modal-box">
-
-    <button
-      class="close"
-      onclick="closeModal('wishlistModal')">
-      ×
-    </button>
-
-    <h2 class="modal-title">
-      ❤️ Wishlist
-    </h2>
-
-    <div id="wishlistItems"></div>
-
-  </div>
+  <input
+    id="customerPhone"
+    type="tel"
+    placeholder="01XXXXXXXXX">
 
 </div>
 
+<div class="form-group">
 
-<!-- =========================
-     ORDER MODAL
-========================= -->
+  <label>ঠিকানা</label>
 
-<div
-  class="modal"
-  id="orderModal">
-
-  <div class="modal-box">
-
-    <button
-      class="close"
-      onclick="closeModal('orderModal')">
-      ×
-    </button>
-
-    <h2 class="modal-title">
-      📦 Order
-    </h2>
-
-    <div id="orderProductInfo"></div>
-
-    <div class="form-group">
-
-      <label>নাম</label>
-
-      <input
-        id="customerName"
-        type="text"
-        placeholder="আপনার নাম">
-
-    </div>
-
-    <div class="form-group">
-
-      <label>ফোন নম্বর</label>
-
-      <input
-        id="customerPhone"
-        type="tel"
-        placeholder="01XXXXXXXXX">
-
-    </div>
-
-    <div class="form-group">
-
-      <label>ঠিকানা</label>
-
-      <textarea
-        id="customerAddress"
-        placeholder="সম্পূর্ণ ঠিকানা">
-      </textarea>
-
-    </div>
-
-    <div class="form-group">
-
-      <label>Delivery Area</label>
-
-      <select
-        id="deliveryArea"
-        onchange="updateOrderTotal()">
-
-        <option value="60">
-          Inside Dhaka — ৳60
-        </option>
-
-        <option value="120">
-          Outside Dhaka — ৳120
-        </option>
-
-      </select>
-
-    </div>
-
-    <div
-      id="orderTotal"
-      class="total-box">
-    </div>
-
-    <button
-      class="btn btn-green full-btn"
-      onclick="sendWhatsAppOrder()">
-      📱 WhatsApp এ Order করুন
-    </button>
-
-  </div>
+  <textarea
+    id="customerAddress"
+    placeholder="সম্পূর্ণ ঠিকানা">
+  </textarea>
 
 </div>
 
+<div class="form-group">
 
-<!-- =========================
-     SHARE MODAL
-========================= -->
+  <label>Delivery Area</label>
 
-<div
-  class="modal"
-  id="shareModal">
+  <select
+    id="deliveryArea"
+    onchange="updateOrderTotal()">
 
-  <div class="modal-box">
+    <option value="60">
+      Inside Dhaka — ৳60
+    </option>
 
-    <button
-      class="close"
-      onclick="closeModal('shareModal')">
-      ×
-    </button>
+    <option value="120">
+      Outside Dhaka — ৳120
+    </option>
 
-    <h2 class="modal-title">
-      🔗 Share Product
-    </h2>
-
-    <div class="form-group">
-
-      <input
-        id="shareLink"
-        type="text"
-        readonly>
-
-    </div>
-
-    <div class="share-buttons">
-
-      <button
-        class="share-btn whatsapp"
-        onclick="shareWhatsApp()">
-        💚 Share on WhatsApp
-      </button>
-
-      <button
-        class="share-btn facebook"
-        onclick="shareFacebook()">
-        💙 Share on Facebook
-      </button>
-
-      <button
-        class="share-btn copy"
-        onclick="copyProductLink()">
-        📋 Copy Product Link
-      </button>
-
-    </div>
-
-  </div>
+  </select>
 
 </div>
 
+<div
+  id="orderTotal"
+  class="total-box">
+</div>
 
-<script>
+<button
+  class="btn btn-green full-btn"
+  onclick="sendWhatsAppOrder()">
+  📱 WhatsApp এ Order করুন
+</button>
 
-/* =========================
-   SUPABASE
-========================= */
+  </div></div><!-- SHARE MODAL --><div
+  class="modal"
+  id="shareModal">  <div class="modal-box"><button
+  class="close"
+  onclick="closeModal('shareModal')">
+  ×
+</button>
 
-const db = window.gadhuliSupabase;
+<h2 class="modal-title">
+  🔗 Share Product
+</h2>
+
+<div class="form-group">
+
+  <input
+    id="shareLink"
+    type="text"
+    readonly>
+
+</div>
+
+<div class="share-buttons">
+
+  <button
+    class="share-btn whatsapp"
+    onclick="shareWhatsApp()">
+    💚 Share on WhatsApp
+  </button>
+
+  <button
+    class="share-btn facebook"
+    onclick="shareFacebook()">
+    💙 Share on Facebook
+  </button>
+
+  <button
+    class="share-btn copy"
+    onclick="copyProductLink()">
+    📋 Copy Product Link
+  </button>
+
+</div>
+
+  </div></div><script>
+
+/* SUPABASE */
+
+const db =
+  window.gadhuliSupabase;
 
 let products = [];
 
@@ -907,10 +880,10 @@ let currentDetailProduct = null;
 
 let currentShareProduct = null;
 
+let currentCategory = "";
 
-/* =========================
-   IMAGE FUNCTIONS
-========================= */
+
+/* IMAGE FUNCTIONS */
 
 function getProductImages(product){
 
@@ -919,9 +892,7 @@ function getProductImages(product){
   let imgs = product.images;
 
   if(Array.isArray(imgs)){
-
     return imgs.filter(Boolean);
-
   }
 
   if(typeof imgs === "string"){
@@ -932,9 +903,7 @@ function getProductImages(product){
         JSON.parse(imgs);
 
       if(Array.isArray(parsed)){
-
         return parsed.filter(Boolean);
-
       }
 
       if(
@@ -949,9 +918,7 @@ function getProductImages(product){
     }catch(e){}
 
     if(imgs.trim()){
-
       return [imgs.trim()];
-
     }
 
   }
@@ -962,9 +929,7 @@ function getProductImages(product){
   ){
 
     if(Array.isArray(imgs.urls)){
-
       return imgs.urls.filter(Boolean);
-
     }
 
   }
@@ -986,9 +951,7 @@ function getProductImage(product){
 }
 
 
-/* =========================
-   ESCAPE HTML
-========================= */
+/* ESCAPE */
 
 function escapeHTML(value){
 
@@ -1002,9 +965,7 @@ function escapeHTML(value){
 }
 
 
-/* =========================
-   LOAD PRODUCTS
-========================= */
+/* LOAD PRODUCTS */
 
 async function loadProducts(){
 
@@ -1035,7 +996,15 @@ async function loadProducts(){
 
   }
 
-  products = data || [];
+  products =
+    (data || []).map(
+      product => ({
+        ...product,
+        category:
+          product.category ||
+          "Others"
+      })
+    );
 
   renderProducts();
 
@@ -1044,9 +1013,103 @@ async function loadProducts(){
 }
 
 
-/* =========================
-   RENDER PRODUCTS
-========================= */
+/* CATEGORY + SEARCH FILTER */
+
+function getFilteredProducts(){
+
+  const query =
+    document.getElementById(
+      "searchInput"
+    )
+    .value
+    .toLowerCase()
+    .trim();
+
+  return products.filter(
+    product => {
+
+      const productName =
+        String(
+          product.name || ""
+        )
+        .toLowerCase();
+
+      const category =
+        product.category ||
+        "Others";
+
+      const categoryMatch =
+        !currentCategory ||
+        category === currentCategory;
+
+      const searchMatch =
+        !query ||
+        productName.includes(query);
+
+      return (
+        categoryMatch &&
+        searchMatch
+      );
+
+    }
+  );
+
+}
+
+
+function applyFilters(){
+
+  renderProducts(
+    getFilteredProducts()
+  );
+
+}
+
+
+function setCategory(category){
+
+  currentCategory =
+    category;
+
+  document
+    .querySelectorAll(
+      ".category-btn"
+    )
+    .forEach(
+      button => {
+
+        button.classList.toggle(
+          "active",
+          button.dataset.category ===
+          category
+        );
+
+      }
+    );
+
+  const selected =
+    document.getElementById(
+      "selectedCategory"
+    );
+
+  selected.textContent =
+    category
+      ? "🏷️ Showing: " + category
+      : "🏷️ Showing: All Categories";
+
+  applyFilters();
+
+}
+
+
+function searchProducts(){
+
+  applyFilters();
+
+}
+
+
+/* RENDER PRODUCTS */
 
 function renderProducts(list = products){
 
@@ -1080,6 +1143,10 @@ function renderProducts(list = products){
 
       const id =
         String(product.id);
+
+      const category =
+        product.category ||
+        "Others";
 
       return `
 
@@ -1131,6 +1198,10 @@ function renderProducts(list = products){
 
             <div class="product-name">
               ${escapeHTML(product.name)}
+            </div>
+
+            <div class="product-category">
+              🏷️ ${escapeHTML(category)}
             </div>
 
             <div class="price">
@@ -1188,12 +1259,9 @@ function renderProducts(list = products){
 }
 
 
-/* =========================
-   IMAGE SWIPE
-========================= */
+/* IMAGE SWIPE */
 
 let touchStartX = 0;
-
 
 function sliderTouchStart(event){
 
@@ -1209,7 +1277,8 @@ function sliderTouchEnd(event){
     event.changedTouches[0].screenX;
 
   const difference =
-    touchStartX - touchEndX;
+    touchStartX -
+    touchEndX;
 
   if(Math.abs(difference) < 40)
     return;
@@ -1364,47 +1433,7 @@ function changeCardImage(
 }
 
 
-/* =========================
-   SEARCH
-========================= */
-
-function searchProducts(){
-
-  const query =
-    document.getElementById(
-      "searchInput"
-    )
-    .value
-    .toLowerCase()
-    .trim();
-
-  if(!query){
-
-    renderProducts();
-
-    return;
-
-  }
-
-  const filtered =
-    products.filter(product =>
-
-      String(
-        product.name || ""
-      )
-      .toLowerCase()
-      .includes(query)
-
-    );
-
-  renderProducts(filtered);
-
-}
-
-
-/* =========================
-   DETAILS
-========================= */
+/* DETAILS */
 
 function openDetails(productId){
 
@@ -1528,9 +1557,7 @@ function changeDetailImage(
 }
 
 
-/* =========================
-   CART
-========================= */
+/* CART */
 
 function addToCart(productId){
 
@@ -1712,9 +1739,7 @@ function openOrderFromCart(){
 }
 
 
-/* =========================
-   ORDER
-========================= */
+/* ORDER */
 
 function orderNow(productId){
 
@@ -1832,9 +1857,7 @@ function updateOrderTotal(){
 }
 
 
-/* =========================
-   WHATSAPP ORDER
-========================= */
+/* WHATSAPP */
 
 function sendWhatsAppOrder(){
 
@@ -1954,9 +1977,7 @@ function sendWhatsAppOrder(){
 }
 
 
-/* =========================
-   WISHLIST
-========================= */
+/* WISHLIST */
 
 function toggleWishlist(productId){
 
@@ -2073,9 +2094,7 @@ function openWishlist(){
 }
 
 
-/* =========================
-   SHARE PRODUCT
-========================= */
+/* SHARE */
 
 function openShare(productId){
 
@@ -2182,9 +2201,7 @@ async function copyProductLink(){
 }
 
 
-/* =========================
-   RESELL
-========================= */
+/* RESELL */
 
 function resellProduct(productId){
 
@@ -2243,9 +2260,7 @@ function resellProduct(productId){
 }
 
 
-/* =========================
-   OPEN PRODUCT FROM URL
-========================= */
+/* URL PRODUCT */
 
 function openProductFromURL(){
 
@@ -2285,9 +2300,7 @@ function openProductFromURL(){
 }
 
 
-/* =========================
-   CLOSE MODALS
-========================= */
+/* CLOSE MODALS */
 
 function closeModal(id){
 
@@ -2325,16 +2338,12 @@ window.addEventListener(
 );
 
 
-/* =========================
-   START
-========================= */
+/* START */
 
 document.addEventListener(
   "DOMContentLoaded",
   loadProducts
 );
 
-</script>
-
-</body>
+</script></body>
 </html>
