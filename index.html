@@ -20,7 +20,6 @@
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="supabase.js"></script>
 
-
 <style>
 
 *{
@@ -36,7 +35,9 @@ body{
 }
 
 
+/* ============================= */
 /* HEADER */
+/* ============================= */
 
 header{
   position:sticky;
@@ -98,7 +99,9 @@ header{
 }
 
 
+/* ============================= */
 /* HERO */
+/* ============================= */
 
 .hero{
   max-width:1200px;
@@ -130,7 +133,9 @@ header{
 }
 
 
+/* ============================= */
 /* CONTAINER */
+/* ============================= */
 
 .container{
   max-width:1200px;
@@ -146,7 +151,7 @@ header{
 
 
 /* ============================= */
-/* MAIN CATEGORY */
+/* CATEGORY */
 /* ============================= */
 
 .category-title{
@@ -177,7 +182,6 @@ header{
   color:#8f174d;
 
   padding:10px 16px;
-
   border-radius:22px;
 
   cursor:pointer;
@@ -200,12 +204,14 @@ header{
 
 
 /* ============================= */
-/* SUB CATEGORY */
+/* SUBCATEGORY */
 /* ============================= */
 
 .subcategory-wrapper{
   display:none;
+
   background:#fff;
+
   border:1px solid #efb4cb;
   border-radius:13px;
 
@@ -268,7 +274,6 @@ header{
   border-color:#d52b72;
 }
 
-
 .selected-category{
   color:#8f174d;
   font-size:14px;
@@ -277,7 +282,9 @@ header{
 }
 
 
-/* PRODUCTS */
+/* ============================= */
+/* PRODUCT GRID */
+/* ============================= */
 
 .product-grid{
   display:grid;
@@ -311,7 +318,9 @@ header{
 }
 
 
+/* ============================= */
 /* PRODUCT IMAGE */
+/* ============================= */
 
 .product-image-box{
   position:relative;
@@ -387,7 +396,9 @@ header{
 }
 
 
+/* ============================= */
 /* PRODUCT INFO */
+/* ============================= */
 
 .product-info{
   padding:13px;
@@ -446,13 +457,35 @@ header{
 
   font-weight:bold;
 
+  margin-bottom:5px;
+
+  margin-left:3px;
+}
+
+.product-size{
+  display:inline-block;
+
+  background:#f3e4ec;
+
+  color:#5e0d32;
+
+  padding:4px 8px;
+
+  border-radius:20px;
+
+  font-size:11px;
+
+  font-weight:bold;
+
   margin-bottom:10px;
 
   margin-left:3px;
 }
 
 
+/* ============================= */
 /* BUTTONS */
+/* ============================= */
 
 .card-actions{
   display:grid;
@@ -507,7 +540,9 @@ header{
 }
 
 
+/* ============================= */
 /* EMPTY / LOADING */
+/* ============================= */
 
 .empty{
   text-align:center;
@@ -530,7 +565,9 @@ header{
 }
 
 
+/* ============================= */
 /* MODAL */
+/* ============================= */
 
 .modal{
   display:none;
@@ -598,7 +635,9 @@ header{
 }
 
 
+/* ============================= */
 /* DETAILS */
+/* ============================= */
 
 .detail-main-image{
   width:100%;
@@ -642,7 +681,9 @@ header{
 }
 
 
+/* ============================= */
 /* FORM */
+/* ============================= */
 
 .form-group{
   margin-bottom:12px;
@@ -687,7 +728,9 @@ header{
 }
 
 
+/* ============================= */
 /* CART */
+/* ============================= */
 
 .cart-item{
   display:flex;
@@ -727,7 +770,9 @@ header{
 }
 
 
+/* ============================= */
 /* SHARE */
+/* ============================= */
 
 .share-buttons{
   display:grid;
@@ -769,7 +814,9 @@ header{
 }
 
 
+/* ============================= */
 /* MOBILE */
+/* ============================= */
 
 @media(max-width:600px){
 
@@ -824,7 +871,9 @@ header{
 <body>
 
 
+<!-- ============================= -->
 <!-- HEADER -->
+<!-- ============================= -->
 
 <header>
 
@@ -841,7 +890,7 @@ header{
       <input
         type="text"
         id="searchInput"
-        placeholder="🔎 Product খুঁজুন..."
+        placeholder="🔎 Product, Category বা Size খুঁজুন..."
         oninput="searchProducts()"
       >
 
@@ -872,7 +921,9 @@ header{
 </header>
 
 
+<!-- ============================= -->
 <!-- HERO -->
+<!-- ============================= -->
 
 <section class="hero">
 
@@ -885,7 +936,9 @@ header{
 </section>
 
 
+<!-- ============================= -->
 <!-- PRODUCTS -->
+<!-- ============================= -->
 
 <main class="container">
 
@@ -900,6 +953,7 @@ header{
     📂 Categories
   </div>
 
+
   <div
     class="category-filter"
     id="categoryFilter"
@@ -913,6 +967,7 @@ header{
       All
     </button>
 
+
     <button
       class="category-btn"
       data-category="Men's Fashion"
@@ -920,6 +975,7 @@ header{
     >
       👔 Men's Fashion
     </button>
+
 
     <button
       class="category-btn"
@@ -929,6 +985,7 @@ header{
       👗 Women's Fashion
     </button>
 
+
     <button
       class="category-btn"
       data-category="Kids & Baby"
@@ -936,6 +993,7 @@ header{
     >
       👶 Kids & Baby
     </button>
+
 
     <button
       class="category-btn"
@@ -945,6 +1003,7 @@ header{
       👟 Shoes
     </button>
 
+
     <button
       class="category-btn"
       data-category="Bags & Accessories"
@@ -952,6 +1011,7 @@ header{
     >
       🎒 Bags & Accessories
     </button>
+
 
     <button
       class="category-btn"
@@ -961,6 +1021,7 @@ header{
       ⌚ Watches
     </button>
 
+
     <button
       class="category-btn"
       data-category="Electronics"
@@ -969,13 +1030,15 @@ header{
       📱 Electronics
     </button>
 
+
     <button
       class="category-btn"
       data-category="Beauty & Personal Care"
-      onclick="setCategory('Beauty & Personal Care')"
+      onclick="setCategory(&quot;Beauty &amp; Personal Care&quot;)"
     >
       💄 Beauty & Personal Care
     </button>
+
 
     <button
       class="category-btn"
@@ -1034,7 +1097,9 @@ header{
 </main>
 
 
+<!-- ============================= -->
 <!-- DETAILS MODAL -->
+<!-- ============================= -->
 
 <div
   class="modal"
@@ -1051,10 +1116,12 @@ header{
       ×
     </button>
 
+
     <h2
       class="modal-title"
       id="detailName"
     ></h2>
+
 
     <img
       id="detailMainImage"
@@ -1063,10 +1130,12 @@ header{
       alt="Product"
     >
 
+
     <div
       id="detailThumbs"
       class="thumbnails"
     ></div>
+
 
     <div
       id="detailCategory"
@@ -1074,16 +1143,35 @@ header{
       style="margin-top:12px;"
     ></div>
 
+
     <div
       id="detailSubcategory"
       class="product-subcategory"
     ></div>
+
+
+    <div
+      id="detailSize"
+      class="product-size"
+    ></div>
+
 
     <h3
       id="detailPrice"
       class="price"
       style="margin-top:10px;"
     ></h3>
+
+
+    <div
+      id="detailDescription"
+      style="
+        margin:10px 0 15px;
+        line-height:1.6;
+        color:#555;
+      "
+    ></div>
+
 
     <div style="display:grid;gap:8px;">
 
@@ -1095,6 +1183,7 @@ header{
         🛒 Add to Cart
       </button>
 
+
       <button
         class="btn btn-green"
         type="button"
@@ -1103,6 +1192,7 @@ header{
         ⚡ Order Now
       </button>
 
+
       <button
         class="btn btn-light"
         type="button"
@@ -1110,6 +1200,7 @@ header{
       >
         🔗 Share Product
       </button>
+
 
       <button
         class="btn btn-light"
@@ -1126,7 +1217,9 @@ header{
 </div>
 
 
+<!-- ============================= -->
 <!-- CART MODAL -->
+<!-- ============================= -->
 
 <div
   class="modal"
@@ -1143,13 +1236,17 @@ header{
       ×
     </button>
 
+
     <h2 class="modal-title">
       🛒 Your Cart
     </h2>
 
+
     <div id="cartItems"></div>
 
+
     <div id="cartTotal"></div>
+
 
     <button
       class="btn btn-primary full-btn"
@@ -1165,7 +1262,9 @@ header{
 </div>
 
 
+<!-- ============================= -->
 <!-- WISHLIST MODAL -->
+<!-- ============================= -->
 
 <div
   class="modal"
@@ -1182,9 +1281,11 @@ header{
       ×
     </button>
 
+
     <h2 class="modal-title">
       ❤️ Wishlist
     </h2>
+
 
     <div id="wishlistItems"></div>
 
@@ -1193,7 +1294,9 @@ header{
 </div>
 
 
+<!-- ============================= -->
 <!-- ORDER MODAL -->
+<!-- ============================= -->
 
 <div
   class="modal"
@@ -1210,9 +1313,11 @@ header{
       ×
     </button>
 
+
     <h2 class="modal-title">
       📦 Order
     </h2>
+
 
     <div id="orderProductInfo"></div>
 
@@ -1296,7 +1401,9 @@ header{
 </div>
 
 
+<!-- ============================= -->
 <!-- SHARE MODAL -->
+<!-- ============================= -->
 
 <div
   class="modal"
@@ -1312,6 +1419,7 @@ header{
     >
       ×
     </button>
+
 
     <h2 class="modal-title">
       🔗 Share Product
@@ -1339,6 +1447,7 @@ header{
         💚 Share on WhatsApp
       </button>
 
+
       <button
         class="share-btn facebook"
         type="button"
@@ -1346,6 +1455,7 @@ header{
       >
         💙 Share on Facebook
       </button>
+
 
       <button
         class="share-btn copy"
@@ -1363,7 +1473,6 @@ header{
 
 
 <script>
-
 
 /* ============================= */
 /* SUPABASE */
@@ -1390,11 +1499,15 @@ let wishlist =
 
 let currentOrderProducts = [];
 
+
 let currentDetailProduct = null;
+
 
 let currentShareProduct = null;
 
+
 let currentCategory = "";
+
 
 let currentSubcategory = "";
 
@@ -1411,12 +1524,13 @@ const categoryData = {
     "Polo T-Shirt",
     "Shirt",
     "Panjabi",
-    "Jeans",
     "Pants",
+    "Jeans",
     "Shorts",
     "Hoodie & Sweatshirt",
     "Jacket"
   ],
+
 
   "Women's Fashion":[
     "All",
@@ -1431,6 +1545,7 @@ const categoryData = {
     "Women's Pants"
   ],
 
+
   "Kids & Baby":[
     "All",
     "Boys Clothing",
@@ -1439,6 +1554,7 @@ const categoryData = {
     "Baby Accessories",
     "Toys"
   ],
+
 
   "Shoes":[
     "All",
@@ -1449,6 +1565,7 @@ const categoryData = {
     "Sandals",
     "Slippers"
   ],
+
 
   "Bags & Accessories":[
     "All",
@@ -1461,6 +1578,7 @@ const categoryData = {
     "Fashion Accessories"
   ],
 
+
   "Watches":[
     "All",
     "Men's Watches",
@@ -1468,6 +1586,7 @@ const categoryData = {
     "Smart Watches",
     "Kids Watches"
   ],
+
 
   "Electronics":[
     "All",
@@ -1479,6 +1598,7 @@ const categoryData = {
     "Smart Gadgets"
   ],
 
+
   "Beauty & Personal Care":[
     "All",
     "Skincare",
@@ -1487,6 +1607,7 @@ const categoryData = {
     "Perfume",
     "Personal Care"
   ],
+
 
   "Home & Living":[
     "All",
@@ -1501,6 +1622,76 @@ const categoryData = {
 
 
 /* ============================= */
+/* SIZE DATA */
+/* ============================= */
+
+const sizeData = {
+
+  "T-Shirt":[
+    "S",
+    "M",
+    "L",
+    "XL",
+    "2XL",
+    "4XL"
+  ],
+
+
+  "Shirt":[
+    "S",
+    "M",
+    "L",
+    "XL",
+    "2XL",
+    "4XL"
+  ],
+
+
+  "Panjabi":[
+    "28",
+    "30",
+    "32",
+    "34",
+    "36",
+    "38",
+    "40",
+    "42",
+    "44",
+    "46",
+    "48"
+  ],
+
+
+  "Pants":[
+    "28",
+    "30",
+    "32",
+    "34",
+    "36",
+    "38",
+    "40"
+  ],
+
+
+  "Jeans":[
+    "28",
+    "30",
+    "32",
+    "34",
+    "36",
+    "38",
+    "40"
+  ],
+
+
+  "Watches":[
+    "No Size"
+  ]
+
+};
+
+
+/* ============================= */
 /* IMAGE FUNCTIONS */
 /* ============================= */
 
@@ -1508,6 +1699,7 @@ function getProductImages(product){
 
   if(!product)
     return [];
+
 
   let imgs =
     product.images;
@@ -1624,55 +1816,64 @@ async function loadProducts(){
     '<div class="loading">Products loading... ⏳</div>';
 
 
-  const {
-    data,
-    error
-  } =
-    await db
-      .from("products")
-      .select("*")
-      .order(
-        "id",
-        {
-          ascending:false
-        }
+  try{
+
+    const {
+      data,
+      error
+    } =
+      await db
+        .from("products")
+        .select("*")
+        .order(
+          "id",
+          {
+            ascending:false
+          }
+        );
+
+
+    if(error)
+      throw error;
+
+
+    products =
+      (data || []).map(
+        product => ({
+
+          ...product,
+
+          category:
+            product.category ||
+            "Others",
+
+          subcategory:
+            product.subcategory ||
+            "",
+
+          size:
+            product.size ||
+            ""
+
+        })
       );
 
 
-  if(error){
+    renderProducts();
+
+
+    openProductFromURL();
+
+
+  }catch(error){
 
     console.error(error);
+
 
     grid.innerHTML =
       '<div class="empty">Products load হয়নি ❌</div>';
 
-    return;
-
   }
-
-
-  products =
-    (data || []).map(
-      product => ({
-
-        ...product,
-
-        category:
-          product.category ||
-          "Others",
-
-        subcategory:
-          product.subcategory ||
-          ""
-
-      })
-    );
-
-
-  renderProducts();
-
-
-  openProductFromURL();
 
 }
 
@@ -1688,10 +1889,12 @@ function showSubcategories(category){
       "subcategoryWrapper"
     );
 
+
   const list =
     document.getElementById(
       "subcategoryList"
     );
+
 
   const title =
     document.getElementById(
@@ -1733,14 +1936,19 @@ function showSubcategories(category){
 
           <button
             type="button"
-            class="subcategory-btn
-            ${currentSubcategory === sub ? "active" : ""}"
-            onclick="
-              setSubcategory(
-                '${escapeHTML(category)}',
-                '${escapeHTML(sub)}'
+            class="subcategory-btn ${
+              currentSubcategory === sub ||
+              (
+                sub === "All" &&
+                !currentSubcategory
               )
-            "
+              ? "active"
+              : ""
+            }"
+            onclick="setSubcategory(
+              '${escapeHTML(category)}',
+              '${escapeHTML(sub)}'
+            )"
           >
             ${escapeHTML(sub)}
           </button>
@@ -1790,13 +1998,21 @@ function getFilteredProducts(){
         );
 
 
+      const size =
+        String(
+          product.size || ""
+        );
+
+
       const searchText =
         (
           productName +
           " " +
           category +
           " " +
-          subcategory
+          subcategory +
+          " " +
+          size
         )
         .toLowerCase();
 
@@ -1886,8 +2102,33 @@ function setSubcategory(
     category;
 
 
-  currentSubcategory =
-    subcategory;
+  if(subcategory === "All"){
+
+    currentSubcategory = "";
+
+  }else{
+
+    currentSubcategory =
+      subcategory;
+
+  }
+
+
+  document
+    .querySelectorAll(
+      ".category-btn"
+    )
+    .forEach(
+      button => {
+
+        button.classList.toggle(
+          "active",
+          button.dataset.category ===
+          category
+        );
+
+      }
+    );
 
 
   showSubcategories(
@@ -1904,7 +2145,7 @@ function setSubcategory(
 
 
 /* ============================= */
-/* SELECTED CATEGORY TEXT */
+/* SELECTED CATEGORY */
 /* ============================= */
 
 function updateSelectedCategory(){
@@ -1925,10 +2166,7 @@ function updateSelectedCategory(){
   }
 
 
-  if(
-    currentSubcategory &&
-    currentSubcategory !== "All"
-  ){
+  if(currentSubcategory){
 
     selected.textContent =
       "🏷️ Showing: " +
@@ -2031,22 +2269,33 @@ function renderProducts(
           "";
 
 
+        const size =
+          product.size ||
+          "";
+
+
         return `
 
           <div class="product-card">
+
 
             <div
               class="product-image-box"
               data-product-id="${escapeHTML(id)}"
               data-index="0"
+
               ontouchstart="sliderTouchStart(event)"
               ontouchend="sliderTouchEnd(event)"
             >
 
+
               <img
                 class="product-image"
+
                 id="card-img-${escapeHTML(id)}"
+
                 src="${escapeHTML(firstImage)}"
+
                 alt="${escapeHTML(product.name)}"
 
                 onclick="
@@ -2078,8 +2327,11 @@ function renderProducts(
                   (image,index) => `
 
                     <span
-                      class="slider-dot
-                      ${index===0?'active':''}"
+                      class="slider-dot ${
+                        index === 0
+                        ? "active"
+                        : ""
+                      }"
                     ></span>
 
                   `
@@ -2092,42 +2344,74 @@ function renderProducts(
 
             <div class="product-info">
 
+
               <div class="product-name">
+
                 ${escapeHTML(
                   product.name
                 )}
+
               </div>
 
 
               <div>
 
+
                 <span class="product-category">
-                  🏷️ ${escapeHTML(category)}
+
+                  🏷️ ${escapeHTML(
+                    category
+                  )}
+
                 </span>
+
 
                 ${
                   subcategory
                   ?
                   `
                     <span class="product-subcategory">
-                      ${escapeHTML(subcategory)}
+                      ${escapeHTML(
+                        subcategory
+                      )}
                     </span>
                   `
                   :
                   ""
                 }
 
+
+                ${
+                  size
+                  ?
+                  `
+                    <span class="product-size">
+                      📏 ${escapeHTML(
+                        size
+                      )}
+                    </span>
+                  `
+                  :
+                  ""
+                }
+
+
               </div>
 
 
               <div class="price">
+
                 ৳${Number(
                   product.price || 0
                 )}
+
               </div>
 
 
-              <div class="card-actions">
+              <div
+                class="card-actions"
+              >
+
 
                 <button
                   class="btn btn-primary"
@@ -2205,6 +2489,7 @@ function renderProducts(
                 >
                   👁️ Details
                 </button>
+
 
               </div>
 
@@ -2465,7 +2750,7 @@ function openDetails(
   document.getElementById(
     "detailName"
   ).textContent =
-    product.name;
+    product.name || "";
 
 
   document.getElementById(
@@ -2514,6 +2799,41 @@ function openDetails(
   }
 
 
+  const size =
+    product.size ||
+    "";
+
+
+  const sizeElement =
+    document.getElementById(
+      "detailSize"
+    );
+
+
+  if(size){
+
+    sizeElement.textContent =
+      "📏 Size: " +
+      size;
+
+    sizeElement.style.display =
+      "inline-block";
+
+  }else{
+
+    sizeElement.style.display =
+      "none";
+
+  }
+
+
+  document.getElementById(
+    "detailDescription"
+  ).textContent =
+    product.description ||
+    "";
+
+
   const main =
     document.getElementById(
       "detailMainImage"
@@ -2536,8 +2856,12 @@ function openDetails(
       (image,index) => `
 
         <img
-          class="thumb
-          ${index===0?'active':''}"
+          class="thumb ${
+            index === 0
+            ? "active"
+            : ""
+          }"
+
           src="${escapeHTML(image)}"
 
           onclick="
@@ -2749,6 +3073,21 @@ function renderCart(){
                 )}
               </div>
 
+
+              ${
+                product.size
+                ?
+                `
+                  <div class="small">
+                    📏 Size: ${escapeHTML(
+                      product.size
+                    )}
+                  </div>
+                `
+                :
+                ""
+              }
+
             </div>
 
 
@@ -2905,6 +3244,21 @@ function showOrderModal(){
                   product.name
                 )}
               </b>
+
+
+              ${
+                product.size
+                ?
+                `
+                  <div class="small">
+                    📏 Size: ${escapeHTML(
+                      product.size
+                    )}
+                  </div>
+                `
+                :
+                ""
+              }
 
 
               <div class="price">
@@ -3083,7 +3437,21 @@ function sendWhatsAppOrder(){
         `${i+1}. ` +
         encodeURIComponent(
           product.name
-        ) +
+        );
+
+
+      if(product.size){
+
+        message +=
+          " - Size: " +
+          encodeURIComponent(
+            product.size
+          );
+
+      }
+
+
+      message +=
         ` - ৳${Number(
           product.price || 0
         )}%0A`;
@@ -3234,6 +3602,21 @@ function openWishlist(){
                   product.price || 0
                 )}
               </div>
+
+
+              ${
+                product.size
+                ?
+                `
+                  <div class="small">
+                    📏 Size: ${escapeHTML(
+                      product.size
+                    )}
+                  </div>
+                `
+                :
+                ""
+              }
 
             </div>
 
