@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
+
 <meta charset="UTF-8">
 
 <meta
@@ -14,6 +15,7 @@
 <script src="supabase.js"></script>
 
 <style>
+
 *{
   box-sizing:border-box;
   margin:0;
@@ -196,6 +198,18 @@ button:hover{
   margin-bottom:5px;
 }
 
+.category-text{
+  color:#8f174d;
+  font-weight:bold;
+  margin-top:5px;
+}
+
+.subcategory-text{
+  color:#777;
+  font-size:13px;
+  margin-top:3px;
+}
+
 .product-actions{
   display:flex;
   gap:8px;
@@ -224,6 +238,16 @@ label{
   margin-top:15px;
 }
 
+.category-help{
+  background:#fff7fa;
+  border-left:4px solid #8f174d;
+  padding:10px 12px;
+  border-radius:6px;
+  margin-bottom:12px;
+  color:#666;
+  font-size:13px;
+}
+
 @media(max-width:600px){
 
   header{
@@ -241,6 +265,7 @@ label{
 
   .product{
     align-items:flex-start;
+    flex-wrap:wrap;
   }
 
   .product img{
@@ -249,6 +274,7 @@ label{
   }
 
   .product-actions{
+    width:100%;
     margin-top:8px;
   }
 
@@ -256,17 +282,29 @@ label{
     font-size:14px;
     padding:10px 12px;
   }
+
 }
+
 </style>
 </head>
 
+
 <body>
 
+
 <header>
+
   <div class="logo">
-    <img src="logo.png" alt="Gadhuli">
+
+    <img
+      src="logo.png"
+      alt="Gadhuli"
+    >
+
     <h1>Gadhuli Admin</h1>
+
   </div>
+
 
   <a
     class="back"
@@ -274,20 +312,35 @@ label{
   >
     ← Website
   </a>
+
 </header>
+
+
 
 <div class="container">
 
+
+  <!-- ========================= -->
   <!-- LOGIN -->
-  <section id="loginSection" class="card">
+  <!-- ========================= -->
+
+  <section
+    id="loginSection"
+    class="card"
+  >
 
     <h2>🔐 Admin Login</h2>
 
-    <div id="loginMessage" class="message"></div>
+    <div
+      id="loginMessage"
+      class="message"
+    ></div>
+
 
     <form id="loginForm">
 
       <label>Email</label>
+
       <input
         type="email"
         id="email"
@@ -295,13 +348,16 @@ label{
         required
       >
 
+
       <label>Password</label>
+
       <input
         type="password"
         id="password"
         placeholder="Password"
         required
       >
+
 
       <button type="submit">
         Login
@@ -312,22 +368,41 @@ label{
   </section>
 
 
+
+  <!-- ========================= -->
   <!-- ADMIN PANEL -->
+  <!-- ========================= -->
+
   <section
     id="adminPanel"
     class="hidden"
   >
 
+
+    <!-- ========================= -->
     <!-- ADD PRODUCT -->
+    <!-- ========================= -->
+
     <div class="card">
 
       <h2>➕ Add New Product</h2>
 
-      <div id="productMessage" class="message"></div>
+
+      <div
+        id="productMessage"
+        class="message"
+      ></div>
+
 
       <form id="productForm">
 
-        <label>Product Name</label>
+
+        <!-- PRODUCT NAME -->
+
+        <label>
+          Product Name
+        </label>
+
         <input
           type="text"
           id="productName"
@@ -335,7 +410,14 @@ label{
           required
         >
 
-        <label>Price (৳)</label>
+
+
+        <!-- PRICE -->
+
+        <label>
+          Price (৳)
+        </label>
+
         <input
           type="number"
           id="productPrice"
@@ -344,25 +426,107 @@ label{
           required
         >
 
-        <label>Category</label>
-        <select id="productCategory" required>
-          <option value="">Select Category</option>
-          <option value="Fashion">Fashion</option>
-          <option value="Electronics">Electronics</option>
-          <option value="Beauty">Beauty</option>
-          <option value="Home">Home</option>
-          <option value="Accessories">Accessories</option>
-          <option value="Other">Other</option>
+
+
+        <!-- CATEGORY -->
+
+        <label>
+          🏷️ Category
+        </label>
+
+        <select
+          id="productCategory"
+          required
+        >
+
+          <option value="">
+            Select Category
+          </option>
+
+          <option value="Men's Fashion">
+            Men's Fashion
+          </option>
+
+          <option value="Women's Fashion">
+            Women's Fashion
+          </option>
+
+          <option value="Kids">
+            Kids
+          </option>
+
+          <option value="Electronics">
+            Electronics
+          </option>
+
+          <option value="Beauty & Personal Care">
+            Beauty & Personal Care
+          </option>
+
+          <option value="Home & Living">
+            Home & Living
+          </option>
+
+          <option value="Sports & Fitness">
+            Sports & Fitness
+          </option>
+
+          <option value="Grocery & Daily Needs">
+            Grocery & Daily Needs
+          </option>
+
+          <option value="Others">
+            Others
+          </option>
+
         </select>
 
-        <label>📝 Description</label>
+
+
+        <!-- SUBCATEGORY -->
+
+        <label>
+          📂 Subcategory
+        </label>
+
+        <select
+          id="productSubcategory"
+          required
+          disabled
+        >
+
+          <option value="">
+            First Select Category
+          </option>
+
+        </select>
+
+
+        <div class="category-help">
+          💡 আগে Category select করো, তারপর সেই Category-এর Subcategory এখানে আসবে।
+        </div>
+
+
+
+        <!-- DESCRIPTION -->
+
+        <label>
+          📝 Description
+        </label>
+
         <textarea
           id="productDescription"
           rows="4"
           placeholder="Product description"
         ></textarea>
 
-        <label>🖼️ Product Images (1–5)</label>
+
+
+        <!-- IMAGES -->
+
+        <label>
+          🖼️ Product Images (1–5)
+        </label>
 
         <input
           type="file"
@@ -372,10 +536,15 @@ label{
           required
         >
 
+
         <div
           id="preview"
           class="preview"
         ></div>
+
+
+
+        <!-- SAVE -->
 
         <button type="submit">
           💾 Save Product
@@ -386,14 +555,22 @@ label{
     </div>
 
 
+
+    <!-- ========================= -->
     <!-- MANAGE PRODUCTS -->
+    <!-- ========================= -->
+
     <div class="card">
 
-      <h2>📦 Manage Products</h2>
+      <h2>
+        📦 Manage Products
+      </h2>
+
 
       <div id="productsList">
         Loading products...
       </div>
+
 
       <button
         type="button"
@@ -405,33 +582,248 @@ label{
 
     </div>
 
+
   </section>
 
 </div>
 
 
+
 <script>
+
+
+// ===============================
+// SUPABASE
+// ===============================
 
 const db = window.gadhuliSupabase;
 
-const ADMIN_EMAIL = "hridoyff974@gmail.com";
+const ADMIN_EMAIL =
+  "hridoyff974@gmail.com";
+
+
+
+// ===============================
+// CATEGORY DATA
+// MAIN PAGE + ADMIN SAME
+// ===============================
+
+const CATEGORY_DATA = {
+
+  "Men's Fashion": [
+
+    "T-Shirts",
+    "Shirts",
+    "Polo T-Shirts",
+    "Pants",
+    "Jeans",
+    "Watches",
+    "Shoes",
+    "Accessories"
+
+  ],
+
+
+  "Women's Fashion": [
+
+    "Saree",
+    "Three Piece",
+    "Salwar Kameez",
+    "Tops",
+    "Dresses",
+    "Hijab",
+    "Shoes",
+    "Bags",
+    "Watches",
+    "Accessories"
+
+  ],
+
+
+  "Kids": [
+
+    "Boys Clothing",
+    "Girls Clothing",
+    "Kids Shoes",
+    "Kids Accessories",
+    "Toys"
+
+  ],
+
+
+  "Electronics": [
+
+    "Mobile & Accessories",
+    "Computer & Accessories",
+    "Headphones & Earphones",
+    "Smart Devices",
+    "Other Electronics"
+
+  ],
+
+
+  "Beauty & Personal Care": [
+
+    "Skincare",
+    "Makeup",
+    "Hair Care",
+    "Fragrance",
+    "Personal Care"
+
+  ],
+
+
+  "Home & Living": [
+
+    "Kitchen",
+    "Home Decor",
+    "Storage & Organization",
+    "Furniture",
+    "Household"
+
+  ],
+
+
+  "Sports & Fitness": [
+
+    "Sportswear",
+    "Fitness Equipment",
+    "Outdoor",
+    "Sports Accessories"
+
+  ],
+
+
+  "Grocery & Daily Needs": [
+
+    "Snacks",
+    "Beverages",
+    "Food",
+    "Household Essentials"
+
+  ],
+
+
+  "Others": [
+
+    "Gifts",
+    "Accessories",
+    "Miscellaneous"
+
+  ]
+
+};
+
 
 
 // ===============================
 // MESSAGE
 // ===============================
 
-function showMessage(id,text,type){
+function showMessage(
+  id,
+  text,
+  type
+){
 
-  const box = document.getElementById(id);
+  const box =
+    document.getElementById(id);
 
   box.textContent = text;
 
-  box.className = "message " + type;
+  box.className =
+    "message " + type;
 
-  box.style.display = "block";
+  box.style.display =
+    "block";
 
 }
+
+
+
+// ===============================
+// CATEGORY CHANGE
+// ===============================
+
+document
+.getElementById("productCategory")
+.addEventListener(
+  "change",
+  function(){
+
+    const category =
+      this.value;
+
+    const subcategory =
+      document.getElementById(
+        "productSubcategory"
+      );
+
+
+    subcategory.innerHTML =
+      "";
+
+
+    if(!category){
+
+      subcategory.disabled =
+        true;
+
+      subcategory.required =
+        true;
+
+      subcategory.innerHTML = `
+
+        <option value="">
+          First Select Category
+        </option>
+
+      `;
+
+      return;
+
+    }
+
+
+    subcategory.disabled =
+      false;
+
+
+    const list =
+      CATEGORY_DATA[category] || [];
+
+
+    subcategory.innerHTML = `
+
+      <option value="">
+        Select Subcategory
+      </option>
+
+    `;
+
+
+    list.forEach(function(item){
+
+      const option =
+        document.createElement(
+          "option"
+        );
+
+      option.value =
+        item;
+
+      option.textContent =
+        item;
+
+      subcategory.appendChild(
+        option
+      );
+
+    });
+
+  }
+);
+
 
 
 // ===============================
@@ -440,61 +832,104 @@ function showMessage(id,text,type){
 
 document
 .getElementById("loginForm")
-.addEventListener("submit", async function(e){
+.addEventListener(
+  "submit",
+  async function(e){
 
-  e.preventDefault();
+    e.preventDefault();
 
-  const email =
-    document.getElementById("email").value.trim();
 
-  const password =
-    document.getElementById("password").value;
+    const email =
+      document
+      .getElementById("email")
+      .value
+      .trim();
 
-  try{
 
-    const { data, error } =
-      await db.auth.signInWithPassword({
-        email:email,
-        password:password
-      });
+    const password =
+      document
+      .getElementById("password")
+      .value;
 
-    if(error){
-      throw error;
+
+    try{
+
+      const {
+        data,
+        error
+      } =
+        await db.auth.signInWithPassword({
+
+          email:email,
+
+          password:password
+
+        });
+
+
+      if(error){
+
+        throw error;
+
+      }
+
+
+      if(!data.user){
+
+        throw new Error(
+          "Login failed"
+        );
+
+      }
+
+
+      if(
+        data.user.email !==
+        ADMIN_EMAIL
+      ){
+
+        await db.auth.signOut();
+
+        throw new Error(
+          "এই account Admin নয়।"
+        );
+
+      }
+
+
+      document
+      .getElementById(
+        "loginSection"
+      )
+      .classList
+      .add("hidden");
+
+
+      document
+      .getElementById(
+        "adminPanel"
+      )
+      .classList
+      .remove("hidden");
+
+
+      loadProducts();
+
+
+    }catch(error){
+
+      showMessage(
+        "loginMessage",
+        error.message ||
+        "Login failed",
+        "error"
+      );
+
     }
-
-    if(!data.user){
-      throw new Error("Login failed");
-    }
-
-    if(data.user.email !== ADMIN_EMAIL){
-
-      await db.auth.signOut();
-
-      throw new Error("এই account Admin নয়।");
-
-    }
-
-    document
-      .getElementById("loginSection")
-      .classList.add("hidden");
-
-    document
-      .getElementById("adminPanel")
-      .classList.remove("hidden");
-
-    loadProducts();
-
-  }catch(error){
-
-    showMessage(
-      "loginMessage",
-      error.message || "Login failed",
-      "error"
-    );
 
   }
+);
 
-});
 
 
 // ===============================
@@ -503,44 +938,79 @@ document
 
 document
 .getElementById("images")
-.addEventListener("change",function(){
+.addEventListener(
+  "change",
+  function(){
 
-  const preview =
-    document.getElementById("preview");
+    const preview =
+      document.getElementById(
+        "preview"
+      );
 
-  preview.innerHTML = "";
 
-  const files = Array.from(this.files);
+    preview.innerHTML =
+      "";
 
-  if(files.length > 5){
 
-    alert("Maximum 5 images allowed.");
+    const files =
+      Array.from(
+        this.files
+      );
 
-    this.value = "";
 
-    return;
+    if(files.length > 5){
+
+      alert(
+        "Maximum 5 images allowed."
+      );
+
+
+      this.value =
+        "";
+
+
+      return;
+
+    }
+
+
+    files.forEach(
+      function(file){
+
+        const reader =
+          new FileReader();
+
+
+        reader.onload =
+          function(e){
+
+            const img =
+              document.createElement(
+                "img"
+              );
+
+
+            img.src =
+              e.target.result;
+
+
+            preview.appendChild(
+              img
+            );
+
+          };
+
+
+        reader.readAsDataURL(
+          file
+        );
+
+      }
+    );
+
   }
+);
 
-  files.forEach(file => {
-
-    const reader = new FileReader();
-
-    reader.onload = function(e){
-
-      const img =
-        document.createElement("img");
-
-      img.src = e.target.result;
-
-      preview.appendChild(img);
-
-    };
-
-    reader.readAsDataURL(file);
-
-  });
-
-});
 
 
 // ===============================
@@ -549,86 +1019,169 @@ document
 
 document
 .getElementById("productForm")
-.addEventListener("submit", async function(e){
+.addEventListener(
+  "submit",
+  async function(e){
 
-  e.preventDefault();
+    e.preventDefault();
 
-  const name =
-    document.getElementById("productName")
-    .value.trim();
 
-  const price =
-    Number(
-      document.getElementById("productPrice")
+    const name =
+      document
+      .getElementById(
+        "productName"
+      )
       .value
-    );
-
-  const category =
-    document.getElementById("productCategory")
-    .value;
-
-  const description =
-    document.getElementById("productDescription")
-    .value.trim();
-
-  const files =
-    Array.from(
-      document.getElementById("images").files
-    );
+      .trim();
 
 
-  if(files.length < 1 || files.length > 5){
-
-    showMessage(
-      "productMessage",
-      "Please select 1–5 images.",
-      "error"
-    );
-
-    return;
-  }
+    const price =
+      Number(
+        document
+        .getElementById(
+          "productPrice"
+        )
+        .value
+      );
 
 
-  try{
-
-    showMessage(
-      "productMessage",
-      "Product save হচ্ছে...",
-      "success"
-    );
-
-
-    const imageUrls = [];
+    const category =
+      document
+      .getElementById(
+        "productCategory"
+      )
+      .value;
 
 
-    // ===============================
-    // UPLOAD IMAGES
-    // ===============================
+    const subcategory =
+      document
+      .getElementById(
+        "productSubcategory"
+      )
+      .value;
 
-    for(let i = 0; i < files.length; i++){
 
-      const file = files[i];
+    const description =
+      document
+      .getElementById(
+        "productDescription"
+      )
+      .value
+      .trim();
 
-      const extension =
-        file.name.split(".").pop();
 
-      const fileName =
-        Date.now() +
-        "-" +
-        Math.random()
+    const files =
+      Array.from(
+        document
+        .getElementById(
+          "images"
+        )
+        .files
+      );
+
+
+
+    // VALIDATION
+
+    if(!category){
+
+      showMessage(
+        "productMessage",
+        "Please select a Category.",
+        "error"
+      );
+
+      return;
+
+    }
+
+
+    if(!subcategory){
+
+      showMessage(
+        "productMessage",
+        "Please select a Subcategory.",
+        "error"
+      );
+
+      return;
+
+    }
+
+
+    if(
+      files.length < 1 ||
+      files.length > 5
+    ){
+
+      showMessage(
+        "productMessage",
+        "Please select 1–5 images.",
+        "error"
+      );
+
+      return;
+
+    }
+
+
+
+    try{
+
+      showMessage(
+        "productMessage",
+        "Product save হচ্ছে...",
+        "success"
+      );
+
+
+
+      // =========================
+      // UPLOAD IMAGES
+      // =========================
+
+      const imageUrls = [];
+
+
+      for(
+        let i = 0;
+        i < files.length;
+        i++
+      ){
+
+        const file =
+          files[i];
+
+
+        const extension =
+          file.name
+          .split(".")
+          .pop();
+
+
+        const fileName =
+          Date.now() +
+          "-" +
+          Math.random()
           .toString(36)
           .substring(2) +
-        "." +
-        extension;
+          "." +
+          extension;
 
 
-      const filePath =
-        "products/" + fileName;
+        const filePath =
+          "products/" +
+          fileName;
 
 
-      const { error:uploadError } =
-        await db.storage
-          .from("product-images")
+
+        const {
+          error:uploadError
+        } =
+          await db.storage
+          .from(
+            "product-images"
+          )
           .upload(
             filePath,
             file,
@@ -639,80 +1192,142 @@ document
           );
 
 
-      if(uploadError){
-        throw uploadError;
+        if(uploadError){
+
+          throw uploadError;
+
+        }
+
+
+
+        const {
+          data:urlData
+        } =
+          db.storage
+          .from(
+            "product-images"
+          )
+          .getPublicUrl(
+            filePath
+          );
+
+
+        imageUrls.push(
+          urlData.publicUrl
+        );
+
       }
 
 
-      const { data:urlData } =
-        db.storage
-          .from("product-images")
-          .getPublicUrl(filePath);
+
+      // =========================
+      // SAVE DATABASE
+      // =========================
+
+      const {
+        error:insertError
+      } =
+        await db
+        .from("products")
+        .insert([
+
+          {
+
+            name:name,
+
+            price:price,
+
+            category:category,
+
+            subcategory:subcategory,
+
+            description:description,
+
+            images:imageUrls
+
+          }
+
+        ]);
 
 
-      imageUrls.push(
-        urlData.publicUrl
+      if(insertError){
+
+        throw insertError;
+
+      }
+
+
+
+      // =========================
+      // SUCCESS
+      // =========================
+
+      showMessage(
+        "productMessage",
+        "✅ Product successfully saved!",
+        "success"
+      );
+
+
+      document
+      .getElementById(
+        "productForm"
+      )
+      .reset();
+
+
+      document
+      .getElementById(
+        "preview"
+      )
+      .innerHTML =
+        "";
+
+
+      document
+      .getElementById(
+        "productSubcategory"
+      )
+      .disabled =
+        true;
+
+
+      document
+      .getElementById(
+        "productSubcategory"
+      )
+      .innerHTML = `
+
+        <option value="">
+          First Select Category
+        </option>
+
+      `;
+
+
+      loadProducts();
+
+
+    }catch(error){
+
+      console.error(error);
+
+
+      showMessage(
+        "productMessage",
+        "❌ Product Save হয়নি: " +
+        (
+          error.message ||
+          "Unknown error"
+        ),
+        "error"
       );
 
     }
 
-
-    // ===============================
-    // SAVE DATABASE
-    // ===============================
-
-    const { error:insertError } =
-      await db
-        .from("products")
-        .insert([
-          {
-            name:name,
-            price:price,
-            category:category,
-            description:description,
-            images:imageUrls
-          }
-        ]);
-
-
-    if(insertError){
-      throw insertError;
-    }
-
-
-    showMessage(
-      "productMessage",
-      "✅ Product successfully saved!",
-      "success"
-    );
-
-
-    document
-      .getElementById("productForm")
-      .reset();
-
-    document
-      .getElementById("preview")
-      .innerHTML = "";
-
-
-    loadProducts();
-
-
-  }catch(error){
-
-    console.error(error);
-
-    showMessage(
-      "productMessage",
-      "❌ Product Save হয়নি: " +
-      (error.message || "Unknown error"),
-      "error"
-    );
-
   }
+);
 
-});
 
 
 // ===============================
@@ -722,7 +1337,10 @@ document
 async function loadProducts(){
 
   const list =
-    document.getElementById("productsList");
+    document.getElementById(
+      "productsList"
+    );
+
 
   list.innerHTML =
     "Loading products...";
@@ -730,110 +1348,195 @@ async function loadProducts(){
 
   try{
 
-    const { data, error } =
+    const {
+      data,
+      error
+    } =
       await db
-        .from("products")
-        .select("*")
-        .order("id",{ascending:false});
+      .from("products")
+      .select("*")
+      .order(
+        "id",
+        {
+          ascending:false
+        }
+      );
 
 
     if(error){
+
       throw error;
+
     }
 
 
-    if(!data || data.length === 0){
+    if(
+      !data ||
+      data.length === 0
+    ){
 
       list.innerHTML =
         "<p>No products found.</p>";
 
       return;
+
     }
 
 
-    list.innerHTML = "";
+    list.innerHTML =
+      "";
 
 
-    data.forEach(product => {
 
-      const item =
-        document.createElement("div");
+    data.forEach(
+      function(product){
 
-      item.className = "product";
+        const item =
+          document.createElement(
+            "div"
+          );
 
 
-      let imageUrl =
-        "https://via.placeholder.com/90";
+        item.className =
+          "product";
 
-      if(
-        Array.isArray(product.images) &&
-        product.images.length > 0
-      ){
 
-        imageUrl =
-          product.images[0];
+
+        // IMAGE
+
+        let imageUrl =
+          "https://via.placeholder.com/90";
+
+
+        if(
+          Array.isArray(
+            product.images
+          ) &&
+          product.images.length > 0
+        ){
+
+          imageUrl =
+            product.images[0];
+
+        }
+
+
+
+        const category =
+          product.category ||
+          "Others";
+
+
+        const subcategory =
+          product.subcategory ||
+          "";
+
+
+
+        item.innerHTML = `
+
+          <img
+            src="${escapeHtml(imageUrl)}"
+            alt="${escapeHtml(
+              product.name ||
+              "Product"
+            )}"
+          >
+
+
+          <div class="product-info">
+
+            <h3>
+              ${escapeHtml(
+                product.name ||
+                ""
+              )}
+            </h3>
+
+
+            <p>
+              ৳${Number(
+                product.price ||
+                0
+              )}
+            </p>
+
+
+            <p class="category-text">
+              🏷️ ${escapeHtml(
+                category
+              )}
+            </p>
+
+
+            ${
+              subcategory
+              ?
+              `
+              <p class="subcategory-text">
+                📂 ${escapeHtml(
+                  subcategory
+                )}
+              </p>
+              `
+              :
+              ""
+            }
+
+
+          </div>
+
+
+          <div class="product-actions">
+
+
+            <button
+              type="button"
+              class="btn-secondary"
+              onclick="editProduct('${escapeHtml(
+                product.id
+              )}')"
+            >
+              ✏️ Edit
+            </button>
+
+
+            <button
+              type="button"
+              class="btn-danger"
+              onclick="deleteProduct('${escapeHtml(
+                product.id
+              )}')"
+            >
+              🗑️ Delete
+            </button>
+
+
+          </div>
+
+        `;
+
+
+        list.appendChild(
+          item
+        );
 
       }
-
-
-      item.innerHTML = `
-
-        <img
-          src="${imageUrl}"
-          alt="${escapeHtml(product.name || "Product")}"
-        >
-
-        <div class="product-info">
-
-          <h3>
-            ${escapeHtml(product.name || "")}
-          </h3>
-
-          <p>
-            ৳${Number(product.price || 0)}
-          </p>
-
-          <p class="small">
-            ${escapeHtml(product.category || "")}
-          </p>
-
-        </div>
-
-        <div class="product-actions">
-
-          <button
-            type="button"
-            class="btn-secondary"
-            onclick="editProduct('${product.id}')"
-          >
-            ✏️ Edit
-          </button>
-
-          <button
-            type="button"
-            class="btn-danger"
-            onclick="deleteProduct('${product.id}')"
-          >
-            🗑️ Delete
-          </button>
-
-        </div>
-
-      `;
-
-
-      list.appendChild(item);
-
-    });
+    );
 
 
   }catch(error){
 
     console.error(error);
 
+
     list.innerHTML =
-      "<p style='color:#c62828'>Products load হয়নি: " +
-      escapeHtml(error.message || "") +
+      "<p style='color:#c62828'>" +
+      "Products load হয়নি: " +
+      escapeHtml(
+        error.message ||
+        ""
+      ) +
       "</p>";
 
   }
@@ -841,66 +1544,88 @@ async function loadProducts(){
 }
 
 
+
 // ===============================
 // EDIT PRODUCT
 // ===============================
 
-window.editProduct = async function(id){
+window.editProduct =
+  async function(id){
 
-  alert(
-    "ছবি Edit করা যাবে না। নতুন Product যোগ করুন।"
-  );
+    alert(
+      "ছবি Edit করা যাবে না। নতুন Product যোগ করুন।"
+    );
 
-  return;
 
-};
+    return;
+
+  };
+
 
 
 // ===============================
 // DELETE PRODUCT
 // ===============================
 
-window.deleteProduct = async function(id){
+window.deleteProduct =
+  async function(id){
 
-  const confirmDelete =
-    confirm(
-      "এই Product টি Delete করতে চান?"
-    );
-
-  if(!confirmDelete){
-    return;
-  }
+    const confirmDelete =
+      confirm(
+        "এই Product টি Delete করতে চান?"
+      );
 
 
-  try{
+    if(!confirmDelete){
 
-    const { error } =
-      await db
-        .from("products")
-        .delete()
-        .eq("id",id);
+      return;
 
-
-    if(error){
-      throw error;
     }
 
 
-    alert("Product deleted successfully.");
+    try{
 
-    loadProducts();
+      const {
+        error
+      } =
+        await db
+        .from("products")
+        .delete()
+        .eq(
+          "id",
+          id
+        );
 
 
-  }catch(error){
+      if(error){
 
-    alert(
-      "Delete হয়নি: " +
-      (error.message || "Unknown error")
-    );
+        throw error;
 
-  }
+      }
 
-};
+
+      alert(
+        "Product deleted successfully."
+      );
+
+
+      loadProducts();
+
+
+    }catch(error){
+
+      alert(
+        "Delete হয়নি: " +
+        (
+          error.message ||
+          "Unknown error"
+        )
+      );
+
+    }
+
+  };
+
 
 
 // ===============================
@@ -909,19 +1634,31 @@ window.deleteProduct = async function(id){
 
 document
 .getElementById("logoutBtn")
-.addEventListener("click", async function(){
+.addEventListener(
+  "click",
+  async function(){
 
-  await db.auth.signOut();
+    await db.auth.signOut();
 
-  document
-    .getElementById("adminPanel")
-    .classList.add("hidden");
 
-  document
-    .getElementById("loginSection")
-    .classList.remove("hidden");
+    document
+    .getElementById(
+      "adminPanel"
+    )
+    .classList
+    .add("hidden");
 
-});
+
+    document
+    .getElementById(
+      "loginSection"
+    )
+    .classList
+    .remove("hidden");
+
+  }
+);
+
 
 
 // ===============================
@@ -931,13 +1668,34 @@ document
 function escapeHtml(value){
 
   return String(value)
-    .replace(/&/g,"&amp;")
-    .replace(/</g,"&lt;")
-    .replace(/>/g,"&gt;")
-    .replace(/"/g,"&quot;")
-    .replace(/'/g,"&#039;");
+
+    .replace(
+      /&/g,
+      "&amp;"
+    )
+
+    .replace(
+      /</g,
+      "&lt;"
+    )
+
+    .replace(
+      />/g,
+      "&gt;"
+    )
+
+    .replace(
+      /"/g,
+      "&quot;"
+    )
+
+    .replace(
+      /'/g,
+      "&#039;"
+    );
 
 }
+
 
 
 // ===============================
@@ -948,7 +1706,9 @@ function escapeHtml(value){
 
   try{
 
-    const { data } =
+    const {
+      data
+    } =
       await db.auth.getSession();
 
 
@@ -956,16 +1716,25 @@ function escapeHtml(value){
       data &&
       data.session &&
       data.session.user &&
-      data.session.user.email === ADMIN_EMAIL
+      data.session.user.email ===
+      ADMIN_EMAIL
     ){
 
       document
-        .getElementById("loginSection")
-        .classList.add("hidden");
+      .getElementById(
+        "loginSection"
+      )
+      .classList
+      .add("hidden");
+
 
       document
-        .getElementById("adminPanel")
-        .classList.remove("hidden");
+      .getElementById(
+        "adminPanel"
+      )
+      .classList
+      .remove("hidden");
+
 
       loadProducts();
 
@@ -980,6 +1749,7 @@ function escapeHtml(value){
 })();
 
 </script>
+
 
 </body>
 </html>
