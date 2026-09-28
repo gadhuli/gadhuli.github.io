@@ -1,11 +1,27 @@
-<!DOCTYPE html><html lang="bn">
-<head><meta charset="UTF-8"><meta name="viewport"
-content="width=device-width,initial-scale=1.0">
+<!DOCTYPE html>
+<html lang="bn">
 
-<meta name="google-site-verification"
-content="lkVxExaUcJinZDbyNwrJL4Jhc3kjkYTwQXLFYYKu_p8">
+<head>
 
-<title>Gadhuli | Official Website</title><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="supabase.js"></script><style>
+<meta charset="UTF-8">
+
+<meta
+  name="viewport"
+  content="width=device-width,initial-scale=1.0"
+>
+
+<meta
+  name="google-site-verification"
+  content="lkVxExaUcJinZDbyNwrJL4Jhc3kjkYTwQXLFYYKu_p8"
+>
+
+<title>Gadhuli | Official Website</title>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase.js"></script>
+
+
+<style>
 
 *{
   box-sizing:border-box;
@@ -18,6 +34,9 @@ body{
   background:#fff7fa;
   color:#3b1024;
 }
+
+
+/* HEADER */
 
 header{
   position:sticky;
@@ -78,20 +97,27 @@ header{
   background:#d52b72;
 }
 
+
+/* HERO */
+
 .hero{
   max-width:1200px;
   margin:18px auto;
   padding:38px 20px;
   text-align:center;
   border-radius:20px;
+
   background:linear-gradient(
     135deg,
     #5e0d32,
     #8f174d,
     #d52b72
   );
+
   color:#fff;
-  box-shadow:0 6px 20px rgba(143,23,77,.25);
+
+  box-shadow:
+    0 6px 20px rgba(143,23,77,.25);
 }
 
 .hero h1{
@@ -102,6 +128,9 @@ header{
 .hero p{
   font-size:16px;
 }
+
+
+/* CONTAINER */
 
 .container{
   max-width:1200px;
@@ -116,14 +145,23 @@ header{
 }
 
 
-/* CATEGORY FILTER */
+/* ============================= */
+/* MAIN CATEGORY */
+/* ============================= */
+
+.category-title{
+  font-size:17px;
+  color:#6f103b;
+  margin:5px 0 8px;
+  font-weight:bold;
+}
 
 .category-filter{
   display:flex;
   gap:8px;
   overflow-x:auto;
-  padding:5px 2px 13px;
-  margin-bottom:8px;
+  padding:5px 2px 10px;
+  margin-bottom:5px;
   scrollbar-width:none;
 }
 
@@ -133,14 +171,20 @@ header{
 
 .category-btn{
   flex-shrink:0;
+
   border:1px solid #e9a9c2;
   background:#fff;
   color:#8f174d;
-  padding:9px 15px;
+
+  padding:10px 16px;
+
   border-radius:22px;
+
   cursor:pointer;
+
   font-weight:bold;
   font-size:13px;
+
   white-space:nowrap;
 }
 
@@ -154,6 +198,77 @@ header{
   border-color:#8f174d;
 }
 
+
+/* ============================= */
+/* SUB CATEGORY */
+/* ============================= */
+
+.subcategory-wrapper{
+  display:none;
+  background:#fff;
+  border:1px solid #efb4cb;
+  border-radius:13px;
+
+  padding:10px;
+
+  margin:3px 0 13px;
+
+  box-shadow:
+    0 3px 12px rgba(143,23,77,.08);
+}
+
+.subcategory-wrapper.show{
+  display:block;
+}
+
+.subcategory-title{
+  color:#8f174d;
+  font-size:13px;
+  font-weight:bold;
+  margin-bottom:8px;
+}
+
+.subcategory-list{
+  display:flex;
+  gap:7px;
+  overflow-x:auto;
+  scrollbar-width:none;
+}
+
+.subcategory-list::-webkit-scrollbar{
+  display:none;
+}
+
+.subcategory-btn{
+  flex-shrink:0;
+
+  border:1px solid #e9a9c2;
+  background:#fff7fa;
+  color:#8f174d;
+
+  padding:8px 12px;
+
+  border-radius:18px;
+
+  cursor:pointer;
+
+  font-size:12px;
+  font-weight:bold;
+
+  white-space:nowrap;
+}
+
+.subcategory-btn:hover{
+  background:#f8d9e5;
+}
+
+.subcategory-btn.active{
+  background:#d52b72;
+  color:#fff;
+  border-color:#d52b72;
+}
+
+
 .selected-category{
   color:#8f174d;
   font-size:14px;
@@ -166,71 +281,102 @@ header{
 
 .product-grid{
   display:grid;
+
   grid-template-columns:
     repeat(auto-fill,minmax(210px,1fr));
+
   gap:16px;
 }
 
 .product-card{
   background:#fff;
+
   border:1px solid #efb4cb;
+
   border-radius:16px;
+
   overflow:hidden;
+
   box-shadow:
     0 4px 15px rgba(143,23,77,.12);
+
   transition:.2s;
 }
 
 .product-card:hover{
   transform:translateY(-3px);
+
   box-shadow:
     0 8px 22px rgba(143,23,77,.18);
 }
 
+
+/* PRODUCT IMAGE */
+
 .product-image-box{
   position:relative;
+
   width:100%;
   height:230px;
+
   background:#f9e4ec;
+
   overflow:hidden;
+
   touch-action:pan-y;
 }
 
 .product-image{
   width:100%;
   height:100%;
+
   object-fit:cover;
+
   display:block;
+
   cursor:pointer;
 }
 
 .image-counter{
   position:absolute;
+
   top:9px;
   right:9px;
+
   background:#8f174d;
   color:#fff;
+
   padding:4px 9px;
+
   border-radius:15px;
+
   font-size:12px;
 }
 
 .slider-dots{
   position:absolute;
+
   bottom:8px;
   left:0;
   right:0;
+
   display:flex;
+
   justify-content:center;
+
   gap:5px;
 }
 
 .slider-dot{
   width:7px;
   height:7px;
+
   border-radius:50%;
+
   background:#fff;
+
   opacity:.55;
+
   box-shadow:
     0 1px 4px rgba(0,0,0,.3);
 }
@@ -240,47 +386,93 @@ header{
   transform:scale(1.25);
 }
 
+
+/* PRODUCT INFO */
+
 .product-info{
   padding:13px;
 }
 
 .product-name{
   font-size:17px;
+
   font-weight:bold;
+
   margin-bottom:7px;
+
   color:#3b1024;
 }
 
 .price{
   color:#8f174d;
+
   font-size:19px;
+
   font-weight:bold;
+
   margin-bottom:10px;
 }
 
 .product-category{
   display:inline-block;
+
   background:#f8d9e5;
+
   color:#8f174d;
+
   padding:4px 8px;
+
   border-radius:20px;
+
   font-size:11px;
+
   font-weight:bold;
-  margin-bottom:10px;
+
+  margin-bottom:5px;
 }
+
+.product-subcategory{
+  display:inline-block;
+
+  background:#fff0f5;
+
+  color:#6f103b;
+
+  padding:4px 8px;
+
+  border-radius:20px;
+
+  font-size:11px;
+
+  font-weight:bold;
+
+  margin-bottom:10px;
+
+  margin-left:3px;
+}
+
+
+/* BUTTONS */
 
 .card-actions{
   display:grid;
+
   grid-template-columns:1fr 1fr;
+
   gap:7px;
 }
 
 .btn{
   border:0;
+
   border-radius:9px;
+
   padding:10px 8px;
+
   cursor:pointer;
+
   font-weight:bold;
+
   font-size:13px;
 }
 
@@ -295,7 +487,9 @@ header{
 
 .btn-light{
   background:#f8d9e5;
+
   color:#8f174d;
+
   border:1px solid #e9a9c2;
 }
 
@@ -312,84 +506,134 @@ header{
   grid-column:1/-1;
 }
 
+
+/* EMPTY / LOADING */
+
 .empty{
   text-align:center;
+
   padding:50px 15px;
+
   color:#8f174d;
+
   grid-column:1/-1;
 }
 
 .loading{
   text-align:center;
+
   padding:40px;
+
   color:#8f174d;
+
   grid-column:1/-1;
 }
 
+
+/* MODAL */
+
 .modal{
   display:none;
+
   position:fixed;
+
   inset:0;
+
   z-index:2000;
+
   background:rgba(50,0,25,.72);
+
   padding:20px;
+
   overflow:auto;
 }
 
 .modal-box{
   background:#fff;
+
   max-width:600px;
+
   margin:30px auto;
+
   border-radius:18px;
+
   padding:20px;
+
   position:relative;
+
   border-top:5px solid #8f174d;
+
   box-shadow:
     0 10px 35px rgba(0,0,0,.25);
 }
 
 .close{
   position:absolute;
+
   top:10px;
   right:14px;
+
   border:0;
+
   background:#f8d9e5;
+
   color:#8f174d;
+
   width:35px;
   height:35px;
+
   border-radius:50%;
+
   cursor:pointer;
+
   font-size:20px;
 }
 
 .modal-title{
   color:#8f174d;
+
   margin-bottom:15px;
+
   padding-right:40px;
 }
 
+
+/* DETAILS */
+
 .detail-main-image{
   width:100%;
+
   height:320px;
+
   object-fit:contain;
+
   background:#fff7fa;
+
   border-radius:12px;
+
   border:1px solid #f0c1d2;
 }
 
 .thumbnails{
   display:flex;
+
   gap:7px;
+
   overflow-x:auto;
+
   margin-top:10px;
 }
 
 .thumb{
   width:65px;
   height:65px;
+
   object-fit:cover;
+
   border:2px solid transparent;
+
   border-radius:8px;
+
   cursor:pointer;
 }
 
@@ -397,14 +641,20 @@ header{
   border-color:#8f174d;
 }
 
+
+/* FORM */
+
 .form-group{
   margin-bottom:12px;
 }
 
 .form-group label{
   display:block;
+
   margin-bottom:5px;
+
   font-weight:bold;
+
   color:#6f103b;
 }
 
@@ -412,10 +662,15 @@ header{
 .form-group textarea,
 .form-group select{
   width:100%;
+
   padding:11px;
+
   border:1px solid #e3a5bd;
+
   border-radius:9px;
+
   outline:none;
+
   background:#fff;
 }
 
@@ -427,21 +682,31 @@ header{
 
 .form-group textarea{
   min-height:90px;
+
   resize:vertical;
 }
 
+
+/* CART */
+
 .cart-item{
   display:flex;
+
   gap:10px;
+
   align-items:center;
+
   padding:10px 0;
+
   border-bottom:1px solid #f0cbd9;
 }
 
 .cart-item img{
   width:65px;
   height:65px;
+
   object-fit:cover;
+
   border-radius:8px;
 }
 
@@ -451,23 +716,36 @@ header{
 
 .total-box{
   margin-top:15px;
+
   padding:15px;
+
   background:#fff0f5;
+
   border-left:4px solid #8f174d;
+
   border-radius:10px;
 }
 
+
+/* SHARE */
+
 .share-buttons{
   display:grid;
+
   gap:10px;
+
   margin-top:15px;
 }
 
 .share-btn{
   padding:12px;
+
   border:0;
+
   border-radius:10px;
+
   cursor:pointer;
+
   font-weight:bold;
 }
 
@@ -510,6 +788,7 @@ header{
 
   .product-grid{
     grid-template-columns:repeat(2,1fr);
+
     gap:10px;
   }
 
@@ -527,6 +806,7 @@ header{
 
   .btn{
     font-size:11px;
+
     padding:9px 5px;
   }
 
@@ -536,343 +816,577 @@ header{
 
 }
 
-</style></head><body><!-- HEADER --><header>  <div class="header-inner"><img
-  src="logo.png"
-  class="logo"
-  alt="Gadhuli">
+</style>
 
-<div class="search-box">
+</head>
 
-  <input
-    type="text"
-    id="searchInput"
-    placeholder="🔎 Product খুঁজুন..."
-    oninput="searchProducts()">
 
-</div>
+<body>
 
-<div class="header-btns">
 
-  <button
-    class="icon-btn"
-    onclick="openWishlist()">
-    ❤️
-  </button>
+<!-- HEADER -->
 
-  <button
-    class="icon-btn"
-    onclick="openCart()">
-    🛒
-  </button>
+<header>
 
-</div>
+  <div class="header-inner">
 
-  </div></header><!-- HERO --><section class="hero">  <h1>Gadhuli</h1>  <p>
+    <img
+      src="logo.png"
+      class="logo"
+      alt="Gadhuli"
+    >
+
+    <div class="search-box">
+
+      <input
+        type="text"
+        id="searchInput"
+        placeholder="🔎 Product খুঁজুন..."
+        oninput="searchProducts()"
+      >
+
+    </div>
+
+    <div class="header-btns">
+
+      <button
+        class="icon-btn"
+        type="button"
+        onclick="openWishlist()"
+      >
+        ❤️
+      </button>
+
+      <button
+        class="icon-btn"
+        type="button"
+        onclick="openCart()"
+      >
+        🛒
+      </button>
+
+    </div>
+
+  </div>
+
+</header>
+
+
+<!-- HERO -->
+
+<section class="hero">
+
+  <h1>Gadhuli</h1>
+
+  <p>
     Shop Smart. Shop Easy. 🌸
-  </p></section><!-- PRODUCTS --><main class="container">  <h2 class="section-title">
+  </p>
+
+</section>
+
+
+<!-- PRODUCTS -->
+
+<main class="container">
+
+  <h2 class="section-title">
     🛍️ Our Products
-  </h2>  <!-- CATEGORY FILTER -->  <div
+  </h2>
+
+
+  <!-- MAIN CATEGORY -->
+
+  <div class="category-title">
+    📂 Categories
+  </div>
+
+  <div
     class="category-filter"
-    id="categoryFilter"><button
-  class="category-btn active"
-  data-category=""
-  onclick="setCategory('')">
-  All
-</button>
+    id="categoryFilter"
+  >
 
-<button
-  class="category-btn"
-  data-category="Men"
-  onclick="setCategory('Men')">
-  Men
-</button>
+    <button
+      class="category-btn active"
+      data-category=""
+      onclick="setCategory('')"
+    >
+      All
+    </button>
 
-<button
-  class="category-btn"
-  data-category="Women"
-  onclick="setCategory('Women')">
-  Women
-</button>
+    <button
+      class="category-btn"
+      data-category="Men's Fashion"
+      onclick="setCategory(&quot;Men's Fashion&quot;)"
+    >
+      👔 Men's Fashion
+    </button>
 
-<button
-  class="category-btn"
-  data-category="Kids"
-  onclick="setCategory('Kids')">
-  Kids
-</button>
+    <button
+      class="category-btn"
+      data-category="Women's Fashion"
+      onclick="setCategory(&quot;Women's Fashion&quot;)"
+    >
+      👗 Women's Fashion
+    </button>
 
-<button
-  class="category-btn"
-  data-category="Electronics"
-  onclick="setCategory('Electronics')">
-  Electronics
-</button>
+    <button
+      class="category-btn"
+      data-category="Kids & Baby"
+      onclick="setCategory('Kids & Baby')"
+    >
+      👶 Kids & Baby
+    </button>
 
-<button
-  class="category-btn"
-  data-category="Beauty"
-  onclick="setCategory('Beauty')">
-  Beauty
-</button>
+    <button
+      class="category-btn"
+      data-category="Shoes"
+      onclick="setCategory('Shoes')"
+    >
+      👟 Shoes
+    </button>
 
-<button
-  class="category-btn"
-  data-category="Home"
-  onclick="setCategory('Home')">
-  Home
-</button>
+    <button
+      class="category-btn"
+      data-category="Bags & Accessories"
+      onclick="setCategory('Bags & Accessories')"
+    >
+      🎒 Bags & Accessories
+    </button>
 
-<button
-  class="category-btn"
-  data-category="Others"
-  onclick="setCategory('Others')">
-  Others
-</button>
+    <button
+      class="category-btn"
+      data-category="Watches"
+      onclick="setCategory('Watches')"
+    >
+      ⌚ Watches
+    </button>
 
-  </div>  <div
+    <button
+      class="category-btn"
+      data-category="Electronics"
+      onclick="setCategory('Electronics')"
+    >
+      📱 Electronics
+    </button>
+
+    <button
+      class="category-btn"
+      data-category="Beauty & Personal Care"
+      onclick="setCategory('Beauty & Personal Care')"
+    >
+      💄 Beauty & Personal Care
+    </button>
+
+    <button
+      class="category-btn"
+      data-category="Home & Living"
+      onclick="setCategory('Home & Living')"
+    >
+      🏠 Home & Living
+    </button>
+
+  </div>
+
+
+  <!-- SUBCATEGORY -->
+
+  <div
+    id="subcategoryWrapper"
+    class="subcategory-wrapper"
+  >
+
+    <div
+      id="subcategoryTitle"
+      class="subcategory-title"
+    >
+      Subcategories
+    </div>
+
+    <div
+      id="subcategoryList"
+      class="subcategory-list"
+    ></div>
+
+  </div>
+
+
+  <div
     id="selectedCategory"
-    class="selected-category">
+    class="selected-category"
+  >
     🏷️ Showing: All Categories
-  </div>  <div
+  </div>
+
+
+  <!-- PRODUCT GRID -->
+
+  <div
     id="productGrid"
-    class="product-grid"><div class="loading">
-  Products loading... ⏳
-</div>
+    class="product-grid"
+  >
 
-  </div></main><!-- DETAILS MODAL --><div
-  class="modal"
-  id="detailsModal">  <div class="modal-box"><button
-  class="close"
-  onclick="closeModal('detailsModal')">
-  ×
-</button>
+    <div class="loading">
+      Products loading... ⏳
+    </div>
 
-<h2
-  class="modal-title"
-  id="detailName">
-</h2>
+  </div>
 
-<img
-  id="detailMainImage"
-  class="detail-main-image"
-  src=""
-  alt="Product">
+</main>
+
+
+<!-- DETAILS MODAL -->
 
 <div
-  id="detailThumbs"
-  class="thumbnails">
-</div>
-
-<h3
-  id="detailPrice"
-  class="price"
-  style="margin-top:15px;">
-</h3>
-
-<div style="display:grid;gap:8px;">
-
-  <button
-    class="btn btn-primary"
-    id="detailCartBtn">
-    🛒 Add to Cart
-  </button>
-
-  <button
-    class="btn btn-green"
-    id="detailOrderBtn">
-    ⚡ Order Now
-  </button>
-
-  <button
-    class="btn btn-light"
-    id="detailShareBtn">
-    🔗 Share Product
-  </button>
-
-  <button
-    class="btn btn-light"
-    id="detailResellBtn">
-    🤝 Resell This Product
-  </button>
-
-</div>
-
-  </div></div><!-- CART MODAL --><div
   class="modal"
-  id="cartModal">  <div class="modal-box"><button
-  class="close"
-  onclick="closeModal('cartModal')">
-  ×
-</button>
+  id="detailsModal"
+>
 
-<h2 class="modal-title">
-  🛒 Your Cart
-</h2>
+  <div class="modal-box">
 
-<div id="cartItems"></div>
+    <button
+      class="close"
+      type="button"
+      onclick="closeModal('detailsModal')"
+    >
+      ×
+    </button>
 
-<div id="cartTotal"></div>
+    <h2
+      class="modal-title"
+      id="detailName"
+    ></h2>
 
-<button
-  class="btn btn-primary full-btn"
-  style="margin-top:12px;"
-  onclick="openOrderFromCart()">
-  Checkout / Order
-</button>
+    <img
+      id="detailMainImage"
+      class="detail-main-image"
+      src=""
+      alt="Product"
+    >
 
-  </div></div><!-- WISHLIST MODAL --><div
-  class="modal"
-  id="wishlistModal">  <div class="modal-box"><button
-  class="close"
-  onclick="closeModal('wishlistModal')">
-  ×
-</button>
+    <div
+      id="detailThumbs"
+      class="thumbnails"
+    ></div>
 
-<h2 class="modal-title">
-  ❤️ Wishlist
-</h2>
+    <div
+      id="detailCategory"
+      class="product-category"
+      style="margin-top:12px;"
+    ></div>
 
-<div id="wishlistItems"></div>
+    <div
+      id="detailSubcategory"
+      class="product-subcategory"
+    ></div>
 
-  </div></div><!-- ORDER MODAL --><div
-  class="modal"
-  id="orderModal">  <div class="modal-box"><button
-  class="close"
-  onclick="closeModal('orderModal')">
-  ×
-</button>
+    <h3
+      id="detailPrice"
+      class="price"
+      style="margin-top:10px;"
+    ></h3>
 
-<h2 class="modal-title">
-  📦 Order
-</h2>
+    <div style="display:grid;gap:8px;">
 
-<div id="orderProductInfo"></div>
+      <button
+        class="btn btn-primary"
+        type="button"
+        id="detailCartBtn"
+      >
+        🛒 Add to Cart
+      </button>
 
-<div class="form-group">
+      <button
+        class="btn btn-green"
+        type="button"
+        id="detailOrderBtn"
+      >
+        ⚡ Order Now
+      </button>
 
-  <label>নাম</label>
+      <button
+        class="btn btn-light"
+        type="button"
+        id="detailShareBtn"
+      >
+        🔗 Share Product
+      </button>
 
-  <input
-    id="customerName"
-    type="text"
-    placeholder="আপনার নাম">
+      <button
+        class="btn btn-light"
+        type="button"
+        id="detailResellBtn"
+      >
+        🤝 Resell This Product
+      </button>
 
-</div>
+    </div>
 
-<div class="form-group">
-
-  <label>ফোন নম্বর</label>
-
-  <input
-    id="customerPhone"
-    type="tel"
-    placeholder="01XXXXXXXXX">
-
-</div>
-
-<div class="form-group">
-
-  <label>ঠিকানা</label>
-
-  <textarea
-    id="customerAddress"
-    placeholder="সম্পূর্ণ ঠিকানা">
-  </textarea>
-
-</div>
-
-<div class="form-group">
-
-  <label>Delivery Area</label>
-
-  <select
-    id="deliveryArea"
-    onchange="updateOrderTotal()">
-
-    <option value="60">
-      Inside Dhaka — ৳60
-    </option>
-
-    <option value="120">
-      Outside Dhaka — ৳120
-    </option>
-
-  </select>
+  </div>
 
 </div>
+
+
+<!-- CART MODAL -->
 
 <div
-  id="orderTotal"
-  class="total-box">
-</div>
-
-<button
-  class="btn btn-green full-btn"
-  onclick="sendWhatsAppOrder()">
-  📱 WhatsApp এ Order করুন
-</button>
-
-  </div></div><!-- SHARE MODAL --><div
   class="modal"
-  id="shareModal">  <div class="modal-box"><button
-  class="close"
-  onclick="closeModal('shareModal')">
-  ×
-</button>
+  id="cartModal"
+>
 
-<h2 class="modal-title">
-  🔗 Share Product
-</h2>
+  <div class="modal-box">
 
-<div class="form-group">
+    <button
+      class="close"
+      type="button"
+      onclick="closeModal('cartModal')"
+    >
+      ×
+    </button>
 
-  <input
-    id="shareLink"
-    type="text"
-    readonly>
+    <h2 class="modal-title">
+      🛒 Your Cart
+    </h2>
 
-</div>
+    <div id="cartItems"></div>
 
-<div class="share-buttons">
+    <div id="cartTotal"></div>
 
-  <button
-    class="share-btn whatsapp"
-    onclick="shareWhatsApp()">
-    💚 Share on WhatsApp
-  </button>
+    <button
+      class="btn btn-primary full-btn"
+      type="button"
+      style="margin-top:12px;"
+      onclick="openOrderFromCart()"
+    >
+      Checkout / Order
+    </button>
 
-  <button
-    class="share-btn facebook"
-    onclick="shareFacebook()">
-    💙 Share on Facebook
-  </button>
-
-  <button
-    class="share-btn copy"
-    onclick="copyProductLink()">
-    📋 Copy Product Link
-  </button>
+  </div>
 
 </div>
 
-  </div></div><script>
 
+<!-- WISHLIST MODAL -->
+
+<div
+  class="modal"
+  id="wishlistModal"
+>
+
+  <div class="modal-box">
+
+    <button
+      class="close"
+      type="button"
+      onclick="closeModal('wishlistModal')"
+    >
+      ×
+    </button>
+
+    <h2 class="modal-title">
+      ❤️ Wishlist
+    </h2>
+
+    <div id="wishlistItems"></div>
+
+  </div>
+
+</div>
+
+
+<!-- ORDER MODAL -->
+
+<div
+  class="modal"
+  id="orderModal"
+>
+
+  <div class="modal-box">
+
+    <button
+      class="close"
+      type="button"
+      onclick="closeModal('orderModal')"
+    >
+      ×
+    </button>
+
+    <h2 class="modal-title">
+      📦 Order
+    </h2>
+
+    <div id="orderProductInfo"></div>
+
+
+    <div class="form-group">
+
+      <label>নাম</label>
+
+      <input
+        id="customerName"
+        type="text"
+        placeholder="আপনার নাম"
+      >
+
+    </div>
+
+
+    <div class="form-group">
+
+      <label>ফোন নম্বর</label>
+
+      <input
+        id="customerPhone"
+        type="tel"
+        placeholder="01XXXXXXXXX"
+      >
+
+    </div>
+
+
+    <div class="form-group">
+
+      <label>ঠিকানা</label>
+
+      <textarea
+        id="customerAddress"
+        placeholder="সম্পূর্ণ ঠিকানা"
+      ></textarea>
+
+    </div>
+
+
+    <div class="form-group">
+
+      <label>Delivery Area</label>
+
+      <select
+        id="deliveryArea"
+        onchange="updateOrderTotal()"
+      >
+
+        <option value="60">
+          Inside Dhaka — ৳60
+        </option>
+
+        <option value="120">
+          Outside Dhaka — ৳120
+        </option>
+
+      </select>
+
+    </div>
+
+
+    <div
+      id="orderTotal"
+      class="total-box"
+    ></div>
+
+
+    <button
+      class="btn btn-green full-btn"
+      type="button"
+      onclick="sendWhatsAppOrder()"
+    >
+      📱 WhatsApp এ Order করুন
+    </button>
+
+  </div>
+
+</div>
+
+
+<!-- SHARE MODAL -->
+
+<div
+  class="modal"
+  id="shareModal"
+>
+
+  <div class="modal-box">
+
+    <button
+      class="close"
+      type="button"
+      onclick="closeModal('shareModal')"
+    >
+      ×
+    </button>
+
+    <h2 class="modal-title">
+      🔗 Share Product
+    </h2>
+
+
+    <div class="form-group">
+
+      <input
+        id="shareLink"
+        type="text"
+        readonly
+      >
+
+    </div>
+
+
+    <div class="share-buttons">
+
+      <button
+        class="share-btn whatsapp"
+        type="button"
+        onclick="shareWhatsApp()"
+      >
+        💚 Share on WhatsApp
+      </button>
+
+      <button
+        class="share-btn facebook"
+        type="button"
+        onclick="shareFacebook()"
+      >
+        💙 Share on Facebook
+      </button>
+
+      <button
+        class="share-btn copy"
+        type="button"
+        onclick="copyProductLink()"
+      >
+        📋 Copy Product Link
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<script>
+
+
+/* ============================= */
 /* SUPABASE */
+/* ============================= */
 
 const db =
   window.gadhuliSupabase;
 
+
 let products = [];
+
 
 let cart =
   JSON.parse(
     localStorage.getItem("gadhuli_cart") || "[]"
   );
 
+
 let wishlist =
   JSON.parse(
     localStorage.getItem("gadhuli_wishlist") || "[]"
   );
+
 
 let currentOrderProducts = [];
 
@@ -882,18 +1396,129 @@ let currentShareProduct = null;
 
 let currentCategory = "";
 
+let currentSubcategory = "";
 
+
+/* ============================= */
+/* CATEGORY DATA */
+/* ============================= */
+
+const categoryData = {
+
+  "Men's Fashion":[
+    "All",
+    "T-Shirt",
+    "Polo T-Shirt",
+    "Shirt",
+    "Panjabi",
+    "Jeans",
+    "Pants",
+    "Shorts",
+    "Hoodie & Sweatshirt",
+    "Jacket"
+  ],
+
+  "Women's Fashion":[
+    "All",
+    "Saree",
+    "Three Piece",
+    "Kurti",
+    "Tops",
+    "T-Shirt",
+    "Gown",
+    "Hijab",
+    "Abaya",
+    "Women's Pants"
+  ],
+
+  "Kids & Baby":[
+    "All",
+    "Boys Clothing",
+    "Girls Clothing",
+    "Baby Clothing",
+    "Baby Accessories",
+    "Toys"
+  ],
+
+  "Shoes":[
+    "All",
+    "Men's Shoes",
+    "Women's Shoes",
+    "Kids Shoes",
+    "Sneakers",
+    "Sandals",
+    "Slippers"
+  ],
+
+  "Bags & Accessories":[
+    "All",
+    "Backpacks",
+    "Handbags",
+    "Wallets",
+    "Belts",
+    "Caps",
+    "Sunglasses",
+    "Fashion Accessories"
+  ],
+
+  "Watches":[
+    "All",
+    "Men's Watches",
+    "Women's Watches",
+    "Smart Watches",
+    "Kids Watches"
+  ],
+
+  "Electronics":[
+    "All",
+    "Mobile Accessories",
+    "Earphones & Headphones",
+    "Speakers",
+    "Chargers",
+    "Power Banks",
+    "Smart Gadgets"
+  ],
+
+  "Beauty & Personal Care":[
+    "All",
+    "Skincare",
+    "Hair Care",
+    "Makeup",
+    "Perfume",
+    "Personal Care"
+  ],
+
+  "Home & Living":[
+    "All",
+    "Home Decor",
+    "Bedding",
+    "Storage",
+    "Lighting",
+    "Kitchen & Dining"
+  ]
+
+};
+
+
+/* ============================= */
 /* IMAGE FUNCTIONS */
+/* ============================= */
 
 function getProductImages(product){
 
-  if(!product) return [];
+  if(!product)
+    return [];
 
-  let imgs = product.images;
+  let imgs =
+    product.images;
+
 
   if(Array.isArray(imgs)){
+
     return imgs.filter(Boolean);
+
   }
+
 
   if(typeof imgs === "string"){
 
@@ -902,9 +1527,13 @@ function getProductImages(product){
       const parsed =
         JSON.parse(imgs);
 
+
       if(Array.isArray(parsed)){
+
         return parsed.filter(Boolean);
+
       }
+
 
       if(
         parsed &&
@@ -917,22 +1546,33 @@ function getProductImages(product){
 
     }catch(e){}
 
+
     if(imgs.trim()){
-      return [imgs.trim()];
+
+      return [
+        imgs.trim()
+      ];
+
     }
 
   }
+
 
   if(
     imgs &&
     typeof imgs === "object"
   ){
 
-    if(Array.isArray(imgs.urls)){
+    if(
+      Array.isArray(imgs.urls)
+    ){
+
       return imgs.urls.filter(Boolean);
+
     }
 
   }
+
 
   return [];
 
@@ -944,6 +1584,7 @@ function getProductImage(product){
   const images =
     getProductImages(product);
 
+
   return images.length
     ? images[0]
     : "https://via.placeholder.com/500x500?text=Gadhuli";
@@ -951,7 +1592,9 @@ function getProductImage(product){
 }
 
 
-/* ESCAPE */
+/* ============================= */
+/* ESCAPE HTML */
+/* ============================= */
 
 function escapeHTML(value){
 
@@ -965,7 +1608,9 @@ function escapeHTML(value){
 }
 
 
+/* ============================= */
 /* LOAD PRODUCTS */
+/* ============================= */
 
 async function loadProducts(){
 
@@ -974,16 +1619,25 @@ async function loadProducts(){
       "productGrid"
     );
 
+
   grid.innerHTML =
     '<div class="loading">Products loading... ⏳</div>';
+
 
   const {
     data,
     error
-  } = await db
-    .from("products")
-    .select("*")
-    .order("id",{ascending:false});
+  } =
+    await db
+      .from("products")
+      .select("*")
+      .order(
+        "id",
+        {
+          ascending:false
+        }
+      );
+
 
   if(error){
 
@@ -996,34 +1650,123 @@ async function loadProducts(){
 
   }
 
+
   products =
     (data || []).map(
       product => ({
+
         ...product,
+
         category:
           product.category ||
-          "Others"
+          "Others",
+
+        subcategory:
+          product.subcategory ||
+          ""
+
       })
     );
 
+
   renderProducts();
+
 
   openProductFromURL();
 
 }
 
 
-/* CATEGORY + SEARCH FILTER */
+/* ============================= */
+/* SUBCATEGORY UI */
+/* ============================= */
+
+function showSubcategories(category){
+
+  const wrapper =
+    document.getElementById(
+      "subcategoryWrapper"
+    );
+
+  const list =
+    document.getElementById(
+      "subcategoryList"
+    );
+
+  const title =
+    document.getElementById(
+      "subcategoryTitle"
+    );
+
+
+  if(
+    !category ||
+    !categoryData[category]
+  ){
+
+    wrapper.classList.remove(
+      "show"
+    );
+
+    list.innerHTML = "";
+
+    return;
+
+  }
+
+
+  wrapper.classList.add(
+    "show"
+  );
+
+
+  title.textContent =
+    "📂 " +
+    category +
+    " — Subcategories";
+
+
+  list.innerHTML =
+    categoryData[category]
+      .map(
+        sub => `
+
+          <button
+            type="button"
+            class="subcategory-btn
+            ${currentSubcategory === sub ? "active" : ""}"
+            onclick="
+              setSubcategory(
+                '${escapeHTML(category)}',
+                '${escapeHTML(sub)}'
+              )
+            "
+          >
+            ${escapeHTML(sub)}
+          </button>
+
+        `
+      )
+      .join("");
+
+}
+
+
+/* ============================= */
+/* CATEGORY FILTER */
+/* ============================= */
 
 function getFilteredProducts(){
 
   const query =
-    document.getElementById(
-      "searchInput"
-    )
-    .value
-    .toLowerCase()
-    .trim();
+    document
+      .getElementById(
+        "searchInput"
+      )
+      .value
+      .toLowerCase()
+      .trim();
+
 
   return products.filter(
     product => {
@@ -1034,20 +1777,49 @@ function getFilteredProducts(){
         )
         .toLowerCase();
 
+
       const category =
-        product.category ||
-        "Others";
+        String(
+          product.category || "Others"
+        );
+
+
+      const subcategory =
+        String(
+          product.subcategory || ""
+        );
+
+
+      const searchText =
+        (
+          productName +
+          " " +
+          category +
+          " " +
+          subcategory
+        )
+        .toLowerCase();
+
 
       const categoryMatch =
         !currentCategory ||
         category === currentCategory;
 
+
+      const subcategoryMatch =
+        !currentSubcategory ||
+        currentSubcategory === "All" ||
+        subcategory === currentSubcategory;
+
+
       const searchMatch =
         !query ||
-        productName.includes(query);
+        searchText.includes(query);
+
 
       return (
         categoryMatch &&
+        subcategoryMatch &&
         searchMatch
       );
 
@@ -1057,19 +1829,19 @@ function getFilteredProducts(){
 }
 
 
-function applyFilters(){
-
-  renderProducts(
-    getFilteredProducts()
-  );
-
-}
-
+/* ============================= */
+/* SET MAIN CATEGORY */
+/* ============================= */
 
 function setCategory(category){
 
   currentCategory =
     category;
+
+
+  currentSubcategory =
+    "";
+
 
   document
     .querySelectorAll(
@@ -1087,20 +1859,97 @@ function setCategory(category){
       }
     );
 
-  const selected =
-    document.getElementById(
-      "selectedCategory"
-    );
 
-  selected.textContent =
+  showSubcategories(
     category
-      ? "🏷️ Showing: " + category
-      : "🏷️ Showing: All Categories";
+  );
+
+
+  updateSelectedCategory();
+
 
   applyFilters();
 
 }
 
+
+/* ============================= */
+/* SET SUBCATEGORY */
+/* ============================= */
+
+function setSubcategory(
+  category,
+  subcategory
+){
+
+  currentCategory =
+    category;
+
+
+  currentSubcategory =
+    subcategory;
+
+
+  showSubcategories(
+    category
+  );
+
+
+  updateSelectedCategory();
+
+
+  applyFilters();
+
+}
+
+
+/* ============================= */
+/* SELECTED CATEGORY TEXT */
+/* ============================= */
+
+function updateSelectedCategory(){
+
+  const selected =
+    document.getElementById(
+      "selectedCategory"
+    );
+
+
+  if(!currentCategory){
+
+    selected.textContent =
+      "🏷️ Showing: All Categories";
+
+    return;
+
+  }
+
+
+  if(
+    currentSubcategory &&
+    currentSubcategory !== "All"
+  ){
+
+    selected.textContent =
+      "🏷️ Showing: " +
+      currentCategory +
+      " → " +
+      currentSubcategory;
+
+  }else{
+
+    selected.textContent =
+      "🏷️ Showing: " +
+      currentCategory;
+
+  }
+
+}
+
+
+/* ============================= */
+/* SEARCH */
+/* ============================= */
 
 function searchProducts(){
 
@@ -1109,14 +1958,32 @@ function searchProducts(){
 }
 
 
-/* RENDER PRODUCTS */
+/* ============================= */
+/* APPLY FILTER */
+/* ============================= */
 
-function renderProducts(list = products){
+function applyFilters(){
+
+  renderProducts(
+    getFilteredProducts()
+  );
+
+}
+
+
+/* ============================= */
+/* RENDER PRODUCTS */
+/* ============================= */
+
+function renderProducts(
+  list = products
+){
 
   const grid =
     document.getElementById(
       "productGrid"
     );
+
 
   if(!list.length){
 
@@ -1127,146 +1994,244 @@ function renderProducts(list = products){
 
   }
 
+
   grid.innerHTML =
-    list.map(product => {
+    list.map(
+      product => {
 
-      const images =
-        getProductImages(product);
+        const images =
+          getProductImages(
+            product
+          );
 
-      const firstImage =
-        images.length
-          ? images[0]
-          : "https://via.placeholder.com/500x500?text=Gadhuli";
 
-      const count =
-        images.length || 1;
+        const firstImage =
+          images.length
+            ? images[0]
+            : "https://via.placeholder.com/500x500?text=Gadhuli";
 
-      const id =
-        String(product.id);
 
-      const category =
-        product.category ||
-        "Others";
+        const count =
+          images.length || 1;
 
-      return `
 
-        <div class="product-card">
+        const id =
+          String(
+            product.id
+          );
 
-          <div
-            class="product-image-box"
-            data-product-id="${escapeHTML(id)}"
-            data-index="0"
-            ontouchstart="sliderTouchStart(event)"
-            ontouchend="sliderTouchEnd(event)"
-          >
 
-            <img
-              class="product-image"
-              id="card-img-${escapeHTML(id)}"
-              src="${escapeHTML(firstImage)}"
-              alt="${escapeHTML(product.name)}"
-              onclick="openDetails('${escapeHTML(id)}')"
-              onerror="
-                this.src='https://via.placeholder.com/500x500?text=Gadhuli'
-              "
+        const category =
+          product.category ||
+          "Others";
+
+
+        const subcategory =
+          product.subcategory ||
+          "";
+
+
+        return `
+
+          <div class="product-card">
+
+            <div
+              class="product-image-box"
+              data-product-id="${escapeHTML(id)}"
+              data-index="0"
+              ontouchstart="sliderTouchStart(event)"
+              ontouchend="sliderTouchEnd(event)"
             >
 
-            <div
-              class="image-counter"
-              id="counter-${escapeHTML(id)}">
-              1/${count}
+              <img
+                class="product-image"
+                id="card-img-${escapeHTML(id)}"
+                src="${escapeHTML(firstImage)}"
+                alt="${escapeHTML(product.name)}"
+
+                onclick="
+                  openDetails(
+                    '${escapeHTML(id)}'
+                  )
+                "
+
+                onerror="
+                  this.src='https://via.placeholder.com/500x500?text=Gadhuli'
+                "
+              >
+
+
+              <div
+                class="image-counter"
+                id="counter-${escapeHTML(id)}"
+              >
+                1/${count}
+              </div>
+
+
+              <div
+                class="slider-dots"
+                id="dots-${escapeHTML(id)}"
+              >
+
+                ${images.map(
+                  (image,index) => `
+
+                    <span
+                      class="slider-dot
+                      ${index===0?'active':''}"
+                    ></span>
+
+                  `
+                ).join("")}
+
+              </div>
+
             </div>
 
-            <div
-              class="slider-dots"
-              id="dots-${escapeHTML(id)}">
 
-              ${images.map(
-                (image,index) => `
-                  <span
-                    class="slider-dot
-                    ${index===0?'active':''}">
-                  </span>
-                `
-              ).join("")}
+            <div class="product-info">
+
+              <div class="product-name">
+                ${escapeHTML(
+                  product.name
+                )}
+              </div>
+
+
+              <div>
+
+                <span class="product-category">
+                  🏷️ ${escapeHTML(category)}
+                </span>
+
+                ${
+                  subcategory
+                  ?
+                  `
+                    <span class="product-subcategory">
+                      ${escapeHTML(subcategory)}
+                    </span>
+                  `
+                  :
+                  ""
+                }
+
+              </div>
+
+
+              <div class="price">
+                ৳${Number(
+                  product.price || 0
+                )}
+              </div>
+
+
+              <div class="card-actions">
+
+                <button
+                  class="btn btn-primary"
+                  type="button"
+                  onclick="
+                    addToCart(
+                      '${escapeHTML(id)}'
+                    )
+                  "
+                >
+                  🛒 Cart
+                </button>
+
+
+                <button
+                  class="btn btn-light"
+                  type="button"
+                  onclick="
+                    toggleWishlist(
+                      '${escapeHTML(id)}'
+                    )
+                  "
+                >
+                  ❤️
+                </button>
+
+
+                <button
+                  class="btn btn-green"
+                  type="button"
+                  onclick="
+                    orderNow(
+                      '${escapeHTML(id)}'
+                    )
+                  "
+                >
+                  ⚡ Order
+                </button>
+
+
+                <button
+                  class="btn btn-light"
+                  type="button"
+                  onclick="
+                    openShare(
+                      '${escapeHTML(id)}'
+                    )
+                  "
+                >
+                  🔗 Share
+                </button>
+
+
+                <button
+                  class="btn btn-light full-btn"
+                  type="button"
+                  onclick="
+                    resellProduct(
+                      '${escapeHTML(id)}'
+                    )
+                  "
+                >
+                  🤝 Resell This Product
+                </button>
+
+
+                <button
+                  class="btn btn-light full-btn"
+                  type="button"
+                  onclick="
+                    openDetails(
+                      '${escapeHTML(id)}'
+                    )
+                  "
+                >
+                  👁️ Details
+                </button>
+
+              </div>
 
             </div>
 
           </div>
 
-          <div class="product-info">
+        `;
 
-            <div class="product-name">
-              ${escapeHTML(product.name)}
-            </div>
-
-            <div class="product-category">
-              🏷️ ${escapeHTML(category)}
-            </div>
-
-            <div class="price">
-              ৳${Number(product.price || 0)}
-            </div>
-
-            <div class="card-actions">
-
-              <button
-                class="btn btn-primary"
-                onclick="addToCart('${escapeHTML(id)}')">
-                🛒 Cart
-              </button>
-
-              <button
-                class="btn btn-light"
-                onclick="toggleWishlist('${escapeHTML(id)}')">
-                ❤️
-              </button>
-
-              <button
-                class="btn btn-green"
-                onclick="orderNow('${escapeHTML(id)}')">
-                ⚡ Order
-              </button>
-
-              <button
-                class="btn btn-light"
-                onclick="openShare('${escapeHTML(id)}')">
-                🔗 Share
-              </button>
-
-              <button
-                class="btn btn-light full-btn"
-                onclick="resellProduct('${escapeHTML(id)}')">
-                🤝 Resell This Product
-              </button>
-
-              <button
-                class="btn btn-light full-btn"
-                onclick="openDetails('${escapeHTML(id)}')">
-                👁️ Details
-              </button>
-
-            </div>
-
-          </div>
-
-        </div>
-
-      `;
-
-    }).join("");
+      }
+    ).join("");
 
 }
 
 
+/* ============================= */
 /* IMAGE SWIPE */
+/* ============================= */
 
 let touchStartX = 0;
+
 
 function sliderTouchStart(event){
 
   touchStartX =
-    event.changedTouches[0].screenX;
+    event.changedTouches[0]
+      .screenX;
 
 }
 
@@ -1274,22 +2239,30 @@ function sliderTouchStart(event){
 function sliderTouchEnd(event){
 
   const touchEndX =
-    event.changedTouches[0].screenX;
+    event.changedTouches[0]
+      .screenX;
+
 
   const difference =
     touchStartX -
     touchEndX;
 
-  if(Math.abs(difference) < 40)
+
+  if(
+    Math.abs(difference) < 40
+  )
     return;
+
 
   const box =
     event.currentTarget;
+
 
   const productId =
     box.getAttribute(
       "data-product-id"
     );
+
 
   if(difference > 0){
 
@@ -1322,39 +2295,53 @@ function changeCardImage(
         String(productId)
     );
 
-  if(!product) return;
+
+  if(!product)
+    return;
+
 
   const images =
-    getProductImages(product);
+    getProductImages(
+      product
+    );
+
 
   if(images.length <= 1)
     return;
+
 
   const boxes =
     document.querySelectorAll(
       ".product-image-box"
     );
 
+
   let box = null;
 
-  boxes.forEach(item => {
 
-    if(
-      String(
-        item.getAttribute(
-          "data-product-id"
-        )
-      ) ===
-      String(productId)
-    ){
+  boxes.forEach(
+    item => {
 
-      box = item;
+      if(
+        String(
+          item.getAttribute(
+            "data-product-id"
+          )
+        ) ===
+        String(productId)
+      ){
+
+        box = item;
+
+      }
 
     }
+  );
 
-  });
 
-  if(!box) return;
+  if(!box)
+    return;
+
 
   let index =
     Number(
@@ -1363,18 +2350,24 @@ function changeCardImage(
       ) || 0
     );
 
+
   index += direction;
 
+
   if(index < 0)
-    index = images.length - 1;
+    index =
+      images.length - 1;
+
 
   if(index >= images.length)
     index = 0;
+
 
   box.setAttribute(
     "data-index",
     index
   );
+
 
   const img =
     document.getElementById(
@@ -1382,10 +2375,12 @@ function changeCardImage(
       String(productId)
     );
 
+
   if(img){
 
     img.src =
       images[index];
+
 
     img.onerror =
       function(){
@@ -1397,11 +2392,13 @@ function changeCardImage(
 
   }
 
+
   const counter =
     document.getElementById(
       "counter-" +
       String(productId)
     );
+
 
   if(counter){
 
@@ -1409,6 +2406,7 @@ function changeCardImage(
       `${index+1}/${images.length}`;
 
   }
+
 
   const dots =
     document.querySelectorAll(
@@ -1418,6 +2416,7 @@ function changeCardImage(
       ) +
       " .slider-dot"
     );
+
 
   dots.forEach(
     (dot,i) => {
@@ -1433,9 +2432,13 @@ function changeCardImage(
 }
 
 
+/* ============================= */
 /* DETAILS */
+/* ============================= */
 
-function openDetails(productId){
+function openDetails(
+  productId
+){
 
   const product =
     products.find(
@@ -1444,38 +2447,89 @@ function openDetails(productId){
         String(productId)
     );
 
-  if(!product) return;
+
+  if(!product)
+    return;
+
 
   currentDetailProduct =
     product;
 
+
   const images =
-    getProductImages(product);
+    getProductImages(
+      product
+    );
+
 
   document.getElementById(
     "detailName"
   ).textContent =
     product.name;
 
+
   document.getElementById(
     "detailPrice"
   ).textContent =
     "৳" +
-    Number(product.price || 0);
+    Number(
+      product.price || 0
+    );
+
+
+  document.getElementById(
+    "detailCategory"
+  ).textContent =
+    "🏷️ " +
+    (
+      product.category ||
+      "Others"
+    );
+
+
+  const sub =
+    product.subcategory ||
+    "";
+
+
+  const subElement =
+    document.getElementById(
+      "detailSubcategory"
+    );
+
+
+  if(sub){
+
+    subElement.textContent =
+      sub;
+
+    subElement.style.display =
+      "inline-block";
+
+  }else{
+
+    subElement.style.display =
+      "none";
+
+  }
+
 
   const main =
     document.getElementById(
       "detailMainImage"
     );
 
+
   main.src =
     images[0] ||
     "https://via.placeholder.com/500x500?text=Gadhuli";
+
 
   const thumbs =
     document.getElementById(
       "detailThumbs"
     );
+
 
   thumbs.innerHTML =
     images.map(
@@ -1485,12 +2539,14 @@ function openDetails(productId){
           class="thumb
           ${index===0?'active':''}"
           src="${escapeHTML(image)}"
+
           onclick="
             changeDetailImage(
               '${escapeHTML(image)}',
               this
             )
           "
+
           onerror="
             this.style.display='none'
           "
@@ -1499,29 +2555,42 @@ function openDetails(productId){
       `
     ).join("");
 
+
   document.getElementById(
     "detailCartBtn"
   ).onclick =
     () =>
-      addToCart(product.id);
+      addToCart(
+        product.id
+      );
+
 
   document.getElementById(
     "detailOrderBtn"
   ).onclick =
     () =>
-      orderNow(product.id);
+      orderNow(
+        product.id
+      );
+
 
   document.getElementById(
     "detailShareBtn"
   ).onclick =
     () =>
-      openShare(product.id);
+      openShare(
+        product.id
+      );
+
 
   document.getElementById(
     "detailResellBtn"
   ).onclick =
     () =>
-      resellProduct(product.id);
+      resellProduct(
+        product.id
+      );
+
 
   document.getElementById(
     "detailsModal"
@@ -1541,6 +2610,7 @@ function changeDetailImage(
   ).src =
     image;
 
+
   document.querySelectorAll(
     ".thumb"
   ).forEach(
@@ -1550,6 +2620,7 @@ function changeDetailImage(
       )
   );
 
+
   element.classList.add(
     "active"
   );
@@ -1557,18 +2628,24 @@ function changeDetailImage(
 }
 
 
+/* ============================= */
 /* CART */
+/* ============================= */
 
-function addToCart(productId){
+function addToCart(
+  productId
+){
 
   cart.push(
     String(productId)
   );
 
+
   localStorage.setItem(
     "gadhuli_cart",
     JSON.stringify(cart)
   );
+
 
   alert(
     "Product Cart এ যোগ হয়েছে ✅"
@@ -1580,6 +2657,7 @@ function addToCart(productId){
 function openCart(){
 
   renderCart();
+
 
   document.getElementById(
     "cartModal"
@@ -1596,21 +2674,26 @@ function renderCart(){
       "cartItems"
     );
 
+
   if(!cart.length){
 
     container.innerHTML =
       '<div class="empty">Cart খালি 🛒</div>';
+
 
     document.getElementById(
       "cartTotal"
     ).innerHTML =
       "";
 
+
     return;
 
   }
 
+
   let total = 0;
+
 
   container.innerHTML =
     cart.map(
@@ -1623,13 +2706,16 @@ function renderCart(){
               String(id)
           );
 
+
         if(!product)
           return "";
+
 
         total +=
           Number(
             product.price || 0
           );
+
 
         return `
 
@@ -1637,11 +2723,16 @@ function renderCart(){
 
             <img
               src="${escapeHTML(
-                getProductImage(product)
+                getProductImage(
+                  product
+                )
               )}"
+
               onerror="
                 this.src='https://via.placeholder.com/100?text=Gadhuli'
-              ">
+              "
+            >
+
 
             <div class="cart-info">
 
@@ -1651,6 +2742,7 @@ function renderCart(){
                 )}
               </b>
 
+
               <div class="price">
                 ৳${Number(
                   product.price || 0
@@ -1659,9 +2751,14 @@ function renderCart(){
 
             </div>
 
+
             <button
               class="btn btn-light"
-              onclick="removeCartItem(${index})">
+              type="button"
+              onclick="
+                removeCartItem(${index})
+              "
+            >
               ❌
             </button>
 
@@ -1671,6 +2768,7 @@ function renderCart(){
 
       }
     ).join("");
+
 
   document.getElementById(
     "cartTotal"
@@ -1689,17 +2787,21 @@ function renderCart(){
 }
 
 
-function removeCartItem(index){
+function removeCartItem(
+  index
+){
 
   cart.splice(
     index,
     1
   );
 
+
   localStorage.setItem(
     "gadhuli_cart",
     JSON.stringify(cart)
   );
+
 
   renderCart();
 
@@ -1718,30 +2820,38 @@ function openOrderFromCart(){
 
   }
 
+
   currentOrderProducts =
-    cart.map(
-      id =>
-        products.find(
-          p =>
-            String(p.id) ===
-            String(id)
-        )
-    )
-    .filter(Boolean);
+    cart
+      .map(
+        id =>
+          products.find(
+            p =>
+              String(p.id) ===
+              String(id)
+          )
+      )
+      .filter(Boolean);
+
 
   document.getElementById(
     "cartModal"
   ).style.display =
     "none";
 
+
   showOrderModal();
 
 }
 
 
+/* ============================= */
 /* ORDER */
+/* ============================= */
 
-function orderNow(productId){
+function orderNow(
+  productId
+){
 
   const product =
     products.find(
@@ -1750,11 +2860,14 @@ function orderNow(productId){
         String(productId)
     );
 
+
   if(!product)
     return;
 
+
   currentOrderProducts =
     [product];
+
 
   showOrderModal();
 
@@ -1768,6 +2881,7 @@ function showOrderModal(){
       "orderProductInfo"
     );
 
+
   info.innerHTML =
     currentOrderProducts
       .map(
@@ -1777,8 +2891,12 @@ function showOrderModal(){
 
             <img
               src="${escapeHTML(
-                getProductImage(product)
-              )}">
+                getProductImage(
+                  product
+                )
+              )}"
+            >
+
 
             <div class="cart-info">
 
@@ -1787,6 +2905,7 @@ function showOrderModal(){
                   product.name
                 )}
               </b>
+
 
               <div class="price">
                 ৳${Number(
@@ -1801,7 +2920,9 @@ function showOrderModal(){
         `
       ).join("");
 
+
   updateOrderTotal();
+
 
   document.getElementById(
     "orderModal"
@@ -1823,6 +2944,7 @@ function updateOrderTotal(){
       0
     );
 
+
   const delivery =
     Number(
       document.getElementById(
@@ -1830,9 +2952,11 @@ function updateOrderTotal(){
       ).value || 60
     );
 
+
   const total =
     subtotal +
     delivery;
+
 
   document.getElementById(
     "orderTotal"
@@ -1857,7 +2981,9 @@ function updateOrderTotal(){
 }
 
 
+/* ============================= */
 /* WHATSAPP */
+/* ============================= */
 
 function sendWhatsAppOrder(){
 
@@ -1866,15 +2992,18 @@ function sendWhatsAppOrder(){
       "customerName"
     ).value.trim();
 
+
   const phone =
     document.getElementById(
       "customerPhone"
     ).value.trim();
 
+
   const address =
     document.getElementById(
       "customerAddress"
     ).value.trim();
+
 
   const delivery =
     Number(
@@ -1882,6 +3011,7 @@ function sendWhatsAppOrder(){
         "deliveryArea"
       ).value || 60
     );
+
 
   if(
     !name ||
@@ -1897,6 +3027,7 @@ function sendWhatsAppOrder(){
 
   }
 
+
   const subtotal =
     currentOrderProducts.reduce(
       (sum,p) =>
@@ -1907,30 +3038,43 @@ function sendWhatsAppOrder(){
       0
     );
 
+
   const total =
     subtotal +
     delivery;
 
+
   let message =
     "🛍️ *Gadhuli Order*%0A%0A";
 
+
   message +=
     "👤 Name: " +
-    encodeURIComponent(name) +
+    encodeURIComponent(
+      name
+    ) +
     "%0A";
+
 
   message +=
     "📱 Phone: " +
-    encodeURIComponent(phone) +
+    encodeURIComponent(
+      phone
+    ) +
     "%0A";
+
 
   message +=
     "📍 Address: " +
-    encodeURIComponent(address) +
+    encodeURIComponent(
+      address
+    ) +
     "%0A%0A";
+
 
   message +=
     "🛒 Products:%0A";
+
 
   currentOrderProducts.forEach(
     (product,i) => {
@@ -1947,27 +3091,33 @@ function sendWhatsAppOrder(){
     }
   );
 
+
   message +=
     "%0A💰 Subtotal: ৳" +
     subtotal;
 
+
   message +=
     "%0A🚚 Delivery: ৳" +
     delivery;
+
 
   message +=
     "%0A💵 *Total: ৳" +
     total +
     "*";
 
+
   const whatsappNumber =
     "8801333088194";
+
 
   const url =
     "https://wa.me/" +
     whatsappNumber +
     "?text=" +
     message;
+
 
   window.open(
     url,
@@ -1977,15 +3127,21 @@ function sendWhatsAppOrder(){
 }
 
 
+/* ============================= */
 /* WISHLIST */
+/* ============================= */
 
-function toggleWishlist(productId){
+function toggleWishlist(
+  productId
+){
 
   const id =
     String(productId);
 
+
   const index =
     wishlist.indexOf(id);
+
 
   if(index >= 0){
 
@@ -1994,19 +3150,24 @@ function toggleWishlist(productId){
       1
     );
 
+
     alert(
       "Wishlist থেকে remove হয়েছে"
     );
 
   }else{
 
-    wishlist.push(id);
+    wishlist.push(
+      id
+    );
+
 
     alert(
       "Wishlist এ যোগ হয়েছে ❤️"
     );
 
   }
+
 
   localStorage.setItem(
     "gadhuli_wishlist",
@@ -2023,6 +3184,7 @@ function openWishlist(){
       "wishlistItems"
     );
 
+
   const items =
     wishlist
       .map(
@@ -2034,6 +3196,7 @@ function openWishlist(){
           )
       )
       .filter(Boolean);
+
 
   if(!items.length){
 
@@ -2050,8 +3213,12 @@ function openWishlist(){
 
             <img
               src="${escapeHTML(
-                getProductImage(product)
-              )}">
+                getProductImage(
+                  product
+                )
+              )}"
+            >
+
 
             <div class="cart-info">
 
@@ -2061,6 +3228,7 @@ function openWishlist(){
                 )}
               </b>
 
+
               <div class="price">
                 ৳${Number(
                   product.price || 0
@@ -2069,13 +3237,18 @@ function openWishlist(){
 
             </div>
 
+
             <button
               class="btn btn-primary"
+              type="button"
               onclick="
                 openDetails(
-                  '${escapeHTML(product.id)}'
+                  '${escapeHTML(
+                    product.id
+                  )}'
                 )
-              ">
+              "
+            >
               View
             </button>
 
@@ -2086,6 +3259,7 @@ function openWishlist(){
 
   }
 
+
   document.getElementById(
     "wishlistModal"
   ).style.display =
@@ -2094,9 +3268,13 @@ function openWishlist(){
 }
 
 
+/* ============================= */
 /* SHARE */
+/* ============================= */
 
-function openShare(productId){
+function openShare(
+  productId
+){
 
   const product =
     products.find(
@@ -2105,11 +3283,14 @@ function openShare(productId){
         String(productId)
     );
 
+
   if(!product)
     return;
 
+
   currentShareProduct =
     product;
+
 
   const link =
     window.location.origin +
@@ -2119,10 +3300,12 @@ function openShare(productId){
       product.id
     );
 
+
   document.getElementById(
     "shareLink"
   ).value =
     link;
+
 
   document.getElementById(
     "shareModal"
@@ -2139,13 +3322,18 @@ function shareWhatsApp(){
       "shareLink"
     ).value;
 
+
   const product =
     currentShareProduct;
 
+
   const text =
     `🛍️ ${product.name}%0A` +
-    `💰 ৳${Number(product.price || 0)}%0A%0A` +
+    `💰 ৳${Number(
+      product.price || 0
+    )}%0A%0A` +
     `${link}`;
+
 
   window.open(
     "https://wa.me/?text=" +
@@ -2163,9 +3351,12 @@ function shareFacebook(){
       "shareLink"
     ).value;
 
+
   window.open(
     "https://www.facebook.com/sharer/sharer.php?u=" +
-    encodeURIComponent(link),
+    encodeURIComponent(
+      link
+    ),
     "_blank"
   );
 
@@ -2179,11 +3370,13 @@ async function copyProductLink(){
       "shareLink"
     ).value;
 
+
   try{
 
     await navigator.clipboard.writeText(
       link
     );
+
 
     alert(
       "Product link copied ✅"
@@ -2201,9 +3394,13 @@ async function copyProductLink(){
 }
 
 
+/* ============================= */
 /* RESELL */
+/* ============================= */
 
-function resellProduct(productId){
+function resellProduct(
+  productId
+){
 
   const product =
     products.find(
@@ -2212,8 +3409,10 @@ function resellProduct(productId){
         String(productId)
     );
 
+
   if(!product)
     return;
+
 
   const link =
     window.location.origin +
@@ -2224,11 +3423,15 @@ function resellProduct(productId){
     ) +
     "&ref=RESELLER";
 
+
   const message =
     `🤝 I want to resell this product.%0A%0A` +
     `${product.name}%0A` +
-    `Price: ৳${Number(product.price || 0)}%0A%0A` +
+    `Price: ৳${Number(
+      product.price || 0
+    )}%0A%0A` +
     link;
+
 
   if(navigator.share){
 
@@ -2260,7 +3463,9 @@ function resellProduct(productId){
 }
 
 
+/* ============================= */
 /* URL PRODUCT */
+/* ============================= */
 
 function openProductFromURL(){
 
@@ -2269,10 +3474,12 @@ function openProductFromURL(){
       window.location.search
     );
 
+
   const productId =
     params.get(
       "product"
     );
+
 
   if(productId){
 
@@ -2282,6 +3489,7 @@ function openProductFromURL(){
           String(p.id) ===
           String(productId)
       );
+
 
     if(product){
 
@@ -2300,7 +3508,9 @@ function openProductFromURL(){
 }
 
 
+/* ============================= */
 /* CLOSE MODALS */
+/* ============================= */
 
 function closeModal(id){
 
@@ -2338,12 +3548,16 @@ window.addEventListener(
 );
 
 
+/* ============================= */
 /* START */
+/* ============================= */
 
 document.addEventListener(
   "DOMContentLoaded",
   loadProducts
 );
 
-</script></body>
+</script>
+
+</body>
 </html>
