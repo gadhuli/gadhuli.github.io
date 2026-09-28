@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="bn">
+
 <head>
 
 <meta charset="UTF-8">
@@ -14,6 +15,7 @@
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="supabase.js"></script>
 
+
 <style>
 
 *{
@@ -22,275 +24,708 @@
   padding:0;
 }
 
+
 body{
   font-family:Arial,sans-serif;
   background:#fff7fa;
   color:#333;
 }
 
+
+/* ========================= */
+/* HEADER */
+/* ========================= */
+
 header{
-  background:linear-gradient(135deg,#8f174d,#d52b72);
+  background:linear-gradient(
+    135deg,
+    #8f174d,
+    #d52b72
+  );
+
   color:white;
+
   padding:16px 20px;
+
   display:flex;
+
   align-items:center;
+
   justify-content:space-between;
+
   position:sticky;
+
   top:0;
+
   z-index:100;
-  box-shadow:0 3px 12px rgba(0,0,0,.15);
+
+  box-shadow:
+    0 3px 12px rgba(0,0,0,.15);
 }
+
 
 .logo{
   display:flex;
+
   align-items:center;
+
   gap:10px;
 }
 
+
 .logo img{
   width:42px;
+
   height:42px;
+
   object-fit:contain;
+
   border-radius:8px;
+
   background:white;
 }
+
 
 .logo h1{
   font-size:22px;
 }
 
+
 .back{
   color:white;
+
   text-decoration:none;
+
   font-weight:bold;
+
   padding:8px 12px;
-  border:1px solid rgba(255,255,255,.5);
+
+  border:1px solid
+    rgba(255,255,255,.5);
+
   border-radius:8px;
 }
 
+
+.back:hover{
+  background:
+    rgba(255,255,255,.15);
+}
+
+
+/* ========================= */
+/* CONTAINER */
+/* ========================= */
+
 .container{
   max-width:1000px;
+
   margin:25px auto;
+
   padding:0 15px;
 }
 
+
 .card{
   background:white;
+
   border-radius:14px;
+
   padding:20px;
+
   margin-bottom:20px;
-  box-shadow:0 4px 15px rgba(143,23,77,.08);
+
+  box-shadow:
+    0 4px 15px
+    rgba(143,23,77,.08);
 }
+
 
 .card h2{
   color:#8f174d;
+
   margin-bottom:18px;
 }
+
+
+/* ========================= */
+/* FORM */
+/* ========================= */
 
 input,
 select,
 textarea{
+
   width:100%;
+
   padding:12px;
+
   margin:7px 0 12px;
+
   border:1px solid #ddd;
+
   border-radius:8px;
+
   font-size:15px;
+
   outline:none;
+
+  background:white;
+
 }
+
 
 input:focus,
 select:focus,
 textarea:focus{
+
   border-color:#8f174d;
+
 }
 
-button{
-  border:none;
-  border-radius:8px;
-  padding:11px 16px;
-  background:#8f174d;
-  color:white;
-  font-size:15px;
-  font-weight:bold;
-  cursor:pointer;
+
+textarea{
+
+  resize:vertical;
+
 }
 
-button:hover{
-  background:#6f103b;
-}
-
-.btn-danger{
-  background:#c62828;
-}
-
-.btn-danger:hover{
-  background:#9e1f1f;
-}
-
-.btn-secondary{
-  background:#777;
-}
-
-.btn-secondary:hover{
-  background:#555;
-}
-
-.hidden{
-  display:none !important;
-}
-
-.message{
-  padding:10px;
-  border-radius:8px;
-  margin-bottom:12px;
-  display:none;
-}
-
-.success{
-  background:#e8f5e9;
-  color:#2e7d32;
-}
-
-.error{
-  background:#ffebee;
-  color:#c62828;
-}
-
-.preview{
-  display:flex;
-  flex-wrap:wrap;
-  gap:10px;
-  margin:10px 0 15px;
-}
-
-.preview img{
-  width:90px;
-  height:90px;
-  object-fit:cover;
-  border-radius:8px;
-  border:2px solid #eee;
-}
-
-.product{
-  border:1px solid #eee;
-  border-radius:12px;
-  padding:15px;
-  margin-bottom:12px;
-  display:flex;
-  gap:15px;
-  align-items:center;
-}
-
-.product img{
-  width:90px;
-  height:90px;
-  object-fit:cover;
-  border-radius:8px;
-}
-
-.product-info{
-  flex:1;
-}
-
-.product-info h3{
-  color:#8f174d;
-  margin-bottom:5px;
-}
-
-.category-text{
-  color:#8f174d;
-  font-weight:bold;
-  margin-top:5px;
-}
-
-.subcategory-text{
-  color:#777;
-  font-size:13px;
-  margin-top:3px;
-}
-
-.product-actions{
-  display:flex;
-  gap:8px;
-  flex-wrap:wrap;
-}
-
-#loginSection{
-  max-width:450px;
-  margin:60px auto;
-}
 
 label{
+
   font-weight:bold;
+
   color:#555;
+
   display:block;
+
   margin-top:5px;
+
 }
 
-.small{
-  color:#777;
-  font-size:13px;
-  margin-bottom:10px;
+
+/* ========================= */
+/* BUTTON */
+/* ========================= */
+
+button{
+
+  border:none;
+
+  border-radius:8px;
+
+  padding:11px 16px;
+
+  background:#8f174d;
+
+  color:white;
+
+  font-size:15px;
+
+  font-weight:bold;
+
+  cursor:pointer;
+
 }
 
-.logout{
-  margin-top:15px;
+
+button:hover{
+
+  background:#6f103b;
+
 }
+
+
+.btn-danger{
+
+  background:#c62828;
+
+}
+
+
+.btn-danger:hover{
+
+  background:#9e1f1f;
+
+}
+
+
+.btn-secondary{
+
+  background:#777;
+
+}
+
+
+.btn-secondary:hover{
+
+  background:#555;
+
+}
+
+
+.hidden{
+
+  display:none !important;
+
+}
+
+
+/* ========================= */
+/* MESSAGE */
+/* ========================= */
+
+.message{
+
+  padding:10px;
+
+  border-radius:8px;
+
+  margin-bottom:12px;
+
+  display:none;
+
+}
+
+
+.success{
+
+  background:#e8f5e9;
+
+  color:#2e7d32;
+
+}
+
+
+.error{
+
+  background:#ffebee;
+
+  color:#c62828;
+
+}
+
+
+/* ========================= */
+/* CATEGORY HELP */
+/* ========================= */
 
 .category-help{
+
   background:#fff7fa;
-  border-left:4px solid #8f174d;
+
+  border-left:
+    4px solid #8f174d;
+
   padding:10px 12px;
+
   border-radius:6px;
+
   margin-bottom:12px;
+
   color:#666;
+
   font-size:13px;
+
 }
+
+
+/* ========================= */
+/* SIZE SECTION */
+/* ========================= */
+
+.size-section{
+
+  display:none;
+
+  background:#fff7fa;
+
+  border:1px solid #efbfd1;
+
+  border-radius:10px;
+
+  padding:13px;
+
+  margin:5px 0 15px;
+
+}
+
+
+.size-section.show{
+
+  display:block;
+
+}
+
+
+.size-title{
+
+  color:#8f174d;
+
+  font-weight:bold;
+
+  margin-bottom:10px;
+
+}
+
+
+.size-help{
+
+  color:#777;
+
+  font-size:12px;
+
+  margin-bottom:10px;
+
+}
+
+
+.size-options{
+
+  display:flex;
+
+  flex-wrap:wrap;
+
+  gap:8px;
+
+}
+
+
+.size-option{
+
+  position:relative;
+
+}
+
+
+.size-option input{
+
+  position:absolute;
+
+  opacity:0;
+
+  pointer-events:none;
+
+}
+
+
+.size-option label{
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  min-width:52px;
+
+  padding:9px 12px;
+
+  margin:0;
+
+  border:1px solid #e2a8be;
+
+  border-radius:8px;
+
+  background:white;
+
+  color:#8f174d;
+
+  cursor:pointer;
+
+  font-size:13px;
+
+  font-weight:bold;
+
+  transition:.15s;
+
+}
+
+
+.size-option input:checked + label{
+
+  background:#8f174d;
+
+  color:white;
+
+  border-color:#8f174d;
+
+}
+
+
+.no-size-box{
+
+  background:#f4e7ed;
+
+  color:#6f103b;
+
+  padding:10px;
+
+  border-radius:8px;
+
+  font-size:13px;
+
+  font-weight:bold;
+
+}
+
+
+/* ========================= */
+/* PREVIEW */
+/* ========================= */
+
+.preview{
+
+  display:flex;
+
+  flex-wrap:wrap;
+
+  gap:10px;
+
+  margin:10px 0 15px;
+
+}
+
+
+.preview-item{
+
+  position:relative;
+
+}
+
+
+.preview img{
+
+  width:90px;
+
+  height:90px;
+
+  object-fit:cover;
+
+  border-radius:8px;
+
+  border:2px solid #eee;
+
+}
+
+
+/* ========================= */
+/* PRODUCT LIST */
+/* ========================= */
+
+.product{
+
+  border:1px solid #eee;
+
+  border-radius:12px;
+
+  padding:15px;
+
+  margin-bottom:12px;
+
+  display:flex;
+
+  gap:15px;
+
+  align-items:center;
+
+}
+
+
+.product img{
+
+  width:90px;
+
+  height:90px;
+
+  object-fit:cover;
+
+  border-radius:8px;
+
+  flex-shrink:0;
+
+}
+
+
+.product-info{
+
+  flex:1;
+
+}
+
+
+.product-info h3{
+
+  color:#8f174d;
+
+  margin-bottom:5px;
+
+}
+
+
+.category-text{
+
+  color:#8f174d;
+
+  font-weight:bold;
+
+  margin-top:5px;
+
+}
+
+
+.subcategory-text{
+
+  color:#777;
+
+  font-size:13px;
+
+  margin-top:3px;
+
+}
+
+
+.size-text{
+
+  color:#6f103b;
+
+  font-size:13px;
+
+  font-weight:bold;
+
+  margin-top:5px;
+
+}
+
+
+.product-actions{
+
+  display:flex;
+
+  gap:8px;
+
+  flex-wrap:wrap;
+
+}
+
+
+.small{
+
+  color:#777;
+
+  font-size:13px;
+
+  margin-bottom:10px;
+
+}
+
+
+.logout{
+
+  margin-top:15px;
+
+}
+
+
+/* ========================= */
+/* LOGIN */
+/* ========================= */
+
+#loginSection{
+
+  max-width:450px;
+
+  margin:60px auto;
+
+}
+
+
+/* ========================= */
+/* MOBILE */
+/* ========================= */
 
 @media(max-width:600px){
 
   header{
+
     padding:12px;
+
   }
+
 
   .logo h1{
+
     font-size:19px;
+
   }
+
 
   .logo img{
+
     width:36px;
+
     height:36px;
+
   }
+
 
   .product{
+
     align-items:flex-start;
+
     flex-wrap:wrap;
+
   }
+
 
   .product img{
+
     width:75px;
+
     height:75px;
+
   }
+
 
   .product-actions{
+
     width:100%;
+
     margin-top:8px;
+
   }
 
+
   button{
+
     font-size:14px;
+
     padding:10px 12px;
+
+  }
+
+
+  .size-option label{
+
+    min-width:48px;
+
+    padding:8px 10px;
+
   }
 
 }
 
 </style>
+
 </head>
 
 
 <body>
 
+
+<!-- ========================= -->
+<!-- HEADER -->
+<!-- ========================= -->
 
 <header>
 
@@ -301,7 +736,9 @@ label{
       alt="Gadhuli"
     >
 
-    <h1>Gadhuli Admin</h1>
+    <h1>
+      Gadhuli Admin
+    </h1>
 
   </div>
 
@@ -320,270 +757,324 @@ label{
 <div class="container">
 
 
-  <!-- ========================= -->
-  <!-- LOGIN -->
-  <!-- ========================= -->
+<!-- ========================= -->
+<!-- LOGIN -->
+<!-- ========================= -->
 
-  <section
-    id="loginSection"
-    class="card"
-  >
+<section
+  id="loginSection"
+  class="card"
+>
 
-    <h2>🔐 Admin Login</h2>
+  <h2>
+    🔐 Admin Login
+  </h2>
 
-    <div
-      id="loginMessage"
-      class="message"
-    ></div>
 
+  <div
+    id="loginMessage"
+    class="message"
+  ></div>
 
-    <form id="loginForm">
 
-      <label>Email</label>
+  <form id="loginForm">
 
-      <input
-        type="email"
-        id="email"
-        placeholder="Admin Email"
-        required
-      >
+    <label>
+      Email
+    </label>
 
+    <input
+      type="email"
+      id="email"
+      placeholder="Admin Email"
+      required
+    >
 
-      <label>Password</label>
 
-      <input
-        type="password"
-        id="password"
-        placeholder="Password"
-        required
-      >
+    <label>
+      Password
+    </label>
 
+    <input
+      type="password"
+      id="password"
+      placeholder="Password"
+      required
+    >
 
-      <button type="submit">
-        Login
-      </button>
 
-    </form>
+    <button type="submit">
+      Login
+    </button>
 
-  </section>
+  </form>
 
+</section>
 
 
-  <!-- ========================= -->
-  <!-- ADMIN PANEL -->
-  <!-- ========================= -->
 
-  <section
-    id="adminPanel"
-    class="hidden"
-  >
+<!-- ========================= -->
+<!-- ADMIN PANEL -->
+<!-- ========================= -->
 
+<section
+  id="adminPanel"
+  class="hidden"
+>
 
-    <!-- ========================= -->
-    <!-- ADD PRODUCT -->
-    <!-- ========================= -->
 
-    <div class="card">
+<!-- ========================= -->
+<!-- ADD PRODUCT -->
+<!-- ========================= -->
 
-      <h2>➕ Add New Product</h2>
+<div class="card">
 
+  <h2>
+    ➕ Add New Product
+  </h2>
 
-      <div
-        id="productMessage"
-        class="message"
-      ></div>
 
+  <div
+    id="productMessage"
+    class="message"
+  ></div>
 
-      <form id="productForm">
 
+  <form id="productForm">
 
-        <!-- PRODUCT NAME -->
 
-        <label>
-          Product Name
-        </label>
+    <!-- PRODUCT NAME -->
 
-        <input
-          type="text"
-          id="productName"
-          placeholder="Product Name"
-          required
-        >
+    <label>
+      Product Name
+    </label>
 
+    <input
+      type="text"
+      id="productName"
+      placeholder="Product Name"
+      required
+    >
 
 
-        <!-- PRICE -->
 
-        <label>
-          Price (৳)
-        </label>
+    <!-- PRICE -->
 
-        <input
-          type="number"
-          id="productPrice"
-          placeholder="Product Price"
-          min="0"
-          required
-        >
+    <label>
+      Price (৳)
+    </label>
 
+    <input
+      type="number"
+      id="productPrice"
+      placeholder="Product Price"
+      min="0"
+      required
+    >
 
 
-        <!-- CATEGORY -->
 
-        <label>
-          🏷️ Category
-        </label>
+    <!-- CATEGORY -->
 
-        <select
-          id="productCategory"
-          required
-        >
+    <label>
+      🏷️ Category
+    </label>
 
-          <option value="">
-            Select Category
-          </option>
+    <select
+      id="productCategory"
+      required
+    >
 
-          <option value="Men's Fashion">
-            Men's Fashion
-          </option>
+      <option value="">
+        Select Category
+      </option>
 
-          <option value="Women's Fashion">
-            Women's Fashion
-          </option>
 
-          <option value="Kids">
-            Kids
-          </option>
+      <option value="Men's Fashion">
+        Men's Fashion
+      </option>
 
-          <option value="Electronics">
-            Electronics
-          </option>
 
-          <option value="Beauty & Personal Care">
-            Beauty & Personal Care
-          </option>
+      <option value="Women's Fashion">
+        Women's Fashion
+      </option>
 
-          <option value="Home & Living">
-            Home & Living
-          </option>
 
-          <option value="Sports & Fitness">
-            Sports & Fitness
-          </option>
+      <option value="Kids & Baby">
+        Kids & Baby
+      </option>
 
-          <option value="Grocery & Daily Needs">
-            Grocery & Daily Needs
-          </option>
 
-          <option value="Others">
-            Others
-          </option>
+      <option value="Shoes">
+        Shoes
+      </option>
 
-        </select>
 
+      <option value="Bags & Accessories">
+        Bags & Accessories
+      </option>
 
 
-        <!-- SUBCATEGORY -->
+      <option value="Watches">
+        Watches
+      </option>
 
-        <label>
-          📂 Subcategory
-        </label>
 
-        <select
-          id="productSubcategory"
-          required
-          disabled
-        >
+      <option value="Electronics">
+        Electronics
+      </option>
 
-          <option value="">
-            First Select Category
-          </option>
 
-        </select>
+      <option value="Beauty & Personal Care">
+        Beauty & Personal Care
+      </option>
 
 
-        <div class="category-help">
-          💡 আগে Category select করো, তারপর সেই Category-এর Subcategory এখানে আসবে।
-        </div>
+      <option value="Home & Living">
+        Home & Living
+      </option>
 
+    </select>
 
 
-        <!-- DESCRIPTION -->
 
-        <label>
-          📝 Description
-        </label>
+    <!-- SUBCATEGORY -->
 
-        <textarea
-          id="productDescription"
-          rows="4"
-          placeholder="Product description"
-        ></textarea>
+    <label>
+      📂 Subcategory
+    </label>
 
+    <select
+      id="productSubcategory"
+      required
+      disabled
+    >
 
+      <option value="">
+        First Select Category
+      </option>
 
-        <!-- IMAGES -->
+    </select>
 
-        <label>
-          🖼️ Product Images (1–5)
-        </label>
 
-        <input
-          type="file"
-          id="images"
-          accept="image/*"
-          multiple
-          required
-        >
+    <div class="category-help">
 
-
-        <div
-          id="preview"
-          class="preview"
-        ></div>
-
-
-
-        <!-- SAVE -->
-
-        <button type="submit">
-          💾 Save Product
-        </button>
-
-      </form>
+      💡 আগে Category select করো।
+      তারপর সেই Category-এর Subcategory আসবে।
 
     </div>
 
 
 
-    <!-- ========================= -->
-    <!-- MANAGE PRODUCTS -->
-    <!-- ========================= -->
+    <!-- SIZE -->
 
-    <div class="card">
+    <div
+      id="sizeSection"
+      class="size-section"
+    >
 
-      <h2>
-        📦 Manage Products
-      </h2>
-
-
-      <div id="productsList">
-        Loading products...
+      <div class="size-title">
+        📏 Product Size
       </div>
 
 
-      <button
-        type="button"
-        id="logoutBtn"
-        class="btn-secondary logout"
-      >
-        🚪 Logout
-      </button>
+      <div
+        id="sizeHelp"
+        class="size-help"
+      ></div>
+
+
+      <div
+        id="sizeOptions"
+        class="size-options"
+      ></div>
 
     </div>
 
 
-  </section>
+
+    <!-- DESCRIPTION -->
+
+    <label>
+      📝 Description
+    </label>
+
+    <textarea
+      id="productDescription"
+      rows="4"
+      placeholder="Product description"
+    ></textarea>
+
+
+
+    <!-- IMAGES -->
+
+    <label>
+      🖼️ Product Images (1–5)
+    </label>
+
+    <input
+      type="file"
+      id="images"
+      accept="image/*"
+      multiple
+      required
+    >
+
+
+    <div
+      id="preview"
+      class="preview"
+    ></div>
+
+
+
+    <!-- SAVE -->
+
+    <button type="submit">
+
+      💾 Save Product
+
+    </button>
+
+  </form>
+
+</div>
+
+
+
+<!-- ========================= -->
+<!-- MANAGE PRODUCTS -->
+<!-- ========================= -->
+
+<div class="card">
+
+  <h2>
+    📦 Manage Products
+  </h2>
+
+
+  <div id="productsList">
+
+    Loading products...
+
+  </div>
+
+
+  <button
+    type="button"
+    id="logoutBtn"
+    class="btn-secondary logout"
+  >
+
+    🚪 Logout
+
+  </button>
+
+</div>
+
+
+</section>
 
 </div>
 
@@ -592,123 +1083,179 @@ label{
 <script>
 
 
-// ===============================
-// SUPABASE
-// ===============================
+/* =============================== */
+/* SUPABASE */
+/* =============================== */
 
-const db = window.gadhuliSupabase;
+const db =
+  window.gadhuliSupabase;
+
 
 const ADMIN_EMAIL =
   "hridoyff974@gmail.com";
 
 
 
-// ===============================
-// CATEGORY DATA
-// MAIN PAGE + ADMIN SAME
-// ===============================
+/* =============================== */
+/* CATEGORY DATA */
+/* =============================== */
 
 const CATEGORY_DATA = {
 
-  "Men's Fashion": [
 
-    "T-Shirts",
-    "Shirts",
-    "Polo T-Shirts",
-    "Pants",
+  "Men's Fashion":[
+
+    "T-Shirt",
+
+    "Polo T-Shirt",
+
+    "Shirt",
+
+    "Panjabi",
+
     "Jeans",
-    "Watches",
-    "Shoes",
-    "Accessories"
+
+    "Pants",
+
+    "Shorts",
+
+    "Hoodie & Sweatshirt",
+
+    "Jacket"
 
   ],
 
 
-  "Women's Fashion": [
+  "Women's Fashion":[
 
     "Saree",
+
     "Three Piece",
-    "Salwar Kameez",
+
+    "Kurti",
+
     "Tops",
-    "Dresses",
+
+    "T-Shirt",
+
+    "Gown",
+
     "Hijab",
-    "Shoes",
-    "Bags",
-    "Watches",
-    "Accessories"
+
+    "Abaya",
+
+    "Women's Pants"
 
   ],
 
 
-  "Kids": [
+  "Kids & Baby":[
 
     "Boys Clothing",
+
     "Girls Clothing",
-    "Kids Shoes",
-    "Kids Accessories",
+
+    "Baby Clothing",
+
+    "Baby Accessories",
+
     "Toys"
 
   ],
 
 
-  "Electronics": [
+  "Shoes":[
 
-    "Mobile & Accessories",
-    "Computer & Accessories",
-    "Headphones & Earphones",
-    "Smart Devices",
-    "Other Electronics"
+    "Men's Shoes",
+
+    "Women's Shoes",
+
+    "Kids Shoes",
+
+    "Sneakers",
+
+    "Sandals",
+
+    "Slippers"
 
   ],
 
 
-  "Beauty & Personal Care": [
+  "Bags & Accessories":[
+
+    "Backpacks",
+
+    "Handbags",
+
+    "Wallets",
+
+    "Belts",
+
+    "Caps",
+
+    "Sunglasses",
+
+    "Fashion Accessories"
+
+  ],
+
+
+  "Watches":[
+
+    "Men's Watches",
+
+    "Women's Watches",
+
+    "Smart Watches",
+
+    "Kids Watches"
+
+  ],
+
+
+  "Electronics":[
+
+    "Mobile Accessories",
+
+    "Earphones & Headphones",
+
+    "Speakers",
+
+    "Chargers",
+
+    "Power Banks",
+
+    "Smart Gadgets"
+
+  ],
+
+
+  "Beauty & Personal Care":[
 
     "Skincare",
-    "Makeup",
+
     "Hair Care",
-    "Fragrance",
+
+    "Makeup",
+
+    "Perfume",
+
     "Personal Care"
 
   ],
 
 
-  "Home & Living": [
+  "Home & Living":[
 
-    "Kitchen",
     "Home Decor",
-    "Storage & Organization",
-    "Furniture",
-    "Household"
 
-  ],
+    "Bedding",
 
+    "Storage",
 
-  "Sports & Fitness": [
+    "Lighting",
 
-    "Sportswear",
-    "Fitness Equipment",
-    "Outdoor",
-    "Sports Accessories"
-
-  ],
-
-
-  "Grocery & Daily Needs": [
-
-    "Snacks",
-    "Beverages",
-    "Food",
-    "Household Essentials"
-
-  ],
-
-
-  "Others": [
-
-    "Gifts",
-    "Accessories",
-    "Miscellaneous"
+    "Kitchen & Dining"
 
   ]
 
@@ -716,9 +1263,118 @@ const CATEGORY_DATA = {
 
 
 
-// ===============================
-// MESSAGE
-// ===============================
+/* =============================== */
+/* SIZE DATA */
+/* =============================== */
+
+const SIZE_DATA = {
+
+
+  "T-Shirt":[
+
+    "S",
+
+    "M",
+
+    "L",
+
+    "XL",
+
+    "2XL",
+
+    "4XL"
+
+  ],
+
+
+  "Shirt":[
+
+    "S",
+
+    "M",
+
+    "L",
+
+    "XL",
+
+    "2XL",
+
+    "4XL"
+
+  ],
+
+
+  "Panjabi":[
+
+    "28",
+
+    "30",
+
+    "32",
+
+    "34",
+
+    "36",
+
+    "38",
+
+    "40",
+
+    "42",
+
+    "44",
+
+    "46",
+
+    "48"
+
+  ],
+
+
+  "Pants":[
+
+    "28",
+
+    "30",
+
+    "32",
+
+    "34",
+
+    "36",
+
+    "38",
+
+    "40"
+
+  ],
+
+
+  "Jeans":[
+
+    "28",
+
+    "30",
+
+    "32",
+
+    "34",
+
+    "36",
+
+    "38",
+
+    "40"
+
+  ]
+
+};
+
+
+
+/* =============================== */
+/* MESSAGE */
+/* =============================== */
 
 function showMessage(
   id,
@@ -729,10 +1385,15 @@ function showMessage(
   const box =
     document.getElementById(id);
 
-  box.textContent = text;
+
+  box.textContent =
+    text;
+
 
   box.className =
-    "message " + type;
+    "message " +
+    type;
+
 
   box.style.display =
     "block";
@@ -741,9 +1402,9 @@ function showMessage(
 
 
 
-// ===============================
-// CATEGORY CHANGE
-// ===============================
+/* =============================== */
+/* CATEGORY CHANGE */
+/* =============================== */
 
 document
 .getElementById("productCategory")
@@ -754,11 +1415,47 @@ document
     const category =
       this.value;
 
+
     const subcategory =
       document.getElementById(
         "productSubcategory"
       );
 
+
+    const sizeSection =
+      document.getElementById(
+        "sizeSection"
+      );
+
+
+    const sizeOptions =
+      document.getElementById(
+        "sizeOptions"
+      );
+
+
+    const sizeHelp =
+      document.getElementById(
+        "sizeHelp"
+      );
+
+
+    /* Reset size */
+
+    sizeSection.classList.remove(
+      "show"
+    );
+
+
+    sizeOptions.innerHTML =
+      "";
+
+
+    sizeHelp.textContent =
+      "";
+
+
+    /* Reset subcategory */
 
     subcategory.innerHTML =
       "";
@@ -769,8 +1466,6 @@ document
       subcategory.disabled =
         true;
 
-      subcategory.required =
-        true;
 
       subcategory.innerHTML = `
 
@@ -790,7 +1485,8 @@ document
 
 
     const list =
-      CATEGORY_DATA[category] || [];
+      CATEGORY_DATA[category] ||
+      [];
 
 
     subcategory.innerHTML = `
@@ -802,33 +1498,231 @@ document
     `;
 
 
-    list.forEach(function(item){
+    list.forEach(
+      function(item){
 
-      const option =
-        document.createElement(
-          "option"
+        const option =
+          document.createElement(
+            "option"
+          );
+
+
+        option.value =
+          item;
+
+
+        option.textContent =
+          item;
+
+
+        subcategory.appendChild(
+          option
         );
 
-      option.value =
-        item;
-
-      option.textContent =
-        item;
-
-      subcategory.appendChild(
-        option
-      );
-
-    });
+      }
+    );
 
   }
 );
 
 
 
-// ===============================
-// LOGIN
-// ===============================
+/* =============================== */
+/* SUBCATEGORY CHANGE */
+/* =============================== */
+
+document
+.getElementById("productSubcategory")
+.addEventListener(
+  "change",
+  function(){
+
+    const category =
+      document.getElementById(
+        "productCategory"
+      ).value;
+
+
+    const subcategory =
+      this.value;
+
+
+    showSizeOptions(
+      category,
+      subcategory
+    );
+
+  }
+);
+
+
+
+/* =============================== */
+/* SHOW SIZE OPTIONS */
+/* =============================== */
+
+function showSizeOptions(
+  category,
+  subcategory
+){
+
+  const section =
+    document.getElementById(
+      "sizeSection"
+    );
+
+
+  const options =
+    document.getElementById(
+      "sizeOptions"
+    );
+
+
+  const help =
+    document.getElementById(
+      "sizeHelp"
+    );
+
+
+  options.innerHTML =
+    "";
+
+
+  section.classList.remove(
+    "show"
+  );
+
+
+  help.textContent =
+    "";
+
+
+
+  /* ======================= */
+  /* WOMEN = NO SIZE */
+  /* ======================= */
+
+  if(
+    category ===
+    "Women's Fashion"
+  ){
+
+    return;
+
+  }
+
+
+
+  /* ======================= */
+  /* WATCH = NO SIZE */
+  /* ======================= */
+
+  if(
+    category === "Watches"
+  ){
+
+    section.classList.add(
+      "show"
+    );
+
+
+    help.textContent =
+      "এই Category-এর Product-এ size select করার প্রয়োজন নেই।";
+
+
+    options.innerHTML = `
+
+      <div class="no-size-box">
+        ⌚ No Size
+      </div>
+
+    `;
+
+
+    return;
+
+  }
+
+
+
+  /* ======================= */
+  /* CLOTHING SIZE */
+  /* ======================= */
+
+  const sizes =
+    SIZE_DATA[subcategory];
+
+
+  if(
+    !sizes ||
+    !sizes.length
+  ){
+
+    return;
+
+  }
+
+
+  section.classList.add(
+    "show"
+  );
+
+
+  help.textContent =
+    "যে যে size available আছে সেগুলো select করো।";
+
+
+  sizes.forEach(
+    function(size,index){
+
+      const wrapper =
+        document.createElement(
+          "div"
+        );
+
+
+      wrapper.className =
+        "size-option";
+
+
+      const id =
+        "size_" +
+        Date.now() +
+        "_" +
+        index;
+
+
+      wrapper.innerHTML = `
+
+        <input
+          type="checkbox"
+          id="${id}"
+          value="${escapeHtml(size)}"
+          class="product-size-checkbox"
+        >
+
+
+        <label for="${id}">
+          ${escapeHtml(size)}
+        </label>
+
+      `;
+
+
+      options.appendChild(
+        wrapper
+      );
+
+    }
+  );
+
+}
+
+
+
+/* =============================== */
+/* LOGIN */
+/* =============================== */
 
 document
 .getElementById("loginForm")
@@ -858,7 +1752,8 @@ document
         data,
         error
       } =
-        await db.auth.signInWithPassword({
+        await db.auth
+        .signInWithPassword({
 
           email:email,
 
@@ -889,6 +1784,7 @@ document
       ){
 
         await db.auth.signOut();
+
 
         throw new Error(
           "এই account Admin নয়।"
@@ -932,9 +1828,9 @@ document
 
 
 
-// ===============================
-// IMAGE PREVIEW
-// ===============================
+/* =============================== */
+/* IMAGE PREVIEW */
+/* =============================== */
 
 document
 .getElementById("images")
@@ -984,6 +1880,16 @@ document
         reader.onload =
           function(e){
 
+            const wrapper =
+              document.createElement(
+                "div"
+              );
+
+
+            wrapper.className =
+              "preview-item";
+
+
             const img =
               document.createElement(
                 "img"
@@ -994,8 +1900,13 @@ document
               e.target.result;
 
 
-            preview.appendChild(
+            wrapper.appendChild(
               img
+            );
+
+
+            preview.appendChild(
+              wrapper
             );
 
           };
@@ -1013,9 +1924,9 @@ document
 
 
 
-// ===============================
-// ADD PRODUCT
-// ===============================
+/* =============================== */
+/* ADD PRODUCT */
+/* =============================== */
 
 document
 .getElementById("productForm")
@@ -1081,13 +1992,90 @@ document
 
 
 
-    // VALIDATION
+    /* ========================= */
+    /* GET SIZES */
+    /* ========================= */
+
+    let selectedSizes = [];
+
+
+    if(
+      category ===
+      "Women's Fashion"
+    ){
+
+      selectedSizes =
+        [];
+
+    }
+
+    else if(
+      category ===
+      "Watches"
+    ){
+
+      selectedSizes =
+        [];
+
+    }
+
+    else if(
+      SIZE_DATA[subcategory]
+    ){
+
+      selectedSizes =
+        Array.from(
+          document.querySelectorAll(
+            ".product-size-checkbox:checked"
+          )
+        )
+        .map(
+          checkbox =>
+            checkbox.value
+        );
+
+    }
+
+
+
+    /* ========================= */
+    /* VALIDATION */
+    /* ========================= */
+
+    if(!name){
+
+      showMessage(
+        "productMessage",
+        "Product Name দিন।",
+        "error"
+      );
+
+      return;
+
+    }
+
+
+    if(
+      isNaN(price) ||
+      price < 0
+    ){
+
+      showMessage(
+        "productMessage",
+        "সঠিক Price দিন।",
+        "error"
+      );
+
+      return;
+
+    }
+
 
     if(!category){
 
       showMessage(
         "productMessage",
-        "Please select a Category.",
+        "Category select করুন।",
         "error"
       );
 
@@ -1100,7 +2088,23 @@ document
 
       showMessage(
         "productMessage",
-        "Please select a Subcategory.",
+        "Subcategory select করুন।",
+        "error"
+      );
+
+      return;
+
+    }
+
+
+    if(
+      SIZE_DATA[subcategory] &&
+      selectedSizes.length === 0
+    ){
+
+      showMessage(
+        "productMessage",
+        "কমপক্ষে একটি Size select করুন।",
         "error"
       );
 
@@ -1130,15 +2134,15 @@ document
 
       showMessage(
         "productMessage",
-        "Product save হচ্ছে...",
+        "Product save হচ্ছে... ⏳",
         "success"
       );
 
 
 
-      // =========================
-      // UPLOAD IMAGES
-      // =========================
+      /* ========================= */
+      /* UPLOAD IMAGES */
+      /* ========================= */
 
       const imageUrls = [];
 
@@ -1186,8 +2190,13 @@ document
             filePath,
             file,
             {
-              cacheControl:"3600",
-              upsert:false
+
+              cacheControl:
+                "3600",
+
+              upsert:
+                false
+
             }
           );
 
@@ -1220,9 +2229,9 @@ document
 
 
 
-      // =========================
-      // SAVE DATABASE
-      // =========================
+      /* ========================= */
+      /* DATABASE SAVE */
+      /* ========================= */
 
       const {
         error:insertError
@@ -1239,11 +2248,17 @@ document
 
             category:category,
 
-            subcategory:subcategory,
+            subcategory:
+              subcategory,
 
-            description:description,
+            sizes:
+              selectedSizes,
 
-            images:imageUrls
+            description:
+              description,
+
+            images:
+              imageUrls
 
           }
 
@@ -1258,9 +2273,9 @@ document
 
 
 
-      // =========================
-      // SUCCESS
-      // =========================
+      /* ========================= */
+      /* SUCCESS */
+      /* ========================= */
 
       showMessage(
         "productMessage",
@@ -1305,6 +2320,22 @@ document
       `;
 
 
+      document
+      .getElementById(
+        "sizeSection"
+      )
+      .classList
+      .remove("show");
+
+
+      document
+      .getElementById(
+        "sizeOptions"
+      )
+      .innerHTML =
+        "";
+
+
       loadProducts();
 
 
@@ -1330,9 +2361,9 @@ document
 
 
 
-// ===============================
-// LOAD PRODUCTS
-// ===============================
+/* =============================== */
+/* LOAD PRODUCTS */
+/* =============================== */
 
 async function loadProducts(){
 
@@ -1343,7 +2374,7 @@ async function loadProducts(){
 
 
   list.innerHTML =
-    "Loading products...";
+    "Loading products... ⏳";
 
 
   try{
@@ -1387,7 +2418,6 @@ async function loadProducts(){
       "";
 
 
-
     data.forEach(
       function(product){
 
@@ -1401,8 +2431,9 @@ async function loadProducts(){
           "product";
 
 
-
-        // IMAGE
+        /* ===================== */
+        /* IMAGE */
+        /* ===================== */
 
         let imageUrl =
           "https://via.placeholder.com/90";
@@ -1421,6 +2452,9 @@ async function loadProducts(){
         }
 
 
+        /* ===================== */
+        /* CATEGORY */
+        /* ===================== */
 
         const category =
           product.category ||
@@ -1432,40 +2466,94 @@ async function loadProducts(){
           "";
 
 
+        /* ===================== */
+        /* SIZES */
+        /* ===================== */
+
+        let sizes = [];
+
+
+        if(
+          Array.isArray(
+            product.sizes
+          )
+        ){
+
+          sizes =
+            product.sizes;
+
+        }
+
+
+        const sizeText =
+          sizes.length
+          ?
+          sizes.join(", ")
+          :
+          (
+            category === "Watches"
+            ?
+            "No Size"
+            :
+            (
+              category ===
+              "Women's Fashion"
+              ?
+              "No Size"
+              :
+              "Not Applicable"
+            )
+          );
+
+
 
         item.innerHTML = `
 
           <img
-            src="${escapeHtml(imageUrl)}"
+            src="${escapeHtml(
+              imageUrl
+            )}"
+
             alt="${escapeHtml(
               product.name ||
               "Product"
             )}"
+
+            onerror="
+              this.src='https://via.placeholder.com/90?text=Gadhuli'
+            "
           >
 
 
           <div class="product-info">
 
             <h3>
+
               ${escapeHtml(
                 product.name ||
                 ""
               )}
+
             </h3>
 
 
             <p>
+
               ৳${Number(
                 product.price ||
                 0
               )}
+
             </p>
 
 
             <p class="category-text">
-              🏷️ ${escapeHtml(
+
+              🏷️
+              ${escapeHtml(
                 category
               )}
+
             </p>
 
 
@@ -1473,15 +2561,30 @@ async function loadProducts(){
               subcategory
               ?
               `
-              <p class="subcategory-text">
-                📂 ${escapeHtml(
-                  subcategory
-                )}
-              </p>
+
+                <p class="subcategory-text">
+
+                  📂
+                  ${escapeHtml(
+                    subcategory
+                  )}
+
+                </p>
+
               `
               :
               ""
             }
+
+
+            <p class="size-text">
+
+              📏 Size:
+              ${escapeHtml(
+                sizeText
+              )}
+
+            </p>
 
 
           </div>
@@ -1493,22 +2596,36 @@ async function loadProducts(){
             <button
               type="button"
               class="btn-secondary"
-              onclick="editProduct('${escapeHtml(
-                product.id
-              )}')"
+
+              onclick="
+                editProduct(
+                  '${escapeHtml(
+                    product.id
+                  )}'
+                )
+              "
             >
+
               ✏️ Edit
+
             </button>
 
 
             <button
               type="button"
               class="btn-danger"
-              onclick="deleteProduct('${escapeHtml(
-                product.id
-              )}')"
+
+              onclick="
+                deleteProduct(
+                  '${escapeHtml(
+                    product.id
+                  )}'
+                )
+              "
             >
+
               🗑️ Delete
+
             </button>
 
 
@@ -1545,9 +2662,9 @@ async function loadProducts(){
 
 
 
-// ===============================
-// EDIT PRODUCT
-// ===============================
+/* =============================== */
+/* EDIT PRODUCT */
+/* =============================== */
 
 window.editProduct =
   async function(id){
@@ -1563,9 +2680,9 @@ window.editProduct =
 
 
 
-// ===============================
-// DELETE PRODUCT
-// ===============================
+/* =============================== */
+/* DELETE PRODUCT */
+/* =============================== */
 
 window.deleteProduct =
   async function(id){
@@ -1605,7 +2722,7 @@ window.deleteProduct =
 
 
       alert(
-        "Product deleted successfully."
+        "Product deleted successfully. ✅"
       );
 
 
@@ -1628,9 +2745,9 @@ window.deleteProduct =
 
 
 
-// ===============================
-// LOGOUT
-// ===============================
+/* =============================== */
+/* LOGOUT */
+/* =============================== */
 
 document
 .getElementById("logoutBtn")
@@ -1656,51 +2773,60 @@ document
     .classList
     .remove("hidden");
 
+
+    document
+    .getElementById(
+      "loginForm"
+    )
+    .reset();
+
   }
 );
 
 
 
-// ===============================
-// ESCAPE HTML
-// ===============================
+/* =============================== */
+/* ESCAPE HTML */
+/* =============================== */
 
 function escapeHtml(value){
 
-  return String(value)
+  return String(
+    value ?? ""
+  )
 
-    .replace(
-      /&/g,
-      "&amp;"
-    )
+  .replace(
+    /&/g,
+    "&amp;"
+  )
 
-    .replace(
-      /</g,
-      "&lt;"
-    )
+  .replace(
+    /</g,
+    "&lt;"
+  )
 
-    .replace(
-      />/g,
-      "&gt;"
-    )
+  .replace(
+    />/g,
+    "&gt;"
+  )
 
-    .replace(
-      /"/g,
-      "&quot;"
-    )
+  .replace(
+    /"/g,
+    "&quot;"
+  )
 
-    .replace(
-      /'/g,
-      "&#039;"
-    );
+  .replace(
+    /'/g,
+    "&#039;"
+  );
 
 }
 
 
 
-// ===============================
-// CHECK EXISTING SESSION
-// ===============================
+/* =============================== */
+/* CHECK EXISTING SESSION */
+/* =============================== */
 
 (async function(){
 
@@ -1752,4 +2878,5 @@ function escapeHtml(value){
 
 
 </body>
+
 </html>
