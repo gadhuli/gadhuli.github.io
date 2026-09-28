@@ -394,14 +394,12 @@ href="index.html"
 
   <form id="productForm">
 
-
     <input
       id="pname"
       type="text"
       placeholder="Product Name"
       required
     >
-
 
     <input
       id="price"
@@ -410,7 +408,6 @@ href="index.html"
       placeholder="Price"
       required
     >
-
 
     <!-- CATEGORY -->
 
@@ -476,16 +473,13 @@ href="index.html"
       required
     >
 
-
     <div
       id="imageCount"
       class="image-count"
       style="display:none;"
     ></div>
 
-
     <div id="preview"></div>
-
 
     <button
       id="saveProductButton"
@@ -540,6 +534,7 @@ document.addEventListener(
 
     let products = [];
 
+
     try{
 
       products =
@@ -554,6 +549,7 @@ document.addEventListener(
       products = [];
 
     }
+
 
     if(!Array.isArray(products)){
       products = [];
@@ -632,6 +628,7 @@ document.addEventListener(
 
         status.style.color = "#8f174d";
 
+
         const email =
           document
           .getElementById("email")
@@ -639,17 +636,23 @@ document.addEventListener(
           .trim();
 
         const password =
-          document.getElementById("password")
+          document
+          .getElementById("password")
           .value;
+
 
         try{
 
           const result =
             await client.auth
             .signInWithPassword({
+
               email:email,
+
               password:password
+
             });
+
 
           if(result.error){
 
@@ -663,8 +666,10 @@ document.addEventListener(
 
           }
 
+
           const user =
             result.data.user;
+
 
           if(!user){
 
@@ -677,8 +682,10 @@ document.addEventListener(
 
           }
 
+
           const isAdmin =
             await adminCheck(user);
+
 
           if(!isAdmin){
 
@@ -693,18 +700,22 @@ document.addEventListener(
 
           }
 
+
           status.innerText =
             "Admin Login সফল হয়েছে ✅";
 
           status.style.color = "green";
 
+
           document.getElementById(
             "loginBox"
           ).style.display = "none";
 
+
           document.getElementById(
             "adminPanel"
           ).style.display = "block";
+
 
           await showAdmin();
 
@@ -725,7 +736,8 @@ document.addEventListener(
 
           loginButton.disabled = false;
 
-          loginButton.innerText = "Login";
+          loginButton.innerText =
+            "Login";
 
         }
 
@@ -742,15 +754,20 @@ document.addEventListener(
         const result =
           await client.auth.getUser();
 
+
         if(result.error) return;
+
 
         const user =
           result.data.user;
 
+
         if(!user) return;
+
 
         const isAdmin =
           await adminCheck(user);
+
 
         if(isAdmin){
 
@@ -758,9 +775,11 @@ document.addEventListener(
             "loginBox"
           ).style.display = "none";
 
+
           document.getElementById(
             "adminPanel"
           ).style.display = "block";
+
 
           await showAdmin();
 
@@ -796,20 +815,30 @@ document.addEventListener(
             "imageCount"
           );
 
+
         preview.innerHTML = "";
 
-        imageCount.style.display = "none";
+        imageCount.style.display =
+          "none";
+
 
         const files =
-          Array.from(this.files || []);
+          Array.from(
+            this.files || []
+          );
 
-        if(files.length === 0) return;
+
+        if(files.length === 0)
+          return;
+
 
         if(files.length > 5){
 
-          imageCount.style.display = "block";
+          imageCount.style.display =
+            "block";
 
-          imageCount.style.color = "#c62828";
+          imageCount.style.color =
+            "#c62828";
 
           imageCount.innerHTML =
             "⚠️ সর্বোচ্চ ৫টি ছবি দেওয়া যাবে। আবার select করুন।";
@@ -820,30 +849,46 @@ document.addEventListener(
 
         }
 
-        imageCount.style.display = "block";
 
-        imageCount.style.color = "#8f174d";
+        imageCount.style.display =
+          "block";
+
+        imageCount.style.color =
+          "#8f174d";
 
         imageCount.innerHTML =
           "🖼️ " +
           files.length +
           "টি ছবি selected — সর্বোচ্চ ৫টি";
 
+
         files.forEach(
           function(file,index){
 
-            if(!file.type.startsWith("image/")){
+            if(
+              !file.type.startsWith(
+                "image/"
+              )
+            ){
+
               return;
+
             }
 
+
             const wrapper =
-              document.createElement("div");
+              document.createElement(
+                "div"
+              );
 
             wrapper.className =
               "preview-box";
 
+
             const img =
-              document.createElement("img");
+              document.createElement(
+                "img"
+              );
 
             img.className =
               "preview-img";
@@ -853,10 +898,15 @@ document.addEventListener(
               (index + 1);
 
             img.src =
-              URL.createObjectURL(file);
+              URL.createObjectURL(
+                file
+              );
+
 
             const number =
-              document.createElement("div");
+              document.createElement(
+                "div"
+              );
 
             number.className =
               "preview-number";
@@ -864,11 +914,16 @@ document.addEventListener(
             number.innerText =
               index + 1;
 
+
             wrapper.appendChild(img);
 
-            wrapper.appendChild(number);
+            wrapper.appendChild(
+              number
+            );
 
-            preview.appendChild(wrapper);
+            preview.appendChild(
+              wrapper
+            );
 
           }
         );
@@ -887,11 +942,13 @@ document.addEventListener(
 
         e.preventDefault();
 
+
         const name =
           document
           .getElementById("pname")
           .value
           .trim();
+
 
         const price =
           Number(
@@ -900,18 +957,24 @@ document.addEventListener(
             .value
           );
 
+
         const category =
           document
           .getElementById("category")
           .value;
 
+
         const imageInput =
-          document.getElementById("images");
+          document.getElementById(
+            "images"
+          );
+
 
         const files =
           Array.from(
             imageInput.files || []
           );
+
 
         if(!name){
 
@@ -923,6 +986,7 @@ document.addEventListener(
 
         }
 
+
         if(price <= 0){
 
           alert(
@@ -933,6 +997,7 @@ document.addEventListener(
 
         }
 
+
         if(!category){
 
           alert(
@@ -942,6 +1007,7 @@ document.addEventListener(
           return;
 
         }
+
 
         if(
           files.length < 1 ||
@@ -956,20 +1022,25 @@ document.addEventListener(
 
         }
 
+
         const saveButton =
           document.getElementById(
             "saveProductButton"
           );
 
+
         saveButton.disabled = true;
+
 
         try{
 
           saveButton.innerText =
             "Login check হচ্ছে...";
 
+
           const userResult =
             await client.auth.getUser();
+
 
           if(
             userResult.error ||
@@ -982,11 +1053,14 @@ document.addEventListener(
 
           }
 
+
           const user =
             userResult.data.user;
 
+
           const isAdmin =
             await adminCheck(user);
+
 
           if(!isAdmin){
 
@@ -996,15 +1070,19 @@ document.addEventListener(
 
           }
 
+
           const imageUrls = [];
 
+
           for(
-            let i=0;
-            i<files.length;
+            let i = 0;
+            i < files.length;
             i++
           ){
 
-            const file = files[i];
+            const file =
+              files[i];
+
 
             const extension =
               file.name
@@ -1012,8 +1090,10 @@ document.addEventListener(
               .pop()
               .toLowerCase();
 
+
             const safeExtension =
               extension || "jpg";
+
 
             const fileName =
               Date.now() +
@@ -1022,17 +1102,20 @@ document.addEventListener(
               "." +
               safeExtension;
 
+
             const filePath =
               user.id +
               "/" +
               fileName;
 
+
             saveButton.innerText =
               "ছবি " +
-              (i+1) +
+              (i + 1) +
               "/" +
               files.length +
               " Upload হচ্ছে...";
+
 
             const uploadResult =
               await client.storage
@@ -1047,17 +1130,25 @@ document.addEventListener(
                 }
               );
 
+
             if(uploadResult.error){
+
               throw uploadResult.error;
+
             }
+
 
             const publicResult =
               client.storage
               .from("product-images")
-              .getPublicUrl(filePath);
+              .getPublicUrl(
+                filePath
+              );
+
 
             const publicUrl =
               publicResult.data.publicUrl;
+
 
             if(!publicUrl){
 
@@ -1067,7 +1158,10 @@ document.addEventListener(
 
             }
 
-            imageUrls.push(publicUrl);
+
+            imageUrls.push(
+              publicUrl
+            );
 
           }
 
@@ -1077,6 +1171,7 @@ document.addEventListener(
           saveButton.innerText =
             "Database-এ Save হচ্ছে...";
 
+
           const result =
             await client
             .from("products")
@@ -1085,19 +1180,26 @@ document.addEventListener(
                 name:name,
                 price:price,
                 images:
-                  JSON.stringify(imageUrls),
+                  JSON.stringify(
+                    imageUrls
+                  ),
                 category:category
               }
             ])
             .select()
             .single();
 
+
           if(result.error){
+
             throw result.error;
+
           }
+
 
           const newProduct =
             result.data;
+
 
           products.unshift({
 
@@ -1115,21 +1217,30 @@ document.addEventListener(
 
           });
 
+
           saveProducts();
 
+
           document
-          .getElementById("productForm")
+          .getElementById(
+            "productForm"
+          )
           .reset();
+
 
           document.getElementById(
             "preview"
           ).innerHTML = "";
 
+
           document.getElementById(
             "imageCount"
-          ).style.display = "none";
+          ).style.display =
+            "none";
+
 
           await showAdmin();
+
 
           alert(
             "Product সফলভাবে Save হয়েছে ✅\n\n" +
@@ -1142,6 +1253,7 @@ document.addEventListener(
             "🗄️ Product Database-এ গেছে"
           );
 
+
         }catch(error){
 
           console.error(
@@ -1149,14 +1261,17 @@ document.addEventListener(
             error
           );
 
+
           alert(
             "Product Save হয়নি ❌\n\n" +
             error.message
           );
 
+
         }finally{
 
-          saveButton.disabled = false;
+          saveButton.disabled =
+            false;
 
           saveButton.innerText =
             "Save Product";
@@ -1174,29 +1289,47 @@ document.addEventListener(
       const placeholder =
         "https://via.placeholder.com/100x100?text=Gadhuli";
 
-      if(!value) return placeholder;
+
+      if(!value)
+        return placeholder;
+
 
       if(Array.isArray(value)){
-        return value[0] || placeholder;
+
+        return value[0] ||
+          placeholder;
+
       }
+
 
       try{
 
         const parsed =
           JSON.parse(value);
 
+
         if(Array.isArray(parsed)){
-          return parsed[0] || placeholder;
+
+          return parsed[0] ||
+            placeholder;
+
         }
+
 
         if(
           parsed &&
-          Array.isArray(parsed.urls)
+          Array.isArray(
+            parsed.urls
+          )
         ){
-          return parsed.urls[0] || placeholder;
+
+          return parsed.urls[0] ||
+            placeholder;
+
         }
 
       }catch(error){}
+
 
       return value;
 
@@ -1212,8 +1345,10 @@ document.addEventListener(
           "adminProducts"
         );
 
+
       box.innerHTML =
         "Products load হচ্ছে...";
+
 
       try{
 
@@ -1223,20 +1358,32 @@ document.addEventListener(
           .select("*")
           .order(
             "created_at",
-            {ascending:false}
+            {
+              ascending:false
+            }
           );
 
+
         if(result.error){
+
           throw result.error;
+
         }
 
-        if(Array.isArray(result.data)){
+
+        if(
+          Array.isArray(
+            result.data
+          )
+        ){
 
           products =
             result.data.map(
               function(p){
 
-                let images = p.images;
+                let images =
+                  p.images;
+
 
                 try{
 
@@ -1246,11 +1393,19 @@ document.addEventListener(
                   ){
 
                     const parsed =
-                      JSON.parse(images);
+                      JSON.parse(
+                        images
+                      );
 
-                    if(Array.isArray(parsed)){
 
-                      images = parsed;
+                    if(
+                      Array.isArray(
+                        parsed
+                      )
+                    ){
+
+                      images =
+                        parsed;
 
                     }else if(
                       parsed &&
@@ -1268,6 +1423,7 @@ document.addEventListener(
 
                 }catch(error){}
 
+
                 return {
 
                   ...p,
@@ -1284,6 +1440,7 @@ document.addEventListener(
               }
             );
 
+
           saveProducts();
 
         }
@@ -1295,17 +1452,23 @@ document.addEventListener(
           error
         );
 
+
         box.innerHTML =
           "<p style='color:red'>" +
           "Products load হয়নি ❌<br><br>" +
-          escapeHTML(error.message) +
+          escapeHTML(
+            error.message
+          ) +
           "</p>";
+
 
         return;
 
       }
 
+
       box.innerHTML = "";
+
 
       if(!products.length){
 
@@ -1318,6 +1481,7 @@ document.addEventListener(
 
       }
 
+
       products.forEach(
         function(p,i){
 
@@ -1326,8 +1490,10 @@ document.addEventListener(
               "div"
             );
 
+
           item.className =
             "admin-item";
+
 
           const thumb =
             imageURL(
@@ -1335,9 +1501,11 @@ document.addEventListener(
               p.image
             );
 
+
           const category =
             p.category ||
             "Others";
+
 
           item.innerHTML = `
 
@@ -1345,7 +1513,9 @@ document.addEventListener(
 
               <img
                 class="product-thumb"
-                src="${escapeHTML(thumb)}"
+                src="${escapeHTML(
+                  thumb
+                )}"
                 alt="Product"
                 onerror="this.src='https://via.placeholder.com/100x100?text=Gadhuli'"
               >
@@ -1368,16 +1538,20 @@ document.addEventListener(
                 <br>
 
                 <span class="category-badge">
-                  🏷️ ${escapeHTML(category)}
+                  🏷️ ${escapeHTML(
+                    category
+                  )}
                 </span>
 
               </div>
 
             </div>
 
+
             <div class="actions">
 
               <button
+                type="button"
                 class="edit"
                 onclick="editProduct(${i})"
               >
@@ -1385,6 +1559,7 @@ document.addEventListener(
               </button>
 
               <button
+                type="button"
                 class="delete"
                 onclick="deleteProduct(${i})"
               >
@@ -1394,6 +1569,7 @@ document.addEventListener(
             </div>
 
           `;
+
 
           box.appendChild(item);
 
@@ -1407,12 +1583,34 @@ document.addEventListener(
 
     function escapeHTML(value){
 
-      return String(value ?? "")
-      .replace(/&/g,"&amp;")
-      .replace(/</g,"&lt;")
-      .replace(/>/g,"&gt;")
-      .replace(/"/g,"&quot;")
-      .replace(/'/g,"&#039;");
+      return String(
+        value ?? ""
+      )
+
+      .replace(
+        /&/g,
+        "&amp;"
+      )
+
+      .replace(
+        /</g,
+        "&lt;"
+      )
+
+      .replace(
+        />/g,
+        "&gt;"
+      )
+
+      .replace(
+        /"/g,
+        "&quot;"
+      )
+
+      .replace(
+        /'/g,
+        "&#039;"
+      );
 
     }
 
@@ -1422,10 +1620,13 @@ document.addEventListener(
     window.editProduct =
     async function(i){
 
-      if(!products[i]) return;
+      if(!products[i])
+        return;
+
 
       const product =
         products[i];
+
 
       const name =
         prompt(
@@ -1433,7 +1634,10 @@ document.addEventListener(
           product.name
         );
 
-      if(name === null) return;
+
+      if(name === null)
+        return;
+
 
       const price =
         prompt(
@@ -1441,23 +1645,33 @@ document.addEventListener(
           product.price
         );
 
-      if(price === null) return;
+
+      if(price === null)
+        return;
+
 
       const category =
         prompt(
           "Category:\nMen / Women / Kids / Electronics / Beauty / Home / Others",
-          product.category || "Others"
+          product.category ||
+          "Others"
         );
 
-      if(category === null) return;
+
+      if(category === null)
+        return;
+
 
       const newName =
         name.trim();
 
+
       const newPrice =
         Number(price);
 
+
       const allowedCategories = [
+
         "Men",
         "Women",
         "Kids",
@@ -1465,10 +1679,13 @@ document.addEventListener(
         "Beauty",
         "Home",
         "Others"
+
       ];
+
 
       const newCategory =
         category.trim();
+
 
       if(
         !newName ||
@@ -1482,6 +1699,7 @@ document.addEventListener(
         return;
 
       }
+
 
       if(
         !allowedCategories.includes(
@@ -1497,6 +1715,7 @@ document.addEventListener(
         return;
 
       }
+
 
       try{
 
@@ -1519,11 +1738,15 @@ document.addEventListener(
               product.id
             );
 
+
           if(result.error){
+
             throw result.error;
+
           }
 
         }
+
 
         products[i] = {
 
@@ -1537,9 +1760,12 @@ document.addEventListener(
 
         };
 
+
         saveProducts();
 
+
         await showAdmin();
+
 
         alert(
           "Product update হয়েছে ✅\n\n" +
@@ -1549,9 +1775,11 @@ document.addEventListener(
           "ছবি Edit করা যাবে না। নতুন Product যোগ করুন।"
         );
 
+
       }catch(error){
 
         console.error(error);
+
 
         alert(
           "Product update হয়নি ❌\n\n" +
@@ -1568,22 +1796,29 @@ document.addEventListener(
     window.deleteProduct =
     async function(i){
 
-      if(!products[i]) return;
+      if(!products[i])
+        return;
+
 
       const product =
         products[i];
+
 
       if(
         !confirm(
           `"${product.name}" delete করবেন?`
         )
       ){
+
         return;
+
       }
+
 
       try{
 
         let imageList = [];
+
 
         if(
           Array.isArray(
@@ -1604,9 +1839,15 @@ document.addEventListener(
                 "[]"
               );
 
-            if(Array.isArray(parsed)){
 
-              imageList = parsed;
+            if(
+              Array.isArray(
+                parsed
+              )
+            ){
+
+              imageList =
+                parsed;
 
             }else if(
               parsed &&
@@ -1628,6 +1869,7 @@ document.addEventListener(
 
         }
 
+
         if(product.id){
 
           const result =
@@ -1639,15 +1881,20 @@ document.addEventListener(
               product.id
             );
 
+
           if(result.error){
+
             throw result.error;
+
           }
 
         }
 
+
         if(imageList.length){
 
           const paths = [];
+
 
           imageList.forEach(
             function(url){
@@ -1656,14 +1903,21 @@ document.addEventListener(
                 typeof url !==
                 "string"
               ){
+
                 return;
+
               }
+
 
               const marker =
                 "/product-images/";
 
+
               const position =
-                url.indexOf(marker);
+                url.indexOf(
+                  marker
+                );
+
 
               if(position !== -1){
 
@@ -1675,6 +1929,7 @@ document.addEventListener(
                     )
                   );
 
+
                 paths.push(path);
 
               }
@@ -1682,12 +1937,14 @@ document.addEventListener(
             }
           );
 
+
           if(paths.length){
 
             const removeResult =
               await client.storage
               .from("product-images")
               .remove(paths);
+
 
             if(
               removeResult.error
@@ -1704,19 +1961,28 @@ document.addEventListener(
 
         }
 
-        products.splice(i,1);
+
+        products.splice(
+          i,
+          1
+        );
+
 
         saveProducts();
 
+
         await showAdmin();
+
 
         alert(
           "Product delete হয়েছে 🗑️"
         );
 
+
       }catch(error){
 
         console.error(error);
+
 
         alert(
           "Product delete হয়নি ❌\n\n" +
@@ -1743,20 +2009,27 @@ document.addEventListener(
 
       }
 
+
       document.getElementById(
         "adminPanel"
-      ).style.display = "none";
+      ).style.display =
+        "none";
+
 
       document.getElementById(
         "loginBox"
-      ).style.display = "block";
+      ).style.display =
+        "block";
+
 
       document.getElementById(
         "password"
       ).value = "";
 
+
       status.innerText =
         "Logout হয়েছে ✅";
+
 
       status.style.color =
         "#8f174d";
