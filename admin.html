@@ -1,1 +1,1774 @@
+<!DOCTYPE html><html lang="bn"><head><meta charset="UTF-8"><meta
+name="viewport"
+content="width=device-width, initial-scale=1.0"
 
+«»
+
+<title>Gadhuli | Admin</title><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="supabase.js"></script><style>
+
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  font-family:Arial,sans-serif;
+}
+
+body{
+  background:#fff7fa;
+  color:#333;
+  min-height:100vh;
+}
+
+header{
+  background:#fff;
+  padding:15px 20px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  box-shadow:0 2px 10px #0001;
+}
+
+.logo{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.logo img{
+  width:45px;
+  height:45px;
+  object-fit:contain;
+  border-radius:10px;
+}
+
+.logo b{
+  font-size:23px;
+  color:#8f174d;
+}
+
+.back{
+  text-decoration:none;
+  background:#8f174d;
+  color:#fff;
+  padding:10px 14px;
+  border-radius:8px;
+}
+
+.container{
+  width:92%;
+  max-width:800px;
+  margin:35px auto;
+}
+
+.box{
+  background:#fff;
+  padding:25px;
+  border-radius:15px;
+  box-shadow:0 3px 15px #0001;
+  margin-bottom:25px;
+}
+
+h1,h2,h3{
+  color:#8f174d;
+}
+
+.login-box{
+  max-width:500px;
+  margin:50px auto;
+}
+
+input,
+select{
+  width:100%;
+  padding:13px;
+  border:1px solid #ddd;
+  border-radius:8px;
+  margin:10px 0;
+  outline:none;
+  font-size:16px;
+  background:#fff;
+}
+
+input:focus,
+select:focus{
+  border-color:#8f174d;
+}
+
+button{
+  border:0;
+  border-radius:8px;
+  padding:11px 15px;
+  cursor:pointer;
+  background:#8f174d;
+  color:#fff;
+  font-size:15px;
+}
+
+button:active{
+  transform:scale(.97);
+}
+
+button:disabled{
+  opacity:.6;
+  cursor:not-allowed;
+}
+
+.login-btn{
+  width:100%;
+  margin-top:8px;
+}
+
+.status{
+  margin-top:15px;
+  font-weight:bold;
+  white-space:pre-line;
+  word-break:break-word;
+}
+
+#adminPanel{
+  display:none;
+}
+
+.image-note{
+  display:block;
+  color:#777;
+  font-size:13px;
+  margin-top:5px;
+  margin-bottom:8px;
+}
+
+#images{
+  padding:10px;
+  background:#fff;
+  border:1px dashed #d52b72;
+  cursor:pointer;
+}
+
+#preview{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin:15px 0 12px;
+}
+
+.preview-box{
+  position:relative;
+  width:90px;
+  height:90px;
+}
+
+.preview-img{
+  width:90px;
+  height:90px;
+  object-fit:cover;
+  border-radius:10px;
+  border:2px solid #f0c9da;
+  display:block;
+}
+
+.preview-number{
+  position:absolute;
+  left:5px;
+  top:5px;
+  background:#8f174d;
+  color:#fff;
+  font-size:12px;
+  font-weight:bold;
+  padding:4px 7px;
+  border-radius:6px;
+}
+
+.image-count{
+  width:100%;
+  background:#fff0f6;
+  color:#8f174d;
+  padding:10px;
+  border-radius:8px;
+  margin-bottom:10px;
+  font-size:14px;
+  font-weight:bold;
+}
+
+.category-label{
+  display:block;
+  margin-top:5px;
+  color:#6f103b;
+  font-weight:bold;
+}
+
+.admin-item{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+  padding:14px 0;
+  border-bottom:1px solid #eee;
+}
+
+.product-left{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  min-width:0;
+}
+
+.product-thumb{
+  width:65px;
+  height:65px;
+  object-fit:cover;
+  border-radius:10px;
+  border:1px solid #eee;
+  flex-shrink:0;
+}
+
+.product-info{
+  min-width:0;
+}
+
+.product-info b{
+  display:block;
+  word-break:break-word;
+}
+
+.category-badge{
+  display:inline-block;
+  margin-top:5px;
+  background:#f8d9e5;
+  color:#8f174d;
+  padding:4px 8px;
+  border-radius:20px;
+  font-size:12px;
+  font-weight:bold;
+}
+
+.actions{
+  display:flex;
+  gap:6px;
+  flex-shrink:0;
+}
+
+.edit{
+  background:#ead0dc;
+  color:#8f174d;
+}
+
+.delete{
+  background:#8f174d;
+}
+
+.logout{
+  background:#555;
+  margin-top:15px;
+}
+
+.empty{
+  color:#777;
+  padding:15px 0;
+}
+
+footer{
+  background:#8f174d;
+  color:#fff;
+  text-align:center;
+  padding:25px;
+  margin-top:40px;
+}
+
+@media(max-width:600px){
+
+  .logo b{
+    font-size:19px;
+  }
+
+  .admin-item{
+    align-items:flex-start;
+  }
+
+  .product-thumb{
+    width:55px;
+    height:55px;
+  }
+
+  .actions{
+    flex-shrink:0;
+  }
+
+  .preview-box,
+  .preview-img{
+    width:75px;
+    height:75px;
+  }
+
+}
+
+</style></head><body><header>  <div class="logo"><img
+  src="logo.png"
+  alt="Gadhuli Logo"
+  onerror="this.style.display='none'"
+>
+
+<b>Gadhuli Admin</b>
+
+  </div><a
+class="back"
+href="index.html"
+
+«»
+
+← Website
+
+  </a></header><div class="container">  <!-- LOGIN -->  <div
+    id="loginBox"
+    class="box login-box"
+  ><h1>🔐 Admin Login</h1>
+
+<br>
+
+<p>
+  Gadhuli Admin Dashboard
+</p>
+
+<form id="loginForm">
+
+  <input
+    id="email"
+    type="email"
+    placeholder="Admin Email"
+    required
+  >
+
+  <input
+    id="password"
+    type="password"
+    placeholder="Password"
+    required
+  >
+
+  <button
+    class="login-btn"
+    id="loginButton"
+    type="submit"
+  >
+    Login
+  </button>
+
+</form>
+
+<div
+  id="status"
+  class="status"
+></div>
+
+  </div>  <!-- ADMIN PANEL -->  <div id="adminPanel"><div class="box">
+
+  <h2>
+    🔐 Gadhuli Admin Panel
+  </h2>
+
+  <br>
+
+  <p>
+    Welcome to Gadhuli Admin Dashboard.
+  </p>
+
+  <button
+    class="logout"
+    type="button"
+    onclick="logout()"
+  >
+    Logout
+  </button>
+
+</div>
+
+
+<!-- ADD PRODUCT -->
+
+<div class="box">
+
+  <h2>
+    ➕ Add Product
+  </h2>
+
+  <br>
+
+  <form id="productForm">
+
+
+    <input
+      id="pname"
+      type="text"
+      placeholder="Product Name"
+      required
+    >
+
+
+    <input
+      id="price"
+      type="number"
+      min="1"
+      placeholder="Price"
+      required
+    >
+
+
+    <!-- CATEGORY -->
+
+    <label class="category-label">
+      🏷️ Product Category
+    </label>
+
+    <select
+      id="category"
+      required
+    >
+
+      <option value="">
+        Select Category
+      </option>
+
+      <option value="Men">
+        Men
+      </option>
+
+      <option value="Women">
+        Women
+      </option>
+
+      <option value="Kids">
+        Kids
+      </option>
+
+      <option value="Electronics">
+        Electronics
+      </option>
+
+      <option value="Beauty">
+        Beauty
+      </option>
+
+      <option value="Home">
+        Home
+      </option>
+
+      <option value="Others">
+        Others
+      </option>
+
+    </select>
+
+
+    <!-- IMAGES -->
+
+    <label>
+      🖼️ Product Images (1–5)
+    </label>
+
+    <span class="image-note">
+      ১ থেকে ৫টি ছবি select করুন
+    </span>
+
+    <input
+      id="images"
+      type="file"
+      accept="image/*"
+      multiple
+      required
+    >
+
+
+    <div
+      id="imageCount"
+      class="image-count"
+      style="display:none;"
+    ></div>
+
+
+    <div id="preview"></div>
+
+
+    <button
+      id="saveProductButton"
+      type="submit"
+    >
+      Save Product
+    </button>
+
+  </form>
+
+</div>
+
+
+<!-- MANAGE PRODUCTS -->
+
+<div class="box">
+
+  <h2>
+    📦 Manage Products
+  </h2>
+
+  <br>
+
+  <div id="adminProducts"></div>
+
+</div>
+
+  </div></div><footer>  <h3>Gadhuli</h3>  <p>Admin Dashboard</p>  <br>  <p>
+    © 2026 Gadhuli | Official Website
+  </p></footer><script>
+
+document.addEventListener(
+  "DOMContentLoaded",
+  async function(){
+
+    const client =
+      window.gadhuliSupabase;
+
+    const status =
+      document.getElementById("status");
+
+    if(!client){
+
+      status.innerText =
+        "Supabase connection পাওয়া যায়নি ❌";
+
+      status.style.color = "red";
+
+      return;
+
+    }
+
+    let products = [];
+
+    try{
+
+      products =
+        JSON.parse(
+          localStorage.getItem(
+            "gadhuli_products"
+          ) || "null"
+        );
+
+    }catch(error){
+
+      products = [];
+
+    }
+
+    if(!Array.isArray(products)){
+      products = [];
+    }
+
+
+    function saveProducts(){
+
+      localStorage.setItem(
+        "gadhuli_products",
+        JSON.stringify(products)
+      );
+
+    }
+
+
+    async function adminCheck(user){
+
+      if(!user) return false;
+
+      try{
+
+        const result =
+          await client
+          .from("admins")
+          .select("user_id")
+          .eq("user_id",user.id)
+          .maybeSingle();
+
+        if(result.error){
+
+          console.error(
+            "Admin check error:",
+            result.error
+          );
+
+          return false;
+
+        }
+
+        return !!result.data;
+
+      }catch(error){
+
+        console.error(error);
+
+        return false;
+
+      }
+
+    }
+
+
+    /* LOGIN */
+
+    document
+    .getElementById("loginForm")
+    .addEventListener(
+      "submit",
+      async function(e){
+
+        e.preventDefault();
+
+        const loginButton =
+          document.getElementById(
+            "loginButton"
+          );
+
+        loginButton.disabled = true;
+
+        loginButton.innerText =
+          "Login হচ্ছে...";
+
+        status.innerText =
+          "Supabase-এর সাথে যোগাযোগ হচ্ছে...";
+
+        status.style.color = "#8f174d";
+
+        const email =
+          document
+          .getElementById("email")
+          .value
+          .trim();
+
+        const password =
+          document.getElementById("password")
+          .value;
+
+        try{
+
+          const result =
+            await client.auth
+            .signInWithPassword({
+              email:email,
+              password:password
+            });
+
+          if(result.error){
+
+            status.innerText =
+              "Login failed ❌\n" +
+              result.error.message;
+
+            status.style.color = "red";
+
+            return;
+
+          }
+
+          const user =
+            result.data.user;
+
+          if(!user){
+
+            status.innerText =
+              "User পাওয়া যায়নি ❌";
+
+            status.style.color = "red";
+
+            return;
+
+          }
+
+          const isAdmin =
+            await adminCheck(user);
+
+          if(!isAdmin){
+
+            await client.auth.signOut();
+
+            status.innerText =
+              "এই account-এর Admin Access নেই ❌";
+
+            status.style.color = "red";
+
+            return;
+
+          }
+
+          status.innerText =
+            "Admin Login সফল হয়েছে ✅";
+
+          status.style.color = "green";
+
+          document.getElementById(
+            "loginBox"
+          ).style.display = "none";
+
+          document.getElementById(
+            "adminPanel"
+          ).style.display = "block";
+
+          await showAdmin();
+
+        }catch(error){
+
+          console.error(
+            "Login error:",
+            error
+          );
+
+          status.innerText =
+            "Login Error ❌\n" +
+            error.message;
+
+          status.style.color = "red";
+
+        }finally{
+
+          loginButton.disabled = false;
+
+          loginButton.innerText = "Login";
+
+        }
+
+      }
+    );
+
+
+    /* SESSION */
+
+    async function checkSession(){
+
+      try{
+
+        const result =
+          await client.auth.getUser();
+
+        if(result.error) return;
+
+        const user =
+          result.data.user;
+
+        if(!user) return;
+
+        const isAdmin =
+          await adminCheck(user);
+
+        if(isAdmin){
+
+          document.getElementById(
+            "loginBox"
+          ).style.display = "none";
+
+          document.getElementById(
+            "adminPanel"
+          ).style.display = "block";
+
+          await showAdmin();
+
+        }
+
+      }catch(error){
+
+        console.error(
+          "Session error:",
+          error
+        );
+
+      }
+
+    }
+
+
+    /* IMAGE PREVIEW */
+
+    document
+    .getElementById("images")
+    .addEventListener(
+      "change",
+      function(){
+
+        const preview =
+          document.getElementById(
+            "preview"
+          );
+
+        const imageCount =
+          document.getElementById(
+            "imageCount"
+          );
+
+        preview.innerHTML = "";
+
+        imageCount.style.display = "none";
+
+        const files =
+          Array.from(this.files || []);
+
+        if(files.length === 0) return;
+
+        if(files.length > 5){
+
+          imageCount.style.display = "block";
+
+          imageCount.style.color = "#c62828";
+
+          imageCount.innerHTML =
+            "⚠️ সর্বোচ্চ ৫টি ছবি দেওয়া যাবে। আবার select করুন।";
+
+          this.value = "";
+
+          return;
+
+        }
+
+        imageCount.style.display = "block";
+
+        imageCount.style.color = "#8f174d";
+
+        imageCount.innerHTML =
+          "🖼️ " +
+          files.length +
+          "টি ছবি selected — সর্বোচ্চ ৫টি";
+
+        files.forEach(
+          function(file,index){
+
+            if(!file.type.startsWith("image/")){
+              return;
+            }
+
+            const wrapper =
+              document.createElement("div");
+
+            wrapper.className =
+              "preview-box";
+
+            const img =
+              document.createElement("img");
+
+            img.className =
+              "preview-img";
+
+            img.alt =
+              "Product Image " +
+              (index + 1);
+
+            img.src =
+              URL.createObjectURL(file);
+
+            const number =
+              document.createElement("div");
+
+            number.className =
+              "preview-number";
+
+            number.innerText =
+              index + 1;
+
+            wrapper.appendChild(img);
+
+            wrapper.appendChild(number);
+
+            preview.appendChild(wrapper);
+
+          }
+        );
+
+      }
+    );
+
+
+    /* ADD PRODUCT */
+
+    document
+    .getElementById("productForm")
+    .addEventListener(
+      "submit",
+      async function(e){
+
+        e.preventDefault();
+
+        const name =
+          document
+          .getElementById("pname")
+          .value
+          .trim();
+
+        const price =
+          Number(
+            document
+            .getElementById("price")
+            .value
+          );
+
+        const category =
+          document
+          .getElementById("category")
+          .value;
+
+        const imageInput =
+          document.getElementById("images");
+
+        const files =
+          Array.from(
+            imageInput.files || []
+          );
+
+        if(!name){
+
+          alert(
+            "Product name দিন ❌"
+          );
+
+          return;
+
+        }
+
+        if(price <= 0){
+
+          alert(
+            "Valid price দিন ❌"
+          );
+
+          return;
+
+        }
+
+        if(!category){
+
+          alert(
+            "Product Category select করুন ❌"
+          );
+
+          return;
+
+        }
+
+        if(
+          files.length < 1 ||
+          files.length > 5
+        ){
+
+          alert(
+            "১–৫টি ছবি select করুন ❌"
+          );
+
+          return;
+
+        }
+
+        const saveButton =
+          document.getElementById(
+            "saveProductButton"
+          );
+
+        saveButton.disabled = true;
+
+        try{
+
+          saveButton.innerText =
+            "Login check হচ্ছে...";
+
+          const userResult =
+            await client.auth.getUser();
+
+          if(
+            userResult.error ||
+            !userResult.data.user
+          ){
+
+            throw new Error(
+              "Supabase login session পাওয়া যায়নি। আবার Login করুন।"
+            );
+
+          }
+
+          const user =
+            userResult.data.user;
+
+          const isAdmin =
+            await adminCheck(user);
+
+          if(!isAdmin){
+
+            throw new Error(
+              "এই account-এর Admin permission নেই।"
+            );
+
+          }
+
+          const imageUrls = [];
+
+          for(
+            let i=0;
+            i<files.length;
+            i++
+          ){
+
+            const file = files[i];
+
+            const extension =
+              file.name
+              .split(".")
+              .pop()
+              .toLowerCase();
+
+            const safeExtension =
+              extension || "jpg";
+
+            const fileName =
+              Date.now() +
+              "_" +
+              crypto.randomUUID() +
+              "." +
+              safeExtension;
+
+            const filePath =
+              user.id +
+              "/" +
+              fileName;
+
+            saveButton.innerText =
+              "ছবি " +
+              (i+1) +
+              "/" +
+              files.length +
+              " Upload হচ্ছে...";
+
+            const uploadResult =
+              await client.storage
+              .from("product-images")
+              .upload(
+                filePath,
+                file,
+                {
+                  cacheControl:"3600",
+                  upsert:false,
+                  contentType:file.type
+                }
+              );
+
+            if(uploadResult.error){
+              throw uploadResult.error;
+            }
+
+            const publicResult =
+              client.storage
+              .from("product-images")
+              .getPublicUrl(filePath);
+
+            const publicUrl =
+              publicResult.data.publicUrl;
+
+            if(!publicUrl){
+
+              throw new Error(
+                "Image Public URL পাওয়া যায়নি।"
+              );
+
+            }
+
+            imageUrls.push(publicUrl);
+
+          }
+
+
+          /* DATABASE */
+
+          saveButton.innerText =
+            "Database-এ Save হচ্ছে...";
+
+          const result =
+            await client
+            .from("products")
+            .insert([
+              {
+                name:name,
+                price:price,
+                images:
+                  JSON.stringify(imageUrls),
+                category:category
+              }
+            ])
+            .select()
+            .single();
+
+          if(result.error){
+            throw result.error;
+          }
+
+          const newProduct =
+            result.data;
+
+          products.unshift({
+
+            id:newProduct.id,
+
+            name:newProduct.name,
+
+            price:newProduct.price,
+
+            images:imageUrls,
+
+            category:
+              newProduct.category ||
+              category
+
+          });
+
+          saveProducts();
+
+          document
+          .getElementById("productForm")
+          .reset();
+
+          document.getElementById(
+            "preview"
+          ).innerHTML = "";
+
+          document.getElementById(
+            "imageCount"
+          ).style.display = "none";
+
+          await showAdmin();
+
+          alert(
+            "Product সফলভাবে Save হয়েছে ✅\n\n" +
+            "🏷️ Category: " +
+            category +
+            "\n" +
+            "🖼️ " +
+            imageUrls.length +
+            "টি ছবি Storage-এ গেছে\n" +
+            "🗄️ Product Database-এ গেছে"
+          );
+
+        }catch(error){
+
+          console.error(
+            "Product save error:",
+            error
+          );
+
+          alert(
+            "Product Save হয়নি ❌\n\n" +
+            error.message
+          );
+
+        }finally{
+
+          saveButton.disabled = false;
+
+          saveButton.innerText =
+            "Save Product";
+
+        }
+
+      }
+    );
+
+
+    /* IMAGE URL */
+
+    function imageURL(value){
+
+      const placeholder =
+        "https://via.placeholder.com/100x100?text=Gadhuli";
+
+      if(!value) return placeholder;
+
+      if(Array.isArray(value)){
+        return value[0] || placeholder;
+      }
+
+      try{
+
+        const parsed =
+          JSON.parse(value);
+
+        if(Array.isArray(parsed)){
+          return parsed[0] || placeholder;
+        }
+
+        if(
+          parsed &&
+          Array.isArray(parsed.urls)
+        ){
+          return parsed.urls[0] || placeholder;
+        }
+
+      }catch(error){}
+
+      return value;
+
+    }
+
+
+    /* SHOW PRODUCTS */
+
+    async function showAdmin(){
+
+      const box =
+        document.getElementById(
+          "adminProducts"
+        );
+
+      box.innerHTML =
+        "Products load হচ্ছে...";
+
+      try{
+
+        const result =
+          await client
+          .from("products")
+          .select("*")
+          .order(
+            "created_at",
+            {ascending:false}
+          );
+
+        if(result.error){
+          throw result.error;
+        }
+
+        if(Array.isArray(result.data)){
+
+          products =
+            result.data.map(
+              function(p){
+
+                let images = p.images;
+
+                try{
+
+                  if(
+                    typeof images ===
+                    "string"
+                  ){
+
+                    const parsed =
+                      JSON.parse(images);
+
+                    if(Array.isArray(parsed)){
+
+                      images = parsed;
+
+                    }else if(
+                      parsed &&
+                      Array.isArray(
+                        parsed.urls
+                      )
+                    ){
+
+                      images =
+                        parsed.urls;
+
+                    }
+
+                  }
+
+                }catch(error){}
+
+                return {
+
+                  ...p,
+
+                  images:
+                    images || [],
+
+                  category:
+                    p.category ||
+                    "Others"
+
+                };
+
+              }
+            );
+
+          saveProducts();
+
+        }
+
+      }catch(error){
+
+        console.error(
+          "Products load error:",
+          error
+        );
+
+        box.innerHTML =
+          "<p style='color:red'>" +
+          "Products load হয়নি ❌<br><br>" +
+          escapeHTML(error.message) +
+          "</p>";
+
+        return;
+
+      }
+
+      box.innerHTML = "";
+
+      if(!products.length){
+
+        box.innerHTML =
+          '<div class="empty">' +
+          'কোনো product নেই।' +
+          '</div>';
+
+        return;
+
+      }
+
+      products.forEach(
+        function(p,i){
+
+          const item =
+            document.createElement(
+              "div"
+            );
+
+          item.className =
+            "admin-item";
+
+          const thumb =
+            imageURL(
+              p.images ||
+              p.image
+            );
+
+          const category =
+            p.category ||
+            "Others";
+
+          item.innerHTML = `
+
+            <div class="product-left">
+
+              <img
+                class="product-thumb"
+                src="${escapeHTML(thumb)}"
+                alt="Product"
+                onerror="this.src='https://via.placeholder.com/100x100?text=Gadhuli'"
+              >
+
+              <div class="product-info">
+
+                <b>
+                  ${escapeHTML(
+                    p.name ||
+                    "Unnamed"
+                  )}
+                </b>
+
+                <br>
+
+                ৳${Number(
+                  p.price || 0
+                )}
+
+                <br>
+
+                <span class="category-badge">
+                  🏷️ ${escapeHTML(category)}
+                </span>
+
+              </div>
+
+            </div>
+
+            <div class="actions">
+
+              <button
+                class="edit"
+                onclick="editProduct(${i})"
+              >
+                ✏️
+              </button>
+
+              <button
+                class="delete"
+                onclick="deleteProduct(${i})"
+              >
+                🗑️
+              </button>
+
+            </div>
+
+          `;
+
+          box.appendChild(item);
+
+        }
+      );
+
+    }
+
+
+    /* ESCAPE */
+
+    function escapeHTML(value){
+
+      return String(value ?? "")
+      .replace(/&/g,"&amp;")
+      .replace(/</g,"&lt;")
+      .replace(/>/g,"&gt;")
+      .replace(/"/g,"&quot;")
+      .replace(/'/g,"&#039;");
+
+    }
+
+
+    /* EDIT PRODUCT */
+
+    window.editProduct =
+    async function(i){
+
+      if(!products[i]) return;
+
+      const product =
+        products[i];
+
+      const name =
+        prompt(
+          "Product Name:",
+          product.name
+        );
+
+      if(name === null) return;
+
+      const price =
+        prompt(
+          "Price:",
+          product.price
+        );
+
+      if(price === null) return;
+
+      const category =
+        prompt(
+          "Category:\nMen / Women / Kids / Electronics / Beauty / Home / Others",
+          product.category || "Others"
+        );
+
+      if(category === null) return;
+
+      const newName =
+        name.trim();
+
+      const newPrice =
+        Number(price);
+
+      const allowedCategories = [
+        "Men",
+        "Women",
+        "Kids",
+        "Electronics",
+        "Beauty",
+        "Home",
+        "Others"
+      ];
+
+      const newCategory =
+        category.trim();
+
+      if(
+        !newName ||
+        newPrice <= 0
+      ){
+
+        alert(
+          "Valid product name ও price দিন ❌"
+        );
+
+        return;
+
+      }
+
+      if(
+        !allowedCategories.includes(
+          newCategory
+        )
+      ){
+
+        alert(
+          "Valid Category দিন ❌\n\n" +
+          "Men, Women, Kids, Electronics, Beauty, Home অথবা Others"
+        );
+
+        return;
+
+      }
+
+      try{
+
+        if(product.id){
+
+          const result =
+            await client
+            .from("products")
+            .update({
+
+              name:newName,
+
+              price:newPrice,
+
+              category:newCategory
+
+            })
+            .eq(
+              "id",
+              product.id
+            );
+
+          if(result.error){
+            throw result.error;
+          }
+
+        }
+
+        products[i] = {
+
+          ...products[i],
+
+          name:newName,
+
+          price:newPrice,
+
+          category:newCategory
+
+        };
+
+        saveProducts();
+
+        await showAdmin();
+
+        alert(
+          "Product update হয়েছে ✅\n\n" +
+          "🏷️ Category: " +
+          newCategory +
+          "\n\n" +
+          "ছবি Edit করা যাবে না। নতুন Product যোগ করুন।"
+        );
+
+      }catch(error){
+
+        console.error(error);
+
+        alert(
+          "Product update হয়নি ❌\n\n" +
+          error.message
+        );
+
+      }
+
+    };
+
+
+    /* DELETE PRODUCT */
+
+    window.deleteProduct =
+    async function(i){
+
+      if(!products[i]) return;
+
+      const product =
+        products[i];
+
+      if(
+        !confirm(
+          `"${product.name}" delete করবেন?`
+        )
+      ){
+        return;
+      }
+
+      try{
+
+        let imageList = [];
+
+        if(
+          Array.isArray(
+            product.images
+          )
+        ){
+
+          imageList =
+            product.images;
+
+        }else{
+
+          try{
+
+            const parsed =
+              JSON.parse(
+                product.images ||
+                "[]"
+              );
+
+            if(Array.isArray(parsed)){
+
+              imageList = parsed;
+
+            }else if(
+              parsed &&
+              Array.isArray(
+                parsed.urls
+              )
+            ){
+
+              imageList =
+                parsed.urls;
+
+            }
+
+          }catch(error){
+
+            imageList = [];
+
+          }
+
+        }
+
+        if(product.id){
+
+          const result =
+            await client
+            .from("products")
+            .delete()
+            .eq(
+              "id",
+              product.id
+            );
+
+          if(result.error){
+            throw result.error;
+          }
+
+        }
+
+        if(imageList.length){
+
+          const paths = [];
+
+          imageList.forEach(
+            function(url){
+
+              if(
+                typeof url !==
+                "string"
+              ){
+                return;
+              }
+
+              const marker =
+                "/product-images/";
+
+              const position =
+                url.indexOf(marker);
+
+              if(position !== -1){
+
+                const path =
+                  decodeURIComponent(
+                    url.substring(
+                      position +
+                      marker.length
+                    )
+                  );
+
+                paths.push(path);
+
+              }
+
+            }
+          );
+
+          if(paths.length){
+
+            const removeResult =
+              await client.storage
+              .from("product-images")
+              .remove(paths);
+
+            if(
+              removeResult.error
+            ){
+
+              console.error(
+                "Storage delete error:",
+                removeResult.error
+              );
+
+            }
+
+          }
+
+        }
+
+        products.splice(i,1);
+
+        saveProducts();
+
+        await showAdmin();
+
+        alert(
+          "Product delete হয়েছে 🗑️"
+        );
+
+      }catch(error){
+
+        console.error(error);
+
+        alert(
+          "Product delete হয়নি ❌\n\n" +
+          error.message
+        );
+
+      }
+
+    };
+
+
+    /* LOGOUT */
+
+    window.logout =
+    async function(){
+
+      try{
+
+        await client.auth.signOut();
+
+      }catch(error){
+
+        console.error(error);
+
+      }
+
+      document.getElementById(
+        "adminPanel"
+      ).style.display = "none";
+
+      document.getElementById(
+        "loginBox"
+      ).style.display = "block";
+
+      document.getElementById(
+        "password"
+      ).value = "";
+
+      status.innerText =
+        "Logout হয়েছে ✅";
+
+      status.style.color =
+        "#8f174d";
+
+    };
+
+
+    await checkSession();
+
+  }
+
+);
+
+</script></body>
+</html>
