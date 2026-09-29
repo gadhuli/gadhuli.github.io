@@ -5,10 +5,7 @@
 
 <meta charset="UTF-8">
 
-<meta
-  name="viewport"
-  content="width=device-width,initial-scale=1.0"
->
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 
 <meta
   name="google-site-verification"
@@ -22,10 +19,6 @@
 
 <style>
 
-/* =====================================================
-   GADHULI OLD DARK PINK / PURPLE THEME
-===================================================== */
-
 *{
   box-sizing:border-box;
   margin:0;
@@ -38,10 +31,7 @@ body{
   color:#222;
 }
 
-button,
-input,
-select,
-textarea{
+button,input,select,textarea{
   font-family:inherit;
 }
 
@@ -110,19 +100,12 @@ header{
   background:#fff0f6;
 }
 
-/* HERO */
-
 .hero{
   max-width:1200px;
   margin:15px auto;
   padding:28px 20px;
   border-radius:18px;
-  background:linear-gradient(
-    135deg,
-    #8f174d,
-    #d52b72,
-    #bd3475
-  );
+  background:linear-gradient(135deg,#8f174d,#d52b72,#bd3475);
   color:white;
   text-align:center;
   box-shadow:0 6px 20px rgba(143,23,77,.2);
@@ -137,8 +120,6 @@ header{
   font-size:15px;
 }
 
-/* SECTION */
-
 .section{
   max-width:1200px;
   margin:20px auto;
@@ -150,8 +131,6 @@ header{
   font-size:21px;
   margin-bottom:12px;
 }
-
-/* CATEGORY */
 
 .category-list,
 .subcategory-list{
@@ -198,8 +177,6 @@ header{
 .subcategory-wrapper.show{
   display:block;
 }
-
-/* PRODUCTS */
 
 .product-grid{
   display:grid;
@@ -273,6 +250,12 @@ header{
 .product-buttons{
   display:flex;
   gap:6px;
+  flex-wrap:wrap;
+}
+
+.product-buttons .btn{
+  flex:1;
+  min-width:80px;
 }
 
 .btn{
@@ -307,6 +290,11 @@ header{
   color:white;
 }
 
+.btn-orange{
+  background:#e67e22;
+  color:white;
+}
+
 .full-btn{
   width:100%;
 }
@@ -315,8 +303,6 @@ header{
   opacity:.6;
   cursor:not-allowed;
 }
-
-/* MODAL */
 
 .modal{
   display:none;
@@ -368,8 +354,6 @@ header{
   padding-right:40px;
 }
 
-/* FORMS */
-
 .form-group{
   margin-bottom:12px;
 }
@@ -396,8 +380,6 @@ header{
 .form-group textarea:focus{
   border-color:#8f174d;
 }
-
-/* CART */
 
 .cart-item{
   display:flex;
@@ -456,8 +438,6 @@ header{
   padding-top:10px;
 }
 
-/* DETAILS */
-
 .detail-images{
   display:flex;
   gap:8px;
@@ -488,12 +468,11 @@ header{
   border-radius:8px;
 }
 
-.size-btn:hover{
+.size-btn:hover,
+.size-btn.active{
   background:#8f174d;
   color:white;
 }
-
-/* ACCOUNT */
 
 .account-card{
   background:#fff0f6;
@@ -520,8 +499,6 @@ header{
   font-weight:bold;
 }
 
-/* REVIEWS */
-
 .review-card{
   border:1px solid #f0c4d6;
   padding:12px;
@@ -534,9 +511,8 @@ header{
   letter-spacing:2px;
 }
 
-/* ADMIN */
-
-.admin-order{
+.admin-order,
+.reseller-admin-card{
   border:1px solid #f0b3cc;
   border-radius:13px;
   padding:14px;
@@ -544,7 +520,8 @@ header{
   background:#fff;
 }
 
-.admin-order-head{
+.admin-order-head,
+.reseller-admin-head{
   display:flex;
   justify-content:space-between;
   gap:10px;
@@ -570,15 +547,23 @@ header{
   border-radius:8px;
 }
 
-/* EMPTY */
-
 .empty{
   text-align:center;
   padding:40px 15px;
   color:#888;
 }
 
-/* FOOTER */
+.reseller-code{
+  background:#fff;
+  border:1px dashed #8f174d;
+  color:#8f174d;
+  padding:12px;
+  border-radius:10px;
+  font-size:18px;
+  font-weight:bold;
+  text-align:center;
+  margin:10px 0;
+}
 
 footer{
   margin-top:40px;
@@ -593,8 +578,6 @@ footer{
   font-weight:bold;
   margin-bottom:5px;
 }
-
-/* MOBILE */
 
 @media(max-width:900px){
 
@@ -655,13 +638,7 @@ footer{
 
 </head>
 
-
 <body>
-
-
-<!-- =====================================================
-     HEADER
-===================================================== -->
 
 <header>
 
@@ -716,11 +693,6 @@ footer{
 
 </header>
 
-
-<!-- =====================================================
-     HERO
-===================================================== -->
-
 <section class="hero">
 
 <h1>Gadhuli</h1>
@@ -728,11 +700,6 @@ footer{
 <p>Shop Smart. Shop Easy.</p>
 
 </section>
-
-
-<!-- =====================================================
-     CATEGORY
-===================================================== -->
 
 <section class="section">
 
@@ -746,11 +713,6 @@ footer{
 ></div>
 
 </section>
-
-
-<!-- =====================================================
-     SUBCATEGORY
-===================================================== -->
 
 <section
   class="section subcategory-wrapper"
@@ -767,11 +729,6 @@ footer{
 ></div>
 
 </section>
-
-
-<!-- =====================================================
-     PRODUCTS
-===================================================== -->
 
 <section class="section">
 
@@ -795,10 +752,7 @@ Loading Products...
 
 </section>
 
-
-<!-- =====================================================
-     PRODUCT DETAILS
-===================================================== -->
+<!-- PRODUCT DETAILS -->
 
 <div
   class="modal"
@@ -834,10 +788,7 @@ Product
 
 </div>
 
-
-<!-- =====================================================
-     CART
-===================================================== -->
+<!-- CART -->
 
 <div
   class="modal"
@@ -863,10 +814,7 @@ Product
 
 </div>
 
-
-<!-- =====================================================
-     WISHLIST
-===================================================== -->
+<!-- WISHLIST -->
 
 <div
   class="modal"
@@ -892,10 +840,7 @@ Product
 
 </div>
 
-
-<!-- =====================================================
-     CHECKOUT
-===================================================== -->
+<!-- CHECKOUT -->
 
 <div
   class="modal"
@@ -919,9 +864,7 @@ Product
 
 <div class="form-group">
 
-<label>
-নাম *
-</label>
+<label>নাম *</label>
 
 <input
   id="orderName"
@@ -933,9 +876,7 @@ Product
 
 <div class="form-group">
 
-<label>
-মোবাইল নম্বর *
-</label>
+<label>মোবাইল নম্বর *</label>
 
 <input
   id="orderPhone"
@@ -947,9 +888,7 @@ Product
 
 <div class="form-group">
 
-<label>
-District *
-</label>
+<label>District *</label>
 
 <input
   id="orderDistrict"
@@ -961,9 +900,7 @@ District *
 
 <div class="form-group">
 
-<label>
-Thana / Upazila *
-</label>
+<label>Thana / Upazila *</label>
 
 <input
   id="orderThana"
@@ -975,9 +912,7 @@ Thana / Upazila *
 
 <div class="form-group">
 
-<label>
-Receive Place / Address *
-</label>
+<label>Receive Place / Address *</label>
 
 <textarea
   id="orderReceivePlace"
@@ -989,9 +924,7 @@ Receive Place / Address *
 
 <div class="form-group">
 
-<label>
-Delivery Area
-</label>
+<label>Delivery Area</label>
 
 <select
   id="deliveryArea"
@@ -1012,9 +945,7 @@ Outside Dhaka — ৳120
 
 <div class="form-group">
 
-<label>
-Payment Method
-</label>
+<label>Payment Method</label>
 
 <select
   id="paymentMethod"
@@ -1044,9 +975,7 @@ Nagad
 
 <div class="form-group">
 
-<label>
-Payment Number
-</label>
+<label>Payment Number</label>
 
 <input
   id="paymentNumber"
@@ -1058,9 +987,7 @@ Payment Number
 
 <div class="form-group">
 
-<label>
-Transaction ID
-</label>
+<label>Transaction ID</label>
 
 <input
   id="transactionId"
@@ -1092,10 +1019,7 @@ Transaction ID
 
 </div>
 
-
-<!-- =====================================================
-     AUTH
-===================================================== -->
+<!-- AUTH -->
 
 <div
   class="modal"
@@ -1125,9 +1049,7 @@ Transaction ID
 
 <div class="form-group">
 
-<label>
-Full Name
-</label>
+<label>Full Name</label>
 
 <input
   id="signupName"
@@ -1139,9 +1061,7 @@ Full Name
 
 <div class="form-group">
 
-<label>
-Phone
-</label>
+<label>Phone</label>
 
 <input
   id="signupPhone"
@@ -1155,9 +1075,7 @@ Phone
 
 <div class="form-group">
 
-<label>
-Email
-</label>
+<label>Email</label>
 
 <input
   id="authEmail"
@@ -1169,9 +1087,7 @@ Email
 
 <div class="form-group">
 
-<label>
-Password
-</label>
+<label>Password</label>
 
 <input
   id="authPassword"
@@ -1212,10 +1128,7 @@ Password Forgot?
 
 </div>
 
-
-<!-- =====================================================
-     ACCOUNT
-===================================================== -->
+<!-- ACCOUNT -->
 
 <div
   class="modal"
@@ -1241,10 +1154,7 @@ Password Forgot?
 
 </div>
 
-
-<!-- =====================================================
-     REVIEW
-===================================================== -->
+<!-- REVIEW -->
 
 <div
   class="modal"
@@ -1271,9 +1181,7 @@ Password Forgot?
 
 <div class="form-group">
 
-<label>
-Rating
-</label>
+<label>Rating</label>
 
 <select id="reviewRating">
 
@@ -1289,9 +1197,7 @@ Rating
 
 <div class="form-group">
 
-<label>
-Your Review
-</label>
+<label>Your Review</label>
 
 <textarea
   id="reviewText"
@@ -1312,10 +1218,7 @@ Your Review
 
 </div>
 
-
-<!-- =====================================================
-     RESELLER
-===================================================== -->
+<!-- RESELLER -->
 
 <div
   class="modal"
@@ -1341,10 +1244,7 @@ Your Review
 
 </div>
 
-
-<!-- =====================================================
-     ADMIN
-===================================================== -->
+<!-- ADMIN -->
 
 <div
   class="modal"
@@ -1361,19 +1261,16 @@ Your Review
 </button>
 
 <h2 class="modal-title">
-👨‍💼 Admin Order Management
+👨‍💼 Admin Panel
 </h2>
 
-<div id="adminContent"></div>
+<div
+  id="adminContent"
+></div>
 
 </div>
 
 </div>
-
-
-<!-- =====================================================
-     FOOTER
-===================================================== -->
 
 <footer>
 
@@ -1392,7 +1289,6 @@ Shop Smart. Shop Easy.
 </p>
 
 </footer>
-
 
 <script>
 
@@ -1425,6 +1321,8 @@ let currentSubcategory = "";
 let currentUser = null;
 
 let authMode = "login";
+
+let currentReseller = null;
 
 
 /* =====================================================
@@ -1606,7 +1504,6 @@ const box =
 document.getElementById("categoryList");
 
 box.innerHTML = "";
-
 
 const all =
 document.createElement("button");
@@ -1888,8 +1785,7 @@ return parsed;
 
 
 if(
-product.subcategory
-&&
+product.subcategory &&
 sizeData[product.subcategory]
 ){
 
@@ -1936,8 +1832,7 @@ return parsed.filter(Boolean);
 }
 
 if(
-parsed
-&&
+parsed &&
 Array.isArray(parsed.urls)
 ){
 
@@ -1958,10 +1853,8 @@ return [value.trim()];
 
 
 if(
-value
-&&
-typeof value === "object"
-&&
+value &&
+typeof value === "object" &&
 Array.isArray(value.urls)
 ){
 
@@ -1980,6 +1873,45 @@ return [product.image];
 return [
 "https://via.placeholder.com/500x500?text=Gadhuli"
 ];
+
+}
+
+
+/* =====================================================
+   CHECK APPROVED RESELLER
+===================================================== */
+
+async function getApprovedReseller(){
+
+if(!currentUser || !db){
+
+return null;
+
+}
+
+
+const result =
+await db
+.from("resellers")
+.select("*")
+.eq("user_id",currentUser.id)
+.eq("status","Approved")
+.maybeSingle();
+
+
+if(result.error){
+
+console.error(
+"Approved reseller check:",
+result.error
+);
+
+return null;
+
+}
+
+
+return result.data || null;
 
 }
 
@@ -2015,17 +1947,13 @@ products.filter(
 function(product){
 
 const categoryMatch =
-!currentCategory
-||
-product.category ===
-currentCategory;
+!currentCategory ||
+product.category === currentCategory;
 
 
 const subMatch =
-!currentSubcategory
-||
-product.subcategory ===
-currentSubcategory;
+!currentSubcategory ||
+product.subcategory === currentSubcategory;
 
 
 const searchable = [
@@ -2044,16 +1972,13 @@ product.subcategory,
 
 
 const searchMatch =
-!search
-||
+!search ||
 searchable.includes(search);
 
 
 return (
-categoryMatch
-&&
-subMatch
-&&
+categoryMatch &&
+subMatch &&
 searchMatch
 );
 
@@ -2182,9 +2107,7 @@ card
 "click",
 function(){
 
-toggleWishlist(
-product.id
-);
+toggleWishlist(product.id);
 
 }
 );
@@ -2196,9 +2119,7 @@ card
 "click",
 function(){
 
-openDetails(
-product.id
-);
+openDetails(product.id);
 
 }
 );
@@ -2210,7 +2131,117 @@ card
 "click",
 function(){
 
-quickAdd(
+quickAdd(product.id);
+
+}
+);
+
+
+grid.appendChild(card);
+
+}
+);
+
+
+/*
+  Resell button is added separately
+  only after checking approved reseller.
+*/
+
+addResellButtons();
+
+}
+
+
+/* =====================================================
+   ADD RESELL BUTTON
+===================================================== */
+
+async function addResellButtons(){
+
+const reseller =
+await getApprovedReseller();
+
+currentReseller =
+reseller;
+
+
+if(!reseller){
+
+return;
+
+}
+
+
+const cards =
+document.querySelectorAll(
+".product-card"
+);
+
+
+cards.forEach(
+function(card,index){
+
+const product =
+products.find(
+function(p){
+
+const name =
+card.querySelector(
+".product-name"
+);
+
+return name &&
+name.textContent.trim() ===
+String(p.name || "").trim();
+
+}
+);
+
+
+if(!product){
+
+return;
+
+}
+
+
+const buttons =
+card.querySelector(
+".product-buttons"
+);
+
+
+if(!buttons){
+
+return;
+
+}
+
+
+if(
+buttons.querySelector(".resell-btn")
+){
+
+return;
+
+}
+
+
+const button =
+document.createElement("button");
+
+button.className =
+"btn btn-light resell-btn";
+
+button.textContent =
+"🤝 Resell";
+
+button.addEventListener(
+"click",
+function(){
+
+resellProduct(
 product.id
 );
 
@@ -2218,7 +2249,7 @@ product.id
 );
 
 
-grid.appendChild(card);
+buttons.appendChild(button);
 
 }
 );
@@ -2453,8 +2484,7 @@ const sizes =
 getProductSizes(product);
 
 if(
-sizes.length
-&&
+sizes.length &&
 !selectedSize
 ){
 
@@ -2483,8 +2513,7 @@ const sizes =
 getProductSizes(product);
 
 if(
-sizes.length
-&&
+sizes.length &&
 !selectedSize
 ){
 
@@ -2509,20 +2538,14 @@ document.getElementById(
 ).onclick =
 function(){
 
-openReview(
-product.id
-);
+openReview(product.id);
 
 };
 
 
-loadReviews(
-product.id
-);
+loadReviews(product.id);
 
-openModal(
-"detailModal"
-);
+openModal("detailModal");
 
 }
 
@@ -2583,8 +2606,7 @@ cart
 function(item){
 
 if(
-typeof item === "string"
-||
+typeof item === "string" ||
 typeof item === "number"
 ){
 
@@ -2602,8 +2624,7 @@ quantity:1
 
 
 if(
-item
-&&
+item &&
 typeof item === "object"
 ){
 
@@ -2611,16 +2632,12 @@ return {
 
 id:String(item.id),
 
-size:String(
-item.size || ""
-),
+size:String(item.size || ""),
 
 quantity:
 Math.max(
 1,
-Number(
-item.quantity || 1
-)
+Number(item.quantity || 1)
 )
 
 };
@@ -2659,8 +2676,7 @@ cart.find(
 function(item){
 
 return (
-String(item.id) === id
-&&
+String(item.id) === id &&
 String(item.size || "") ===
 String(size || "")
 );
@@ -2672,9 +2688,7 @@ String(size || "")
 if(existing){
 
 existing.quantity =
-Number(
-existing.quantity || 1
-) + 1;
+Number(existing.quantity || 1) + 1;
 
 }else{
 
@@ -2700,17 +2714,11 @@ alert(
 }
 
 
-/* =====================================================
-   CART RENDER
-===================================================== */
-
 function openCart(){
 
 renderCart();
 
-openModal(
-"cartModal"
-);
+openModal("cartModal");
 
 }
 
@@ -2750,14 +2758,10 @@ if(!product) return;
 
 
 const price =
-Number(
-product.price || 0
-);
+Number(product.price || 0);
 
 const quantity =
-Number(
-item.quantity || 1
-);
+Number(item.quantity || 1);
 
 const line =
 price * quantity;
@@ -2845,9 +2849,7 @@ html += `
 
 <div class="summary-row">
 
-<span>
-Subtotal
-</span>
+<span>Subtotal</span>
 
 <b>
 ৳${formatMoney(subtotal)}
@@ -2857,9 +2859,7 @@ Subtotal
 
 <div class="summary-row">
 
-<span>
-Delivery
-</span>
+<span>Delivery</span>
 
 <span>
 Checkout-এ calculate হবে
@@ -2887,23 +2887,17 @@ html;
 }
 
 
-function changeCartQuantity(
-index,
-amount
-){
+function changeCartQuantity(index,amount){
 
 if(!cart[index]) return;
 
 
 cart[index].quantity =
-Number(
-cart[index].quantity || 1
-) + amount;
+Number(cart[index].quantity || 1) +
+amount;
 
 
-if(
-cart[index].quantity <= 0
-){
+if(cart[index].quantity <= 0){
 
 cart.splice(index,1);
 
@@ -2975,9 +2969,7 @@ wishlist.splice(index,1);
 
 }else{
 
-wishlist.push(
-String(id)
-);
+wishlist.push(String(id));
 
 }
 
@@ -3016,9 +3008,7 @@ box.innerHTML =
 ❤️ Wishlist খালি।
 </div>`;
 
-openModal(
-"wishlistModal"
-);
+openModal("wishlistModal");
 
 return;
 
@@ -3115,9 +3105,7 @@ openWishlist();
 );
 
 
-openModal(
-"wishlistModal"
-);
+openModal("wishlistModal");
 
 }
 
@@ -3163,10 +3151,7 @@ product:product,
 
 size:item.size || "",
 
-quantity:
-Number(
-item.quantity || 1
-)
+quantity:Number(item.quantity || 1)
 
 });
 
@@ -3176,9 +3161,7 @@ item.quantity || 1
 );
 
 
-if(
-!currentOrderProducts.length
-){
+if(!currentOrderProducts.length){
 
 alert(
 "Cart-এর Product পাওয়া যাচ্ছে না।"
@@ -3189,9 +3172,7 @@ return;
 }
 
 
-closeModal(
-"cartModal"
-);
+closeModal("cartModal");
 
 showOrderModal();
 
@@ -3223,8 +3204,7 @@ getProductSizes(product);
 
 
 if(
-sizes.length
-&&
+sizes.length &&
 !size
 ){
 
@@ -3252,9 +3232,7 @@ quantity:1
 ];
 
 
-closeModal(
-"detailModal"
-);
+closeModal("detailModal");
 
 showOrderModal();
 
@@ -3271,9 +3249,7 @@ updateOrderTotal();
 
 togglePaymentFields();
 
-openModal(
-"orderModal"
-);
+openModal("orderModal");
 
 }
 
@@ -3359,23 +3335,16 @@ onclick="changeOrderQuantity(${index},1)"
 }
 
 
-function changeOrderQuantity(
-index,
-amount
-){
+function changeOrderQuantity(index,amount){
 
-if(
-!currentOrderProducts[index]
-) return;
+if(!currentOrderProducts[index]) return;
 
 
-currentOrderProducts[index]
-.quantity =
+currentOrderProducts[index].quantity =
 Math.max(
 1,
 Number(
-currentOrderProducts[index]
-.quantity || 1
+currentOrderProducts[index].quantity || 1
 ) + amount
 );
 
@@ -3407,20 +3376,16 @@ await db
 document.getElementById(
 "orderName"
 ).value =
-profile.data?.full_name
-||
-currentUser.user_metadata?.full_name
-||
+profile.data?.full_name ||
+currentUser.user_metadata?.full_name ||
 "";
 
 
 document.getElementById(
 "orderPhone"
 ).value =
-profile.data?.phone
-||
-currentUser.user_metadata?.phone
-||
+profile.data?.phone ||
+currentUser.user_metadata?.phone ||
 "";
 
 }
@@ -3436,13 +3401,8 @@ return currentOrderProducts.reduce(
 function(total,item){
 
 return total +
-Number(
-item.product.price || 0
-)
-*
-Number(
-item.quantity || 1
-);
+Number(item.product.price || 0) *
+Number(item.quantity || 1);
 
 },
 0
@@ -3481,9 +3441,7 @@ document.getElementById(
 
 <div class="summary-row">
 
-<span>
-Subtotal
-</span>
+<span>Subtotal</span>
 
 <b>
 ৳${formatMoney(subtotal)}
@@ -3493,9 +3451,7 @@ Subtotal
 
 <div class="summary-row">
 
-<span>
-Delivery
-</span>
+<span>Delivery</span>
 
 <b>
 ৳${formatMoney(delivery)}
@@ -3505,9 +3461,7 @@ Delivery
 
 <div class="summary-row summary-total">
 
-<span>
-Total
-</span>
+<span>Total</span>
 
 <span>
 ৳${formatMoney(total)}
@@ -3535,10 +3489,54 @@ document.getElementById(
 document.getElementById(
 "manualPaymentFields"
 ).style.display =
-method ===
-"Cash on Delivery"
+method === "Cash on Delivery"
 ? "none"
 : "block";
+
+}
+
+
+/* =====================================================
+   GET VALID REFERRAL
+===================================================== */
+
+async function getReferralReseller(){
+
+const code =
+localStorage.getItem(
+"gadhuli_ref"
+) || "";
+
+
+if(!code){
+
+return null;
+
+}
+
+
+const result =
+await db
+.from("resellers")
+.select("*")
+.eq("reseller_code",code)
+.eq("status","Approved")
+.maybeSingle();
+
+
+if(result.error){
+
+console.error(
+"Referral check:",
+result.error
+);
+
+return null;
+
+}
+
+
+return result.data || null;
 
 }
 
@@ -3573,9 +3571,7 @@ return;
 }
 
 
-if(
-!currentOrderProducts.length
-){
+if(!currentOrderProducts.length){
 
 alert(
 "Order Product পাওয়া যায়নি।"
@@ -3725,12 +3721,26 @@ transactionId;
 }
 
 
-/* RESSELLER REFERRAL */
+/* CHECK APPROVED REFERRAL */
+
+const referralReseller =
+await getReferralReseller();
+
 
 const resellerCode =
-localStorage.getItem(
-"gadhuli_ref"
-) || "";
+referralReseller
+?
+referralReseller.reseller_code
+:
+"";
+
+
+const resellerId =
+referralReseller
+?
+referralReseller.user_id
+:
+null;
 
 
 /* CREATE ORDER */
@@ -3781,6 +3791,9 @@ payment_status:
 
 order_status:
 "Pending",
+
+reseller_id:
+resellerId,
 
 reseller_code:
 resellerCode,
@@ -3836,23 +3849,14 @@ size:
 item.size || "",
 
 quantity:
-Number(
-item.quantity || 1
-),
+Number(item.quantity || 1),
 
 unit_price:
-Number(
-product.price || 0
-),
+Number(product.price || 0),
 
 line_total:
-Number(
-product.price || 0
-)
-*
-Number(
-item.quantity || 1
-)
+Number(product.price || 0) *
+Number(item.quantity || 1)
 
 };
 
@@ -3880,14 +3884,10 @@ currentOrderProducts
 function(item){
 
 const productId =
-String(
-item.product.id
-);
+String(item.product.id);
 
 const size =
-String(
-item.size || ""
-);
+String(item.size || "");
 
 
 cart =
@@ -3895,11 +3895,8 @@ cart.filter(
 function(cartItem){
 
 return !(
-String(cartItem.id) ===
-productId
-&&
-String(cartItem.size || "") ===
-size
+String(cartItem.id) === productId &&
+String(cartItem.size || "") === size
 );
 
 }
@@ -3912,7 +3909,7 @@ size
 saveCart();
 
 
-/* KEEP COPY FOR WHATSAPP */
+/* WHATSAPP COPY */
 
 const whatsappItems =
 currentOrderProducts.map(
@@ -3920,17 +3917,13 @@ function(item){
 
 return {
 
-name:
-item.product.name,
+name:item.product.name,
 
-size:
-item.size,
+size:item.size,
 
-quantity:
-item.quantity,
+quantity:item.quantity,
 
-price:
-item.product.price
+price:item.product.price
 
 };
 
@@ -3945,9 +3938,7 @@ order.id
 );
 
 
-closeModal(
-"orderModal"
-);
+closeModal("orderModal");
 
 
 sendWhatsAppOrder(
@@ -3962,7 +3953,8 @@ deliveryArea,
 subtotal,
 delivery,
 total,
-paymentMethod
+paymentMethod,
+resellerCode
 );
 
 
@@ -4006,7 +3998,8 @@ deliveryArea,
 subtotal,
 delivery,
 total,
-paymentMethod
+paymentMethod,
+resellerCode
 ){
 
 let message =
@@ -4047,8 +4040,7 @@ item.quantity +
 message +=
 "Price: ৳" +
 (
-Number(item.price || 0)
-*
+Number(item.price || 0) *
 Number(item.quantity || 1)
 ) +
 "\n\n";
@@ -4090,10 +4082,21 @@ deliveryArea +
 message +=
 "Payment: " +
 paymentMethod +
-"\n\n";
+"\n";
+
+
+if(resellerCode){
 
 message +=
-"Subtotal: ৳" +
+"Reseller Code: " +
+resellerCode +
+"\n";
+
+}
+
+
+message +=
+"\nSubtotal: ৳" +
 subtotal +
 "\n";
 
@@ -4134,21 +4137,31 @@ await db.auth.getSession();
 
 
 currentUser =
-session.data.session?.user
-||
+session.data.session?.user ||
 null;
 
 
 db.auth.onAuthStateChange(
-function(
-event,
-session
-){
+function(event,session){
 
 currentUser =
-session?.user
-||
+session?.user ||
 null;
+
+
+/*
+  Refresh products so Resell button
+  appears/disappears after login/logout.
+*/
+
+setTimeout(
+function(){
+
+renderProducts();
+
+},
+100
+);
 
 }
 );
@@ -4187,14 +4200,11 @@ return true;
 
 function openAuth(){
 
-authMode =
-"login";
+authMode = "login";
 
 updateAuthUI();
 
-openModal(
-"authModal"
-);
+openModal("authModal");
 
 }
 
@@ -4202,8 +4212,7 @@ openModal(
 function toggleAuthMode(){
 
 authMode =
-authMode ===
-"login"
+authMode === "login"
 ? "signup"
 : "login";
 
@@ -4235,13 +4244,9 @@ document.getElementById(
 );
 
 
-if(
-authMode ===
-"signup"
-){
+if(authMode === "signup"){
 
-fields.style.display =
-"block";
+fields.style.display = "block";
 
 title.textContent =
 "📝 Create Account";
@@ -4254,8 +4259,7 @@ toggle.textContent =
 
 }else{
 
-fields.style.display =
-"none";
+fields.style.display = "none";
 
 title.textContent =
 "🔐 Login";
@@ -4292,10 +4296,7 @@ document.getElementById(
 ).value;
 
 
-if(
-!email ||
-!password
-){
+if(!email || !password){
 
 alert(
 "Email এবং Password দিন।"
@@ -4306,10 +4307,7 @@ return;
 }
 
 
-if(
-authMode ===
-"signup"
-){
+if(authMode === "signup"){
 
 const name =
 document.getElementById(
@@ -4323,10 +4321,7 @@ document.getElementById(
 ).value.trim();
 
 
-if(
-!name ||
-!phone
-){
+if(!name || !phone){
 
 alert(
 "Name এবং Phone দিন।"
@@ -4377,14 +4372,11 @@ alert(
 );
 
 
-authMode =
-"login";
+authMode = "login";
 
 updateAuthUI();
 
-
 }else{
-
 
 const result =
 await db.auth.signInWithPassword({
@@ -4412,9 +4404,7 @@ currentUser =
 result.data.user;
 
 
-closeModal(
-"authModal"
-);
+closeModal("authModal");
 
 
 alert(
@@ -4453,19 +4443,15 @@ const result =
 await db.auth.resetPasswordForEmail(
 email,
 {
-
 redirectTo:
 window.location.origin
-
 }
 );
 
 
 if(result.error){
 
-alert(
-result.error.message
-);
+alert(result.error.message);
 
 return;
 
@@ -4496,9 +4482,7 @@ return;
 
 await renderAccount();
 
-openModal(
-"accountModal"
-);
+openModal("accountModal");
 
 }
 
@@ -4543,8 +4527,7 @@ let html = `
 <h3>
 👤 ${
 escapeHtml(
-profile.data?.full_name
-||
+profile.data?.full_name ||
 currentUser.email
 )
 }
@@ -4581,16 +4564,18 @@ onclick="openReseller()"
 </button>
 
 ${
-profile.data?.role ===
-"admin"
+profile.data?.role === "admin"
 ?
 `
+
 <button
 class="btn btn-danger"
 onclick="openAdmin()"
+style="margin-left:6px;"
 >
-👨‍💼 Admin Orders
+👨‍💼 Admin Panel
 </button>
+
 `
 :
 ""
@@ -4605,9 +4590,7 @@ onclick="openAdmin()"
 `;
 
 
-if(
-orders.error
-){
+if(orders.error){
 
 html += `
 <div class="empty">
@@ -4615,9 +4598,7 @@ Orders load হয়নি।
 </div>
 `;
 
-}else if(
-!orders.data?.length
-){
+}else if(!orders.data?.length){
 
 html += `
 <div class="empty">
@@ -4626,7 +4607,6 @@ html += `
 `;
 
 }else{
-
 
 html +=
 orders.data
@@ -4657,9 +4637,7 @@ order.order_status
 
 <p>
 Date:
-${formatDate(
-order.created_at
-)}
+${formatDate(order.created_at)}
 </p>
 
 <p>
@@ -4669,12 +4647,25 @@ order.payment_method
 )}
 </p>
 
+${
+order.reseller_code
+?
+`
+<p>
+Reseller:
+<b>
+${escapeHtml(order.reseller_code)}
+</b>
+</p>
+`
+:
+""
+}
+
 <p>
 Total:
 <b>
-৳${formatMoney(
-order.total
-)}
+৳${formatMoney(order.total)}
 </b>
 </p>
 
@@ -4719,9 +4710,11 @@ await db.auth.signOut();
 
 currentUser = null;
 
-closeModal(
-"accountModal"
-);
+currentReseller = null;
+
+closeModal("accountModal");
+
+renderProducts();
 
 alert(
 "Logout হয়েছে।"
@@ -4756,9 +4749,7 @@ document.getElementById(
 ).value = "";
 
 
-openModal(
-"reviewModal"
-);
+openModal("reviewModal");
 
 }
 
@@ -4812,27 +4803,20 @@ await db
 .from("reviews")
 .insert({
 
-product_id:
-productId,
+product_id:productId,
 
-user_id:
-currentUser.id,
+user_id:currentUser.id,
 
 user_name:
-profile.data?.full_name
-||
-currentUser.email
-||
+profile.data?.full_name ||
+currentUser.email ||
 "Customer",
 
-rating:
-rating,
+rating:rating,
 
-review_text:
-reviewText,
+review_text:reviewText,
 
-status:
-"Pending"
+status:"Pending"
 
 });
 
@@ -4849,9 +4833,7 @@ return;
 }
 
 
-closeModal(
-"reviewModal"
-);
+closeModal("reviewModal");
 
 alert(
 "Review Submit হয়েছে ✅\n\nAdmin approve করার পর দেখা যাবে।"
@@ -4945,9 +4927,7 @@ review.user_name ||
 
 <div class="stars">
 ${"⭐".repeat(
-Number(
-review.rating || 0
-)
+Number(review.rating || 0)
 )}
 </div>
 
@@ -4972,7 +4952,7 @@ review.review_text || ""
 
 
 /* =====================================================
-   RESELLER
+   RESELLER CENTER
 ===================================================== */
 
 async function openReseller(){
@@ -5015,9 +4995,7 @@ result.error.message
 )}
 </div>`;
 
-openModal(
-"resellerModal"
-);
+openModal("resellerModal");
 
 return;
 
@@ -5034,9 +5012,17 @@ box.innerHTML = `
 🤝 Become a Gadhuli Reseller
 </h3>
 
+<br>
+
 <p>
 Reseller account create করে
 Product share করে sell করতে পারবেন।
+</p>
+
+<br>
+
+<p>
+Apply করার পর Admin আপনার application review করবে।
 </p>
 
 <br>
@@ -5054,9 +5040,65 @@ onclick="createReseller()"
 
 }else{
 
-
 const reseller =
 result.data;
+
+
+/* PENDING */
+
+if(reseller.status === "Pending"){
+
+box.innerHTML = `
+
+<div class="account-card">
+
+<h3>
+⏳ Reseller Application Pending
+</h3>
+
+<br>
+
+<p>
+আপনার Reseller application Admin-এর কাছে পাঠানো হয়েছে।
+</p>
+
+<br>
+
+<div class="reseller-code">
+${escapeHtml(
+reseller.reseller_code
+)}
+</div>
+
+<p>
+<b>Status:</b>
+⏳ Pending
+</p>
+
+<p>
+<b>Commission:</b>
+${reseller.commission_rate}%
+</p>
+
+<br>
+
+<p>
+Admin approve করার পর আপনার Resell সুবিধা চালু হবে।
+</p>
+
+</div>
+
+`;
+
+}
+
+
+/* APPROVED */
+
+else if(reseller.status === "Approved"){
+
+currentReseller =
+reseller;
 
 
 box.innerHTML = `
@@ -5069,18 +5111,15 @@ box.innerHTML = `
 
 <br>
 
-<p>
-<b>Code:</b>
+<div class="reseller-code">
 ${escapeHtml(
 reseller.reseller_code
 )}
-</p>
+</div>
 
 <p>
 <b>Status:</b>
-${escapeHtml(
-reseller.status
-)}
+✅ Approved
 </p>
 
 <p>
@@ -5107,6 +5146,12 @@ reseller.total_commission
 )}
 </p>
 
+<br>
+
+<p>
+Product-এর 🤝 Resell button চাপ দিয়ে share করতে পারবেন।
+</p>
+
 </div>
 
 `;
@@ -5114,9 +5159,46 @@ reseller.total_commission
 }
 
 
-openModal(
-"resellerModal"
-);
+/* SUSPENDED */
+
+else{
+
+box.innerHTML = `
+
+<div class="account-card">
+
+<h3>
+🚫 Reseller Suspended
+</h3>
+
+<br>
+
+<p>
+আপনার Reseller account বর্তমানে Suspended।
+</p>
+
+<br>
+
+<div class="reseller-code">
+${escapeHtml(
+reseller.reseller_code
+)}
+</div>
+
+<p>
+Admin account আবার Approve না করা পর্যন্ত Resell সুবিধা বন্ধ থাকবে।
+</p>
+
+</div>
+
+`;
+
+}
+
+}
+
+
+openModal("resellerModal");
 
 }
 
@@ -5127,8 +5209,53 @@ openModal(
 
 async function createReseller(){
 
-if(!currentUser) return;
+if(!currentUser){
 
+openAuth();
+
+return;
+
+}
+
+
+/* CHECK EXISTING APPLICATION */
+
+const existing =
+await db
+.from("resellers")
+.select("*")
+.eq("user_id",currentUser.id)
+.maybeSingle();
+
+
+if(existing.error){
+
+alert(
+"Reseller status check হয়নি ❌\n" +
+existing.error.message
+);
+
+return;
+
+}
+
+
+if(existing.data){
+
+alert(
+"আপনি ইতিমধ্যে Reseller application করেছেন।\n\n" +
+"Status: " +
+existing.data.status
+);
+
+await openReseller();
+
+return;
+
+}
+
+
+/* UNIQUE CODE */
 
 const code =
 "GADHULI" +
@@ -5138,22 +5265,26 @@ Math.random()
 .toUpperCase();
 
 
+/* CREATE APPLICATION */
+
 const result =
 await db
 .from("resellers")
 .insert({
 
-user_id:
-currentUser.id,
+user_id:currentUser.id,
 
-reseller_code:
-code,
+reseller_code:code,
 
-commission_rate:
-5,
+commission_rate:5,
 
-status:
-"Pending"
+total_orders:0,
+
+total_sales:0,
+
+total_commission:0,
+
+status:"Pending"
 
 });
 
@@ -5161,7 +5292,7 @@ status:
 if(result.error){
 
 alert(
-"Reseller application হয়নি ❌\n" +
+"Reseller application হয়নি ❌\n\n" +
 result.error.message
 );
 
@@ -5170,29 +5301,146 @@ return;
 }
 
 
-await db
-.from("profiles")
-.update({
-
-reseller_code:
-code,
-
-role:
-"reseller"
-
-})
-.eq(
-"id",
-currentUser.id
-);
-
+/*
+  IMPORTANT:
+  এখানে profiles.role পরিবর্তন করা হচ্ছে না।
+  User এখনো customer থাকবে।
+*/
 
 alert(
-"Reseller application সফল হয়েছে ✅"
+"Reseller application সফল হয়েছে ✅\n\n" +
+"Status: Pending ⏳\n\n" +
+"Admin approve করার পর Reseller সুবিধা চালু হবে।"
 );
 
 
-openReseller();
+await openReseller();
+
+}
+
+
+/* =====================================================
+   RESELL PRODUCT
+===================================================== */
+
+async function resellProduct(productId){
+
+if(!currentUser){
+
+alert(
+"Resell করতে আগে Login করুন।"
+);
+
+openAuth();
+
+return;
+
+}
+
+
+/* VERIFY APPROVED RESELLER */
+
+const reseller =
+await getApprovedReseller();
+
+
+if(!reseller){
+
+alert(
+"আপনার Approved Reseller account নেই।"
+);
+
+return;
+
+}
+
+
+currentReseller =
+reseller;
+
+
+const product =
+findProduct(productId);
+
+
+if(!product){
+
+alert(
+"Product পাওয়া যায়নি।"
+);
+
+return;
+
+}
+
+
+/* CREATE REFERRAL LINK */
+
+const link =
+window.location.origin +
+window.location.pathname +
+"?product=" +
+encodeURIComponent(product.id) +
+"&ref=" +
+encodeURIComponent(
+reseller.reseller_code
+);
+
+
+const message =
+"🌸 Gadhuli Product\n\n" +
+
+"🛍️ " +
+(product.name || "Product") +
+"\n" +
+
+"💰 Price: ৳" +
+formatMoney(product.price) +
+"\n\n" +
+
+"🛒 Order করতে এখানে দেখুন:\n" +
+link;
+
+
+/* NATIVE SHARE */
+
+if(navigator.share){
+
+try{
+
+await navigator.share({
+
+title:
+"Gadhuli - " +
+product.name,
+
+text:
+message,
+
+url:
+link
+
+});
+
+}catch(error){
+
+console.log(
+"Share cancelled."
+);
+
+}
+
+}else{
+
+/* WHATSAPP FALLBACK */
+
+window.open(
+"https://wa.me/?text=" +
+encodeURIComponent(message),
+"_blank"
+);
+
+}
 
 }
 
@@ -5221,10 +5469,8 @@ await db
 
 
 if(
-check.error
-||
-check.data?.role !==
-"admin"
+check.error ||
+check.data?.role !== "admin"
 ){
 
 alert(
@@ -5236,11 +5482,58 @@ return;
 }
 
 
-await renderAdminOrders();
+await renderAdmin();
 
-openModal(
-"adminModal"
+openModal("adminModal");
+
+}
+
+
+/* =====================================================
+   ADMIN MAIN
+===================================================== */
+
+async function renderAdmin(){
+
+const box =
+document.getElementById(
+"adminContent"
 );
+
+
+box.innerHTML = `
+
+<div style="
+display:flex;
+gap:8px;
+flex-wrap:wrap;
+margin-bottom:15px;
+">
+
+<button
+class="btn btn-pink"
+onclick="renderAdminOrders()"
+>
+📦 Orders
+</button>
+
+<button
+class="btn btn-light"
+onclick="renderAdminResellers()"
+>
+🤝 Resellers
+</button>
+
+</div>
+
+<div id="adminSectionContent">
+Loading...
+</div>
+
+`;
+
+
+await renderAdminOrders();
 
 }
 
@@ -5253,8 +5546,11 @@ async function renderAdminOrders(){
 
 const box =
 document.getElementById(
-"adminContent"
+"adminSectionContent"
 );
+
+
+if(!box) return;
 
 
 box.innerHTML =
@@ -5303,18 +5599,14 @@ let html = "";
 
 
 for(
-const order
-of result.data
+const order of result.data
 ){
 
 const items =
 await db
 .from("order_items")
 .select("*")
-.eq(
-"order_id",
-order.id
-);
+.eq("order_id",order.id);
 
 
 html += `
@@ -5384,6 +5676,21 @@ ${escapeHtml(
 order.payment_status
 )}
 </p>
+
+${
+order.reseller_code
+?
+`
+<p>
+<b>Reseller:</b>
+${escapeHtml(
+order.reseller_code
+)}
+</p>
+`
+:
+""
+}
 
 <div class="admin-items">
 
@@ -5469,8 +5776,7 @@ return `
 <option
 value="${status}"
 ${
-status ===
-order.order_status
+status === order.order_status
 ?
 "selected"
 :
@@ -5488,7 +5794,6 @@ ${status}
 }
 
 </select>
-
 
 <select
 onchange="updatePaymentStatus(${order.id},this.value)"
@@ -5509,8 +5814,7 @@ return `
 <option
 value="${status}"
 ${
-status ===
-order.payment_status
+status === order.payment_status
 ?
 "selected"
 :
@@ -5545,7 +5849,402 @@ html;
 
 
 /* =====================================================
-   ADMIN STATUS
+   ADMIN RESELLERS
+===================================================== */
+
+async function renderAdminResellers(){
+
+const box =
+document.getElementById(
+"adminSectionContent"
+);
+
+
+if(!box) return;
+
+
+box.innerHTML =
+`<div class="empty">
+Resellers Loading...
+</div>`;
+
+
+const result =
+await db
+.from("resellers")
+.select("*")
+.order(
+"created_at",
+{ascending:false}
+);
+
+
+if(result.error){
+
+box.innerHTML =
+`<div class="empty">
+${escapeHtml(
+result.error.message
+)}
+</div>`;
+
+return;
+
+}
+
+
+if(!result.data?.length){
+
+box.innerHTML =
+`<div class="empty">
+এখনো কোনো Reseller application নেই।
+</div>`;
+
+return;
+
+}
+
+
+let html = `
+
+<h3 style="
+color:#8f174d;
+margin-bottom:12px;
+">
+🤝 Reseller Management
+</h3>
+
+`;
+
+
+for(
+const reseller of result.data
+){
+
+const profile =
+await db
+.from("profiles")
+.select("full_name,phone,role")
+.eq("id",reseller.user_id)
+.maybeSingle();
+
+
+html += `
+
+<div class="reseller-admin-card">
+
+<div class="reseller-admin-head">
+
+<div>
+
+<b>
+${escapeHtml(
+profile.data?.full_name ||
+"User"
+)}
+</b>
+
+<br>
+
+<small>
+${escapeHtml(
+reseller.reseller_code
+)}
+</small>
+
+</div>
+
+<span class="status">
+${escapeHtml(
+reseller.status
+)}
+</span>
+
+</div>
+
+<p>
+<b>User ID:</b>
+${escapeHtml(
+reseller.user_id
+)}
+</p>
+
+<p>
+<b>Phone:</b>
+${escapeHtml(
+profile.data?.phone || "—"
+)}
+</p>
+
+<p>
+<b>Current Role:</b>
+${escapeHtml(
+profile.data?.role || "customer"
+)}
+</p>
+
+<p>
+<b>Commission:</b>
+${reseller.commission_rate}%
+</p>
+
+<p>
+<b>Total Orders:</b>
+${reseller.total_orders}
+</p>
+
+<p>
+<b>Total Sales:</b>
+৳${formatMoney(
+reseller.total_sales
+)}
+</p>
+
+<p>
+<b>Total Commission:</b>
+৳${formatMoney(
+reseller.total_commission
+)}
+</p>
+
+<br>
+
+<div class="admin-actions">
+
+${
+reseller.status !== "Approved"
+?
+`
+<button
+class="btn btn-pink"
+onclick="approveReseller('${escapeAttr(reseller.user_id)}','${escapeAttr(reseller.id)}')"
+>
+✅ Approve
+</button>
+`
+:
+""
+}
+
+${
+reseller.status !== "Suspended"
+?
+`
+<button
+class="btn btn-danger"
+onclick="suspendReseller('${escapeAttr(reseller.user_id)}','${escapeAttr(reseller.id)}')"
+>
+🚫 Suspend
+</button>
+`
+:
+""
+}
+
+</div>
+
+</div>
+
+`;
+
+}
+
+
+box.innerHTML =
+html;
+
+}
+
+
+/* =====================================================
+   ADMIN APPROVE RESELLER
+===================================================== */
+
+async function approveReseller(
+userId,
+resellerId
+){
+
+if(!await isCurrentAdmin()){
+
+alert(
+"Admin access নেই।"
+);
+
+return;
+
+}
+
+
+/* UPDATE RESELLER STATUS */
+
+const resellerResult =
+await db
+.from("resellers")
+.update({
+
+status:"Approved"
+
+})
+.eq("id",resellerId);
+
+
+if(resellerResult.error){
+
+alert(
+"Reseller approve হয়নি ❌\n\n" +
+resellerResult.error.message
+);
+
+return;
+
+}
+
+
+/* UPDATE PROFILE ROLE */
+
+const profileResult =
+await db
+.from("profiles")
+.update({
+
+role:"reseller"
+
+})
+.eq("id",userId);
+
+
+if(profileResult.error){
+
+alert(
+"Profile role update হয়নি ❌\n\n" +
+profileResult.error.message
+);
+
+return;
+
+}
+
+
+alert(
+"Reseller Approved হয়েছে ✅"
+);
+
+
+await renderAdminResellers();
+
+}
+
+
+/* =====================================================
+   ADMIN SUSPEND RESELLER
+===================================================== */
+
+async function suspendReseller(
+userId,
+resellerId
+){
+
+if(!await isCurrentAdmin()){
+
+alert(
+"Admin access নেই।"
+);
+
+return;
+
+}
+
+
+const result =
+await db
+.from("resellers")
+.update({
+
+status:"Suspended"
+
+})
+.eq("id",resellerId);
+
+
+if(result.error){
+
+alert(
+"Reseller suspend হয়নি ❌\n\n" +
+result.error.message
+);
+
+return;
+
+}
+
+
+/* ROLE BACK TO CUSTOMER */
+
+const profileResult =
+await db
+.from("profiles")
+.update({
+
+role:"customer"
+
+})
+.eq("id",userId);
+
+
+if(profileResult.error){
+
+alert(
+"Profile role update হয়নি ❌\n\n" +
+profileResult.error.message
+);
+
+return;
+
+}
+
+
+alert(
+"Reseller Suspended হয়েছে 🚫"
+);
+
+
+await renderAdminResellers();
+
+}
+
+
+/* =====================================================
+   ADMIN CHECK
+===================================================== */
+
+async function isCurrentAdmin(){
+
+if(!currentUser){
+
+return false;
+
+}
+
+
+const result =
+await db
+.from("profiles")
+.select("role")
+.eq("id",currentUser.id)
+.maybeSingle();
+
+
+return (
+!result.error &&
+result.data?.role === "admin"
+);
+
+}
+
+
+/* =====================================================
+   ADMIN ORDER STATUS
 ===================================================== */
 
 async function updateOrderStatus(
@@ -5553,19 +6252,26 @@ orderId,
 status
 ){
 
+if(!await isCurrentAdmin()){
+
+alert(
+"Admin access নেই।"
+);
+
+return;
+
+}
+
+
 const result =
 await db
 .from("orders")
 .update({
 
-order_status:
-status
+order_status:status
 
 })
-.eq(
-"id",
-orderId
-);
+.eq("id",orderId);
 
 
 if(result.error){
@@ -5580,29 +6286,47 @@ return;
 }
 
 
+/*
+  NOTE:
+  Commission automatic হিসাব এখনো করা হয়নি।
+  Delivered order commission আমরা পরের ধাপে
+  secureভাবে implement করব।
+*/
+
 await renderAdminOrders();
 
 }
 
+
+/* =====================================================
+   ADMIN PAYMENT STATUS
+===================================================== */
 
 async function updatePaymentStatus(
 orderId,
 status
 ){
 
+if(!await isCurrentAdmin()){
+
+alert(
+"Admin access নেই।"
+);
+
+return;
+
+}
+
+
 const result =
 await db
 .from("orders")
 .update({
 
-payment_status:
-status
+payment_status:status
 
 })
-.eq(
-"id",
-orderId
-);
+.eq("id",orderId);
 
 
 if(result.error){
@@ -5743,14 +6467,10 @@ document.addEventListener(
 function(event){
 
 if(
-event.target.classList.contains(
-"modal"
-)
+event.target.classList.contains("modal")
 ){
 
-event.target.classList.remove(
-"show"
-);
+event.target.classList.remove("show");
 
 }
 
@@ -5766,20 +6486,14 @@ document.addEventListener(
 "keydown",
 function(event){
 
-if(
-event.key === "Escape"
-){
+if(event.key === "Escape"){
 
 document
-.querySelectorAll(
-".modal.show"
-)
+.querySelectorAll(".modal.show")
 .forEach(
 function(modal){
 
-modal.classList.remove(
-"show"
-);
+modal.classList.remove("show");
 
 }
 );
@@ -5826,18 +6540,14 @@ if(productFromURL){
 setTimeout(
 function(){
 
-if(
-findProduct(productFromURL)
-){
+if(findProduct(productFromURL)){
 
-openDetails(
-productFromURL
-);
+openDetails(productFromURL);
 
 }
 
 },
-1000
+1200
 );
 
 }
@@ -5845,4 +6555,5 @@ productFromURL
 </script>
 
 </body>
+
 </html>
