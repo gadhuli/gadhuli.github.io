@@ -41,11 +41,6 @@ select{
   font-family:inherit;
 }
 
-
-/* ============================= */
-/* HEADER */
-/* ============================= */
-
 header{
   position:sticky;
   top:0;
@@ -115,27 +110,19 @@ header{
   background:#f8d9e5;
 }
 
-
-/* ============================= */
-/* HERO */
-/* ============================= */
-
 .hero{
   max-width:1200px;
   margin:18px auto;
   padding:38px 20px;
   text-align:center;
   border-radius:20px;
-
   background:linear-gradient(
     135deg,
     #5e0d32,
     #8f174d,
     #d52b72
   );
-
   color:#fff;
-
   box-shadow:
     0 6px 20px rgba(143,23,77,.25);
 }
@@ -148,11 +135,6 @@ header{
 .hero p{
   font-size:16px;
 }
-
-
-/* ============================= */
-/* CONTAINER */
-/* ============================= */
 
 .container{
   max-width:1200px;
@@ -173,11 +155,6 @@ header{
   font-weight:bold;
 }
 
-
-/* ============================= */
-/* CATEGORY */
-/* ============================= */
-
 .category-filter{
   display:flex;
   gap:8px;
@@ -193,19 +170,14 @@ header{
 
 .category-btn{
   flex-shrink:0;
-
   border:1px solid #e9a9c2;
   background:#fff;
   color:#8f174d;
-
   padding:10px 16px;
   border-radius:22px;
-
   cursor:pointer;
-
   font-weight:bold;
   font-size:13px;
-
   white-space:nowrap;
 }
 
@@ -219,23 +191,13 @@ header{
   border-color:#8f174d;
 }
 
-
-/* ============================= */
-/* SUBCATEGORY */
-/* ============================= */
-
 .subcategory-wrapper{
   display:none;
-
   background:#fff;
-
   border:1px solid #efb4cb;
   border-radius:13px;
-
   padding:10px;
-
   margin:3px 0 13px;
-
   box-shadow:
     0 3px 12px rgba(143,23,77,.08);
 }
@@ -264,20 +226,14 @@ header{
 
 .subcategory-btn{
   flex-shrink:0;
-
   border:1px solid #e9a9c2;
   background:#fff7fa;
   color:#8f174d;
-
   padding:8px 12px;
-
   border-radius:18px;
-
   cursor:pointer;
-
   font-size:12px;
   font-weight:bold;
-
   white-space:nowrap;
 }
 
@@ -298,111 +254,73 @@ header{
   font-weight:bold;
 }
 
-
-/* ============================= */
-/* PRODUCT GRID */
-/* ============================= */
-
 .product-grid{
   display:grid;
-
   grid-template-columns:
     repeat(auto-fill,minmax(210px,1fr));
-
   gap:16px;
 }
 
 .product-card{
   background:#fff;
-
   border:1px solid #efb4cb;
-
   border-radius:16px;
-
   overflow:hidden;
-
   box-shadow:
     0 4px 15px rgba(143,23,77,.12);
-
   transition:.2s;
 }
 
 .product-card:hover{
   transform:translateY(-3px);
-
   box-shadow:
     0 8px 22px rgba(143,23,77,.18);
 }
 
-
-/* ============================= */
-/* PRODUCT IMAGE */
-/* ============================= */
-
 .product-image-box{
   position:relative;
-
   width:100%;
   height:230px;
-
   background:#f9e4ec;
-
   overflow:hidden;
-
   touch-action:pan-y;
 }
 
 .product-image{
   width:100%;
   height:100%;
-
   object-fit:cover;
-
   display:block;
-
   cursor:pointer;
 }
 
 .image-counter{
   position:absolute;
-
   top:9px;
   right:9px;
-
   background:#8f174d;
   color:#fff;
-
   padding:4px 9px;
-
   border-radius:15px;
-
   font-size:12px;
 }
 
 .slider-dots{
   position:absolute;
-
   bottom:8px;
   left:0;
   right:0;
-
   display:flex;
-
   justify-content:center;
-
   gap:5px;
 }
 
 .slider-dot{
   width:7px;
   height:7px;
-
   border-radius:50%;
-
   background:#fff;
-
   opacity:.55;
-
   box-shadow:
     0 1px 4px rgba(0,0,0,.3);
 }
@@ -411,11 +329,6 @@ header{
   opacity:1;
   transform:scale(1.25);
 }
-
-
-/* ============================= */
-/* PRODUCT INFO */
-/* ============================= */
 
 .product-info{
   padding:13px;
@@ -437,78 +350,51 @@ header{
 
 .product-category{
   display:inline-block;
-
   background:#f8d9e5;
   color:#8f174d;
-
   padding:4px 8px;
-
   border-radius:20px;
-
   font-size:11px;
   font-weight:bold;
-
   margin-bottom:5px;
 }
 
 .product-subcategory{
   display:inline-block;
-
   background:#fff0f5;
   color:#6f103b;
-
   padding:4px 8px;
-
   border-radius:20px;
-
   font-size:11px;
   font-weight:bold;
-
   margin-bottom:5px;
   margin-left:3px;
 }
 
 .product-size{
   display:inline-block;
-
   background:#f3e4ec;
   color:#5e0d32;
-
   padding:4px 8px;
-
   border-radius:20px;
-
   font-size:11px;
   font-weight:bold;
-
   margin-bottom:10px;
   margin-left:3px;
 }
 
-
-/* ============================= */
-/* BUTTONS */
-/* ============================= */
-
 .card-actions{
   display:grid;
-
   grid-template-columns:1fr 1fr;
-
   gap:7px;
 }
 
 .btn{
   border:0;
-
   border-radius:9px;
-
   padding:10px 8px;
-
   cursor:pointer;
-
   font-weight:bold;
-
   font-size:13px;
 }
 
@@ -523,9 +409,7 @@ header{
 
 .btn-light{
   background:#f8d9e5;
-
   color:#8f174d;
-
   border:1px solid #e9a9c2;
 }
 
@@ -547,140 +431,84 @@ header{
   grid-column:1/-1;
 }
 
-
-/* ============================= */
-/* EMPTY / LOADING */
-/* ============================= */
-
 .empty{
   text-align:center;
-
   padding:50px 15px;
-
   color:#8f174d;
-
   grid-column:1/-1;
 }
 
 .loading{
   text-align:center;
-
   padding:40px;
-
   color:#8f174d;
-
   grid-column:1/-1;
 }
 
-
-/* ============================= */
-/* MODAL */
-/* ============================= */
-
 .modal{
   display:none;
-
   position:fixed;
-
   inset:0;
-
   z-index:2000;
-
   background:rgba(50,0,25,.72);
-
   padding:20px;
-
   overflow:auto;
 }
 
 .modal-box{
   background:#fff;
-
   max-width:600px;
-
   margin:30px auto;
-
   border-radius:18px;
-
   padding:20px;
-
   position:relative;
-
   border-top:5px solid #8f174d;
-
   box-shadow:
     0 10px 35px rgba(0,0,0,.25);
 }
 
 .close{
   position:absolute;
-
   top:10px;
   right:14px;
-
   border:0;
-
   background:#f8d9e5;
-
   color:#8f174d;
-
   width:35px;
   height:35px;
-
   border-radius:50%;
-
   cursor:pointer;
-
   font-size:20px;
 }
 
 .modal-title{
   color:#8f174d;
-
   margin-bottom:15px;
-
   padding-right:40px;
 }
 
-
-/* ============================= */
-/* DETAILS */
-/* ============================= */
-
 .detail-main-image{
   width:100%;
-
   height:320px;
-
   object-fit:contain;
-
   background:#fff7fa;
-
   border-radius:12px;
-
   border:1px solid #f0c1d2;
 }
 
 .thumbnails{
   display:flex;
-
   gap:7px;
-
   overflow-x:auto;
-
   margin-top:10px;
 }
 
 .thumb{
   width:65px;
   height:65px;
-
   object-fit:cover;
-
   border:2px solid transparent;
-
   border-radius:8px;
-
   cursor:pointer;
 }
 
@@ -688,22 +516,14 @@ header{
   border-color:#8f174d;
 }
 
-
-/* ============================= */
-/* FORM */
-/* ============================= */
-
 .form-group{
   margin-bottom:12px;
 }
 
 .form-group label{
   display:block;
-
   margin-bottom:5px;
-
   font-weight:bold;
-
   color:#6f103b;
 }
 
@@ -711,15 +531,10 @@ header{
 .form-group textarea,
 .form-group select{
   width:100%;
-
   padding:11px;
-
   border:1px solid #e3a5bd;
-
   border-radius:9px;
-
   outline:none;
-
   background:#fff;
 }
 
@@ -731,7 +546,6 @@ header{
 
 .form-group textarea{
   min-height:90px;
-
   resize:vertical;
 }
 
@@ -759,11 +573,6 @@ header{
   cursor:pointer;
 }
 
-
-/* ============================= */
-/* ACCOUNT */
-/* ============================= */
-
 .account-box{
   text-align:center;
 }
@@ -771,18 +580,13 @@ header{
 .account-avatar{
   width:70px;
   height:70px;
-
   margin:0 auto 12px;
-
   display:flex;
   align-items:center;
   justify-content:center;
-
   background:#f8d9e5;
   color:#8f174d;
-
   border-radius:50%;
-
   font-size:32px;
 }
 
@@ -794,41 +598,26 @@ header{
 
 .verified-badge{
   display:inline-block;
-
   background:#e6f8ed;
   color:#168544;
-
   padding:5px 9px;
-
   border-radius:15px;
-
   font-size:12px;
   font-weight:bold;
 }
 
-
-/* ============================= */
-/* CART */
-/* ============================= */
-
 .cart-item{
   display:flex;
-
   gap:10px;
-
   align-items:center;
-
   padding:10px 0;
-
   border-bottom:1px solid #f0cbd9;
 }
 
 .cart-item img{
   width:65px;
   height:65px;
-
   object-fit:cover;
-
   border-radius:8px;
 }
 
@@ -851,16 +640,11 @@ header{
 .quantity-box button{
   width:28px;
   height:28px;
-
   border:1px solid #e9a9c2;
-
   background:#f8d9e5;
   color:#8f174d;
-
   border-radius:7px;
-
   cursor:pointer;
-
   font-weight:bold;
 }
 
@@ -877,77 +661,101 @@ header{
 
 .total-box{
   margin-top:15px;
-
   padding:15px;
-
   background:#fff0f5;
-
   border-left:4px solid #8f174d;
-
   border-radius:10px;
 }
 
-
-/* ============================= */
-/* ORDER SIZE */
-/* ============================= */
-
 .order-size-box{
   margin:12px 0;
-
   padding:12px;
-
   background:#fff7fa;
-
   border:1px solid #efb4cb;
-
   border-radius:10px;
 }
 
 .order-size-box label{
   display:block;
-
   font-weight:bold;
-
   color:#6f103b;
-
   margin-bottom:6px;
 }
 
 .order-size-box select{
   width:100%;
-
   padding:10px;
-
   border:1px solid #e3a5bd;
-
   border-radius:8px;
-
   background:#fff;
 }
 
+/* ============================= */
+/* ORDER QUANTITY */
+/* ============================= */
 
-/* ============================= */
-/* SHARE */
-/* ============================= */
+.order-quantity-box{
+  margin:12px 0;
+  padding:12px;
+  background:#fff7fa;
+  border:1px solid #efb4cb;
+  border-radius:10px;
+}
+
+.order-quantity-title{
+  font-weight:bold;
+  color:#6f103b;
+  margin-bottom:8px;
+}
+
+.order-quantity-row{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.order-quantity-row button{
+  width:34px;
+  height:34px;
+  border:1px solid #e9a9c2;
+  background:#f8d9e5;
+  color:#8f174d;
+  border-radius:8px;
+  cursor:pointer;
+  font-size:18px;
+  font-weight:bold;
+}
+
+.order-quantity-row button:hover{
+  background:#d52b72;
+  color:#fff;
+}
+
+.order-quantity-number{
+  min-width:35px;
+  text-align:center;
+  font-size:17px;
+  font-weight:bold;
+  color:#8f174d;
+}
+
+.order-item-total{
+  margin-top:5px;
+  color:#8f174d;
+  font-weight:bold;
+}
 
 .share-buttons{
   display:grid;
-
   gap:10px;
-
   margin-top:15px;
 }
 
 .share-btn{
   padding:12px;
-
   border:0;
-
   border-radius:10px;
-
   cursor:pointer;
-
   font-weight:bold;
 }
 
@@ -965,11 +773,6 @@ header{
   background:#8f174d;
   color:#fff;
 }
-
-
-/* ============================= */
-/* MOBILE */
-/* ============================= */
 
 @media(max-width:600px){
 
@@ -1032,11 +835,6 @@ header{
 
 }
 
-
-/* ============================= */
-/* FOOTER */
-/* ============================= */
-
 footer{
   text-align:center;
   padding:25px 15px;
@@ -1048,13 +846,7 @@ footer{
 
 </head>
 
-
 <body>
-
-
-<!-- ============================= -->
-<!-- HEADER -->
-<!-- ============================= -->
 
 <header>
 
@@ -1108,11 +900,6 @@ footer{
 
 </header>
 
-
-<!-- ============================= -->
-<!-- HERO -->
-<!-- ============================= -->
-
 <section class="hero">
 
   <h1>Gadhuli</h1>
@@ -1123,22 +910,15 @@ footer{
 
 </section>
 
-
-<!-- ============================= -->
-<!-- PRODUCTS -->
-<!-- ============================= -->
-
 <main class="container">
 
   <h2 class="section-title">
     🛍️ Our Products
   </h2>
 
-
   <div class="category-title">
     📂 Categories
   </div>
-
 
   <div
     class="category-filter"
@@ -1227,7 +1007,6 @@ footer{
 
   </div>
 
-
   <div
     id="subcategoryWrapper"
     class="subcategory-wrapper"
@@ -1247,14 +1026,12 @@ footer{
 
   </div>
 
-
   <div
     id="selectedCategory"
     class="selected-category"
   >
     🏷️ Showing: All Categories
   </div>
-
 
   <div
     id="productGrid"
@@ -1269,10 +1046,7 @@ footer{
 
 </main>
 
-
-<!-- ============================= -->
 <!-- DETAILS MODAL -->
-<!-- ============================= -->
 
 <div
   class="modal"
@@ -1377,10 +1151,7 @@ footer{
 
 </div>
 
-
-<!-- ============================= -->
 <!-- CART MODAL -->
-<!-- ============================= -->
 
 <div
   class="modal"
@@ -1418,10 +1189,7 @@ footer{
 
 </div>
 
-
-<!-- ============================= -->
 <!-- WISHLIST MODAL -->
-<!-- ============================= -->
 
 <div
   class="modal"
@@ -1448,10 +1216,7 @@ footer{
 
 </div>
 
-
-<!-- ============================= -->
 <!-- ORDER MODAL -->
-<!-- ============================= -->
 
 <div
   class="modal"
@@ -1472,17 +1237,23 @@ footer{
       📦 Order
     </h2>
 
-    <div
-      id="orderProductInfo"
-    ></div>
+    <!-- PRODUCTS -->
 
-    <div
-      id="orderSizeArea"
-    ></div>
+    <div id="orderProductInfo"></div>
+
+    <!-- SIZE -->
+
+    <div id="orderSizeArea"></div>
+
+    <!-- QUANTITY -->
+
+    <div id="orderQuantityArea"></div>
+
+    <!-- CUSTOMER NAME -->
 
     <div class="form-group">
 
-      <label>নাম</label>
+      <label>👤 নাম</label>
 
       <input
         id="customerName"
@@ -1492,9 +1263,11 @@ footer{
 
     </div>
 
+    <!-- PHONE -->
+
     <div class="form-group">
 
-      <label>ফোন নম্বর</label>
+      <label>📱 ফোন নম্বর</label>
 
       <input
         id="customerPhone"
@@ -1504,20 +1277,53 @@ footer{
 
     </div>
 
+    <!-- DISTRICT -->
+
     <div class="form-group">
 
-      <label>ঠিকানা</label>
+      <label>📍 জেলা</label>
 
-      <textarea
-        id="customerAddress"
-        placeholder="সম্পূর্ণ ঠিকানা"
-      ></textarea>
+      <input
+        id="customerDistrict"
+        type="text"
+        placeholder="আপনার জেলার নাম"
+      >
 
     </div>
 
+    <!-- THANA -->
+
     <div class="form-group">
 
-      <label>Delivery Area</label>
+      <label>🏠 থানা/উপজেলা</label>
+
+      <input
+        id="customerThana"
+        type="text"
+        placeholder="থানা/উপজেলার নাম"
+      >
+
+    </div>
+
+    <!-- RECEIVE PLACE -->
+
+    <div class="form-group">
+
+      <label>📦 কোথায় রিসিভ করবেন?</label>
+
+      <input
+        id="customerReceivePlace"
+        type="text"
+        placeholder="যেমন: কলেজ গেট / বাসস্ট্যান্ড / দোকানের নাম"
+      >
+
+    </div>
+
+    <!-- DELIVERY -->
+
+    <div class="form-group">
+
+      <label>🚚 Delivery Area</label>
 
       <select
         id="deliveryArea"
@@ -1535,10 +1341,14 @@ footer{
 
     </div>
 
+    <!-- TOTAL -->
+
     <div
       id="orderTotal"
       class="total-box"
     ></div>
+
+    <!-- WHATSAPP -->
 
     <button
       class="btn btn-green full-btn"
@@ -1552,10 +1362,7 @@ footer{
 
 </div>
 
-
-<!-- ============================= -->
 <!-- SHARE MODAL -->
-<!-- ============================= -->
 
 <div
   class="modal"
@@ -1618,10 +1425,7 @@ footer{
 
 </div>
 
-
-<!-- ============================= -->
 <!-- AUTH MODAL -->
-<!-- ============================= -->
 
 <div
   class="modal"
@@ -1637,9 +1441,6 @@ footer{
     >
       ×
     </button>
-
-
-    <!-- LOGIN -->
 
     <div id="loginBox">
 
@@ -1708,9 +1509,6 @@ footer{
       </div>
 
     </div>
-
-
-    <!-- SIGNUP -->
 
     <div
       id="signupBox"
@@ -1797,9 +1595,6 @@ footer{
 
     </div>
 
-
-    <!-- FORGOT PASSWORD -->
-
     <div
       id="forgotBox"
       style="display:none;"
@@ -1850,10 +1645,7 @@ footer{
 
 </div>
 
-
-<!-- ============================= -->
 <!-- ACCOUNT MODAL -->
-<!-- ============================= -->
 
 <div
   class="modal"
@@ -1927,13 +1719,11 @@ footer{
 
 </div>
 
-
 <footer>
 
   © 2026 Gadhuli — Shop Smart. Shop Easy. 🌸
 
 </footer>
-
 
 <script>
 
@@ -2549,10 +2339,6 @@ function setCategory(category){
 }
 
 
-/* ================================================= */
-/* SUBCATEGORY FILTER */
-/* ================================================= */
-
 function setSubcategory(
   category,
   subcategory
@@ -2828,7 +2614,6 @@ function renderProducts(
 
             </div>
 
-
             <div class="product-info">
 
               <div class="product-name">
@@ -2870,7 +2655,6 @@ function renderProducts(
               <div class="price">
                 ৳${Number(product.price || 0)}
               </div>
-
 
               <div class="card-actions">
 
@@ -3466,12 +3250,6 @@ function getProductSizes(product){
   if(!product)
     return [];
 
-  /*
-    Admin যদি size field-এ
-    "S,M,L,XL" অথবা
-    "S, M, L, XL" রাখে
-  */
-
   if(product.size){
 
     const custom =
@@ -3731,6 +3509,10 @@ function openSizeChooser(
     [product];
 
   document.getElementById(
+    "orderQuantityArea"
+  ).innerHTML = "";
+
+  document.getElementById(
     "orderModal"
   ).style.display =
     "block";
@@ -3832,6 +3614,10 @@ function orderNow(
 }
 
 
+/* ================================================= */
+/* SINGLE PRODUCT ORDER */
+/* ================================================= */
+
 function startSingleProductOrder(
   product,
   size
@@ -3853,45 +3639,7 @@ function startSingleProductOrder(
 
   ];
 
-  document.getElementById(
-    "orderProductInfo"
-  ).innerHTML = `
-
-    <div class="cart-item">
-
-      <img
-        src="${escapeHTML(
-          getProductImage(product)
-        )}"
-      >
-
-      <div class="cart-info">
-
-        <b>
-          ${escapeHTML(product.name)}
-        </b>
-
-        ${
-          size
-          ?
-          `
-            <div class="small">
-              📏 Size: ${escapeHTML(size)}
-            </div>
-          `
-          :
-          ""
-        }
-
-        <div class="price">
-          ৳${Number(product.price || 0)}
-        </div>
-
-      </div>
-
-    </div>
-
-  `;
+  renderOrderProductInfo();
 
   document.getElementById(
     "orderSizeArea"
@@ -3905,6 +3653,203 @@ function startSingleProductOrder(
     "orderModal"
   ).style.display =
     "block";
+
+}
+
+
+/* ================================================= */
+/* ORDER PRODUCT DISPLAY */
+/* ================================================= */
+
+function renderOrderProductInfo(){
+
+  const info =
+    document.getElementById(
+      "orderProductInfo"
+    );
+
+  info.innerHTML =
+    currentOrderProducts
+      .map(
+        (item,index) => {
+
+          const product =
+            item.product;
+
+          const quantity =
+            Number(
+              item.quantity || 1
+            );
+
+          const lineTotal =
+            Number(
+              product.price || 0
+            ) *
+            quantity;
+
+          return `
+
+            <div class="cart-item">
+
+              <img
+                src="${escapeHTML(
+                  getProductImage(product)
+                )}"
+              >
+
+              <div class="cart-info">
+
+                <b>
+                  ${escapeHTML(
+                    product.name
+                  )}
+                </b>
+
+                ${
+                  item.size
+                  ?
+                  `
+                    <div class="small">
+                      📏 Size: ${escapeHTML(item.size)}
+                    </div>
+                  `
+                  :
+                  ""
+                }
+
+                <div class="small">
+                  Unit Price: ৳${Number(product.price || 0)}
+                </div>
+
+                <div class="order-item-total">
+                  Total: ৳${lineTotal}
+                </div>
+
+                <div class="order-quantity-box">
+
+                  <div class="order-quantity-title">
+                    🔢 Quantity
+                  </div>
+
+                  <div class="order-quantity-row">
+
+                    <button
+                      type="button"
+                      class="order-quantity-minus"
+                      data-index="${index}"
+                    >
+                      −
+                    </button>
+
+                    <span class="order-quantity-number">
+                      ${quantity}
+                    </span>
+
+                    <button
+                      type="button"
+                      class="order-quantity-plus"
+                      data-index="${index}"
+                    >
+                      +
+                    </button>
+
+                  </div>
+
+                </div>
+
+              </div>
+
+            </div>
+
+          `;
+
+        }
+      ).join("");
+
+  document
+    .querySelectorAll(
+      ".order-quantity-minus"
+    )
+    .forEach(btn => {
+
+      btn.addEventListener(
+        "click",
+        function(){
+
+          changeOrderQuantity(
+            Number(
+              this.dataset.index
+            ),
+            -1
+          );
+
+        }
+      );
+
+    });
+
+  document
+    .querySelectorAll(
+      ".order-quantity-plus"
+    )
+    .forEach(btn => {
+
+      btn.addEventListener(
+        "click",
+        function(){
+
+          changeOrderQuantity(
+            Number(
+              this.dataset.index
+            ),
+            1
+          );
+
+        }
+      );
+
+    });
+
+}
+
+
+/* ================================================= */
+/* ORDER QUANTITY */
+/* ================================================= */
+
+function changeOrderQuantity(
+  index,
+  amount
+){
+
+  if(
+    !currentOrderProducts[index]
+  )
+    return;
+
+  const item =
+    currentOrderProducts[index];
+
+  item.quantity =
+    Number(
+      item.quantity || 1
+    ) + amount;
+
+  /*
+    Minimum quantity 1.
+    তাই Order page থেকে
+    quantity 0 হবে না।
+  */
+
+  if(item.quantity < 1){
+
+    item.quantity = 1;
+
+  }
+
+  renderOrderProductInfo();
+
+  updateOrderTotal();
 
 }
 
@@ -4239,71 +4184,17 @@ function openOrderFromCart(){
 }
 
 
+/* ================================================= */
+/* CART ORDER MODAL */
+/* ================================================= */
+
 function showCartOrderModal(){
-
-  const info =
-    document.getElementById(
-      "orderProductInfo"
-    );
-
-  info.innerHTML =
-    currentOrderProducts
-      .map(
-        item => `
-
-          <div class="cart-item">
-
-            <img
-              src="${escapeHTML(
-                getProductImage(
-                  item.product
-                )
-              )}"
-            >
-
-            <div class="cart-info">
-
-              <b>
-                ${escapeHTML(
-                  item.product.name
-                )}
-              </b>
-
-              ${
-                item.size
-                ?
-                `
-                  <div class="small">
-                    📏 Size: ${escapeHTML(item.size)}
-                  </div>
-                `
-                :
-                ""
-              }
-
-              <div class="small">
-                Quantity: ${item.quantity}
-              </div>
-
-              <div class="price">
-                ৳${
-                  Number(
-                    item.product.price || 0
-                  ) *
-                  item.quantity
-                }
-              </div>
-
-            </div>
-
-          </div>
-
-        `
-      ).join("");
 
   document.getElementById(
     "orderSizeArea"
   ).innerHTML = "";
+
+  renderOrderProductInfo();
 
   fillCustomerInfo();
 
@@ -4361,8 +4252,9 @@ function updateOrderTotal(){
         item;
 
       const quantity =
-        item.quantity ||
-        1;
+        Number(
+          item.quantity || 1
+        );
 
       subtotal +=
         Number(
@@ -4398,7 +4290,7 @@ function updateOrderTotal(){
     <hr style="margin:8px 0">
 
     <strong>
-      Total: ৳${total}
+      Grand Total: ৳${total}
     </strong>
 
   `;
@@ -4425,9 +4317,19 @@ function sendWhatsAppOrder(){
           "customerPhone"
         ).value.trim();
 
-      const address =
+      const district =
         document.getElementById(
-          "customerAddress"
+          "customerDistrict"
+        ).value.trim();
+
+      const thana =
+        document.getElementById(
+          "customerThana"
+        ).value.trim();
+
+      const receivePlace =
+        document.getElementById(
+          "customerReceivePlace"
         ).value.trim();
 
       const delivery =
@@ -4440,11 +4342,13 @@ function sendWhatsAppOrder(){
       if(
         !name ||
         !phone ||
-        !address
+        !district ||
+        !thana ||
+        !receivePlace
       ){
 
         alert(
-          "সব তথ্য পূরণ করুন ❌"
+          "নাম, ফোন, জেলা, থানা/উপজেলা এবং কোথায় রিসিভ করবেন—সব তথ্য পূরণ করুন ❌"
         );
 
         return;
@@ -4507,9 +4411,23 @@ function sendWhatsAppOrder(){
         "%0A";
 
       message +=
-        "📍 Address: " +
+        "📍 District: " +
         encodeURIComponent(
-          address
+          district
+        ) +
+        "%0A";
+
+      message +=
+        "🏠 Thana/Upazila: " +
+        encodeURIComponent(
+          thana
+        ) +
+        "%0A";
+
+      message +=
+        "📦 Receive Place: " +
+        encodeURIComponent(
+          receivePlace
         ) +
         "%0A%0A";
 
@@ -4579,7 +4497,7 @@ function sendWhatsAppOrder(){
         delivery;
 
       message +=
-        "%0A💵 *Total: ৳" +
+        "%0A💵 *Grand Total: ৳" +
         total +
         "*";
 
@@ -5041,11 +4959,6 @@ function requireVerifiedUser(
     return;
 
   }
-
-  /*
-    Supabase email confirmation
-    হলে email_confirmed_at পাওয়া যায়।
-  */
 
   if(
     !currentUser.email_confirmed_at
@@ -5517,8 +5430,6 @@ function closeModal(id){
 
 function setupEvents(){
 
-  /* Search */
-
   document.getElementById(
     "searchInput"
   ).addEventListener(
@@ -5526,8 +5437,6 @@ function setupEvents(){
     searchProducts
   );
 
-
-  /* Header */
 
   document.getElementById(
     "accountHeaderBtn"
@@ -5551,8 +5460,6 @@ function setupEvents(){
   );
 
 
-  /* Checkout */
-
   document.getElementById(
     "checkoutBtn"
   ).addEventListener(
@@ -5560,8 +5467,6 @@ function setupEvents(){
     openOrderFromCart
   );
 
-
-  /* Delivery */
 
   document.getElementById(
     "deliveryArea"
@@ -5571,8 +5476,6 @@ function setupEvents(){
   );
 
 
-  /* WhatsApp */
-
   document.getElementById(
     "whatsappOrderBtn"
   ).addEventListener(
@@ -5580,8 +5483,6 @@ function setupEvents(){
     sendWhatsAppOrder
   );
 
-
-  /* Auth */
 
   document.getElementById(
     "loginBtn"
@@ -5611,8 +5512,6 @@ function setupEvents(){
     resetPassword
   );
 
-
-  /* Auth switching */
 
   document.getElementById(
     "showSignupBtn"
@@ -5654,8 +5553,6 @@ function setupEvents(){
       )
   );
 
-
-  /* Account */
 
   document.getElementById(
     "accountOrderBtn"
@@ -5701,8 +5598,6 @@ function setupEvents(){
   );
 
 
-  /* Close buttons */
-
   document
     .querySelectorAll(
       "[data-close]"
@@ -5722,8 +5617,6 @@ function setupEvents(){
 
     });
 
-
-  /* Share */
 
   document.getElementById(
     "shareWhatsAppBtn"
@@ -5746,8 +5639,6 @@ function setupEvents(){
     copyProductLink
   );
 
-
-  /* Outside modal click */
 
   window.addEventListener(
     "click",
