@@ -18,10 +18,13 @@
 <title>Gadhuli | Official Website</title>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
 <script src="supabase.js"></script>
 
 <style>
+
+/* =====================================================
+   GADHULI OLD DARK PINK / PURPLE THEME
+===================================================== */
 
 *{
   box-sizing:border-box;
@@ -31,7 +34,7 @@
 
 body{
   font-family:Arial,Helvetica,sans-serif;
-  background:#fff7fb;
+  background:#fff7fa;
   color:#222;
 }
 
@@ -46,22 +49,13 @@ button{
   cursor:pointer;
 }
 
-a{
-  text-decoration:none;
-  color:inherit;
-}
-
-/* =========================
-   HEADER
-========================= */
-
 header{
   position:sticky;
   top:0;
   z-index:1000;
   background:#fff;
-  border-bottom:2px solid #ffb6d9;
-  box-shadow:0 2px 12px rgba(255,20,147,.12);
+  border-bottom:2px solid #f0b3cc;
+  box-shadow:0 2px 12px rgba(143,23,77,.12);
 }
 
 .header-top{
@@ -86,15 +80,15 @@ header{
 .search-box input{
   width:100%;
   padding:12px 15px;
-  border:2px solid #ffb6d9;
+  border:2px solid #f0b3cc;
   border-radius:25px;
   outline:none;
-  background:#fff7fb;
+  background:#fff7fa;
   font-size:14px;
 }
 
 .search-box input:focus{
-  border-color:#ff1493;
+  border-color:#8f174d;
 }
 
 .header-actions{
@@ -103,9 +97,9 @@ header{
 }
 
 .icon-btn{
-  border:1px solid #ffb6d9;
+  border:1px solid #f0b3cc;
   background:#fff;
-  color:#e60073;
+  color:#8f174d;
   width:42px;
   height:42px;
   border-radius:50%;
@@ -113,22 +107,25 @@ header{
 }
 
 .icon-btn:hover{
-  background:#fff0f7;
+  background:#fff0f6;
 }
 
-/* =========================
-   HERO
-========================= */
+/* HERO */
 
 .hero{
   max-width:1200px;
   margin:15px auto;
   padding:28px 20px;
   border-radius:18px;
-  background:linear-gradient(135deg,#ff1493,#ff69b4);
+  background:linear-gradient(
+    135deg,
+    #8f174d,
+    #d52b72,
+    #bd3475
+  );
   color:white;
   text-align:center;
-  box-shadow:0 6px 20px rgba(255,20,147,.2);
+  box-shadow:0 6px 20px rgba(143,23,77,.2);
 }
 
 .hero h1{
@@ -140,9 +137,7 @@ header{
   font-size:15px;
 }
 
-/* =========================
-   CATEGORIES
-========================= */
+/* SECTION */
 
 .section{
   max-width:1200px;
@@ -151,10 +146,12 @@ header{
 }
 
 .section-title{
-  color:#e60073;
+  color:#8f174d;
   font-size:21px;
   margin-bottom:12px;
 }
+
+/* CATEGORY */
 
 .category-list,
 .subcategory-list{
@@ -171,16 +168,16 @@ header{
 
 .category-list::-webkit-scrollbar-thumb,
 .subcategory-list::-webkit-scrollbar-thumb{
-  background:#ff69b4;
+  background:#d52b72;
   border-radius:10px;
 }
 
 .cat-btn,
 .subcat-btn{
   white-space:nowrap;
-  border:1px solid #ffb6d9;
+  border:1px solid #f0b3cc;
   background:#fff;
-  color:#e60073;
+  color:#8f174d;
   padding:9px 14px;
   border-radius:20px;
 }
@@ -189,9 +186,9 @@ header{
 .subcat-btn.active,
 .cat-btn:hover,
 .subcat-btn:hover{
-  background:#ff1493;
+  background:#8f174d;
   color:white;
-  border-color:#ff1493;
+  border-color:#8f174d;
 }
 
 .subcategory-wrapper{
@@ -202,9 +199,7 @@ header{
   display:block;
 }
 
-/* =========================
-   PRODUCTS
-========================= */
+/* PRODUCTS */
 
 .product-grid{
   display:grid;
@@ -214,17 +209,17 @@ header{
 
 .product-card{
   background:#fff;
-  border:1px solid #ffd0e5;
+  border:1px solid #f0c4d6;
   border-radius:15px;
   overflow:hidden;
   position:relative;
-  box-shadow:0 3px 10px rgba(255,20,147,.08);
+  box-shadow:0 3px 10px rgba(143,23,77,.08);
   transition:.2s;
 }
 
 .product-card:hover{
   transform:translateY(-3px);
-  box-shadow:0 7px 18px rgba(255,20,147,.15);
+  box-shadow:0 7px 18px rgba(143,23,77,.15);
 }
 
 .product-image-wrap{
@@ -236,7 +231,7 @@ header{
   aspect-ratio:1/1;
   object-fit:cover;
   display:block;
-  background:#fff0f7;
+  background:#fff0f6;
 }
 
 .wish-small{
@@ -263,7 +258,7 @@ header{
 }
 
 .product-price{
-  color:#e60073;
+  color:#8f174d;
   font-size:20px;
   font-weight:bold;
   margin:8px 0;
@@ -288,18 +283,22 @@ header{
 }
 
 .btn-pink{
-  background:#ff1493;
+  background:#8f174d;
   color:white;
 }
 
+.btn-pink:hover{
+  background:#d52b72;
+}
+
 .btn-light{
-  background:#fff0f7;
-  color:#e60073;
-  border:1px solid #ffb6d9;
+  background:#fff0f6;
+  color:#8f174d;
+  border:1px solid #f0b3cc;
 }
 
 .btn-danger{
-  background:#e60073;
+  background:#a20f48;
   color:white;
 }
 
@@ -308,18 +307,16 @@ header{
   color:white;
 }
 
+.full-btn{
+  width:100%;
+}
+
 .btn:disabled{
   opacity:.6;
   cursor:not-allowed;
 }
 
-.full-btn{
-  width:100%;
-}
-
-/* =========================
-   MODAL
-========================= */
+/* MODAL */
 
 .modal{
   display:none;
@@ -360,20 +357,18 @@ header{
   height:35px;
   border:0;
   border-radius:50%;
-  background:#fff0f7;
-  color:#e60073;
+  background:#fff0f6;
+  color:#8f174d;
   font-size:20px;
 }
 
 .modal-title{
-  color:#e60073;
+  color:#8f174d;
   margin-bottom:15px;
   padding-right:40px;
 }
 
-/* =========================
-   FORMS
-========================= */
+/* FORMS */
 
 .form-group{
   margin-bottom:12px;
@@ -391,7 +386,7 @@ header{
 .form-group textarea{
   width:100%;
   padding:11px;
-  border:1px solid #ffb6d9;
+  border:1px solid #f0b3cc;
   border-radius:9px;
   outline:none;
 }
@@ -399,18 +394,16 @@ header{
 .form-group input:focus,
 .form-group select:focus,
 .form-group textarea:focus{
-  border-color:#ff1493;
+  border-color:#8f174d;
 }
 
-/* =========================
-   CART
-========================= */
+/* CART */
 
 .cart-item{
   display:flex;
   gap:10px;
   padding:10px 0;
-  border-bottom:1px solid #ffd0e5;
+  border-bottom:1px solid #f0c4d6;
 }
 
 .cart-item img{
@@ -434,9 +427,9 @@ header{
 .qty-control button{
   width:28px;
   height:28px;
-  border:1px solid #ffb6d9;
-  background:#fff0f7;
-  color:#e60073;
+  border:1px solid #f0b3cc;
+  background:#fff0f6;
+  color:#8f174d;
   border-radius:6px;
   font-weight:bold;
 }
@@ -444,7 +437,7 @@ header{
 .summary{
   margin-top:15px;
   padding:15px;
-  background:#fff0f7;
+  background:#fff0f6;
   border-radius:12px;
 }
 
@@ -452,19 +445,18 @@ header{
   display:flex;
   justify-content:space-between;
   margin:7px 0;
+  gap:10px;
 }
 
 .summary-total{
   font-size:21px;
   font-weight:bold;
-  color:#e60073;
-  border-top:1px solid #ffb6d9;
+  color:#8f174d;
+  border-top:1px solid #f0b3cc;
   padding-top:10px;
 }
 
-/* =========================
-   DETAILS
-========================= */
+/* DETAILS */
 
 .detail-images{
   display:flex;
@@ -478,7 +470,7 @@ header{
   height:250px;
   object-fit:cover;
   border-radius:12px;
-  border:1px solid #ffd0e5;
+  border:1px solid #f0c4d6;
 }
 
 .size-list{
@@ -490,30 +482,28 @@ header{
 
 .size-btn{
   padding:8px 13px;
-  border:1px solid #ffb6d9;
+  border:1px solid #f0b3cc;
   background:white;
-  color:#e60073;
+  color:#8f174d;
   border-radius:8px;
 }
 
-.size-btn.active{
-  background:#ff1493;
+.size-btn:hover{
+  background:#8f174d;
   color:white;
 }
 
-/* =========================
-   ACCOUNT
-========================= */
+/* ACCOUNT */
 
 .account-card{
-  background:#fff0f7;
+  background:#fff0f6;
   padding:15px;
   border-radius:12px;
   margin-bottom:15px;
 }
 
 .order-history-item{
-  border:1px solid #ffd0e5;
+  border:1px solid #f0c4d6;
   border-radius:12px;
   padding:12px;
   margin-bottom:10px;
@@ -524,34 +514,30 @@ header{
   display:inline-block;
   padding:5px 9px;
   border-radius:15px;
-  background:#fff0f7;
-  color:#e60073;
+  background:#fff0f6;
+  color:#8f174d;
   font-size:12px;
   font-weight:bold;
 }
 
-/* =========================
-   REVIEWS
-========================= */
+/* REVIEWS */
 
 .review-card{
-  border:1px solid #ffd0e5;
+  border:1px solid #f0c4d6;
   padding:12px;
   border-radius:12px;
   margin-top:10px;
 }
 
 .stars{
-  color:#ff1493;
+  color:#d52b72;
   letter-spacing:2px;
 }
 
-/* =========================
-   ADMIN
-========================= */
+/* ADMIN */
 
 .admin-order{
-  border:1px solid #ffb6d9;
+  border:1px solid #f0b3cc;
   border-radius:13px;
   padding:14px;
   margin-bottom:12px;
@@ -566,7 +552,7 @@ header{
 }
 
 .admin-items{
-  background:#fff7fb;
+  background:#fff7fa;
   padding:10px;
   border-radius:9px;
   margin:8px 0;
@@ -580,13 +566,11 @@ header{
 
 .admin-actions select{
   padding:8px;
-  border:1px solid #ffb6d9;
+  border:1px solid #f0b3cc;
   border-radius:8px;
 }
 
-/* =========================
-   EMPTY
-========================= */
+/* EMPTY */
 
 .empty{
   text-align:center;
@@ -594,13 +578,11 @@ header{
   color:#888;
 }
 
-/* =========================
-   FOOTER
-========================= */
+/* FOOTER */
 
 footer{
   margin-top:40px;
-  background:#e60073;
+  background:#8f174d;
   color:white;
   text-align:center;
   padding:25px 15px;
@@ -612,9 +594,7 @@ footer{
   margin-bottom:5px;
 }
 
-/* =========================
-   MOBILE
-========================= */
+/* MOBILE */
 
 @media(max-width:900px){
 
@@ -675,704 +655,768 @@ footer{
 
 </head>
 
+
 <body>
 
-<!-- =========================
+
+<!-- =====================================================
      HEADER
-========================= -->
+===================================================== -->
 
 <header>
 
-  <div class="header-top">
+<div class="header-top">
 
-    <img
-      src="logo.png"
-      class="logo"
-      alt="Gadhuli"
-    >
+<img
+  src="logo.png"
+  class="logo"
+  alt="Gadhuli"
+>
 
-    <div class="search-box">
+<div class="search-box">
 
-      <input
-        id="searchInput"
-        type="search"
-        placeholder="🔎 Product, Category বা Size খুঁজুন..."
-        oninput="handleSearch()"
-      >
+<input
+  id="searchInput"
+  type="search"
+  placeholder="🔎 Product, Category বা Size খুঁজুন..."
+  oninput="handleSearch()"
+>
 
-    </div>
+</div>
 
-    <div class="header-actions">
+<div class="header-actions">
 
-      <button
-        class="icon-btn"
-        onclick="openAccount()"
-        title="Account"
-      >👤</button>
+<button
+  class="icon-btn"
+  onclick="openAccount()"
+  title="Account"
+>
+👤
+</button>
 
-      <button
-        class="icon-btn"
-        onclick="openWishlist()"
-        title="Wishlist"
-      >❤️</button>
+<button
+  class="icon-btn"
+  onclick="openWishlist()"
+  title="Wishlist"
+>
+❤️
+</button>
 
-      <button
-        class="icon-btn"
-        onclick="openCart()"
-        title="Cart"
-      >🛒</button>
+<button
+  class="icon-btn"
+  onclick="openCart()"
+  title="Cart"
+>
+🛒
+</button>
 
-    </div>
+</div>
 
-  </div>
+</div>
 
 </header>
 
 
-<!-- =========================
+<!-- =====================================================
      HERO
-========================= -->
+===================================================== -->
 
 <section class="hero">
 
-  <h1>Gadhuli</h1>
+<h1>Gadhuli</h1>
 
-  <p>Shop Smart. Shop Easy. 🌸</p>
+<p>Shop Smart. Shop Easy.</p>
 
 </section>
 
 
-<!-- =========================
+<!-- =====================================================
      CATEGORY
-========================= -->
+===================================================== -->
 
 <section class="section">
 
-  <h2 class="section-title">🛍️ Categories</h2>
+<h2 class="section-title">
+🛍️ Categories
+</h2>
 
-  <div class="category-list" id="categoryList"></div>
+<div
+  class="category-list"
+  id="categoryList"
+></div>
 
 </section>
 
 
-<!-- =========================
+<!-- =====================================================
      SUBCATEGORY
-========================= -->
+===================================================== -->
 
-<section class="section subcategory-wrapper" id="subcategoryWrapper">
+<section
+  class="section subcategory-wrapper"
+  id="subcategoryWrapper"
+>
 
-  <h2 class="section-title">📂 Subcategory</h2>
+<h2 class="section-title">
+📂 Subcategory
+</h2>
 
-  <div
-    class="subcategory-list"
-    id="subcategoryList"
-  ></div>
+<div
+  class="subcategory-list"
+  id="subcategoryList"
+></div>
 
 </section>
 
 
-<!-- =========================
+<!-- =====================================================
      PRODUCTS
-========================= -->
+===================================================== -->
 
 <section class="section">
 
-  <h2
-    class="section-title"
-    id="productTitle"
-  >🛍️ All Products</h2>
+<h2
+  class="section-title"
+  id="productTitle"
+>
+🛍️ All Products
+</h2>
 
-  <div
-    class="product-grid"
-    id="productGrid"
-  >
+<div
+  class="product-grid"
+  id="productGrid"
+>
 
-    <div class="empty">
-      Loading Products...
-    </div>
+<div class="empty">
+Loading Products...
+</div>
 
-  </div>
+</div>
 
 </section>
 
 
-<!-- =========================
-     PRODUCT DETAIL MODAL
-========================= -->
+<!-- =====================================================
+     PRODUCT DETAILS
+===================================================== -->
 
 <div
   class="modal"
   id="detailModal"
 >
 
-  <div class="modal-box">
+<div class="modal-box">
 
-    <button
-      class="close"
-      onclick="closeModal('detailModal')"
-    >×</button>
+<button
+  class="close"
+  onclick="closeModal('detailModal')"
+>
+×
+</button>
 
-    <h2
-      class="modal-title"
-      id="detailTitle"
-    >Product</h2>
+<h2
+  class="modal-title"
+  id="detailTitle"
+>
+Product
+</h2>
 
-    <div
-      class="detail-images"
-      id="detailImages"
-    ></div>
+<div
+  class="detail-images"
+  id="detailImages"
+></div>
 
-    <div id="detailContent"></div>
+<div id="detailContent"></div>
 
-  </div>
+<div id="productReviews"></div>
+
+</div>
 
 </div>
 
 
-<!-- =========================
-     CART MODAL
-========================= -->
+<!-- =====================================================
+     CART
+===================================================== -->
 
 <div
   class="modal"
   id="cartModal"
 >
 
-  <div class="modal-box">
+<div class="modal-box">
 
-    <button
-      class="close"
-      onclick="closeModal('cartModal')"
-    >×</button>
+<button
+  class="close"
+  onclick="closeModal('cartModal')"
+>
+×
+</button>
 
-    <h2 class="modal-title">
-      🛒 My Cart
-    </h2>
+<h2 class="modal-title">
+🛒 My Cart
+</h2>
 
-    <div id="cartContent"></div>
+<div id="cartContent"></div>
 
-  </div>
+</div>
 
 </div>
 
 
-<!-- =========================
-     WISHLIST MODAL
-========================= -->
+<!-- =====================================================
+     WISHLIST
+===================================================== -->
 
 <div
   class="modal"
   id="wishlistModal"
 >
 
-  <div class="modal-box">
+<div class="modal-box">
 
-    <button
-      class="close"
-      onclick="closeModal('wishlistModal')"
-    >×</button>
+<button
+  class="close"
+  onclick="closeModal('wishlistModal')"
+>
+×
+</button>
 
-    <h2 class="modal-title">
-      ❤️ Wishlist
-    </h2>
+<h2 class="modal-title">
+❤️ Wishlist
+</h2>
 
-    <div id="wishlistContent"></div>
+<div id="wishlistContent"></div>
 
-  </div>
+</div>
 
 </div>
 
 
-<!-- =========================
-     ORDER MODAL
-========================= -->
+<!-- =====================================================
+     CHECKOUT
+===================================================== -->
 
 <div
   class="modal"
   id="orderModal"
 >
 
-  <div class="modal-box">
+<div class="modal-box">
 
-    <button
-      class="close"
-      onclick="closeModal('orderModal')"
-    >×</button>
+<button
+  class="close"
+  onclick="closeModal('orderModal')"
+>
+×
+</button>
 
-    <h2 class="modal-title">
-      📦 Checkout
-    </h2>
+<h2 class="modal-title">
+📦 Checkout
+</h2>
 
-    <div id="orderProducts"></div>
+<div id="orderProducts"></div>
 
-    <div class="form-group">
+<div class="form-group">
 
-      <label>নাম *</label>
+<label>
+নাম *
+</label>
 
-      <input
-        id="orderName"
-        type="text"
-        placeholder="আপনার নাম"
-      >
+<input
+  id="orderName"
+  type="text"
+  placeholder="আপনার নাম"
+>
 
-    </div>
+</div>
 
-    <div class="form-group">
+<div class="form-group">
 
-      <label>মোবাইল নম্বর *</label>
+<label>
+মোবাইল নম্বর *
+</label>
 
-      <input
-        id="orderPhone"
-        type="tel"
-        placeholder="01XXXXXXXXX"
-      >
+<input
+  id="orderPhone"
+  type="tel"
+  placeholder="01XXXXXXXXX"
+>
 
-    </div>
+</div>
 
-    <div class="form-group">
+<div class="form-group">
 
-      <label>District *</label>
+<label>
+District *
+</label>
 
-      <input
-        id="orderDistrict"
-        type="text"
-        placeholder="যেমন: Dhaka"
-      >
+<input
+  id="orderDistrict"
+  type="text"
+  placeholder="যেমন: Dhaka"
+>
 
-    </div>
+</div>
 
-    <div class="form-group">
+<div class="form-group">
 
-      <label>Thana / Upazila *</label>
+<label>
+Thana / Upazila *
+</label>
 
-      <input
-        id="orderThana"
-        type="text"
-        placeholder="যেমন: Tongi"
-      >
+<input
+  id="orderThana"
+  type="text"
+  placeholder="যেমন: Tongi"
+>
 
-    </div>
+</div>
 
-    <div class="form-group">
+<div class="form-group">
 
-      <label>Receive Place / Address *</label>
+<label>
+Receive Place / Address *
+</label>
 
-      <textarea
-        id="orderReceivePlace"
-        rows="3"
-        placeholder="সম্পূর্ণ ঠিকানা"
-      ></textarea>
+<textarea
+  id="orderReceivePlace"
+  rows="3"
+  placeholder="সম্পূর্ণ ঠিকানা"
+></textarea>
 
-    </div>
+</div>
 
-    <div class="form-group">
+<div class="form-group">
 
-      <label>Delivery Area</label>
+<label>
+Delivery Area
+</label>
 
-      <select
-        id="deliveryArea"
-        onchange="updateOrderTotal()"
-      >
+<select
+  id="deliveryArea"
+  onchange="updateOrderTotal()"
+>
 
-        <option value="Inside Dhaka">
-          Inside Dhaka — ৳60
-        </option>
+<option value="Inside Dhaka">
+Inside Dhaka — ৳60
+</option>
 
-        <option value="Outside Dhaka">
-          Outside Dhaka — ৳120
-        </option>
+<option value="Outside Dhaka">
+Outside Dhaka — ৳120
+</option>
 
-      </select>
+</select>
 
-    </div>
+</div>
 
-    <div class="form-group">
+<div class="form-group">
 
-      <label>Payment Method</label>
+<label>
+Payment Method
+</label>
 
-      <select
-        id="paymentMethod"
-        onchange="togglePaymentFields()"
-      >
+<select
+  id="paymentMethod"
+  onchange="togglePaymentFields()"
+>
 
-        <option value="Cash on Delivery">
-          Cash on Delivery
-        </option>
+<option value="Cash on Delivery">
+Cash on Delivery
+</option>
 
-        <option value="bKash">
-          bKash
-        </option>
+<option value="bKash">
+bKash
+</option>
 
-        <option value="Nagad">
-          Nagad
-        </option>
+<option value="Nagad">
+Nagad
+</option>
 
-      </select>
+</select>
 
-    </div>
+</div>
 
-    <div
-      id="manualPaymentFields"
-      style="display:none;"
-    >
+<div
+  id="manualPaymentFields"
+  style="display:none;"
+>
 
-      <div class="form-group">
+<div class="form-group">
 
-        <label>
-          Payment Number
-        </label>
+<label>
+Payment Number
+</label>
 
-        <input
-          id="paymentNumber"
-          type="text"
-          placeholder="যে নম্বর থেকে payment করেছেন"
-        >
+<input
+  id="paymentNumber"
+  type="text"
+  placeholder="যে নম্বর থেকে payment করেছেন"
+>
 
-      </div>
+</div>
 
-      <div class="form-group">
+<div class="form-group">
 
-        <label>
-          Transaction ID
-        </label>
+<label>
+Transaction ID
+</label>
 
-        <input
-          id="transactionId"
-          type="text"
-          placeholder="Transaction ID"
-        >
+<input
+  id="transactionId"
+  type="text"
+  placeholder="Transaction ID"
+>
 
-      </div>
+</div>
 
-    </div>
+</div>
 
-    <div class="summary">
+<div class="summary">
 
-      <div
-        id="orderSummary"
-      ></div>
+<div id="orderSummary"></div>
 
-    </div>
+</div>
 
-    <br>
+<br>
 
-    <button
-      id="placeOrderBtn"
-      class="btn btn-pink full-btn"
-      onclick="placeOrder()"
-    >
-      📦 Order Confirm করুন
-    </button>
+<button
+  id="placeOrderBtn"
+  class="btn btn-pink full-btn"
+  onclick="placeOrder()"
+>
+📦 Order Confirm করুন
+</button>
 
-  </div>
+</div>
 
 </div>
 
 
-<!-- =========================
-     AUTH MODAL
-========================= -->
+<!-- =====================================================
+     AUTH
+===================================================== -->
 
 <div
   class="modal"
   id="authModal"
 >
 
-  <div class="modal-box">
+<div class="modal-box">
 
-    <button
-      class="close"
-      onclick="closeModal('authModal')"
-    >×</button>
+<button
+  class="close"
+  onclick="closeModal('authModal')"
+>
+×
+</button>
 
-    <h2
-      class="modal-title"
-      id="authTitle"
-    >
-      🔐 Login
-    </h2>
+<h2
+  class="modal-title"
+  id="authTitle"
+>
+🔐 Login
+</h2>
 
-    <div
-      id="signupFields"
-      style="display:none;"
-    >
+<div
+  id="signupFields"
+  style="display:none;"
+>
 
-      <div class="form-group">
+<div class="form-group">
 
-        <label>Full Name</label>
+<label>
+Full Name
+</label>
 
-        <input
-          id="signupName"
-          type="text"
-          placeholder="আপনার নাম"
-        >
+<input
+  id="signupName"
+  type="text"
+  placeholder="আপনার নাম"
+>
 
-      </div>
+</div>
 
-      <div class="form-group">
+<div class="form-group">
 
-        <label>Phone</label>
+<label>
+Phone
+</label>
 
-        <input
-          id="signupPhone"
-          type="tel"
-          placeholder="01XXXXXXXXX"
-        >
+<input
+  id="signupPhone"
+  type="tel"
+  placeholder="01XXXXXXXXX"
+>
 
-      </div>
+</div>
 
-    </div>
+</div>
 
-    <div class="form-group">
+<div class="form-group">
 
-      <label>Email</label>
+<label>
+Email
+</label>
 
-      <input
-        id="authEmail"
-        type="email"
-        placeholder="Email"
-      >
+<input
+  id="authEmail"
+  type="email"
+  placeholder="Email"
+>
 
-    </div>
+</div>
 
-    <div class="form-group">
+<div class="form-group">
 
-      <label>Password</label>
+<label>
+Password
+</label>
 
-      <input
-        id="authPassword"
-        type="password"
-        placeholder="Password"
-      >
+<input
+  id="authPassword"
+  type="password"
+  placeholder="Password"
+>
 
-    </div>
+</div>
 
-    <button
-      id="authSubmit"
-      class="btn btn-pink full-btn"
-      onclick="submitAuth()"
-    >
-      Login
-    </button>
+<button
+  id="authSubmit"
+  class="btn btn-pink full-btn"
+  onclick="submitAuth()"
+>
+Login
+</button>
 
-    <br><br>
+<br><br>
 
-    <button
-      class="btn btn-light full-btn"
-      onclick="toggleAuthMode()"
-      id="authToggle"
-    >
-      New Account তৈরি করুন
-    </button>
+<button
+  class="btn btn-light full-btn"
+  onclick="toggleAuthMode()"
+  id="authToggle"
+>
+New Account তৈরি করুন
+</button>
 
-    <br>
+<br>
 
-    <button
-      class="btn btn-light full-btn"
-      onclick="resetPassword()"
-    >
-      Password Forgot?
-    </button>
+<button
+  class="btn btn-light full-btn"
+  onclick="resetPassword()"
+>
+Password Forgot?
+</button>
 
-  </div>
+</div>
 
 </div>
 
 
-<!-- =========================
-     ACCOUNT MODAL
-========================= -->
+<!-- =====================================================
+     ACCOUNT
+===================================================== -->
 
 <div
   class="modal"
   id="accountModal"
 >
 
-  <div class="modal-box modal-large">
+<div class="modal-box modal-large">
 
-    <button
-      class="close"
-      onclick="closeModal('accountModal')"
-    >×</button>
+<button
+  class="close"
+  onclick="closeModal('accountModal')"
+>
+×
+</button>
 
-    <h2 class="modal-title">
-      👤 My Account
-    </h2>
+<h2 class="modal-title">
+👤 My Account
+</h2>
 
-    <div id="accountContent"></div>
+<div id="accountContent"></div>
 
-  </div>
+</div>
 
 </div>
 
 
-<!-- =========================
-     REVIEW MODAL
-========================= -->
+<!-- =====================================================
+     REVIEW
+===================================================== -->
 
 <div
   class="modal"
   id="reviewModal"
 >
 
-  <div class="modal-box">
+<div class="modal-box">
 
-    <button
-      class="close"
-      onclick="closeModal('reviewModal')"
-    >×</button>
+<button
+  class="close"
+  onclick="closeModal('reviewModal')"
+>
+×
+</button>
 
-    <h2 class="modal-title">
-      ⭐ Write Review
-    </h2>
+<h2 class="modal-title">
+⭐ Write Review
+</h2>
 
-    <input
-      type="hidden"
-      id="reviewProductId"
-    >
+<input
+  type="hidden"
+  id="reviewProductId"
+>
 
-    <div class="form-group">
+<div class="form-group">
 
-      <label>Rating</label>
+<label>
+Rating
+</label>
 
-      <select id="reviewRating">
+<select id="reviewRating">
 
-        <option value="5">⭐⭐⭐⭐⭐</option>
-        <option value="4">⭐⭐⭐⭐</option>
-        <option value="3">⭐⭐⭐</option>
-        <option value="2">⭐⭐</option>
-        <option value="1">⭐</option>
+<option value="5">⭐⭐⭐⭐⭐</option>
+<option value="4">⭐⭐⭐⭐</option>
+<option value="3">⭐⭐⭐</option>
+<option value="2">⭐⭐</option>
+<option value="1">⭐</option>
 
-      </select>
+</select>
 
-    </div>
+</div>
 
-    <div class="form-group">
+<div class="form-group">
 
-      <label>Your Review</label>
+<label>
+Your Review
+</label>
 
-      <textarea
-        id="reviewText"
-        rows="5"
-        placeholder="Product সম্পর্কে আপনার মতামত লিখুন..."
-      ></textarea>
+<textarea
+  id="reviewText"
+  rows="5"
+  placeholder="Product সম্পর্কে আপনার মতামত লিখুন..."
+></textarea>
 
-    </div>
+</div>
 
-    <button
-      class="btn btn-pink full-btn"
-      onclick="submitReview()"
-    >
-      ⭐ Review Submit
-    </button>
+<button
+  class="btn btn-pink full-btn"
+  onclick="submitReview()"
+>
+⭐ Review Submit
+</button>
 
-  </div>
+</div>
 
 </div>
 
 
-<!-- =========================
-     RESELLER MODAL
-========================= -->
+<!-- =====================================================
+     RESELLER
+===================================================== -->
 
 <div
   class="modal"
   id="resellerModal"
 >
 
-  <div class="modal-box">
+<div class="modal-box">
 
-    <button
-      class="close"
-      onclick="closeModal('resellerModal')"
-    >×</button>
+<button
+  class="close"
+  onclick="closeModal('resellerModal')"
+>
+×
+</button>
 
-    <h2 class="modal-title">
-      🤝 Reseller Center
-    </h2>
+<h2 class="modal-title">
+🤝 Reseller Center
+</h2>
 
-    <div id="resellerContent"></div>
+<div id="resellerContent"></div>
 
-  </div>
+</div>
 
 </div>
 
 
-<!-- =========================
-     ADMIN MODAL
-========================= -->
+<!-- =====================================================
+     ADMIN
+===================================================== -->
 
 <div
   class="modal"
   id="adminModal"
 >
 
-  <div class="modal-box modal-large">
+<div class="modal-box modal-large">
 
-    <button
-      class="close"
-      onclick="closeModal('adminModal')"
-    >×</button>
+<button
+  class="close"
+  onclick="closeModal('adminModal')"
+>
+×
+</button>
 
-    <h2 class="modal-title">
-      👨‍💼 Admin Order Management
-    </h2>
+<h2 class="modal-title">
+👨‍💼 Admin Order Management
+</h2>
 
-    <div id="adminContent"></div>
+<div id="adminContent"></div>
 
-  </div>
+</div>
 
 </div>
 
 
-<!-- =========================
+<!-- =====================================================
      FOOTER
-========================= -->
+===================================================== -->
 
 <footer>
 
-  <div class="footer-title">
-    Gadhuli
-  </div>
+<div class="footer-title">
+Gadhuli
+</div>
 
-  <p>
-    Shop Smart. Shop Easy. 🌸
-  </p>
+<p>
+Shop Smart. Shop Easy.
+</p>
 
-  <br>
+<br>
 
-  <p>
-    © 2026 Gadhuli. All Rights Reserved.
-  </p>
+<p>
+© 2026 Gadhuli. All Rights Reserved.
+</p>
 
 </footer>
 
 
 <script>
 
-/* =========================================================
-   GADHULI MAIN JAVASCRIPT
-========================================================= */
+/* =====================================================
+   GLOBAL
+===================================================== */
 
 const db = window.gadhuliSupabase;
 
 let products = [];
 
 let wishlist =
-  JSON.parse(
-    localStorage.getItem("gadhuli_wishlist") || "[]"
-  );
+JSON.parse(
+  localStorage.getItem("gadhuli_wishlist") || "[]"
+);
 
 let cart =
-  JSON.parse(
-    localStorage.getItem("gadhuli_cart") || "[]"
-  );
+JSON.parse(
+  localStorage.getItem("gadhuli_cart") || "[]"
+);
 
 let currentOrderProducts = [];
 
 let currentDetailProduct = null;
-
-let currentShareProduct = null;
 
 let currentCategory = "";
 
@@ -1383,4095 +1427,4420 @@ let currentUser = null;
 let authMode = "login";
 
 
-/* =========================================================
+/* =====================================================
    CATEGORIES
-========================================================= */
+===================================================== */
 
 const categories = {
 
-  "Men's Fashion":[
-    "All",
-    "T-Shirt",
-    "Polo T-Shirt",
-    "Shirt",
-    "Panjabi",
-    "Pants",
-    "Jeans",
-    "Shorts",
-    "Hoodie & Sweatshirt",
-    "Jacket"
-  ],
+"Men's Fashion":[
+"All",
+"T-Shirt",
+"Polo T-Shirt",
+"Shirt",
+"Panjabi",
+"Pants",
+"Jeans",
+"Shorts",
+"Hoodie & Sweatshirt",
+"Jacket"
+],
 
-  "Women's Fashion":[
-    "All",
-    "Saree",
-    "Three Piece",
-    "Kurti",
-    "Tops",
-    "T-Shirt",
-    "Gown",
-    "Hijab",
-    "Abaya",
-    "Women's Pants"
-  ],
+"Women's Fashion":[
+"All",
+"Saree",
+"Three Piece",
+"Kurti",
+"Tops",
+"T-Shirt",
+"Gown",
+"Hijab",
+"Abaya",
+"Women's Pants"
+],
 
-  "Kids & Baby":[
-    "All",
-    "Boys Clothing",
-    "Girls Clothing",
-    "Baby Clothing",
-    "Baby Accessories",
-    "Toys"
-  ],
+"Kids & Baby":[
+"All",
+"Boys Clothing",
+"Girls Clothing",
+"Baby Clothing",
+"Baby Accessories",
+"Toys"
+],
 
-  "Shoes":[
-    "All",
-    "Men's Shoes",
-    "Women's Shoes",
-    "Kids Shoes",
-    "Sneakers",
-    "Sandals",
-    "Slippers"
-  ],
+"Shoes":[
+"All",
+"Men's Shoes",
+"Women's Shoes",
+"Kids Shoes",
+"Sneakers",
+"Sandals",
+"Slippers"
+],
 
-  "Bags & Accessories":[
-    "All",
-    "Backpacks",
-    "Handbags",
-    "Wallets",
-    "Belts",
-    "Caps",
-    "Sunglasses",
-    "Fashion Accessories"
-  ],
+"Bags & Accessories":[
+"All",
+"Backpacks",
+"Handbags",
+"Wallets",
+"Belts",
+"Caps",
+"Sunglasses",
+"Fashion Accessories"
+],
 
-  "Watches":[
-    "All",
-    "Men's Watches",
-    "Women's Watches",
-    "Smart Watches",
-    "Kids Watches"
-  ],
+"Watches":[
+"All",
+"Men's Watches",
+"Women's Watches",
+"Smart Watches",
+"Kids Watches"
+],
 
-  "Electronics":[
-    "All",
-    "Mobile Accessories",
-    "Earphones & Headphones",
-    "Speakers",
-    "Chargers",
-    "Power Banks",
-    "Smart Gadgets"
-  ],
+"Electronics":[
+"All",
+"Mobile Accessories",
+"Earphones & Headphones",
+"Speakers",
+"Chargers",
+"Power Banks",
+"Smart Gadgets"
+],
 
-  "Beauty & Personal Care":[
-    "All",
-    "Skincare",
-    "Hair Care",
-    "Makeup",
-    "Perfume",
-    "Personal Care"
-  ],
+"Beauty & Personal Care":[
+"All",
+"Skincare",
+"Hair Care",
+"Makeup",
+"Perfume",
+"Personal Care"
+],
 
-  "Home & Living":[
-    "All",
-    "Home Decor",
-    "Bedding",
-    "Storage",
-    "Lighting",
-    "Kitchen & Dining"
-  ]
+"Home & Living":[
+"All",
+"Home Decor",
+"Bedding",
+"Storage",
+"Lighting",
+"Kitchen & Dining"
+]
 
 };
 
 
-/* =========================================================
+/* =====================================================
    SIZE DATA
-========================================================= */
+===================================================== */
 
 const sizeData = {
 
-  "T-Shirt":[
-    "S","M","L","XL","2XL","4XL"
-  ],
+"T-Shirt":["S","M","L","XL","2XL","4XL"],
 
-  "Polo T-Shirt":[
-    "S","M","L","XL","2XL","4XL"
-  ],
+"Polo T-Shirt":["S","M","L","XL","2XL","4XL"],
 
-  "Shirt":[
-    "S","M","L","XL","2XL","4XL"
-  ],
+"Shirt":["S","M","L","XL","2XL","4XL"],
 
-  "Hoodie & Sweatshirt":[
-    "S","M","L","XL","2XL","4XL"
-  ],
+"Hoodie & Sweatshirt":["S","M","L","XL","2XL","4XL"],
 
-  "Jacket":[
-    "S","M","L","XL","2XL","4XL"
-  ],
+"Jacket":["S","M","L","XL","2XL","4XL"],
 
-  "Panjabi":[
-    "28","30","32","34","36","38",
-    "40","42","44","46","48"
-  ],
+"Panjabi":[
+"28","30","32","34","36","38",
+"40","42","44","46","48"
+],
 
-  "Pants":[
-    "28","30","32","34","36","38","40"
-  ],
+"Pants":["28","30","32","34","36","38","40"],
 
-  "Jeans":[
-    "28","30","32","34","36","38","40"
-  ],
+"Jeans":["28","30","32","34","36","38","40"],
 
-  "Shorts":[
-    "28","30","32","34","36","38","40"
-  ],
+"Shorts":["28","30","32","34","36","38","40"],
 
-  "Saree":[
-    "Free Size"
-  ],
+"Saree":["Free Size"],
 
-  "Hijab":[
-    "Free Size"
-  ],
+"Hijab":["Free Size"],
 
-  "Three Piece":[
-    "S","M","L","XL","2XL"
-  ],
+"Three Piece":["S","M","L","XL","2XL"],
 
-  "Kurti":[
-    "S","M","L","XL","2XL"
-  ],
+"Kurti":["S","M","L","XL","2XL"],
 
-  "Tops":[
-    "S","M","L","XL","2XL"
-  ],
+"Tops":["S","M","L","XL","2XL"],
 
-  "Gown":[
-    "S","M","L","XL","2XL"
-  ],
+"Gown":["S","M","L","XL","2XL"],
 
-  "Abaya":[
-    "S","M","L","XL","2XL"
-  ],
+"Abaya":["S","M","L","XL","2XL"],
 
-  "Women's Pants":[
-    "28","30","32","34","36","38"
-  ]
+"Women's Pants":["28","30","32","34","36","38"]
 
 };
 
 
-/* =========================================================
+/* =====================================================
    INIT
-========================================================= */
+===================================================== */
 
 document.addEventListener(
-  "DOMContentLoaded",
-  async function(){
+"DOMContentLoaded",
+async function(){
 
-    normalizeCart();
+normalizeCart();
 
-    renderCategories();
+renderCategories();
 
-    await loadProducts();
+renderSubcategories();
 
-    await loadAuth();
+await loadAuth();
 
-  }
+await loadProducts();
+
+}
 );
 
 
-/* =========================================================
-   CATEGORY RENDER
-========================================================= */
+/* =====================================================
+   CATEGORY
+===================================================== */
 
 function renderCategories(){
 
-  const box =
-    document.getElementById("categoryList");
+const box =
+document.getElementById("categoryList");
 
-  box.innerHTML = "";
-
-  const allBtn =
-    document.createElement("button");
-
-  allBtn.className =
-    "cat-btn " +
-    (currentCategory === "" ? "active" : "");
-
-  allBtn.textContent = "All";
-
-  allBtn.onclick = function(){
-
-    currentCategory = "";
-
-    currentSubcategory = "";
-
-    renderCategories();
-
-    renderSubcategories();
-
-    renderProducts();
-
-  };
-
-  box.appendChild(allBtn);
+box.innerHTML = "";
 
 
-  Object.keys(categories).forEach(function(cat){
+const all =
+document.createElement("button");
 
-    const btn =
-      document.createElement("button");
+all.className =
+"cat-btn " +
+(
+currentCategory === ""
+? "active"
+: ""
+);
 
-    btn.className =
-      "cat-btn " +
-      (currentCategory === cat ? "active" : "");
+all.textContent = "All";
 
-    btn.textContent = cat;
+all.onclick = function(){
 
-    btn.onclick = function(){
+currentCategory = "";
 
-      currentCategory = cat;
+currentSubcategory = "";
 
-      currentSubcategory = "";
+renderCategories();
 
-      renderCategories();
+renderSubcategories();
 
-      renderSubcategories();
+renderProducts();
 
-      renderProducts();
+};
 
-    };
+box.appendChild(all);
 
-    box.appendChild(btn);
 
-  });
+Object.keys(categories).forEach(
+function(category){
+
+const btn =
+document.createElement("button");
+
+btn.className =
+"cat-btn " +
+(
+currentCategory === category
+? "active"
+: ""
+);
+
+btn.textContent = category;
+
+btn.onclick = function(){
+
+currentCategory = category;
+
+currentSubcategory = "";
+
+renderCategories();
+
+renderSubcategories();
+
+renderProducts();
+
+};
+
+box.appendChild(btn);
+
+}
+);
 
 }
 
 
-/* =========================================================
-   SUBCATEGORY RENDER
-========================================================= */
+/* =====================================================
+   SUBCATEGORY
+===================================================== */
 
 function renderSubcategories(){
 
-  const wrapper =
-    document.getElementById(
-      "subcategoryWrapper"
-    );
+const wrapper =
+document.getElementById(
+"subcategoryWrapper"
+);
 
-  const box =
-    document.getElementById(
-      "subcategoryList"
-    );
+const box =
+document.getElementById(
+"subcategoryList"
+);
 
-  box.innerHTML = "";
+box.innerHTML = "";
 
-  if(!currentCategory){
 
-    wrapper.classList.remove("show");
+if(!currentCategory){
 
-    return;
+wrapper.classList.remove("show");
 
-  }
-
-  wrapper.classList.add("show");
-
-  categories[currentCategory].forEach(function(sub){
-
-    const btn =
-      document.createElement("button");
-
-    btn.className =
-      "subcat-btn " +
-      (
-        currentSubcategory === sub
-        || (
-          sub === "All"
-          && currentSubcategory === ""
-        )
-        ? "active"
-        : ""
-      );
-
-    btn.textContent = sub;
-
-    btn.onclick = function(){
-
-      currentSubcategory =
-        sub === "All" ? "" : sub;
-
-      renderSubcategories();
-
-      renderProducts();
-
-    };
-
-    box.appendChild(btn);
-
-  });
+return;
 
 }
 
 
-/* =========================================================
+wrapper.classList.add("show");
+
+
+categories[currentCategory]
+.forEach(
+function(sub){
+
+const btn =
+document.createElement("button");
+
+btn.className =
+"subcat-btn " +
+(
+(
+sub === "All"
+&&
+currentSubcategory === ""
+)
+||
+currentSubcategory === sub
+? "active"
+: ""
+);
+
+btn.textContent = sub;
+
+btn.onclick = function(){
+
+currentSubcategory =
+sub === "All"
+? ""
+: sub;
+
+renderSubcategories();
+
+renderProducts();
+
+};
+
+box.appendChild(btn);
+
+}
+);
+
+}
+
+
+/* =====================================================
    LOAD PRODUCTS
-========================================================= */
+===================================================== */
 
 async function loadProducts(){
 
-  const grid =
-    document.getElementById(
-      "productGrid"
-    );
+const grid =
+document.getElementById(
+"productGrid"
+);
 
-  grid.innerHTML =
-    `<div class="empty">Loading Products...</div>`;
+grid.innerHTML =
+`<div class="empty">
+Loading Products...
+</div>`;
 
-  if(!db){
 
-    grid.innerHTML =
-      `<div class="empty">
-        Supabase connection পাওয়া যায়নি।
-      </div>`;
+if(!db){
 
-    return;
+grid.innerHTML =
+`<div class="empty">
+Supabase connection পাওয়া যায়নি।
+</div>`;
 
-  }
-
-  const result =
-    await db
-      .from("products")
-      .select("*")
-      .order("id",{ascending:false});
-
-  if(result.error){
-
-    console.error(result.error);
-
-    grid.innerHTML =
-      `<div class="empty">
-        Product load হয়নি ❌<br>
-        ${escapeHtml(result.error.message)}
-      </div>`;
-
-    return;
-
-  }
-
-  products =
-    (result.data || []).map(function(p){
-
-      return {
-
-        ...p,
-
-        category:
-          p.category || "",
-
-        subcategory:
-          p.subcategory || "",
-
-        sizes:
-          getProductSizes(p)
-
-      };
-
-    });
-
-  normalizeCart();
-
-  renderProducts();
+return;
 
 }
 
 
-/* =========================================================
-   GET PRODUCT SIZES
-========================================================= */
+const result =
+await db
+.from("products")
+.select("*")
+.order("id",{ascending:false});
+
+
+if(result.error){
+
+console.error(result.error);
+
+grid.innerHTML =
+`<div class="empty">
+Product load হয়নি ❌<br>
+${escapeHtml(result.error.message)}
+</div>`;
+
+return;
+
+}
+
+
+products =
+(result.data || [])
+.map(
+function(product){
+
+return {
+
+...product,
+
+category:
+product.category || "",
+
+subcategory:
+product.subcategory || "",
+
+sizes:
+getProductSizes(product)
+
+};
+
+}
+);
+
+
+renderProducts();
+
+}
+
+
+/* =====================================================
+   PRODUCT SIZES
+===================================================== */
 
 function getProductSizes(product){
 
-  if(Array.isArray(product.sizes)){
+if(Array.isArray(product.sizes)){
 
-    return product.sizes;
-
-  }
-
-  if(typeof product.sizes === "string"){
-
-    try{
-
-      const parsed =
-        JSON.parse(product.sizes);
-
-      if(Array.isArray(parsed)){
-
-        return parsed;
-
-      }
-
-    }catch(e){}
-
-  }
-
-  if(product.size){
-
-    if(Array.isArray(product.size)){
-
-      return product.size;
-
-    }
-
-    if(typeof product.size === "string"){
-
-      try{
-
-        const parsed =
-          JSON.parse(product.size);
-
-        if(Array.isArray(parsed)){
-
-          return parsed;
-
-        }
-
-      }catch(e){}
-
-    }
-
-  }
-
-  if(
-    product.subcategory &&
-    sizeData[product.subcategory]
-  ){
-
-    return sizeData[
-      product.subcategory
-    ];
-
-  }
-
-  return [];
+return product.sizes;
 
 }
 
 
-/* =========================================================
+if(typeof product.sizes === "string"){
+
+try{
+
+const parsed =
+JSON.parse(product.sizes);
+
+if(Array.isArray(parsed)){
+
+return parsed;
+
+}
+
+}catch(e){}
+
+}
+
+
+if(Array.isArray(product.size)){
+
+return product.size;
+
+}
+
+
+if(typeof product.size === "string"){
+
+try{
+
+const parsed =
+JSON.parse(product.size);
+
+if(Array.isArray(parsed)){
+
+return parsed;
+
+}
+
+}catch(e){}
+
+}
+
+
+if(
+product.subcategory
+&&
+sizeData[product.subcategory]
+){
+
+return sizeData[
+product.subcategory
+];
+
+}
+
+
+return [];
+
+}
+
+
+/* =====================================================
    PRODUCT IMAGES
-========================================================= */
+===================================================== */
 
 function getProductImages(product){
 
-  let value =
-    product.images;
+const value =
+product.images;
 
-  if(Array.isArray(value)){
 
-    return value.filter(Boolean);
+if(Array.isArray(value)){
 
-  }
-
-  if(typeof value === "string"){
-
-    try{
-
-      const parsed =
-        JSON.parse(value);
-
-      if(Array.isArray(parsed)){
-
-        return parsed.filter(Boolean);
-
-      }
-
-      if(
-        parsed &&
-        Array.isArray(parsed.urls)
-      ){
-
-        return parsed.urls.filter(Boolean);
-
-      }
-
-    }catch(e){}
-
-    if(value.trim()){
-
-      return [value.trim()];
-
-    }
-
-  }
-
-  if(
-    value &&
-    typeof value === "object" &&
-    Array.isArray(value.urls)
-  ){
-
-    return value.urls.filter(Boolean);
-
-  }
-
-  if(product.image){
-
-    return [product.image];
-
-  }
-
-  return [
-    "https://via.placeholder.com/500x500?text=Gadhuli"
-  ];
+return value.filter(Boolean);
 
 }
 
 
-/* =========================================================
+if(typeof value === "string"){
+
+try{
+
+const parsed =
+JSON.parse(value);
+
+if(Array.isArray(parsed)){
+
+return parsed.filter(Boolean);
+
+}
+
+if(
+parsed
+&&
+Array.isArray(parsed.urls)
+){
+
+return parsed.urls.filter(Boolean);
+
+}
+
+}catch(e){}
+
+
+if(value.trim()){
+
+return [value.trim()];
+
+}
+
+}
+
+
+if(
+value
+&&
+typeof value === "object"
+&&
+Array.isArray(value.urls)
+){
+
+return value.urls.filter(Boolean);
+
+}
+
+
+if(product.image){
+
+return [product.image];
+
+}
+
+
+return [
+"https://via.placeholder.com/500x500?text=Gadhuli"
+];
+
+}
+
+
+/* =====================================================
    RENDER PRODUCTS
-========================================================= */
+===================================================== */
 
 function renderProducts(){
 
-  const grid =
-    document.getElementById(
-      "productGrid"
-    );
+const grid =
+document.getElementById(
+"productGrid"
+);
 
-  const title =
-    document.getElementById(
-      "productTitle"
-    );
+const title =
+document.getElementById(
+"productTitle"
+);
 
-  const search =
-    (
-      document.getElementById(
-        "searchInput"
-      ).value || ""
-    )
-    .trim()
-    .toLowerCase();
-
-
-  let filtered =
-    products.filter(function(product){
-
-      const categoryMatch =
-        !currentCategory
-        ||
-        product.category === currentCategory;
-
-      const subMatch =
-        !currentSubcategory
-        ||
-        product.subcategory === currentSubcategory;
-
-      const searchable = [
-
-        product.name,
-
-        product.category,
-
-        product.subcategory,
-
-        ...(product.sizes || [])
-
-      ]
-      .join(" ")
-      .toLowerCase();
-
-      const searchMatch =
-        !search ||
-        searchable.includes(search);
-
-      return (
-        categoryMatch &&
-        subMatch &&
-        searchMatch
-      );
-
-    });
+const search =
+(
+document.getElementById(
+"searchInput"
+).value || ""
+)
+.trim()
+.toLowerCase();
 
 
-  if(currentCategory){
+const filtered =
+products.filter(
+function(product){
 
-    title.textContent =
-      currentSubcategory
-      ? "🛍️ " + currentSubcategory
-      : "🛍️ " + currentCategory;
-
-  }else{
-
-    title.textContent =
-      "🛍️ All Products";
-
-  }
+const categoryMatch =
+!currentCategory
+||
+product.category ===
+currentCategory;
 
 
-  if(!filtered.length){
-
-    grid.innerHTML =
-      `<div class="empty">
-        কোনো Product পাওয়া যায়নি 😔
-      </div>`;
-
-    return;
-
-  }
+const subMatch =
+!currentSubcategory
+||
+product.subcategory ===
+currentSubcategory;
 
 
-  grid.innerHTML = "";
+const searchable = [
+
+product.name,
+
+product.category,
+
+product.subcategory,
+
+...(product.sizes || [])
+
+]
+.join(" ")
+.toLowerCase();
 
 
-  filtered.forEach(function(product){
-
-    const card =
-      document.createElement("div");
-
-    card.className =
-      "product-card";
+const searchMatch =
+!search
+||
+searchable.includes(search);
 
 
-    const images =
-      getProductImages(product);
+return (
+categoryMatch
+&&
+subMatch
+&&
+searchMatch
+);
 
-    const image =
-      images[0];
+}
+);
 
 
-    const wished =
-      isWishlisted(product.id);
+if(currentCategory){
 
+title.textContent =
+currentSubcategory
+?
+"🛍️ " + currentSubcategory
+:
+"🛍️ " + currentCategory;
 
-    card.innerHTML = `
+}else{
 
-      <div class="product-image-wrap">
-
-        <img
-          class="product-image"
-          src="${escapeAttr(image)}"
-          alt="${escapeAttr(product.name || "Gadhuli Product")}"
-          onerror="this.src='https://via.placeholder.com/500x500?text=Gadhuli'"
-        >
-
-        <button
-          class="wish-small"
-          onclick="event.stopPropagation();toggleWishlist('${escapeAttr(product.id)}')"
-        >
-          ${wished ? "❤️" : "🤍"}
-        </button>
-
-      </div>
-
-      <div class="product-info">
-
-        <div class="product-name">
-          ${escapeHtml(product.name || "Product")}
-        </div>
-
-        <div class="product-price">
-          ৳${formatMoney(product.price)}
-        </div>
-
-        <div class="product-meta">
-
-          ${
-            product.category
-            ? escapeHtml(product.category)
-            : ""
-          }
-
-          ${
-            product.subcategory
-            ? " • " +
-              escapeHtml(product.subcategory)
-            : ""
-          }
-
-        </div>
-
-        <div class="product-buttons">
-
-          <button
-            class="btn btn-light"
-            onclick="openDetails('${escapeAttr(product.id)}')"
-          >
-            👁️ Details
-          </button>
-
-          <button
-            class="btn btn-pink"
-            onclick="quickAdd('${escapeAttr(product.id)}')"
-          >
-            🛒 Add
-          </button>
-
-        </div>
-
-      </div>
-
-    `;
-
-    grid.appendChild(card);
-
-  });
+title.textContent =
+"🛍️ All Products";
 
 }
 
 
-/* =========================================================
+if(!filtered.length){
+
+grid.innerHTML =
+`<div class="empty">
+কোনো Product পাওয়া যায়নি 😔
+</div>`;
+
+return;
+
+}
+
+
+grid.innerHTML = "";
+
+
+filtered.forEach(
+function(product){
+
+const card =
+document.createElement("div");
+
+card.className =
+"product-card";
+
+
+const image =
+getProductImages(product)[0];
+
+
+card.innerHTML = `
+
+<div class="product-image-wrap">
+
+<img
+class="product-image"
+src="${escapeAttr(image)}"
+alt="${escapeAttr(product.name || "Gadhuli Product")}"
+onerror="this.src='https://via.placeholder.com/500x500?text=Gadhuli'"
+>
+
+<button
+class="wish-small"
+data-id="${escapeAttr(product.id)}"
+>
+${
+isWishlisted(product.id)
+? "❤️"
+: "🤍"
+}
+</button>
+
+</div>
+
+<div class="product-info">
+
+<div class="product-name">
+${escapeHtml(product.name || "Product")}
+</div>
+
+<div class="product-price">
+৳${formatMoney(product.price)}
+</div>
+
+<div class="product-meta">
+
+${escapeHtml(product.category || "")}
+
+${
+product.subcategory
+?
+" • " +
+escapeHtml(product.subcategory)
+:
+""
+}
+
+</div>
+
+<div class="product-buttons">
+
+<button
+class="btn btn-light details-btn"
+>
+👁️ Details
+</button>
+
+<button
+class="btn btn-pink add-btn"
+>
+🛒 Add
+</button>
+
+</div>
+
+</div>
+`;
+
+
+card
+.querySelector(".wish-small")
+.addEventListener(
+"click",
+function(){
+
+toggleWishlist(
+product.id
+);
+
+}
+);
+
+
+card
+.querySelector(".details-btn")
+.addEventListener(
+"click",
+function(){
+
+openDetails(
+product.id
+);
+
+}
+);
+
+
+card
+.querySelector(".add-btn")
+.addEventListener(
+"click",
+function(){
+
+quickAdd(
+product.id
+);
+
+}
+);
+
+
+grid.appendChild(card);
+
+}
+);
+
+}
+
+
+/* =====================================================
    SEARCH
-========================================================= */
+===================================================== */
 
 function handleSearch(){
 
-  renderProducts();
+renderProducts();
 
 }
 
 
-/* =========================================================
+/* =====================================================
    DETAILS
-========================================================= */
+===================================================== */
 
 function openDetails(productId){
 
-  const product =
-    findProduct(productId);
+const product =
+findProduct(productId);
 
-  if(!product) return;
-
-  currentDetailProduct =
-    product;
-
-  const images =
-    getProductImages(product);
-
-  document.getElementById(
-    "detailTitle"
-  ).textContent =
-    product.name || "Product";
+if(!product) return;
 
 
-  const imageBox =
-    document.getElementById(
-      "detailImages"
-    );
-
-  imageBox.innerHTML = "";
-
-  images.forEach(function(url){
-
-    const img =
-      document.createElement("img");
-
-    img.src = url;
-
-    img.onerror = function(){
-
-      this.src =
-        "https://via.placeholder.com/500x500?text=Gadhuli";
-
-    };
-
-    imageBox.appendChild(img);
-
-  });
+currentDetailProduct =
+product;
 
 
-  const sizes =
-    getProductSizes(product);
+const images =
+getProductImages(product);
 
 
-  let sizeHtml = "";
-
-  if(sizes.length){
-
-    sizeHtml = `
-
-      <div>
-        <b>Available Size:</b>
-
-        <div class="size-list">
-
-          ${sizes.map(function(size){
-
-            return `
-              <button
-                class="size-btn"
-                onclick="startSingleProductOrder('${escapeAttr(product.id)}','${escapeAttr(size)}')"
-              >
-                ${escapeHtml(size)}
-              </button>
-            `;
-
-          }).join("")}
-
-        </div>
-
-      </div>
-
-    `;
-
-  }
+document.getElementById(
+"detailTitle"
+).textContent =
+product.name || "Product";
 
 
-  document.getElementById(
-    "detailContent"
-  ).innerHTML = `
+const imageBox =
+document.getElementById(
+"detailImages"
+);
 
-    <p>
-      <b>Price:</b>
-      <span class="product-price">
-        ৳${formatMoney(product.price)}
-      </span>
-    </p>
+imageBox.innerHTML = "";
 
-    <p>
-      <b>Category:</b>
-      ${escapeHtml(product.category || "—")}
-    </p>
 
-    <p>
-      <b>Subcategory:</b>
-      ${escapeHtml(product.subcategory || "—")}
-    </p>
+images.forEach(
+function(url){
 
-    <br>
+const img =
+document.createElement("img");
 
-    ${
-      product.description
-      ? `
-        <p>
-          ${escapeHtml(product.description)}
-        </p>
-      `
-      : ""
-    }
+img.src = url;
 
-    ${sizeHtml}
+img.onerror =
+function(){
 
-    <br>
+this.src =
+"https://via.placeholder.com/500x500?text=Gadhuli";
 
-    <button
-      class="btn btn-pink full-btn"
-      onclick="quickAdd('${escapeAttr(product.id)}')"
-    >
-      🛒 Add to Cart
-    </button>
+};
 
-    <br><br>
+imageBox.appendChild(img);
 
-    <button
-      class="btn btn-green full-btn"
-      onclick="startSingleProductOrder('${escapeAttr(product.id)}','')"
-    >
-      📦 Buy Now
-    </button>
+}
+);
 
-    <br><br>
 
-    <button
-      class="btn btn-light full-btn"
-      onclick="openReview('${escapeAttr(product.id)}')"
-    >
-      ⭐ Reviews
-    </button>
+const sizes =
+getProductSizes(product);
 
-    <div id="productReviews"></div>
 
-  `;
+let sizeHTML = "";
 
-  loadReviews(product.id);
 
-  openModal("detailModal");
+if(sizes.length){
+
+sizeHTML = `
+
+<div>
+
+<b>Available Size:</b>
+
+<div class="size-list">
+
+${
+sizes
+.map(
+function(size){
+
+return `
+
+<button
+class="size-btn"
+data-size="${escapeAttr(size)}"
+>
+${escapeHtml(size)}
+</button>
+
+`;
+
+}
+)
+.join("")
+}
+
+</div>
+
+</div>
+
+`;
 
 }
 
 
-/* =========================================================
+document.getElementById(
+"detailContent"
+).innerHTML = `
+
+<p>
+
+<b>Price:</b>
+
+<span class="product-price">
+৳${formatMoney(product.price)}
+</span>
+
+</p>
+
+<p>
+<b>Category:</b>
+${escapeHtml(product.category || "—")}
+</p>
+
+<p>
+<b>Subcategory:</b>
+${escapeHtml(product.subcategory || "—")}
+</p>
+
+<br>
+
+${
+product.description
+?
+`<p>${escapeHtml(product.description)}</p>`
+:
+""
+}
+
+${sizeHTML}
+
+<br>
+
+<button
+class="btn btn-pink full-btn"
+id="detailAddBtn"
+>
+🛒 Add to Cart
+</button>
+
+<br><br>
+
+<button
+class="btn btn-green full-btn"
+id="detailBuyBtn"
+>
+📦 Buy Now
+</button>
+
+<br><br>
+
+<button
+class="btn btn-light full-btn"
+id="detailReviewBtn"
+>
+⭐ Write Review
+</button>
+
+`;
+
+
+let selectedSize = "";
+
+
+document
+.querySelectorAll(
+"#detailContent .size-btn"
+)
+.forEach(
+function(btn){
+
+btn.onclick =
+function(){
+
+document
+.querySelectorAll(
+"#detailContent .size-btn"
+)
+.forEach(
+function(b){
+
+b.classList.remove(
+"active"
+);
+
+}
+);
+
+btn.classList.add("active");
+
+selectedSize =
+btn.dataset.size;
+
+};
+
+}
+);
+
+
+document.getElementById(
+"detailAddBtn"
+).onclick =
+function(){
+
+const sizes =
+getProductSizes(product);
+
+if(
+sizes.length
+&&
+!selectedSize
+){
+
+alert(
+"আগে Size select করুন।"
+);
+
+return;
+
+}
+
+addCartItem(
+product,
+selectedSize
+);
+
+};
+
+
+document.getElementById(
+"detailBuyBtn"
+).onclick =
+function(){
+
+const sizes =
+getProductSizes(product);
+
+if(
+sizes.length
+&&
+!selectedSize
+){
+
+alert(
+"আগে Size select করুন।"
+);
+
+return;
+
+}
+
+startSingleProductOrder(
+product.id,
+selectedSize
+);
+
+};
+
+
+document.getElementById(
+"detailReviewBtn"
+).onclick =
+function(){
+
+openReview(
+product.id
+);
+
+};
+
+
+loadReviews(
+product.id
+);
+
+openModal(
+"detailModal"
+);
+
+}
+
+
+/* =====================================================
    QUICK ADD
-========================================================= */
+===================================================== */
 
 function quickAdd(productId){
 
-  const product =
-    findProduct(productId);
+const product =
+findProduct(productId);
 
-  if(!product) return;
+if(!product) return;
 
-  const sizes =
-    getProductSizes(product);
 
-  if(sizes.length){
+const sizes =
+getProductSizes(product);
 
-    openDetails(productId);
 
-    alert(
-      "আগে Size select করুন।"
-    );
+if(sizes.length){
 
-    return;
+openDetails(productId);
 
-  }
+setTimeout(
+function(){
 
-  addCartItem(product,"");
+alert(
+"আগে Size select করুন।"
+);
+
+},
+100
+);
+
+return;
 
 }
 
 
-/* =========================================================
-   CART NORMALIZE
-========================================================= */
+addCartItem(
+product,
+""
+);
+
+}
+
+
+/* =====================================================
+   CART
+===================================================== */
 
 function normalizeCart(){
 
-  cart =
-    cart
-      .map(function(item){
+cart =
+cart
+.map(
+function(item){
 
-        if(
-          typeof item === "string"
-          ||
-          typeof item === "number"
-        ){
+if(
+typeof item === "string"
+||
+typeof item === "number"
+){
 
-          return {
+return {
 
-            id:String(item),
+id:String(item),
 
-            size:"",
+size:"",
 
-            quantity:1
+quantity:1
 
-          };
-
-        }
-
-
-        if(
-          item &&
-          typeof item === "object"
-        ){
-
-          return {
-
-            id:String(item.id),
-
-            size:String(item.size || ""),
-
-            quantity:
-              Math.max(
-                1,
-                Number(item.quantity || 1)
-              )
-
-          };
-
-        }
-
-        return null;
-
-      })
-      .filter(Boolean);
-
-  saveCart();
+};
 
 }
 
 
-/* =========================================================
-   SAVE CART
-========================================================= */
+if(
+item
+&&
+typeof item === "object"
+){
+
+return {
+
+id:String(item.id),
+
+size:String(
+item.size || ""
+),
+
+quantity:
+Math.max(
+1,
+Number(
+item.quantity || 1
+)
+)
+
+};
+
+}
+
+return null;
+
+}
+)
+.filter(Boolean);
+
+saveCart();
+
+}
+
 
 function saveCart(){
 
-  localStorage.setItem(
-    "gadhuli_cart",
-    JSON.stringify(cart)
-  );
+localStorage.setItem(
+"gadhuli_cart",
+JSON.stringify(cart)
+);
 
 }
 
-
-/* =========================================================
-   ADD CART ITEM
-========================================================= */
 
 function addCartItem(product,size){
 
-  const id =
-    String(product.id);
-
-  const existing =
-    cart.find(function(item){
-
-      return (
-        String(item.id) === id
-        &&
-        String(item.size || "") ===
-        String(size || "")
-      );
-
-    });
+const id =
+String(product.id);
 
 
-  if(existing){
+const existing =
+cart.find(
+function(item){
 
-    existing.quantity =
-      Number(existing.quantity || 1) + 1;
+return (
+String(item.id) === id
+&&
+String(item.size || "") ===
+String(size || "")
+);
 
-  }else{
-
-    cart.push({
-
-      id:id,
-
-      size:size || "",
-
-      quantity:1
-
-    });
-
-  }
+}
+);
 
 
-  saveCart();
+if(existing){
 
-  alert(
-    "Cart-এ Product যোগ হয়েছে ✅"
-  );
+existing.quantity =
+Number(
+existing.quantity || 1
+) + 1;
+
+}else{
+
+cart.push({
+
+id:id,
+
+size:size || "",
+
+quantity:1
+
+});
 
 }
 
 
-/* =========================================================
-   OPEN CART
-========================================================= */
+saveCart();
+
+alert(
+"Cart-এ Product যোগ হয়েছে ✅"
+);
+
+}
+
+
+/* =====================================================
+   CART RENDER
+===================================================== */
 
 function openCart(){
 
-  renderCart();
+renderCart();
 
-  openModal("cartModal");
+openModal(
+"cartModal"
+);
 
 }
 
-
-/* =========================================================
-   RENDER CART
-========================================================= */
 
 function renderCart(){
 
-  const box =
-    document.getElementById(
-      "cartContent"
-    );
-
-  if(!cart.length){
-
-    box.innerHTML =
-      `<div class="empty">
-        🛒 Cart খালি।
-      </div>`;
-
-    return;
-
-  }
+const box =
+document.getElementById(
+"cartContent"
+);
 
 
-  let subtotal = 0;
+if(!cart.length){
 
+box.innerHTML =
+`<div class="empty">
+🛒 Cart খালি।
+</div>`;
 
-  let html = "";
-
-
-  cart.forEach(function(item,index){
-
-    const product =
-      findProduct(item.id);
-
-    if(!product) return;
-
-
-    const price =
-      Number(product.price || 0);
-
-    const qty =
-      Number(item.quantity || 1);
-
-    const line =
-      price * qty;
-
-    subtotal += line;
-
-
-    const images =
-      getProductImages(product);
-
-
-    html += `
-
-      <div class="cart-item">
-
-        <img
-          src="${escapeAttr(images[0])}"
-          onerror="this.src='https://via.placeholder.com/100x100?text=Gadhuli'"
-        >
-
-        <div class="cart-item-info">
-
-          <b>
-            ${escapeHtml(product.name)}
-          </b>
-
-          <div>
-            ৳${formatMoney(price)}
-          </div>
-
-          ${
-            item.size
-            ? `
-              <small>
-                Size: ${escapeHtml(item.size)}
-              </small>
-            `
-            : ""
-          }
-
-          <div class="qty-control">
-
-            <button
-              onclick="changeCartQuantity(${index},-1)"
-            >
-              −
-            </button>
-
-            <b>${qty}</b>
-
-            <button
-              onclick="changeCartQuantity(${index},1)"
-            >
-              +
-            </button>
-
-            <button
-              onclick="removeCartItem(${index})"
-              style="margin-left:10px;"
-            >
-              🗑️
-            </button>
-
-          </div>
-
-        </div>
-
-        <b>
-          ৳${formatMoney(line)}
-        </b>
-
-      </div>
-
-    `;
-
-  });
-
-
-  html += `
-
-    <div class="summary">
-
-      <div class="summary-row">
-
-        <span>Subtotal</span>
-
-        <b>
-          ৳${formatMoney(subtotal)}
-        </b>
-
-      </div>
-
-      <div class="summary-row">
-
-        <span>Delivery</span>
-
-        <span>
-          Checkout-এ calculate হবে
-        </span>
-
-      </div>
-
-    </div>
-
-    <br>
-
-    <button
-      class="btn btn-pink full-btn"
-      onclick="openOrderFromCart()"
-    >
-      📦 Checkout
-    </button>
-
-  `;
-
-
-  box.innerHTML = html;
+return;
 
 }
 
 
-/* =========================================================
-   CART QUANTITY
-========================================================= */
+let subtotal = 0;
 
-function changeCartQuantity(index,amount){
-
-  if(!cart[index]) return;
-
-  cart[index].quantity =
-    Number(cart[index].quantity || 1)
-    + amount;
+let html = "";
 
 
-  if(cart[index].quantity <= 0){
+cart.forEach(
+function(item,index){
 
-    cart.splice(index,1);
+const product =
+findProduct(item.id);
 
-  }
+if(!product) return;
 
 
-  saveCart();
+const price =
+Number(
+product.price || 0
+);
 
-  renderCart();
+const quantity =
+Number(
+item.quantity || 1
+);
+
+const line =
+price * quantity;
+
+subtotal += line;
+
+
+const image =
+getProductImages(product)[0];
+
+
+html += `
+
+<div class="cart-item">
+
+<img
+src="${escapeAttr(image)}"
+onerror="this.src='https://via.placeholder.com/100x100?text=Gadhuli'"
+>
+
+<div class="cart-item-info">
+
+<b>
+${escapeHtml(product.name)}
+</b>
+
+<div>
+৳${formatMoney(price)}
+</div>
+
+${
+item.size
+?
+`<small>
+Size: ${escapeHtml(item.size)}
+</small>`
+:
+""
+}
+
+<div class="qty-control">
+
+<button
+onclick="changeCartQuantity(${index},-1)"
+>
+−
+</button>
+
+<b>
+${quantity}
+</b>
+
+<button
+onclick="changeCartQuantity(${index},1)"
+>
++
+</button>
+
+<button
+onclick="removeCartItem(${index})"
+style="margin-left:10px;"
+>
+🗑️
+</button>
+
+</div>
+
+</div>
+
+<b>
+৳${formatMoney(line)}
+</b>
+
+</div>
+
+`;
+
+}
+);
+
+
+html += `
+
+<div class="summary">
+
+<div class="summary-row">
+
+<span>
+Subtotal
+</span>
+
+<b>
+৳${formatMoney(subtotal)}
+</b>
+
+</div>
+
+<div class="summary-row">
+
+<span>
+Delivery
+</span>
+
+<span>
+Checkout-এ calculate হবে
+</span>
+
+</div>
+
+</div>
+
+<br>
+
+<button
+class="btn btn-pink full-btn"
+onclick="openOrderFromCart()"
+>
+📦 Checkout
+</button>
+
+`;
+
+
+box.innerHTML =
+html;
 
 }
 
 
-/* =========================================================
-   REMOVE CART
-========================================================= */
+function changeCartQuantity(
+index,
+amount
+){
+
+if(!cart[index]) return;
+
+
+cart[index].quantity =
+Number(
+cart[index].quantity || 1
+) + amount;
+
+
+if(
+cart[index].quantity <= 0
+){
+
+cart.splice(index,1);
+
+}
+
+
+saveCart();
+
+renderCart();
+
+}
+
 
 function removeCartItem(index){
 
-  cart.splice(index,1);
+cart.splice(index,1);
 
-  saveCart();
+saveCart();
 
-  renderCart();
+renderCart();
 
 }
 
 
-/* =========================================================
+/* =====================================================
    WISHLIST
-========================================================= */
-
-function isWishlisted(productId){
-
-  return wishlist.some(function(id){
-
-    return String(id) ===
-      String(productId);
-
-  });
-
-}
-
+===================================================== */
 
 function saveWishlist(){
 
-  localStorage.setItem(
-    "gadhuli_wishlist",
-    JSON.stringify(wishlist)
-  );
+localStorage.setItem(
+"gadhuli_wishlist",
+JSON.stringify(wishlist)
+);
 
 }
 
 
-function toggleWishlist(productId){
+function isWishlisted(id){
 
-  const index =
-    wishlist.findIndex(function(id){
+return wishlist.some(
+function(item){
 
-      return String(id) ===
-        String(productId);
+return String(item) ===
+String(id);
 
-    });
+}
+);
 
-
-  if(index >= 0){
-
-    wishlist.splice(index,1);
-
-  }else{
-
-    wishlist.push(String(productId));
-
-  }
+}
 
 
-  saveWishlist();
+function toggleWishlist(id){
 
-  renderProducts();
+const index =
+wishlist.findIndex(
+function(item){
+
+return String(item) ===
+String(id);
+
+}
+);
+
+
+if(index >= 0){
+
+wishlist.splice(index,1);
+
+}else{
+
+wishlist.push(
+String(id)
+);
+
+}
+
+
+saveWishlist();
+
+renderProducts();
 
 }
 
 
 function openWishlist(){
 
-  const box =
-    document.getElementById(
-      "wishlistContent"
-    );
+const box =
+document.getElementById(
+"wishlistContent"
+);
 
 
-  const items =
-    wishlist
-      .map(function(id){
+const items =
+wishlist
+.map(
+function(id){
 
-        return findProduct(id);
+return findProduct(id);
 
-      })
-      .filter(Boolean);
-
-
-  if(!items.length){
-
-    box.innerHTML =
-      `<div class="empty">
-        ❤️ Wishlist খালি।
-      </div>`;
-
-    openModal("wishlistModal");
-
-    return;
-
-  }
+}
+)
+.filter(Boolean);
 
 
-  box.innerHTML = items.map(function(product){
+if(!items.length){
 
-    const image =
-      getProductImages(product)[0];
+box.innerHTML =
+`<div class="empty">
+❤️ Wishlist খালি।
+</div>`;
 
+openModal(
+"wishlistModal"
+);
 
-    return `
-
-      <div class="cart-item">
-
-        <img
-          src="${escapeAttr(image)}"
-        >
-
-        <div class="cart-item-info">
-
-          <b>
-            ${escapeHtml(product.name)}
-          </b>
-
-          <div class="product-price">
-            ৳${formatMoney(product.price)}
-          </div>
-
-          <button
-            class="btn btn-pink"
-            onclick="quickAdd('${escapeAttr(product.id)}')"
-          >
-            🛒 Add
-          </button>
-
-          <button
-            class="btn btn-light"
-            onclick="toggleWishlist('${escapeAttr(product.id)}');openWishlist()"
-          >
-            ❤️ Remove
-          </button>
-
-        </div>
-
-      </div>
-
-    `;
-
-  }).join("");
-
-
-  openModal("wishlistModal");
+return;
 
 }
 
 
-/* =========================================================
-   ORDER FROM CART
-========================================================= */
+box.innerHTML =
+items
+.map(
+function(product){
+
+const image =
+getProductImages(product)[0];
+
+
+return `
+
+<div class="cart-item">
+
+<img
+src="${escapeAttr(image)}"
+>
+
+<div class="cart-item-info">
+
+<b>
+${escapeHtml(product.name)}
+</b>
+
+<div class="product-price">
+৳${formatMoney(product.price)}
+</div>
+
+<button
+class="btn btn-pink"
+data-add="${escapeAttr(product.id)}"
+>
+🛒 Add
+</button>
+
+<button
+class="btn btn-light"
+data-remove="${escapeAttr(product.id)}"
+>
+❤️ Remove
+</button>
+
+</div>
+
+</div>
+
+`;
+
+}
+)
+.join("");
+
+
+box
+.querySelectorAll("[data-add]")
+.forEach(
+function(button){
+
+button.onclick =
+function(){
+
+quickAdd(
+button.dataset.add
+);
+
+};
+
+}
+);
+
+
+box
+.querySelectorAll("[data-remove]")
+.forEach(
+function(button){
+
+button.onclick =
+function(){
+
+toggleWishlist(
+button.dataset.remove
+);
+
+openWishlist();
+
+};
+
+}
+);
+
+
+openModal(
+"wishlistModal"
+);
+
+}
+
+
+/* =====================================================
+   ORDER
+===================================================== */
 
 async function openOrderFromCart(){
 
-  if(!cart.length){
+if(!cart.length){
 
-    alert("Cart খালি।");
+alert("Cart খালি।");
 
-    return;
-
-  }
-
-
-  if(!await requireVerifiedUser()){
-
-    return;
-
-  }
-
-
-  currentOrderProducts = [];
-
-
-  cart.forEach(function(item){
-
-    const product =
-      findProduct(item.id);
-
-    if(product){
-
-      currentOrderProducts.push({
-
-        product:product,
-
-        size:item.size || "",
-
-        quantity:
-          Number(item.quantity || 1)
-
-      });
-
-    }
-
-  });
-
-
-  if(!currentOrderProducts.length){
-
-    alert(
-      "Cart-এর Product পাওয়া যাচ্ছে না।"
-    );
-
-    return;
-
-  }
-
-
-  closeModal("cartModal");
-
-  showOrderModal();
+return;
 
 }
 
 
-/* =========================================================
-   SINGLE PRODUCT ORDER
-========================================================= */
-
-async function startSingleProductOrder(
-  productId,
-  size
+if(
+!await requireVerifiedUser()
 ){
 
-  const product =
-    findProduct(productId);
-
-  if(!product) return;
-
-
-  if(!await requireVerifiedUser()){
-
-    return;
-
-  }
-
-
-  const sizes =
-    getProductSizes(product);
-
-
-  if(
-    sizes.length &&
-    !size
-  ){
-
-    alert(
-      "Order করার আগে Size select করুন।"
-    );
-
-    return;
-
-  }
-
-
-  currentOrderProducts = [
-
-    {
-
-      product:product,
-
-      size:size || "",
-
-      quantity:1
-
-    }
-
-  ];
-
-
-  closeModal("detailModal");
-
-  showOrderModal();
+return;
 
 }
 
 
-/* =========================================================
-   SHOW ORDER MODAL
-========================================================= */
+currentOrderProducts = [];
+
+
+cart.forEach(
+function(item){
+
+const product =
+findProduct(item.id);
+
+if(product){
+
+currentOrderProducts.push({
+
+product:product,
+
+size:item.size || "",
+
+quantity:
+Number(
+item.quantity || 1
+)
+
+});
+
+}
+
+}
+);
+
+
+if(
+!currentOrderProducts.length
+){
+
+alert(
+"Cart-এর Product পাওয়া যাচ্ছে না।"
+);
+
+return;
+
+}
+
+
+closeModal(
+"cartModal"
+);
+
+showOrderModal();
+
+}
+
+
+async function startSingleProductOrder(
+productId,
+size
+){
+
+const product =
+findProduct(productId);
+
+if(!product) return;
+
+
+if(
+!await requireVerifiedUser()
+){
+
+return;
+
+}
+
+
+const sizes =
+getProductSizes(product);
+
+
+if(
+sizes.length
+&&
+!size
+){
+
+alert(
+"Order করার আগে Size select করুন।"
+);
+
+return;
+
+}
+
+
+currentOrderProducts = [
+
+{
+
+product:product,
+
+size:size || "",
+
+quantity:1
+
+}
+
+];
+
+
+closeModal(
+"detailModal"
+);
+
+showOrderModal();
+
+}
+
 
 function showOrderModal(){
 
-  renderOrderProducts();
+renderOrderProducts();
 
-  fillCustomerInfo();
+fillCustomerInfo();
 
-  updateOrderTotal();
+updateOrderTotal();
 
-  togglePaymentFields();
+togglePaymentFields();
 
-  openModal("orderModal");
+openModal(
+"orderModal"
+);
 
 }
 
-
-/* =========================================================
-   RENDER ORDER PRODUCTS
-========================================================= */
 
 function renderOrderProducts(){
 
-  const box =
-    document.getElementById(
-      "orderProducts"
-    );
+const box =
+document.getElementById(
+"orderProducts"
+);
 
 
-  box.innerHTML =
-    currentOrderProducts.map(
-      function(item,index){
+box.innerHTML =
+currentOrderProducts
+.map(
+function(item,index){
 
-        const product =
-          item.product;
+const product =
+item.product;
 
-        const image =
-          getProductImages(product)[0];
+const image =
+getProductImages(product)[0];
 
 
-        return `
+return `
 
-          <div class="cart-item">
+<div class="cart-item">
 
-            <img
-              src="${escapeAttr(image)}"
-            >
+<img
+src="${escapeAttr(image)}"
+>
 
-            <div class="cart-item-info">
+<div class="cart-item-info">
 
-              <b>
-                ${escapeHtml(product.name)}
-              </b>
+<b>
+${escapeHtml(product.name)}
+</b>
 
-              <div>
-                ৳${formatMoney(product.price)}
-              </div>
+<div>
+৳${formatMoney(product.price)}
+</div>
 
-              ${
-                item.size
-                ? `
-                  <small>
-                    Size:
-                    ${escapeHtml(item.size)}
-                  </small>
-                `
-                : ""
-              }
+${
+item.size
+?
+`<small>
+Size: ${escapeHtml(item.size)}
+</small>`
+:
+""
+}
 
-              <div class="qty-control">
+<div class="qty-control">
 
-                <button
-                  onclick="changeOrderQuantity(${index},-1)"
-                >
-                  −
-                </button>
+<button
+onclick="changeOrderQuantity(${index},-1)"
+>
+−
+</button>
 
-                <b>
-                  ${item.quantity}
-                </b>
+<b>
+${item.quantity}
+</b>
 
-                <button
-                  onclick="changeOrderQuantity(${index},1)"
-                >
-                  +
-                </button>
+<button
+onclick="changeOrderQuantity(${index},1)"
+>
++
+</button>
 
-              </div>
+</div>
 
-            </div>
+</div>
 
-          </div>
+</div>
 
-        `;
+`;
 
-      }
-    ).join("");
+}
+)
+.join("");
 
 }
 
 
-/* =========================================================
-   ORDER QUANTITY
-========================================================= */
+function changeOrderQuantity(
+index,
+amount
+){
 
-function changeOrderQuantity(index,amount){
-
-  if(!currentOrderProducts[index])
-    return;
-
-
-  currentOrderProducts[index].quantity =
-    Math.max(
-      1,
-      Number(
-        currentOrderProducts[index].quantity || 1
-      ) + amount
-    );
+if(
+!currentOrderProducts[index]
+) return;
 
 
-  renderOrderProducts();
+currentOrderProducts[index]
+.quantity =
+Math.max(
+1,
+Number(
+currentOrderProducts[index]
+.quantity || 1
+) + amount
+);
 
-  updateOrderTotal();
+
+renderOrderProducts();
+
+updateOrderTotal();
 
 }
 
 
-/* =========================================================
+/* =====================================================
    CUSTOMER INFO
-========================================================= */
+===================================================== */
 
 async function fillCustomerInfo(){
 
-  if(!currentUser) return;
+if(!currentUser) return;
 
 
-  document.getElementById(
-    "orderName"
-  ).value =
-    currentUser.user_metadata?.full_name || "";
+const profile =
+await db
+.from("profiles")
+.select("full_name,phone")
+.eq("id",currentUser.id)
+.maybeSingle();
 
 
-  document.getElementById(
-    "orderPhone"
-  ).value =
-    currentUser.user_metadata?.phone || "";
+document.getElementById(
+"orderName"
+).value =
+profile.data?.full_name
+||
+currentUser.user_metadata?.full_name
+||
+"";
 
 
-  const result =
-    await db
-      .from("profiles")
-      .select("full_name,phone")
-      .eq("id",currentUser.id)
-      .maybeSingle();
-
-
-  if(result.data){
-
-    if(
-      !document.getElementById(
-        "orderName"
-      ).value
-    ){
-
-      document.getElementById(
-        "orderName"
-      ).value =
-        result.data.full_name || "";
-
-    }
-
-
-    if(
-      !document.getElementById(
-        "orderPhone"
-      ).value
-    ){
-
-      document.getElementById(
-        "orderPhone"
-      ).value =
-        result.data.phone || "";
-
-    }
-
-  }
+document.getElementById(
+"orderPhone"
+).value =
+profile.data?.phone
+||
+currentUser.user_metadata?.phone
+||
+"";
 
 }
 
 
-/* =========================================================
-   ORDER TOTAL
-========================================================= */
+/* =====================================================
+   TOTAL
+===================================================== */
 
 function calculateOrderSubtotal(){
 
-  return currentOrderProducts.reduce(
-    function(total,item){
+return currentOrderProducts.reduce(
+function(total,item){
 
-      return total +
-        Number(item.product.price || 0)
-        *
-        Number(item.quantity || 1);
+return total +
+Number(
+item.product.price || 0
+)
+*
+Number(
+item.quantity || 1
+);
 
-    },
-    0
-  );
+},
+0
+);
 
 }
 
 
 function getDeliveryCharge(){
 
-  const area =
-    document.getElementById(
-      "deliveryArea"
-    ).value;
-
-
-  return area === "Outside Dhaka"
-    ? 120
-    : 60;
+return document.getElementById(
+"deliveryArea"
+).value ===
+"Outside Dhaka"
+? 120
+: 60;
 
 }
 
 
 function updateOrderTotal(){
 
-  const subtotal =
-    calculateOrderSubtotal();
+const subtotal =
+calculateOrderSubtotal();
 
-  const delivery =
-    getDeliveryCharge();
+const delivery =
+getDeliveryCharge();
 
-  const total =
-    subtotal + delivery;
+const total =
+subtotal + delivery;
 
 
-  document.getElementById(
-    "orderSummary"
-  ).innerHTML = `
+document.getElementById(
+"orderSummary"
+).innerHTML = `
 
-    <div class="summary-row">
+<div class="summary-row">
 
-      <span>Subtotal</span>
+<span>
+Subtotal
+</span>
 
-      <b>
-        ৳${formatMoney(subtotal)}
-      </b>
+<b>
+৳${formatMoney(subtotal)}
+</b>
 
-    </div>
+</div>
 
-    <div class="summary-row">
+<div class="summary-row">
 
-      <span>Delivery</span>
+<span>
+Delivery
+</span>
 
-      <b>
-        ৳${formatMoney(delivery)}
-      </b>
+<b>
+৳${formatMoney(delivery)}
+</b>
 
-    </div>
+</div>
 
-    <div class="summary-row summary-total">
+<div class="summary-row summary-total">
 
-      <span>Total</span>
+<span>
+Total
+</span>
 
-      <span>
-        ৳${formatMoney(total)}
-      </span>
+<span>
+৳${formatMoney(total)}
+</span>
 
-    </div>
+</div>
 
-  `;
+`;
 
 }
 
 
-/* =========================================================
-   PAYMENT FIELDS
-========================================================= */
+/* =====================================================
+   PAYMENT
+===================================================== */
 
 function togglePaymentFields(){
 
-  const method =
-    document.getElementById(
-      "paymentMethod"
-    ).value;
+const method =
+document.getElementById(
+"paymentMethod"
+).value;
 
 
-  document.getElementById(
-    "manualPaymentFields"
-  ).style.display =
-    method === "Cash on Delivery"
-    ? "none"
-    : "block";
+document.getElementById(
+"manualPaymentFields"
+).style.display =
+method ===
+"Cash on Delivery"
+? "none"
+: "block";
 
 }
 
 
-/* =========================================================
+/* =====================================================
    PLACE ORDER
-========================================================= */
+===================================================== */
 
 async function placeOrder(){
 
-  if(!currentUser){
+if(!currentUser){
 
-    alert(
-      "আগে Login করুন।"
-    );
+alert(
+"আগে Login করুন।"
+);
 
-    return;
-
-  }
-
-
-  if(
-    !currentUser.email_confirmed_at
-  ){
-
-    alert(
-      "আপনার Email verify করুন।"
-    );
-
-    return;
-
-  }
-
-
-  if(!currentOrderProducts.length){
-
-    alert(
-      "Order Product পাওয়া যায়নি।"
-    );
-
-    return;
-
-  }
-
-
-  const name =
-    document.getElementById(
-      "orderName"
-    ).value.trim();
-
-
-  const phone =
-    document.getElementById(
-      "orderPhone"
-    ).value.trim();
-
-
-  const district =
-    document.getElementById(
-      "orderDistrict"
-    ).value.trim();
-
-
-  const thana =
-    document.getElementById(
-      "orderThana"
-    ).value.trim();
-
-
-  const receivePlace =
-    document.getElementById(
-      "orderReceivePlace"
-    ).value.trim();
-
-
-  const deliveryArea =
-    document.getElementById(
-      "deliveryArea"
-    ).value;
-
-
-  const paymentMethod =
-    document.getElementById(
-      "paymentMethod"
-    ).value;
-
-
-  if(
-    !name ||
-    !phone ||
-    !district ||
-    !thana ||
-    !receivePlace
-  ){
-
-    alert(
-      "সব required তথ্য পূরণ করুন।"
-    );
-
-    return;
-
-  }
-
-
-  if(
-    paymentMethod !==
-    "Cash on Delivery"
-  ){
-
-    const paymentNumber =
-      document.getElementById(
-        "paymentNumber"
-      ).value.trim();
-
-
-    const transactionId =
-      document.getElementById(
-        "transactionId"
-      ).value.trim();
-
-
-    if(
-      !paymentNumber ||
-      !transactionId
-    ){
-
-      alert(
-        "Payment Number এবং Transaction ID দিন।"
-      );
-
-      return;
-
-    }
-
-  }
-
-
-  const subtotal =
-    calculateOrderSubtotal();
-
-
-  const delivery =
-    deliveryArea === "Outside Dhaka"
-    ? 120
-    : 60;
-
-
-  const total =
-    subtotal + delivery;
-
-
-  const button =
-    document.getElementById(
-      "placeOrderBtn"
-    );
-
-
-  button.disabled = true;
-
-  button.textContent =
-    "Order Save হচ্ছে...";
-
-
-  try{
-
-    const paymentNumber =
-      document.getElementById(
-        "paymentNumber"
-      ).value.trim();
-
-
-    const transactionId =
-      document.getElementById(
-        "transactionId"
-      ).value.trim();
-
-
-    /*
-      Manual payment information
-      notes field-এ রাখা হচ্ছে।
-    */
-
-    let notes = "";
-
-
-    if(paymentMethod !== "Cash on Delivery"){
-
-      notes =
-        "Payment Number: " +
-        paymentNumber +
-        "\nTransaction ID: " +
-        transactionId;
-
-    }
-
-
-    const orderInsert =
-      await db
-        .from("orders")
-        .insert({
-
-          user_id:
-            currentUser.id,
-
-          customer_name:
-            name,
-
-          customer_phone:
-            phone,
-
-          customer_email:
-            currentUser.email || "",
-
-          customer_district:
-            district,
-
-          customer_thana:
-            thana,
-
-          customer_receive_place:
-            receivePlace,
-
-          delivery_area:
-            deliveryArea,
-
-          delivery_charge:
-            delivery,
-
-          subtotal:
-            subtotal,
-
-          total:
-            total,
-
-          payment_method:
-            paymentMethod,
-
-          payment_status:
-            "Pending",
-
-          order_status:
-            "Pending",
-
-          notes:
-            notes
-
-        })
-        .select()
-        .single();
-
-
-    if(orderInsert.error){
-
-      throw orderInsert.error;
-
-    }
-
-
-    const order =
-      orderInsert.data;
-
-
-    const orderItems =
-      currentOrderProducts.map(
-        function(item){
-
-          const product =
-            item.product;
-
-
-          const image =
-            getProductImages(product)[0]
-            || "";
-
-
-          return {
-
-            order_id:
-              order.id,
-
-            product_id:
-              product.id,
-
-            product_name:
-              product.name || "Product",
-
-            product_image:
-              image,
-
-            size:
-              item.size || "",
-
-            quantity:
-              Number(item.quantity || 1),
-
-            unit_price:
-              Number(product.price || 0),
-
-            line_total:
-              Number(product.price || 0)
-              *
-              Number(item.quantity || 1)
-
-          };
-
-        }
-      );
-
-
-    const itemInsert =
-      await db
-        .from("order_items")
-        .insert(orderItems);
-
-
-    if(itemInsert.error){
-
-      /*
-        Order তৈরি হলেও item insert failed.
-      */
-
-      console.error(
-        itemInsert.error
-      );
-
-      throw itemInsert.error;
-
-    }
-
-
-    /*
-      Cart থেকে ordered items remove
-    */
-
-    currentOrderProducts.forEach(
-      function(orderItem){
-
-        const productId =
-          String(
-            orderItem.product.id
-          );
-
-        const size =
-          String(
-            orderItem.size || ""
-          );
-
-
-        cart =
-          cart.filter(function(item){
-
-            return !(
-              String(item.id) ===
-                productId
-              &&
-              String(item.size || "") ===
-                size
-            );
-
-          });
-
-      }
-    );
-
-
-    saveCart();
-
-
-    alert(
-      "Order সফলভাবে Save হয়েছে ✅\n\n" +
-      "Order ID: #" +
-      order.id
-    );
-
-
-    closeModal("orderModal");
-
-
-    /*
-      WhatsApp confirmation
-    */
-
-    sendWhatsAppOrder(
-      order.id,
-      name,
-      phone,
-      district,
-      thana,
-      receivePlace,
-      deliveryArea,
-      subtotal,
-      delivery,
-      total,
-      paymentMethod
-    );
-
-
-    currentOrderProducts = [];
-
-
-  }catch(error){
-
-    console.error(error);
-
-    alert(
-      "Order Save হয়নি ❌\n\n" +
-      error.message
-    );
-
-  }finally{
-
-    button.disabled = false;
-
-    button.textContent =
-      "📦 Order Confirm করুন";
-
-  }
+return;
 
 }
 
 
-/* =========================================================
-   WHATSAPP
-========================================================= */
-
-function sendWhatsAppOrder(
-  orderId,
-  name,
-  phone,
-  district,
-  thana,
-  receivePlace,
-  deliveryArea,
-  subtotal,
-  delivery,
-  total,
-  paymentMethod
+if(
+!currentUser.email_confirmed_at
 ){
 
-  let message =
-    "🌸 GADHULI ORDER\n\n";
+alert(
+"আপনার Email verify করুন।"
+);
 
-
-  message +=
-    "Order ID: #" +
-    orderId +
-    "\n\n";
-
-
-  currentOrderProducts.forEach(
-    function(item){
-
-      message +=
-        "Product: " +
-        item.product.name +
-        "\n";
-
-      if(item.size){
-
-        message +=
-          "Size: " +
-          item.size +
-          "\n";
-
-      }
-
-      message +=
-        "Quantity: " +
-        item.quantity +
-        "\n";
-
-      message +=
-        "Price: ৳" +
-        (
-          Number(item.product.price || 0)
-          *
-          Number(item.quantity || 1)
-        ) +
-        "\n\n";
-
-    }
-  );
-
-
-  message +=
-    "Customer: " +
-    name +
-    "\n";
-
-  message +=
-    "Phone: " +
-    phone +
-    "\n";
-
-  message +=
-    "District: " +
-    district +
-    "\n";
-
-  message +=
-    "Thana: " +
-    thana +
-    "\n";
-
-  message +=
-    "Address: " +
-    receivePlace +
-    "\n";
-
-  message +=
-    "Delivery: " +
-    deliveryArea +
-    "\n";
-
-  message +=
-    "Payment: " +
-    paymentMethod +
-    "\n\n";
-
-  message +=
-    "Subtotal: ৳" +
-    subtotal +
-    "\n";
-
-  message +=
-    "Delivery Charge: ৳" +
-    delivery +
-    "\n";
-
-  message +=
-    "TOTAL: ৳" +
-    total;
-
-
-  const url =
-    "https://wa.me/8801333088194?text=" +
-    encodeURIComponent(message);
-
-
-  window.open(
-    url,
-    "_blank"
-  );
+return;
 
 }
 
 
-/* =========================================================
+if(
+!currentOrderProducts.length
+){
+
+alert(
+"Order Product পাওয়া যায়নি।"
+);
+
+return;
+
+}
+
+
+const name =
+document.getElementById(
+"orderName"
+).value.trim();
+
+
+const phone =
+document.getElementById(
+"orderPhone"
+).value.trim();
+
+
+const district =
+document.getElementById(
+"orderDistrict"
+).value.trim();
+
+
+const thana =
+document.getElementById(
+"orderThana"
+).value.trim();
+
+
+const address =
+document.getElementById(
+"orderReceivePlace"
+).value.trim();
+
+
+const deliveryArea =
+document.getElementById(
+"deliveryArea"
+).value;
+
+
+const paymentMethod =
+document.getElementById(
+"paymentMethod"
+).value;
+
+
+if(
+!name ||
+!phone ||
+!district ||
+!thana ||
+!address
+){
+
+alert(
+"সব required তথ্য পূরণ করুন।"
+);
+
+return;
+
+}
+
+
+let paymentNumber = "";
+
+let transactionId = "";
+
+
+if(
+paymentMethod !==
+"Cash on Delivery"
+){
+
+paymentNumber =
+document.getElementById(
+"paymentNumber"
+).value.trim();
+
+transactionId =
+document.getElementById(
+"transactionId"
+).value.trim();
+
+
+if(
+!paymentNumber ||
+!transactionId
+){
+
+alert(
+"Payment Number এবং Transaction ID দিন।"
+);
+
+return;
+
+}
+
+}
+
+
+const subtotal =
+calculateOrderSubtotal();
+
+const delivery =
+deliveryArea ===
+"Outside Dhaka"
+? 120
+: 60;
+
+const total =
+subtotal + delivery;
+
+
+const button =
+document.getElementById(
+"placeOrderBtn"
+);
+
+button.disabled = true;
+
+button.textContent =
+"Order Save হচ্ছে...";
+
+
+try{
+
+let notes = "";
+
+
+if(
+paymentMethod !==
+"Cash on Delivery"
+){
+
+notes =
+"Payment Number: " +
+paymentNumber +
+"\nTransaction ID: " +
+transactionId;
+
+}
+
+
+/* RESSELLER REFERRAL */
+
+const resellerCode =
+localStorage.getItem(
+"gadhuli_ref"
+) || "";
+
+
+/* CREATE ORDER */
+
+const orderResult =
+await db
+.from("orders")
+.insert({
+
+user_id:
+currentUser.id,
+
+customer_name:
+name,
+
+customer_phone:
+phone,
+
+customer_email:
+currentUser.email || "",
+
+customer_district:
+district,
+
+customer_thana:
+thana,
+
+customer_receive_place:
+address,
+
+delivery_area:
+deliveryArea,
+
+delivery_charge:
+delivery,
+
+subtotal:
+subtotal,
+
+total:
+total,
+
+payment_method:
+paymentMethod,
+
+payment_status:
+"Pending",
+
+order_status:
+"Pending",
+
+reseller_code:
+resellerCode,
+
+notes:
+notes
+
+})
+.select()
+.single();
+
+
+if(orderResult.error){
+
+throw orderResult.error;
+
+}
+
+
+const order =
+orderResult.data;
+
+
+/* ORDER ITEMS */
+
+const orderItems =
+currentOrderProducts
+.map(
+function(item){
+
+const product =
+item.product;
+
+const image =
+getProductImages(product)[0] || "";
+
+
+return {
+
+order_id:
+order.id,
+
+product_id:
+product.id,
+
+product_name:
+product.name || "Product",
+
+product_image:
+image,
+
+size:
+item.size || "",
+
+quantity:
+Number(
+item.quantity || 1
+),
+
+unit_price:
+Number(
+product.price || 0
+),
+
+line_total:
+Number(
+product.price || 0
+)
+*
+Number(
+item.quantity || 1
+)
+
+};
+
+}
+);
+
+
+const itemsResult =
+await db
+.from("order_items")
+.insert(orderItems);
+
+
+if(itemsResult.error){
+
+throw itemsResult.error;
+
+}
+
+
+/* REMOVE ORDERED ITEMS FROM CART */
+
+currentOrderProducts
+.forEach(
+function(item){
+
+const productId =
+String(
+item.product.id
+);
+
+const size =
+String(
+item.size || ""
+);
+
+
+cart =
+cart.filter(
+function(cartItem){
+
+return !(
+String(cartItem.id) ===
+productId
+&&
+String(cartItem.size || "") ===
+size
+);
+
+}
+);
+
+}
+);
+
+
+saveCart();
+
+
+/* KEEP COPY FOR WHATSAPP */
+
+const whatsappItems =
+currentOrderProducts.map(
+function(item){
+
+return {
+
+name:
+item.product.name,
+
+size:
+item.size,
+
+quantity:
+item.quantity,
+
+price:
+item.product.price
+
+};
+
+}
+);
+
+
+alert(
+"Order সফলভাবে Save হয়েছে ✅\n\n" +
+"Order ID: #" +
+order.id
+);
+
+
+closeModal(
+"orderModal"
+);
+
+
+sendWhatsAppOrder(
+order.id,
+whatsappItems,
+name,
+phone,
+district,
+thana,
+address,
+deliveryArea,
+subtotal,
+delivery,
+total,
+paymentMethod
+);
+
+
+currentOrderProducts = [];
+
+
+}catch(error){
+
+console.error(error);
+
+alert(
+"Order Save হয়নি ❌\n\n" +
+error.message
+);
+
+}finally{
+
+button.disabled = false;
+
+button.textContent =
+"📦 Order Confirm করুন";
+
+}
+
+}
+
+
+/* =====================================================
+   WHATSAPP
+===================================================== */
+
+function sendWhatsAppOrder(
+orderId,
+items,
+name,
+phone,
+district,
+thana,
+address,
+deliveryArea,
+subtotal,
+delivery,
+total,
+paymentMethod
+){
+
+let message =
+"🌸 GADHULI ORDER\n\n";
+
+
+message +=
+"Order ID: #" +
+orderId +
+"\n\n";
+
+
+items.forEach(
+function(item){
+
+message +=
+"Product: " +
+item.name +
+"\n";
+
+
+if(item.size){
+
+message +=
+"Size: " +
+item.size +
+"\n";
+
+}
+
+
+message +=
+"Quantity: " +
+item.quantity +
+"\n";
+
+
+message +=
+"Price: ৳" +
+(
+Number(item.price || 0)
+*
+Number(item.quantity || 1)
+) +
+"\n\n";
+
+}
+);
+
+
+message +=
+"Customer: " +
+name +
+"\n";
+
+message +=
+"Phone: " +
+phone +
+"\n";
+
+message +=
+"District: " +
+district +
+"\n";
+
+message +=
+"Thana: " +
+thana +
+"\n";
+
+message +=
+"Address: " +
+address +
+"\n";
+
+message +=
+"Delivery: " +
+deliveryArea +
+"\n";
+
+message +=
+"Payment: " +
+paymentMethod +
+"\n\n";
+
+message +=
+"Subtotal: ৳" +
+subtotal +
+"\n";
+
+message +=
+"Delivery Charge: ৳" +
+delivery +
+"\n";
+
+message +=
+"TOTAL: ৳" +
+total;
+
+
+const url =
+"https://wa.me/8801333088194?text=" +
+encodeURIComponent(message);
+
+
+window.open(
+url,
+"_blank"
+);
+
+}
+
+
+/* =====================================================
    AUTH
-========================================================= */
+===================================================== */
 
 async function loadAuth(){
 
-  if(!db) return;
+if(!db) return;
 
 
-  const result =
-    await db.auth.getSession();
+const session =
+await db.auth.getSession();
 
 
-  currentUser =
-    result.data.session?.user || null;
+currentUser =
+session.data.session?.user
+||
+null;
 
 
-  updateAccountButton();
+db.auth.onAuthStateChange(
+function(
+event,
+session
+){
 
+currentUser =
+session?.user
+||
+null;
 
-  db.auth.onAuthStateChange(
-    function(event,session){
-
-      currentUser =
-        session?.user || null;
-
-      updateAccountButton();
-
-    }
-  );
+}
+);
 
 }
 
-
-function updateAccountButton(){
-
-  const buttons =
-    document.querySelectorAll(
-      ".header-actions .icon-btn"
-    );
-
-
-  if(buttons.length){
-
-    buttons[0].title =
-      currentUser
-      ? "My Account"
-      : "Login";
-
-  }
-
-}
-
-
-/* =========================================================
-   REQUIRE VERIFIED USER
-========================================================= */
 
 async function requireVerifiedUser(){
 
-  if(!currentUser){
+if(!currentUser){
 
-    openAuth();
+openAuth();
 
-    return false;
-
-  }
-
-
-  if(!currentUser.email_confirmed_at){
-
-    alert(
-      "আপনার Email verify করুন।"
-    );
-
-    return false;
-
-  }
-
-
-  return true;
+return false;
 
 }
 
 
-/* =========================================================
-   AUTH MODAL
-========================================================= */
+if(
+!currentUser.email_confirmed_at
+){
+
+alert(
+"আপনার Email verify করুন।"
+);
+
+return false;
+
+}
+
+
+return true;
+
+}
+
 
 function openAuth(){
 
-  authMode = "login";
+authMode =
+"login";
 
-  updateAuthUI();
+updateAuthUI();
 
-  openModal("authModal");
+openModal(
+"authModal"
+);
 
 }
 
 
 function toggleAuthMode(){
 
-  authMode =
-    authMode === "login"
-    ? "signup"
-    : "login";
+authMode =
+authMode ===
+"login"
+? "signup"
+: "login";
 
-  updateAuthUI();
+updateAuthUI();
 
 }
 
 
 function updateAuthUI(){
 
-  const signup =
-    document.getElementById(
-      "signupFields"
-    );
+const fields =
+document.getElementById(
+"signupFields"
+);
+
+const title =
+document.getElementById(
+"authTitle"
+);
+
+const submit =
+document.getElementById(
+"authSubmit"
+);
+
+const toggle =
+document.getElementById(
+"authToggle"
+);
 
 
-  const title =
-    document.getElementById(
-      "authTitle"
-    );
+if(
+authMode ===
+"signup"
+){
 
+fields.style.display =
+"block";
 
-  const submit =
-    document.getElementById(
-      "authSubmit"
-    );
+title.textContent =
+"📝 Create Account";
 
+submit.textContent =
+"Sign Up";
 
-  const toggle =
-    document.getElementById(
-      "authToggle"
-    );
+toggle.textContent =
+"Already Account আছে? Login";
 
+}else{
 
-  if(authMode === "signup"){
+fields.style.display =
+"none";
 
-    signup.style.display =
-      "block";
+title.textContent =
+"🔐 Login";
 
-    title.textContent =
-      "📝 Create Account";
+submit.textContent =
+"Login";
 
-    submit.textContent =
-      "Sign Up";
-
-    toggle.textContent =
-      "Already Account আছে? Login";
-
-  }else{
-
-    signup.style.display =
-      "none";
-
-    title.textContent =
-      "🔐 Login";
-
-    submit.textContent =
-      "Login";
-
-    toggle.textContent =
-      "New Account তৈরি করুন";
-
-  }
+toggle.textContent =
+"New Account তৈরি করুন";
 
 }
 
+}
+
+
+/* =====================================================
+   SUBMIT AUTH
+===================================================== */
 
 async function submitAuth(){
 
-  if(!db) return;
+if(!db) return;
 
 
-  const email =
-    document.getElementById(
-      "authEmail"
-    ).value.trim();
+const email =
+document.getElementById(
+"authEmail"
+).value.trim();
 
 
-  const password =
-    document.getElementById(
-      "authPassword"
-    ).value;
+const password =
+document.getElementById(
+"authPassword"
+).value;
 
 
-  if(!email || !password){
+if(
+!email ||
+!password
+){
 
-    alert(
-      "Email এবং Password দিন।"
-    );
+alert(
+"Email এবং Password দিন।"
+);
 
-    return;
-
-  }
-
-
-  if(authMode === "signup"){
-
-    const fullName =
-      document.getElementById(
-        "signupName"
-      ).value.trim();
-
-
-    const phone =
-      document.getElementById(
-        "signupPhone"
-      ).value.trim();
-
-
-    if(!fullName || !phone){
-
-      alert(
-        "Name এবং Phone দিন।"
-      );
-
-      return;
-
-    }
-
-
-    const result =
-      await db.auth.signUp({
-
-        email:email,
-
-        password:password,
-
-        options:{
-
-          data:{
-
-            full_name:
-              fullName,
-
-            phone:
-              phone
-
-          }
-
-        }
-
-      });
-
-
-    if(result.error){
-
-      alert(
-        "Signup হয়নি ❌\n" +
-        result.error.message
-      );
-
-      return;
-
-    }
-
-
-    alert(
-      "Account তৈরি হয়েছে ✅\n\n" +
-      "Email verification link check করুন।"
-    );
-
-
-    authMode = "login";
-
-    updateAuthUI();
-
-
-  }else{
-
-    const result =
-      await db.auth.signInWithPassword({
-
-        email:email,
-
-        password:password
-
-      });
-
-
-    if(result.error){
-
-      alert(
-        "Login হয়নি ❌\n" +
-        result.error.message
-      );
-
-      return;
-
-    }
-
-
-    currentUser =
-      result.data.user;
-
-
-    closeModal("authModal");
-
-    alert(
-      "Login successful ✅"
-    );
-
-  }
+return;
 
 }
 
 
-/* =========================================================
+if(
+authMode ===
+"signup"
+){
+
+const name =
+document.getElementById(
+"signupName"
+).value.trim();
+
+
+const phone =
+document.getElementById(
+"signupPhone"
+).value.trim();
+
+
+if(
+!name ||
+!phone
+){
+
+alert(
+"Name এবং Phone দিন।"
+);
+
+return;
+
+}
+
+
+const result =
+await db.auth.signUp({
+
+email:email,
+
+password:password,
+
+options:{
+
+data:{
+
+full_name:name,
+
+phone:phone
+
+}
+
+}
+
+});
+
+
+if(result.error){
+
+alert(
+"Signup হয়নি ❌\n" +
+result.error.message
+);
+
+return;
+
+}
+
+
+alert(
+"Account তৈরি হয়েছে ✅\n\n" +
+"Email verification link check করুন।"
+);
+
+
+authMode =
+"login";
+
+updateAuthUI();
+
+
+}else{
+
+
+const result =
+await db.auth.signInWithPassword({
+
+email:email,
+
+password:password
+
+});
+
+
+if(result.error){
+
+alert(
+"Login হয়নি ❌\n" +
+result.error.message
+);
+
+return;
+
+}
+
+
+currentUser =
+result.data.user;
+
+
+closeModal(
+"authModal"
+);
+
+
+alert(
+"Login successful ✅"
+);
+
+}
+
+}
+
+
+/* =====================================================
    PASSWORD RESET
-========================================================= */
+===================================================== */
 
 async function resetPassword(){
 
-  if(!db) return;
+const email =
+document.getElementById(
+"authEmail"
+).value.trim();
 
 
-  const email =
-    document.getElementById(
-      "authEmail"
-    ).value.trim();
+if(!email){
 
+alert(
+"আগে Email লিখুন।"
+);
 
-  if(!email){
-
-    alert(
-      "আগে Email লিখুন।"
-    );
-
-    return;
-
-  }
-
-
-  const result =
-    await db.auth.resetPasswordForEmail(
-      email,
-      {
-        redirectTo:
-          window.location.origin
-      }
-    );
-
-
-  if(result.error){
-
-    alert(
-      result.error.message
-    );
-
-    return;
-
-  }
-
-
-  alert(
-    "Password reset link Email-এ পাঠানো হয়েছে।"
-  );
+return;
 
 }
 
 
-/* =========================================================
+const result =
+await db.auth.resetPasswordForEmail(
+email,
+{
+
+redirectTo:
+window.location.origin
+
+}
+);
+
+
+if(result.error){
+
+alert(
+result.error.message
+);
+
+return;
+
+}
+
+
+alert(
+"Password reset link Email-এ পাঠানো হয়েছে।"
+);
+
+}
+
+
+/* =====================================================
    ACCOUNT
-========================================================= */
+===================================================== */
 
 async function openAccount(){
 
-  if(!currentUser){
+if(!currentUser){
 
-    openAuth();
+openAuth();
 
-    return;
+return;
 
-  }
+}
 
 
-  await renderAccount();
+await renderAccount();
 
-  openModal("accountModal");
+openModal(
+"accountModal"
+);
 
 }
 
 
 async function renderAccount(){
 
-  const box =
-    document.getElementById(
-      "accountContent"
-    );
+const box =
+document.getElementById(
+"accountContent"
+);
 
 
-  box.innerHTML =
-    `<div class="empty">
-      Account Loading...
-    </div>`;
+box.innerHTML =
+`<div class="empty">
+Account Loading...
+</div>`;
 
 
-  const profile =
-    await db
-      .from("profiles")
-      .select("*")
-      .eq("id",currentUser.id)
-      .maybeSingle();
+const profile =
+await db
+.from("profiles")
+.select("*")
+.eq("id",currentUser.id)
+.maybeSingle();
 
 
-  const orders =
-    await db
-      .from("orders")
-      .select("*")
-      .eq("user_id",currentUser.id)
-      .order("created_at",{ascending:false});
+const orders =
+await db
+.from("orders")
+.select("*")
+.eq("user_id",currentUser.id)
+.order(
+"created_at",
+{ascending:false}
+);
 
 
-  let html = `
+let html = `
 
-    <div class="account-card">
+<div class="account-card">
 
-      <b>
-        ${escapeHtml(
-          profile.data?.full_name
-          ||
-          currentUser.email
-        )}
-      </b>
+<h3>
+👤 ${
+escapeHtml(
+profile.data?.full_name
+||
+currentUser.email
+)
+}
+</h3>
 
-      <p>
-        ${escapeHtml(
-          currentUser.email || ""
-        )}
-      </p>
+<p>
+Email:
+${escapeHtml(
+currentUser.email || ""
+)}
+</p>
 
-      <p>
-        Phone:
-        ${escapeHtml(
-          profile.data?.phone || "—"
-        )}
-      </p>
+<p>
+Phone:
+${escapeHtml(
+profile.data?.phone || "—"
+)}
+</p>
 
-      <p>
-        Role:
-        ${escapeHtml(
-          profile.data?.role || "customer"
-        )}
-      </p>
+<p>
+Role:
+${escapeHtml(
+profile.data?.role || "customer"
+)}
+</p>
 
-    </div>
+</div>
 
-    <button
-      class="btn btn-pink"
-      onclick="openReseller()"
-    >
-      🤝 Reseller Center
-    </button>
+<button
+class="btn btn-pink"
+onclick="openReseller()"
+>
+🤝 Reseller Center
+</button>
 
-    ${
-      profile.data?.role === "admin"
-      ? `
-        <button
-          class="btn btn-danger"
-          onclick="openAdmin()"
-        >
-          👨‍💼 Admin Orders
-        </button>
-      `
-      : ""
-    }
+${
+profile.data?.role ===
+"admin"
+?
+`
+<button
+class="btn btn-danger"
+onclick="openAdmin()"
+>
+👨‍💼 Admin Orders
+</button>
+`
+:
+""
+}
 
-    <br><br>
+<br><br>
 
-    <h3 style="color:#e60073;">
-      📜 My Orders
-    </h3>
+<h3 style="color:#8f174d;">
+📜 My Orders
+</h3>
 
-  `;
-
-
-  if(orders.error){
-
-    html += `
-      <div class="empty">
-        Orders load হয়নি।
-      </div>
-    `;
-
-  }else if(!orders.data?.length){
-
-    html += `
-      <div class="empty">
-        এখনো কোনো Order নেই।
-      </div>
-    `;
-
-  }else{
-
-    html +=
-      orders.data.map(function(order){
-
-        return `
-
-          <div class="order-history-item">
-
-            <div style="
-              display:flex;
-              justify-content:space-between;
-              gap:8px;
-            ">
-
-              <b>
-                Order #${order.id}
-              </b>
-
-              <span class="status">
-                ${escapeHtml(order.order_status)}
-              </span>
-
-            </div>
-
-            <p>
-              Date:
-              ${formatDate(order.created_at)}
-            </p>
-
-            <p>
-              Payment:
-              ${escapeHtml(order.payment_method)}
-            </p>
-
-            <p>
-              Total:
-              <b>
-                ৳${formatMoney(order.total)}
-              </b>
-            </p>
-
-            ${
-              order.order_status !== "Cancelled"
-              &&
-              order.order_status !== "Delivered"
-              ? `
-                <button
-                  class="btn btn-light"
-                  onclick="alert('Order #${order.id} বর্তমানে ${escapeAttr(order.order_status} অবস্থায় আছে।')"
-                >
-                  📦 Status
-                </button>
-              `
-              : ""
-            }
-
-          </div>
-
-        `;
-
-      }).join("");
-
-  }
+`;
 
 
-  html += `
+if(
+orders.error
+){
 
-    <br>
+html += `
+<div class="empty">
+Orders load হয়নি।
+</div>
+`;
 
-    <button
-      class="btn btn-light full-btn"
-      onclick="logout()"
-    >
-      🚪 Logout
-    </button>
+}else if(
+!orders.data?.length
+){
 
-  `;
+html += `
+<div class="empty">
+এখনো কোনো Order নেই।
+</div>
+`;
+
+}else{
 
 
-  box.innerHTML = html;
+html +=
+orders.data
+.map(
+function(order){
+
+return `
+
+<div class="order-history-item">
+
+<div style="
+display:flex;
+justify-content:space-between;
+gap:8px;
+">
+
+<b>
+Order #${order.id}
+</b>
+
+<span class="status">
+${escapeHtml(
+order.order_status
+)}
+</span>
+
+</div>
+
+<p>
+Date:
+${formatDate(
+order.created_at
+)}
+</p>
+
+<p>
+Payment:
+${escapeHtml(
+order.payment_method
+)}
+</p>
+
+<p>
+Total:
+<b>
+৳${formatMoney(
+order.total
+)}
+</b>
+</p>
+
+</div>
+
+`;
+
+}
+)
+.join("");
 
 }
 
 
-/* =========================================================
+html += `
+
+<br>
+
+<button
+class="btn btn-light full-btn"
+onclick="logout()"
+>
+🚪 Logout
+</button>
+
+`;
+
+
+box.innerHTML =
+html;
+
+}
+
+
+/* =====================================================
    LOGOUT
-========================================================= */
+===================================================== */
 
 async function logout(){
 
-  if(!db) return;
+await db.auth.signOut();
 
-  await db.auth.signOut();
+currentUser = null;
 
-  currentUser = null;
+closeModal(
+"accountModal"
+);
 
-  closeModal("accountModal");
-
-  alert(
-    "Logout হয়েছে।"
-  );
+alert(
+"Logout হয়েছে।"
+);
 
 }
 
 
-/* =========================================================
+/* =====================================================
    REVIEWS
-========================================================= */
+===================================================== */
 
 function openReview(productId){
 
-  if(!currentUser){
+if(!currentUser){
 
-    openAuth();
+openAuth();
 
-    return;
+return;
 
-  }
-
-
-  document.getElementById(
-    "reviewProductId"
-  ).value =
-    productId;
+}
 
 
-  document.getElementById(
-    "reviewText"
-  ).value = "";
+document.getElementById(
+"reviewProductId"
+).value =
+productId;
 
 
-  openModal("reviewModal");
+document.getElementById(
+"reviewText"
+).value = "";
+
+
+openModal(
+"reviewModal"
+);
 
 }
 
 
 async function submitReview(){
 
-  if(!currentUser){
+if(!currentUser){
 
-    alert(
-      "Review দিতে Login করুন।"
-    );
+alert(
+"Review দিতে Login করুন।"
+);
 
-    return;
-
-  }
-
-
-  const productId =
-    document.getElementById(
-      "reviewProductId"
-    ).value;
-
-
-  const rating =
-    Number(
-      document.getElementById(
-        "reviewRating"
-      ).value
-    );
-
-
-  const reviewText =
-    document.getElementById(
-      "reviewText"
-    ).value.trim();
-
-
-  if(!productId){
-
-    return;
-
-  }
-
-
-  const profile =
-    await db
-      .from("profiles")
-      .select("full_name")
-      .eq("id",currentUser.id)
-      .maybeSingle();
-
-
-  const result =
-    await db
-      .from("reviews")
-      .insert({
-
-        product_id:
-          productId,
-
-        user_id:
-          currentUser.id,
-
-        user_name:
-          profile.data?.full_name
-          ||
-          currentUser.email
-          ||
-          "Customer",
-
-        rating:
-          rating,
-
-        review_text:
-          reviewText,
-
-        status:
-          "Pending"
-
-      });
-
-
-  if(result.error){
-
-    alert(
-      "Review Submit হয়নি ❌\n" +
-      result.error.message
-    );
-
-    return;
-
-  }
-
-
-  closeModal("reviewModal");
-
-  alert(
-    "Review Submit হয়েছে ✅\n\nAdmin approve করার পর দেখা যাবে।"
-  );
-
-
-  if(currentDetailProduct){
-
-    loadReviews(
-      currentDetailProduct.id
-    );
-
-  }
+return;
 
 }
 
 
-/* =========================================================
+const productId =
+document.getElementById(
+"reviewProductId"
+).value;
+
+
+const rating =
+Number(
+document.getElementById(
+"reviewRating"
+).value
+);
+
+
+const reviewText =
+document.getElementById(
+"reviewText"
+).value.trim();
+
+
+if(!productId) return;
+
+
+const profile =
+await db
+.from("profiles")
+.select("full_name")
+.eq("id",currentUser.id)
+.maybeSingle();
+
+
+const result =
+await db
+.from("reviews")
+.insert({
+
+product_id:
+productId,
+
+user_id:
+currentUser.id,
+
+user_name:
+profile.data?.full_name
+||
+currentUser.email
+||
+"Customer",
+
+rating:
+rating,
+
+review_text:
+reviewText,
+
+status:
+"Pending"
+
+});
+
+
+if(result.error){
+
+alert(
+"Review Submit হয়নি ❌\n" +
+result.error.message
+);
+
+return;
+
+}
+
+
+closeModal(
+"reviewModal"
+);
+
+alert(
+"Review Submit হয়েছে ✅\n\nAdmin approve করার পর দেখা যাবে।"
+);
+
+
+if(currentDetailProduct){
+
+loadReviews(
+currentDetailProduct.id
+);
+
+}
+
+}
+
+
+/* =====================================================
    LOAD REVIEWS
-========================================================= */
+===================================================== */
 
 async function loadReviews(productId){
 
-  const box =
-    document.getElementById(
-      "productReviews"
-    );
+const box =
+document.getElementById(
+"productReviews"
+);
 
 
-  if(!box) return;
+if(!box) return;
 
 
-  const result =
-    await db
-      .from("reviews")
-      .select("*")
-      .eq("product_id",productId)
-      .eq("status","Approved")
-      .order("created_at",{ascending:false});
+const result =
+await db
+.from("reviews")
+.select("*")
+.eq("product_id",productId)
+.eq("status","Approved")
+.order(
+"created_at",
+{ascending:false}
+);
 
 
-  if(result.error){
+if(result.error){
 
-    box.innerHTML = "";
+box.innerHTML = "";
 
-    return;
-
-  }
-
-
-  if(!result.data?.length){
-
-    box.innerHTML = `
-
-      <br>
-
-      <div class="empty">
-        এখনো কোনো approved review নেই।
-      </div>
-
-    `;
-
-    return;
-
-  }
-
-
-  box.innerHTML = `
-
-    <br>
-
-    <h3 style="color:#e60073;">
-      ⭐ Customer Reviews
-    </h3>
-
-    ${
-      result.data.map(function(review){
-
-        return `
-
-          <div class="review-card">
-
-            <b>
-              ${escapeHtml(
-                review.user_name || "Customer"
-              )}
-            </b>
-
-            <div class="stars">
-              ${"⭐".repeat(
-                Number(review.rating || 0)
-              )}
-            </div>
-
-            <p>
-              ${escapeHtml(
-                review.review_text || ""
-              )}
-            </p>
-
-          </div>
-
-        `;
-
-      }).join("")
-    }
-
-  `;
+return;
 
 }
 
 
-/* =========================================================
+if(!result.data?.length){
+
+box.innerHTML = `
+<br>
+<div class="empty">
+এখনো কোনো approved review নেই।
+</div>
+`;
+
+return;
+
+}
+
+
+box.innerHTML = `
+
+<br>
+
+<h3 style="color:#8f174d;">
+⭐ Customer Reviews
+</h3>
+
+${
+result.data
+.map(
+function(review){
+
+return `
+
+<div class="review-card">
+
+<b>
+${escapeHtml(
+review.user_name ||
+"Customer"
+)}
+</b>
+
+<div class="stars">
+${"⭐".repeat(
+Number(
+review.rating || 0
+)
+)}
+</div>
+
+<p>
+${escapeHtml(
+review.review_text || ""
+)}
+</p>
+
+</div>
+
+`;
+
+}
+)
+.join("")
+}
+
+`;
+
+}
+
+
+/* =====================================================
    RESELLER
-========================================================= */
+===================================================== */
 
 async function openReseller(){
 
-  if(!currentUser){
+if(!currentUser){
 
-    openAuth();
+openAuth();
 
-    return;
-
-  }
-
-
-  const box =
-    document.getElementById(
-      "resellerContent"
-    );
-
-
-  box.innerHTML =
-    `<div class="empty">
-      Loading...
-    </div>`;
-
-
-  const result =
-    await db
-      .from("resellers")
-      .select("*")
-      .eq("user_id",currentUser.id)
-      .maybeSingle();
-
-
-  if(result.error){
-
-    box.innerHTML =
-      `<div class="empty">
-        ${escapeHtml(result.error.message)}
-      </div>`;
-
-    openModal("resellerModal");
-
-    return;
-
-  }
-
-
-  if(!result.data){
-
-    box.innerHTML = `
-
-      <div class="account-card">
-
-        <h3>
-          🤝 Become a Gadhuli Reseller
-        </h3>
-
-        <p>
-          Reseller account create করে
-          Product share করে sell করতে পারবেন।
-        </p>
-
-        <br>
-
-        <button
-          class="btn btn-pink full-btn"
-          onclick="createReseller()"
-        >
-          🤝 Apply as Reseller
-        </button>
-
-      </div>
-
-    `;
-
-  }else{
-
-    const reseller =
-      result.data;
-
-
-    box.innerHTML = `
-
-      <div class="account-card">
-
-        <h3>
-          🤝 Reseller Dashboard
-        </h3>
-
-        <br>
-
-        <p>
-          <b>Code:</b>
-          ${escapeHtml(
-            reseller.reseller_code
-          )}
-        </p>
-
-        <p>
-          <b>Status:</b>
-          ${escapeHtml(
-            reseller.status
-          )}
-        </p>
-
-        <p>
-          <b>Commission:</b>
-          ${reseller.commission_rate}%
-        </p>
-
-        <p>
-          <b>Total Orders:</b>
-          ${reseller.total_orders}
-        </p>
-
-        <p>
-          <b>Total Sales:</b>
-          ৳${formatMoney(
-            reseller.total_sales
-          )}
-        </p>
-
-        <p>
-          <b>Total Commission:</b>
-          ৳${formatMoney(
-            reseller.total_commission
-          )}
-        </p>
-
-      </div>
-
-    `;
-
-  }
-
-
-  openModal("resellerModal");
+return;
 
 }
 
 
-/* =========================================================
+const box =
+document.getElementById(
+"resellerContent"
+);
+
+
+box.innerHTML =
+`<div class="empty">
+Loading...
+</div>`;
+
+
+const result =
+await db
+.from("resellers")
+.select("*")
+.eq("user_id",currentUser.id)
+.maybeSingle();
+
+
+if(result.error){
+
+box.innerHTML =
+`<div class="empty">
+${escapeHtml(
+result.error.message
+)}
+</div>`;
+
+openModal(
+"resellerModal"
+);
+
+return;
+
+}
+
+
+if(!result.data){
+
+box.innerHTML = `
+
+<div class="account-card">
+
+<h3>
+🤝 Become a Gadhuli Reseller
+</h3>
+
+<p>
+Reseller account create করে
+Product share করে sell করতে পারবেন।
+</p>
+
+<br>
+
+<button
+class="btn btn-pink full-btn"
+onclick="createReseller()"
+>
+🤝 Apply as Reseller
+</button>
+
+</div>
+
+`;
+
+}else{
+
+
+const reseller =
+result.data;
+
+
+box.innerHTML = `
+
+<div class="account-card">
+
+<h3>
+🤝 Reseller Dashboard
+</h3>
+
+<br>
+
+<p>
+<b>Code:</b>
+${escapeHtml(
+reseller.reseller_code
+)}
+</p>
+
+<p>
+<b>Status:</b>
+${escapeHtml(
+reseller.status
+)}
+</p>
+
+<p>
+<b>Commission:</b>
+${reseller.commission_rate}%
+</p>
+
+<p>
+<b>Total Orders:</b>
+${reseller.total_orders}
+</p>
+
+<p>
+<b>Total Sales:</b>
+৳${formatMoney(
+reseller.total_sales
+)}
+</p>
+
+<p>
+<b>Total Commission:</b>
+৳${formatMoney(
+reseller.total_commission
+)}
+</p>
+
+</div>
+
+`;
+
+}
+
+
+openModal(
+"resellerModal"
+);
+
+}
+
+
+/* =====================================================
    CREATE RESELLER
-========================================================= */
+===================================================== */
 
 async function createReseller(){
 
-  if(!currentUser) return;
+if(!currentUser) return;
 
 
-  const code =
-    "GADHULI" +
-    Math.random()
-      .toString(36)
-      .substring(2,8)
-      .toUpperCase();
+const code =
+"GADHULI" +
+Math.random()
+.toString(36)
+.substring(2,8)
+.toUpperCase();
 
 
-  const result =
-    await db
-      .from("resellers")
-      .insert({
+const result =
+await db
+.from("resellers")
+.insert({
 
-        user_id:
-          currentUser.id,
+user_id:
+currentUser.id,
 
-        reseller_code:
-          code,
+reseller_code:
+code,
 
-        commission_rate:
-          5,
+commission_rate:
+5,
 
-        status:
-          "Pending"
+status:
+"Pending"
 
-      });
-
-
-  if(result.error){
-
-    alert(
-      "Reseller application হয়নি ❌\n" +
-      result.error.message
-    );
-
-    return;
-
-  }
+});
 
 
-  /*
-    Profile-এ reseller code
-  */
+if(result.error){
 
-  await db
-    .from("profiles")
-    .update({
+alert(
+"Reseller application হয়নি ❌\n" +
+result.error.message
+);
 
-      reseller_code:
-        code,
-
-      role:
-        "reseller"
-
-    })
-    .eq(
-      "id",
-      currentUser.id
-    );
-
-
-  alert(
-    "Reseller application সফল হয়েছে ✅"
-  );
-
-
-  openReseller();
+return;
 
 }
 
 
-/* =========================================================
+await db
+.from("profiles")
+.update({
+
+reseller_code:
+code,
+
+role:
+"reseller"
+
+})
+.eq(
+"id",
+currentUser.id
+);
+
+
+alert(
+"Reseller application সফল হয়েছে ✅"
+);
+
+
+openReseller();
+
+}
+
+
+/* =====================================================
    ADMIN
-========================================================= */
+===================================================== */
 
 async function openAdmin(){
 
-  if(!currentUser){
+if(!currentUser){
 
-    openAuth();
+openAuth();
 
-    return;
-
-  }
-
-
-  const check =
-    await db
-      .from("profiles")
-      .select("role")
-      .eq("id",currentUser.id)
-      .maybeSingle();
-
-
-  if(
-    check.error ||
-    check.data?.role !== "admin"
-  ){
-
-    alert(
-      "Admin access নেই।"
-    );
-
-    return;
-
-  }
-
-
-  await renderAdminOrders();
-
-  openModal("adminModal");
+return;
 
 }
 
 
-/* =========================================================
+const check =
+await db
+.from("profiles")
+.select("role")
+.eq("id",currentUser.id)
+.maybeSingle();
+
+
+if(
+check.error
+||
+check.data?.role !==
+"admin"
+){
+
+alert(
+"Admin access নেই।"
+);
+
+return;
+
+}
+
+
+await renderAdminOrders();
+
+openModal(
+"adminModal"
+);
+
+}
+
+
+/* =====================================================
    ADMIN ORDERS
-========================================================= */
+===================================================== */
 
 async function renderAdminOrders(){
 
-  const box =
-    document.getElementById(
-      "adminContent"
-    );
+const box =
+document.getElementById(
+"adminContent"
+);
 
 
-  box.innerHTML =
-    `<div class="empty">
-      Orders Loading...
-    </div>`;
+box.innerHTML =
+`<div class="empty">
+Orders Loading...
+</div>`;
 
 
-  const result =
-    await db
-      .from("orders")
-      .select("*")
-      .order("created_at",{ascending:false});
+const result =
+await db
+.from("orders")
+.select("*")
+.order(
+"created_at",
+{ascending:false}
+);
 
 
-  if(result.error){
+if(result.error){
 
-    box.innerHTML =
-      `<div class="empty">
-        ${escapeHtml(result.error.message)}
-      </div>`;
+box.innerHTML =
+`<div class="empty">
+${escapeHtml(
+result.error.message
+)}
+</div>`;
 
-    return;
-
-  }
-
-
-  if(!result.data?.length){
-
-    box.innerHTML =
-      `<div class="empty">
-        এখনো কোনো Order নেই।
-      </div>`;
-
-    return;
-
-  }
-
-
-  let html = "";
-
-
-  for(
-    const order of result.data
-  ){
-
-    const items =
-      await db
-        .from("order_items")
-        .select("*")
-        .eq("order_id",order.id);
-
-
-    html += `
-
-      <div class="admin-order">
-
-        <div class="admin-order-head">
-
-          <div>
-
-            <b>
-              Order #${order.id}
-            </b>
-
-            <br>
-
-            <small>
-              ${formatDate(
-                order.created_at
-              )}
-            </small>
-
-          </div>
-
-          <span class="status">
-            ${escapeHtml(
-              order.order_status
-            )}
-          </span>
-
-        </div>
-
-        <p>
-          <b>Customer:</b>
-          ${escapeHtml(
-            order.customer_name
-          )}
-        </p>
-
-        <p>
-          <b>Phone:</b>
-          ${escapeHtml(
-            order.customer_phone
-          )}
-        </p>
-
-        <p>
-          <b>Address:</b>
-          ${escapeHtml(
-            order.customer_receive_place
-          )},
-          ${escapeHtml(
-            order.customer_thana
-          )},
-          ${escapeHtml(
-            order.customer_district
-          )}
-        </p>
-
-        <p>
-          <b>Payment:</b>
-          ${escapeHtml(
-            order.payment_method
-          )}
-          —
-          ${escapeHtml(
-            order.payment_status
-          )}
-        </p>
-
-        <div class="admin-items">
-
-          <b>Products</b>
-
-          ${
-            (items.data || []).map(function(item){
-
-              return `
-
-                <div style="
-                  padding:7px 0;
-                  border-bottom:1px solid #ffd0e5;
-                ">
-
-                  ${escapeHtml(
-                    item.product_name
-                  )}
-
-                  ${
-                    item.size
-                    ? " — Size: " +
-                      escapeHtml(item.size)
-                    : ""
-                  }
-
-                  × ${item.quantity}
-
-                  =
-                  <b>
-                    ৳${formatMoney(
-                      item.line_total
-                    )}
-                  </b>
-
-                </div>
-
-              `;
-
-            }).join("")
-          }
-
-        </div>
-
-        <h3 style="color:#e60073;">
-          Total:
-          ৳${formatMoney(order.total)}
-        </h3>
-
-        <br>
-
-        <div class="admin-actions">
-
-          <select
-            onchange="updateOrderStatus(${order.id},this.value)"
-          >
-
-            ${
-              [
-                "Pending",
-                "Confirmed",
-                "Processing",
-                "Shipped",
-                "Delivered",
-                "Cancelled"
-              ]
-              .map(function(status){
-
-                return `
-
-                  <option
-                    value="${status}"
-                    ${
-                      status === order.order_status
-                      ? "selected"
-                      : ""
-                    }
-                  >
-                    ${status}
-                  </option>
-
-                `;
-
-              }).join("")
-            }
-
-          </select>
-
-
-          <select
-            onchange="updatePaymentStatus(${order.id},this.value)"
-          >
-
-            ${
-              [
-                "Pending",
-                "Paid",
-                "Failed",
-                "Refunded"
-              ]
-              .map(function(status){
-
-                return `
-
-                  <option
-                    value="${status}"
-                    ${
-                      status === order.payment_status
-                      ? "selected"
-                      : ""
-                    }
-                  >
-                    Payment: ${status}
-                  </option>
-
-                `;
-
-              }).join("")
-            }
-
-          </select>
-
-        </div>
-
-      </div>
-
-    `;
-
-  }
-
-
-  box.innerHTML = html;
+return;
 
 }
 
 
-/* =========================================================
-   UPDATE ORDER STATUS
-========================================================= */
+if(!result.data?.length){
+
+box.innerHTML =
+`<div class="empty">
+এখনো কোনো Order নেই।
+</div>`;
+
+return;
+
+}
+
+
+let html = "";
+
+
+for(
+const order
+of result.data
+){
+
+const items =
+await db
+.from("order_items")
+.select("*")
+.eq(
+"order_id",
+order.id
+);
+
+
+html += `
+
+<div class="admin-order">
+
+<div class="admin-order-head">
+
+<div>
+
+<b>
+Order #${order.id}
+</b>
+
+<br>
+
+<small>
+${formatDate(
+order.created_at
+)}
+</small>
+
+</div>
+
+<span class="status">
+${escapeHtml(
+order.order_status
+)}
+</span>
+
+</div>
+
+<p>
+<b>Customer:</b>
+${escapeHtml(
+order.customer_name
+)}
+</p>
+
+<p>
+<b>Phone:</b>
+${escapeHtml(
+order.customer_phone
+)}
+</p>
+
+<p>
+<b>Address:</b>
+${escapeHtml(
+order.customer_receive_place
+)},
+${escapeHtml(
+order.customer_thana
+)},
+${escapeHtml(
+order.customer_district
+)}
+</p>
+
+<p>
+<b>Payment:</b>
+${escapeHtml(
+order.payment_method
+)}
+—
+${escapeHtml(
+order.payment_status
+)}
+</p>
+
+<div class="admin-items">
+
+<b>
+Products
+</b>
+
+${
+(items.data || [])
+.map(
+function(item){
+
+return `
+
+<div style="
+padding:7px 0;
+border-bottom:1px solid #f0c4d6;
+">
+
+${escapeHtml(
+item.product_name
+)}
+
+${
+item.size
+?
+" — Size: " +
+escapeHtml(item.size)
+:
+""
+}
+
+×
+${item.quantity}
+
+=
+<b>
+৳${formatMoney(
+item.line_total
+)}
+</b>
+
+</div>
+
+`;
+
+}
+)
+.join("")
+}
+
+</div>
+
+<h3 style="color:#8f174d;">
+Total:
+৳${formatMoney(
+order.total
+)}
+</h3>
+
+<br>
+
+<div class="admin-actions">
+
+<select
+onchange="updateOrderStatus(${order.id},this.value)"
+>
+
+${
+[
+"Pending",
+"Confirmed",
+"Processing",
+"Shipped",
+"Delivered",
+"Cancelled"
+]
+.map(
+function(status){
+
+return `
+
+<option
+value="${status}"
+${
+status ===
+order.order_status
+?
+"selected"
+:
+""
+}
+>
+${status}
+</option>
+
+`;
+
+}
+)
+.join("")
+}
+
+</select>
+
+
+<select
+onchange="updatePaymentStatus(${order.id},this.value)"
+>
+
+${
+[
+"Pending",
+"Paid",
+"Failed",
+"Refunded"
+]
+.map(
+function(status){
+
+return `
+
+<option
+value="${status}"
+${
+status ===
+order.payment_status
+?
+"selected"
+:
+""
+}
+>
+Payment: ${status}
+</option>
+
+`;
+
+}
+)
+.join("")
+}
+
+</select>
+
+</div>
+
+</div>
+
+`;
+
+}
+
+
+box.innerHTML =
+html;
+
+}
+
+
+/* =====================================================
+   ADMIN STATUS
+===================================================== */
 
 async function updateOrderStatus(
-  orderId,
-  status
+orderId,
+status
 ){
 
-  const result =
-    await db
-      .from("orders")
-      .update({
+const result =
+await db
+.from("orders")
+.update({
 
-        order_status:
-          status
+order_status:
+status
 
-      })
-      .eq(
-        "id",
-        orderId
-      );
-
-
-  if(result.error){
-
-    alert(
-      "Status update হয়নি ❌\n" +
-      result.error.message
-    );
-
-    return;
-
-  }
+})
+.eq(
+"id",
+orderId
+);
 
 
-  await renderAdminOrders();
+if(result.error){
+
+alert(
+"Status update হয়নি ❌\n" +
+result.error.message
+);
+
+return;
 
 }
 
 
-/* =========================================================
-   UPDATE PAYMENT STATUS
-========================================================= */
+await renderAdminOrders();
+
+}
+
 
 async function updatePaymentStatus(
-  orderId,
-  status
+orderId,
+status
 ){
 
-  const result =
-    await db
-      .from("orders")
-      .update({
+const result =
+await db
+.from("orders")
+.update({
 
-        payment_status:
-          status
+payment_status:
+status
 
-      })
-      .eq(
-        "id",
-        orderId
-      );
-
-
-  if(result.error){
-
-    alert(
-      "Payment status update হয়নি ❌\n" +
-      result.error.message
-    );
-
-    return;
-
-  }
+})
+.eq(
+"id",
+orderId
+);
 
 
-  await renderAdminOrders();
+if(result.error){
+
+alert(
+"Payment status update হয়নি ❌\n" +
+result.error.message
+);
+
+return;
 
 }
 
 
-/* =========================================================
+await renderAdminOrders();
+
+}
+
+
+/* =====================================================
    HELPERS
-========================================================= */
+===================================================== */
 
-function findProduct(productId){
+function findProduct(id){
 
-  return products.find(function(product){
+return products.find(
+function(product){
 
-    return String(product.id) ===
-      String(productId);
+return String(product.id) ===
+String(id);
 
-  });
+}
+);
 
 }
 
 
 function formatMoney(value){
 
-  const number =
-    Number(value || 0);
-
-  return number.toLocaleString(
-    "en-US",
-    {
-      maximumFractionDigits:2
-    }
-  );
+return Number(
+value || 0
+).toLocaleString(
+"en-US",
+{
+maximumFractionDigits:2
+}
+);
 
 }
 
 
 function formatDate(date){
 
-  if(!date) return "—";
+if(!date) return "—";
 
-  try{
 
-    return new Date(date)
-      .toLocaleString(
-        "en-BD",
-        {
-          dateStyle:"medium",
-          timeStyle:"short"
-        }
-      );
+try{
 
-  }catch(e){
+return new Date(date)
+.toLocaleString(
+"en-BD",
+{
+dateStyle:"medium",
+timeStyle:"short"
+}
+);
 
-    return date;
+}catch(e){
 
-  }
+return String(date);
+
+}
 
 }
 
 
 function escapeHtml(value){
 
-  return String(value ?? "")
-    .replaceAll("&","&amp;")
-    .replaceAll("<","&lt;")
-    .replaceAll(">","&gt;")
-    .replaceAll('"',"&quot;")
-    .replaceAll("'","&#039;");
+return String(value ?? "")
+.replaceAll("&","&amp;")
+.replaceAll("<","&lt;")
+.replaceAll(">","&gt;")
+.replaceAll('"',"&quot;")
+.replaceAll("'","&#039;");
 
 }
 
 
 function escapeAttr(value){
 
-  return String(value ?? "")
-    .replaceAll("\\","\\\\")
-    .replaceAll("'","\\'")
-    .replaceAll('"',"&quot;")
-    .replaceAll("<","&lt;")
-    .replaceAll(">","&gt;");
+return String(value ?? "")
+.replaceAll("&","&amp;")
+.replaceAll('"',"&quot;")
+.replaceAll("<","&lt;")
+.replaceAll(">","&gt;");
 
 }
 
 
-/* =========================================================
+/* =====================================================
    MODAL
-========================================================= */
+===================================================== */
 
 function openModal(id){
 
-  const modal =
-    document.getElementById(id);
+const modal =
+document.getElementById(id);
 
-  if(modal){
+if(modal){
 
-    modal.classList.add("show");
+modal.classList.add("show");
 
-  }
+}
 
 }
 
 
 function closeModal(id){
 
-  const modal =
-    document.getElementById(id);
+const modal =
+document.getElementById(id);
 
-  if(modal){
+if(modal){
 
-    modal.classList.remove("show");
+modal.classList.remove("show");
 
-  }
+}
 
 }
 
 
-/* =========================================================
-   CLOSE MODAL OUTSIDE
-========================================================= */
+/* =====================================================
+   OUTSIDE MODAL CLOSE
+===================================================== */
 
 document.addEventListener(
-  "click",
-  function(event){
+"click",
+function(event){
 
-    if(
-      event.target.classList.contains(
-        "modal"
-      )
-    ){
+if(
+event.target.classList.contains(
+"modal"
+)
+){
 
-      event.target.classList.remove(
-        "show"
-      );
+event.target.classList.remove(
+"show"
+);
 
-    }
+}
 
-  }
+}
 );
 
 
-/* =========================================================
-   ESC KEY
-========================================================= */
+/* =====================================================
+   ESC
+===================================================== */
 
 document.addEventListener(
-  "keydown",
-  function(event){
+"keydown",
+function(event){
 
-    if(event.key === "Escape"){
+if(
+event.key === "Escape"
+){
 
-      document
-        .querySelectorAll(".modal.show")
-        .forEach(function(modal){
+document
+.querySelectorAll(
+".modal.show"
+)
+.forEach(
+function(modal){
 
-          modal.classList.remove(
-            "show"
-          );
+modal.classList.remove(
+"show"
+);
 
-        });
+}
+);
 
-    }
+}
 
-  }
+}
 );
 
 
-/* =========================================================
-   URL PRODUCT
-========================================================= */
+/* =====================================================
+   REFERRAL
+===================================================== */
 
-function openProductFromURL(){
+const urlParams =
+new URLSearchParams(
+window.location.search
+);
 
-  const params =
-    new URLSearchParams(
-      window.location.search
-    );
-
-
-  const productId =
-    params.get("product");
+const referral =
+urlParams.get("ref");
 
 
-  if(productId){
+if(referral){
 
-    setTimeout(
-      function(){
-
-        if(findProduct(productId)){
-
-          openDetails(productId);
-
-        }
-
-      },
-      500
-    );
-
-  }
+localStorage.setItem(
+"gadhuli_ref",
+referral
+);
 
 }
 
 
-openProductFromURL();
+/* =====================================================
+   PRODUCT URL
+===================================================== */
+
+const productFromURL =
+urlParams.get("product");
 
 
-/* =========================================================
-   RESELLER URL
-========================================================= */
+if(productFromURL){
 
-function getReferralCode(){
+setTimeout(
+function(){
 
-  const params =
-    new URLSearchParams(
-      window.location.search
-    );
+if(
+findProduct(productFromURL)
+){
 
-  return (
-    params.get("ref") || ""
-  );
-
-}
-
-
-/* =========================================================
-   SAVE REFERRAL
-========================================================= */
-
-const referralCode =
-  getReferralCode();
-
-
-if(referralCode){
-
-  localStorage.setItem(
-    "gadhuli_ref",
-    referralCode
-  );
+openDetails(
+productFromURL
+);
 
 }
 
+},
+1000
+);
 
-/* =========================================================
-   UPDATE ORDER WITH REFERRER
-========================================================= */
-
-/*
-  Referral code is prepared here for
-  future reseller commission tracking.
-*/
-
+}
 
 </script>
 
