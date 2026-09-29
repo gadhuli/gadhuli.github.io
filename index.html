@@ -8,76 +8,147 @@
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="supabase.js"></script>
 <style>
-*{box-sizing:border-box;margin:0;padding:0}body{font-family:Arial,Helvetica,sans-serif;background:#fff7fa;color:#222}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial,Helvetica,sans-serif;background:#fff7fa;color:#222}
 button,input,select,textarea{font-family:inherit}button{cursor:pointer}
 header{position:sticky;top:0;z-index:1000;background:#fff;border-bottom:2px solid #f0b3cc;box-shadow:0 2px 12px rgba(143,23,77,.12)}
-.header-top{max-width:1200px;margin:auto;padding:10px 15px;display:flex;align-items:center;gap:12px}.logo{width:130px;height:45px;object-fit:contain}.search-box{flex:1}
-.search-box input{width:100%;padding:12px 15px;border:2px solid #f0b3cc;border-radius:25px;outline:none;background:#fff7fa;font-size:14px}.search-box input:focus{border-color:#8f174d}
-.header-actions{display:flex;gap:7px}.icon-btn{border:1px solid #f0b3cc;background:#fff;color:#8f174d;width:42px;height:42px;border-radius:50%;font-size:19px}.icon-btn:hover{background:#fff0f6}
+.header-top{max-width:1200px;margin:auto;padding:10px 15px;display:flex;align-items:center;gap:10px}
+.logo{width:130px;height:45px;object-fit:contain}.search-box{flex:1}
+.search-box input{width:100%;padding:12px 15px;border:2px solid #f0b3cc;border-radius:25px;outline:none;background:#fff7fa;font-size:14px}
+.search-box input:focus{border-color:#8f174d}
+.header-actions{display:flex;gap:6px;align-items:center}
+.icon-btn{border:1px solid #f0b3cc;background:#fff;color:#8f174d;min-width:40px;height:40px;padding:0 9px;border-radius:20px;font-size:17px}
+.icon-btn:hover{background:#fff0f6}
 .hero{max-width:1200px;margin:15px auto;padding:28px 20px;border-radius:18px;background:linear-gradient(135deg,#8f174d,#d52b72,#bd3475);color:white;text-align:center;box-shadow:0 6px 20px rgba(143,23,77,.2)}
-.hero h1{font-size:32px;margin-bottom:8px}.hero p{font-size:15px}.section{max-width:1200px;margin:20px auto;padding:0 15px}.section-title{color:#8f174d;font-size:21px;margin-bottom:12px}
-.category-list,.subcategory-list{display:flex;gap:8px;overflow-x:auto;padding-bottom:8px}.category-list::-webkit-scrollbar,.subcategory-list::-webkit-scrollbar{height:4px}
+.hero h1{font-size:32px;margin-bottom:8px}.hero p{font-size:15px}
+.section{max-width:1200px;margin:20px auto;padding:0 15px}.section-title{color:#8f174d;font-size:21px;margin-bottom:12px}
+.category-list,.subcategory-list{display:flex;gap:8px;overflow-x:auto;padding-bottom:8px}
+.category-list::-webkit-scrollbar,.subcategory-list::-webkit-scrollbar{height:4px}
 .category-list::-webkit-scrollbar-thumb,.subcategory-list::-webkit-scrollbar-thumb{background:#d52b72;border-radius:10px}
 .cat-btn,.subcat-btn{white-space:nowrap;border:1px solid #f0b3cc;background:#fff;color:#8f174d;padding:9px 14px;border-radius:20px}
-.cat-btn.active,.subcat-btn.active,.cat-btn:hover,.subcat-btn:hover{background:#8f174d;color:white;border-color:#8f174d}.subcategory-wrapper{display:none}.subcategory-wrapper.show{display:block}
-.product-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:15px}.product-card{background:#fff;border:1px solid #f0c4d6;border-radius:15px;overflow:hidden;position:relative;box-shadow:0 3px 10px rgba(143,23,77,.08);transition:.2s}
-.product-card:hover{transform:translateY(-3px);box-shadow:0 7px 18px rgba(143,23,77,.15)}.product-image-wrap{position:relative}
-.product-image{width:100%;aspect-ratio:1/1;object-fit:cover;display:block;background:#fff0f6}.wish-small{position:absolute;right:8px;top:8px;width:34px;height:34px;border-radius:50%;border:0;background:white;box-shadow:0 2px 8px #ddd;font-size:17px}
-.product-info{padding:12px}.product-name{font-size:15px;min-height:38px;font-weight:bold}.product-price{color:#8f174d;font-size:20px;font-weight:bold;margin:8px 0}.product-meta{color:#777;font-size:12px;margin-bottom:8px}
-.product-buttons{display:flex;gap:6px;flex-wrap:wrap}.product-buttons .btn{flex:1;min-width:80px}.btn{border:0;padding:10px 12px;border-radius:9px;font-weight:bold}.btn-pink{background:#8f174d;color:white}.btn-pink:hover{background:#d52b72}
-.btn-light{background:#fff0f6;color:#8f174d;border:1px solid #f0b3cc}.btn-danger{background:#a20f48;color:white}.btn-green{background:#25D366;color:white}.btn-orange{background:#e67e22;color:white}.btn-blue{background:#1677ff;color:white}.full-btn{width:100%}.btn:disabled{opacity:.6;cursor:not-allowed}
-.modal{display:none;position:fixed;inset:0;z-index:2000;background:rgba(0,0,0,.55);padding:15px;overflow:auto}.modal.show{display:flex;align-items:center;justify-content:center}
-.modal-box{width:100%;max-width:650px;max-height:92vh;overflow:auto;background:white;border-radius:18px;padding:20px;position:relative}.modal-large{max-width:950px}
-.close{position:absolute;right:12px;top:10px;width:35px;height:35px;border:0;border-radius:50%;background:#fff0f6;color:#8f174d;font-size:20px}.modal-title{color:#8f174d;margin-bottom:15px;padding-right:40px}
-.form-group{margin-bottom:12px}.form-group label{display:block;margin-bottom:5px;font-weight:bold;color:#555}.form-group input,.form-group select,.form-group textarea{width:100%;padding:11px;border:1px solid #f0b3cc;border-radius:9px;outline:none}.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:#8f174d}
-.cart-item{display:flex;gap:10px;padding:10px 0;border-bottom:1px solid #f0c4d6}.cart-item img{width:75px;height:75px;border-radius:10px;object-fit:cover}.cart-item-info{flex:1}
-.qty-control{display:flex;align-items:center;gap:8px;margin-top:7px}.qty-control button{width:28px;height:28px;border:1px solid #f0b3cc;background:#fff0f6;color:#8f174d;border-radius:6px;font-weight:bold}
-.summary{margin-top:15px;padding:15px;background:#fff0f6;border-radius:12px}.summary-row{display:flex;justify-content:space-between;margin:7px 0;gap:10px}.summary-total{font-size:21px;font-weight:bold;color:#8f174d;border-top:1px solid #f0b3cc;padding-top:10px}
+.cat-btn.active,.subcat-btn.active,.cat-btn:hover,.subcat-btn:hover{background:#8f174d;color:white;border-color:#8f174d}
+.subcategory-wrapper{display:none}.subcategory-wrapper.show{display:block}
+.product-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:15px}
+.product-card{background:#fff;border:1px solid #f0c4d6;border-radius:15px;overflow:hidden;position:relative;box-shadow:0 3px 10px rgba(143,23,77,.08);transition:.2s}
+.product-card:hover{transform:translateY(-3px);box-shadow:0 7px 18px rgba(143,23,77,.15)}
+.product-image-wrap{position:relative}.product-image{width:100%;aspect-ratio:1/1;object-fit:cover;display:block;background:#fff0f6}
+.wish-small{position:absolute;right:8px;top:8px;width:34px;height:34px;border-radius:50%;border:0;background:white;box-shadow:0 2px 8px #ddd;font-size:17px}
+.product-info{padding:12px}.product-name{font-size:15px;min-height:38px;font-weight:bold}
+.product-price{color:#8f174d;font-size:20px;font-weight:bold;margin:8px 0}.product-meta{color:#777;font-size:12px;margin-bottom:8px}
+.product-buttons{display:flex;gap:6px;flex-wrap:wrap}.product-buttons .btn{flex:1;min-width:80px}
+.btn{border:0;padding:10px 12px;border-radius:9px;font-weight:bold}
+.btn-pink{background:#8f174d;color:white}.btn-pink:hover{background:#d52b72}
+.btn-light{background:#fff0f6;color:#8f174d;border:1px solid #f0b3cc}.btn-danger{background:#a20f48;color:white}
+.btn-green{background:#25D366;color:white}.btn-orange{background:#e67e22;color:white}.btn-blue{background:#1677ff;color:white}
+.full-btn{width:100%}.btn:disabled{opacity:.6;cursor:not-allowed}
+.modal{display:none;position:fixed;inset:0;z-index:2000;background:rgba(0,0,0,.55);padding:15px;overflow:auto}
+.modal.show{display:flex;align-items:center;justify-content:center}
+.modal-box{width:100%;max-width:650px;max-height:92vh;overflow:auto;background:white;border-radius:18px;padding:20px;position:relative}
+.modal-large{max-width:950px}.close{position:absolute;right:12px;top:10px;width:35px;height:35px;border:0;border-radius:50%;background:#fff0f6;color:#8f174d;font-size:20px}
+.modal-title{color:#8f174d;margin-bottom:15px;padding-right:40px}
+.form-group{margin-bottom:12px}.form-group label{display:block;margin-bottom:5px;font-weight:bold;color:#555}
+.form-group input,.form-group select,.form-group textarea{width:100%;padding:11px;border:1px solid #f0b3cc;border-radius:9px;outline:none}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:#8f174d}
+.cart-item{display:flex;gap:10px;padding:10px 0;border-bottom:1px solid #f0c4d6}.cart-item img{width:75px;height:75px;border-radius:10px;object-fit:cover}
+.cart-item-info{flex:1}.qty-control{display:flex;align-items:center;gap:8px;margin-top:7px}
+.qty-control button{width:28px;height:28px;border:1px solid #f0b3cc;background:#fff0f6;color:#8f174d;border-radius:6px;font-weight:bold}
+.summary{margin-top:15px;padding:15px;background:#fff0f6;border-radius:12px}.summary-row{display:flex;justify-content:space-between;margin:7px 0;gap:10px}
+.summary-total{font-size:21px;font-weight:bold;color:#8f174d;border-top:1px solid #f0b3cc;padding-top:10px}
 .detail-images{display:flex;gap:8px;overflow-x:auto;margin-bottom:15px}.detail-images img{width:250px;height:250px;object-fit:cover;border-radius:12px;border:1px solid #f0c4d6}
-.size-list{display:flex;gap:7px;flex-wrap:wrap;margin:10px 0}.size-btn{padding:8px 13px;border:1px solid #f0b3cc;background:white;color:#8f174d;border-radius:8px}.size-btn:hover,.size-btn.active{background:#8f174d;color:white}
-.account-card{background:#fff0f6;padding:15px;border-radius:12px;margin-bottom:15px}.order-history-item,.review-card,.admin-order,.reseller-admin-card{border:1px solid #f0c4d6;border-radius:12px;padding:12px;margin-bottom:10px;background:#fff}
-.status{display:inline-block;padding:5px 9px;border-radius:15px;background:#fff0f6;color:#8f174d;font-size:12px;font-weight:bold}.stars{color:#d52b72;letter-spacing:2px}
-.admin-order-head,.reseller-admin-head{display:flex;justify-content:space-between;gap:10px;margin-bottom:10px}.admin-items{background:#fff7fa;padding:10px;border-radius:9px;margin:8px 0}.admin-actions{display:flex;gap:7px;flex-wrap:wrap}.admin-actions select{padding:8px;border:1px solid #f0b3cc;border-radius:8px}
+.size-list{display:flex;gap:7px;flex-wrap:wrap;margin:10px 0}
+.size-btn{padding:8px 13px;border:1px solid #f0b3cc;background:white;color:#8f174d;border-radius:8px}
+.size-btn:hover,.size-btn.active{background:#8f174d;color:white}
+.account-card{background:#fff0f6;padding:15px;border-radius:12px;margin-bottom:15px}
+.order-history-item,.review-card,.admin-order,.reseller-admin-card{border:1px solid #f0c4d6;border-radius:12px;padding:12px;margin-bottom:10px;background:#fff}
+.status{display:inline-block;padding:5px 9px;border-radius:15px;background:#fff0f6;color:#8f174d;font-size:12px;font-weight:bold}
+.stars{color:#d52b72;letter-spacing:2px}.admin-order-head,.reseller-admin-head{display:flex;justify-content:space-between;gap:10px;margin-bottom:10px}
+.admin-items{background:#fff7fa;padding:10px;border-radius:9px;margin:8px 0}.admin-actions{display:flex;gap:7px;flex-wrap:wrap}
+.admin-actions select{padding:8px;border:1px solid #f0b3cc;border-radius:8px}
 .empty{text-align:center;padding:40px 15px;color:#888}.reseller-code{background:#fff;border:1px dashed #8f174d;color:#8f174d;padding:12px;border-radius:10px;font-size:18px;font-weight:bold;text-align:center;margin:10px 0}
 .payment-note{padding:10px;background:#fff7fa;border:1px solid #f0c4d6;border-radius:9px;font-size:13px;margin-bottom:12px}
 footer{margin-top:40px;background:#8f174d;color:white;text-align:center;padding:25px 15px}.footer-title{font-size:22px;font-weight:bold;margin-bottom:5px}
-@media(max-width:900px){.product-grid{grid-template-columns:repeat(3,1fr)}}@media(max-width:650px){.header-top{flex-wrap:wrap}.logo{width:100px}.search-box{order:3;flex-basis:100%}.product-grid{grid-template-columns:repeat(2,1fr);gap:10px}.product-info{padding:9px}.product-name{font-size:13px}.product-price{font-size:17px}.product-buttons{flex-direction:column}.hero h1{font-size:25px}.detail-images img{width:190px;height:190px}}
+.notice{padding:12px;background:#fff7fa;border:1px solid #f0c4d6;border-radius:10px;margin-bottom:12px}
+@media(max-width:900px){.product-grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:650px){
+.header-top{flex-wrap:wrap}.logo{width:100px}.search-box{order:3;flex-basis:100%}
+.header-actions{margin-left:auto}.icon-btn{min-width:38px;height:38px;font-size:16px;padding:0 7px}
+.product-grid{grid-template-columns:repeat(2,1fr);gap:10px}.product-info{padding:9px}.product-name{font-size:13px}.product-price{font-size:17px}
+.product-buttons{flex-direction:column}.hero h1{font-size:25px}.detail-images img{width:190px;height:190px}
+}
+@media(max-width:430px){.header-actions{width:100%;justify-content:space-between}.header-actions .icon-btn{flex:1}.logo{width:90px}}
 </style>
 </head>
 <body>
-<header><div class="header-top">
+
+<header>
+<div class="header-top">
 <img src="logo.png" class="logo" alt="Gadhuli">
-<div class="search-box"><input id="searchInput" type="search" placeholder="🔎 Product, Category বা Size খুঁজুন..." oninput="handleSearch()"></div>
+<div class="search-box">
+<input id="searchInput" type="search" placeholder="🔎 Product, Category বা Size খুঁজুন..." oninput="handleSearch()">
+</div>
 <div class="header-actions">
 <button class="icon-btn" onclick="openAccount()" title="Account">👤</button>
+<button class="icon-btn" onclick="openAuth()" title="Login">🔐</button>
+<button class="icon-btn" onclick="openCreateAccount()" title="Create Account">📝</button>
+<button class="icon-btn" onclick="openReseller()" title="Reseller">🤝</button>
 <button class="icon-btn" onclick="openWishlist()" title="Wishlist">❤️</button>
 <button class="icon-btn" onclick="openCart()" title="Cart">🛒</button>
-</div></div></header>
+</div>
+</div>
+</header>
 
 <section class="hero"><h1>Gadhuli</h1><p>Shop Smart. Shop Easy.</p></section>
-<section class="section"><h2 class="section-title">🛍️ Categories</h2><div class="category-list" id="categoryList"></div></section>
-<section class="section subcategory-wrapper" id="subcategoryWrapper"><h2 class="section-title">📂 Subcategory</h2><div class="subcategory-list" id="subcategoryList"></div></section>
-<section class="section"><h2 class="section-title" id="productTitle">🛍️ All Products</h2><div class="product-grid" id="productGrid"><div class="empty">Loading Products...</div></div></section>
 
-<div class="modal" id="detailModal"><div class="modal-box"><button class="close" onclick="closeModal('detailModal')">×</button><h2 class="modal-title" id="detailTitle">Product</h2><div class="detail-images" id="detailImages"></div><div id="detailContent"></div><div id="productReviews"></div></div></div>
-<div class="modal" id="cartModal"><div class="modal-box"><button class="close" onclick="closeModal('cartModal')">×</button><h2 class="modal-title">🛒 My Cart</h2><div id="cartContent"></div></div></div>
-<div class="modal" id="wishlistModal"><div class="modal-box"><button class="close" onclick="closeModal('wishlistModal')">×</button><h2 class="modal-title">❤️ Wishlist</h2><div id="wishlistContent"></div></div></div>
+<section class="section">
+<h2 class="section-title">🛍️ Categories</h2>
+<div class="category-list" id="categoryList"></div>
+</section>
 
-<div class="modal" id="orderModal"><div class="modal-box"><button class="close" onclick="closeModal('orderModal')">×</button><h2 class="modal-title">📦 Checkout</h2><div id="orderProducts"></div>
+<section class="section subcategory-wrapper" id="subcategoryWrapper">
+<h2 class="section-title">📂 Subcategory</h2>
+<div class="subcategory-list" id="subcategoryList"></div>
+</section>
+
+<section class="section">
+<h2 class="section-title" id="productTitle">🛍️ All Products</h2>
+<div class="product-grid" id="productGrid"><div class="empty">Loading Products...</div></div>
+</section>
+
+<div class="modal" id="detailModal"><div class="modal-box">
+<button class="close" onclick="closeModal('detailModal')">×</button>
+<h2 class="modal-title" id="detailTitle">Product</h2>
+<div class="detail-images" id="detailImages"></div>
+<div id="detailContent"></div>
+<div id="productReviews"></div>
+</div></div>
+
+<div class="modal" id="cartModal"><div class="modal-box">
+<button class="close" onclick="closeModal('cartModal')">×</button>
+<h2 class="modal-title">🛒 My Cart</h2>
+<div id="cartContent"></div>
+</div></div>
+
+<div class="modal" id="wishlistModal"><div class="modal-box">
+<button class="close" onclick="closeModal('wishlistModal')">×</button>
+<h2 class="modal-title">❤️ Wishlist</h2>
+<div id="wishlistContent"></div>
+</div></div>
+
+<div class="modal" id="orderModal"><div class="modal-box">
+<button class="close" onclick="closeModal('orderModal')">×</button>
+<h2 class="modal-title">📦 Checkout</h2>
+<div id="orderProducts"></div>
 <div class="form-group"><label>নাম *</label><input id="orderName" type="text" placeholder="আপনার নাম"></div>
 <div class="form-group"><label>মোবাইল নম্বর *</label><input id="orderPhone" type="tel" placeholder="01XXXXXXXXX"></div>
 <div class="form-group"><label>District *</label><input id="orderDistrict" type="text" placeholder="যেমন: Dhaka"></div>
 <div class="form-group"><label>Thana / Upazila *</label><input id="orderThana" type="text" placeholder="যেমন: Tongi"></div>
 <div class="form-group"><label>Receive Place / Address *</label><textarea id="orderReceivePlace" rows="3" placeholder="সম্পূর্ণ ঠিকানা"></textarea></div>
-<div class="form-group"><label>Delivery Area</label><select id="deliveryArea" onchange="updateOrderTotal()"><option value="Inside Dhaka">Inside Dhaka — ৳60</option><option value="Outside Dhaka">Outside Dhaka — ৳120</option></select></div>
-<div class="form-group"><label>Payment Method</label>
-<select id="paymentMethod" onchange="togglePaymentFields()">
-<option value="Cash on Delivery">💵 Cash on Delivery</option>
-<option value="bKash">🟣 bKash</option>
-<option value="Nagad">🟠 Nagad</option>
-<option value="Rocket">🟣 Rocket</option>
-<option value="Visa">💳 Visa Card</option>
-<option value="Mastercard">💳 Mastercard</option>
+<div class="form-group"><label>Delivery Area</label><select id="deliveryArea" onchange="updateOrderTotal()">
+<option value="Inside Dhaka">Inside Dhaka — ৳60</option><option value="Outside Dhaka">Outside Dhaka — ৳120</option>
+</select></div>
+<div class="form-group"><label>Payment Method</label><select id="paymentMethod" onchange="togglePaymentFields()">
+<option value="Cash on Delivery">💵 Cash on Delivery</option><option value="bKash">🟣 bKash</option><option value="Nagad">🟠 Nagad</option>
+<option value="Rocket">🟣 Rocket</option><option value="Visa">💳 Visa Card</option><option value="Mastercard">💳 Mastercard</option>
 </select></div>
 <div id="manualPaymentFields" style="display:none">
 <div class="payment-note" id="paymentInstruction">Payment method select করলে প্রয়োজনীয় তথ্য এখানে দেখাবে।</div>
@@ -88,21 +159,56 @@ footer{margin-top:40px;background:#8f174d;color:white;text-align:center;padding:
 <button id="placeOrderBtn" class="btn btn-pink full-btn" onclick="placeOrder()">📦 Order Confirm করুন</button>
 </div></div>
 
-<div class="modal" id="authModal"><div class="modal-box"><button class="close" onclick="closeModal('authModal')">×</button><h2 class="modal-title" id="authTitle">🔐 Login</h2>
-<div id="signupFields" style="display:none"><div class="form-group"><label>Full Name</label><input id="signupName" type="text" placeholder="আপনার নাম"></div><div class="form-group"><label>Phone</label><input id="signupPhone" type="tel" placeholder="01XXXXXXXXX"></div></div>
-<div class="form-group"><label>Email</label><input id="authEmail" type="email" placeholder="Email"></div><div class="form-group"><label>Password</label><input id="authPassword" type="password" placeholder="Password"></div>
-<button id="authSubmit" class="btn btn-pink full-btn" onclick="submitAuth()">Login</button><br><br><button class="btn btn-light full-btn" onclick="toggleAuthMode()" id="authToggle">New Account তৈরি করুন</button><br><button class="btn btn-light full-btn" onclick="resetPassword()">Password Forgot?</button></div></div>
+<div class="modal" id="authModal"><div class="modal-box">
+<button class="close" onclick="closeModal('authModal')">×</button>
+<h2 class="modal-title" id="authTitle">🔐 Login</h2>
+<div id="signupFields" style="display:none">
+<div class="form-group"><label>Full Name</label><input id="signupName" type="text" placeholder="আপনার নাম"></div>
+<div class="form-group"><label>Phone</label><input id="signupPhone" type="tel" placeholder="01XXXXXXXXX"></div>
+</div>
+<div class="form-group"><label>Email</label><input id="authEmail" type="email" placeholder="Email"></div>
+<div class="form-group"><label>Password</label><input id="authPassword" type="password" placeholder="Password"></div>
+<button id="authSubmit" class="btn btn-pink full-btn" onclick="submitAuth()">Login</button><br><br>
+<button class="btn btn-light full-btn" onclick="toggleAuthMode()" id="authToggle">New Account তৈরি করুন</button><br>
+<button class="btn btn-light full-btn" onclick="resetPassword()">Password Forgot?</button>
+</div></div>
 
-<div class="modal" id="accountModal"><div class="modal-box modal-large"><button class="close" onclick="closeModal('accountModal')">×</button><h2 class="modal-title">👤 My Account</h2><div id="accountContent"></div></div></div>
-<div class="modal" id="reviewModal"><div class="modal-box"><button class="close" onclick="closeModal('reviewModal')">×</button><h2 class="modal-title">⭐ Write Review</h2><input type="hidden" id="reviewProductId"><div class="form-group"><label>Rating</label><select id="reviewRating"><option value="5">⭐⭐⭐⭐⭐</option><option value="4">⭐⭐⭐⭐</option><option value="3">⭐⭐⭐</option><option value="2">⭐⭐</option><option value="1">⭐</option></select></div><div class="form-group"><label>Your Review</label><textarea id="reviewText" rows="5" placeholder="Product সম্পর্কে আপনার মতামত লিখুন..."></textarea></div><button class="btn btn-pink full-btn" onclick="submitReview()">⭐ Review Submit</button></div></div>
-<div class="modal" id="resellerModal"><div class="modal-box"><button class="close" onclick="closeModal('resellerModal')">×</button><h2 class="modal-title">🤝 Reseller Center</h2><div id="resellerContent"></div></div></div>
-<div class="modal" id="adminModal"><div class="modal-box modal-large"><button class="close" onclick="closeModal('adminModal')">×</button><h2 class="modal-title">👨‍💼 Admin Panel</h2><div id="adminContent"></div></div></div>
+<div class="modal" id="accountModal"><div class="modal-box modal-large">
+<button class="close" onclick="closeModal('accountModal')">×</button>
+<h2 class="modal-title">👤 My Account</h2>
+<div id="accountContent"></div>
+</div></div>
+
+<div class="modal" id="reviewModal"><div class="modal-box">
+<button class="close" onclick="closeModal('reviewModal')">×</button>
+<h2 class="modal-title">⭐ Write Review</h2>
+<input type="hidden" id="reviewProductId">
+<div class="form-group"><label>Rating</label><select id="reviewRating">
+<option value="5">⭐⭐⭐⭐⭐</option><option value="4">⭐⭐⭐⭐</option><option value="3">⭐⭐⭐</option><option value="2">⭐⭐</option><option value="1">⭐</option>
+</select></div>
+<div class="form-group"><label>Your Review</label><textarea id="reviewText" rows="5" placeholder="Product সম্পর্কে আপনার মতামত লিখুন..."></textarea></div>
+<button class="btn btn-pink full-btn" onclick="submitReview()">⭐ Review Submit</button>
+</div></div>
+
+<div class="modal" id="resellerModal"><div class="modal-box">
+<button class="close" onclick="closeModal('resellerModal')">×</button>
+<h2 class="modal-title">🤝 Reseller Center</h2>
+<div id="resellerContent"></div>
+</div></div>
+
+<div class="modal" id="adminModal"><div class="modal-box modal-large">
+<button class="close" onclick="closeModal('adminModal')">×</button>
+<h2 class="modal-title">👨‍💼 Admin Panel</h2>
+<div id="adminContent"></div>
+</div></div>
 
 <footer><div class="footer-title">Gadhuli</div><p>Shop Smart. Shop Easy.</p><br><p>© 2026 Gadhuli. All Rights Reserved.</p></footer>
 
 <script>
 const db=window.gadhuliSupabase;
-let products=[],wishlist=JSON.parse(localStorage.getItem("gadhuli_wishlist")||"[]"),cart=JSON.parse(localStorage.getItem("gadhuli_cart")||"[]");
+let products=[];
+let wishlist=JSON.parse(localStorage.getItem("gadhuli_wishlist")||"[]");
+let cart=JSON.parse(localStorage.getItem("gadhuli_cart")||"[]");
 let currentOrderProducts=[],currentDetailProduct=null,currentCategory="",currentSubcategory="",currentUser=null,authMode="login",currentReseller=null;
 
 const categories={
@@ -114,103 +220,614 @@ const categories={
 "Watches":["All","Men's Watches","Women's Watches","Smart Watches","Kids Watches"],
 "Electronics":["All","Mobile Accessories","Earphones & Headphones","Speakers","Chargers","Power Banks","Smart Gadgets"],
 "Beauty & Personal Care":["All","Skincare","Hair Care","Makeup","Perfume","Personal Care"],
-"Home & Living":["All","Home Decor","Bedding","Storage","Lighting","Kitchen & Dining"]};
-const sizeData={"T-Shirt":["S","M","L","XL","2XL","4XL"],"Polo T-Shirt":["S","M","L","XL","2XL","4XL"],"Shirt":["S","M","L","XL","2XL","4XL"],"Hoodie & Sweatshirt":["S","M","L","XL","2XL","4XL"],"Jacket":["S","M","L","XL","2XL","4XL"],"Panjabi":["28","30","32","34","36","38","40","42","44","46","48"],"Pants":["28","30","32","34","36","38","40"],"Jeans":["28","30","32","34","36","38","40"],"Shorts":["28","30","32","34","36","38","40"],"Saree":["Free Size"],"Hijab":["Free Size"],"Three Piece":["S","M","L","XL","2XL"],"Kurti":["S","M","L","XL","2XL"],"Tops":["S","M","L","XL","2XL"],"Gown":["S","M","L","XL","2XL"],"Abaya":["S","M","L","XL","2XL"],"Women's Pants":["28","30","32","34","36","38"]};
+"Home & Living":["All","Home Decor","Bedding","Storage","Lighting","Kitchen & Dining"]
+};
 
-document.addEventListener("DOMContentLoaded",async()=>{normalizeCart();renderCategories();renderSubcategories();await loadAuth();await loadProducts();});
+const sizeData={
+"T-Shirt":["S","M","L","XL","2XL","4XL"],"Polo T-Shirt":["S","M","L","XL","2XL","4XL"],"Shirt":["S","M","L","XL","2XL","4XL"],
+"Hoodie & Sweatshirt":["S","M","L","XL","2XL","4XL"],"Jacket":["S","M","L","XL","2XL","4XL"],
+"Panjabi":["28","30","32","34","36","38","40","42","44","46","48"],
+"Pants":["28","30","32","34","36","38","40"],"Jeans":["28","30","32","34","36","38","40"],"Shorts":["28","30","32","34","36","38","40"],
+"Saree":["Free Size"],"Hijab":["Free Size"],"Three Piece":["S","M","L","XL","2XL"],"Kurti":["S","M","L","XL","2XL"],
+"Tops":["S","M","L","XL","2XL"],"Gown":["S","M","L","XL","2XL"],"Abaya":["S","M","L","XL","2XL"],
+"Women's Pants":["28","30","32","34","36","38"]
+};
 
-function renderCategories(){const box=document.getElementById("categoryList");box.innerHTML="";let all=document.createElement("button");all.className="cat-btn "+(!currentCategory?"active":"");all.textContent="All";all.onclick=()=>{currentCategory="";currentSubcategory="";renderCategories();renderSubcategories();renderProducts()};box.appendChild(all);Object.keys(categories).forEach(c=>{let b=document.createElement("button");b.className="cat-btn "+(currentCategory===c?"active":"");b.textContent=c;b.onclick=()=>{currentCategory=c;currentSubcategory="";renderCategories();renderSubcategories();renderProducts()};box.appendChild(b)})}
-function renderSubcategories(){const w=document.getElementById("subcategoryWrapper"),box=document.getElementById("subcategoryList");box.innerHTML="";if(!currentCategory){w.classList.remove("show");return}w.classList.add("show");categories[currentCategory].forEach(s=>{let b=document.createElement("button");b.className="subcat-btn "+((s==="All"&&!currentSubcategory)||currentSubcategory===s?"active":"");b.textContent=s;b.onclick=()=>{currentSubcategory=s==="All"?"":s;renderSubcategories();renderProducts()};box.appendChild(b)})}
+const categoryAliases={
+"men":"Men's Fashion","mens":"Men's Fashion","men's":"Men's Fashion","mens fashion":"Men's Fashion","men's fashion":"Men's Fashion",
+"women":"Women's Fashion","womens":"Women's Fashion","women's":"Women's Fashion","womens fashion":"Women's Fashion","women's fashion":"Women's Fashion",
+"kids":"Kids & Baby","kids & baby":"Kids & Baby","baby":"Kids & Baby",
+"shoes":"Shoes","bags":"Bags & Accessories","accessories":"Bags & Accessories","watches":"Watches",
+"electronics":"Electronics","beauty":"Beauty & Personal Care","beauty & personal care":"Beauty & Personal Care",
+"home":"Home & Living","home & living":"Home & Living"
+};
 
-async function loadProducts(){const grid=document.getElementById("productGrid");grid.innerHTML='<div class="empty">Loading Products...</div>';if(!db){grid.innerHTML='<div class="empty">Supabase connection পাওয়া যায়নি।</div>';return}const r=await db.from("products").select("*").order("id",{ascending:false});if(r.error){grid.innerHTML='<div class="empty">Product load হয়নি ❌<br>'+escapeHtml(r.error.message)+'</div>';return}products=(r.data||[]).map(p=>({...p,category:p.category||"",subcategory:p.subcategory||"",sizes:getProductSizes(p)}));renderProducts()}
-function getProductSizes(p){if(Array.isArray(p.sizes))return p.sizes;if(typeof p.sizes==="string"){try{let x=JSON.parse(p.sizes);if(Array.isArray(x))return x}catch(e){}}if(Array.isArray(p.size))return p.size;if(typeof p.size==="string"){try{let x=JSON.parse(p.size);if(Array.isArray(x))return x}catch(e){}}return p.subcategory&&sizeData[p.subcategory]?sizeData[p.subcategory]:[]}
-function getProductImages(p){let v=p.images;if(Array.isArray(v))return v.filter(Boolean);if(typeof v==="string"){try{let x=JSON.parse(v);if(Array.isArray(x))return x.filter(Boolean);if(x&&Array.isArray(x.urls))return x.urls.filter(Boolean)}catch(e){}if(v.trim())return[v.trim()]}if(v&&typeof v==="object"&&Array.isArray(v.urls))return v.urls.filter(Boolean);if(p.image)return[p.image];return["https://via.placeholder.com/500x500?text=Gadhuli"]}
-async function getApprovedReseller(){if(!currentUser||!db)return null;let r=await db.from("resellers").select("*").eq("user_id",currentUser.id).eq("status","Approved").maybeSingle();return r.error?null:r.data||null}
+function cleanText(v){return String(v??"").trim()}
+function normalizeCategory(v){
+let x=cleanText(v),k=x.toLowerCase();
+return categoryAliases[k]||Object.keys(categories).find(c=>c.toLowerCase()===k)||x
+}
+function normalizeSubcategory(v){
+let x=cleanText(v),k=x.toLowerCase();
+for(const arr of Object.values(categories)){
+const found=arr.find(s=>s.toLowerCase()===k);
+if(found)return found
+}
+return x
+}
+function normalizeSizes(v){
+if(Array.isArray(v))return v.map(cleanText).filter(Boolean);
+if(typeof v==="string"){
+try{let x=JSON.parse(v);if(Array.isArray(x))return x.map(cleanText).filter(Boolean)}catch(e){}
+return v.split(",").map(x=>x.trim()).filter(Boolean)
+}
+return []
+}
 
-function renderProducts(){const grid=document.getElementById("productGrid"),title=document.getElementById("productTitle"),q=(document.getElementById("searchInput").value||"").trim().toLowerCase();
-let filtered=products.filter(p=>{let cm=!currentCategory||p.category===currentCategory,sm=!currentSubcategory||p.subcategory===currentSubcategory,searchable=[p.name,p.category,p.subcategory,...(p.sizes||[])].join(" ").toLowerCase();return cm&&sm&&(!q||searchable.includes(q))});
-title.textContent=currentCategory?("🛍️ "+(currentSubcategory||currentCategory)):"🛍️ All Products";if(!filtered.length){grid.innerHTML='<div class="empty">কোনো Product পাওয়া যায়নি 😔</div>';return}grid.innerHTML="";
-filtered.forEach(p=>{let c=document.createElement("div");c.className="product-card";c.innerHTML=`<div class="product-image-wrap"><img class="product-image" src="${escapeAttr(getProductImages(p)[0])}" alt="${escapeAttr(p.name||"Gadhuli Product")}" onerror="this.src='https://via.placeholder.com/500x500?text=Gadhuli'"><button class="wish-small">${isWishlisted(p.id)?"❤️":"🤍"}</button></div><div class="product-info"><div class="product-name">${escapeHtml(p.name||"Product")}</div><div class="product-price">৳${formatMoney(p.price)}</div><div class="product-meta">${escapeHtml(p.category||"")}${p.subcategory?" • "+escapeHtml(p.subcategory):""}</div><div class="product-buttons"><button class="btn btn-light details-btn">👁️ Details</button><button class="btn btn-pink add-btn">🛒 Add</button></div></div>`;
-c.querySelector(".wish-small").onclick=()=>toggleWishlist(p.id);c.querySelector(".details-btn").onclick=()=>openDetails(p.id);c.querySelector(".add-btn").onclick=()=>quickAdd(p.id);grid.appendChild(c)});
-addResellButtons()}
-async function addResellButtons(){let r=await getApprovedReseller();currentReseller=r;if(!r)return;document.querySelectorAll(".product-card").forEach(card=>{let name=card.querySelector(".product-name")?.textContent.trim(),p=products.find(x=>String(x.name||"").trim()===name);if(!p)return;let b=card.querySelector(".product-buttons");if(!b||b.querySelector(".resell-btn"))return;let x=document.createElement("button");x.className="btn btn-light resell-btn";x.textContent="🤝 Resell";x.onclick=()=>resellProduct(p.id);b.appendChild(x)})}
+document.addEventListener("DOMContentLoaded",async()=>{
+normalizeCart();
+renderCategories();
+renderSubcategories();
+await loadAuth();
+await loadProducts();
+});
+
+function renderCategories(){
+const box=document.getElementById("categoryList");box.innerHTML="";
+let all=document.createElement("button");
+all.className="cat-btn "+(!currentCategory?"active":"");all.textContent="All";
+all.onclick=()=>{currentCategory="";currentSubcategory="";renderCategories();renderSubcategories();renderProducts()};
+box.appendChild(all);
+Object.keys(categories).forEach(c=>{
+let b=document.createElement("button");b.className="cat-btn "+(currentCategory===c?"active":"");b.textContent=c;
+b.onclick=()=>{currentCategory=c;currentSubcategory="";renderCategories();renderSubcategories();renderProducts()};
+box.appendChild(b)
+})
+}
+
+function renderSubcategories(){
+const w=document.getElementById("subcategoryWrapper"),box=document.getElementById("subcategoryList");box.innerHTML="";
+if(!currentCategory){w.classList.remove("show");return}
+w.classList.add("show");
+categories[currentCategory].forEach(s=>{
+let b=document.createElement("button");
+b.className="subcat-btn "+((s==="All"&&!currentSubcategory)||currentSubcategory===s?"active":"");
+b.textContent=s;
+b.onclick=()=>{currentSubcategory=s==="All"?"":s;renderSubcategories();renderProducts()};
+box.appendChild(b)
+})
+}
+
+async function loadProducts(){
+const grid=document.getElementById("productGrid");
+grid.innerHTML='<div class="empty">Loading Products...</div>';
+if(!db){grid.innerHTML='<div class="empty">Supabase connection পাওয়া যায়নি।</div>';return}
+const r=await db.from("products").select("*").order("id",{ascending:false});
+if(r.error){grid.innerHTML='<div class="empty">Product load হয়নি ❌<br>'+escapeHtml(r.error.message)+'</div>';return}
+products=(r.data||[]).map(p=>{
+let category=normalizeCategory(p.category);
+let subcategory=normalizeSubcategory(p.subcategory);
+let sizes=normalizeSizes(p.sizes);
+if(!sizes.length)sizes=normalizeSizes(p.size);
+if(!sizes.length&&subcategory&&sizeData[subcategory])sizes=sizeData[subcategory];
+return {...p,category,subcategory,sizes}
+});
+renderProducts();
+if(productFromURL){
+setTimeout(()=>{if(findProduct(productFromURL))openDetails(productFromURL)},200);
+}
+}
+
+function getProductSizes(p){
+let sizes=normalizeSizes(p.sizes);
+if(!sizes.length)sizes=normalizeSizes(p.size);
+if(sizes.length)return sizes;
+return p.subcategory&&sizeData[p.subcategory]?sizeData[p.subcategory]:[]
+}
+
+function getProductImages(p){
+let v=p.images;
+if(Array.isArray(v))return v.filter(Boolean);
+if(typeof v==="string"){
+try{
+let x=JSON.parse(v);
+if(Array.isArray(x))return x.filter(Boolean);
+if(x&&Array.isArray(x.urls))return x.urls.filter(Boolean)
+}catch(e){}
+if(v.trim())return[v.trim()]
+}
+if(v&&typeof v==="object"&&Array.isArray(v.urls))return v.urls.filter(Boolean);
+if(p.image)return[p.image];
+return["https://via.placeholder.com/500x500?text=Gadhuli"]
+}
+
+async function getApprovedReseller(){
+if(!currentUser||!db)return null;
+let r=await db.from("resellers").select("*").eq("user_id",currentUser.id).eq("status","Approved").maybeSingle();
+return r.error?null:r.data||null
+}
+
+function renderProducts(){
+const grid=document.getElementById("productGrid"),title=document.getElementById("productTitle");
+const q=(document.getElementById("searchInput").value||"").trim().toLowerCase();
+let filtered=products.filter(p=>{
+let cm=!currentCategory||normalizeCategory(p.category)===currentCategory;
+let sm=!currentSubcategory||normalizeSubcategory(p.subcategory)===currentSubcategory;
+let searchable=[p.name,p.category,p.subcategory,...getProductSizes(p)].join(" ").toLowerCase();
+return cm&&sm&&(!q||searchable.includes(q))
+});
+title.textContent=currentCategory?("🛍️ "+(currentSubcategory||currentCategory)):"🛍️ All Products";
+if(!filtered.length){grid.innerHTML='<div class="empty">কোনো Product পাওয়া যায়নি 😔</div>';return}
+grid.innerHTML="";
+filtered.forEach(p=>{
+let c=document.createElement("div");c.className="product-card";
+c.innerHTML=`<div class="product-image-wrap">
+<img class="product-image" src="${escapeAttr(getProductImages(p)[0])}" alt="${escapeAttr(p.name||"Gadhuli Product")}" onerror="this.src='https://via.placeholder.com/500x500?text=Gadhuli'">
+<button class="wish-small">${isWishlisted(p.id)?"❤️":"🤍"}</button>
+</div><div class="product-info">
+<div class="product-name">${escapeHtml(p.name||"Product")}</div>
+<div class="product-price">৳${formatMoney(p.price)}</div>
+<div class="product-meta">${escapeHtml(p.category||"")}${p.subcategory?" • "+escapeHtml(p.subcategory):""}</div>
+<div class="product-buttons">
+<button class="btn btn-light details-btn">👁️ Details</button>
+<button class="btn btn-pink add-btn">🛒 Add</button>
+</div></div>`;
+c.querySelector(".wish-small").onclick=()=>toggleWishlist(p.id);
+c.querySelector(".details-btn").onclick=()=>openDetails(p.id);
+c.querySelector(".add-btn").onclick=()=>quickAdd(p.id);
+grid.appendChild(c)
+});
+addResellButtons()
+}
+
+async function addResellButtons(){
+let r=await getApprovedReseller();currentReseller=r;if(!r)return;
+document.querySelectorAll(".product-card").forEach(card=>{
+let name=card.querySelector(".product-name")?.textContent.trim();
+let p=products.find(x=>String(x.name||"").trim()===name);if(!p)return;
+let b=card.querySelector(".product-buttons");if(!b||b.querySelector(".resell-btn"))return;
+let x=document.createElement("button");x.className="btn btn-light resell-btn";x.textContent="🤝 Resell";x.onclick=()=>resellProduct(p.id);b.appendChild(x)
+})
+}
+
 function handleSearch(){renderProducts()}
-function openDetails(id){let p=findProduct(id);if(!p)return;currentDetailProduct=p;let imgs=getProductImages(p),sizes=getProductSizes(p);document.getElementById("detailTitle").textContent=p.name||"Product";document.getElementById("detailImages").innerHTML=imgs.map(u=>`<img src="${escapeAttr(u)}" onerror="this.src='https://via.placeholder.com/500x500?text=Gadhuli'">`).join("");
+
+function openDetails(id){
+let p=findProduct(id);if(!p)return;
+currentDetailProduct=p;
+let imgs=getProductImages(p),sizes=getProductSizes(p);
+document.getElementById("detailTitle").textContent=p.name||"Product";
+document.getElementById("detailImages").innerHTML=imgs.map(u=>`<img src="${escapeAttr(u)}" onerror="this.src='https://via.placeholder.com/500x500?text=Gadhuli'">`).join("");
 let sizeHTML=sizes.length?`<b>Available Size:</b><div class="size-list">${sizes.map(s=>`<button class="size-btn" data-size="${escapeAttr(s)}">${escapeHtml(s)}</button>`).join("")}</div>`:"";
-document.getElementById("detailContent").innerHTML=`<p><b>Price:</b> <span class="product-price">৳${formatMoney(p.price)}</span></p><p><b>Category:</b> ${escapeHtml(p.category||"—")}</p><p><b>Subcategory:</b> ${escapeHtml(p.subcategory||"—")}</p><br>${p.description?`<p>${escapeHtml(p.description)}</p>`:""}${sizeHTML}<br><button class="btn btn-pink full-btn" id="detailAddBtn">🛒 Add to Cart</button><br><br><button class="btn btn-green full-btn" id="detailBuyBtn">📦 Buy Now</button><br><br><button class="btn btn-light full-btn" id="detailReviewBtn">⭐ Write Review</button>`;
-let selected="";document.querySelectorAll("#detailContent .size-btn").forEach(b=>b.onclick=()=>{document.querySelectorAll("#detailContent .size-btn").forEach(x=>x.classList.remove("active"));b.classList.add("active");selected=b.dataset.size});
+document.getElementById("detailContent").innerHTML=`<p><b>Price:</b> <span class="product-price">৳${formatMoney(p.price)}</span></p>
+<p><b>Category:</b> ${escapeHtml(p.category||"—")}</p><p><b>Subcategory:</b> ${escapeHtml(p.subcategory||"—")}</p><br>
+${p.description?`<p>${escapeHtml(p.description)}</p>`:""}${sizeHTML}<br>
+<button class="btn btn-pink full-btn" id="detailAddBtn">🛒 Add to Cart</button><br><br>
+<button class="btn btn-green full-btn" id="detailBuyBtn">📦 Buy Now</button><br><br>
+<button class="btn btn-light full-btn" id="detailReviewBtn">⭐ Write Review</button>`;
+let selected="";
+document.querySelectorAll("#detailContent .size-btn").forEach(b=>b.onclick=()=>{
+document.querySelectorAll("#detailContent .size-btn").forEach(x=>x.classList.remove("active"));
+b.classList.add("active");selected=b.dataset.size
+});
 document.getElementById("detailAddBtn").onclick=()=>{if(sizes.length&&!selected)return alert("আগে Size select করুন।");addCartItem(p,selected)};
 document.getElementById("detailBuyBtn").onclick=()=>{if(sizes.length&&!selected)return alert("আগে Size select করুন।");startSingleProductOrder(p.id,selected)};
-document.getElementById("detailReviewBtn").onclick=()=>openReview(p.id);loadReviews(p.id);openModal("detailModal")}
-function quickAdd(id){let p=findProduct(id);if(!p)return;let s=getProductSizes(p);if(s.length){openDetails(id);setTimeout(()=>alert("আগে Size select করুন।"),100);return}addCartItem(p,"")}
-function normalizeCart(){cart=cart.map(x=>typeof x==="string"||typeof x==="number"?{id:String(x),size:"",quantity:1}:x&&typeof x==="object"?{id:String(x.id),size:String(x.size||""),quantity:Math.max(1,Number(x.quantity||1))}:null).filter(Boolean);saveCart()}
+document.getElementById("detailReviewBtn").onclick=()=>openReview(p.id);
+loadReviews(p.id);openModal("detailModal")
+}
+
+function quickAdd(id){
+let p=findProduct(id);if(!p)return;
+let s=getProductSizes(p);
+if(s.length){openDetails(id);return}
+addCartItem(p,"")
+}
+
+function normalizeCart(){
+cart=cart.map(x=>typeof x==="string"||typeof x==="number"?{id:String(x),size:"",quantity:1}:x&&typeof x==="object"?{id:String(x.id),size:String(x.size||""),quantity:Math.max(1,Number(x.quantity||1))}:null).filter(Boolean);
+saveCart()
+}
 function saveCart(){localStorage.setItem("gadhuli_cart",JSON.stringify(cart))}
-function addCartItem(p,size){let x=cart.find(i=>String(i.id)===String(p.id)&&String(i.size||"")===String(size||""));if(x)x.quantity++;else cart.push({id:String(p.id),size:size||"",quantity:1});saveCart();alert("Cart-এ Product যোগ হয়েছে ✅")}
+function addCartItem(p,size){
+let x=cart.find(i=>String(i.id)===String(p.id)&&String(i.size||"")===String(size||""));
+if(x)x.quantity++;else cart.push({id:String(p.id),size:size||"",quantity:1});
+saveCart();alert("Cart-এ Product যোগ হয়েছে ✅")
+}
 function openCart(){renderCart();openModal("cartModal")}
-function renderCart(){let box=document.getElementById("cartContent");if(!cart.length){box.innerHTML='<div class="empty">🛒 Cart খালি।</div>';return}let sub=0,html="";cart.forEach((i,n)=>{let p=findProduct(i.id);if(!p)return;let q=Number(i.quantity||1),line=Number(p.price||0)*q;sub+=line;html+=`<div class="cart-item"><img src="${escapeAttr(getProductImages(p)[0])}"><div class="cart-item-info"><b>${escapeHtml(p.name)}</b><div>৳${formatMoney(p.price)}</div>${i.size?`<small>Size: ${escapeHtml(i.size)}</small>`:""}<div class="qty-control"><button onclick="changeCartQuantity(${n},-1)">−</button><b>${q}</b><button onclick="changeCartQuantity(${n},1)">+</button><button onclick="removeCartItem(${n})" style="margin-left:10px">🗑️</button></div></div><b>৳${formatMoney(line)}</b></div>`});box.innerHTML=html+`<div class="summary"><div class="summary-row"><span>Subtotal</span><b>৳${formatMoney(sub)}</b></div><div class="summary-row"><span>Delivery</span><span>Checkout-এ calculate হবে</span></div></div><br><button class="btn btn-pink full-btn" onclick="openOrderFromCart()">📦 Checkout</button>`}
+function renderCart(){
+let box=document.getElementById("cartContent");
+if(!cart.length){box.innerHTML='<div class="empty">🛒 Cart খালি।</div>';return}
+let sub=0,html="";
+cart.forEach((i,n)=>{
+let p=findProduct(i.id);if(!p)return;
+let q=Number(i.quantity||1),line=Number(p.price||0)*q;sub+=line;
+html+=`<div class="cart-item"><img src="${escapeAttr(getProductImages(p)[0])}">
+<div class="cart-item-info"><b>${escapeHtml(p.name)}</b><div>৳${formatMoney(p.price)}</div>
+${i.size?`<small>Size: ${escapeHtml(i.size)}</small>`:""}
+<div class="qty-control"><button onclick="changeCartQuantity(${n},-1)">−</button><b>${q}</b><button onclick="changeCartQuantity(${n},1)">+</button>
+<button onclick="removeCartItem(${n})" style="margin-left:10px">🗑️</button></div></div><b>৳${formatMoney(line)}</b></div>`
+});
+box.innerHTML=html+`<div class="summary"><div class="summary-row"><span>Subtotal</span><b>৳${formatMoney(sub)}</b></div><div class="summary-row"><span>Delivery</span><span>Checkout-এ calculate হবে</span></div></div><br><button class="btn btn-pink full-btn" onclick="openOrderFromCart()">📦 Checkout</button>`
+}
 function changeCartQuantity(i,a){if(!cart[i])return;cart[i].quantity+=a;if(cart[i].quantity<=0)cart.splice(i,1);saveCart();renderCart()}
 function removeCartItem(i){cart.splice(i,1);saveCart();renderCart()}
 function saveWishlist(){localStorage.setItem("gadhuli_wishlist",JSON.stringify(wishlist))}
 function isWishlisted(id){return wishlist.some(x=>String(x)===String(id))}
 function toggleWishlist(id){let i=wishlist.findIndex(x=>String(x)===String(id));i>=0?wishlist.splice(i,1):wishlist.push(String(id));saveWishlist();renderProducts()}
-function openWishlist(){let box=document.getElementById("wishlistContent"),items=wishlist.map(findProduct).filter(Boolean);box.innerHTML=items.length?items.map(p=>`<div class="cart-item"><img src="${escapeAttr(getProductImages(p)[0])}"><div class="cart-item-info"><b>${escapeHtml(p.name)}</b><div class="product-price">৳${formatMoney(p.price)}</div><button class="btn btn-pink" onclick="quickAdd('${escapeAttr(p.id)}')">🛒 Add</button> <button class="btn btn-light" onclick="toggleWishlist('${escapeAttr(p.id)}');openWishlist()">❤️ Remove</button></div></div>`).join(""):'<div class="empty">❤️ Wishlist খালি।</div>';openModal("wishlistModal")}
+function openWishlist(){
+let box=document.getElementById("wishlistContent"),items=wishlist.map(findProduct).filter(Boolean);
+box.innerHTML=items.length?items.map(p=>`<div class="cart-item"><img src="${escapeAttr(getProductImages(p)[0])}">
+<div class="cart-item-info"><b>${escapeHtml(p.name)}</b><div class="product-price">৳${formatMoney(p.price)}</div>
+<button class="btn btn-pink" onclick="quickAdd('${escapeAttr(p.id)}')">🛒 Add</button>
+<button class="btn btn-light" onclick="toggleWishlist('${escapeAttr(p.id)}');openWishlist()">❤️ Remove</button></div></div>`).join(""):'<div class="empty">❤️ Wishlist খালি।</div>';
+openModal("wishlistModal")
+}
 
-async function openOrderFromCart(){if(!cart.length)return alert("Cart খালি।");if(!await requireVerifiedUser())return;currentOrderProducts=[];cart.forEach(i=>{let p=findProduct(i.id);if(p)currentOrderProducts.push({product:p,size:i.size||"",quantity:Number(i.quantity||1)})});if(!currentOrderProducts.length)return alert("Cart-এর Product পাওয়া যাচ্ছে না।");closeModal("cartModal");showOrderModal()}
-async function startSingleProductOrder(id,size){let p=findProduct(id);if(!p)return;if(!await requireVerifiedUser())return;let s=getProductSizes(p);if(s.length&&!size)return alert("Order করার আগে Size select করুন।");currentOrderProducts=[{product:p,size:size||"",quantity:1}];closeModal("detailModal");showOrderModal()}
+async function openOrderFromCart(){
+if(!cart.length)return alert("Cart খালি।");
+if(!await requireVerifiedUser())return;
+currentOrderProducts=[];
+cart.forEach(i=>{let p=findProduct(i.id);if(p)currentOrderProducts.push({product:p,size:i.size||"",quantity:Number(i.quantity||1)})});
+if(!currentOrderProducts.length)return alert("Cart-এর Product পাওয়া যাচ্ছে না।");
+closeModal("cartModal");showOrderModal()
+}
+async function startSingleProductOrder(id,size){
+let p=findProduct(id);if(!p)return;
+if(!await requireVerifiedUser())return;
+let s=getProductSizes(p);if(s.length&&!size)return alert("Order করার আগে Size select করুন।");
+currentOrderProducts=[{product:p,size:size||"",quantity:1}];closeModal("detailModal");showOrderModal()
+}
 function showOrderModal(){renderOrderProducts();fillCustomerInfo();updateOrderTotal();togglePaymentFields();openModal("orderModal")}
-function renderOrderProducts(){document.getElementById("orderProducts").innerHTML=currentOrderProducts.map((i,n)=>`<div class="cart-item"><img src="${escapeAttr(getProductImages(i.product)[0])}"><div class="cart-item-info"><b>${escapeHtml(i.product.name)}</b><div>৳${formatMoney(i.product.price)}</div>${i.size?`<small>Size: ${escapeHtml(i.size)}</small>`:""}<div class="qty-control"><button onclick="changeOrderQuantity(${n},-1)">−</button><b>${i.quantity}</b><button onclick="changeOrderQuantity(${n},1)">+</button></div></div></div>`).join("")}
+function renderOrderProducts(){
+document.getElementById("orderProducts").innerHTML=currentOrderProducts.map((i,n)=>`<div class="cart-item">
+<img src="${escapeAttr(getProductImages(i.product)[0])}"><div class="cart-item-info"><b>${escapeHtml(i.product.name)}</b>
+<div>৳${formatMoney(i.product.price)}</div>${i.size?`<small>Size: ${escapeHtml(i.size)}</small>`:""}
+<div class="qty-control"><button onclick="changeOrderQuantity(${n},-1)">−</button><b>${i.quantity}</b><button onclick="changeOrderQuantity(${n},1)">+</button></div>
+</div></div>`).join("")
+}
 function changeOrderQuantity(i,a){if(!currentOrderProducts[i])return;currentOrderProducts[i].quantity=Math.max(1,currentOrderProducts[i].quantity+a);renderOrderProducts();updateOrderTotal()}
-async function fillCustomerInfo(){if(!currentUser)return;let r=await db.from("profiles").select("full_name,phone").eq("id",currentUser.id).maybeSingle();document.getElementById("orderName").value=r.data?.full_name||currentUser.user_metadata?.full_name||"";document.getElementById("orderPhone").value=r.data?.phone||currentUser.user_metadata?.phone||""}
+async function fillCustomerInfo(){
+if(!currentUser)return;
+let r=await db.from("profiles").select("full_name,phone").eq("id",currentUser.id).maybeSingle();
+document.getElementById("orderName").value=r.data?.full_name||currentUser.user_metadata?.full_name||"";
+document.getElementById("orderPhone").value=r.data?.phone||currentUser.user_metadata?.phone||""
+}
 function calculateOrderSubtotal(){return currentOrderProducts.reduce((t,i)=>t+Number(i.product.price||0)*Number(i.quantity||1),0)}
 function getDeliveryCharge(){return document.getElementById("deliveryArea").value==="Outside Dhaka"?120:60}
-function updateOrderTotal(){let s=calculateOrderSubtotal(),d=getDeliveryCharge();document.getElementById("orderSummary").innerHTML=`<div class="summary-row"><span>Subtotal</span><b>৳${formatMoney(s)}</b></div><div class="summary-row"><span>Delivery</span><b>৳${formatMoney(d)}</b></div><div class="summary-row summary-total"><span>Total</span><span>৳${formatMoney(s+d)}</span></div>`}
-function togglePaymentFields(){let m=document.getElementById("paymentMethod").value,manual=m!=="Cash on Delivery";document.getElementById("manualPaymentFields").style.display=manual?"block":"none";let note=document.getElementById("paymentInstruction");if(m==="bKash")note.textContent="bKash payment-এর পরে যে নম্বর থেকে payment করেছেন এবং Transaction ID দিন।";else if(m==="Nagad")note.textContent="Nagad payment-এর পরে payment number ও Transaction ID দিন।";else if(m==="Rocket")note.textContent="Rocket payment-এর পরে payment number ও Transaction ID দিন।";else if(m==="Visa"||m==="Mastercard")note.textContent="Card payment gateway এখনো connected নয়। Gateway/reference পাওয়া থাকলে reference দিন; real card charge এখানে করা হবে না.";else note.textContent=""}
+function updateOrderTotal(){
+let s=calculateOrderSubtotal(),d=getDeliveryCharge();
+document.getElementById("orderSummary").innerHTML=`<div class="summary-row"><span>Subtotal</span><b>৳${formatMoney(s)}</b></div>
+<div class="summary-row"><span>Delivery</span><b>৳${formatMoney(d)}</b></div>
+<div class="summary-row summary-total"><span>Total</span><span>৳${formatMoney(s+d)}</span></div>`
+}
+function togglePaymentFields(){
+let m=document.getElementById("paymentMethod").value,manual=m!=="Cash on Delivery";
+document.getElementById("manualPaymentFields").style.display=manual?"block":"none";
+let note=document.getElementById("paymentInstruction");
+if(m==="bKash")note.textContent="bKash payment-এর পরে যে নম্বর থেকে payment করেছেন এবং Transaction ID দিন।";
+else if(m==="Nagad")note.textContent="Nagad payment-এর পরে payment number ও Transaction ID দিন।";
+else if(m==="Rocket")note.textContent="Rocket payment-এর পরে payment number ও Transaction ID দিন।";
+else if(m==="Visa"||m==="Mastercard")note.textContent="Card payment gateway এখনো connected নয়। Gateway/reference পাওয়া থাকলে reference দিন; real card charge এখানে করা হবে না।";
+else note.textContent=""
+}
 
-async function getReferralReseller(){let code=localStorage.getItem("gadhuli_ref")||"";if(!code)return null;let r=await db.from("resellers").select("*").eq("reseller_code",code).eq("status","Approved").maybeSingle();return r.error?null:r.data||null}
-async function placeOrder(){if(!currentUser)return alert("আগে Login করুন।");if(!currentUser.email_confirmed_at)return alert("আপনার Email verify করুন।");if(!currentOrderProducts.length)return alert("Order Product পাওয়া যায়নি।");
-let name=document.getElementById("orderName").value.trim(),phone=document.getElementById("orderPhone").value.trim(),district=document.getElementById("orderDistrict").value.trim(),thana=document.getElementById("orderThana").value.trim(),address=document.getElementById("orderReceivePlace").value.trim(),area=document.getElementById("deliveryArea").value,method=document.getElementById("paymentMethod").value;
-if(!name||!phone||!district||!thana||!address)return alert("সব required তথ্য পূরণ করুন।");let pn="",tx="";if(method!=="Cash on Delivery"){pn=document.getElementById("paymentNumber").value.trim();tx=document.getElementById("transactionId").value.trim();if(!pn||!tx)return alert("Payment Number / Card Reference এবং Transaction ID / Payment Reference দিন।")}
-let subtotal=calculateOrderSubtotal(),delivery=area==="Outside Dhaka"?120:60,total=subtotal+delivery,btn=document.getElementById("placeOrderBtn");btn.disabled=true;btn.textContent="Order Save হচ্ছে...";
-try{let notes=method==="Cash on Delivery"?"":"Payment Number/Card Ref: "+pn+"\nPayment Reference: "+tx;let ref=await getReferralReseller();let orderR=await db.from("orders").insert({user_id:currentUser.id,customer_name:name,customer_phone:phone,customer_email:currentUser.email||"",customer_district:district,customer_thana:thana,customer_receive_place:address,delivery_area:area,delivery_charge:delivery,subtotal,total,payment_method:method,payment_status:"Pending",order_status:"Pending",reseller_id:ref?.user_id||null,reseller_code:ref?.reseller_code||"",notes}).select().single();if(orderR.error)throw orderR.error;let order=orderR.data;let items=currentOrderProducts.map(i=>({order_id:order.id,product_id:i.product.id,product_name:i.product.name||"Product",product_image:getProductImages(i.product)[0]||"",size:i.size||"",quantity:Number(i.quantity||1),unit_price:Number(i.product.price||0),line_total:Number(i.product.price||0)*Number(i.quantity||1)}));let ir=await db.from("order_items").insert(items);if(ir.error)throw ir.error;
-currentOrderProducts.forEach(i=>{cart=cart.filter(c=>!(String(c.id)===String(i.product.id)&&String(c.size||"")===String(i.size||"")))});saveCart();alert("Order সফলভাবে Save হয়েছে ✅\n\nOrder ID: #"+order.id);closeModal("orderModal");sendWhatsAppOrder(order.id,currentOrderProducts,name,phone,district,thana,address,area,subtotal,delivery,total,method,ref?.reseller_code||"");currentOrderProducts=[]}catch(e){console.error(e);alert("Order Save হয়নি ❌\n\n"+e.message)}finally{btn.disabled=false;btn.textContent="📦 Order Confirm করুন"}}
-function sendWhatsAppOrder(id,items,name,phone,district,thana,address,area,sub,del,total,pay,ref){let m="🌸 GADHULI ORDER\n\nOrder ID: #"+id+"\n\n";items.forEach(i=>{m+="Product: "+i.product.name+"\n";if(i.size)m+="Size: "+i.size+"\n";m+="Quantity: "+i.quantity+"\nPrice: ৳"+(Number(i.product.price||0)*Number(i.quantity||1))+"\n\n"});m+="Customer: "+name+"\nPhone: "+phone+"\nDistrict: "+district+"\nThana: "+thana+"\nAddress: "+address+"\nDelivery: "+area+"\nPayment: "+pay+"\n";if(ref)m+="Reseller Code: "+ref+"\n";m+="\nSubtotal: ৳"+sub+"\nDelivery Charge: ৳"+del+"\nTOTAL: ৳"+total;window.open("https://wa.me/8801333088194?text="+encodeURIComponent(m),"_blank")}
+async function getReferralReseller(){
+let code=localStorage.getItem("gadhuli_ref")||"";if(!code)return null;
+let r=await db.from("resellers").select("*").eq("reseller_code",code).eq("status","Approved").maybeSingle();
+return r.error?null:r.data||null
+}
 
-async function loadAuth(){if(!db)return;let s=await db.auth.getSession();currentUser=s.data.session?.user||null;db.auth.onAuthStateChange((e,s)=>{currentUser=s?.user||null;setTimeout(renderProducts,100)})}
-async function requireVerifiedUser(){if(!currentUser){openAuth();return false}if(!currentUser.email_confirmed_at){alert("আপনার Email verify করুন।");return false}return true}
+async function placeOrder(){
+if(!currentUser)return alert("আগে Login করুন।");
+if(!currentUser.email_confirmed_at)return alert("আপনার Email verify করুন।");
+if(!currentOrderProducts.length)return alert("Order Product পাওয়া যায়নি।");
+let name=document.getElementById("orderName").value.trim(),phone=document.getElementById("orderPhone").value.trim(),
+district=document.getElementById("orderDistrict").value.trim(),thana=document.getElementById("orderThana").value.trim(),
+address=document.getElementById("orderReceivePlace").value.trim(),area=document.getElementById("deliveryArea").value,method=document.getElementById("paymentMethod").value;
+if(!name||!phone||!district||!thana||!address)return alert("সব required তথ্য পূরণ করুন।");
+let pn="",tx="";
+if(method!=="Cash on Delivery"){
+pn=document.getElementById("paymentNumber").value.trim();tx=document.getElementById("transactionId").value.trim();
+if(!pn||!tx)return alert("Payment Number / Card Reference এবং Transaction ID / Payment Reference দিন।")
+}
+let subtotal=calculateOrderSubtotal(),delivery=area==="Outside Dhaka"?120:60,total=subtotal+delivery,btn=document.getElementById("placeOrderBtn");
+btn.disabled=true;btn.textContent="Order Save হচ্ছে...";
+try{
+let notes=method==="Cash on Delivery"?"":"Payment Number/Card Ref: "+pn+"\nPayment Reference: "+tx;
+let ref=await getReferralReseller();
+let orderR=await db.from("orders").insert({
+user_id:currentUser.id,customer_name:name,customer_phone:phone,customer_email:currentUser.email||"",
+customer_district:district,customer_thana:thana,customer_receive_place:address,delivery_area:area,
+delivery_charge:delivery,subtotal,total,payment_method:method,payment_status:"Pending",order_status:"Pending",
+reseller_id:ref?.user_id||null,reseller_code:ref?.reseller_code||"",notes
+}).select().single();
+if(orderR.error)throw orderR.error;
+let order=orderR.data;
+let items=currentOrderProducts.map(i=>({
+order_id:order.id,product_id:i.product.id,product_name:i.product.name||"Product",
+product_image:getProductImages(i.product)[0]||"",size:i.size||"",quantity:Number(i.quantity||1),
+unit_price:Number(i.product.price||0),line_total:Number(i.product.price||0)*Number(i.quantity||1)
+}));
+let ir=await db.from("order_items").insert(items);if(ir.error)throw ir.error;
+currentOrderProducts.forEach(i=>{cart=cart.filter(c=>!(String(c.id)===String(i.product.id)&&String(c.size||"")===String(i.size||"")))});
+saveCart();
+alert("Order সফলভাবে Save হয়েছে ✅\n\nOrder ID: #"+order.id);
+closeModal("orderModal");
+sendWhatsAppOrder(order.id,currentOrderProducts,name,phone,district,thana,address,area,subtotal,delivery,total,method,ref?.reseller_code||"");
+currentOrderProducts=[]
+}catch(e){console.error(e);alert("Order Save হয়নি ❌\n\n"+e.message)}
+finally{btn.disabled=false;btn.textContent="📦 Order Confirm করুন"}
+}
+
+function sendWhatsAppOrder(id,items,name,phone,district,thana,address,area,sub,del,total,pay,ref){
+let m="🌸 GADHULI ORDER\n\nOrder ID: #"+id+"\n\n";
+items.forEach(i=>{m+="Product: "+i.product.name+"\n";if(i.size)m+="Size: "+i.size+"\n";m+="Quantity: "+i.quantity+"\nPrice: ৳"+(Number(i.product.price||0)*Number(i.quantity||1))+"\n\n"});
+m+="Customer: "+name+"\nPhone: "+phone+"\nDistrict: "+district+"\nThana: "+thana+"\nAddress: "+address+"\nDelivery: "+area+"\nPayment: "+pay+"\n";
+if(ref)m+="Reseller Code: "+ref+"\n";
+m+="\nSubtotal: ৳"+sub+"\nDelivery Charge: ৳"+del+"\nTOTAL: ৳"+total;
+window.open("https://wa.me/8801333088194?text="+encodeURIComponent(m),"_blank")
+}
+
+async function loadAuth(){
+if(!db)return;
+let s=await db.auth.getSession();currentUser=s.data.session?.user||null;
+db.auth.onAuthStateChange((e,s)=>{currentUser=s?.user||null;currentReseller=null;setTimeout(renderProducts,100)})
+}
+async function requireVerifiedUser(){
+if(!currentUser){openAuth();return false}
+if(!currentUser.email_confirmed_at){alert("আপনার Email verify করুন।");return false}
+return true
+}
 function openAuth(){authMode="login";updateAuthUI();openModal("authModal")}
+function openCreateAccount(){authMode="signup";updateAuthUI();openModal("authModal")}
 function toggleAuthMode(){authMode=authMode==="login"?"signup":"login";updateAuthUI()}
-function updateAuthUI(){let signup=authMode==="signup";document.getElementById("signupFields").style.display=signup?"block":"none";document.getElementById("authTitle").textContent=signup?"📝 Create Account":"🔐 Login";document.getElementById("authSubmit").textContent=signup?"Sign Up":"Login";document.getElementById("authToggle").textContent=signup?"Already Account আছে? Login":"New Account তৈরি করুন"}
-async function submitAuth(){if(!db)return;let email=document.getElementById("authEmail").value.trim(),password=document.getElementById("authPassword").value;if(!email||!password)return alert("Email এবং Password দিন।");if(authMode==="signup"){let name=document.getElementById("signupName").value.trim(),phone=document.getElementById("signupPhone").value.trim();if(!name||!phone)return alert("Name এবং Phone দিন।");let r=await db.auth.signUp({email,password,options:{data:{full_name:name,phone}}});if(r.error)return alert("Signup হয়নি ❌\n"+r.error.message);alert("Account তৈরি হয়েছে ✅\n\nEmail verification link check করুন।");authMode="login";updateAuthUI()}else{let r=await db.auth.signInWithPassword({email,password});if(r.error)return alert("Login হয়নি ❌\n"+r.error.message);currentUser=r.data.user;closeModal("authModal");alert("Login successful ✅")}}
-async function resetPassword(){let email=document.getElementById("authEmail").value.trim();if(!email)return alert("আগে Email লিখুন।");let r=await db.auth.resetPasswordForEmail(email,{redirectTo:window.location.origin});if(r.error)return alert(r.error.message);alert("Password reset link Email-এ পাঠানো হয়েছে।")}
+function updateAuthUI(){
+let signup=authMode==="signup";
+document.getElementById("signupFields").style.display=signup?"block":"none";
+document.getElementById("authTitle").textContent=signup?"📝 Create Account":"🔐 Login";
+document.getElementById("authSubmit").textContent=signup?"Sign Up":"Login";
+document.getElementById("authToggle").textContent=signup?"Already Account আছে? Login":"New Account তৈরি করুন"
+}
+async function submitAuth(){
+if(!db)return;
+let email=document.getElementById("authEmail").value.trim(),password=document.getElementById("authPassword").value;
+if(!email||!password)return alert("Email এবং Password দিন।");
+if(authMode==="signup"){
+let name=document.getElementById("signupName").value.trim(),phone=document.getElementById("signupPhone").value.trim();
+if(!name||!phone)return alert("Name এবং Phone দিন।");
+let r=await db.auth.signUp({email,password,options:{data:{full_name:name,phone}}});
+if(r.error)return alert("Signup হয়নি ❌\n"+r.error.message);
+alert("Account তৈরি হয়েছে ✅\n\nEmail verification link check করুন।");
+authMode="login";updateAuthUI()
+}else{
+let r=await db.auth.signInWithPassword({email,password});
+if(r.error)return alert("Login হয়নি ❌\n"+r.error.message);
+currentUser=r.data.user;closeModal("authModal");alert("Login successful ✅")
+}
+}
+async function resetPassword(){
+let email=document.getElementById("authEmail").value.trim();
+if(!email)return alert("আগে Email লিখুন।");
+let r=await db.auth.resetPasswordForEmail(email,{redirectTo:window.location.origin});
+if(r.error)return alert(r.error.message);
+alert("Password reset link Email-এ পাঠানো হয়েছে।")
+}
 
-async function openAccount(){if(!currentUser){openAuth();return}await renderAccount();openModal("accountModal")}
-async function renderAccount(){let box=document.getElementById("accountContent");box.innerHTML='<div class="empty">Account Loading...</div>';let p=await db.from("profiles").select("*").eq("id",currentUser.id).maybeSingle(),o=await db.from("orders").select("*").eq("user_id",currentUser.id).order("created_at",{ascending:false});let h=`<div class="account-card"><h3>👤 ${escapeHtml(p.data?.full_name||currentUser.email)}</h3><p>Email: ${escapeHtml(currentUser.email||"")}</p><p>Phone: ${escapeHtml(p.data?.phone||"—")}</p><p>Role: ${escapeHtml(p.data?.role||"customer")}</p></div><button class="btn btn-pink" onclick="openReseller()">🤝 Reseller Center</button>${p.data?.role==="admin"?` <button class="btn btn-danger" onclick="openAdmin()">👨‍💼 Admin Panel</button>`:""}<br><br><h3 style="color:#8f174d">📜 My Orders</h3>`;if(o.error)h+='<div class="empty">Orders load হয়নি।</div>';else if(!o.data?.length)h+='<div class="empty">এখনো কোনো Order নেই।</div>';else h+=o.data.map(x=>`<div class="order-history-item"><b>Order #${x.id}</b> <span class="status">${escapeHtml(x.order_status)}</span><p>Date: ${formatDate(x.created_at)}</p><p>Payment: ${escapeHtml(x.payment_method)} — ${escapeHtml(x.payment_status)}</p>${x.reseller_code?`<p>Reseller: <b>${escapeHtml(x.reseller_code)}</b></p>`:""}<p>Total: <b>৳${formatMoney(x.total)}</b></p></div>`).join("");box.innerHTML=h+'<br><button class="btn btn-light full-btn" onclick="logout()">🚪 Logout</button>'}
-async function logout(){await db.auth.signOut();currentUser=null;currentReseller=null;closeModal("accountModal");renderProducts();alert("Logout হয়েছে।")}
+async function openAccount(){
+if(!currentUser){openAuth();return}
+await renderAccount();openModal("accountModal")
+}
+async function renderAccount(){
+let box=document.getElementById("accountContent");box.innerHTML='<div class="empty">Account Loading...</div>';
+let p=await db.from("profiles").select("*").eq("id",currentUser.id).maybeSingle();
+let o=await db.from("orders").select("*").eq("user_id",currentUser.id).order("created_at",{ascending:false});
+let h=`<div class="account-card"><h3>👤 ${escapeHtml(p.data?.full_name||currentUser.email)}</h3>
+<p>Email: ${escapeHtml(currentUser.email||"")}</p><p>Phone: ${escapeHtml(p.data?.phone||"—")}</p>
+<p>Role: ${escapeHtml(p.data?.role||"customer")}</p></div>
+<button class="btn btn-pink" onclick="openReseller()">🤝 Reseller Center</button>
+${p.data?.role==="admin"?` <button class="btn btn-danger" onclick="openAdmin()">👨‍💼 Admin Panel</button>`:""}
+<br><br><h3 style="color:#8f174d">📜 My Orders</h3>`;
+if(o.error)h+='<div class="empty">Orders load হয়নি।</div>';
+else if(!o.data?.length)h+='<div class="empty">এখনো কোনো Order নেই।</div>';
+else h+=o.data.map(x=>`<div class="order-history-item"><b>Order #${x.id}</b> <span class="status">${escapeHtml(x.order_status)}</span>
+<p>Date: ${formatDate(x.created_at)}</p><p>Payment: ${escapeHtml(x.payment_method)} — ${escapeHtml(x.payment_status)}</p>
+${x.reseller_code?`<p>Reseller: <b>${escapeHtml(x.reseller_code)}</b></p>`:""}<p>Total: <b>৳${formatMoney(x.total)}</b></p></div>`).join("");
+box.innerHTML=h+'<br><button class="btn btn-light full-btn" onclick="logout()">🚪 Logout</button>'
+}
+async function logout(){
+await db.auth.signOut();currentUser=null;currentReseller=null;closeModal("accountModal");renderProducts();alert("Logout হয়েছে।")
+}
 
-function openReview(id){if(!currentUser){openAuth();return}document.getElementById("reviewProductId").value=id;document.getElementById("reviewText").value="";openModal("reviewModal")}
-async function submitReview(){if(!currentUser)return alert("Review দিতে Login করুন।");let id=document.getElementById("reviewProductId").value,rating=Number(document.getElementById("reviewRating").value),text=document.getElementById("reviewText").value.trim(),p=await db.from("profiles").select("full_name").eq("id",currentUser.id).maybeSingle();let r=await db.from("reviews").insert({product_id:id,user_id:currentUser.id,user_name:p.data?.full_name||currentUser.email||"Customer",rating,review_text:text,status:"Pending"});if(r.error)return alert("Review Submit হয়নি ❌\n"+r.error.message);closeModal("reviewModal");alert("Review Submit হয়েছে ✅\n\nAdmin approve করার পর দেখা যাবে।");if(currentDetailProduct)loadReviews(currentDetailProduct.id)}
-async function loadReviews(id){let box=document.getElementById("productReviews"),r=await db.from("reviews").select("*").eq("product_id",id).eq("status","Approved").order("created_at",{ascending:false});if(r.error){box.innerHTML="";return}box.innerHTML=r.data?.length?`<br><h3 style="color:#8f174d">⭐ Customer Reviews</h3>`+r.data.map(x=>`<div class="review-card"><b>${escapeHtml(x.user_name||"Customer")}</b><div class="stars">${"⭐".repeat(Number(x.rating||0))}</div><p>${escapeHtml(x.review_text||"")}</p></div>`).join(""):'<br><div class="empty">এখনো কোনো approved review নেই।</div>'}
+function openReview(id){
+if(!currentUser){openAuth();return}
+document.getElementById("reviewProductId").value=id;document.getElementById("reviewText").value="";openModal("reviewModal")
+}
+async function submitReview(){
+if(!currentUser)return alert("Review দিতে Login করুন।");
+let id=document.getElementById("reviewProductId").value,rating=Number(document.getElementById("reviewRating").value),
+text=document.getElementById("reviewText").value.trim(),p=await db.from("profiles").select("full_name").eq("id",currentUser.id).maybeSingle();
+let r=await db.from("reviews").insert({product_id:id,user_id:currentUser.id,user_name:p.data?.full_name||currentUser.email||"Customer",rating,review_text:text,status:"Pending"});
+if(r.error)return alert("Review Submit হয়নি ❌\n"+r.error.message);
+closeModal("reviewModal");alert("Review Submit হয়েছে ✅\n\nAdmin approve করার পর দেখা যাবে।");
+if(currentDetailProduct)loadReviews(currentDetailProduct.id)
+}
+async function loadReviews(id){
+let box=document.getElementById("productReviews"),r=await db.from("reviews").select("*").eq("product_id",id).eq("status","Approved").order("created_at",{ascending:false});
+if(r.error){box.innerHTML="";return}
+box.innerHTML=r.data?.length?`<br><h3 style="color:#8f174d">⭐ Customer Reviews</h3>`+r.data.map(x=>`<div class="review-card">
+<b>${escapeHtml(x.user_name||"Customer")}</b><div class="stars">${"⭐".repeat(Number(x.rating||0))}</div>
+<p>${escapeHtml(x.review_text||"")}</p></div>`).join(""):'<br><div class="empty">এখনো কোনো approved review নেই।</div>'
+}
 
-async function openReseller(){if(!currentUser){openAuth();return}let box=document.getElementById("resellerContent");box.innerHTML='<div class="empty">Loading...</div>';let r=await db.from("resellers").select("*").eq("user_id",currentUser.id).maybeSingle();if(r.error){box.innerHTML='<div class="empty">'+escapeHtml(r.error.message)+'</div>';openModal("resellerModal");return}if(!r.data)box.innerHTML=`<div class="account-card"><h3>🤝 Become a Gadhuli Reseller</h3><br><p>Product share করে sell করতে পারবেন।</p><br><p>Apply করার পর Admin review করবে।</p><br><button class="btn btn-pink full-btn" onclick="createReseller()">🤝 Apply as Reseller</button></div>`;else{let x=r.data;currentReseller=x;if(x.status==="Pending")box.innerHTML=`<div class="account-card"><h3>⏳ Reseller Application Pending</h3><div class="reseller-code">${escapeHtml(x.reseller_code)}</div><p><b>Status:</b> Pending</p><p><b>Commission:</b> ${x.commission_rate}%</p><p>Admin approve করলে Resell সুবিধা চালু হবে।</p></div>`;else if(x.status==="Approved")box.innerHTML=`<div class="account-card"><h3>🤝 Reseller Dashboard</h3><div class="reseller-code">${escapeHtml(x.reseller_code)}</div><p><b>Status:</b> ✅ Approved</p><p><b>Commission:</b> ${x.commission_rate}%</p><p><b>Total Orders:</b> ${x.total_orders}</p><p><b>Total Sales:</b> ৳${formatMoney(x.total_sales)}</p><p><b>Total Commission:</b> ৳${formatMoney(x.total_commission)}</p></div>`;else box.innerHTML=`<div class="account-card"><h3>🚫 Reseller Suspended</h3><div class="reseller-code">${escapeHtml(x.reseller_code)}</div><p>বর্তমানে Resell সুবিধা বন্ধ।</p></div>`}openModal("resellerModal")}
-async function createReseller(){if(!currentUser){openAuth();return}let e=await db.from("resellers").select("*").eq("user_id",currentUser.id).maybeSingle();if(e.error)return alert("Reseller status check হয়নি ❌\n"+e.error.message);if(e.data)return openReseller();let code="GADHULI"+Math.random().toString(36).substring(2,8).toUpperCase();let r=await db.from("resellers").insert({user_id:currentUser.id,reseller_code:code,commission_rate:5,total_orders:0,total_sales:0,total_commission:0,status:"Pending"});if(r.error)return alert("Reseller application হয়নি ❌\n"+r.error.message);alert("Reseller application সফল হয়েছে ✅\n\nStatus: Pending ⏳");openReseller()}
-async function resellProduct(id){if(!currentUser){openAuth();return}let r=await getApprovedReseller();if(!r)return alert("আপনার Approved Reseller account নেই।");let p=findProduct(id);if(!p)return alert("Product পাওয়া যায়নি।");let link=window.location.origin+window.location.pathname+"?product="+encodeURIComponent(p.id)+"&ref="+encodeURIComponent(r.reseller_code),msg="🌸 Gadhuli Product\n\n🛍️ "+p.name+"\n💰 Price: ৳"+formatMoney(p.price)+"\n\n🛒 Order করতে এখানে দেখুন:\n"+link;if(navigator.share){try{await navigator.share({title:"Gadhuli - "+p.name,text:msg,url:link})}catch(e){}}else window.open("https://wa.me/?text="+encodeURIComponent(msg),"_blank")}
+async function openReseller(){
+if(!currentUser){openAuth();return}
+let box=document.getElementById("resellerContent");box.innerHTML='<div class="empty">Loading...</div>';
+let r=await db.from("resellers").select("*").eq("user_id",currentUser.id).maybeSingle();
+if(r.error){box.innerHTML='<div class="empty">'+escapeHtml(r.error.message)+'</div>';openModal("resellerModal");return}
+if(!r.data){
+box.innerHTML=`<div class="account-card"><h3>🤝 Become a Gadhuli Reseller</h3><br>
+<p>Product share করে sell করতে পারবেন।</p><br><p>Apply করার পর Admin review করবে।</p><br>
+<button class="btn btn-pink full-btn" onclick="createReseller()">🤝 Apply as Reseller</button></div>`
+}else{
+let x=r.data;currentReseller=x;
+if(x.status==="Pending")box.innerHTML=`<div class="account-card"><h3>⏳ Reseller Application Pending</h3>
+<div class="reseller-code">${escapeHtml(x.reseller_code)}</div><p><b>Status:</b> Pending</p><p><b>Commission:</b> ${x.commission_rate}%</p>
+<p>Admin approve করলে Resell সুবিধা চালু হবে।</p></div>`;
+else if(x.status==="Approved")box.innerHTML=`<div class="account-card"><h3>🤝 Reseller Dashboard</h3>
+<div class="reseller-code">${escapeHtml(x.reseller_code)}</div><p><b>Status:</b> ✅ Approved</p><p><b>Commission:</b> ${x.commission_rate}%</p>
+<p><b>Total Orders:</b> ${x.total_orders}</p><p><b>Total Sales:</b> ৳${formatMoney(x.total_sales)}</p>
+<p><b>Total Commission:</b> ৳${formatMoney(x.total_commission)}</p></div>`;
+else box.innerHTML=`<div class="account-card"><h3>🚫 Reseller Suspended</h3><div class="reseller-code">${escapeHtml(x.reseller_code)}</div><p>বর্তমানে Resell সুবিধা বন্ধ।</p></div>`
+}
+openModal("resellerModal")
+}
+async function createReseller(){
+if(!currentUser){openAuth();return}
+let e=await db.from("resellers").select("*").eq("user_id",currentUser.id).maybeSingle();
+if(e.error)return alert("Reseller status check হয়নি ❌\n"+e.error.message);
+if(e.data)return openReseller();
+let code="GADHULI"+Math.random().toString(36).substring(2,8).toUpperCase();
+let r=await db.from("resellers").insert({user_id:currentUser.id,reseller_code:code,commission_rate:5,total_orders:0,total_sales:0,total_commission:0,status:"Pending"});
+if(r.error)return alert("Reseller application হয়নি ❌\n"+r.error.message);
+alert("Reseller application সফল হয়েছে ✅\n\nStatus: Pending ⏳");openReseller()
+}
+async function resellProduct(id){
+if(!currentUser){openAuth();return}
+let r=await getApprovedReseller();if(!r)return alert("আপনার Approved Reseller account নেই।");
+let p=findProduct(id);if(!p)return alert("Product পাওয়া যায়নি।");
+let link=window.location.origin+window.location.pathname+"?product="+encodeURIComponent(p.id)+"&ref="+encodeURIComponent(r.reseller_code),
+msg="🌸 Gadhuli Product\n\n🛍️ "+p.name+"\n💰 Price: ৳"+formatMoney(p.price)+"\n\n🛒 Order করতে এখানে দেখুন:\n"+link;
+if(navigator.share){try{await navigator.share({title:"Gadhuli - "+p.name,text:msg,url:link})}catch(e){}}
+else window.open("https://wa.me/?text="+encodeURIComponent(msg),"_blank")
+}
 
-async function openAdmin(){if(!currentUser){openAuth();return}if(!await isCurrentAdmin())return alert("Admin access নেই।");await renderAdmin();openModal("adminModal")}
-async function isCurrentAdmin(){if(!currentUser)return false;let r=await db.from("profiles").select("role").eq("id",currentUser.id).maybeSingle();return !r.error&&r.data?.role==="admin"}
-async function renderAdmin(){document.getElementById("adminContent").innerHTML=`<div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:15px"><button class="btn btn-pink" onclick="renderAdminOrders()">📦 Orders</button><button class="btn btn-light" onclick="renderAdminResellers()">🤝 Resellers</button><button class="btn btn-light" onclick="renderAdminReviews()">⭐ Reviews</button></div><div id="adminSectionContent">Loading...</div>`;await renderAdminOrders()}
+async function openAdmin(){
+if(!currentUser){openAuth();return}
+if(!await isCurrentAdmin())return alert("Admin access নেই।");
+await renderAdmin();openModal("adminModal")
+}
+async function isCurrentAdmin(){
+if(!currentUser)return false;
+let r=await db.from("profiles").select("role").eq("id",currentUser.id).maybeSingle();
+return !r.error&&r.data?.role==="admin"
+}
+async function renderAdmin(){
+document.getElementById("adminContent").innerHTML=`<div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:15px">
+<button class="btn btn-pink" onclick="renderAdminOrders()">📦 Orders</button>
+<button class="btn btn-light" onclick="renderAdminResellers()">🤝 Resellers</button>
+<button class="btn btn-light" onclick="renderAdminReviews()">⭐ Reviews</button>
+</div><div id="adminSectionContent">Loading...</div>`;
+await renderAdminOrders()
+}
+async function renderAdminOrders(){
+let box=document.getElementById("adminSectionContent");if(!box)return;
+box.innerHTML='<div class="empty">Orders Loading...</div>';
+let r=await db.from("orders").select("*").order("created_at",{ascending:false});
+if(r.error){box.innerHTML='<div class="empty">'+escapeHtml(r.error.message)+'</div>';return}
+if(!r.data?.length){box.innerHTML='<div class="empty">এখনো কোনো Order নেই।</div>';return}
+let h="";
+for(const o of r.data){
+let items=await db.from("order_items").select("*").eq("order_id",o.id);
+h+=`<div class="admin-order"><div class="admin-order-head"><div><b>Order #${o.id}</b><br><small>${formatDate(o.created_at)}</small></div>
+<span class="status">${escapeHtml(o.order_status)}</span></div>
+<p><b>Customer:</b> ${escapeHtml(o.customer_name)}</p><p><b>Phone:</b> ${escapeHtml(o.customer_phone)}</p>
+<p><b>Address:</b> ${escapeHtml(o.customer_receive_place)}, ${escapeHtml(o.customer_thana)}, ${escapeHtml(o.customer_district)}</p>
+<p><b>Payment:</b> ${escapeHtml(o.payment_method)} — ${escapeHtml(o.payment_status)}</p>
+${o.notes?`<p><b>Payment/Notes:</b><br>${escapeHtml(o.notes)}</p>`:""}${o.reseller_code?`<p><b>Reseller:</b> ${escapeHtml(o.reseller_code)}</p>`:""}
+<div class="admin-items"><b>Products</b>${(items.data||[]).map(i=>`<div style="padding:7px 0;border-bottom:1px solid #f0c4d6">
+${escapeHtml(i.product_name)}${i.size?" — Size: "+escapeHtml(i.size):""} × ${i.quantity} = <b>৳${formatMoney(i.line_total)}</b></div>`).join("")}</div>
+<h3 style="color:#8f174d">Total: ৳${formatMoney(o.total)}</h3><br>
+<div class="admin-actions">
+<select onchange="updateOrderStatus(${o.id},this.value)">${["Pending","Confirmed","Processing","Shipped","Delivered","Cancelled"].map(s=>`<option value="${s}" ${s===o.order_status?"selected":""}>${s}</option>`).join("")}</select>
+<select onchange="updatePaymentStatus(${o.id},this.value)">${["Pending","Paid","Failed","Refunded"].map(s=>`<option value="${s}" ${s===o.payment_status?"selected":""}>Payment: ${s}</option>`).join("")}</select>
+</div></div>`
+}
+box.innerHTML=h
+}
 
-async function renderAdminOrders(){let box=document.getElementById("adminSectionContent");if(!box)return;box.innerHTML='<div class="empty">Orders Loading...</div>';let r=await db.from("orders").select("*").order("created_at",{ascending:false});if(r.error){box.innerHTML='<div class="empty">'+escapeHtml(r.error.message)+'</div>';return}if(!r.data?.length){box.innerHTML='<div class="empty">এখনো কোনো Order নেই।</div>';return}let h="";for(const o of r.data){let items=await db.from("order_items").select("*").eq("order_id",o.id);h+=`<div class="admin-order"><div class="admin-order-head"><div><b>Order #${o.id}</b><br><small>${formatDate(o.created_at)}</small></div><span class="status">${escapeHtml(o.order_status)}</span></div><p><b>Customer:</b> ${escapeHtml(o.customer_name)}</p><p><b>Phone:</b> ${escapeHtml(o.customer_phone)}</p><p><b>Address:</b> ${escapeHtml(o.customer_receive_place)}, ${escapeHtml(o.customer_thana)}, ${escapeHtml(o.customer_district)}</p><p><b>Payment:</b> ${escapeHtml(o.payment_method)} — ${escapeHtml(o.payment_status)}</p>${o.notes?`<p><b>Payment/Notes:</b><br>${escapeHtml(o.notes)}</p>`:""}${o.reseller_code?`<p><b>Reseller:</b> ${escapeHtml(o.reseller_code)}</p>`:""}<div class="admin-items"><b>Products</b>${(items.data||[]).map(i=>`<div style="padding:7px 0;border-bottom:1px solid #f0c4d6">${escapeHtml(i.product_name)}${i.size?" — Size: "+escapeHtml(i.size):""} × ${i.quantity} = <b>৳${formatMoney(i.line_total)}</b></div>`).join("")}</div><h3 style="color:#8f174d">Total: ৳${formatMoney(o.total)}</h3><br><div class="admin-actions"><select onchange="updateOrderStatus(${o.id},this.value)">${["Pending","Confirmed","Processing","Shipped","Delivered","Cancelled"].map(s=>`<option value="${s}" ${s===o.order_status?"selected":""}>${s}</option>`).join("")}</select><select onchange="updatePaymentStatus(${o.id},this.value)">${["Pending","Paid","Failed","Refunded"].map(s=>`<option value="${s}" ${s===o.payment_status?"selected":""}>Payment: ${s}</option>`).join("")}</select></div></div>`}box.innerHTML=h}
+async function renderAdminResellers(){
+let box=document.getElementById("adminSectionContent");box.innerHTML='<div class="empty">Resellers Loading...</div>';
+let r=await db.from("resellers").select("*").order("created_at",{ascending:false});
+if(r.error)return box.innerHTML='<div class="empty">'+escapeHtml(r.error.message)+'</div>';
+if(!r.data?.length)return box.innerHTML='<div class="empty">কোনো Reseller application নেই।</div>';
+let h="<h3 style='color:#8f174d;margin-bottom:12px'>🤝 Reseller Management</h3>";
+for(const x of r.data){
+let p=await db.from("profiles").select("full_name,phone,role").eq("id",x.user_id).maybeSingle();
+h+=`<div class="reseller-admin-card"><div class="reseller-admin-head"><div><b>${escapeHtml(p.data?.full_name||"User")}</b><br><small>${escapeHtml(x.reseller_code)}</small></div>
+<span class="status">${escapeHtml(x.status)}</span></div><p><b>Phone:</b> ${escapeHtml(p.data?.phone||"—")}</p>
+<p><b>Role:</b> ${escapeHtml(p.data?.role||"customer")}</p><p><b>Commission:</b> ${x.commission_rate}%</p>
+<p><b>Total Orders:</b> ${x.total_orders}</p><p><b>Total Sales:</b> ৳${formatMoney(x.total_sales)}</p>
+<p><b>Total Commission:</b> ৳${formatMoney(x.total_commission)}</p><br><div class="admin-actions">
+${x.status!=="Approved"?`<button class="btn btn-pink" onclick="approveReseller('${escapeAttr(x.user_id)}',${x.id})">✅ Approve</button>`:""}
+${x.status!=="Suspended"?`<button class="btn btn-danger" onclick="suspendReseller('${escapeAttr(x.user_id)}',${x.id})">🚫 Suspend</button>`:""}
+</div></div>`
+}
+box.innerHTML=h
+}
+async function approveReseller(uid,rid){
+if(!await isCurrentAdmin())return alert("Admin access নেই।");
+let r=await db.from("resellers").update({status:"Approved"}).eq("id",rid);
+if(r.error)return alert("Approve হয়নি ❌\n"+r.error.message);
+let p=await db.from("profiles").update({role:"reseller"}).eq("id",uid);
+if(p.error)return alert("Profile role update হয়নি ❌\n"+p.error.message);
+alert("Reseller Approved হয়েছে ✅");renderAdminResellers()
+}
+async function suspendReseller(uid,rid){
+if(!await isCurrentAdmin())return alert("Admin access নেই।");
+let r=await db.from("resellers").update({status:"Suspended"}).eq("id",rid);
+if(r.error)return alert("Suspend হয়নি ❌\n"+r.error.message);
+let p=await db.from("profiles").update({role:"customer"}).eq("id",uid);
+if(p.error)return alert("Profile role update হয়নি ❌\n"+p.error.message);
+alert("Reseller Suspended হয়েছে 🚫");renderAdminResellers()
+}
 
-async function renderAdminResellers(){let box=document.getElementById("adminSectionContent");box.innerHTML='<div class="empty">Resellers Loading...</div>';let r=await db.from("resellers").select("*").order("created_at",{ascending:false});if(r.error)return box.innerHTML='<div class="empty">'+escapeHtml(r.error.message)+'</div>';if(!r.data?.length)return box.innerHTML='<div class="empty">কোনো Reseller application নেই।</div>';let h="<h3 style='color:#8f174d;margin-bottom:12px'>🤝 Reseller Management</h3>";for(const x of r.data){let p=await db.from("profiles").select("full_name,phone,role").eq("id",x.user_id).maybeSingle();h+=`<div class="reseller-admin-card"><div class="reseller-admin-head"><div><b>${escapeHtml(p.data?.full_name||"User")}</b><br><small>${escapeHtml(x.reseller_code)}</small></div><span class="status">${escapeHtml(x.status)}</span></div><p><b>Phone:</b> ${escapeHtml(p.data?.phone||"—")}</p><p><b>Role:</b> ${escapeHtml(p.data?.role||"customer")}</p><p><b>Commission:</b> ${x.commission_rate}%</p><p><b>Total Orders:</b> ${x.total_orders}</p><p><b>Total Sales:</b> ৳${formatMoney(x.total_sales)}</p><p><b>Total Commission:</b> ৳${formatMoney(x.total_commission)}</p><br><div class="admin-actions">${x.status!=="Approved"?`<button class="btn btn-pink" onclick="approveReseller('${escapeAttr(x.user_id)}',${x.id})">✅ Approve</button>`:""}${x.status!=="Suspended"?`<button class="btn btn-danger" onclick="suspendReseller('${escapeAttr(x.user_id)}',${x.id})">🚫 Suspend</button>`:""}</div></div>`}box.innerHTML=h}
-async function approveReseller(uid,rid){if(!await isCurrentAdmin())return alert("Admin access নেই।");let r=await db.from("resellers").update({status:"Approved"}).eq("id",rid);if(r.error)return alert("Approve হয়নি ❌\n"+r.error.message);let p=await db.from("profiles").update({role:"reseller"}).eq("id",uid);if(p.error)return alert("Profile role update হয়নি ❌\n"+p.error.message);alert("Reseller Approved হয়েছে ✅");renderAdminResellers()}
-async function suspendReseller(uid,rid){if(!await isCurrentAdmin())return alert("Admin access নেই।");let r=await db.from("resellers").update({status:"Suspended"}).eq("id",rid);if(r.error)return alert("Suspend হয়নি ❌\n"+r.error.message);let p=await db.from("profiles").update({role:"customer"}).eq("id",uid);if(p.error)return alert("Profile role update হয়নি ❌\n"+p.error.message);alert("Reseller Suspended হয়েছে 🚫");renderAdminResellers()}
-
-async function renderAdminReviews(){let box=document.getElementById("adminSectionContent");box.innerHTML='<div class="empty">Reviews Loading...</div>';let r=await db.from("reviews").select("*").order("created_at",{ascending:false});if(r.error)return box.innerHTML='<div class="empty">'+escapeHtml(r.error.message)+'</div>';if(!r.data?.length)return box.innerHTML='<div class="empty">কোনো review নেই।</div>';box.innerHTML=r.data.map(x=>`<div class="review-card"><b>${escapeHtml(x.user_name||"Customer")}</b> — Product #${x.product_id}<div class="stars">${"⭐".repeat(Number(x.rating||0))}</div><p>${escapeHtml(x.review_text||"")}</p><p>Status: <span class="status">${escapeHtml(x.status)}</span></p><div class="admin-actions">${x.status!=="Approved"?`<button class="btn btn-pink" onclick="updateReviewStatus(${x.id},'Approved')">✅ Approve</button>`:""}${x.status!=="Rejected"?`<button class="btn btn-danger" onclick="updateReviewStatus(${x.id},'Rejected')">❌ Reject</button>`:""}</div></div>`).join("")}
-async function updateReviewStatus(id,status){if(!await isCurrentAdmin())return alert("Admin access নেই।");let r=await db.from("reviews").update({status}).eq("id",id);if(r.error)return alert("Review status update হয়নি ❌\n"+r.error.message);renderAdminReviews()}
-
-async function updateOrderStatus(id,status){if(!await isCurrentAdmin())return alert("Admin access নেই।");let old=await db.from("orders").select("*").eq("id",id).maybeSingle();if(old.error||!old.data)return alert("Order পাওয়া যায়নি।");let r=await db.from("orders").update({order_status:status}).eq("id",id);if(r.error)return alert("Status update হয়নি ❌\n"+r.error.message);if(status==="Delivered"&&old.data.order_status!=="Delivered"&&old.data.reseller_id)await postResellerCommission(old.data);renderAdminOrders()}
-async function postResellerCommission(order){let r=await db.from("resellers").select("*").eq("user_id",order.reseller_id).maybeSingle();if(r.error||!r.data||r.data.status!=="Approved")return;let notes=order.notes||"";if(notes.includes("[COMMISSION_POSTED]"))return;let commission=Number(order.subtotal||0)*Number(r.data.commission_rate||0)/100;let u=await db.from("resellers").update({total_orders:Number(r.data.total_orders||0)+1,total_sales:Number(r.data.total_sales||0)+Number(order.subtotal||0),total_commission:Number(r.data.total_commission||0)+commission}).eq("user_id",order.reseller_id);if(u.error){console.error("Commission update failed",u.error);return}await db.from("orders").update({notes:(notes?notes+"\n":"")+"[COMMISSION_POSTED] Commission: ৳"+commission.toFixed(2)}).eq("id",order.id)}
-async function updatePaymentStatus(id,status){if(!await isCurrentAdmin())return alert("Admin access নেই।");let r=await db.from("orders").update({payment_status:status}).eq("id",id);if(r.error)return alert("Payment status update হয়নি ❌\n"+r.error.message);renderAdminOrders()}
+async function renderAdminReviews(){
+let box=document.getElementById("adminSectionContent");box.innerHTML='<div class="empty">Reviews Loading...</div>';
+let r=await db.from("reviews").select("*").order("created_at",{ascending:false});
+if(r.error)return box.innerHTML='<div class="empty">'+escapeHtml(r.error.message)+'</div>';
+if(!r.data?.length)return box.innerHTML='<div class="empty">কোনো review নেই।</div>';
+box.innerHTML=r.data.map(x=>`<div class="review-card"><b>${escapeHtml(x.user_name||"Customer")}</b> — Product #${x.product_id}
+<div class="stars">${"⭐".repeat(Number(x.rating||0))}</div><p>${escapeHtml(x.review_text||"")}</p>
+<p>Status: <span class="status">${escapeHtml(x.status)}</span></p><div class="admin-actions">
+${x.status!=="Approved"?`<button class="btn btn-pink" onclick="updateReviewStatus(${x.id},'Approved')">✅ Approve</button>`:""}
+${x.status!=="Rejected"?`<button class="btn btn-danger" onclick="updateReviewStatus(${x.id},'Rejected')">❌ Reject</button>`:""}
+</div></div>`).join("")
+}
+async function updateReviewStatus(id,status){
+if(!await isCurrentAdmin())return alert("Admin access নেই।");
+let r=await db.from("reviews").update({status}).eq("id",id);
+if(r.error)return alert("Review status update হয়নি ❌\n"+r.error.message);
+renderAdminReviews()
+}
+async function updateOrderStatus(id,status){
+if(!await isCurrentAdmin())return alert("Admin access নেই।");
+let old=await db.from("orders").select("*").eq("id",id).maybeSingle();
+if(old.error||!old.data)return alert("Order পাওয়া যায়নি।");
+let r=await db.from("orders").update({order_status:status}).eq("id",id);
+if(r.error)return alert("Status update হয়নি ❌\n"+r.error.message);
+if(status==="Delivered"&&old.data.order_status!=="Delivered"&&old.data.reseller_id)await postResellerCommission(old.data);
+renderAdminOrders()
+}
+async function postResellerCommission(order){
+let r=await db.from("resellers").select("*").eq("user_id",order.reseller_id).maybeSingle();
+if(r.error||!r.data||r.data.status!=="Approved")return;
+let notes=order.notes||"";
+if(notes.includes("[COMMISSION_POSTED]"))return;
+let commission=Number(order.subtotal||0)*Number(r.data.commission_rate||0)/100;
+let u=await db.from("resellers").update({
+total_orders:Number(r.data.total_orders||0)+1,
+total_sales:Number(r.data.total_sales||0)+Number(order.subtotal||0),
+total_commission:Number(r.data.total_commission||0)+commission
+}).eq("user_id",order.reseller_id);
+if(u.error){console.error("Commission update failed",u.error);return}
+await db.from("orders").update({notes:(notes?notes+"\n":"")+"[COMMISSION_POSTED] Commission: ৳"+commission.toFixed(2)}).eq("id",order.id)
+}
+async function updatePaymentStatus(id,status){
+if(!await isCurrentAdmin())return alert("Admin access নেই।");
+let r=await db.from("orders").update({payment_status:status}).eq("id",id);
+if(r.error)return alert("Payment status update হয়নি ❌\n"+r.error.message);
+renderAdminOrders()
+}
 
 function findProduct(id){return products.find(p=>String(p.id)===String(id))}
 function formatMoney(v){return Number(v||0).toLocaleString("en-US",{maximumFractionDigits:2})}
@@ -222,9 +839,10 @@ function closeModal(id){document.getElementById(id)?.classList.remove("show")}
 document.addEventListener("click",e=>{if(e.target.classList.contains("modal"))e.target.classList.remove("show")});
 document.addEventListener("keydown",e=>{if(e.key==="Escape")document.querySelectorAll(".modal.show").forEach(m=>m.classList.remove("show"))});
 
-const urlParams=new URLSearchParams(window.location.search),referral=urlParams.get("ref"),productFromURL=urlParams.get("product");
+const urlParams=new URLSearchParams(window.location.search);
+const referral=urlParams.get("ref");
+const productFromURL=urlParams.get("product");
 if(referral)localStorage.setItem("gadhuli_ref",referral);
-if(productFromURL)setTimeout(()=>{if(findProduct(productFromURL))openDetails(productFromURL)},1500);
 </script>
 </body>
 </html>
