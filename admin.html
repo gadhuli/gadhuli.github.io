@@ -15,7 +15,6 @@
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="supabase.js"></script>
 
-
 <style>
 
 *{
@@ -24,309 +23,165 @@
   padding:0;
 }
 
-
 body{
   font-family:Arial,sans-serif;
   background:#fff7fa;
   color:#333;
 }
 
-
-/* ========================= */
-/* HEADER */
-/* ========================= */
-
 header{
-  background:linear-gradient(
-    135deg,
-    #8f174d,
-    #d52b72
-  );
-
+  background:linear-gradient(135deg,#8f174d,#d52b72);
   color:white;
-
   padding:16px 20px;
-
   display:flex;
-
   align-items:center;
-
   justify-content:space-between;
-
   position:sticky;
-
   top:0;
-
   z-index:100;
-
-  box-shadow:
-    0 3px 12px rgba(0,0,0,.15);
+  box-shadow:0 3px 12px rgba(0,0,0,.15);
 }
-
 
 .logo{
   display:flex;
-
   align-items:center;
-
   gap:10px;
 }
 
-
 .logo img{
   width:42px;
-
   height:42px;
-
   object-fit:contain;
-
   border-radius:8px;
-
   background:white;
 }
-
 
 .logo h1{
   font-size:22px;
 }
 
-
 .back{
   color:white;
-
   text-decoration:none;
-
   font-weight:bold;
-
   padding:8px 12px;
-
-  border:1px solid
-    rgba(255,255,255,.5);
-
+  border:1px solid rgba(255,255,255,.5);
   border-radius:8px;
 }
 
-
 .back:hover{
-  background:
-    rgba(255,255,255,.15);
+  background:rgba(255,255,255,.15);
 }
-
-
-/* ========================= */
-/* CONTAINER */
-/* ========================= */
 
 .container{
   max-width:1000px;
-
   margin:25px auto;
-
   padding:0 15px;
 }
 
-
 .card{
   background:white;
-
   border-radius:14px;
-
   padding:20px;
-
   margin-bottom:20px;
-
-  box-shadow:
-    0 4px 15px
-    rgba(143,23,77,.08);
+  box-shadow:0 4px 15px rgba(143,23,77,.08);
 }
-
 
 .card h2{
   color:#8f174d;
-
   margin-bottom:18px;
 }
-
-
-/* ========================= */
-/* FORM */
-/* ========================= */
 
 input,
 select,
 textarea{
-
   width:100%;
-
   padding:12px;
-
   margin:7px 0 12px;
-
   border:1px solid #ddd;
-
   border-radius:8px;
-
   font-size:15px;
-
   outline:none;
-
   background:white;
-
 }
-
 
 input:focus,
 select:focus,
 textarea:focus{
-
   border-color:#8f174d;
-
 }
-
 
 textarea{
-
   resize:vertical;
-
 }
-
 
 label{
-
   font-weight:bold;
-
   color:#555;
-
   display:block;
-
   margin-top:5px;
-
 }
-
-
-/* ========================= */
-/* BUTTON */
-/* ========================= */
 
 button{
-
   border:none;
-
   border-radius:8px;
-
   padding:11px 16px;
-
   background:#8f174d;
-
   color:white;
-
   font-size:15px;
-
   font-weight:bold;
-
   cursor:pointer;
-
 }
-
 
 button:hover{
-
   background:#6f103b;
-
 }
-
 
 .btn-danger{
-
   background:#c62828;
-
 }
-
 
 .btn-danger:hover{
-
   background:#9e1f1f;
-
 }
-
 
 .btn-secondary{
-
   background:#777;
-
 }
-
 
 .btn-secondary:hover{
-
   background:#555;
-
 }
-
 
 .hidden{
-
   display:none !important;
-
 }
-
-
-/* ========================= */
-/* MESSAGE */
-/* ========================= */
 
 .message{
-
   padding:10px;
-
   border-radius:8px;
-
   margin-bottom:12px;
-
   display:none;
-
 }
-
 
 .success{
-
   background:#e8f5e9;
-
   color:#2e7d32;
-
 }
-
 
 .error{
-
   background:#ffebee;
-
   color:#c62828;
-
 }
 
-
-/* ========================= */
-/* CATEGORY HELP */
-/* ========================= */
-
 .category-help{
-
   background:#fff7fa;
-
-  border-left:
-    4px solid #8f174d;
-
+  border-left:4px solid #8f174d;
   padding:10px 12px;
-
   border-radius:6px;
-
   margin-bottom:12px;
-
   color:#666;
-
   font-size:13px;
-
 }
 
 
@@ -335,138 +190,76 @@ button:hover{
 /* ========================= */
 
 .size-section{
-
   display:none;
-
   background:#fff7fa;
-
   border:1px solid #efbfd1;
-
   border-radius:10px;
-
   padding:13px;
-
   margin:5px 0 15px;
-
 }
-
 
 .size-section.show{
-
   display:block;
-
 }
-
 
 .size-title{
-
   color:#8f174d;
-
   font-weight:bold;
-
   margin-bottom:10px;
-
 }
-
 
 .size-help{
-
   color:#777;
-
   font-size:12px;
-
   margin-bottom:10px;
-
 }
-
 
 .size-options{
-
   display:flex;
-
   flex-wrap:wrap;
-
   gap:8px;
-
 }
-
 
 .size-option{
-
   position:relative;
-
 }
-
 
 .size-option input{
-
   position:absolute;
-
   opacity:0;
-
   pointer-events:none;
-
 }
-
 
 .size-option label{
-
   display:flex;
-
   align-items:center;
-
   justify-content:center;
-
   min-width:52px;
-
   padding:9px 12px;
-
   margin:0;
-
   border:1px solid #e2a8be;
-
   border-radius:8px;
-
   background:white;
-
   color:#8f174d;
-
   cursor:pointer;
-
   font-size:13px;
-
   font-weight:bold;
-
   transition:.15s;
-
 }
-
 
 .size-option input:checked + label{
-
   background:#8f174d;
-
   color:white;
-
   border-color:#8f174d;
-
 }
 
-
 .no-size-box{
-
   background:#f4e7ed;
-
   color:#6f103b;
-
   padding:10px;
-
   border-radius:8px;
-
   font-size:13px;
-
   font-weight:bold;
-
 }
 
 
@@ -475,37 +268,22 @@ button:hover{
 /* ========================= */
 
 .preview{
-
   display:flex;
-
   flex-wrap:wrap;
-
   gap:10px;
-
   margin:10px 0 15px;
-
 }
-
 
 .preview-item{
-
   position:relative;
-
 }
 
-
 .preview img{
-
   width:90px;
-
   height:90px;
-
   object-fit:cover;
-
   border-radius:8px;
-
   border:2px solid #eee;
-
 }
 
 
@@ -514,129 +292,70 @@ button:hover{
 /* ========================= */
 
 .product{
-
   border:1px solid #eee;
-
   border-radius:12px;
-
   padding:15px;
-
   margin-bottom:12px;
-
   display:flex;
-
   gap:15px;
-
   align-items:center;
-
 }
-
 
 .product img{
-
   width:90px;
-
   height:90px;
-
   object-fit:cover;
-
   border-radius:8px;
-
   flex-shrink:0;
-
 }
-
 
 .product-info{
-
   flex:1;
-
 }
-
 
 .product-info h3{
-
   color:#8f174d;
-
   margin-bottom:5px;
-
 }
-
 
 .category-text{
-
   color:#8f174d;
-
   font-weight:bold;
-
   margin-top:5px;
-
 }
-
 
 .subcategory-text{
-
   color:#777;
-
   font-size:13px;
-
   margin-top:3px;
-
 }
-
 
 .size-text{
-
   color:#6f103b;
-
   font-size:13px;
-
   font-weight:bold;
-
   margin-top:5px;
-
 }
-
 
 .product-actions{
-
   display:flex;
-
   gap:8px;
-
   flex-wrap:wrap;
-
 }
-
 
 .small{
-
   color:#777;
-
   font-size:13px;
-
   margin-bottom:10px;
-
 }
-
 
 .logout{
-
   margin-top:15px;
-
 }
 
-
-/* ========================= */
-/* LOGIN */
-/* ========================= */
-
 #loginSection{
-
   max-width:450px;
-
   margin:60px auto;
-
 }
 
 
@@ -647,70 +366,41 @@ button:hover{
 @media(max-width:600px){
 
   header{
-
     padding:12px;
-
   }
-
 
   .logo h1{
-
     font-size:19px;
-
   }
-
 
   .logo img{
-
     width:36px;
-
     height:36px;
-
   }
-
 
   .product{
-
     align-items:flex-start;
-
     flex-wrap:wrap;
-
   }
-
 
   .product img{
-
     width:75px;
-
     height:75px;
-
   }
-
 
   .product-actions{
-
     width:100%;
-
     margin-top:8px;
-
   }
-
 
   button{
-
     font-size:14px;
-
     padding:10px 12px;
-
   }
 
-
   .size-option label{
-
     min-width:48px;
-
     padding:8px 10px;
-
   }
 
 }
@@ -742,7 +432,6 @@ button:hover{
 
   </div>
 
-
   <a
     class="back"
     href="index.html"
@@ -751,7 +440,6 @@ button:hover{
   </a>
 
 </header>
-
 
 
 <div class="container">
@@ -770,12 +458,10 @@ button:hover{
     🔐 Admin Login
   </h2>
 
-
   <div
     id="loginMessage"
     class="message"
   ></div>
-
 
   <form id="loginForm">
 
@@ -790,7 +476,6 @@ button:hover{
       required
     >
 
-
     <label>
       Password
     </label>
@@ -802,7 +487,6 @@ button:hover{
       required
     >
 
-
     <button type="submit">
       Login
     </button>
@@ -810,7 +494,6 @@ button:hover{
   </form>
 
 </section>
-
 
 
 <!-- ========================= -->
@@ -833,12 +516,10 @@ button:hover{
     ➕ Add New Product
   </h2>
 
-
   <div
     id="productMessage"
     class="message"
   ></div>
-
 
   <form id="productForm">
 
@@ -857,7 +538,6 @@ button:hover{
     >
 
 
-
     <!-- PRICE -->
 
     <label>
@@ -871,7 +551,6 @@ button:hover{
       min="0"
       required
     >
-
 
 
     <!-- CATEGORY -->
@@ -889,53 +568,43 @@ button:hover{
         Select Category
       </option>
 
-
       <option value="Men's Fashion">
         Men's Fashion
       </option>
-
 
       <option value="Women's Fashion">
         Women's Fashion
       </option>
 
-
       <option value="Kids & Baby">
         Kids & Baby
       </option>
-
 
       <option value="Shoes">
         Shoes
       </option>
 
-
       <option value="Bags & Accessories">
         Bags & Accessories
       </option>
-
 
       <option value="Watches">
         Watches
       </option>
 
-
       <option value="Electronics">
         Electronics
       </option>
 
-
       <option value="Beauty & Personal Care">
         Beauty & Personal Care
       </option>
-
 
       <option value="Home & Living">
         Home & Living
       </option>
 
     </select>
-
 
 
     <!-- SUBCATEGORY -->
@@ -956,14 +625,12 @@ button:hover{
 
     </select>
 
-
     <div class="category-help">
 
       💡 আগে Category select করো।
       তারপর সেই Category-এর Subcategory আসবে।
 
     </div>
-
 
 
     <!-- SIZE -->
@@ -977,12 +644,10 @@ button:hover{
         📏 Product Size
       </div>
 
-
       <div
         id="sizeHelp"
         class="size-help"
       ></div>
-
 
       <div
         id="sizeOptions"
@@ -990,7 +655,6 @@ button:hover{
       ></div>
 
     </div>
-
 
 
     <!-- DESCRIPTION -->
@@ -1004,7 +668,6 @@ button:hover{
       rows="4"
       placeholder="Product description"
     ></textarea>
-
 
 
     <!-- IMAGES -->
@@ -1021,26 +684,21 @@ button:hover{
       required
     >
 
-
     <div
       id="preview"
       class="preview"
     ></div>
 
 
-
     <!-- SAVE -->
 
     <button type="submit">
-
       💾 Save Product
-
     </button>
 
   </form>
 
 </div>
-
 
 
 <!-- ========================= -->
@@ -1053,22 +711,16 @@ button:hover{
     📦 Manage Products
   </h2>
 
-
   <div id="productsList">
-
     Loading products...
-
   </div>
-
 
   <button
     type="button"
     id="logoutBtn"
     class="btn-secondary logout"
   >
-
     🚪 Logout
-
   </button>
 
 </div>
@@ -1077,7 +729,6 @@ button:hover{
 </section>
 
 </div>
-
 
 
 <script>
@@ -1090,10 +741,8 @@ button:hover{
 const db =
   window.gadhuliSupabase;
 
-
 const ADMIN_EMAIL =
   "hridoyff974@gmail.com";
-
 
 
 /* =============================== */
@@ -1102,165 +751,90 @@ const ADMIN_EMAIL =
 
 const CATEGORY_DATA = {
 
-
   "Men's Fashion":[
-
     "T-Shirt",
-
     "Polo T-Shirt",
-
     "Shirt",
-
     "Panjabi",
-
     "Jeans",
-
     "Pants",
-
     "Shorts",
-
     "Hoodie & Sweatshirt",
-
     "Jacket"
-
   ],
-
 
   "Women's Fashion":[
-
     "Saree",
-
     "Three Piece",
-
     "Kurti",
-
     "Tops",
-
     "T-Shirt",
-
     "Gown",
-
     "Hijab",
-
     "Abaya",
-
     "Women's Pants"
-
   ],
-
 
   "Kids & Baby":[
-
     "Boys Clothing",
-
     "Girls Clothing",
-
     "Baby Clothing",
-
     "Baby Accessories",
-
     "Toys"
-
   ],
-
 
   "Shoes":[
-
     "Men's Shoes",
-
     "Women's Shoes",
-
     "Kids Shoes",
-
     "Sneakers",
-
     "Sandals",
-
     "Slippers"
-
   ],
-
 
   "Bags & Accessories":[
-
     "Backpacks",
-
     "Handbags",
-
     "Wallets",
-
     "Belts",
-
     "Caps",
-
     "Sunglasses",
-
     "Fashion Accessories"
-
   ],
-
 
   "Watches":[
-
     "Men's Watches",
-
     "Women's Watches",
-
     "Smart Watches",
-
     "Kids Watches"
-
   ],
-
 
   "Electronics":[
-
     "Mobile Accessories",
-
     "Earphones & Headphones",
-
     "Speakers",
-
     "Chargers",
-
     "Power Banks",
-
     "Smart Gadgets"
-
   ],
-
 
   "Beauty & Personal Care":[
-
     "Skincare",
-
     "Hair Care",
-
     "Makeup",
-
     "Perfume",
-
     "Personal Care"
-
   ],
 
-
   "Home & Living":[
-
     "Home Decor",
-
     "Bedding",
-
     "Storage",
-
     "Lighting",
-
     "Kitchen & Dining"
-
   ]
 
 };
-
 
 
 /* =============================== */
@@ -1269,107 +843,68 @@ const CATEGORY_DATA = {
 
 const SIZE_DATA = {
 
-
   "T-Shirt":[
-
     "S",
-
     "M",
-
     "L",
-
     "XL",
-
     "2XL",
-
     "4XL"
-
   ],
 
+  "Polo T-Shirt":[
+    "S",
+    "M",
+    "L",
+    "XL",
+    "2XL",
+    "4XL"
+  ],
 
   "Shirt":[
-
     "S",
-
     "M",
-
     "L",
-
     "XL",
-
     "2XL",
-
     "4XL"
-
   ],
-
 
   "Panjabi":[
-
     "28",
-
     "30",
-
     "32",
-
     "34",
-
     "36",
-
     "38",
-
     "40",
-
     "42",
-
     "44",
-
     "46",
-
     "48"
-
   ],
-
 
   "Pants":[
-
     "28",
-
     "30",
-
     "32",
-
     "34",
-
     "36",
-
     "38",
-
     "40"
-
   ],
 
-
   "Jeans":[
-
     "28",
-
     "30",
-
     "32",
-
     "34",
-
     "36",
-
     "38",
-
     "40"
-
   ]
 
 };
-
 
 
 /* =============================== */
@@ -1385,21 +920,15 @@ function showMessage(
   const box =
     document.getElementById(id);
 
-
   box.textContent =
     text;
 
-
   box.className =
-    "message " +
-    type;
-
+    "message " + type;
 
   box.style.display =
     "block";
-
 }
-
 
 
 /* =============================== */
@@ -1415,57 +944,23 @@ document
     const category =
       this.value;
 
-
     const subcategory =
       document.getElementById(
         "productSubcategory"
       );
 
-
-    const sizeSection =
-      document.getElementById(
-        "sizeSection"
-      );
-
-
-    const sizeOptions =
-      document.getElementById(
-        "sizeOptions"
-      );
-
-
-    const sizeHelp =
-      document.getElementById(
-        "sizeHelp"
-      );
-
-
-    /* Reset size */
-
-    sizeSection.classList.remove(
-      "show"
-    );
-
-
-    sizeOptions.innerHTML =
-      "";
-
-
-    sizeHelp.textContent =
-      "";
-
-
-    /* Reset subcategory */
-
     subcategory.innerHTML =
       "";
 
+    subcategory.disabled =
+      true;
+
+    showSizeOptions(
+      "",
+      ""
+    );
 
     if(!category){
-
-      subcategory.disabled =
-        true;
-
 
       subcategory.innerHTML = `
 
@@ -1476,18 +971,10 @@ document
       `;
 
       return;
-
     }
-
 
     subcategory.disabled =
       false;
-
-
-    const list =
-      CATEGORY_DATA[category] ||
-      [];
-
 
     subcategory.innerHTML = `
 
@@ -1497,6 +984,8 @@ document
 
     `;
 
+    const list =
+      CATEGORY_DATA[category] || [];
 
     list.forEach(
       function(item){
@@ -1506,14 +995,11 @@ document
             "option"
           );
 
-
         option.value =
           item;
 
-
         option.textContent =
           item;
-
 
         subcategory.appendChild(
           option
@@ -1524,7 +1010,6 @@ document
 
   }
 );
-
 
 
 /* =============================== */
@@ -1542,10 +1027,8 @@ document
         "productCategory"
       ).value;
 
-
     const subcategory =
       this.value;
-
 
     showSizeOptions(
       category,
@@ -1554,7 +1037,6 @@ document
 
   }
 );
-
 
 
 /* =============================== */
@@ -1571,31 +1053,36 @@ function showSizeOptions(
       "sizeSection"
     );
 
-
   const options =
     document.getElementById(
       "sizeOptions"
     );
-
 
   const help =
     document.getElementById(
       "sizeHelp"
     );
 
-
   options.innerHTML =
     "";
 
+  help.textContent =
+    "";
 
   section.classList.remove(
     "show"
   );
 
 
-  help.textContent =
-    "";
+  /* ======================= */
+  /* NO CATEGORY */
+  /* ======================= */
 
+  if(!category){
+
+    return;
+
+  }
 
 
   /* ======================= */
@@ -1612,23 +1099,21 @@ function showSizeOptions(
   }
 
 
-
   /* ======================= */
   /* WATCH = NO SIZE */
   /* ======================= */
 
   if(
-    category === "Watches"
+    category ===
+    "Watches"
   ){
 
     section.classList.add(
       "show"
     );
 
-
     help.textContent =
       "এই Category-এর Product-এ size select করার প্রয়োজন নেই।";
-
 
     options.innerHTML = `
 
@@ -1638,15 +1123,13 @@ function showSizeOptions(
 
     `;
 
-
     return;
 
   }
 
 
-
   /* ======================= */
-  /* CLOTHING SIZE */
+  /* SIZE DATA */
   /* ======================= */
 
   const sizes =
@@ -1655,7 +1138,7 @@ function showSizeOptions(
 
   if(
     !sizes ||
-    !sizes.length
+    sizes.length === 0
   ){
 
     return;
@@ -1663,10 +1146,13 @@ function showSizeOptions(
   }
 
 
+  /* ======================= */
+  /* SHOW SIZE */
+  /* ======================= */
+
   section.classList.add(
     "show"
   );
-
 
   help.textContent =
     "যে যে size available আছে সেগুলো select করো।";
@@ -1679,7 +1165,6 @@ function showSizeOptions(
         document.createElement(
           "div"
         );
-
 
       wrapper.className =
         "size-option";
@@ -1701,13 +1186,11 @@ function showSizeOptions(
           class="product-size-checkbox"
         >
 
-
         <label for="${id}">
           ${escapeHtml(size)}
         </label>
 
       `;
-
 
       options.appendChild(
         wrapper
@@ -1717,7 +1200,6 @@ function showSizeOptions(
   );
 
 }
-
 
 
 /* =============================== */
@@ -1732,19 +1214,16 @@ document
 
     e.preventDefault();
 
-
     const email =
       document
       .getElementById("email")
       .value
       .trim();
 
-
     const password =
       document
       .getElementById("password")
       .value;
-
 
     try{
 
@@ -1756,27 +1235,19 @@ document
         .signInWithPassword({
 
           email:email,
-
           password:password
 
         });
 
-
       if(error){
-
         throw error;
-
       }
 
-
       if(!data.user){
-
         throw new Error(
           "Login failed"
         );
-
       }
-
 
       if(
         data.user.email !==
@@ -1785,13 +1256,11 @@ document
 
         await db.auth.signOut();
 
-
         throw new Error(
           "এই account Admin নয়।"
         );
 
       }
-
 
       document
       .getElementById(
@@ -1800,7 +1269,6 @@ document
       .classList
       .add("hidden");
 
-
       document
       .getElementById(
         "adminPanel"
@@ -1808,11 +1276,10 @@ document
       .classList
       .remove("hidden");
 
-
       loadProducts();
 
-
-    }catch(error){
+    }
+    catch(error){
 
       showMessage(
         "loginMessage",
@@ -1825,7 +1292,6 @@ document
 
   }
 );
-
 
 
 /* =============================== */
@@ -1843,16 +1309,13 @@ document
         "preview"
       );
 
-
     preview.innerHTML =
       "";
-
 
     const files =
       Array.from(
         this.files
       );
-
 
     if(files.length > 5){
 
@@ -1860,22 +1323,17 @@ document
         "Maximum 5 images allowed."
       );
 
-
       this.value =
         "";
 
-
       return;
-
     }
-
 
     files.forEach(
       function(file){
 
         const reader =
           new FileReader();
-
 
         reader.onload =
           function(e){
@@ -1885,32 +1343,26 @@ document
                 "div"
               );
 
-
             wrapper.className =
               "preview-item";
-
 
             const img =
               document.createElement(
                 "img"
               );
 
-
             img.src =
               e.target.result;
-
 
             wrapper.appendChild(
               img
             );
-
 
             preview.appendChild(
               wrapper
             );
 
           };
-
 
         reader.readAsDataURL(
           file
@@ -1921,7 +1373,6 @@ document
 
   }
 );
-
 
 
 /* =============================== */
@@ -1991,7 +1442,6 @@ document
       );
 
 
-
     /* ========================= */
     /* GET SIZES */
     /* ========================= */
@@ -2037,7 +1487,6 @@ document
     }
 
 
-
     /* ========================= */
     /* VALIDATION */
     /* ========================= */
@@ -2051,7 +1500,6 @@ document
       );
 
       return;
-
     }
 
 
@@ -2067,7 +1515,6 @@ document
       );
 
       return;
-
     }
 
 
@@ -2080,7 +1527,6 @@ document
       );
 
       return;
-
     }
 
 
@@ -2093,7 +1539,6 @@ document
       );
 
       return;
-
     }
 
 
@@ -2109,7 +1554,6 @@ document
       );
 
       return;
-
     }
 
 
@@ -2125,9 +1569,7 @@ document
       );
 
       return;
-
     }
-
 
 
     try{
@@ -2137,7 +1579,6 @@ document
         "Product save হচ্ছে... ⏳",
         "success"
       );
-
 
 
       /* ========================= */
@@ -2156,12 +1597,10 @@ document
         const file =
           files[i];
 
-
         const extension =
           file.name
           .split(".")
           .pop();
-
 
         const fileName =
           Date.now() +
@@ -2172,11 +1611,9 @@ document
           "." +
           extension;
 
-
         const filePath =
           "products/" +
           fileName;
-
 
 
         const {
@@ -2190,13 +1627,8 @@ document
             filePath,
             file,
             {
-
-              cacheControl:
-                "3600",
-
-              upsert:
-                false
-
+              cacheControl:"3600",
+              upsert:false
             }
           );
 
@@ -2206,7 +1638,6 @@ document
           throw uploadError;
 
         }
-
 
 
         const {
@@ -2228,7 +1659,6 @@ document
       }
 
 
-
       /* ========================= */
       /* DATABASE SAVE */
       /* ========================= */
@@ -2241,25 +1671,13 @@ document
         .insert([
 
           {
-
             name:name,
-
             price:price,
-
             category:category,
-
-            subcategory:
-              subcategory,
-
-            sizes:
-              selectedSizes,
-
-            description:
-              description,
-
-            images:
-              imageUrls
-
+            subcategory:subcategory,
+            sizes:selectedSizes,
+            description:description,
+            images:imageUrls
           }
 
         ]);
@@ -2270,7 +1688,6 @@ document
         throw insertError;
 
       }
-
 
 
       /* ========================= */
@@ -2338,11 +1755,10 @@ document
 
       loadProducts();
 
-
-    }catch(error){
+    }
+    catch(error){
 
       console.error(error);
-
 
       showMessage(
         "productMessage",
@@ -2360,7 +1776,6 @@ document
 );
 
 
-
 /* =============================== */
 /* LOAD PRODUCTS */
 /* =============================== */
@@ -2371,7 +1786,6 @@ async function loadProducts(){
     document.getElementById(
       "productsList"
     );
-
 
   list.innerHTML =
     "Loading products... ⏳";
@@ -2395,9 +1809,7 @@ async function loadProducts(){
 
 
     if(error){
-
       throw error;
-
     }
 
 
@@ -2410,7 +1822,6 @@ async function loadProducts(){
         "<p>No products found.</p>";
 
       return;
-
     }
 
 
@@ -2426,14 +1837,9 @@ async function loadProducts(){
             "div"
           );
 
-
         item.className =
           "product";
 
-
-        /* ===================== */
-        /* IMAGE */
-        /* ===================== */
 
         let imageUrl =
           "https://via.placeholder.com/90";
@@ -2452,10 +1858,6 @@ async function loadProducts(){
         }
 
 
-        /* ===================== */
-        /* CATEGORY */
-        /* ===================== */
-
         const category =
           product.category ||
           "Others";
@@ -2465,10 +1867,6 @@ async function loadProducts(){
           product.subcategory ||
           "";
 
-
-        /* ===================== */
-        /* SIZES */
-        /* ===================== */
 
         let sizes = [];
 
@@ -2506,133 +1904,93 @@ async function loadProducts(){
           );
 
 
-
         item.innerHTML = `
 
           <img
             src="${escapeHtml(
               imageUrl
             )}"
-
             alt="${escapeHtml(
               product.name ||
               "Product"
             )}"
-
             onerror="
               this.src='https://via.placeholder.com/90?text=Gadhuli'
             "
           >
 
-
           <div class="product-info">
 
             <h3>
-
               ${escapeHtml(
                 product.name ||
                 ""
               )}
-
             </h3>
 
-
             <p>
-
               ৳${Number(
                 product.price ||
                 0
               )}
-
             </p>
 
-
             <p class="category-text">
-
               🏷️
               ${escapeHtml(
                 category
               )}
-
             </p>
-
 
             ${
               subcategory
               ?
               `
-
                 <p class="subcategory-text">
-
                   📂
                   ${escapeHtml(
                     subcategory
                   )}
-
                 </p>
-
               `
               :
               ""
             }
 
-
             <p class="size-text">
-
               📏 Size:
               ${escapeHtml(
                 sizeText
               )}
-
             </p>
-
 
           </div>
 
-
           <div class="product-actions">
-
 
             <button
               type="button"
               class="btn-secondary"
-
-              onclick="
-                editProduct(
-                  '${escapeHtml(
-                    product.id
-                  )}'
-                )
-              "
+              onclick="editProduct('${escapeHtml(
+                product.id
+              )}')"
             >
-
               ✏️ Edit
-
             </button>
-
 
             <button
               type="button"
               class="btn-danger"
-
-              onclick="
-                deleteProduct(
-                  '${escapeHtml(
-                    product.id
-                  )}'
-                )
-              "
+              onclick="deleteProduct('${escapeHtml(
+                product.id
+              )}')"
             >
-
               🗑️ Delete
-
             </button>
-
 
           </div>
 
         `;
-
 
         list.appendChild(
           item
@@ -2641,11 +1999,10 @@ async function loadProducts(){
       }
     );
 
-
-  }catch(error){
+  }
+  catch(error){
 
     console.error(error);
-
 
     list.innerHTML =
       "<p style='color:#c62828'>" +
@@ -2661,7 +2018,6 @@ async function loadProducts(){
 }
 
 
-
 /* =============================== */
 /* EDIT PRODUCT */
 /* =============================== */
@@ -2673,11 +2029,9 @@ window.editProduct =
       "ছবি Edit করা যাবে না। নতুন Product যোগ করুন।"
     );
 
-
     return;
 
   };
-
 
 
 /* =============================== */
@@ -2694,9 +2048,7 @@ window.deleteProduct =
 
 
     if(!confirmDelete){
-
       return;
-
     }
 
 
@@ -2715,9 +2067,7 @@ window.deleteProduct =
 
 
       if(error){
-
         throw error;
-
       }
 
 
@@ -2728,8 +2078,8 @@ window.deleteProduct =
 
       loadProducts();
 
-
-    }catch(error){
+    }
+    catch(error){
 
       alert(
         "Delete হয়নি: " +
@@ -2742,7 +2092,6 @@ window.deleteProduct =
     }
 
   };
-
 
 
 /* =============================== */
@@ -2784,7 +2133,6 @@ document
 );
 
 
-
 /* =============================== */
 /* ESCAPE HTML */
 /* =============================== */
@@ -2821,7 +2169,6 @@ function escapeHtml(value){
   );
 
 }
-
 
 
 /* =============================== */
@@ -2866,7 +2213,8 @@ function escapeHtml(value){
 
     }
 
-  }catch(error){
+  }
+  catch(error){
 
     console.error(error);
 
@@ -2876,7 +2224,5 @@ function escapeHtml(value){
 
 </script>
 
-
 </body>
-
 </html>
