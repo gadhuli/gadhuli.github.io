@@ -1,8 +1,14 @@
 <!DOCTYPE html>
 <html lang="bn">
+
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+<meta
+  name="viewport"
+  content="width=device-width,initial-scale=1.0"
+>
 
 <title>Gadhuli | Admin</title>
 
@@ -10,6 +16,7 @@
 <script src="supabase.js"></script>
 
 <style>
+
 *{
   box-sizing:border-box;
   margin:0;
@@ -366,8 +373,11 @@ button:hover{
     width:70px;
     height:70px
   }
+
 }
+
 </style>
+
 </head>
 
 <body>
@@ -376,13 +386,21 @@ button:hover{
 
   <div class="logo">
 
-    <img src="logo.png" alt="Gadhuli">
+    <img
+      src="logo.png"
+      alt="Gadhuli"
+    >
 
-    <h1>Gadhuli Admin</h1>
+    <h1>
+      Gadhuli Admin
+    </h1>
 
   </div>
 
-  <a class="back" href="index.html">
+  <a
+    class="back"
+    href="index.html"
+  >
     ← Website
   </a>
 
@@ -392,11 +410,16 @@ button:hover{
 <div class="container">
 
 
-<!-- ================= LOGIN ================= -->
+<!-- LOGIN -->
 
-<section id="loginSection" class="card">
+<section
+  id="loginSection"
+  class="card"
+>
 
-  <h2>🔐 Admin Login</h2>
+  <h2>
+    🔐 Admin Login
+  </h2>
 
   <div
     id="loginMessage"
@@ -405,7 +428,9 @@ button:hover{
 
   <form id="loginForm">
 
-    <label>Email</label>
+    <label>
+      Email
+    </label>
 
     <input
       id="email"
@@ -414,7 +439,9 @@ button:hover{
       required
     >
 
-    <label>Password</label>
+    <label>
+      Password
+    </label>
 
     <input
       id="password"
@@ -432,7 +459,7 @@ button:hover{
 </section>
 
 
-<!-- ================= ADMIN PANEL ================= -->
+<!-- ADMIN PANEL -->
 
 <section
   id="adminPanel"
@@ -440,17 +467,18 @@ button:hover{
 >
 
 
-<!-- ================= ORDER MANAGEMENT ================= -->
+<!-- ORDER MANAGEMENT -->
 
 <div class="card">
 
-  <h2>📦 Order Management</h2>
+  <h2>
+    📦 Order Management
+  </h2>
 
   <div
     id="orderMessage"
     class="message"
   ></div>
-
 
   <div class="filter">
 
@@ -501,11 +529,13 @@ button:hover{
 </div>
 
 
-<!-- ================= ADD PRODUCT ================= -->
+<!-- ADD PRODUCT -->
 
 <div class="card">
 
-  <h2>➕ Add New Product</h2>
+  <h2>
+    ➕ Add New Product
+  </h2>
 
   <div
     id="productMessage"
@@ -514,7 +544,6 @@ button:hover{
 
 
   <form id="productForm">
-
 
     <label>
       Product Name
@@ -614,8 +643,6 @@ button:hover{
     </div>
 
 
-    <!-- SIZE -->
-
     <div
       id="sizeSection"
       class="size-section"
@@ -662,7 +689,6 @@ button:hover{
       required
     >
 
-
     <div
       id="preview"
       class="preview"
@@ -678,7 +704,7 @@ button:hover{
 </div>
 
 
-<!-- ================= MANAGE PRODUCTS ================= -->
+<!-- PRODUCTS -->
 
 <div class="card">
 
@@ -710,9 +736,9 @@ button:hover{
 <script>
 
 
-/* =====================================================
+/* ==============================
    SUPABASE
-===================================================== */
+============================== */
 
 const db =
   window.gadhuliSupabase;
@@ -720,10 +746,13 @@ const db =
 const ADMIN_EMAIL =
   "hridoyff974@gmail.com";
 
+const ADMIN_UID =
+  "9b3f0848-f7e1-4e8b-bd8b-bccdb3fd88e0";
 
-/* =====================================================
+
+/* ==============================
    CATEGORY DATA
-===================================================== */
+============================== */
 
 const CATEGORY_DATA = {
 
@@ -813,9 +842,9 @@ const CATEGORY_DATA = {
 };
 
 
-/* =====================================================
+/* ==============================
    SIZE DATA
-===================================================== */
+============================== */
 
 const SIZE_DATA = {
 
@@ -847,9 +876,9 @@ const SIZE_DATA = {
 };
 
 
-/* =====================================================
+/* ==============================
    HELPERS
-===================================================== */
+============================== */
 
 function esc(v){
 
@@ -863,7 +892,11 @@ function esc(v){
 }
 
 
-function msg(id,text,type){
+function msg(
+  id,
+  text,
+  type
+){
 
   const element =
     document.getElementById(id);
@@ -910,25 +943,30 @@ function date(v){
 }
 
 
-function options(arr,current){
+function options(
+  arr,
+  current
+){
 
-  return arr.map(x => `
+  return arr
+    .map(x => `
 
-    <option
-      value="${esc(x)}"
-      ${x === current ? "selected" : ""}
-    >
-      ${esc(x)}
-    </option>
+      <option
+        value="${esc(x)}"
+        ${x === current ? "selected" : ""}
+      >
+        ${esc(x)}
+      </option>
 
-  `).join("");
+    `)
+    .join("");
 
 }
 
 
-/* =====================================================
-   CATEGORY CHANGE
-===================================================== */
+/* ==============================
+   CATEGORY
+============================== */
 
 productCategory.onchange =
 function(){
@@ -936,20 +974,21 @@ function(){
   const category =
     this.value;
 
-  const sub =
-    productSubcategory;
+  productSubcategory.innerHTML =
+    "";
 
+  productSubcategory.disabled =
+    true;
 
-  sub.innerHTML = "";
-
-  sub.disabled = true;
-
-  showSizes("","");
+  showSizes(
+    "",
+    ""
+  );
 
 
   if(!category){
 
-    sub.innerHTML =
+    productSubcategory.innerHTML =
       '<option value="">First Select Category</option>';
 
     return;
@@ -957,9 +996,10 @@ function(){
   }
 
 
-  sub.disabled = false;
+  productSubcategory.disabled =
+    false;
 
-  sub.innerHTML =
+  productSubcategory.innerHTML =
     '<option value="">Select Subcategory</option>';
 
 
@@ -976,16 +1016,14 @@ function(){
     option.textContent =
       item;
 
-    sub.appendChild(option);
+    productSubcategory.appendChild(
+      option
+    );
 
   });
 
 };
 
-
-/* =====================================================
-   SUBCATEGORY CHANGE
-===================================================== */
 
 productSubcategory.onchange =
 function(){
@@ -998,9 +1036,9 @@ function(){
 };
 
 
-/* =====================================================
-   SHOW SIZE
-===================================================== */
+/* ==============================
+   SIZE
+============================== */
 
 function showSizes(
   category,
@@ -1057,7 +1095,6 @@ function showSizes(
   sizeSection.classList
     .add("show");
 
-
   sizeHelp.textContent =
     "Available size select করো।";
 
@@ -1072,6 +1109,7 @@ function showSizes(
 
 
       sizeOptions.insertAdjacentHTML(
+
         "beforeend",
 
         `
@@ -1090,6 +1128,7 @@ function showSizes(
 
         </div>
         `
+
       );
 
     }
@@ -1098,9 +1137,9 @@ function showSizes(
 }
 
 
-/* =====================================================
+/* ==============================
    LOGIN
-===================================================== */
+============================== */
 
 loginForm.onsubmit =
 async function(e){
@@ -1114,16 +1153,15 @@ async function(e){
       data,
       error
     } =
-      await db.auth
-        .signInWithPassword({
+      await db.auth.signInWithPassword({
 
-          email:
-            email.value.trim(),
+        email:
+          email.value.trim(),
 
-          password:
-            password.value
+        password:
+          password.value
 
-        });
+      });
 
 
     if(error){
@@ -1156,19 +1194,32 @@ async function(e){
     }
 
 
+    if(
+      data.user.id !==
+      ADMIN_UID
+    ){
+
+      await db.auth.signOut();
+
+      throw new Error(
+        "এই Admin account-এর User ID সঠিক নয়।"
+      );
+
+    }
+
+
     loginSection
       .classList
       .add("hidden");
-
 
     adminPanel
       .classList
       .remove("hidden");
 
 
-    loadProducts();
+    await loadProducts();
 
-    loadOrders();
+    await loadOrders();
 
 
   }catch(x){
@@ -1185,9 +1236,9 @@ async function(e){
 };
 
 
-/* =====================================================
+/* ==============================
    IMAGE PREVIEW
-===================================================== */
+============================== */
 
 images.onchange =
 function(){
@@ -1245,9 +1296,9 @@ function(){
 };
 
 
-/* =====================================================
+/* ==============================
    ADD PRODUCT
-===================================================== */
+============================== */
 
 productForm.onsubmit =
 async function(e){
@@ -1281,10 +1332,9 @@ async function(e){
 
     sizes =
       [
-        ...document
-          .querySelectorAll(
-            ".sizeCheck:checked"
-          )
+        ...document.querySelectorAll(
+          ".sizeCheck:checked"
+        )
       ]
       .map(x => x.value);
 
@@ -1475,7 +1525,7 @@ async function(e){
       .remove("show");
 
 
-    loadProducts();
+    await loadProducts();
 
 
   }catch(x){
@@ -1495,9 +1545,9 @@ async function(e){
 };
 
 
-/* =====================================================
+/* ==============================
    LOAD PRODUCTS
-===================================================== */
+============================== */
 
 async function loadProducts(){
 
@@ -1580,7 +1630,6 @@ async function loadProducts(){
             onerror="this.src='https://via.placeholder.com/80?text=G'"
           >
 
-
           <div class="product-info">
 
             <h3>
@@ -1654,9 +1703,9 @@ async function loadProducts(){
 }
 
 
-/* =====================================================
+/* ==============================
    PRODUCT EDIT
-===================================================== */
+============================== */
 
 window.editProduct =
 function(){
@@ -1668,9 +1717,9 @@ function(){
 };
 
 
-/* =====================================================
+/* ==============================
    PRODUCT DELETE
-===================================================== */
+============================== */
 
 window.deleteProduct =
 async function(id){
@@ -1709,7 +1758,7 @@ async function(id){
     );
 
 
-    loadProducts();
+    await loadProducts();
 
 
   }catch(x){
@@ -1724,9 +1773,9 @@ async function(id){
 };
 
 
-/* =====================================================
+/* ==============================
    LOAD ORDERS
-===================================================== */
+============================== */
 
 async function loadOrders(){
 
@@ -1847,9 +1896,7 @@ async function loadOrders(){
 
 
       const div =
-        document.createElement(
-          "div"
-        );
+        document.createElement("div");
 
 
       div.className =
@@ -1886,7 +1933,6 @@ async function loadOrders(){
 
 
         <div class="grid">
-
 
           <div class="box">
 
@@ -1973,7 +2019,6 @@ async function loadOrders(){
             <br>
 
             Status:
-
             ${esc(
               o.payment_status ||
               "Pending"
@@ -2002,7 +2047,6 @@ async function loadOrders(){
 
           </div>
 
-
         </div>
 
 
@@ -2029,7 +2073,6 @@ async function loadOrders(){
                   )}"
                   onerror="this.src='https://via.placeholder.com/52?text=G'"
                 >
-
 
                 <div class="item-info">
 
@@ -2061,7 +2104,6 @@ async function loadOrders(){
 
                 </div>
 
-
                 <b>
                   ৳${money(
                     i.line_total
@@ -2086,7 +2128,6 @@ async function loadOrders(){
 
 
         <div class="controls">
-
 
           <div>
 
@@ -2136,7 +2177,6 @@ async function loadOrders(){
             </select>
 
           </div>
-
 
         </div>
 
@@ -2199,10 +2239,10 @@ async function loadOrders(){
 }
 
 
-/* =====================================================
+/* ==============================
    UPDATE ORDER
-   IMPORTANT FIX
-===================================================== */
+   RPC VERSION
+============================== */
 
 async function updateOrder(
   id,
@@ -2210,11 +2250,6 @@ async function updateOrder(
 ){
 
   try{
-
-
-    /* ---------------------------------
-       1. Check logged-in user
-    --------------------------------- */
 
     const {
       data:userData,
@@ -2243,9 +2278,17 @@ async function updateOrder(
     }
 
 
-    /* ---------------------------------
-       2. Get selected values
-    --------------------------------- */
+    if(
+      user.id !==
+      ADMIN_UID
+    ){
+
+      throw new Error(
+        "এই browser session-এর Admin User ID সঠিক নয়।"
+      );
+
+    }
+
 
     const orderStatus =
       box
@@ -2259,35 +2302,28 @@ async function updateOrder(
         .value;
 
 
-    /* ---------------------------------
-       3. Update Supabase
-    --------------------------------- */
+    /* ==========================
+       SECURE RPC UPDATE
+    ========================== */
 
     const {
       data,
       error
     } =
-      await db
-        .from("orders")
-        .update({
+      await db.rpc(
+        "admin_update_order",
+        {
+          p_order_id:
+            id,
 
-          order_status:
+          p_order_status:
             orderStatus,
 
-          payment_status:
+          p_payment_status:
             paymentStatus
+        }
+      );
 
-        })
-        .eq(
-          "id",
-          id
-        )
-        .select();
-
-
-    /* ---------------------------------
-       4. Check Supabase error
-    --------------------------------- */
 
     if(error){
 
@@ -2296,46 +2332,30 @@ async function updateOrder(
     }
 
 
-    /* ---------------------------------
-       5. Check if row updated
-    --------------------------------- */
-
-    if(
-      !data ||
-      data.length === 0
-    ){
+    if(data !== true){
 
       throw new Error(
-        "Order update হয়নি। Admin permission/RLS policy check করুন।"
+        "Order update হয়নি।"
       );
 
     }
 
-
-    /* ---------------------------------
-       6. Success
-    --------------------------------- */
 
     msg(
       "orderMessage",
 
       "✅ Order #" +
       id +
-      " updated successfully.",
+      " updated successfully!",
 
       "success"
     );
 
 
-    /* ---------------------------------
-       7. Reload orders
-    --------------------------------- */
-
     await loadOrders();
 
 
   }catch(x){
-
 
     console.error(
       "ORDER UPDATE ERROR:",
@@ -2360,9 +2380,9 @@ async function updateOrder(
 }
 
 
-/* =====================================================
+/* ==============================
    FILTERS
-===================================================== */
+============================== */
 
 orderStatusFilter.onchange =
   loadOrders;
@@ -2374,34 +2394,31 @@ refreshOrders.onclick =
   loadOrders;
 
 
-/* =====================================================
+/* ==============================
    LOGOUT
-===================================================== */
+============================== */
 
 logoutBtn.onclick =
 async function(){
 
   await db.auth.signOut();
 
-
   adminPanel
     .classList
     .add("hidden");
 
-
   loginSection
     .classList
     .remove("hidden");
-
 
   loginForm.reset();
 
 };
 
 
-/* =====================================================
+/* ==============================
    AUTO LOGIN
-===================================================== */
+============================== */
 
 (async function(){
 
@@ -2415,7 +2432,9 @@ async function(){
 
     if(
       data?.session?.user?.email ===
-      ADMIN_EMAIL
+      ADMIN_EMAIL &&
+      data?.session?.user?.id ===
+      ADMIN_UID
     ){
 
       loginSection
@@ -2428,15 +2447,18 @@ async function(){
         .remove("hidden");
 
 
-      loadProducts();
+      await loadProducts();
 
-      loadOrders();
+      await loadOrders();
 
     }
 
   }catch(e){
 
-    console.error(e);
+    console.error(
+      "AUTO LOGIN ERROR:",
+      e
+    );
 
   }
 
