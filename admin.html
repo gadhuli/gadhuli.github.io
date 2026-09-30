@@ -399,9 +399,7 @@ button:disabled{
 
 </head>
 
-
 <body>
-
 
 <header>
 
@@ -451,9 +449,7 @@ button:disabled{
 
   <form id="loginForm">
 
-    <label>
-      Email
-    </label>
+    <label>Email</label>
 
     <input
       id="email"
@@ -463,9 +459,7 @@ button:disabled{
       required
     >
 
-    <label>
-      Password
-    </label>
+    <label>Password</label>
 
     <input
       id="password"
@@ -511,7 +505,6 @@ button:disabled{
     id="orderMessage"
     class="message"
   ></div>
-
 
   <div class="filter">
 
@@ -584,9 +577,11 @@ button:disabled{
 
 
   <div id="ordersList">
+
     <div class="loading">
       Loading orders...
     </div>
+
   </div>
 
 </div>
@@ -609,7 +604,6 @@ button:disabled{
 
 
   <form id="productForm">
-
 
     <label>
       Product Name
@@ -810,14 +804,11 @@ button:disabled{
 
 <script>
 
-
 /* =================================
    SUPABASE
 ================================= */
 
-const db =
-  window.gadhuliSupabase;
-
+const db = window.gadhuliSupabase;
 
 const ADMIN_EMAIL =
   "hridoyff974@gmail.com";
@@ -910,7 +901,7 @@ const saveProductButton =
 
 
 /* =================================
-   CHECK SUPABASE
+   SUPABASE CHECK
 ================================= */
 
 if(!db){
@@ -1100,11 +1091,7 @@ function esc(value){
 }
 
 
-function msg(
-  element,
-  text,
-  type
-){
+function msg(element,text,type){
 
   if(!element){
     return;
@@ -1125,8 +1112,10 @@ function msg(
 function hideMsg(element){
 
   if(element){
+
     element.style.display =
       "none";
+
   }
 
 }
@@ -1162,10 +1151,7 @@ function formatDate(value){
 }
 
 
-function makeOptions(
-  array,
-  current
-){
+function makeOptions(array,current){
 
   return array
     .map(item => {
@@ -1196,13 +1182,11 @@ productCategory.addEventListener(
     const category =
       this.value;
 
-
     productSubcategory.innerHTML =
       "";
 
     productSubcategory.disabled =
       true;
-
 
     showSizes(
       "",
@@ -1227,7 +1211,6 @@ productCategory.addEventListener(
     productSubcategory.disabled =
       false;
 
-
     productSubcategory.innerHTML =
       `
       <option value="">
@@ -1240,26 +1223,24 @@ productCategory.addEventListener(
       CATEGORY_DATA[category] || [];
 
 
-    list.forEach(
-      item => {
+    list.forEach(item => {
 
-        const option =
-          document.createElement(
-            "option"
-          );
-
-        option.value =
-          item;
-
-        option.textContent =
-          item;
-
-        productSubcategory.appendChild(
-          option
+      const option =
+        document.createElement(
+          "option"
         );
 
-      }
-    );
+      option.value =
+        item;
+
+      option.textContent =
+        item;
+
+      productSubcategory.appendChild(
+        option
+      );
+
+    });
 
   }
 );
@@ -1286,10 +1267,7 @@ productSubcategory.addEventListener(
    SIZE
 ================================= */
 
-function showSizes(
-  category,
-  subcategory
-){
+function showSizes(category,subcategory){
 
   sizeOptions.innerHTML =
     "";
@@ -1349,46 +1327,40 @@ function showSizes(
   sizeSection.classList
     .add("show");
 
-
   sizeHelp.textContent =
     "Available size select করো।";
 
 
-  sizes.forEach(
-    (size,index) => {
+  sizes.forEach((size,index) => {
 
-      const id =
-        "size_" +
-        Date.now() +
-        "_" +
-        index;
+    const id =
+      "size_" +
+      Date.now() +
+      "_" +
+      index;
 
 
-      sizeOptions.insertAdjacentHTML(
+    sizeOptions.insertAdjacentHTML(
+      "beforeend",
+      `
+      <div class="size-option">
 
-        "beforeend",
+        <input
+          type="checkbox"
+          id="${id}"
+          value="${esc(size)}"
+          class="sizeCheck"
+        >
 
-        `
-        <div class="size-option">
+        <label for="${id}">
+          ${esc(size)}
+        </label>
 
-          <input
-            type="checkbox"
-            id="${id}"
-            value="${esc(size)}"
-            class="sizeCheck"
-          >
+      </div>
+      `
+    );
 
-          <label for="${id}">
-            ${esc(size)}
-          </label>
-
-        </div>
-        `
-
-      );
-
-    }
-  );
+  });
 
 }
 
@@ -1418,9 +1390,7 @@ loginForm.addEventListener(
 
 
     const email =
-      emailInput.value
-        .trim();
-
+      emailInput.value.trim();
 
     const password =
       passwordInput.value;
@@ -1471,24 +1441,17 @@ loginForm.addEventListener(
 
     try{
 
-      /*
-        আগের session থাকলে
-        প্রথমে clear করছি না।
-        Supabase নিজেই handle করবে।
-      */
-
       const {
         data,
         error
       } =
-        await db.auth
-          .signInWithPassword({
+        await db.auth.signInWithPassword({
 
-            email:email,
+          email:email,
 
-            password:password
+          password:password
 
-          });
+        });
 
 
       if(error){
@@ -1544,13 +1507,11 @@ loginForm.addEventListener(
 
       msg(
         loginMessage,
-
         "❌ Login হয়নি: " +
         (
           error?.message ||
           "Unknown login error"
         ),
-
         "error"
       );
 
@@ -1580,7 +1541,6 @@ images.addEventListener(
     preview.innerHTML =
       "";
 
-
     const files =
       [...this.files];
 
@@ -1599,38 +1559,31 @@ images.addEventListener(
     }
 
 
-    files.forEach(
-      file => {
+    files.forEach(file => {
 
-        const reader =
-          new FileReader();
-
-
-        reader.onload =
-        function(event){
-
-          preview.insertAdjacentHTML(
-
-            "beforeend",
-
-            `
-            <img
-              src="${event.target.result}"
-              alt="Preview"
-            >
-            `
-
-          );
-
-        };
+      const reader =
+        new FileReader();
 
 
-        reader.readAsDataURL(
-          file
+      reader.onload =
+      function(event){
+
+        preview.insertAdjacentHTML(
+          "beforeend",
+          `
+          <img
+            src="${event.target.result}"
+            alt="Preview"
+          >
+          `
         );
 
-      }
-    );
+      };
+
+
+      reader.readAsDataURL(file);
+
+    });
 
   }
 );
@@ -1650,24 +1603,17 @@ productForm.addEventListener(
     const name =
       productName.value.trim();
 
-
     const price =
-      Number(
-        productPrice.value
-      );
-
+      Number(productPrice.value);
 
     const category =
       productCategory.value;
 
-
     const subcategory =
       productSubcategory.value;
 
-
     const description =
       productDescription.value.trim();
-
 
     const files =
       [...images.files];
@@ -1676,9 +1622,7 @@ productForm.addEventListener(
     let sizes = [];
 
 
-    if(
-      SIZE_DATA[subcategory]
-    ){
+    if(SIZE_DATA[subcategory]){
 
       sizes =
         [
@@ -1797,9 +1741,7 @@ productForm.addEventListener(
       const urls = [];
 
 
-      for(
-        const file of files
-      ){
+      for(const file of files){
 
         const extension =
           file.name
@@ -1823,9 +1765,7 @@ productForm.addEventListener(
           error
         } =
           await db.storage
-            .from(
-              "product-images"
-            )
+            .from("product-images")
             .upload(
               path,
               file,
@@ -1845,26 +1785,19 @@ productForm.addEventListener(
 
         const publicUrl =
           db.storage
-            .from(
-              "product-images"
-            )
-            .getPublicUrl(
-              path
-            )
+            .from("product-images")
+            .getPublicUrl(path)
             .data
             .publicUrl;
 
 
-        urls.push(
-          publicUrl
-        );
+        urls.push(publicUrl);
 
       }
 
 
       const {
-        error:
-          productError
+        error:productError
       } =
         await db
           .from("products")
@@ -1903,14 +1836,11 @@ productForm.addEventListener(
 
       productForm.reset();
 
-
       preview.innerHTML =
         "";
 
-
       productSubcategory.disabled =
         true;
-
 
       productSubcategory.innerHTML =
         `
@@ -1918,7 +1848,6 @@ productForm.addEventListener(
           First Select Category
         </option>
         `;
-
 
       sizeSection.classList
         .remove("show");
@@ -1937,13 +1866,11 @@ productForm.addEventListener(
 
       msg(
         productMessage,
-
         "❌ Product Save হয়নি: " +
         (
           error?.message ||
           "Unknown error"
         ),
-
         "error"
       );
 
@@ -2000,10 +1927,7 @@ async function loadProducts(){
     }
 
 
-    if(
-      !data ||
-      data.length === 0
-    ){
+    if(!data || data.length === 0){
 
       productsList.innerHTML =
         `
@@ -2021,131 +1945,99 @@ async function loadProducts(){
       "";
 
 
-    data.forEach(
-      product => {
+    data.forEach(product => {
 
-        const image =
-          Array.isArray(
-            product.images
-          ) &&
-          product.images.length
+      const image =
+        Array.isArray(product.images) &&
+        product.images.length
+          ?
+        product.images[0]
+          :
+        "https://via.placeholder.com/80?text=G";
 
+
+      const sizes =
+        Array.isArray(product.sizes) &&
+        product.sizes.length
+          ?
+        product.sizes.join(", ")
+          :
+        (
+          product.category === "Watches" ||
+          product.category === "Women's Fashion"
             ?
-
-          product.images[0]
-
+          "No Size"
             :
-
-          "https://via.placeholder.com/80?text=G";
-
-
-        const sizes =
-          Array.isArray(
-            product.sizes
-          ) &&
-          product.sizes.length
-
-            ?
-
-          product.sizes.join(
-            ", "
-          )
-
-            :
-
-          (
-            product.category ===
-            "Watches" ||
-
-            product.category ===
-            "Women's Fashion"
-
-              ?
-
-            "No Size"
-
-              :
-
-            "Not Applicable"
-          );
-
-
-        productsList.insertAdjacentHTML(
-
-          "beforeend",
-
-          `
-          <div class="product">
-
-            <img
-              src="${esc(image)}"
-              onerror="this.src='https://via.placeholder.com/80?text=G'"
-              alt="Product"
-            >
-
-
-            <div class="product-info">
-
-              <h3>
-                ${esc(product.name)}
-              </h3>
-
-              <p>
-                ৳${money(product.price)}
-              </p>
-
-              <p class="muted">
-                🏷️
-                ${esc(
-                  product.category ||
-                  "Others"
-                )}
-              </p>
-
-              <p class="muted">
-                📂
-                ${esc(
-                  product.subcategory ||
-                  ""
-                )}
-              </p>
-
-              <p class="muted">
-                📏 Size:
-                ${esc(sizes)}
-              </p>
-
-            </div>
-
-
-            <div class="actions">
-
-              <button
-                type="button"
-                class="secondary"
-                onclick="editProduct()"
-              >
-                ✏️ Edit
-              </button>
-
-
-              <button
-                type="button"
-                class="danger"
-                onclick="deleteProduct('${esc(product.id)}')"
-              >
-                🗑️ Delete
-              </button>
-
-            </div>
-
-          </div>
-          `
-
+          "Not Applicable"
         );
 
-      }
-    );
+
+      productsList.insertAdjacentHTML(
+        "beforeend",
+        `
+        <div class="product">
+
+          <img
+            src="${esc(image)}"
+            onerror="this.src='https://via.placeholder.com/80?text=G'"
+            alt="Product"
+          >
+
+
+          <div class="product-info">
+
+            <h3>
+              ${esc(product.name)}
+            </h3>
+
+            <p>
+              ৳${money(product.price)}
+            </p>
+
+            <p class="muted">
+              🏷️
+              ${esc(product.category || "Others")}
+            </p>
+
+            <p class="muted">
+              📂
+              ${esc(product.subcategory || "")}
+            </p>
+
+            <p class="muted">
+              📏 Size:
+              ${esc(sizes)}
+            </p>
+
+          </div>
+
+
+          <div class="actions">
+
+            <button
+              type="button"
+              class="secondary"
+              onclick="editProduct()"
+            >
+              ✏️ Edit
+            </button>
+
+
+            <button
+              type="button"
+              class="danger"
+              onclick="deleteProduct('${esc(product.id)}')"
+            >
+              🗑️ Delete
+            </button>
+
+          </div>
+
+        </div>
+        `
+      );
+
+    });
 
 
   }catch(error){
@@ -2215,10 +2107,7 @@ async function(id){
       await db
         .from("products")
         .delete()
-        .eq(
-          "id",
-          id
-        );
+        .eq("id",id);
 
 
     if(error){
@@ -2285,9 +2174,7 @@ async function loadOrders(){
         );
 
 
-    if(
-      orderStatusFilter.value
-    ){
+    if(orderStatusFilter.value){
 
       query =
         query.eq(
@@ -2298,9 +2185,7 @@ async function loadOrders(){
     }
 
 
-    if(
-      paymentStatusFilter.value
-    ){
+    if(paymentStatusFilter.value){
 
       query =
         query.eq(
@@ -2325,10 +2210,7 @@ async function loadOrders(){
     }
 
 
-    if(
-      !orders ||
-      orders.length === 0
-    ){
+    if(!orders || orders.length === 0){
 
       ordersList.innerHTML =
         `
@@ -2344,8 +2226,7 @@ async function loadOrders(){
 
     const ids =
       orders.map(
-        order =>
-          order.id
+        order => order.id
       );
 
 
@@ -2356,10 +2237,7 @@ async function loadOrders(){
       await db
         .from("order_items")
         .select("*")
-        .in(
-          "order_id",
-          ids
-        );
+        .in("order_id",ids);
 
 
     if(itemsError){
@@ -2372,393 +2250,362 @@ async function loadOrders(){
     const groupedItems = {};
 
 
-    (items || [])
-      .forEach(
-        item => {
+    (items || []).forEach(item => {
 
-          if(
-            !groupedItems[
-              item.order_id
-            ]
-          ){
+      if(
+        !groupedItems[item.order_id]
+      ){
 
-            groupedItems[
-              item.order_id
-            ] = [];
+        groupedItems[item.order_id] =
+          [];
 
-          }
+      }
 
 
-          groupedItems[
-            item.order_id
-          ].push(item);
+      groupedItems[item.order_id]
+        .push(item);
 
-        }
-      );
+    });
 
 
     ordersList.innerHTML =
       "";
 
 
-    orders.forEach(
-      order => {
+    orders.forEach(order => {
 
-        const orderItems =
-          groupedItems[
-            order.id
-          ] || [];
+      const orderItems =
+        groupedItems[order.id] || [];
 
 
-        const div =
-          document.createElement(
-            "div"
-          );
+      const div =
+        document.createElement("div");
 
 
-        div.className =
-          "order";
+      div.className =
+        "order";
 
 
-        div.innerHTML = `
+      div.innerHTML = `
 
-          <div class="order-head">
+        <div class="order-head">
 
-            <div>
+          <div>
 
-              <div class="order-id">
-                🧾 Order #${esc(order.id)}
-              </div>
-
-              <div class="muted">
-                ${esc(
-                  formatDate(
-                    order.created_at
-                  )
-                )}
-              </div>
-
+            <div class="order-id">
+              🧾 Order #${esc(order.id)}
             </div>
 
-
-            <span class="badge">
+            <div class="muted">
               ${esc(
-                order.order_status ||
-                "Pending"
+                formatDate(
+                  order.created_at
+                )
               )}
-            </span>
+            </div>
 
           </div>
 
 
-          <div class="grid">
+          <span class="badge">
+            ${esc(
+              order.order_status ||
+              "Pending"
+            )}
+          </span>
+
+        </div>
 
 
-            <div class="box">
+        <div class="grid">
 
-              <b>
-                👤 Customer
-              </b>
+          <div class="box">
 
-              <br>
+            <b>
+              👤 Customer
+            </b>
 
-              ${esc(
-                order.customer_name ||
-                "—"
+            <br>
+
+            ${esc(
+              order.customer_name ||
+              "—"
+            )}
+
+            <br>
+
+            📱
+            ${esc(
+              order.customer_phone ||
+              "—"
+            )}
+
+            <br>
+
+            📧
+            ${esc(
+              order.customer_email ||
+              "—"
+            )}
+
+          </div>
+
+
+          <div class="box">
+
+            <b>
+              📍 Delivery
+            </b>
+
+            <br>
+
+            ${esc(
+              order.customer_district ||
+              "—"
+            )}
+
+            ,
+
+            ${esc(
+              order.customer_thana ||
+              "—"
+            )}
+
+            <br>
+
+            ${esc(
+              order.customer_receive_place ||
+              "—"
+            )}
+
+            <br>
+
+            🚚
+            ${esc(
+              order.delivery_area ||
+              "—"
+            )}
+
+            · ৳${money(
+              order.delivery_charge
+            )}
+
+          </div>
+
+
+          <div class="box">
+
+            <b>
+              💳 Payment
+            </b>
+
+            <br>
+
+            ${esc(
+              order.payment_method ||
+              "—"
+            )}
+
+            <br>
+
+            Status:
+
+            ${esc(
+              order.payment_status ||
+              "Pending"
+            )}
+
+          </div>
+
+
+          <div class="box">
+
+            <b>
+              💰 Total
+            </b>
+
+            <br>
+
+            Subtotal:
+            ৳${money(
+              order.subtotal
+            )}
+
+            <br>
+
+            <b>
+              Total:
+              ৳${money(
+                order.total
+              )}
+            </b>
+
+          </div>
+
+        </div>
+
+
+        <div class="items">
+
+          <b>
+            🛍️ Products
+          </b>
+
+
+          ${
+            orderItems.length
+              ?
+            orderItems.map(item => `
+
+              <div class="item">
+
+                <img
+                  src="${esc(
+                    item.product_image ||
+                    "https://via.placeholder.com/52?text=G"
+                  )}"
+                  onerror="this.src='https://via.placeholder.com/52?text=G'"
+                  alt="Product"
+                >
+
+
+                <div class="item-info">
+
+                  <b>
+                    ${esc(
+                      item.product_name ||
+                      "Product"
+                    )}
+                  </b>
+
+                  <br>
+
+                  Size:
+                  ${esc(
+                    item.size ||
+                    "N/A"
+                  )}
+
+                  · Qty:
+                  ${esc(
+                    item.quantity ||
+                    1
+                  )}
+
+                  · ৳
+                  ${money(
+                    item.unit_price
+                  )}
+
+                </div>
+
+
+                <b>
+                  ৳${money(
+                    item.line_total
+                  )}
+                </b>
+
+              </div>
+
+            `).join("")
+              :
+            `
+            <p class="muted">
+              Order items পাওয়া যায়নি।
+            </p>
+            `
+          }
+
+        </div>
+
+
+        <div class="controls">
+
+          <div>
+
+            <label>
+              Order Status
+            </label>
+
+            <select class="os">
+
+              ${makeOptions(
+                [
+                  "Pending",
+                  "Confirmed",
+                  "Processing",
+                  "Shipped",
+                  "Delivered",
+                  "Cancelled"
+                ],
+                order.order_status ||
+                "Pending"
               )}
 
-              <br>
+            </select>
 
-              📱
-              ${esc(
-                order.customer_phone ||
-                "—"
-              )}
-
-              <br>
-
-              📧
-              ${esc(
-                order.customer_email ||
-                "—"
-              )}
-
-            </div>
+          </div>
 
 
-            <div class="box">
+          <div>
 
-              <b>
-                📍 Delivery
-              </b>
+            <label>
+              Payment Status
+            </label>
 
-              <br>
+            <select class="ps">
 
-              ${esc(
-                order.customer_district ||
-                "—"
-              )}
-
-              ,
-
-              ${esc(
-                order.customer_thana ||
-                "—"
-              )}
-
-              <br>
-
-              ${esc(
-                order.customer_receive_place ||
-                "—"
-              )}
-
-              <br>
-
-              🚚
-              ${esc(
-                order.delivery_area ||
-                "—"
-              )}
-
-              · ৳${money(
-                order.delivery_charge
-              )}
-
-            </div>
-
-
-            <div class="box">
-
-              <b>
-                💳 Payment
-              </b>
-
-              <br>
-
-              ${esc(
-                order.payment_method ||
-                "—"
-              )}
-
-              <br>
-
-              Status:
-
-              ${esc(
+              ${makeOptions(
+                [
+                  "Pending",
+                  "Paid",
+                  "Failed",
+                  "Refunded"
+                ],
                 order.payment_status ||
                 "Pending"
               )}
 
-            </div>
-
-
-            <div class="box">
-
-              <b>
-                💰 Total
-              </b>
-
-              <br>
-
-              Subtotal:
-              ৳${money(
-                order.subtotal
-              )}
-
-              <br>
-
-              <b>
-                Total:
-                ৳${money(
-                  order.total
-                )}
-              </b>
-
-            </div>
+            </select>
 
           </div>
 
-
-          <div class="items">
-
-            <b>
-              🛍️ Products
-            </b>
+        </div>
 
 
-            ${
-              orderItems.length
+        <div class="order-actions">
 
-                ?
+          <button
+            type="button"
+            class="saveOrder"
+          >
+            💾 Update Order
+          </button>
 
-              orderItems
-                .map(
-                  item => `
+        </div>
 
-                    <div class="item">
-
-                      <img
-                        src="${esc(
-                          item.product_image ||
-                          "https://via.placeholder.com/52?text=G"
-                        )}"
-                        onerror="this.src='https://via.placeholder.com/52?text=G'"
-                        alt="Product"
-                      >
-
-                      <div class="item-info">
-
-                        <b>
-                          ${esc(
-                            item.product_name ||
-                            "Product"
-                          )}
-                        </b>
-
-                        <br>
-
-                        Size:
-                        ${esc(
-                          item.size ||
-                          "N/A"
-                        )}
-
-                        · Qty:
-                        ${esc(
-                          item.quantity ||
-                          1
-                        )}
-
-                        · ৳
-                        ${money(
-                          item.unit_price
-                        )}
-
-                      </div>
-
-                      <b>
-                        ৳${money(
-                          item.line_total
-                        )}
-                      </b>
-
-                    </div>
-
-                  `
-                )
-                .join("")
-
-                :
-
-              `
-              <p class="muted">
-                Order items পাওয়া যায়নি।
-              </p>
-              `
-            }
-
-          </div>
+      `;
 
 
-          <div class="controls">
+      div
+        .querySelector(".saveOrder")
+        .addEventListener(
+          "click",
+          function(){
 
+            updateOrder(
+              order.id,
+              div
+            );
 
-            <div>
-
-              <label>
-                Order Status
-              </label>
-
-              <select class="os">
-
-                ${makeOptions(
-
-                  [
-                    "Pending",
-                    "Confirmed",
-                    "Processing",
-                    "Shipped",
-                    "Delivered",
-                    "Cancelled"
-                  ],
-
-                  order.order_status ||
-                  "Pending"
-
-                )}
-
-              </select>
-
-            </div>
-
-
-            <div>
-
-              <label>
-                Payment Status
-              </label>
-
-              <select class="ps">
-
-                ${makeOptions(
-
-                  [
-                    "Pending",
-                    "Paid",
-                    "Failed",
-                    "Refunded"
-                  ],
-
-                  order.payment_status ||
-                  "Pending"
-
-                )}
-
-              </select>
-
-            </div>
-
-          </div>
-
-
-          <div class="order-actions">
-
-            <button
-              type="button"
-              class="saveOrder"
-            >
-              💾 Update Order
-            </button>
-
-          </div>
-
-        `;
-
-
-        div
-          .querySelector(
-            ".saveOrder"
-          )
-          .addEventListener(
-            "click",
-            function(){
-
-              updateOrder(
-                order.id,
-                div
-              );
-
-            }
-          );
-
-
-        ordersList.appendChild(
-          div
+          }
         );
 
-      }
-    );
+
+      ordersList.appendChild(div);
+
+    });
 
 
   }catch(error){
@@ -2792,13 +2639,10 @@ async function loadOrders(){
 
 
 /* =================================
-   UPDATE ORDER
+   UPDATE ORDER — FIXED
 ================================= */
 
-async function updateOrder(
-  id,
-  box
-){
+async function updateOrder(id,box){
 
   const button =
     box.querySelector(
@@ -2815,9 +2659,9 @@ async function updateOrder(
       "Updating...";
 
 
-    /*
-      Current logged-in user
-    */
+    /* =============================
+       CHECK CURRENT USER
+    ============================= */
 
     const {
       data:userData,
@@ -2853,6 +2697,10 @@ async function updateOrder(
     );
 
 
+    /* =============================
+       GET NEW STATUS
+    ============================= */
+
     const orderStatus =
       box
         .querySelector(".os")
@@ -2865,13 +2713,31 @@ async function updateOrder(
         .value;
 
 
-    /*
-      UPDATE
-    */
+    console.log(
+      "UPDATING ORDER:",
+      id
+    );
+
+    console.log(
+      "NEW ORDER STATUS:",
+      orderStatus
+    );
+
+    console.log(
+      "NEW PAYMENT STATUS:",
+      paymentStatus
+    );
+
+
+    /* =============================
+       UPDATE
+       
+       IMPORTANT:
+       এখানে .select() নেই
+    ============================= */
 
     const {
-      data,
-      error
+      error:updateError
     } =
       await db
         .from("orders")
@@ -2887,34 +2753,84 @@ async function updateOrder(
         .eq(
           "id",
           id
-        )
-        .select();
+        );
 
 
-    if(error){
+    if(updateError){
 
-      throw error;
+      console.error(
+        "SUPABASE UPDATE ERROR:",
+        updateError
+      );
+
+      throw updateError;
 
     }
 
 
-    /*
-      যদি data empty হয়
-      তাহলে RLS/update permission
-      issue হতে পারে।
-    */
+    /* =============================
+       VERIFY UPDATE
+    ============================= */
 
-    if(
-      !data ||
-      data.length === 0
-    ){
+    const {
+      data:verifyData,
+      error:verifyError
+    } =
+      await db
+        .from("orders")
+        .select(
+          "id,order_status,payment_status"
+        )
+        .eq(
+          "id",
+          id
+        )
+        .maybeSingle();
+
+
+    if(verifyError){
+
+      console.error(
+        "VERIFY ERROR:",
+        verifyError
+      );
+
+      throw verifyError;
+
+    }
+
+
+    if(!verifyData){
 
       throw new Error(
-        "Order update হয়নি। Supabase RLS UPDATE permission check করতে হবে।"
+        "Order update verify করা যায়নি।"
       );
 
     }
 
+
+    /* =============================
+       CHECK ACTUAL VALUE
+    ============================= */
+
+    if(
+      verifyData.order_status !==
+      orderStatus
+      ||
+      verifyData.payment_status !==
+      paymentStatus
+    ){
+
+      throw new Error(
+        "Database-এ নতুন Order Status save হয়নি।"
+      );
+
+    }
+
+
+    /* =============================
+       SUCCESS
+    ============================= */
 
     msg(
       orderMessage,
