@@ -121,6 +121,11 @@ button:hover{
   background:#6f103b
 }
 
+button:disabled{
+  opacity:.6;
+  cursor:not-allowed
+}
+
 .secondary{
   background:#777
 }
@@ -353,6 +358,12 @@ button:hover{
   color:#777
 }
 
+.loading{
+  text-align:center;
+  padding:15px;
+  color:#777
+}
+
 @media(max-width:600px){
 
   .filter,
@@ -374,13 +385,23 @@ button:hover{
     height:70px
   }
 
+  header{
+    padding:12px
+  }
+
+  .logo h1{
+    font-size:18px
+  }
+
 }
 
 </style>
 
 </head>
 
+
 <body>
+
 
 <header>
 
@@ -410,7 +431,9 @@ button:hover{
 <div class="container">
 
 
-<!-- LOGIN -->
+<!-- ================================
+     LOGIN
+================================ -->
 
 <section
   id="loginSection"
@@ -436,6 +459,7 @@ button:hover{
       id="email"
       type="email"
       placeholder="Admin Email"
+      autocomplete="email"
       required
     >
 
@@ -447,10 +471,14 @@ button:hover{
       id="password"
       type="password"
       placeholder="Password"
+      autocomplete="current-password"
       required
     >
 
-    <button type="submit">
+    <button
+      id="loginButton"
+      type="submit"
+    >
       Login
     </button>
 
@@ -459,7 +487,9 @@ button:hover{
 </section>
 
 
-<!-- ADMIN PANEL -->
+<!-- ================================
+     ADMIN PANEL
+================================ -->
 
 <section
   id="adminPanel"
@@ -467,7 +497,9 @@ button:hover{
 >
 
 
-<!-- ORDER MANAGEMENT -->
+<!-- ================================
+     ORDER MANAGEMENT
+================================ -->
 
 <div class="card">
 
@@ -480,6 +512,7 @@ button:hover{
     class="message"
   ></div>
 
+
   <div class="filter">
 
     <select id="orderStatusFilter">
@@ -488,12 +521,29 @@ button:hover{
         All Order Status
       </option>
 
-      <option>Pending</option>
-      <option>Confirmed</option>
-      <option>Processing</option>
-      <option>Shipped</option>
-      <option>Delivered</option>
-      <option>Cancelled</option>
+      <option value="Pending">
+        Pending
+      </option>
+
+      <option value="Confirmed">
+        Confirmed
+      </option>
+
+      <option value="Processing">
+        Processing
+      </option>
+
+      <option value="Shipped">
+        Shipped
+      </option>
+
+      <option value="Delivered">
+        Delivered
+      </option>
+
+      <option value="Cancelled">
+        Cancelled
+      </option>
 
     </select>
 
@@ -504,10 +554,21 @@ button:hover{
         All Payment Status
       </option>
 
-      <option>Pending</option>
-      <option>Paid</option>
-      <option>Failed</option>
-      <option>Refunded</option>
+      <option value="Pending">
+        Pending
+      </option>
+
+      <option value="Paid">
+        Paid
+      </option>
+
+      <option value="Failed">
+        Failed
+      </option>
+
+      <option value="Refunded">
+        Refunded
+      </option>
 
     </select>
 
@@ -523,13 +584,17 @@ button:hover{
 
 
   <div id="ordersList">
-    Loading orders...
+    <div class="loading">
+      Loading orders...
+    </div>
   </div>
 
 </div>
 
 
-<!-- ADD PRODUCT -->
+<!-- ================================
+     ADD PRODUCT
+================================ -->
 
 <div class="card">
 
@@ -544,6 +609,7 @@ button:hover{
 
 
   <form id="productForm">
+
 
     <label>
       Product Name
@@ -582,15 +648,41 @@ button:hover{
         Select Category
       </option>
 
-      <option>Men's Fashion</option>
-      <option>Women's Fashion</option>
-      <option>Kids & Baby</option>
-      <option>Shoes</option>
-      <option>Bags & Accessories</option>
-      <option>Watches</option>
-      <option>Electronics</option>
-      <option>Beauty & Personal Care</option>
-      <option>Home & Living</option>
+      <option value="Men's Fashion">
+        Men's Fashion
+      </option>
+
+      <option value="Women's Fashion">
+        Women's Fashion
+      </option>
+
+      <option value="Kids & Baby">
+        Kids & Baby
+      </option>
+
+      <option value="Shoes">
+        Shoes
+      </option>
+
+      <option value="Bags & Accessories">
+        Bags & Accessories
+      </option>
+
+      <option value="Watches">
+        Watches
+      </option>
+
+      <option value="Electronics">
+        Electronics
+      </option>
+
+      <option value="Beauty & Personal Care">
+        Beauty & Personal Care
+      </option>
+
+      <option value="Home & Living">
+        Home & Living
+      </option>
 
     </select>
 
@@ -669,7 +761,10 @@ button:hover{
     ></div>
 
 
-    <button type="submit">
+    <button
+      id="saveProductButton"
+      type="submit"
+    >
       💾 Save Product
     </button>
 
@@ -678,7 +773,9 @@ button:hover{
 </div>
 
 
-<!-- PRODUCTS -->
+<!-- ================================
+     PRODUCTS
+================================ -->
 
 <div class="card">
 
@@ -687,7 +784,11 @@ button:hover{
   </h2>
 
   <div id="productsList">
-    Loading products...
+
+    <div class="loading">
+      Loading products...
+    </div>
+
   </div>
 
 
@@ -718,11 +819,107 @@ const db =
   window.gadhuliSupabase;
 
 
-/*
-  Admin email
-*/
 const ADMIN_EMAIL =
   "hridoyff974@gmail.com";
+
+
+/* =================================
+   ELEMENTS
+================================= */
+
+const loginSection =
+  document.getElementById("loginSection");
+
+const adminPanel =
+  document.getElementById("adminPanel");
+
+const loginForm =
+  document.getElementById("loginForm");
+
+const loginButton =
+  document.getElementById("loginButton");
+
+const emailInput =
+  document.getElementById("email");
+
+const passwordInput =
+  document.getElementById("password");
+
+const loginMessage =
+  document.getElementById("loginMessage");
+
+const orderMessage =
+  document.getElementById("orderMessage");
+
+const productMessage =
+  document.getElementById("productMessage");
+
+const productForm =
+  document.getElementById("productForm");
+
+const productName =
+  document.getElementById("productName");
+
+const productPrice =
+  document.getElementById("productPrice");
+
+const productCategory =
+  document.getElementById("productCategory");
+
+const productSubcategory =
+  document.getElementById("productSubcategory");
+
+const productDescription =
+  document.getElementById("productDescription");
+
+const images =
+  document.getElementById("images");
+
+const preview =
+  document.getElementById("preview");
+
+const sizeSection =
+  document.getElementById("sizeSection");
+
+const sizeHelp =
+  document.getElementById("sizeHelp");
+
+const sizeOptions =
+  document.getElementById("sizeOptions");
+
+const productsList =
+  document.getElementById("productsList");
+
+const ordersList =
+  document.getElementById("ordersList");
+
+const orderStatusFilter =
+  document.getElementById("orderStatusFilter");
+
+const paymentStatusFilter =
+  document.getElementById("paymentStatusFilter");
+
+const refreshOrders =
+  document.getElementById("refreshOrders");
+
+const logoutBtn =
+  document.getElementById("logoutBtn");
+
+const saveProductButton =
+  document.getElementById("saveProductButton");
+
+
+/* =================================
+   CHECK SUPABASE
+================================= */
+
+if(!db){
+
+  console.error(
+    "Supabase client পাওয়া যায়নি। supabase.js check করুন।"
+  );
+
+}
 
 
 /* =================================
@@ -904,13 +1101,10 @@ function esc(value){
 
 
 function msg(
-  id,
+  element,
   text,
   type
 ){
-
-  const element =
-    document.getElementById(id);
 
   if(!element){
     return;
@@ -928,6 +1122,16 @@ function msg(
 }
 
 
+function hideMsg(element){
+
+  if(element){
+    element.style.display =
+      "none";
+  }
+
+}
+
+
 function money(value){
 
   return Number(value || 0)
@@ -936,7 +1140,7 @@ function money(value){
 }
 
 
-function date(value){
+function formatDate(value){
 
   try{
 
@@ -958,101 +1162,124 @@ function date(value){
 }
 
 
-function options(
+function makeOptions(
   array,
   current
 ){
 
   return array
-    .map(item => `
+    .map(item => {
 
-      <option
-        value="${esc(item)}"
-        ${item === current ? "selected" : ""}
-      >
-        ${esc(item)}
-      </option>
+      return `
+        <option
+          value="${esc(item)}"
+          ${item === current ? "selected" : ""}
+        >
+          ${esc(item)}
+        </option>
+      `;
 
-    `)
+    })
     .join("");
 
 }
 
 
 /* =================================
-   CATEGORY
+   CATEGORY CHANGE
 ================================= */
 
-productCategory.onchange =
-function(){
+productCategory.addEventListener(
+  "change",
+  function(){
 
-  const category =
-    this.value;
+    const category =
+      this.value;
 
-
-  productSubcategory.innerHTML =
-    "";
-
-  productSubcategory.disabled =
-    true;
-
-
-  showSizes(
-    "",
-    ""
-  );
-
-
-  if(!category){
 
     productSubcategory.innerHTML =
-      '<option value="">First Select Category</option>';
+      "";
 
-    return;
-
-  }
-
-
-  productSubcategory.disabled =
-    false;
+    productSubcategory.disabled =
+      true;
 
 
-  productSubcategory.innerHTML =
-    '<option value="">Select Subcategory</option>';
-
-
-  (
-    CATEGORY_DATA[category] || []
-  )
-  .forEach(item => {
-
-    const option =
-      document.createElement("option");
-
-    option.value =
-      item;
-
-    option.textContent =
-      item;
-
-    productSubcategory.appendChild(
-      option
+    showSizes(
+      "",
+      ""
     );
 
-  });
 
-};
+    if(!category){
+
+      productSubcategory.innerHTML =
+        `
+        <option value="">
+          First Select Category
+        </option>
+        `;
+
+      return;
+
+    }
 
 
-productSubcategory.onchange =
-function(){
+    productSubcategory.disabled =
+      false;
 
-  showSizes(
-    productCategory.value,
-    this.value
-  );
 
-};
+    productSubcategory.innerHTML =
+      `
+      <option value="">
+        Select Subcategory
+      </option>
+      `;
+
+
+    const list =
+      CATEGORY_DATA[category] || [];
+
+
+    list.forEach(
+      item => {
+
+        const option =
+          document.createElement(
+            "option"
+          );
+
+        option.value =
+          item;
+
+        option.textContent =
+          item;
+
+        productSubcategory.appendChild(
+          option
+        );
+
+      }
+    );
+
+  }
+);
+
+
+/* =================================
+   SUBCATEGORY CHANGE
+================================= */
+
+productSubcategory.addEventListener(
+  "change",
+  function(){
+
+    showSizes(
+      productCategory.value,
+      this.value
+    );
+
+  }
+);
 
 
 /* =================================
@@ -1074,10 +1301,14 @@ function showSizes(
     .remove("show");
 
 
-  if(
-    !category ||
-    category === "Women's Fashion"
-  ){
+  if(!category){
+
+    return;
+
+  }
+
+
+  if(category === "Women's Fashion"){
 
     return;
 
@@ -1093,7 +1324,11 @@ function showSizes(
       "Size প্রয়োজন নেই।";
 
     sizeOptions.innerHTML =
-      '<div class="help">⌚ No Size</div>';
+      `
+      <div class="help">
+        ⌚ No Size
+      </div>
+      `;
 
     return;
 
@@ -1123,7 +1358,7 @@ function showSizes(
     (size,index) => {
 
       const id =
-        "sz_" +
+        "size_" +
         Date.now() +
         "_" +
         index;
@@ -1162,349 +1397,98 @@ function showSizes(
    LOGIN
 ================================= */
 
-loginForm.onsubmit =
-async function(event){
+loginForm.addEventListener(
+  "submit",
+  async function(event){
 
-  event.preventDefault();
-
-
-  msg(
-    "loginMessage",
-    "Login হচ্ছে... ⏳",
-    "success"
-  );
+    event.preventDefault();
 
 
-  try{
+    if(!db){
 
-    const emailValue =
-      document
-        .getElementById("email")
-        .value
+      msg(
+        loginMessage,
+        "Supabase connect হয়নি। supabase.js check করুন।",
+        "error"
+      );
+
+      return;
+
+    }
+
+
+    const email =
+      emailInput.value
         .trim();
 
-    const passwordValue =
-      document
-        .getElementById("password")
-        .value;
+
+    const password =
+      passwordInput.value;
+
+
+    if(!email || !password){
+
+      msg(
+        loginMessage,
+        "Email এবং Password দিন।",
+        "error"
+      );
+
+      return;
+
+    }
 
 
     if(
-      emailValue.toLowerCase() !==
+      email.toLowerCase() !==
       ADMIN_EMAIL.toLowerCase()
     ){
 
-      throw new Error(
-        "এই Email টি Admin Email নয়।"
+      msg(
+        loginMessage,
+        "এই Email টি Admin Email নয়।",
+        "error"
       );
 
-    }
-
-
-    const {
-      data,
-      error
-    } =
-      await db.auth
-        .signInWithPassword({
-
-          email:
-            emailValue,
-
-          password:
-            passwordValue
-
-        });
-
-
-    if(error){
-
-      throw error;
+      return;
 
     }
 
 
-    if(!data?.user){
+    loginButton.disabled =
+      true;
 
-      throw new Error(
-        "Login user পাওয়া যায়নি।"
-      );
-
-    }
-
-
-    /*
-      এখানে আর ADMIN_UID check নেই।
-      তাই User ID mismatch-এর কারণে
-      Login block হবে না।
-    */
-
-
-    loginSection
-      .classList
-      .add("hidden");
-
-
-    adminPanel
-      .classList
-      .remove("hidden");
-
-
-    document
-      .getElementById("loginMessage")
-      .style.display =
-      "none";
-
-
-    await loadProducts();
-
-    await loadOrders();
-
-
-  }catch(error){
-
-    console.error(
-      "LOGIN ERROR:",
-      error
-    );
+    loginButton.textContent =
+      "Login হচ্ছে...";
 
 
     msg(
-      "loginMessage",
-
-      error.message ||
-      "Login failed",
-
-      "error"
-    );
-
-  }
-
-};
-
-
-/* =================================
-   IMAGE PREVIEW
-================================= */
-
-images.onchange =
-function(){
-
-  preview.innerHTML =
-    "";
-
-
-  const files =
-    [...this.files];
-
-
-  if(files.length > 5){
-
-    alert(
-      "Maximum 5 images allowed."
-    );
-
-    this.value =
-      "";
-
-    return;
-
-  }
-
-
-  files.forEach(file => {
-
-    const reader =
-      new FileReader();
-
-
-    reader.onload =
-    function(event){
-
-      preview.insertAdjacentHTML(
-
-        "beforeend",
-
-        `
-        <img
-          src="${event.target.result}"
-          alt="Preview"
-        >
-        `
-
-      );
-
-    };
-
-
-    reader.readAsDataURL(file);
-
-  });
-
-};
-
-
-/* =================================
-   ADD PRODUCT
-================================= */
-
-productForm.onsubmit =
-async function(event){
-
-  event.preventDefault();
-
-
-  const name =
-    productName.value.trim();
-
-
-  const price =
-    Number(productPrice.value);
-
-
-  const category =
-    productCategory.value;
-
-
-  const subcategory =
-    productSubcategory.value;
-
-
-  const description =
-    productDescription.value.trim();
-
-
-  const files =
-    [...images.files];
-
-
-  let sizes = [];
-
-
-  if(SIZE_DATA[subcategory]){
-
-    sizes =
-      [
-        ...document
-          .querySelectorAll(
-            ".sizeCheck:checked"
-          )
-      ]
-      .map(
-        item =>
-          item.value
-      );
-
-  }
-
-
-  if(!name){
-
-    return msg(
-      "productMessage",
-      "Product Name দিন।",
-      "error"
-    );
-
-  }
-
-
-  if(!category){
-
-    return msg(
-      "productMessage",
-      "Category select করুন।",
-      "error"
-    );
-
-  }
-
-
-  if(!subcategory){
-
-    return msg(
-      "productMessage",
-      "Subcategory select করুন।",
-      "error"
-    );
-
-  }
-
-
-  if(
-    SIZE_DATA[subcategory] &&
-    !sizes.length
-  ){
-
-    return msg(
-      "productMessage",
-      "কমপক্ষে একটি Size select করুন।",
-      "error"
-    );
-
-  }
-
-
-  if(
-    files.length < 1 ||
-    files.length > 5
-  ){
-
-    return msg(
-      "productMessage",
-      "Please select 1–5 images.",
-      "error"
-    );
-
-  }
-
-
-  try{
-
-    msg(
-      "productMessage",
-      "Product save হচ্ছে... ⏳",
+      loginMessage,
+      "Supabase Login হচ্ছে... ⏳",
       "success"
     );
 
 
-    const urls = [];
+    try{
 
-
-    for(
-      const file of files
-    ){
-
-      const extension =
-        file.name
-          .split(".")
-          .pop();
-
-
-      const path =
-        "products/" +
-        Date.now() +
-        "-" +
-        Math.random()
-          .toString(36)
-          .slice(2) +
-        "." +
-        extension;
-
+      /*
+        আগের session থাকলে
+        প্রথমে clear করছি না।
+        Supabase নিজেই handle করবে।
+      */
 
       const {
+        data,
         error
       } =
-        await db.storage
-          .from("product-images")
-          .upload(
-            path,
-            file,
-            {
-              cacheControl:"3600",
-              upsert:false
-            }
-          );
+        await db.auth
+          .signInWithPassword({
+
+            email:email,
+
+            password:password
+
+          });
 
 
       if(error){
@@ -1514,101 +1498,468 @@ async function(event){
       }
 
 
-      const publicUrl =
-        db.storage
-          .from("product-images")
-          .getPublicUrl(path)
-          .data
-          .publicUrl;
+      if(!data?.user){
+
+        throw new Error(
+          "Login user পাওয়া যায়নি।"
+        );
+
+      }
 
 
-      urls.push(
-        publicUrl
+      console.log(
+        "ADMIN LOGIN SUCCESS:",
+        data.user.id,
+        data.user.email
       );
 
+
+      loginSection
+        .classList
+        .add("hidden");
+
+
+      adminPanel
+        .classList
+        .remove("hidden");
+
+
+      hideMsg(
+        loginMessage
+      );
+
+
+      await loadProducts();
+
+      await loadOrders();
+
+
+    }catch(error){
+
+      console.error(
+        "LOGIN ERROR:",
+        error
+      );
+
+
+      msg(
+        loginMessage,
+
+        "❌ Login হয়নি: " +
+        (
+          error?.message ||
+          "Unknown login error"
+        ),
+
+        "error"
+      );
+
+
+    }finally{
+
+      loginButton.disabled =
+        false;
+
+      loginButton.textContent =
+        "Login";
+
     }
 
-
-    const {
-      error:
-        productError
-    } =
-      await db
-        .from("products")
-        .insert([{
-
-          name:name,
-
-          price:price,
-
-          category:category,
-
-          subcategory:subcategory,
-
-          sizes:sizes,
-
-          description:description,
-
-          images:urls
-
-        }]);
+  }
+);
 
 
-    if(productError){
+/* =================================
+   IMAGE PREVIEW
+================================= */
 
-      throw productError;
-
-    }
-
-
-    msg(
-      "productMessage",
-      "✅ Product successfully saved!",
-      "success"
-    );
-
-
-    productForm.reset();
+images.addEventListener(
+  "change",
+  function(){
 
     preview.innerHTML =
       "";
 
-    productSubcategory.disabled =
-      true;
 
-    productSubcategory.innerHTML =
-      '<option value="">First Select Category</option>';
-
-    sizeSection.classList
-      .remove("show");
+    const files =
+      [...this.files];
 
 
-    await loadProducts();
+    if(files.length > 5){
+
+      alert(
+        "Maximum 5 images allowed."
+      );
+
+      this.value =
+        "";
+
+      return;
+
+    }
 
 
-  }catch(error){
+    files.forEach(
+      file => {
 
-    console.error(
-      "PRODUCT SAVE ERROR:",
-      error
-    );
+        const reader =
+          new FileReader();
 
 
-    msg(
-      "productMessage",
+        reader.onload =
+        function(event){
 
-      "❌ Product Save হয়নি: " +
-      (
-        error.message ||
-        "Unknown error"
-      ),
+          preview.insertAdjacentHTML(
 
-      "error"
+            "beforeend",
+
+            `
+            <img
+              src="${event.target.result}"
+              alt="Preview"
+            >
+            `
+
+          );
+
+        };
+
+
+        reader.readAsDataURL(
+          file
+        );
+
+      }
     );
 
   }
+);
 
-};
+
+/* =================================
+   ADD PRODUCT
+================================= */
+
+productForm.addEventListener(
+  "submit",
+  async function(event){
+
+    event.preventDefault();
+
+
+    const name =
+      productName.value.trim();
+
+
+    const price =
+      Number(
+        productPrice.value
+      );
+
+
+    const category =
+      productCategory.value;
+
+
+    const subcategory =
+      productSubcategory.value;
+
+
+    const description =
+      productDescription.value.trim();
+
+
+    const files =
+      [...images.files];
+
+
+    let sizes = [];
+
+
+    if(
+      SIZE_DATA[subcategory]
+    ){
+
+      sizes =
+        [
+          ...document.querySelectorAll(
+            ".sizeCheck:checked"
+          )
+        ]
+        .map(
+          item =>
+            item.value
+        );
+
+    }
+
+
+    if(!name){
+
+      msg(
+        productMessage,
+        "Product Name দিন।",
+        "error"
+      );
+
+      return;
+
+    }
+
+
+    if(!price && price !== 0){
+
+      msg(
+        productMessage,
+        "Product Price দিন।",
+        "error"
+      );
+
+      return;
+
+    }
+
+
+    if(!category){
+
+      msg(
+        productMessage,
+        "Category select করুন।",
+        "error"
+      );
+
+      return;
+
+    }
+
+
+    if(!subcategory){
+
+      msg(
+        productMessage,
+        "Subcategory select করুন।",
+        "error"
+      );
+
+      return;
+
+    }
+
+
+    if(
+      SIZE_DATA[subcategory] &&
+      !sizes.length
+    ){
+
+      msg(
+        productMessage,
+        "কমপক্ষে একটি Size select করুন।",
+        "error"
+      );
+
+      return;
+
+    }
+
+
+    if(
+      files.length < 1 ||
+      files.length > 5
+    ){
+
+      msg(
+        productMessage,
+        "Please select 1–5 images.",
+        "error"
+      );
+
+      return;
+
+    }
+
+
+    saveProductButton.disabled =
+      true;
+
+    saveProductButton.textContent =
+      "Saving...";
+
+
+    try{
+
+      msg(
+        productMessage,
+        "Product save হচ্ছে... ⏳",
+        "success"
+      );
+
+
+      const urls = [];
+
+
+      for(
+        const file of files
+      ){
+
+        const extension =
+          file.name
+            .split(".")
+            .pop()
+            .toLowerCase();
+
+
+        const path =
+          "products/" +
+          Date.now() +
+          "-" +
+          Math.random()
+            .toString(36)
+            .slice(2) +
+          "." +
+          extension;
+
+
+        const {
+          error
+        } =
+          await db.storage
+            .from(
+              "product-images"
+            )
+            .upload(
+              path,
+              file,
+              {
+                cacheControl:"3600",
+                upsert:false
+              }
+            );
+
+
+        if(error){
+
+          throw error;
+
+        }
+
+
+        const publicUrl =
+          db.storage
+            .from(
+              "product-images"
+            )
+            .getPublicUrl(
+              path
+            )
+            .data
+            .publicUrl;
+
+
+        urls.push(
+          publicUrl
+        );
+
+      }
+
+
+      const {
+        error:
+          productError
+      } =
+        await db
+          .from("products")
+          .insert([{
+
+            name:name,
+
+            price:price,
+
+            category:category,
+
+            subcategory:subcategory,
+
+            sizes:sizes,
+
+            description:description,
+
+            images:urls
+
+          }]);
+
+
+      if(productError){
+
+        throw productError;
+
+      }
+
+
+      msg(
+        productMessage,
+        "✅ Product successfully saved!",
+        "success"
+      );
+
+
+      productForm.reset();
+
+
+      preview.innerHTML =
+        "";
+
+
+      productSubcategory.disabled =
+        true;
+
+
+      productSubcategory.innerHTML =
+        `
+        <option value="">
+          First Select Category
+        </option>
+        `;
+
+
+      sizeSection.classList
+        .remove("show");
+
+
+      await loadProducts();
+
+
+    }catch(error){
+
+      console.error(
+        "PRODUCT SAVE ERROR:",
+        error
+      );
+
+
+      msg(
+        productMessage,
+
+        "❌ Product Save হয়নি: " +
+        (
+          error?.message ||
+          "Unknown error"
+        ),
+
+        "error"
+      );
+
+
+    }finally{
+
+      saveProductButton.disabled =
+        false;
+
+      saveProductButton.textContent =
+        "💾 Save Product";
+
+    }
+
+  }
+);
 
 
 /* =================================
@@ -1618,7 +1969,11 @@ async function(event){
 async function loadProducts(){
 
   productsList.innerHTML =
-    "Loading products... ⏳";
+    `
+    <div class="loading">
+      Loading products... ⏳
+    </div>
+    `;
 
 
   try{
@@ -1645,10 +2000,17 @@ async function loadProducts(){
     }
 
 
-    if(!data?.length){
+    if(
+      !data ||
+      data.length === 0
+    ){
 
       productsList.innerHTML =
-        "<p>No products found.</p>";
+        `
+        <div class="empty">
+          📦 No products found.
+        </div>
+        `;
 
       return;
 
@@ -1659,107 +2021,131 @@ async function loadProducts(){
       "";
 
 
-    data.forEach(product => {
+    data.forEach(
+      product => {
 
-      const image =
-        Array.isArray(product.images) &&
-        product.images[0]
+        const image =
+          Array.isArray(
+            product.images
+          ) &&
+          product.images.length
 
-          ? product.images[0]
+            ?
 
-          : "https://via.placeholder.com/80";
+          product.images[0]
 
+            :
 
-      const sizes =
-        Array.isArray(product.sizes) &&
-        product.sizes.length
-
-          ? product.sizes.join(", ")
-
-          : (
-              product.category === "Watches" ||
-              product.category === "Women's Fashion"
-
-                ? "No Size"
-
-                : "Not Applicable"
-            );
+          "https://via.placeholder.com/80?text=G";
 
 
-      productsList.insertAdjacentHTML(
+        const sizes =
+          Array.isArray(
+            product.sizes
+          ) &&
+          product.sizes.length
 
-        "beforeend",
+            ?
 
-        `
-        <div class="product">
+          product.sizes.join(
+            ", "
+          )
 
-          <img
-            src="${esc(image)}"
-            onerror="this.src='https://via.placeholder.com/80?text=G'"
-            alt="Product"
-          >
+            :
+
+          (
+            product.category ===
+            "Watches" ||
+
+            product.category ===
+            "Women's Fashion"
+
+              ?
+
+            "No Size"
+
+              :
+
+            "Not Applicable"
+          );
 
 
-          <div class="product-info">
+        productsList.insertAdjacentHTML(
 
-            <h3>
-              ${esc(product.name)}
-            </h3>
+          "beforeend",
 
-            <p>
-              ৳${money(product.price)}
-            </p>
+          `
+          <div class="product">
 
-            <p class="muted">
-              🏷️
-              ${esc(
-                product.category ||
-                "Others"
-              )}
-            </p>
+            <img
+              src="${esc(image)}"
+              onerror="this.src='https://via.placeholder.com/80?text=G'"
+              alt="Product"
+            >
 
-            <p class="muted">
-              📂
-              ${esc(
-                product.subcategory ||
-                ""
-              )}
-            </p>
 
-            <p class="muted">
-              📏 Size:
-              ${esc(sizes)}
-            </p>
+            <div class="product-info">
+
+              <h3>
+                ${esc(product.name)}
+              </h3>
+
+              <p>
+                ৳${money(product.price)}
+              </p>
+
+              <p class="muted">
+                🏷️
+                ${esc(
+                  product.category ||
+                  "Others"
+                )}
+              </p>
+
+              <p class="muted">
+                📂
+                ${esc(
+                  product.subcategory ||
+                  ""
+                )}
+              </p>
+
+              <p class="muted">
+                📏 Size:
+                ${esc(sizes)}
+              </p>
+
+            </div>
+
+
+            <div class="actions">
+
+              <button
+                type="button"
+                class="secondary"
+                onclick="editProduct()"
+              >
+                ✏️ Edit
+              </button>
+
+
+              <button
+                type="button"
+                class="danger"
+                onclick="deleteProduct('${esc(product.id)}')"
+              >
+                🗑️ Delete
+              </button>
+
+            </div>
 
           </div>
+          `
 
+        );
 
-          <div class="actions">
-
-            <button
-              type="button"
-              class="secondary"
-              onclick="editProduct()"
-            >
-              ✏️ Edit
-            </button>
-
-
-            <button
-              type="button"
-              class="danger"
-              onclick="deleteProduct('${esc(product.id)}')"
-            >
-              🗑️ Delete
-            </button>
-
-          </div>
-
-        </div>
-        `
-      );
-
-    });
+      }
+    );
 
 
   }catch(error){
@@ -1774,10 +2160,11 @@ async function loadProducts(){
       `
       <p style="color:#c62828">
 
-        Products load হয়নি:
+        ❌ Products load হয়নি:
 
         ${esc(
-          error.message
+          error?.message ||
+          "Unknown error"
         )}
 
       </p>
@@ -1860,7 +2247,7 @@ async function(id){
     alert(
       "Delete হয়নি: " +
       (
-        error.message ||
+        error?.message ||
         "Unknown error"
       )
     );
@@ -1877,7 +2264,11 @@ async function(id){
 async function loadOrders(){
 
   ordersList.innerHTML =
-    "Loading orders... ⏳";
+    `
+    <div class="loading">
+      Loading orders... ⏳
+    </div>
+    `;
 
 
   try{
@@ -1934,7 +2325,10 @@ async function loadOrders(){
     }
 
 
-    if(!orders?.length){
+    if(
+      !orders ||
+      orders.length === 0
+    ){
 
       ordersList.innerHTML =
         `
@@ -1979,378 +2373,392 @@ async function loadOrders(){
 
 
     (items || [])
-      .forEach(item => {
+      .forEach(
+        item => {
 
-        if(
-          !groupedItems[item.order_id]
-        ){
+          if(
+            !groupedItems[
+              item.order_id
+            ]
+          ){
 
-          groupedItems[item.order_id] =
-            [];
+            groupedItems[
+              item.order_id
+            ] = [];
+
+          }
+
+
+          groupedItems[
+            item.order_id
+          ].push(item);
 
         }
-
-
-        groupedItems[item.order_id]
-          .push(item);
-
-      });
+      );
 
 
     ordersList.innerHTML =
       "";
 
 
-    orders.forEach(order => {
+    orders.forEach(
+      order => {
 
-      const orderItems =
-        groupedItems[order.id] ||
-        [];
+        const orderItems =
+          groupedItems[
+            order.id
+          ] || [];
 
 
-      const div =
-        document.createElement(
-          "div"
-        );
-
-
-      div.className =
-        "order";
-
-
-      div.innerHTML = `
-
-        <div class="order-head">
-
-          <div>
-
-            <div class="order-id">
-              🧾 Order #${esc(order.id)}
-            </div>
-
-            <div class="muted">
-              ${esc(
-                date(
-                  order.created_at
-                )
-              )}
-            </div>
-
-          </div>
-
-
-          <span class="badge">
-
-            ${esc(
-              order.order_status ||
-              "Pending"
-            )}
-
-          </span>
-
-        </div>
-
-
-        <div class="grid">
-
-          <div class="box">
-
-            <b>
-              👤 Customer
-            </b>
-
-            <br>
-
-            ${esc(
-              order.customer_name ||
-              "—"
-            )}
-
-            <br>
-
-            📱
-            ${esc(
-              order.customer_phone ||
-              "—"
-            )}
-
-            <br>
-
-            📧
-            ${esc(
-              order.customer_email ||
-              "—"
-            )}
-
-          </div>
-
-
-          <div class="box">
-
-            <b>
-              📍 Delivery
-            </b>
-
-            <br>
-
-            ${esc(
-              order.customer_district ||
-              "—"
-            )},
-
-            ${esc(
-              order.customer_thana ||
-              "—"
-            )}
-
-            <br>
-
-            ${esc(
-              order.customer_receive_place ||
-              "—"
-            )}
-
-            <br>
-
-            🚚
-            ${esc(
-              order.delivery_area ||
-              "—"
-            )}
-
-            · ৳${money(
-              order.delivery_charge
-            )}
-
-          </div>
-
-
-          <div class="box">
-
-            <b>
-              💳 Payment
-            </b>
-
-            <br>
-
-            ${esc(
-              order.payment_method ||
-              "—"
-            )}
-
-            <br>
-
-            Status:
-
-            ${esc(
-              order.payment_status ||
-              "Pending"
-            )}
-
-          </div>
-
-
-          <div class="box">
-
-            <b>
-              💰 Total
-            </b>
-
-            <br>
-
-            Subtotal:
-            ৳${money(
-              order.subtotal
-            )}
-
-            <br>
-
-            <b>
-              Total:
-              ৳${money(
-                order.total
-              )}
-            </b>
-
-          </div>
-
-        </div>
-
-
-        <div class="items">
-
-          <b>
-            🛍️ Products
-          </b>
-
-
-          ${
-            orderItems.length
-
-              ?
-
-            orderItems
-              .map(item => `
-
-                <div class="item">
-
-                  <img
-                    src="${esc(
-                      item.product_image ||
-                      "https://via.placeholder.com/52?text=G"
-                    )}"
-                    onerror="this.src='https://via.placeholder.com/52?text=G'"
-                    alt="Product"
-                  >
-
-                  <div class="item-info">
-
-                    <b>
-                      ${esc(
-                        item.product_name ||
-                        "Product"
-                      )}
-                    </b>
-
-                    <br>
-
-                    Size:
-                    ${esc(
-                      item.size ||
-                      "N/A"
-                    )}
-
-                    · Qty:
-                    ${esc(
-                      item.quantity ||
-                      1
-                    )}
-
-                    · ৳
-                    ${money(
-                      item.unit_price
-                    )}
-
-                  </div>
-
-                  <b>
-                    ৳${money(
-                      item.line_total
-                    )}
-                  </b>
-
-                </div>
-
-              `)
-              .join("")
-
-              :
-
-            `
-            <p class="muted">
-              Order items পাওয়া যায়নি।
-            </p>
-            `
-
-          }
-
-        </div>
-
-
-        <div class="controls">
-
-          <div>
-
-            <label>
-              Order Status
-            </label>
-
-            <select class="os">
-
-              ${options(
-
-                [
-                  "Pending",
-                  "Confirmed",
-                  "Processing",
-                  "Shipped",
-                  "Delivered",
-                  "Cancelled"
-                ],
-
-                order.order_status ||
-                "Pending"
-
-              )}
-
-            </select>
-
-          </div>
-
-
-          <div>
-
-            <label>
-              Payment Status
-            </label>
-
-            <select class="ps">
-
-              ${options(
-
-                [
-                  "Pending",
-                  "Paid",
-                  "Failed",
-                  "Refunded"
-                ],
-
-                order.payment_status ||
-                "Pending"
-
-              )}
-
-            </select>
-
-          </div>
-
-        </div>
-
-
-        <div class="order-actions">
-
-          <button
-            type="button"
-            class="saveOrder"
-          >
-            💾 Update Order
-          </button>
-
-        </div>
-
-      `;
-
-
-      div
-        .querySelector(
-          ".saveOrder"
-        )
-        .onclick =
-        function(){
-
-          updateOrder(
-            order.id,
-            div
+        const div =
+          document.createElement(
+            "div"
           );
 
-        };
+
+        div.className =
+          "order";
 
 
-      ordersList.appendChild(
+        div.innerHTML = `
+
+          <div class="order-head">
+
+            <div>
+
+              <div class="order-id">
+                🧾 Order #${esc(order.id)}
+              </div>
+
+              <div class="muted">
+                ${esc(
+                  formatDate(
+                    order.created_at
+                  )
+                )}
+              </div>
+
+            </div>
+
+
+            <span class="badge">
+              ${esc(
+                order.order_status ||
+                "Pending"
+              )}
+            </span>
+
+          </div>
+
+
+          <div class="grid">
+
+
+            <div class="box">
+
+              <b>
+                👤 Customer
+              </b>
+
+              <br>
+
+              ${esc(
+                order.customer_name ||
+                "—"
+              )}
+
+              <br>
+
+              📱
+              ${esc(
+                order.customer_phone ||
+                "—"
+              )}
+
+              <br>
+
+              📧
+              ${esc(
+                order.customer_email ||
+                "—"
+              )}
+
+            </div>
+
+
+            <div class="box">
+
+              <b>
+                📍 Delivery
+              </b>
+
+              <br>
+
+              ${esc(
+                order.customer_district ||
+                "—"
+              )}
+
+              ,
+
+              ${esc(
+                order.customer_thana ||
+                "—"
+              )}
+
+              <br>
+
+              ${esc(
+                order.customer_receive_place ||
+                "—"
+              )}
+
+              <br>
+
+              🚚
+              ${esc(
+                order.delivery_area ||
+                "—"
+              )}
+
+              · ৳${money(
+                order.delivery_charge
+              )}
+
+            </div>
+
+
+            <div class="box">
+
+              <b>
+                💳 Payment
+              </b>
+
+              <br>
+
+              ${esc(
+                order.payment_method ||
+                "—"
+              )}
+
+              <br>
+
+              Status:
+
+              ${esc(
+                order.payment_status ||
+                "Pending"
+              )}
+
+            </div>
+
+
+            <div class="box">
+
+              <b>
+                💰 Total
+              </b>
+
+              <br>
+
+              Subtotal:
+              ৳${money(
+                order.subtotal
+              )}
+
+              <br>
+
+              <b>
+                Total:
+                ৳${money(
+                  order.total
+                )}
+              </b>
+
+            </div>
+
+          </div>
+
+
+          <div class="items">
+
+            <b>
+              🛍️ Products
+            </b>
+
+
+            ${
+              orderItems.length
+
+                ?
+
+              orderItems
+                .map(
+                  item => `
+
+                    <div class="item">
+
+                      <img
+                        src="${esc(
+                          item.product_image ||
+                          "https://via.placeholder.com/52?text=G"
+                        )}"
+                        onerror="this.src='https://via.placeholder.com/52?text=G'"
+                        alt="Product"
+                      >
+
+                      <div class="item-info">
+
+                        <b>
+                          ${esc(
+                            item.product_name ||
+                            "Product"
+                          )}
+                        </b>
+
+                        <br>
+
+                        Size:
+                        ${esc(
+                          item.size ||
+                          "N/A"
+                        )}
+
+                        · Qty:
+                        ${esc(
+                          item.quantity ||
+                          1
+                        )}
+
+                        · ৳
+                        ${money(
+                          item.unit_price
+                        )}
+
+                      </div>
+
+                      <b>
+                        ৳${money(
+                          item.line_total
+                        )}
+                      </b>
+
+                    </div>
+
+                  `
+                )
+                .join("")
+
+                :
+
+              `
+              <p class="muted">
+                Order items পাওয়া যায়নি।
+              </p>
+              `
+            }
+
+          </div>
+
+
+          <div class="controls">
+
+
+            <div>
+
+              <label>
+                Order Status
+              </label>
+
+              <select class="os">
+
+                ${makeOptions(
+
+                  [
+                    "Pending",
+                    "Confirmed",
+                    "Processing",
+                    "Shipped",
+                    "Delivered",
+                    "Cancelled"
+                  ],
+
+                  order.order_status ||
+                  "Pending"
+
+                )}
+
+              </select>
+
+            </div>
+
+
+            <div>
+
+              <label>
+                Payment Status
+              </label>
+
+              <select class="ps">
+
+                ${makeOptions(
+
+                  [
+                    "Pending",
+                    "Paid",
+                    "Failed",
+                    "Refunded"
+                  ],
+
+                  order.payment_status ||
+                  "Pending"
+
+                )}
+
+              </select>
+
+            </div>
+
+          </div>
+
+
+          <div class="order-actions">
+
+            <button
+              type="button"
+              class="saveOrder"
+            >
+              💾 Update Order
+            </button>
+
+          </div>
+
+        `;
+
+
         div
-      );
+          .querySelector(
+            ".saveOrder"
+          )
+          .addEventListener(
+            "click",
+            function(){
 
-    });
+              updateOrder(
+                order.id,
+                div
+              );
+
+            }
+          );
+
+
+        ordersList.appendChild(
+          div
+        );
+
+      }
+    );
 
 
   }catch(error){
@@ -2371,7 +2779,7 @@ async function loadOrders(){
         ❌ Orders load হয়নি:
 
         ${esc(
-          error.message ||
+          error?.message ||
           "Unknown error"
         )}
 
@@ -2385,7 +2793,6 @@ async function loadOrders(){
 
 /* =================================
    UPDATE ORDER
-   DIRECT SUPABASE UPDATE
 ================================= */
 
 async function updateOrder(
@@ -2393,7 +2800,20 @@ async function updateOrder(
   box
 ){
 
+  const button =
+    box.querySelector(
+      ".saveOrder"
+    );
+
+
   try{
+
+    button.disabled =
+      true;
+
+    button.textContent =
+      "Updating...";
+
 
     /*
       Current logged-in user
@@ -2426,9 +2846,12 @@ async function updateOrder(
     }
 
 
-    /*
-      Selected status
-    */
+    console.log(
+      "UPDATE USER:",
+      user.id,
+      user.email
+    );
+
 
     const orderStatus =
       box
@@ -2443,7 +2866,7 @@ async function updateOrder(
 
 
     /*
-      Direct UPDATE
+      UPDATE
     */
 
     const {
@@ -2476,8 +2899,9 @@ async function updateOrder(
 
 
     /*
-      RLS থাকলে এবং row update না হলে
-      data empty হতে পারে।
+      যদি data empty হয়
+      তাহলে RLS/update permission
+      issue হতে পারে।
     */
 
     if(
@@ -2486,14 +2910,14 @@ async function updateOrder(
     ){
 
       throw new Error(
-        "Order update হয়নি। Supabase RLS permission check করতে হবে।"
+        "Order update হয়নি। Supabase RLS UPDATE permission check করতে হবে।"
       );
 
     }
 
 
     msg(
-      "orderMessage",
+      orderMessage,
 
       "✅ Order #" +
       id +
@@ -2515,16 +2939,25 @@ async function updateOrder(
 
 
     msg(
-      "orderMessage",
+      orderMessage,
 
       "❌ Update হয়নি: " +
       (
-        error.message ||
+        error?.message ||
         "Unknown error"
       ),
 
       "error"
     );
+
+
+  }finally{
+
+    button.disabled =
+      false;
+
+    button.textContent =
+      "💾 Update Order";
 
   }
 
@@ -2535,78 +2968,116 @@ async function updateOrder(
    FILTERS
 ================================= */
 
-orderStatusFilter.onchange =
-function(){
+orderStatusFilter.addEventListener(
+  "change",
+  function(){
 
-  loadOrders();
+    loadOrders();
 
-};
-
-
-paymentStatusFilter.onchange =
-function(){
-
-  loadOrders();
-
-};
+  }
+);
 
 
-refreshOrders.onclick =
-function(){
+paymentStatusFilter.addEventListener(
+  "change",
+  function(){
 
-  loadOrders();
+    loadOrders();
 
-};
+  }
+);
+
+
+refreshOrders.addEventListener(
+  "click",
+  function(){
+
+    loadOrders();
+
+  }
+);
 
 
 /* =================================
    LOGOUT
 ================================= */
 
-logoutBtn.onclick =
-async function(){
+logoutBtn.addEventListener(
+  "click",
+  async function(){
 
-  await db.auth.signOut();
+    try{
+
+      await db.auth.signOut();
+
+    }catch(error){
+
+      console.error(
+        "LOGOUT ERROR:",
+        error
+      );
+
+    }
 
 
-  adminPanel
-    .classList
-    .add("hidden");
+    adminPanel
+      .classList
+      .add("hidden");
 
 
-  loginSection
-    .classList
-    .remove("hidden");
+    loginSection
+      .classList
+      .remove("hidden");
 
 
-  loginForm.reset();
+    loginForm.reset();
 
 
-  msg(
-    "loginMessage",
-    "Logout হয়েছে।",
-    "success"
-  );
+    msg(
+      loginMessage,
+      "Logout হয়েছে।",
+      "success"
+    );
 
-};
+  }
+);
 
 
 /* =================================
    AUTO LOGIN
 ================================= */
 
-(async function(){
+async function checkSession(){
+
+  if(!db){
+
+    return;
+
+  }
+
 
   try{
 
     const {
-      data
+      data,
+      error
     } =
       await db.auth.getSession();
 
 
+    if(error){
+
+      throw error;
+
+    }
+
+
+    const session =
+      data?.session;
+
+
     const user =
-      data?.session?.user;
+      session?.user;
 
 
     if(
@@ -2614,6 +3085,13 @@ async function(){
       user.email?.toLowerCase() ===
       ADMIN_EMAIL.toLowerCase()
     ){
+
+      console.log(
+        "AUTO LOGIN:",
+        user.id,
+        user.email
+      );
+
 
       loginSection
         .classList
@@ -2631,6 +3109,7 @@ async function(){
 
     }
 
+
   }catch(error){
 
     console.error(
@@ -2640,7 +3119,14 @@ async function(){
 
   }
 
-})();
+}
+
+
+/* =================================
+   START
+================================= */
+
+checkSession();
 
 </script>
 
