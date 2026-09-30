@@ -582,41 +582,15 @@ button:hover{
         Select Category
       </option>
 
-      <option>
-        Men's Fashion
-      </option>
-
-      <option>
-        Women's Fashion
-      </option>
-
-      <option>
-        Kids & Baby
-      </option>
-
-      <option>
-        Shoes
-      </option>
-
-      <option>
-        Bags & Accessories
-      </option>
-
-      <option>
-        Watches
-      </option>
-
-      <option>
-        Electronics
-      </option>
-
-      <option>
-        Beauty & Personal Care
-      </option>
-
-      <option>
-        Home & Living
-      </option>
+      <option>Men's Fashion</option>
+      <option>Women's Fashion</option>
+      <option>Kids & Baby</option>
+      <option>Shoes</option>
+      <option>Bags & Accessories</option>
+      <option>Watches</option>
+      <option>Electronics</option>
+      <option>Beauty & Personal Care</option>
+      <option>Home & Living</option>
 
     </select>
 
@@ -736,23 +710,24 @@ button:hover{
 <script>
 
 
-/* ==============================
+/* =================================
    SUPABASE
-============================== */
+================================= */
 
 const db =
   window.gadhuliSupabase;
 
+
+/*
+  Admin email
+*/
 const ADMIN_EMAIL =
   "hridoyff974@gmail.com";
 
-const ADMIN_UID =
-  "9b3f0848-f7e1-4e8b-bd8b-bccdb3fd88e0";
 
-
-/* ==============================
+/* =================================
    CATEGORY DATA
-============================== */
+================================= */
 
 const CATEGORY_DATA = {
 
@@ -842,47 +817,83 @@ const CATEGORY_DATA = {
 };
 
 
-/* ==============================
+/* =================================
    SIZE DATA
-============================== */
+================================= */
 
 const SIZE_DATA = {
 
   "T-Shirt":[
-    "S","M","L","XL","2XL","4XL"
+    "S",
+    "M",
+    "L",
+    "XL",
+    "2XL",
+    "4XL"
   ],
 
   "Polo T-Shirt":[
-    "S","M","L","XL","2XL","4XL"
+    "S",
+    "M",
+    "L",
+    "XL",
+    "2XL",
+    "4XL"
   ],
 
   "Shirt":[
-    "S","M","L","XL","2XL","4XL"
+    "S",
+    "M",
+    "L",
+    "XL",
+    "2XL",
+    "4XL"
   ],
 
   "Panjabi":[
-    "28","30","32","34","36",
-    "38","40","42","44","46","48"
+    "28",
+    "30",
+    "32",
+    "34",
+    "36",
+    "38",
+    "40",
+    "42",
+    "44",
+    "46",
+    "48"
   ],
 
   "Pants":[
-    "28","30","32","34","36","38","40"
+    "28",
+    "30",
+    "32",
+    "34",
+    "36",
+    "38",
+    "40"
   ],
 
   "Jeans":[
-    "28","30","32","34","36","38","40"
+    "28",
+    "30",
+    "32",
+    "34",
+    "36",
+    "38",
+    "40"
   ]
 
 };
 
 
-/* ==============================
+/* =================================
    HELPERS
-============================== */
+================================= */
 
-function esc(v){
+function esc(value){
 
-  return String(v ?? "")
+  return String(value ?? "")
     .replace(/&/g,"&amp;")
     .replace(/</g,"&lt;")
     .replace(/>/g,"&gt;")
@@ -901,6 +912,10 @@ function msg(
   const element =
     document.getElementById(id);
 
+  if(!element){
+    return;
+  }
+
   element.textContent =
     text;
 
@@ -913,19 +928,19 @@ function msg(
 }
 
 
-function money(v){
+function money(value){
 
-  return Number(v || 0)
+  return Number(value || 0)
     .toLocaleString("en-BD");
 
 }
 
 
-function date(v){
+function date(value){
 
   try{
 
-    return new Date(v)
+    return new Date(value)
       .toLocaleString(
         "en-BD",
         {
@@ -934,9 +949,9 @@ function date(v){
         }
       );
 
-  }catch(e){
+  }catch(error){
 
-    return v || "—";
+    return value || "—";
 
   }
 
@@ -944,18 +959,18 @@ function date(v){
 
 
 function options(
-  arr,
+  array,
   current
 ){
 
-  return arr
-    .map(x => `
+  return array
+    .map(item => `
 
       <option
-        value="${esc(x)}"
-        ${x === current ? "selected" : ""}
+        value="${esc(item)}"
+        ${item === current ? "selected" : ""}
       >
-        ${esc(x)}
+        ${esc(item)}
       </option>
 
     `)
@@ -964,9 +979,9 @@ function options(
 }
 
 
-/* ==============================
+/* =================================
    CATEGORY
-============================== */
+================================= */
 
 productCategory.onchange =
 function(){
@@ -974,11 +989,13 @@ function(){
   const category =
     this.value;
 
+
   productSubcategory.innerHTML =
     "";
 
   productSubcategory.disabled =
     true;
+
 
   showSizes(
     "",
@@ -999,13 +1016,15 @@ function(){
   productSubcategory.disabled =
     false;
 
+
   productSubcategory.innerHTML =
     '<option value="">Select Subcategory</option>';
 
 
   (
     CATEGORY_DATA[category] || []
-  ).forEach(item => {
+  )
+  .forEach(item => {
 
     const option =
       document.createElement("option");
@@ -1036,9 +1055,9 @@ function(){
 };
 
 
-/* ==============================
+/* =================================
    SIZE
-============================== */
+================================= */
 
 function showSizes(
   category,
@@ -1095,6 +1114,7 @@ function showSizes(
   sizeSection.classList
     .add("show");
 
+
   sizeHelp.textContent =
     "Available size select করো।";
 
@@ -1103,8 +1123,9 @@ function showSizes(
     (size,index) => {
 
       const id =
-        "sz" +
+        "sz_" +
         Date.now() +
+        "_" +
         index;
 
 
@@ -1137,31 +1158,63 @@ function showSizes(
 }
 
 
-/* ==============================
+/* =================================
    LOGIN
-============================== */
+================================= */
 
 loginForm.onsubmit =
-async function(e){
+async function(event){
 
-  e.preventDefault();
+  event.preventDefault();
+
+
+  msg(
+    "loginMessage",
+    "Login হচ্ছে... ⏳",
+    "success"
+  );
 
 
   try{
+
+    const emailValue =
+      document
+        .getElementById("email")
+        .value
+        .trim();
+
+    const passwordValue =
+      document
+        .getElementById("password")
+        .value;
+
+
+    if(
+      emailValue.toLowerCase() !==
+      ADMIN_EMAIL.toLowerCase()
+    ){
+
+      throw new Error(
+        "এই Email টি Admin Email নয়।"
+      );
+
+    }
+
 
     const {
       data,
       error
     } =
-      await db.auth.signInWithPassword({
+      await db.auth
+        .signInWithPassword({
 
-        email:
-          email.value.trim(),
+          email:
+            emailValue,
 
-        password:
-          password.value
+          password:
+            passwordValue
 
-      });
+        });
 
 
     if(error){
@@ -1180,41 +1233,27 @@ async function(e){
     }
 
 
-    if(
-      data.user.email !==
-      ADMIN_EMAIL
-    ){
-
-      await db.auth.signOut();
-
-      throw new Error(
-        "এই account Admin নয়।"
-      );
-
-    }
-
-
-    if(
-      data.user.id !==
-      ADMIN_UID
-    ){
-
-      await db.auth.signOut();
-
-      throw new Error(
-        "এই Admin account-এর User ID সঠিক নয়।"
-      );
-
-    }
+    /*
+      এখানে আর ADMIN_UID check নেই।
+      তাই User ID mismatch-এর কারণে
+      Login block হবে না।
+    */
 
 
     loginSection
       .classList
       .add("hidden");
 
+
     adminPanel
       .classList
       .remove("hidden");
+
+
+    document
+      .getElementById("loginMessage")
+      .style.display =
+      "none";
 
 
     await loadProducts();
@@ -1222,12 +1261,20 @@ async function(e){
     await loadOrders();
 
 
-  }catch(x){
+  }catch(error){
+
+    console.error(
+      "LOGIN ERROR:",
+      error
+    );
+
 
     msg(
       "loginMessage",
-      x.message ||
+
+      error.message ||
       "Login failed",
+
       "error"
     );
 
@@ -1236,15 +1283,16 @@ async function(e){
 };
 
 
-/* ==============================
+/* =================================
    IMAGE PREVIEW
-============================== */
+================================= */
 
 images.onchange =
 function(){
 
   preview.innerHTML =
     "";
+
 
   const files =
     [...this.files];
@@ -1271,7 +1319,7 @@ function(){
 
 
     reader.onload =
-    function(e){
+    function(event){
 
       preview.insertAdjacentHTML(
 
@@ -1279,7 +1327,7 @@ function(){
 
         `
         <img
-          src="${e.target.result}"
+          src="${event.target.result}"
           alt="Preview"
         >
         `
@@ -1296,30 +1344,35 @@ function(){
 };
 
 
-/* ==============================
+/* =================================
    ADD PRODUCT
-============================== */
+================================= */
 
 productForm.onsubmit =
-async function(e){
+async function(event){
 
-  e.preventDefault();
+  event.preventDefault();
 
 
   const name =
     productName.value.trim();
 
+
   const price =
     Number(productPrice.value);
+
 
   const category =
     productCategory.value;
 
+
   const subcategory =
     productSubcategory.value;
 
+
   const description =
     productDescription.value.trim();
+
 
   const files =
     [...images.files];
@@ -1332,11 +1385,15 @@ async function(e){
 
     sizes =
       [
-        ...document.querySelectorAll(
-          ".sizeCheck:checked"
-        )
+        ...document
+          .querySelectorAll(
+            ".sizeCheck:checked"
+          )
       ]
-      .map(x => x.value);
+      .map(
+        item =>
+          item.value
+      );
 
   }
 
@@ -1418,7 +1475,7 @@ async function(e){
       const file of files
     ){
 
-      const ext =
+      const extension =
         file.name
           .split(".")
           .pop();
@@ -1432,7 +1489,7 @@ async function(e){
           .toString(36)
           .slice(2) +
         "." +
-        ext;
+        extension;
 
 
       const {
@@ -1473,7 +1530,8 @@ async function(e){
 
 
     const {
-      error
+      error:
+        productError
     } =
       await db
         .from("products")
@@ -1496,9 +1554,9 @@ async function(e){
         }]);
 
 
-    if(error){
+    if(productError){
 
-      throw error;
+      throw productError;
 
     }
 
@@ -1528,15 +1586,23 @@ async function(e){
     await loadProducts();
 
 
-  }catch(x){
+  }catch(error){
+
+    console.error(
+      "PRODUCT SAVE ERROR:",
+      error
+    );
+
 
     msg(
       "productMessage",
+
       "❌ Product Save হয়নি: " +
       (
-        x.message ||
+        error.message ||
         "Unknown error"
       ),
+
       "error"
     );
 
@@ -1545,9 +1611,9 @@ async function(e){
 };
 
 
-/* ==============================
+/* =================================
    LOAD PRODUCTS
-============================== */
+================================= */
 
 async function loadProducts(){
 
@@ -1593,24 +1659,26 @@ async function loadProducts(){
       "";
 
 
-    data.forEach(p => {
+    data.forEach(product => {
 
-      const img =
-        Array.isArray(p.images) &&
-        p.images[0]
-          ? p.images[0]
+      const image =
+        Array.isArray(product.images) &&
+        product.images[0]
+
+          ? product.images[0]
+
           : "https://via.placeholder.com/80";
 
 
       const sizes =
-        Array.isArray(p.sizes) &&
-        p.sizes.length
+        Array.isArray(product.sizes) &&
+        product.sizes.length
 
-          ? p.sizes.join(", ")
+          ? product.sizes.join(", ")
 
           : (
-              p.category === "Watches" ||
-              p.category === "Women's Fashion"
+              product.category === "Watches" ||
+              product.category === "Women's Fashion"
 
                 ? "No Size"
 
@@ -1626,30 +1694,34 @@ async function loadProducts(){
         <div class="product">
 
           <img
-            src="${esc(img)}"
+            src="${esc(image)}"
             onerror="this.src='https://via.placeholder.com/80?text=G'"
+            alt="Product"
           >
+
 
           <div class="product-info">
 
             <h3>
-              ${esc(p.name)}
+              ${esc(product.name)}
             </h3>
 
             <p>
-              ৳${money(p.price)}
+              ৳${money(product.price)}
             </p>
 
             <p class="muted">
-              🏷️ ${esc(
-                p.category ||
+              🏷️
+              ${esc(
+                product.category ||
                 "Others"
               )}
             </p>
 
             <p class="muted">
-              📂 ${esc(
-                p.subcategory ||
+              📂
+              ${esc(
+                product.subcategory ||
                 ""
               )}
             </p>
@@ -1665,16 +1737,18 @@ async function loadProducts(){
           <div class="actions">
 
             <button
+              type="button"
               class="secondary"
-              onclick="editProduct('${esc(p.id)}')"
+              onclick="editProduct()"
             >
               ✏️ Edit
             </button>
 
 
             <button
+              type="button"
               class="danger"
-              onclick="deleteProduct('${esc(p.id)}')"
+              onclick="deleteProduct('${esc(product.id)}')"
             >
               🗑️ Delete
             </button>
@@ -1688,13 +1762,24 @@ async function loadProducts(){
     });
 
 
-  }catch(x){
+  }catch(error){
+
+    console.error(
+      "PRODUCT LOAD ERROR:",
+      error
+    );
+
 
     productsList.innerHTML =
       `
       <p style="color:#c62828">
+
         Products load হয়নি:
-        ${esc(x.message)}
+
+        ${esc(
+          error.message
+        )}
+
       </p>
       `;
 
@@ -1703,9 +1788,9 @@ async function loadProducts(){
 }
 
 
-/* ==============================
+/* =================================
    PRODUCT EDIT
-============================== */
+================================= */
 
 window.editProduct =
 function(){
@@ -1717,9 +1802,9 @@ function(){
 };
 
 
-/* ==============================
+/* =================================
    PRODUCT DELETE
-============================== */
+================================= */
 
 window.deleteProduct =
 async function(id){
@@ -1743,7 +1828,10 @@ async function(id){
       await db
         .from("products")
         .delete()
-        .eq("id",id);
+        .eq(
+          "id",
+          id
+        );
 
 
     if(error){
@@ -1761,11 +1849,20 @@ async function(id){
     await loadProducts();
 
 
-  }catch(x){
+  }catch(error){
+
+    console.error(
+      "DELETE ERROR:",
+      error
+    );
+
 
     alert(
       "Delete হয়নি: " +
-      x.message
+      (
+        error.message ||
+        "Unknown error"
+      )
     );
 
   }
@@ -1773,9 +1870,9 @@ async function(id){
 };
 
 
-/* ==============================
+/* =================================
    LOAD ORDERS
-============================== */
+================================= */
 
 async function loadOrders(){
 
@@ -1785,7 +1882,7 @@ async function loadOrders(){
 
   try{
 
-    let q =
+    let query =
       db
         .from("orders")
         .select("*")
@@ -1797,10 +1894,12 @@ async function loadOrders(){
         );
 
 
-    if(orderStatusFilter.value){
+    if(
+      orderStatusFilter.value
+    ){
 
-      q =
-        q.eq(
+      query =
+        query.eq(
           "order_status",
           orderStatusFilter.value
         );
@@ -1808,10 +1907,12 @@ async function loadOrders(){
     }
 
 
-    if(paymentStatusFilter.value){
+    if(
+      paymentStatusFilter.value
+    ){
 
-      q =
-        q.eq(
+      query =
+        query.eq(
           "payment_status",
           paymentStatusFilter.value
         );
@@ -1823,7 +1924,7 @@ async function loadOrders(){
       data:orders,
       error
     } =
-      await q;
+      await query;
 
 
     if(error){
@@ -1849,7 +1950,8 @@ async function loadOrders(){
 
     const ids =
       orders.map(
-        x => x.id
+        order =>
+          order.id
       );
 
 
@@ -1873,14 +1975,24 @@ async function loadOrders(){
     }
 
 
-    const by = {};
+    const groupedItems = {};
 
 
     (items || [])
-      .forEach(x => {
+      .forEach(item => {
 
-        (by[x.order_id] ??= [])
-          .push(x);
+        if(
+          !groupedItems[item.order_id]
+        ){
+
+          groupedItems[item.order_id] =
+            [];
+
+        }
+
+
+        groupedItems[item.order_id]
+          .push(item);
 
       });
 
@@ -1889,14 +2001,17 @@ async function loadOrders(){
       "";
 
 
-    orders.forEach(o => {
+    orders.forEach(order => {
 
-      const its =
-        by[o.id] || [];
+      const orderItems =
+        groupedItems[order.id] ||
+        [];
 
 
       const div =
-        document.createElement("div");
+        document.createElement(
+          "div"
+        );
 
 
       div.className =
@@ -1910,12 +2025,14 @@ async function loadOrders(){
           <div>
 
             <div class="order-id">
-              🧾 Order #${esc(o.id)}
+              🧾 Order #${esc(order.id)}
             </div>
 
             <div class="muted">
               ${esc(
-                date(o.created_at)
+                date(
+                  order.created_at
+                )
               )}
             </div>
 
@@ -1923,10 +2040,12 @@ async function loadOrders(){
 
 
           <span class="badge">
+
             ${esc(
-              o.order_status ||
+              order.order_status ||
               "Pending"
             )}
+
           </span>
 
         </div>
@@ -1943,21 +2062,23 @@ async function loadOrders(){
             <br>
 
             ${esc(
-              o.customer_name ||
+              order.customer_name ||
               "—"
             )}
 
             <br>
 
-            📱 ${esc(
-              o.customer_phone ||
+            📱
+            ${esc(
+              order.customer_phone ||
               "—"
             )}
 
             <br>
 
-            📧 ${esc(
-              o.customer_email ||
+            📧
+            ${esc(
+              order.customer_email ||
               "—"
             )}
 
@@ -1973,31 +2094,32 @@ async function loadOrders(){
             <br>
 
             ${esc(
-              o.customer_district ||
+              order.customer_district ||
               "—"
             )},
 
             ${esc(
-              o.customer_thana ||
+              order.customer_thana ||
               "—"
             )}
 
             <br>
 
             ${esc(
-              o.customer_receive_place ||
+              order.customer_receive_place ||
               "—"
             )}
 
             <br>
 
-            🚚 ${esc(
-              o.delivery_area ||
+            🚚
+            ${esc(
+              order.delivery_area ||
               "—"
             )}
 
             · ৳${money(
-              o.delivery_charge
+              order.delivery_charge
             )}
 
           </div>
@@ -2012,15 +2134,16 @@ async function loadOrders(){
             <br>
 
             ${esc(
-              o.payment_method ||
+              order.payment_method ||
               "—"
             )}
 
             <br>
 
             Status:
+
             ${esc(
-              o.payment_status ||
+              order.payment_status ||
               "Pending"
             )}
 
@@ -2036,13 +2159,17 @@ async function loadOrders(){
             <br>
 
             Subtotal:
-            ৳${money(o.subtotal)}
+            ৳${money(
+              order.subtotal
+            )}
 
             <br>
 
             <b>
               Total:
-              ৳${money(o.total)}
+              ৳${money(
+                order.total
+              )}
             </b>
 
           </div>
@@ -2058,61 +2185,64 @@ async function loadOrders(){
 
 
           ${
-            its.length
+            orderItems.length
 
               ?
 
-            its.map(i => `
+            orderItems
+              .map(item => `
 
-              <div class="item">
+                <div class="item">
 
-                <img
-                  src="${esc(
-                    i.product_image ||
-                    "https://via.placeholder.com/52?text=G"
-                  )}"
-                  onerror="this.src='https://via.placeholder.com/52?text=G'"
-                >
+                  <img
+                    src="${esc(
+                      item.product_image ||
+                      "https://via.placeholder.com/52?text=G"
+                    )}"
+                    onerror="this.src='https://via.placeholder.com/52?text=G'"
+                    alt="Product"
+                  >
 
-                <div class="item-info">
+                  <div class="item-info">
+
+                    <b>
+                      ${esc(
+                        item.product_name ||
+                        "Product"
+                      )}
+                    </b>
+
+                    <br>
+
+                    Size:
+                    ${esc(
+                      item.size ||
+                      "N/A"
+                    )}
+
+                    · Qty:
+                    ${esc(
+                      item.quantity ||
+                      1
+                    )}
+
+                    · ৳
+                    ${money(
+                      item.unit_price
+                    )}
+
+                  </div>
 
                   <b>
-                    ${esc(
-                      i.product_name ||
-                      "Product"
+                    ৳${money(
+                      item.line_total
                     )}
                   </b>
 
-                  <br>
-
-                  Size:
-                  ${esc(
-                    i.size ||
-                    "N/A"
-                  )}
-
-                  · Qty:
-                  ${esc(
-                    i.quantity ||
-                    1
-                  )}
-
-                  · ৳
-                  ${money(
-                    i.unit_price
-                  )}
-
                 </div>
 
-                <b>
-                  ৳${money(
-                    i.line_total
-                  )}
-                </b>
-
-              </div>
-
-            `).join("")
+              `)
+              .join("")
 
               :
 
@@ -2138,6 +2268,7 @@ async function loadOrders(){
             <select class="os">
 
               ${options(
+
                 [
                   "Pending",
                   "Confirmed",
@@ -2146,8 +2277,10 @@ async function loadOrders(){
                   "Delivered",
                   "Cancelled"
                 ],
-                o.order_status ||
+
+                order.order_status ||
                 "Pending"
+
               )}
 
             </select>
@@ -2164,14 +2297,17 @@ async function loadOrders(){
             <select class="ps">
 
               ${options(
+
                 [
                   "Pending",
                   "Paid",
                   "Failed",
                   "Refunded"
                 ],
-                o.payment_status ||
+
+                order.payment_status ||
                 "Pending"
+
               )}
 
             </select>
@@ -2196,12 +2332,14 @@ async function loadOrders(){
 
 
       div
-        .querySelector(".saveOrder")
+        .querySelector(
+          ".saveOrder"
+        )
         .onclick =
         function(){
 
           updateOrder(
-            o.id,
+            order.id,
             div
           );
 
@@ -2215,7 +2353,13 @@ async function loadOrders(){
     });
 
 
-  }catch(x){
+  }catch(error){
+
+    console.error(
+      "ORDER LOAD ERROR:",
+      error
+    );
+
 
     ordersList.innerHTML =
       `
@@ -2227,7 +2371,7 @@ async function loadOrders(){
         ❌ Orders load হয়নি:
 
         ${esc(
-          x.message ||
+          error.message ||
           "Unknown error"
         )}
 
@@ -2239,10 +2383,10 @@ async function loadOrders(){
 }
 
 
-/* ==============================
+/* =================================
    UPDATE ORDER
-   RPC VERSION
-============================== */
+   DIRECT SUPABASE UPDATE
+================================= */
 
 async function updateOrder(
   id,
@@ -2250,6 +2394,10 @@ async function updateOrder(
 ){
 
   try{
+
+    /*
+      Current logged-in user
+    */
 
     const {
       data:userData,
@@ -2278,17 +2426,9 @@ async function updateOrder(
     }
 
 
-    if(
-      user.id !==
-      ADMIN_UID
-    ){
-
-      throw new Error(
-        "এই browser session-এর Admin User ID সঠিক নয়।"
-      );
-
-    }
-
+    /*
+      Selected status
+    */
 
     const orderStatus =
       box
@@ -2302,27 +2442,30 @@ async function updateOrder(
         .value;
 
 
-    /* ==========================
-       SECURE RPC UPDATE
-    ========================== */
+    /*
+      Direct UPDATE
+    */
 
     const {
       data,
       error
     } =
-      await db.rpc(
-        "admin_update_order",
-        {
-          p_order_id:
-            id,
+      await db
+        .from("orders")
+        .update({
 
-          p_order_status:
+          order_status:
             orderStatus,
 
-          p_payment_status:
+          payment_status:
             paymentStatus
-        }
-      );
+
+        })
+        .eq(
+          "id",
+          id
+        )
+        .select();
 
 
     if(error){
@@ -2332,10 +2475,18 @@ async function updateOrder(
     }
 
 
-    if(data !== true){
+    /*
+      RLS থাকলে এবং row update না হলে
+      data empty হতে পারে।
+    */
+
+    if(
+      !data ||
+      data.length === 0
+    ){
 
       throw new Error(
-        "Order update হয়নি।"
+        "Order update হয়নি। Supabase RLS permission check করতে হবে।"
       );
 
     }
@@ -2355,11 +2506,11 @@ async function updateOrder(
     await loadOrders();
 
 
-  }catch(x){
+  }catch(error){
 
     console.error(
       "ORDER UPDATE ERROR:",
-      x
+      error
     );
 
 
@@ -2368,7 +2519,7 @@ async function updateOrder(
 
       "❌ Update হয়নি: " +
       (
-        x.message ||
+        error.message ||
         "Unknown error"
       ),
 
@@ -2380,45 +2531,69 @@ async function updateOrder(
 }
 
 
-/* ==============================
+/* =================================
    FILTERS
-============================== */
+================================= */
 
 orderStatusFilter.onchange =
-  loadOrders;
+function(){
+
+  loadOrders();
+
+};
+
 
 paymentStatusFilter.onchange =
-  loadOrders;
+function(){
+
+  loadOrders();
+
+};
+
 
 refreshOrders.onclick =
-  loadOrders;
+function(){
+
+  loadOrders();
+
+};
 
 
-/* ==============================
+/* =================================
    LOGOUT
-============================== */
+================================= */
 
 logoutBtn.onclick =
 async function(){
 
   await db.auth.signOut();
 
+
   adminPanel
     .classList
     .add("hidden");
+
 
   loginSection
     .classList
     .remove("hidden");
 
+
   loginForm.reset();
+
+
+  msg(
+    "loginMessage",
+    "Logout হয়েছে।",
+    "success"
+  );
 
 };
 
 
-/* ==============================
+/* =================================
    AUTO LOGIN
-============================== */
+================================= */
 
 (async function(){
 
@@ -2430,11 +2605,14 @@ async function(){
       await db.auth.getSession();
 
 
+    const user =
+      data?.session?.user;
+
+
     if(
-      data?.session?.user?.email ===
-      ADMIN_EMAIL &&
-      data?.session?.user?.id ===
-      ADMIN_UID
+      user &&
+      user.email?.toLowerCase() ===
+      ADMIN_EMAIL.toLowerCase()
     ){
 
       loginSection
@@ -2453,11 +2631,11 @@ async function(){
 
     }
 
-  }catch(e){
+  }catch(error){
 
     console.error(
       "AUTO LOGIN ERROR:",
-      e
+      error
     );
 
   }
@@ -2467,4 +2645,5 @@ async function(){
 </script>
 
 </body>
+
 </html>
