@@ -11,7 +11,11 @@
 <script src="supabase.js"></script>
 
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
+*{
+box-sizing:border-box;
+margin:0;
+padding:0
+}
 
 body{
 font-family:Arial,Helvetica,sans-serif;
@@ -19,8 +23,13 @@ background:#fff7fa;
 color:#222
 }
 
-button,input,select,textarea{font-family:inherit}
-button{cursor:pointer}
+button,input,select,textarea{
+font-family:inherit
+}
+
+button{
+cursor:pointer
+}
 
 header{
 position:sticky;
@@ -46,7 +55,9 @@ height:45px;
 object-fit:contain
 }
 
-.search-box{flex:1}
+.search-box{
+flex:1
+}
 
 .search-box input{
 width:100%;
@@ -153,8 +164,13 @@ color:white;
 border-color:#8f174d
 }
 
-.subcategory-wrapper{display:none}
-.subcategory-wrapper.show{display:block}
+.subcategory-wrapper{
+display:none
+}
+
+.subcategory-wrapper.show{
+display:block
+}
 
 .product-grid{
 display:grid;
@@ -177,16 +193,62 @@ transform:translateY(-3px);
 box-shadow:0 7px 18px rgba(143,23,77,.15)
 }
 
+/* =========================================
+   PRODUCT MULTIPLE IMAGE SWIPE
+   ========================================= */
+
 .product-image-wrap{
-position:relative
+position:relative;
+overflow:hidden;
+background:#fff0f6
 }
 
-.product-image{
+.product-image-scroll{
+display:flex;
+width:100%;
+overflow-x:auto;
+scroll-snap-type:x mandatory;
+scroll-behavior:smooth;
+-webkit-overflow-scrolling:touch;
+scrollbar-width:none
+}
+
+.product-image-scroll::-webkit-scrollbar{
+display:none
+}
+
+.product-image-scroll img{
+min-width:100%;
 width:100%;
 aspect-ratio:1/1;
 object-fit:cover;
 display:block;
+scroll-snap-align:start;
 background:#fff0f6
+}
+
+.image-count{
+position:absolute;
+left:8px;
+bottom:8px;
+background:rgba(0,0,0,.58);
+color:#fff;
+padding:4px 8px;
+border-radius:12px;
+font-size:11px;
+z-index:2
+}
+
+.swipe-hint{
+position:absolute;
+right:8px;
+bottom:8px;
+background:rgba(143,23,77,.8);
+color:#fff;
+padding:4px 8px;
+border-radius:12px;
+font-size:10px;
+z-index:2
 }
 
 .wish-small{
@@ -199,7 +261,8 @@ border-radius:50%;
 border:0;
 background:white;
 box-shadow:0 2px 8px #ddd;
-font-size:17px
+font-size:17px;
+z-index:3
 }
 
 .product-info{
@@ -425,7 +488,9 @@ padding-top:10px
 display:flex;
 gap:8px;
 overflow-x:auto;
-margin-bottom:15px
+margin-bottom:15px;
+scroll-behavior:smooth;
+-webkit-overflow-scrolling:touch
 }
 
 .detail-images img{
@@ -433,7 +498,13 @@ width:250px;
 height:250px;
 object-fit:cover;
 border-radius:12px;
-border:1px solid #f0c4d6
+border:1px solid #f0c4d6;
+flex:none;
+cursor:pointer
+}
+
+.detail-images img:hover{
+border-color:#8f174d
 }
 
 .size-list{
@@ -587,41 +658,58 @@ font-weight:bold;
 margin-bottom:5px
 }
 
-.whatsapp-helpline{
-max-width:420px;
-margin:0 auto
-}
+/* =========================================
+   FLOATING WHATSAPP HELPLINE
+   ========================================= */
 
-.whatsapp-helpline-title{
-font-size:16px;
-font-weight:bold;
-margin-bottom:8px
-}
-
-.whatsapp-helpline-text{
-font-size:13px;
-margin-bottom:12px
-}
-
-.whatsapp-btn{
+.whatsapp-floating{
+position:fixed;
+right:15px;
+bottom:18px;
+z-index:1500;
+display:flex;
+align-items:center;
+gap:8px;
 background:#25D366;
 color:white;
 border:0;
-width:100%;
-padding:12px 15px;
-border-radius:25px;
-font-size:15px;
-font-weight:bold
+padding:11px 16px;
+border-radius:30px;
+font-size:14px;
+font-weight:bold;
+box-shadow:0 4px 15px rgba(0,0,0,.25);
+transition:.2s
 }
 
-.whatsapp-btn:hover{
-background:#20bd5a
+.whatsapp-floating:hover{
+background:#20bd5a;
+transform:translateY(-2px)
+}
+
+.whatsapp-floating-icon{
+font-size:22px;
+line-height:1
+}
+
+/* =========================================
+   SHARE BUTTON
+   ========================================= */
+
+.share-btn{
+background:#1677ff;
+color:#fff
+}
+
+.share-btn:hover{
+background:#075ecf
 }
 
 @media(max-width:900px){
+
 .product-grid{
 grid-template-columns:repeat(3,1fr)
 }
+
 }
 
 @media(max-width:650px){
@@ -680,6 +768,17 @@ width:190px;
 height:190px
 }
 
+.whatsapp-floating{
+right:12px;
+bottom:15px;
+padding:10px 13px;
+font-size:13px
+}
+
+.whatsapp-floating-icon{
+font-size:20px
+}
+
 }
 
 @media(max-width:430px){
@@ -697,6 +796,11 @@ flex:1
 width:90px
 }
 
+.whatsapp-floating{
+right:10px;
+bottom:12px
+}
+
 }
 </style>
 </head>
@@ -704,66 +808,143 @@ width:90px
 <body>
 
 <header>
+
 <div class="header-top">
 
-<img src="logo.png" class="logo" alt="Gadhuli">
+<img
+src="logo.png"
+class="logo"
+alt="Gadhuli"
+>
 
 <div class="search-box">
+
 <input
 id="searchInput"
 type="search"
 placeholder="🔎 Product, Category বা Size খুঁজুন..."
 oninput="handleSearch()"
 >
+
 </div>
 
 <div class="header-actions">
 
-<button class="icon-btn" onclick="openAccount()" title="Account">👤</button>
+<button
+class="icon-btn"
+onclick="openAccount()"
+title="Account"
+>
+👤
+</button>
 
-<button class="icon-btn" onclick="openAuth()" title="Login">🔐</button>
+<button
+class="icon-btn"
+onclick="openAuth()"
+title="Login"
+>
+🔐
+</button>
 
-<button class="icon-btn" onclick="openCreateAccount()" title="Create Account">📝</button>
+<button
+class="icon-btn"
+onclick="openCreateAccount()"
+title="Create Account"
+>
+📝
+</button>
 
-<button class="icon-btn" onclick="openReseller()" title="Reseller">🤝</button>
+<button
+class="icon-btn"
+onclick="openReseller()"
+title="Reseller"
+>
+🤝
+</button>
 
-<button class="icon-btn" onclick="openWishlist()" title="Wishlist">❤️</button>
+<button
+class="icon-btn"
+onclick="openWishlist()"
+title="Wishlist"
+>
+❤️
+</button>
 
-<button class="icon-btn" onclick="openCart()" title="Cart">🛒</button>
+<button
+class="icon-btn"
+onclick="openCart()"
+title="Cart"
+>
+🛒
+</button>
 
 </div>
+
 </div>
+
 </header>
 
+
 <section class="hero">
+
 <h1>Gadhuli</h1>
-<p>Shop Smart. Shop Easy.</p>
+
+<p>
+Shop Smart. Shop Easy.
+</p>
+
 </section>
+
 
 <section class="section">
 
-<h2 class="section-title">🛍️ Categories</h2>
+<h2 class="section-title">
+🛍️ Categories
+</h2>
 
-<div class="category-list" id="categoryList"></div>
+<div
+class="category-list"
+id="categoryList"
+></div>
+
+</section>
+
+
+<section
+class="section subcategory-wrapper"
+id="subcategoryWrapper"
+>
+
+<h2 class="section-title">
+📂 Subcategory
+</h2>
+
+<div
+class="subcategory-list"
+id="subcategoryList"
+></div>
 
 </section>
 
-<section class="section subcategory-wrapper" id="subcategoryWrapper">
-
-<h2 class="section-title">📂 Subcategory</h2>
-
-<div class="subcategory-list" id="subcategoryList"></div>
-
-</section>
 
 <section class="section">
 
-<h2 class="section-title" id="productTitle">
+<h2
+class="section-title"
+id="productTitle"
+>
 🛍️ All Products
 </h2>
 
-<div class="product-grid" id="productGrid">
-<div class="empty">Loading Products...</div>
+<div
+class="product-grid"
+id="productGrid"
+>
+
+<div class="empty">
+Loading Products...
+</div>
+
 </div>
 
 </section>
@@ -771,17 +952,33 @@ oninput="handleSearch()"
 
 <!-- PRODUCT DETAILS -->
 
-<div class="modal" id="detailModal">
+<div
+class="modal"
+id="detailModal"
+>
 
 <div class="modal-box">
 
-<button class="close" onclick="closeModal('detailModal')">×</button>
+<button
+class="close"
+onclick="closeModal('detailModal')"
+>
+×
+</button>
 
-<h2 class="modal-title" id="detailTitle">Product</h2>
+<h2
+class="modal-title"
+id="detailTitle"
+>
+Product
+</h2>
 
 <div id="detailMainImage"></div>
 
-<div class="detail-images" id="detailImages"></div>
+<div
+class="detail-images"
+id="detailImages"
+></div>
 
 <div id="detailContent"></div>
 
@@ -794,13 +991,23 @@ oninput="handleSearch()"
 
 <!-- CART -->
 
-<div class="modal" id="cartModal">
+<div
+class="modal"
+id="cartModal"
+>
 
 <div class="modal-box">
 
-<button class="close" onclick="closeModal('cartModal')">×</button>
+<button
+class="close"
+onclick="closeModal('cartModal')"
+>
+×
+</button>
 
-<h2 class="modal-title">🛒 My Cart</h2>
+<h2 class="modal-title">
+🛒 My Cart
+</h2>
 
 <div id="cartContent"></div>
 
@@ -811,13 +1018,23 @@ oninput="handleSearch()"
 
 <!-- WISHLIST -->
 
-<div class="modal" id="wishlistModal">
+<div
+class="modal"
+id="wishlistModal"
+>
 
 <div class="modal-box">
 
-<button class="close" onclick="closeModal('wishlistModal')">×</button>
+<button
+class="close"
+onclick="closeModal('wishlistModal')"
+>
+×
+</button>
 
-<h2 class="modal-title">❤️ Wishlist</h2>
+<h2 class="modal-title">
+❤️ Wishlist
+</h2>
 
 <div id="wishlistContent"></div>
 
@@ -828,19 +1045,31 @@ oninput="handleSearch()"
 
 <!-- ORDER -->
 
-<div class="modal" id="orderModal">
+<div
+class="modal"
+id="orderModal"
+>
 
 <div class="modal-box">
 
-<button class="close" onclick="closeModal('orderModal')">×</button>
+<button
+class="close"
+onclick="closeModal('orderModal')"
+>
+×
+</button>
 
-<h2 class="modal-title">📦 Checkout</h2>
+<h2 class="modal-title">
+📦 Checkout
+</h2>
 
 <div id="orderProducts"></div>
 
 <div class="form-group">
 
-<label>নাম *</label>
+<label>
+নাম *
+</label>
 
 <input
 id="orderName"
@@ -852,7 +1081,9 @@ placeholder="আপনার নাম"
 
 <div class="form-group">
 
-<label>মোবাইল নম্বর *</label>
+<label>
+মোবাইল নম্বর *
+</label>
 
 <input
 id="orderPhone"
@@ -864,7 +1095,9 @@ placeholder="01XXXXXXXXX"
 
 <div class="form-group">
 
-<label>District *</label>
+<label>
+District *
+</label>
 
 <input
 id="orderDistrict"
@@ -876,7 +1109,9 @@ placeholder="যেমন: Dhaka"
 
 <div class="form-group">
 
-<label>Thana / Upazila *</label>
+<label>
+Thana / Upazila *
+</label>
 
 <input
 id="orderThana"
@@ -888,7 +1123,9 @@ placeholder="যেমন: Tongi"
 
 <div class="form-group">
 
-<label>Receive Place / Address *</label>
+<label>
+Receive Place / Address *
+</label>
 
 <textarea
 id="orderReceivePlace"
@@ -900,9 +1137,14 @@ placeholder="সম্পূর্ণ ঠিকানা"
 
 <div class="form-group">
 
-<label>Delivery Area</label>
+<label>
+Delivery Area
+</label>
 
-<select id="deliveryArea" onchange="updateOrderTotal()">
+<select
+id="deliveryArea"
+onchange="updateOrderTotal()"
+>
 
 <option value="Inside Dhaka">
 Inside Dhaka — ৳60
@@ -918,9 +1160,14 @@ Outside Dhaka — ৳120
 
 <div class="form-group">
 
-<label>Payment Method</label>
+<label>
+Payment Method
+</label>
 
-<select id="paymentMethod" onchange="togglePaymentFields()">
+<select
+id="paymentMethod"
+onchange="togglePaymentFields()"
+>
 
 <option value="Cash on Delivery">
 💵 Cash on Delivery
@@ -950,7 +1197,10 @@ Outside Dhaka — ৳120
 
 </div>
 
-<div id="manualPaymentFields" style="display:none">
+<div
+id="manualPaymentFields"
+style="display:none"
+>
 
 <div
 class="payment-note"
@@ -1012,21 +1262,37 @@ onclick="placeOrder()"
 
 <!-- AUTH -->
 
-<div class="modal" id="authModal">
+<div
+class="modal"
+id="authModal"
+>
 
 <div class="modal-box">
 
-<button class="close" onclick="closeModal('authModal')">×</button>
+<button
+class="close"
+onclick="closeModal('authModal')"
+>
+×
+</button>
 
-<h2 class="modal-title" id="authTitle">
+<h2
+class="modal-title"
+id="authTitle"
+>
 🔐 Login
 </h2>
 
-<div id="signupFields" style="display:none">
+<div
+id="signupFields"
+style="display:none"
+>
 
 <div class="form-group">
 
-<label>Full Name</label>
+<label>
+Full Name
+</label>
 
 <input
 id="signupName"
@@ -1038,7 +1304,9 @@ placeholder="আপনার নাম"
 
 <div class="form-group">
 
-<label>Phone</label>
+<label>
+Phone
+</label>
 
 <input
 id="signupPhone"
@@ -1052,7 +1320,9 @@ placeholder="01XXXXXXXXX"
 
 <div class="form-group">
 
-<label>Email</label>
+<label>
+Email
+</label>
 
 <input
 id="authEmail"
@@ -1064,7 +1334,9 @@ placeholder="Email"
 
 <div class="form-group">
 
-<label>Password</label>
+<label>
+Password
+</label>
 
 <input
 id="authPassword"
@@ -1108,11 +1380,19 @@ Password Forgot?
 
 <!-- ACCOUNT -->
 
-<div class="modal" id="accountModal">
+<div
+class="modal"
+id="accountModal"
+>
 
 <div class="modal-box modal-large">
 
-<button class="close" onclick="closeModal('accountModal')">×</button>
+<button
+class="close"
+onclick="closeModal('accountModal')"
+>
+×
+</button>
 
 <h2 class="modal-title">
 👤 My Account
@@ -1127,11 +1407,19 @@ Password Forgot?
 
 <!-- REVIEW -->
 
-<div class="modal" id="reviewModal">
+<div
+class="modal"
+id="reviewModal"
+>
 
 <div class="modal-box">
 
-<button class="close" onclick="closeModal('reviewModal')">×</button>
+<button
+class="close"
+onclick="closeModal('reviewModal')"
+>
+×
+</button>
 
 <h2 class="modal-title">
 ⭐ Write Review
@@ -1144,15 +1432,31 @@ id="reviewProductId"
 
 <div class="form-group">
 
-<label>Rating</label>
+<label>
+Rating
+</label>
 
 <select id="reviewRating">
 
-<option value="5">⭐⭐⭐⭐⭐</option>
-<option value="4">⭐⭐⭐⭐</option>
-<option value="3">⭐⭐⭐</option>
-<option value="2">⭐⭐</option>
-<option value="1">⭐</option>
+<option value="5">
+⭐⭐⭐⭐⭐
+</option>
+
+<option value="4">
+⭐⭐⭐⭐
+</option>
+
+<option value="3">
+⭐⭐⭐
+</option>
+
+<option value="2">
+⭐⭐
+</option>
+
+<option value="1">
+⭐
+</option>
 
 </select>
 
@@ -1160,7 +1464,9 @@ id="reviewProductId"
 
 <div class="form-group">
 
-<label>Your Review</label>
+<label>
+Your Review
+</label>
 
 <textarea
 id="reviewText"
@@ -1184,11 +1490,19 @@ onclick="submitReview()"
 
 <!-- RESELLER -->
 
-<div class="modal" id="resellerModal">
+<div
+class="modal"
+id="resellerModal"
+>
 
 <div class="modal-box">
 
-<button class="close" onclick="closeModal('resellerModal')">×</button>
+<button
+class="close"
+onclick="closeModal('resellerModal')"
+>
+×
+</button>
 
 <h2 class="modal-title">
 🤝 Reseller Center
@@ -1203,11 +1517,19 @@ onclick="submitReview()"
 
 <!-- ADMIN -->
 
-<div class="modal" id="adminModal">
+<div
+class="modal"
+id="adminModal"
+>
 
 <div class="modal-box modal-large">
 
-<button class="close" onclick="closeModal('adminModal')">×</button>
+<button
+class="close"
+onclick="closeModal('adminModal')"
+>
+×
+</button>
 
 <h2 class="modal-title">
 👨‍💼 Admin Panel
@@ -1220,7 +1542,7 @@ onclick="submitReview()"
 </div>
 
 
-<!-- FOOTER + WHATSAPP HELPLINE -->
+<!-- FOOTER -->
 
 <footer>
 
@@ -1234,27 +1556,6 @@ Shop Smart. Shop Easy.
 
 <br>
 
-<div class="whatsapp-helpline">
-
-<div class="whatsapp-helpline-title">
-💬 WhatsApp Helpline
-</div>
-
-<div class="whatsapp-helpline-text">
-কোনো সমস্যা বা সাহায্যের প্রয়োজন হলে আমাদের WhatsApp-এ যোগাযোগ করুন।
-</div>
-
-<button
-class="whatsapp-btn"
-onclick="openWhatsAppHelpline()"
->
-🟢 WhatsApp-এ যোগাযোগ করুন
-</button>
-
-</div>
-
-<br>
-
 <p>
 © 2026 Gadhuli. All Rights Reserved.
 </p>
@@ -1262,20 +1563,44 @@ onclick="openWhatsAppHelpline()"
 </footer>
 
 
+<!-- FLOATING WHATSAPP HELPLINE -->
+
+<button
+class="whatsapp-floating"
+onclick="openWhatsAppHelpline()"
+title="WhatsApp Helpline"
+>
+
+<span class="whatsapp-floating-icon">
+🟢
+</span>
+
+<span>
+WhatsApp Helpline
+</span>
+
+</button>
+
+
 <script>
 
-const db=window.gadhuliSupabase;
+const db=
+window.gadhuliSupabase;
 
 let products=[];
 
 let wishlist=
 JSON.parse(
-localStorage.getItem("gadhuli_wishlist")||"[]"
+localStorage.getItem(
+"gadhuli_wishlist"
+)||"[]"
 );
 
 let cart=
 JSON.parse(
-localStorage.getItem("gadhuli_cart")||"[]"
+localStorage.getItem(
+"gadhuli_cart"
+)||"[]"
 );
 
 let currentOrderProducts=[];
@@ -1510,7 +1835,9 @@ urlParams.get("ref");
 const productFromURL=
 urlParams.get("product");
 
+
 if(referral)
+
 localStorage.setItem(
 "gadhuli_ref",
 referral
@@ -1518,19 +1845,24 @@ referral
 
 
 function cleanText(v){
+
 return String(v??"").trim()
+
 }
 
 
 function normalizeCategory(v){
 
-let x=cleanText(v);
+let x=
+cleanText(v);
 
-let k=x.toLowerCase();
+let k=
+x.toLowerCase();
 
 return categoryAliases[k]||
 Object.keys(categories).find(
-c=>c.toLowerCase()===k
+c=>
+c.toLowerCase()===k
 )||x
 
 }
@@ -1538,18 +1870,24 @@ c=>c.toLowerCase()===k
 
 function normalizeSubcategory(v){
 
-let x=cleanText(v);
+let x=
+cleanText(v);
 
-let k=x.toLowerCase();
+let k=
+x.toLowerCase();
 
-for(const arr of Object.values(categories)){
+for(
+const arr of Object.values(categories)
+){
 
 const found=
 arr.find(
-s=>s.toLowerCase()===k
+s=>
+s.toLowerCase()===k
 );
 
-if(found)return found
+if(found)
+return found
 
 }
 
@@ -1561,16 +1899,24 @@ return x
 function normalizeSizes(v){
 
 if(Array.isArray(v))
-return v.map(cleanText).filter(Boolean);
+
+return v
+.map(cleanText)
+.filter(Boolean);
+
 
 if(typeof v==="string"){
 
 try{
 
-let x=JSON.parse(v);
+let x=
+JSON.parse(v);
 
 if(Array.isArray(x))
-return x.map(cleanText).filter(Boolean)
+
+return x
+.map(cleanText)
+.filter(Boolean)
 
 }catch(e){}
 
@@ -1589,7 +1935,9 @@ return []
 function findProduct(id){
 
 return products.find(
-p=>String(p.id)===String(id)
+p=>
+String(p.id)===
+String(id)
 )
 
 }
@@ -1600,7 +1948,9 @@ function formatMoney(v){
 return Number(v||0)
 .toLocaleString(
 "en-US",
-{maximumFractionDigits:2}
+{
+maximumFractionDigits:2
+}
 )
 
 }
@@ -1675,12 +2025,14 @@ window.location.href
 );
 
 if(id)
+
 u.searchParams.set(
 "product",
 id
 );
 
 else
+
 u.searchParams.delete(
 "product"
 );
@@ -1722,6 +2074,7 @@ document.getElementById(
 
 box.innerHTML="";
 
+
 let all=
 document.createElement(
 "button"
@@ -1760,7 +2113,13 @@ document.createElement(
 
 b.className=
 "cat-btn "+
-(currentCategory===c?"active":"");
+(
+currentCategory===c
+?
+"active"
+:
+""
+);
 
 b.textContent=c;
 
@@ -1799,6 +2158,7 @@ document.getElementById(
 
 box.innerHTML="";
 
+
 if(!currentCategory){
 
 w.classList.remove("show");
@@ -1806,6 +2166,7 @@ w.classList.remove("show");
 return
 
 }
+
 
 w.classList.add("show");
 
@@ -1823,7 +2184,10 @@ b.className=
 (
 (s==="All"&&!currentSubcategory)||
 currentSubcategory===s
-?"active":""
+?
+"active"
+:
+""
 );
 
 b.textContent=s;
@@ -1831,7 +2195,11 @@ b.textContent=s;
 b.onclick=()=>{
 
 currentSubcategory=
-s==="All"?"":s;
+s==="All"
+?
+""
+:
+s;
 
 renderSubcategories();
 
@@ -1873,7 +2241,9 @@ await db
 .select("*")
 .order(
 "id",
-{ascending:false}
+{
+ascending:false
+}
 );
 
 
@@ -1881,7 +2251,9 @@ if(r.error){
 
 grid.innerHTML=
 '<div class="empty">Product load হয়নি ❌<br>'+
-escapeHtml(r.error.message)+
+escapeHtml(
+r.error.message
+)+
 '</div>';
 
 return
@@ -1909,18 +2281,22 @@ p.sizes
 );
 
 if(!sizes.length)
+
 sizes=
 normalizeSizes(
 p.size
 );
+
 
 if(
 !sizes.length&&
 subcategory&&
 sizeData[subcategory]
 )
+
 sizes=
 sizeData[subcategory];
+
 
 return{
 ...p,
@@ -1945,6 +2321,7 @@ findProduct(
 productFromURL
 )
 )
+
 openDetails(
 productFromURL
 )
@@ -1966,29 +2343,36 @@ p.sizes
 );
 
 if(!sizes.length)
+
 sizes=
 normalizeSizes(
 p.size
 );
 
+
 if(sizes.length)
+
 return sizes;
+
 
 return p.subcategory&&
 sizeData[p.subcategory]
 ?
 sizeData[p.subcategory]
-:[]
+:
+[]
 
 }
 
 
 function getProductImages(p){
 
-let v=p.images;
+let v=
+p.images;
 
 
 if(Array.isArray(v))
+
 return v.filter(Boolean);
 
 
@@ -1996,22 +2380,30 @@ if(typeof v==="string"){
 
 try{
 
-let x=JSON.parse(v);
+let x=
+JSON.parse(v);
+
 
 if(Array.isArray(x))
+
 return x.filter(Boolean);
+
 
 if(
 x&&
 Array.isArray(x.urls)
 )
+
 return x.urls.filter(Boolean)
 
 }catch(e){}
 
 
 if(v.trim())
-return[v.trim()]
+
+return[
+v.trim()
+]
 
 }
 
@@ -2021,11 +2413,15 @@ v&&
 typeof v==="object"&&
 Array.isArray(v.urls)
 )
+
 return v.urls.filter(Boolean);
 
 
 if(p.image)
-return[p.image];
+
+return[
+p.image
+];
 
 
 return[
@@ -2038,7 +2434,9 @@ return[
 async function getApprovedReseller(){
 
 if(!currentUser||!db)
+
 return null;
+
 
 let r=
 await db
@@ -2053,6 +2451,7 @@ currentUser.id
 "Approved"
 )
 .maybeSingle();
+
 
 return r.error?
 null:
@@ -2152,19 +2551,60 @@ document.createElement(
 "div"
 );
 
-c.className="product-card";
+c.className=
+"product-card";
 
 
-c.innerHTML=`
+let imgs=
+getProductImages(p);
+
+
+let imageHTML=
+imgs
+.map(
+(img,i)=>
+`
+<img
+src="${escapeAttr(img)}"
+alt="${escapeAttr(
+(p.name||"Gadhuli Product")+
+" image "+
+(i+1)
+)}"
+onerror="this.src='https://via.placeholder.com/500x500?text=Gadhuli'"
+>
+`
+)
+.join("");
+
+
+c.innerHTML=
+
+`
 
 <div class="product-image-wrap">
 
-<img
-class="product-image"
-src="${escapeAttr(getProductImages(p)[0])}"
-alt="${escapeAttr(p.name||"Gadhuli Product")}"
-onerror="this.src='https://via.placeholder.com/500x500?text=Gadhuli'"
->
+<div class="product-image-scroll">
+
+${imageHTML}
+
+</div>
+
+${
+imgs.length>1
+?
+`
+<div class="image-count">
+📷 ${imgs.length} Photos
+</div>
+
+<div class="swipe-hint">
+Swipe →
+</div>
+`
+:
+""
+}
 
 <button
 class="wish-small"
@@ -2175,10 +2615,13 @@ ${isWishlisted(p.id)?"❤️":"🤍"}
 
 </div>
 
+
 <div class="product-info">
 
 <div class="product-name">
-${escapeHtml(p.name||"Product")}
+${escapeHtml(
+p.name||"Product"
+)}
 </div>
 
 <div class="product-price">
@@ -2186,10 +2629,24 @@ ${escapeHtml(p.name||"Product")}
 </div>
 
 <div class="product-meta">
-${escapeHtml(p.category||"")}
-${p.subcategory?
-" • "+escapeHtml(p.subcategory):""}
+
+${escapeHtml(
+p.category||""
+)}
+
+${
+p.subcategory
+?
+" • "+
+escapeHtml(
+p.subcategory
+)
+:
+""
+}
+
 </div>
+
 
 <div class="product-buttons">
 
@@ -2208,6 +2665,7 @@ class="btn btn-pink add-btn"
 </div>
 
 </div>
+
 `;
 
 
@@ -2249,11 +2707,15 @@ await getApprovedReseller();
 
 currentReseller=r;
 
-if(!r)return;
+
+if(!r)
+return;
 
 
 document
-.querySelectorAll(".product-card")
+.querySelectorAll(
+".product-card"
+)
 .forEach(card=>{
 
 let name=
@@ -2269,11 +2731,13 @@ let p=
 products.find(
 x=>
 String(x.name||"")
-.trim()===name
+.trim()===
+name
 );
 
 
-if(!p)return;
+if(!p)
+return;
 
 
 let b=
@@ -2282,8 +2746,11 @@ card.querySelector(
 );
 
 
+if(!b)
+return;
+
+
 if(
-!b||
 b.querySelector(
 ".resell-btn"
 )
@@ -2299,7 +2766,8 @@ document.createElement(
 x.className=
 "btn btn-light resell-btn";
 
-x.textContent="🤝 Resell";
+x.textContent=
+"🤝 Resell";
 
 x.onclick=()=>resellProduct(
 p.id
@@ -2324,11 +2792,15 @@ function openDetails(id){
 let p=
 findProduct(id);
 
-if(!p)return;
+if(!p)
+return;
+
 
 currentDetailProduct=p;
 
-updateProductURL(p.id);
+updateProductURL(
+p.id
+);
 
 
 let imgs=
@@ -2341,17 +2813,23 @@ getProductSizes(p);
 document.getElementById(
 "detailTitle"
 ).textContent=
-p.name||"Product";
+p.name||
+"Product";
 
 
 document.getElementById(
 "detailMainImage"
-).innerHTML=`
+).innerHTML=
+
+`
 
 <img
 class="detail-main-image"
 src="${escapeAttr(imgs[0])}"
-alt="${escapeAttr(p.name||"Gadhuli Product")}"
+alt="${escapeAttr(
+p.name||
+"Gadhuli Product"
+)}"
 onerror="this.src='https://via.placeholder.com/500x500?text=Gadhuli'"
 >
 
@@ -2361,6 +2839,7 @@ onerror="this.src='https://via.placeholder.com/500x500?text=Gadhuli'"
 document.getElementById(
 "detailImages"
 ).innerHTML=
+
 imgs
 .map(
 (u,i)=>
@@ -2380,7 +2859,10 @@ let sizeHTML=
 sizes.length
 ?
 `
-<b>Available Size:</b>
+
+<b>
+Available Size:
+</b>
 
 <div class="size-list">
 
@@ -2399,44 +2881,80 @@ ${escapeHtml(s)}
 .join("")}
 
 </div>
+
 `
-:"";
+:
+"";
 
 
 document.getElementById(
 "detailContent"
-).innerHTML=`
+).innerHTML=
+
+`
 
 <p>
-<b>Price:</b>
+
+<b>
+Price:
+</b>
 
 <span class="product-price">
 ৳${formatMoney(p.price)}
 </span>
+
 </p>
 
-<p>
-<b>Category:</b>
-${escapeHtml(p.category||"—")}
-</p>
 
 <p>
-<b>Subcategory:</b>
-${escapeHtml(p.subcategory||"—")}
+
+<b>
+Category:
+</b>
+
+${escapeHtml(
+p.category||"—"
+)}
+
 </p>
+
+
+<p>
+
+<b>
+Subcategory:
+</b>
+
+${escapeHtml(
+p.subcategory||"—"
+)}
+
+</p>
+
 
 <br>
+
 
 ${
 p.description
 ?
-`<p>${escapeHtml(p.description)}</p>`
-:""
+`
+<p>
+${escapeHtml(
+p.description
+)}
+</p>
+`
+:
+""
 }
+
 
 ${sizeHTML}
 
+
 <br>
+
 
 <button
 class="btn btn-pink full-btn"
@@ -2445,7 +2963,9 @@ id="detailAddBtn"
 🛒 Add to Cart
 </button>
 
+
 <br><br>
+
 
 <button
 class="btn btn-green full-btn"
@@ -2454,13 +2974,26 @@ id="detailBuyBtn"
 📦 Buy Now
 </button>
 
+
 <br><br>
+
 
 <button
 class="btn btn-light full-btn"
 id="detailReviewBtn"
 >
 ⭐ Write Review
+</button>
+
+
+<br><br>
+
+
+<button
+class="btn share-btn full-btn"
+id="detailShareBtn"
+>
+📤 Share Product
 </button>
 
 `;
@@ -2482,10 +3015,14 @@ document
 "#detailContent .size-btn"
 )
 .forEach(x=>
-x.classList.remove("active")
+x.classList.remove(
+"active"
+)
 );
 
-b.classList.add("active");
+b.classList.add(
+"active"
+);
 
 selected=
 b.dataset.size
@@ -2503,9 +3040,11 @@ if(
 sizes.length&&
 !selected
 )
+
 return alert(
 "আগে Size select করুন।"
 );
+
 
 addCartItem(
 p,
@@ -2523,9 +3062,11 @@ if(
 sizes.length&&
 !selected
 )
+
 return alert(
 "আগে Size select করুন।"
 );
+
 
 startSingleProductOrder(
 p.id,
@@ -2538,10 +3079,23 @@ selected
 document.getElementById(
 "detailReviewBtn"
 ).onclick=()=>
-openReview(p.id);
+openReview(
+p.id
+);
 
 
-loadReviews(p.id);
+document.getElementById(
+"detailShareBtn"
+).onclick=()=>
+shareProduct(
+p
+);
+
+
+loadReviews(
+p.id
+);
+
 
 openModal(
 "detailModal"
@@ -2557,9 +3111,13 @@ document.getElementById(
 "detailMainImage"
 );
 
-if(box)
+if(!box)
+return;
 
-box.innerHTML=`
+
+box.innerHTML=
+
+`
 
 <img
 class="detail-main-image"
@@ -2573,15 +3131,111 @@ onerror="this.src='https://via.placeholder.com/500x500?text=Gadhuli'"
 }
 
 
+/* =========================================
+   PRODUCT SHARE
+   ========================================= */
+
+async function shareProduct(p){
+
+if(!p)
+return;
+
+
+let link=
+window.location.origin+
+window.location.pathname+
+"?product="+
+encodeURIComponent(
+p.id
+);
+
+
+const savedRef=
+localStorage.getItem(
+"gadhuli_ref"
+);
+
+
+if(savedRef){
+
+link+=
+"&ref="+
+encodeURIComponent(
+savedRef
+)
+
+}
+
+
+let text=
+"🌸 Gadhuli Product\n\n"+
+"🛍️ "+
+(p.name||"Product")+
+"\n💰 Price: ৳"+
+formatMoney(p.price)+
+"\n\n🛒 Product দেখুন:\n"+
+link;
+
+
+if(navigator.share){
+
+try{
+
+await navigator.share({
+
+title:
+"Gadhuli - "+
+(p.name||"Product"),
+
+text:text,
+
+url:link
+
+});
+
+}catch(e){}
+
+return
+
+}
+
+
+try{
+
+await navigator.clipboard.writeText(
+link
+);
+
+alert(
+"Product link copy হয়েছে ✅\n\n"+
+link
+)
+
+}catch(e){
+
+window.open(
+"https://wa.me/?text="+
+encodeURIComponent(text),
+"_blank"
+)
+
+}
+
+}
+
+
 function quickAdd(id){
 
 let p=
 findProduct(id);
 
-if(!p)return;
+if(!p)
+return;
+
 
 let s=
 getProductSizes(p);
+
 
 if(s.length){
 
@@ -2590,6 +3244,7 @@ openDetails(id);
 return
 
 }
+
 
 addCartItem(
 p,
@@ -2633,7 +3288,8 @@ Number(x.quantity||1)
 )
 }
 
-:null
+:
+null
 )
 .filter(Boolean);
 
@@ -2653,7 +3309,10 @@ JSON.stringify(cart)
 }
 
 
-function addCartItem(p,size){
+function addCartItem(
+p,
+size
+){
 
 let x=
 cart.find(
@@ -2666,6 +3325,7 @@ String(size||"")
 
 
 if(x)
+
 x.quantity++;
 
 else
@@ -2728,43 +3388,62 @@ cart.forEach(
 let p=
 findProduct(i.id);
 
-if(!p)return;
+if(!p)
+return;
 
 
 let q=
-Number(i.quantity||1);
+Number(
+i.quantity||1
+);
 
 let line=
-Number(p.price||0)*q;
+Number(
+p.price||0
+)*q;
 
 sub+=line;
 
 
-html+=`
+html+=
+
+`
 
 <div class="cart-item">
 
 <img
-src="${escapeAttr(getProductImages(p)[0])}"
+src="${escapeAttr(
+getProductImages(p)[0]
+)}"
 alt=""
 >
 
 <div class="cart-item-info">
 
 <b>
-${escapeHtml(p.name)}
+${escapeHtml(
+p.name
+)}
 </b>
 
 <div>
 ৳${formatMoney(p.price)}
 </div>
 
+
 ${
 i.size
 ?
-`<small>Size: ${escapeHtml(i.size)}</small>`
-:""
+`
+<small>
+Size:
+${escapeHtml(i.size)}
+</small>
+`
+:
+""
 }
+
 
 <div class="qty-control">
 
@@ -2774,7 +3453,9 @@ onclick="changeCartQuantity(${n},-1)"
 −
 </button>
 
-<b>${q}</b>
+<b>
+${q}
+</b>
 
 <button
 onclick="changeCartQuantity(${n},1)"
@@ -2792,6 +3473,7 @@ style="margin-left:10px"
 </div>
 
 </div>
+
 
 <b>
 ৳${formatMoney(line)}
@@ -2813,7 +3495,9 @@ html+
 
 <div class="summary-row">
 
-<span>Subtotal</span>
+<span>
+Subtotal
+</span>
 
 <b>
 ৳${formatMoney(sub)}
@@ -2821,9 +3505,12 @@ html+
 
 </div>
 
+
 <div class="summary-row">
 
-<span>Delivery</span>
+<span>
+Delivery
+</span>
 
 <span>
 Checkout-এ calculate হবে
@@ -2833,7 +3520,9 @@ Checkout-এ calculate হবে
 
 </div>
 
+
 <br>
+
 
 <button
 class="btn btn-pink full-btn"
@@ -2847,14 +3536,27 @@ onclick="openOrderFromCart()"
 }
 
 
-function changeCartQuantity(i,a){
+function changeCartQuantity(
+i,
+a
+){
 
-if(!cart[i])return;
+if(!cart[i])
+return;
+
 
 cart[i].quantity+=a;
 
-if(cart[i].quantity<=0)
-cart.splice(i,1);
+
+if(
+cart[i].quantity<=0
+)
+
+cart.splice(
+i,
+1
+);
+
 
 saveCart();
 
@@ -2865,7 +3567,10 @@ renderCart()
 
 function removeCartItem(i){
 
-cart.splice(i,1);
+cart.splice(
+i,
+1
+);
 
 saveCart();
 
@@ -2887,7 +3592,9 @@ JSON.stringify(wishlist)
 function isWishlisted(id){
 
 return wishlist.some(
-x=>String(x)===String(id)
+x=>
+String(x)===
+String(id)
 )
 
 }
@@ -2897,15 +3604,24 @@ function toggleWishlist(id){
 
 let i=
 wishlist.findIndex(
-x=>String(x)===String(id)
+x=>
+String(x)===
+String(id)
 );
 
 
 if(i>=0)
-wishlist.splice(i,1);
+
+wishlist.splice(
+i,
+1
+);
 
 else
-wishlist.push(String(id));
+
+wishlist.push(
+String(id)
+);
 
 
 saveWishlist();
@@ -2939,10 +3655,13 @@ items
 p=>
 
 `
+
 <div class="cart-item">
 
 <img
-src="${escapeAttr(getProductImages(p)[0])}"
+src="${escapeAttr(
+getProductImages(p)[0]
+)}"
 alt=""
 >
 
@@ -2973,6 +3692,7 @@ onclick="toggleWishlist('${escapeAttr(p.id)}');openWishlist()"
 </div>
 
 </div>
+
 `
 )
 .join("")
@@ -2992,6 +3712,7 @@ openModal(
 async function openOrderFromCart(){
 
 if(!cart.length)
+
 return alert(
 "Cart খালি।"
 );
@@ -3000,6 +3721,7 @@ return alert(
 if(
 !await requireVerifiedUser()
 )
+
 return;
 
 
@@ -3009,7 +3731,9 @@ currentOrderProducts=[];
 cart.forEach(i=>{
 
 let p=
-findProduct(i.id);
+findProduct(
+i.id
+);
 
 if(p)
 
@@ -3026,7 +3750,9 @@ i.quantity||1
 });
 
 
-if(!currentOrderProducts.length)
+if(
+!currentOrderProducts.length
+)
 
 return alert(
 "Cart-এর Product পাওয়া যাচ্ছে না।"
@@ -3050,12 +3776,14 @@ size
 let p=
 findProduct(id);
 
-if(!p)return;
+if(!p)
+return;
 
 
 if(
 !await requireVerifiedUser()
 )
+
 return;
 
 
@@ -3067,6 +3795,7 @@ if(
 s.length&&
 !size
 )
+
 return alert(
 "Order করার আগে Size select করুন।"
 );
@@ -3122,26 +3851,42 @@ currentOrderProducts
 <div class="cart-item">
 
 <img
-src="${escapeAttr(getProductImages(i.product)[0])}"
+src="${escapeAttr(
+getProductImages(
+i.product
+)[0]
+)}"
 alt=""
 >
 
 <div class="cart-item-info">
 
 <b>
-${escapeHtml(i.product.name)}
+${escapeHtml(
+i.product.name
+)}
 </b>
 
 <div>
-৳${formatMoney(i.product.price)}
+৳${formatMoney(
+i.product.price
+)}
 </div>
+
 
 ${
 i.size
 ?
-`<small>Size: ${escapeHtml(i.size)}</small>`
-:""
+`
+<small>
+Size:
+${escapeHtml(i.size)}
+</small>
+`
+:
+""
 }
+
 
 <div class="qty-control">
 
@@ -3174,7 +3919,10 @@ onclick="changeOrderQuantity(${n},1)"
 }
 
 
-function changeOrderQuantity(i,a){
+function changeOrderQuantity(
+i,
+a
+){
 
 if(!currentOrderProducts[i])
 return;
@@ -3196,7 +3944,8 @@ updateOrderTotal()
 
 async function fillCustomerInfo(){
 
-if(!currentUser)return;
+if(!currentUser)
+return;
 
 
 let r=
@@ -3236,8 +3985,12 @@ return currentOrderProducts
 .reduce(
 (t,i)=>
 t+
-Number(i.product.price||0)*
-Number(i.quantity||1),
+Number(
+i.product.price||0
+)*
+Number(
+i.quantity||1
+),
 0
 )
 
@@ -3275,7 +4028,9 @@ document.getElementById(
 
 <div class="summary-row">
 
-<span>Subtotal</span>
+<span>
+Subtotal
+</span>
 
 <b>
 ৳${formatMoney(s)}
@@ -3283,9 +4038,12 @@ document.getElementById(
 
 </div>
 
+
 <div class="summary-row">
 
-<span>Delivery</span>
+<span>
+Delivery
+</span>
 
 <b>
 ৳${formatMoney(d)}
@@ -3293,9 +4051,12 @@ document.getElementById(
 
 </div>
 
+
 <div class="summary-row summary-total">
 
-<span>Total</span>
+<span>
+Total
+</span>
 
 <span>
 ৳${formatMoney(s+d)}
@@ -3486,7 +4247,9 @@ let pn="";
 let tx="";
 
 
-if(method!=="Cash on Delivery"){
+if(
+method!=="Cash on Delivery"
+){
 
 pn=
 document.getElementById(
@@ -3554,8 +4317,6 @@ tx;
 let ref=
 await getReferralReseller();
 
-
-/* SAVE ORDER */
 
 let orderR=
 await db
@@ -3626,8 +4387,6 @@ let order=
 orderR.data;
 
 
-/* SAVE ORDER ITEMS */
-
 let items=
 currentOrderProducts.map(
 i=>
@@ -3643,20 +4402,30 @@ product_name:
 i.product.name||"Product",
 
 product_image:
-getProductImages(i.product)[0]||"",
+getProductImages(
+i.product
+)[0]||"",
 
 size:
 i.size||"",
 
 quantity:
-Number(i.quantity||1),
+Number(
+i.quantity||1
+),
 
 unit_price:
-Number(i.product.price||0),
+Number(
+i.product.price||0
+),
 
 line_total:
-Number(i.product.price||0)*
-Number(i.quantity||1)
+Number(
+i.product.price||0
+)*
+Number(
+i.quantity||1
+)
 
 })
 );
@@ -3671,8 +4440,6 @@ await db
 if(ir.error)
 throw ir.error;
 
-
-/* REMOVE ORDERED ITEMS FROM CART */
 
 currentOrderProducts.forEach(
 i=>{
@@ -3694,8 +4461,6 @@ String(i.size||"")
 saveCart();
 
 
-/* SUCCESS */
-
 alert(
 "Order সফলভাবে Save হয়েছে ✅\n\nOrder ID: #"+
 order.id
@@ -3706,12 +4471,6 @@ closeModal(
 "orderModal"
 );
 
-
-/*
-   IMPORTANT:
-   এখানে আর WhatsApp Order পাঠানো হবে না।
-   Order শুধুমাত্র Supabase/Admin Website-এ থাকবে।
-*/
 
 currentOrderProducts=[];
 
@@ -3757,7 +4516,9 @@ window.open(
 "https://wa.me/"+
 phone+
 "?text="+
-encodeURIComponent(message),
+encodeURIComponent(
+message
+),
 "_blank"
 )
 
@@ -3770,7 +4531,8 @@ encodeURIComponent(message),
 
 async function loadAuth(){
 
-if(!db)return;
+if(!db)
+return;
 
 
 let s=
@@ -3941,7 +4703,8 @@ signup
 
 async function submitAuth(){
 
-if(!db)return;
+if(!db)
+return;
 
 
 let email=
@@ -3988,6 +4751,7 @@ let r=
 await db.auth.signUp({
 
 email,
+
 password,
 
 options:{
@@ -4149,7 +4913,9 @@ currentUser.id
 )
 .order(
 "created_at",
-{ascending:false}
+{
+ascending:false
+}
 );
 
 
@@ -4191,6 +4957,7 @@ p.data?.role||"customer"
 
 </div>
 
+
 <button
 class="btn btn-pink"
 onclick="openReseller()"
@@ -4198,21 +4965,27 @@ onclick="openReseller()"
 🤝 Reseller Center
 </button>
 
+
 ${
 p.data?.role==="admin"
 ?
 `
+
 <button
 class="btn btn-danger"
 onclick="openAdmin()"
 >
 👨‍💼 Admin Panel
 </button>
+
 `
-:""
+:
+""
 }
 
+
 <br><br>
+
 
 <h3 style="color:#8f174d">
 📜 My Orders
@@ -4272,6 +5045,7 @@ x.payment_status
 )}
 </p>
 
+
 ${
 x.reseller_code
 ?
@@ -4285,8 +5059,10 @@ x.reseller_code
 </b>
 </p>
 `
-:""
+:
+""
 }
+
 
 <p>
 Total:
@@ -4304,6 +5080,7 @@ Total:
 
 box.innerHTML=
 h+
+
 `
 
 <br>
@@ -4489,7 +5266,9 @@ id
 )
 .order(
 "created_at",
-{ascending:false}
+{
+ascending:false
+}
 );
 
 
@@ -4515,7 +5294,9 @@ r.data?.length
 ⭐ Customer Reviews
 </h3>
 
-`+
+`
+
++
 
 r.data
 .map(
@@ -4527,7 +5308,8 @@ x=>
 
 <b>
 ${escapeHtml(
-x.user_name||"Customer"
+x.user_name||
+"Customer"
 )}
 </b>
 
@@ -4657,12 +5439,15 @@ onclick="createReseller()"
 
 }else{
 
-let x=r.data;
+let x=
+r.data;
 
 currentReseller=x;
 
 
-if(x.status==="Pending")
+if(
+x.status==="Pending"
+)
 
 box.innerHTML=
 
@@ -4699,7 +5484,9 @@ Admin approve করলে Resell সুবিধা চালু হবে।
 `;
 
 
-else if(x.status==="Approved")
+else if(
+x.status==="Approved"
+)
 
 box.innerHTML=
 
@@ -5087,7 +5874,8 @@ document.getElementById(
 );
 
 
-if(!box)return;
+if(!box)
+return;
 
 
 box.innerHTML=
@@ -5100,7 +5888,9 @@ await db
 .select("*")
 .order(
 "created_at",
-{ascending:false}
+{
+ascending:false
+}
 );
 
 
@@ -5224,15 +6014,20 @@ ${
 o.notes
 ?
 `
+
 <p>
-<b>Payment/Notes:</b>
+<b>
+Payment/Notes:
+</b>
 <br>
 ${escapeHtml(
 o.notes
 )}
 </p>
+
 `
-:""
+:
+""
 }
 
 
@@ -5240,14 +6035,19 @@ ${
 o.reseller_code
 ?
 `
+
 <p>
-<b>Reseller:</b>
+<b>
+Reseller:
+</b>
 ${escapeHtml(
 o.reseller_code
 )}
 </p>
+
 `
-:""
+:
+""
 }
 
 
@@ -5280,8 +6080,11 @@ ${
 i.size
 ?
 " — Size: "+
-escapeHtml(i.size)
-:""
+escapeHtml(
+i.size
+)
+:
+""
 }
 
 ×
@@ -5309,7 +6112,9 @@ i.line_total
 <h3 style="color:#8f174d">
 
 Total:
-৳${formatMoney(o.total)}
+৳${formatMoney(
+o.total
+)}
 
 </h3>
 
@@ -5338,7 +6143,13 @@ s=>
 
 <option
 value="${s}"
-${s===o.order_status?"selected":""}
+${
+s===o.order_status
+?
+"selected"
+:
+""
+}
 >
 ${s}
 </option>
@@ -5369,7 +6180,13 @@ s=>
 
 <option
 value="${s}"
-${s===o.payment_status?"selected":""}
+${
+s===o.payment_status
+?
+"selected"
+:
+""
+}
 >
 Payment: ${s}
 </option>
@@ -5417,7 +6234,9 @@ await db
 .select("*")
 .order(
 "created_at",
-{ascending:false}
+{
+ascending:false
+}
 );
 
 
@@ -5495,38 +6314,55 @@ x.status
 
 
 <p>
-<b>Phone:</b>
+<b>
+Phone:
+</b>
 ${escapeHtml(
 p.data?.phone||"—"
 )}
 </p>
 
+
 <p>
-<b>Role:</b>
+<b>
+Role:
+</b>
 ${escapeHtml(
 p.data?.role||"customer"
 )}
 </p>
 
+
 <p>
-<b>Commission:</b>
+<b>
+Commission:
+</b>
 ${x.commission_rate}%
 </p>
 
+
 <p>
-<b>Total Orders:</b>
+<b>
+Total Orders:
+</b>
 ${x.total_orders}
 </p>
 
+
 <p>
-<b>Total Sales:</b>
+<b>
+Total Sales:
+</b>
 ৳${formatMoney(
 x.total_sales
 )}
 </p>
 
+
 <p>
-<b>Total Commission:</b>
+<b>
+Total Commission:
+</b>
 ৳${formatMoney(
 x.total_commission
 )}
@@ -5541,14 +6377,17 @@ ${
 x.status!=="Approved"
 ?
 `
+
 <button
 class="btn btn-pink"
 onclick="approveReseller('${escapeAttr(x.user_id)}',${x.id})"
 >
 ✅ Approve
 </button>
+
 `
-:""
+:
+""
 }
 
 
@@ -5556,14 +6395,17 @@ ${
 x.status!=="Suspended"
 ?
 `
+
 <button
 class="btn btn-danger"
 onclick="suspendReseller('${escapeAttr(x.user_id)}',${x.id})"
 >
 🚫 Suspend
 </button>
+
 `
-:""
+:
+""
 }
 
 </div>
@@ -5734,7 +6576,9 @@ await db
 .select("*")
 .order(
 "created_at",
-{ascending:false}
+{
+ascending:false
+}
 );
 
 
@@ -5765,7 +6609,8 @@ x=>
 
 <b>
 ${escapeHtml(
-x.user_name||"Customer"
+x.user_name||
+"Customer"
 )}
 </b>
 
@@ -5775,7 +6620,9 @@ Product #${x.product_id}
 <div class="stars">
 
 ${"⭐".repeat(
-Number(x.rating||0)
+Number(
+x.rating||0
+)
 )}
 
 </div>
@@ -5805,14 +6652,17 @@ ${
 x.status!=="Approved"
 ?
 `
+
 <button
 class="btn btn-pink"
 onclick="updateReviewStatus(${x.id},'Approved')"
 >
 ✅ Approve
 </button>
+
 `
-:""
+:
+""
 }
 
 
@@ -5820,14 +6670,17 @@ ${
 x.status!=="Rejected"
 ?
 `
+
 <button
 class="btn btn-danger"
 onclick="updateReviewStatus(${x.id},'Rejected')"
 >
 ❌ Reject
 </button>
+
 `
-:""
+:
+""
 }
 
 </div>
