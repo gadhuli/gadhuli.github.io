@@ -1,0 +1,7856 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="google-site-verification" content="lkVxExaUcJinZDbyNwrJL4Jhc3kjkYTwQXLFYYKu_p8">
+
+<title>Gadhuli | Official Website</title>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase.js"></script>
+
+<style>
+*{
+box-sizing:border-box;
+margin:0;
+padding:0
+}
+
+body{
+font-family:Arial,Helvetica,sans-serif;
+background:#fff7fa;
+color:#222
+}
+
+button,input,select,textarea{
+font-family:inherit
+}
+
+button{
+cursor:pointer
+}
+
+header{
+position:sticky;
+top:0;
+z-index:1000;
+background:#fff;
+border-bottom:2px solid #f0b3cc;
+box-shadow:0 2px 12px rgba(143,23,77,.12)
+}
+
+.header-top{
+max-width:1200px;
+margin:auto;
+padding:10px 15px;
+display:flex;
+align-items:center;
+gap:10px
+}
+
+.logo{
+width:130px;
+height:45px;
+object-fit:contain
+}
+
+.search-box{
+flex:1
+}
+
+.search-box input{
+width:100%;
+padding:12px 15px;
+border:2px solid #f0b3cc;
+border-radius:25px;
+outline:none;
+background:#fff7fa;
+font-size:14px
+}
+
+.search-box input:focus{
+border-color:#8f174d
+}
+
+.header-actions{
+display:flex;
+gap:6px;
+align-items:center
+}
+
+.icon-btn{
+border:1px solid #f0b3cc;
+background:#fff;
+color:#8f174d;
+min-width:40px;
+height:40px;
+padding:0 9px;
+border-radius:20px;
+font-size:17px
+}
+
+.icon-btn:hover{
+background:#fff0f6
+}
+
+.hero{
+max-width:1200px;
+margin:15px auto;
+padding:28px 20px;
+border-radius:18px;
+background:linear-gradient(135deg,#8f174d,#d52b72,#bd3475);
+color:white;
+text-align:center;
+box-shadow:0 6px 20px rgba(143,23,77,.2)
+}
+
+.hero h1{
+font-size:32px;
+margin-bottom:8px
+}
+
+.hero p{
+font-size:15px
+}
+
+.section{
+max-width:1200px;
+margin:20px auto;
+padding:0 15px
+}
+
+.section-title{
+color:#8f174d;
+font-size:21px;
+margin-bottom:12px
+}
+
+.category-list,
+.subcategory-list{
+display:flex;
+gap:8px;
+overflow-x:auto;
+padding-bottom:8px
+}
+
+.category-list::-webkit-scrollbar,
+.subcategory-list::-webkit-scrollbar{
+height:4px
+}
+
+.category-list::-webkit-scrollbar-thumb,
+.subcategory-list::-webkit-scrollbar-thumb{
+background:#d52b72;
+border-radius:10px
+}
+
+.cat-btn,
+.subcat-btn{
+white-space:nowrap;
+border:1px solid #f0b3cc;
+background:#fff;
+color:#8f174d;
+padding:9px 14px;
+border-radius:20px
+}
+
+.cat-btn.active,
+.subcat-btn.active,
+.cat-btn:hover,
+.subcat-btn:hover{
+background:#8f174d;
+color:white;
+border-color:#8f174d
+}
+
+.subcategory-wrapper{
+display:none
+}
+
+.subcategory-wrapper.show{
+display:block
+}
+
+.product-grid{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:15px
+}
+
+.product-card{
+background:#fff;
+border:1px solid #f0c4d6;
+border-radius:15px;
+overflow:hidden;
+position:relative;
+box-shadow:0 3px 10px rgba(143,23,77,.08);
+transition:.2s
+}
+
+.product-card:hover{
+transform:translateY(-3px);
+box-shadow:0 7px 18px rgba(143,23,77,.15)
+}
+
+/* =========================================
+   PRODUCT MULTIPLE IMAGE SWIPE
+   2 / 3 / 5 PHOTOS SUPPORT
+   ========================================= */
+
+.product-image-wrap{
+position:relative;
+overflow:hidden;
+background:#fff0f6
+}
+
+.product-image-scroll{
+display:flex;
+width:100%;
+overflow-x:auto;
+scroll-snap-type:x mandatory;
+scroll-behavior:smooth;
+-webkit-overflow-scrolling:touch;
+scrollbar-width:none;
+touch-action:pan-x;
+overscroll-behavior-x:contain;
+cursor:grab
+}
+
+.product-image-scroll:active{
+cursor:grabbing
+}
+
+.product-image-scroll::-webkit-scrollbar{
+display:none
+}
+
+.product-image-scroll img{
+flex:0 0 100%;
+min-width:100%;
+width:100%;
+aspect-ratio:1/1;
+object-fit:cover;
+display:block;
+scroll-snap-align:start;
+background:#fff0f6;
+user-select:none;
+-webkit-user-drag:none;
+pointer-events:none
+}
+
+.image-count{
+position:absolute;
+left:8px;
+bottom:8px;
+background:rgba(0,0,0,.58);
+color:#fff;
+padding:4px 8px;
+border-radius:12px;
+font-size:11px;
+z-index:2;
+pointer-events:none
+}
+
+.swipe-hint{
+position:absolute;
+right:8px;
+bottom:8px;
+background:rgba(143,23,77,.8);
+color:#fff;
+padding:4px 8px;
+border-radius:12px;
+font-size:10px;
+z-index:2;
+pointer-events:none
+}
+
+.wish-small{
+position:absolute;
+right:8px;
+top:8px;
+width:34px;
+height:34px;
+border-radius:50%;
+border:0;
+background:white;
+box-shadow:0 2px 8px #ddd;
+font-size:17px;
+z-index:3
+}
+
+.product-info{
+padding:12px
+}
+
+.product-name{
+font-size:15px;
+min-height:38px;
+font-weight:bold
+}
+
+.product-price{
+color:#8f174d;
+font-size:20px;
+font-weight:bold;
+margin:8px 0
+}
+
+.product-meta{
+color:#777;
+font-size:12px;
+margin-bottom:8px
+}
+
+.product-buttons{
+display:flex;
+gap:6px;
+flex-wrap:wrap
+}
+
+.product-buttons .btn{
+flex:1;
+min-width:80px
+}
+
+.btn{
+border:0;
+padding:10px 12px;
+border-radius:9px;
+font-weight:bold
+}
+
+.btn-pink{
+background:#8f174d;
+color:white
+}
+
+.btn-pink:hover{
+background:#d52b72
+}
+
+.btn-light{
+background:#fff0f6;
+color:#8f174d;
+border:1px solid #f0b3cc
+}
+
+.btn-danger{
+background:#a20f48;
+color:white
+}
+
+.btn-green{
+background:#25D366;
+color:white
+}
+
+.btn-orange{
+background:#e67e22;
+color:white
+}
+
+.btn-blue{
+background:#1677ff;
+color:white
+}
+
+.full-btn{
+width:100%
+}
+
+.btn:disabled{
+opacity:.6;
+cursor:not-allowed
+}
+
+/* =========================================
+   SHARE BUTTONS
+   ========================================= */
+
+.share-btn{
+background:#1677ff;
+color:#fff;
+border:0
+}
+
+.share-btn:hover{
+background:#075ecf;
+transform:translateY(-1px)
+}
+
+.share-card-btn{
+background:#1677ff;
+color:#fff;
+border:0
+}
+
+.share-card-btn:hover{
+background:#075ecf;
+transform:translateY(-1px)
+}
+
+.modal{
+display:none;
+position:fixed;
+inset:0;
+z-index:2000;
+background:rgba(0,0,0,.55);
+padding:15px;
+overflow:auto
+}
+
+.modal.show{
+display:flex;
+align-items:center;
+justify-content:center
+}
+
+.modal-box{
+width:100%;
+max-width:650px;
+max-height:92vh;
+overflow:auto;
+background:white;
+border-radius:18px;
+padding:20px;
+position:relative
+}
+
+.modal-large{
+max-width:950px
+}
+
+.close{
+position:absolute;
+right:12px;
+top:10px;
+width:35px;
+height:35px;
+border:0;
+border-radius:50%;
+background:#fff0f6;
+color:#8f174d;
+font-size:20px
+}
+
+.modal-title{
+color:#8f174d;
+margin-bottom:15px;
+padding-right:40px
+}
+
+.form-group{
+margin-bottom:12px
+}
+
+.form-group label{
+display:block;
+margin-bottom:5px;
+font-weight:bold;
+color:#555
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea{
+width:100%;
+padding:11px;
+border:1px solid #f0b3cc;
+border-radius:9px;
+outline:none
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus{
+border-color:#8f174d
+}
+
+.cart-item{
+display:flex;
+gap:10px;
+padding:10px 0;
+border-bottom:1px solid #f0c4d6
+}
+
+.cart-item img{
+width:75px;
+height:75px;
+border-radius:10px;
+object-fit:cover
+}
+
+.cart-item-info{
+flex:1
+}
+
+.qty-control{
+display:flex;
+align-items:center;
+gap:8px;
+margin-top:7px
+}
+
+.qty-control button{
+width:28px;
+height:28px;
+border:1px solid #f0b3cc;
+background:#fff0f6;
+color:#8f174d;
+border-radius:6px;
+font-weight:bold
+}
+
+.summary{
+margin-top:15px;
+padding:15px;
+background:#fff0f6;
+border-radius:12px
+}
+
+.summary-row{
+display:flex;
+justify-content:space-between;
+margin:7px 0;
+gap:10px
+}
+
+.summary-total{
+font-size:21px;
+font-weight:bold;
+color:#8f174d;
+border-top:1px solid #f0b3cc;
+padding-top:10px
+}
+
+.detail-images{
+display:flex;
+gap:8px;
+overflow-x:auto;
+margin-bottom:15px;
+scroll-behavior:smooth;
+-webkit-overflow-scrolling:touch
+}
+
+.detail-images img{
+width:250px;
+height:250px;
+object-fit:cover;
+border-radius:12px;
+border:1px solid #f0c4d6;
+flex:none;
+cursor:pointer
+}
+
+.detail-images img:hover{
+border-color:#8f174d
+}
+
+.size-list{
+display:flex;
+gap:7px;
+flex-wrap:wrap;
+margin:10px 0
+}
+
+.size-btn{
+padding:8px 13px;
+border:1px solid #f0b3cc;
+background:white;
+color:#8f174d;
+border-radius:8px
+}
+
+.size-btn:hover,
+.size-btn.active{
+background:#8f174d;
+color:white
+}
+
+.account-card{
+background:#fff0f6;
+padding:15px;
+border-radius:12px;
+margin-bottom:15px
+}
+
+.order-history-item,
+.review-card,
+.admin-order,
+.reseller-admin-card{
+border:1px solid #f0c4d6;
+border-radius:12px;
+padding:12px;
+margin-bottom:10px;
+background:#fff
+}
+
+.status{
+display:inline-block;
+padding:5px 9px;
+border-radius:15px;
+background:#fff0f6;
+color:#8f174d;
+font-size:12px;
+font-weight:bold
+}
+
+.stars{
+color:#d52b72;
+letter-spacing:2px
+}
+
+.admin-order-head,
+.reseller-admin-head{
+display:flex;
+justify-content:space-between;
+gap:10px;
+margin-bottom:10px
+}
+
+.admin-items{
+background:#fff7fa;
+padding:10px;
+border-radius:9px;
+margin:8px 0
+}
+
+.admin-actions{
+display:flex;
+gap:7px;
+flex-wrap:wrap
+}
+
+.admin-actions select{
+padding:8px;
+border:1px solid #f0b3cc;
+border-radius:8px
+}
+
+.empty{
+text-align:center;
+padding:40px 15px;
+color:#888
+}
+
+.reseller-code{
+background:#fff;
+border:1px dashed #8f174d;
+color:#8f174d;
+padding:12px;
+border-radius:10px;
+font-size:18px;
+font-weight:bold;
+text-align:center;
+margin:10px 0
+}
+
+.payment-note{
+padding:10px;
+background:#fff7fa;
+border:1px solid #f0c4d6;
+border-radius:9px;
+font-size:13px;
+margin-bottom:12px
+}
+
+.notice{
+padding:12px;
+background:#fff7fa;
+border:1px solid #f0c4d6;
+border-radius:10px;
+margin-bottom:12px
+}
+
+.product-badge{
+position:absolute;
+left:8px;
+top:8px;
+background:#8f174d;
+color:#fff;
+padding:5px 8px;
+border-radius:12px;
+font-size:11px;
+font-weight:bold
+}
+
+.detail-main-image{
+width:100%;
+max-height:420px;
+object-fit:contain;
+background:#fff7fa;
+border-radius:12px;
+margin-bottom:10px
+}
+
+footer{
+margin-top:40px;
+background:#8f174d;
+color:white;
+text-align:center;
+padding:25px 15px
+}
+
+.footer-title{
+font-size:22px;
+font-weight:bold;
+margin-bottom:5px
+}
+
+/* =========================================
+   FLOATING WHATSAPP HELPLINE
+   ========================================= */
+
+.whatsapp-floating{
+position:fixed;
+right:15px;
+bottom:18px;
+z-index:1500;
+display:flex;
+align-items:center;
+gap:8px;
+background:#25D366;
+color:white;
+border:0;
+padding:11px 16px;
+border-radius:30px;
+font-size:14px;
+font-weight:bold;
+box-shadow:0 4px 15px rgba(0,0,0,.25);
+transition:.2s
+}
+
+.whatsapp-floating:hover{
+background:#20bd5a;
+transform:translateY(-2px)
+}
+
+.whatsapp-floating-icon{
+width:23px;
+height:23px;
+display:flex;
+align-items:center;
+justify-content:center;
+flex:none
+}
+
+.whatsapp-floating-icon svg{
+width:23px;
+height:23px;
+display:block
+}
+
+@media(max-width:900px){
+
+.product-grid{
+grid-template-columns:repeat(3,1fr)
+}
+
+}
+
+@media(max-width:650px){
+
+.header-top{
+flex-wrap:wrap
+}
+
+.logo{
+width:100px
+}
+
+.search-box{
+order:3;
+flex-basis:100%
+}
+
+.header-actions{
+margin-left:auto
+}
+
+.icon-btn{
+min-width:38px;
+height:38px;
+font-size:16px;
+padding:0 7px
+}
+
+.product-grid{
+grid-template-columns:repeat(2,1fr);
+gap:10px
+}
+
+.product-info{
+padding:9px
+}
+
+.product-name{
+font-size:13px
+}
+
+.product-price{
+font-size:17px
+}
+
+.product-buttons{
+flex-direction:column
+}
+
+.hero h1{
+font-size:25px
+}
+
+.detail-images img{
+width:190px;
+height:190px
+}
+
+.whatsapp-floating{
+right:12px;
+bottom:15px;
+padding:10px 13px;
+font-size:13px
+}
+
+.whatsapp-floating-icon{
+width:21px;
+height:21px
+}
+
+.whatsapp-floating-icon svg{
+width:21px;
+height:21px
+}
+
+}
+
+@media(max-width:430px){
+
+.header-actions{
+width:100%;
+justify-content:space-between
+}
+
+.header-actions .icon-btn{
+flex:1
+}
+
+.logo{
+width:90px
+}
+
+.whatsapp-floating{
+right:10px;
+bottom:12px
+}
+
+}
+
+/* =========================================================
+   GADHULI PREMIUM MOBILE APP NAVIGATION
+   ========================================================= */
+.bottom-nav{display:none}
+.profile-welcome{
+  background:linear-gradient(135deg,#8f174d,#d52b72,#bd3475);
+  color:#fff;border-radius:18px;padding:18px;margin-bottom:15px;
+  box-shadow:0 8px 22px rgba(143,23,77,.18)
+}
+.profile-welcome-top{display:flex;align-items:center;gap:12px}
+.profile-avatar{
+  width:52px;height:52px;border-radius:50%;background:#fff;color:#8f174d;
+  display:flex;align-items:center;justify-content:center;font-size:26px;
+  flex:none;box-shadow:0 3px 12px rgba(0,0,0,.15)
+}
+.profile-welcome h3{font-size:19px;margin-bottom:4px}
+.profile-welcome p{font-size:13px;opacity:.92}
+.profile-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.profile-action{
+  border:1px solid #f0c4d6;background:#fff;border-radius:14px;padding:15px 10px;
+  color:#8f174d;text-align:center;font-weight:bold;box-shadow:0 3px 10px rgba(143,23,77,.06)
+}
+.profile-action span{display:block;font-size:25px;margin-bottom:6px}
+.profile-action small{display:block;color:#777;font-weight:normal;margin-top:3px}
+.profile-logout{background:#fff0f6;color:#a20f48;border-color:#e9a9c4}
+.mobile-order-card{border:1px solid #f0c4d6;border-radius:14px;padding:13px;margin-bottom:10px;background:#fff}
+.mobile-order-head{display:flex;justify-content:space-between;gap:10px;align-items:flex-start;margin-bottom:10px}
+.mobile-order-total{color:#8f174d;font-weight:bold;font-size:17px}
+.tracking{margin-top:12px}
+.tracking-step{display:flex;position:relative;gap:10px;min-height:42px;color:#999}
+.tracking-step.done{color:#8f174d;font-weight:bold}
+.tracking-dot{
+  width:17px;height:17px;border-radius:50%;border:2px solid #d8b0c2;background:#fff;
+  flex:none;margin-top:1px;z-index:2
+}
+.tracking-step.done .tracking-dot{background:#8f174d;border-color:#8f174d}
+.tracking-line{
+  position:absolute;left:7px;top:17px;width:2px;height:26px;background:#ead7df
+}
+.tracking-line.done{background:#8f174d}
+.tracking-cancelled{
+  padding:10px;border-radius:10px;background:#fff0f6;color:#a20f48;font-weight:bold
+}
+.bottom-icon-wrap{position:relative;display:inline-flex}
+.bottom-badge{
+  position:absolute;top:-8px;right:-12px;min-width:18px;height:18px;padding:0 5px;
+  border-radius:10px;background:#e53935;color:#fff;font-size:10px;font-weight:bold;
+  display:none;align-items:center;justify-content:center;border:2px solid #fff
+}
+.bottom-badge.show{display:flex}
+@media(max-width:650px){
+  body{padding-bottom:76px}
+  .whatsapp-floating{display:none}
+  .bottom-nav{
+    position:fixed;left:0;right:0;bottom:0;height:70px;z-index:1800;
+    display:flex;align-items:stretch;justify-content:space-around;
+    background:rgba(255,255,255,.97);backdrop-filter:blur(12px);
+    border-top:1px solid #f0c4d6;box-shadow:0 -5px 20px rgba(143,23,77,.12)
+  }
+  .bottom-nav-item{
+    flex:1;border:0;background:transparent;color:#777;font-size:10px;
+    font-weight:bold;display:flex;flex-direction:column;align-items:center;
+    justify-content:center;gap:3px;position:relative;min-width:0
+  }
+  .bottom-nav-item .bottom-icon{font-size:22px;line-height:23px}
+  .bottom-nav-item.active{color:#8f174d}
+  .bottom-nav-item.active:before{
+    content:"";position:absolute;top:0;width:34px;height:3px;
+    border-radius:0 0 5px 5px;background:#8f174d
+  }
+  .header-actions{display:none}
+  .logo{width:95px}
+  .search-box{order:2}
+  .hero{margin-top:10px}
+  .profile-grid{grid-template-columns:repeat(2,1fr)}
+  .modal{padding:8px}
+  .modal-box{border-radius:18px;padding:16px}
+}
+@media(min-width:651px){
+  .profile-grid{grid-template-columns:repeat(3,1fr)}
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+
+<div class="header-top">
+
+<img
+src="logo.png"
+class="logo"
+alt="Gadhuli"
+>
+
+<div class="search-box">
+
+<input
+id="searchInput"
+type="search"
+placeholder="🔎 Product, Category বা Size খুঁজুন..."
+oninput="handleSearch()"
+>
+
+</div>
+
+<div class="header-actions">
+
+<button
+class="icon-btn"
+onclick="openAccount()"
+title="Account"
+>
+👤
+</button>
+
+<button
+class="icon-btn"
+onclick="openAuth()"
+title="Login"
+>
+🔐
+</button>
+
+<button
+class="icon-btn"
+onclick="openCreateAccount()"
+title="Create Account"
+>
+📝
+</button>
+
+<button
+class="icon-btn"
+onclick="openReseller()"
+title="Reseller"
+>
+🤝
+</button>
+
+<button
+class="icon-btn"
+onclick="openWishlist()"
+title="Wishlist"
+>
+❤️
+</button>
+
+<button
+class="icon-btn"
+onclick="openCart()"
+title="Cart"
+>
+🛒
+</button>
+
+</div>
+
+</div>
+
+</header>
+
+
+<section class="hero">
+
+<h1>Gadhuli</h1>
+
+<p>
+Shop Smart. Shop Easy.
+</p>
+
+</section>
+
+
+<section class="section">
+
+<h2 class="section-title">
+🛍️ Categories
+</h2>
+
+<div
+class="category-list"
+id="categoryList"
+></div>
+
+</section>
+
+
+<section
+class="section subcategory-wrapper"
+id="subcategoryWrapper"
+>
+
+<h2 class="section-title">
+📂 Subcategory
+</h2>
+
+<div
+class="subcategory-list"
+id="subcategoryList"
+></div>
+
+</section>
+
+
+<section class="section">
+
+<h2
+class="section-title"
+id="productTitle"
+>
+🛍️ All Products
+</h2>
+
+<div
+class="product-grid"
+id="productGrid"
+>
+
+<div class="empty">
+Loading Products...
+</div>
+
+</div>
+
+</section>
+
+
+<!-- PRODUCT DETAILS -->
+
+<div
+class="modal"
+id="detailModal"
+>
+
+<div class="modal-box">
+
+<button
+class="close"
+onclick="closeModal('detailModal')"
+>
+×
+</button>
+
+<h2
+class="modal-title"
+id="detailTitle"
+>
+Product
+</h2>
+
+<div id="detailMainImage"></div>
+
+<div
+class="detail-images"
+id="detailImages"
+></div>
+
+<div id="detailContent"></div>
+
+<div id="productReviews"></div>
+
+</div>
+
+</div>
+
+
+<!-- CART -->
+
+<div
+class="modal"
+id="cartModal"
+>
+
+<div class="modal-box">
+
+<button
+class="close"
+onclick="closeModal('cartModal')"
+>
+×
+</button>
+
+<h2 class="modal-title">
+🛒 My Cart
+</h2>
+
+<div id="cartContent"></div>
+
+</div>
+
+</div>
+
+
+<!-- WISHLIST -->
+
+<div
+class="modal"
+id="wishlistModal"
+>
+
+<div class="modal-box">
+
+<button
+class="close"
+onclick="closeModal('wishlistModal')"
+>
+×
+</button>
+
+<h2 class="modal-title">
+❤️ Wishlist
+</h2>
+
+<div id="wishlistContent"></div>
+
+</div>
+
+</div>
+
+
+<!-- ORDER -->
+
+<div
+class="modal"
+id="orderModal"
+>
+
+<div class="modal-box">
+
+<button
+class="close"
+onclick="closeModal('orderModal')"
+>
+×
+</button>
+
+<h2 class="modal-title">
+📦 Checkout
+</h2>
+
+<div id="orderProducts"></div>
+
+<div class="form-group">
+
+<label>
+নাম *
+</label>
+
+<input
+id="orderName"
+type="text"
+placeholder="আপনার নাম"
+>
+
+</div>
+
+<div class="form-group">
+
+<label>
+মোবাইল নম্বর *
+</label>
+
+<input
+id="orderPhone"
+type="tel"
+placeholder="01XXXXXXXXX"
+>
+
+</div>
+
+<div class="form-group">
+
+<label>
+District *
+</label>
+
+<input
+id="orderDistrict"
+type="text"
+placeholder="যেমন: Dhaka"
+>
+
+</div>
+
+<div class="form-group">
+
+<label>
+Thana / Upazila *
+</label>
+
+<input
+id="orderThana"
+type="text"
+placeholder="যেমন: Tongi"
+>
+
+</div>
+
+<div class="form-group">
+
+<label>
+Receive Place / Address *
+</label>
+
+<textarea
+id="orderReceivePlace"
+rows="3"
+placeholder="সম্পূর্ণ ঠিকানা"
+></textarea>
+
+</div>
+
+<div class="form-group">
+
+<label>
+Delivery Area
+</label>
+
+<select
+id="deliveryArea"
+onchange="updateOrderTotal()"
+>
+
+<option value="Inside Dhaka">
+Inside Dhaka — ৳60
+</option>
+
+<option value="Outside Dhaka">
+Outside Dhaka — ৳120
+</option>
+
+</select>
+
+</div>
+
+<div class="form-group">
+
+<label>
+Payment Method
+</label>
+
+<select
+id="paymentMethod"
+onchange="togglePaymentFields()"
+>
+
+<option value="Cash on Delivery">
+💵 Cash on Delivery
+</option>
+
+<option value="bKash">
+🟣 bKash
+</option>
+
+<option value="Nagad">
+🟠 Nagad
+</option>
+
+<option value="Rocket">
+🟣 Rocket
+</option>
+
+<option value="Visa">
+💳 Visa Card
+</option>
+
+<option value="Mastercard">
+💳 Mastercard
+</option>
+
+</select>
+
+</div>
+
+<div
+id="manualPaymentFields"
+style="display:none"
+>
+
+<div
+class="payment-note"
+id="paymentInstruction"
+>
+Payment method select করলে প্রয়োজনীয় তথ্য এখানে দেখাবে।
+</div>
+
+<div class="form-group">
+
+<label>
+Payment Number / Card Last 4 Digits
+</label>
+
+<input
+id="paymentNumber"
+type="text"
+placeholder="Payment number বা card-এর last 4 digits"
+>
+
+</div>
+
+<div class="form-group">
+
+<label>
+Transaction ID / Payment Reference
+</label>
+
+<input
+id="transactionId"
+type="text"
+placeholder="Transaction ID / payment reference"
+>
+
+</div>
+
+</div>
+
+<div class="summary">
+
+<div id="orderSummary"></div>
+
+</div>
+
+<br>
+
+<button
+id="placeOrderBtn"
+class="btn btn-pink full-btn"
+onclick="placeOrder()"
+>
+📦 Order Confirm করুন
+</button>
+
+</div>
+
+</div>
+
+
+<!-- AUTH -->
+
+<div
+class="modal"
+id="authModal"
+>
+
+<div class="modal-box">
+
+<button
+class="close"
+onclick="closeModal('authModal')"
+>
+×
+</button>
+
+<h2
+class="modal-title"
+id="authTitle"
+>
+🔐 Login
+</h2>
+
+<div
+id="signupFields"
+style="display:none"
+>
+
+<div class="form-group">
+
+<label>
+Full Name
+</label>
+
+<input
+id="signupName"
+type="text"
+placeholder="আপনার নাম"
+>
+
+</div>
+
+<div class="form-group">
+
+<label>
+Phone
+</label>
+
+<input
+id="signupPhone"
+type="tel"
+placeholder="01XXXXXXXXX"
+>
+
+</div>
+
+</div>
+
+<div class="form-group">
+
+<label>
+Email
+</label>
+
+<input
+id="authEmail"
+type="email"
+placeholder="Email"
+>
+
+</div>
+
+<div class="form-group">
+
+<label>
+Password
+</label>
+
+<input
+id="authPassword"
+type="password"
+placeholder="Password"
+>
+
+</div>
+
+<button
+id="authSubmit"
+class="btn btn-pink full-btn"
+onclick="submitAuth()"
+>
+Login
+</button>
+
+<br><br>
+
+<button
+class="btn btn-light full-btn"
+onclick="toggleAuthMode()"
+id="authToggle"
+>
+New Account তৈরি করুন
+</button>
+
+<br>
+
+<button
+class="btn btn-light full-btn"
+onclick="resetPassword()"
+>
+Password Forgot?
+</button>
+
+</div>
+
+</div>
+
+
+<!-- ACCOUNT -->
+
+<div
+class="modal"
+id="accountModal"
+>
+
+<div class="modal-box modal-large">
+
+<button
+class="close"
+onclick="closeModal('accountModal')"
+>
+×
+</button>
+
+<h2 class="modal-title">
+👤 My Account
+</h2>
+
+<div id="accountContent"></div>
+
+</div>
+
+</div>
+
+
+<!-- REVIEW -->
+
+<div
+class="modal"
+id="reviewModal"
+>
+
+<div class="modal-box">
+
+<button
+class="close"
+onclick="closeModal('reviewModal')"
+>
+×
+</button>
+
+<h2 class="modal-title">
+⭐ Write Review
+</h2>
+
+<input
+type="hidden"
+id="reviewProductId"
+>
+
+<div class="form-group">
+
+<label>
+Rating
+</label>
+
+<select id="reviewRating">
+
+<option value="5">
+⭐⭐⭐⭐⭐
+</option>
+
+<option value="4">
+⭐⭐⭐⭐
+</option>
+
+<option value="3">
+⭐⭐⭐
+</option>
+
+<option value="2">
+⭐⭐
+</option>
+
+<option value="1">
+⭐
+</option>
+
+</select>
+
+</div>
+
+<div class="form-group">
+
+<label>
+Your Review
+</label>
+
+<textarea
+id="reviewText"
+rows="5"
+placeholder="Product সম্পর্কে আপনার মতামত লিখুন..."
+></textarea>
+
+</div>
+
+<button
+class="btn btn-pink full-btn"
+onclick="submitReview()"
+>
+⭐ Review Submit
+</button>
+
+</div>
+
+</div>
+
+
+<!-- RESELLER -->
+
+<div
+class="modal"
+id="resellerModal"
+>
+
+<div class="modal-box">
+
+<button
+class="close"
+onclick="closeModal('resellerModal')"
+>
+×
+</button>
+
+<h2 class="modal-title">
+🤝 Reseller Center
+</h2>
+
+<div id="resellerContent"></div>
+
+</div>
+
+</div>
+
+
+<!-- ADMIN -->
+
+<div
+class="modal"
+id="adminModal"
+>
+
+<div class="modal-box modal-large">
+
+<button
+class="close"
+onclick="closeModal('adminModal')"
+>
+×
+</button>
+
+<h2 class="modal-title">
+👨‍💼 Admin Panel
+</h2>
+
+<div id="adminContent"></div>
+
+</div>
+
+</div>
+
+
+
+<!-- PREMIUM MOBILE ORDERS -->
+<div class="modal" id="ordersMobileModal">
+  <div class="modal-box modal-large">
+    <button class="close" onclick="closeModal('ordersMobileModal')">×</button>
+    <h2 class="modal-title">📦 My Orders</h2>
+    <div id="ordersMobileContent">
+      <div class="empty">Orders Loading...</div>
+    </div>
+  </div>
+</div>
+
+<!-- PREMIUM MOBILE PROFILE -->
+<div class="modal" id="profileMobileModal">
+  <div class="modal-box modal-large">
+    <button class="close" onclick="closeModal('profileMobileModal')">×</button>
+    <h2 class="modal-title">👤 My Profile</h2>
+    <div id="profileMobileContent"></div>
+  </div>
+</div>
+
+<!-- CHANGE PASSWORD -->
+<div class="modal" id="changePasswordModal">
+  <div class="modal-box">
+    <button class="close" onclick="closeModal('changePasswordModal')">×</button>
+    <h2 class="modal-title">🔐 Change Password</h2>
+    <div id="changePasswordContent">
+      <div class="form-group">
+        <label>New Password</label>
+        <input id="newPassword1" type="password" placeholder="কমপক্ষে ৬ অক্ষর">
+      </div>
+      <div class="form-group">
+        <label>Confirm Password</label>
+        <input id="newPassword2" type="password" placeholder="আবার Password দিন">
+      </div>
+      <button class="btn btn-pink full-btn" onclick="changeGadhuliPassword()">🔐 Password Update করুন</button>
+    </div>
+  </div>
+</div>
+
+<!-- SAVED ADDRESS -->
+<div class="modal" id="savedAddressModal">
+  <div class="modal-box">
+    <button class="close" onclick="closeModal('savedAddressModal')">×</button>
+    <h2 class="modal-title">📍 Saved Address</h2>
+    <div class="form-group">
+      <label>District</label>
+      <input id="savedDistrict" placeholder="যেমন: Dhaka">
+    </div>
+    <div class="form-group">
+      <label>Thana / Upazila</label>
+      <input id="savedThana" placeholder="যেমন: Tongi">
+    </div>
+    <div class="form-group">
+      <label>Receive Place / Address</label>
+      <textarea id="savedReceivePlace" rows="3" placeholder="সম্পূর্ণ ঠিকানা"></textarea>
+    </div>
+    <button class="btn btn-pink full-btn" onclick="saveGadhuliAddress()">💾 Address Save করুন</button>
+  </div>
+</div>
+
+<!-- PREMIUM MOBILE BOTTOM NAV -->
+<nav class="bottom-nav" id="gadhuliBottomNav" aria-label="Mobile Navigation">
+  <button class="bottom-nav-item active" id="mobileNavHome" onclick="mobileNavHome()">
+    <span class="bottom-icon">🏠</span>
+    <span>Home</span>
+  </button>
+  <button class="bottom-nav-item" id="mobileNavCart" onclick="mobileNavCart()">
+    <span class="bottom-icon-wrap">
+      <span class="bottom-icon">🛒</span>
+      <span class="bottom-badge" id="mobileCartBadge">0</span>
+    </span>
+    <span>Cart</span>
+  </button>
+  <button class="bottom-nav-item" id="mobileNavHelp" onclick="mobileNavHelp()">
+    <span class="bottom-icon">💬</span>
+    <span>Help</span>
+  </button>
+  <button class="bottom-nav-item" id="mobileNavOrders" onclick="mobileNavOrders()">
+    <span class="bottom-icon-wrap">
+      <span class="bottom-icon">📦</span>
+      <span class="bottom-badge" id="mobileOrderBadge">0</span>
+    </span>
+    <span>Orders</span>
+  </button>
+  <button class="bottom-nav-item" id="mobileNavLast" onclick="mobileNavLast()">
+    <span class="bottom-icon" id="mobileLastIcon">👤</span>
+    <span id="mobileLastLabel">Profile</span>
+  </button>
+</nav>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+<div class="footer-title">
+Gadhuli
+</div>
+
+<p>
+Shop Smart. Shop Easy.
+</p>
+
+<br>
+
+<p>
+© 2026 Gadhuli. All Rights Reserved.
+</p>
+
+</footer>
+
+
+<!-- =========================================
+     FLOATING WHATSAPP HELPLINE
+     GREEN DOT REMOVED
+     WHATSAPP LOGO ADDED
+     ========================================= -->
+
+<button
+class="whatsapp-floating"
+onclick="openWhatsAppHelpline()"
+title="WhatsApp Helpline"
+aria-label="WhatsApp Helpline"
+>
+
+<span
+class="whatsapp-floating-icon"
+aria-hidden="true"
+>
+
+<svg
+viewBox="0 0 32 32"
+xmlns="http://www.w3.org/2000/svg"
+>
+
+<circle
+cx="16"
+cy="16"
+r="15"
+fill="#fff"
+/>
+
+<path
+d="M10.2 8.8c.4-.45 1.05-.55 1.58-.25l2.05 1.17c.55.31.8.98.58 1.57l-.55 1.5c-.12.33-.06.57.15.85.55.74 1.34 1.58 2.28 2.28.78.58 1.62 1.03 2.55 1.36.31.11.53.07.74-.16l1.04-1.15c.39-.43 1.03-.54 1.58-.24l1.9 1.05c.56.31.81.98.58 1.59-.27.73-.84 1.76-1.7 2.1-1.08.43-2.46.19-3.99-.45-1.68-.7-3.69-2-5.46-3.61-1.52-1.38-2.78-2.91-3.42-4.17-.62-1.22-.86-2.38-.43-3.03l1.52-2.41Z"
+fill="#25D366"
+/>
+
+</svg>
+
+</span>
+
+<span>
+WhatsApp Helpline
+</span>
+
+</button>
+
+
+<script>
+
+const db=
+window.gadhuliSupabase;
+
+let products=[];
+
+let wishlist=
+JSON.parse(
+localStorage.getItem(
+"gadhuli_wishlist"
+)||"[]"
+);
+
+let cart=
+JSON.parse(
+localStorage.getItem(
+"gadhuli_cart"
+)||"[]"
+);
+
+let currentOrderProducts=[];
+
+let currentDetailProduct=null;
+
+let currentCategory="";
+
+let currentSubcategory="";
+
+let currentUser=null;
+
+let authMode="login";
+
+let currentReseller=null;
+
+
+const categories={
+
+"Men's Fashion":[
+"All",
+"T-Shirt",
+"Polo T-Shirt",
+"Shirt",
+"Panjabi",
+"Pants",
+"Jeans",
+"Shorts",
+"Hoodie & Sweatshirt",
+"Jacket"
+],
+
+"Women's Fashion":[
+"All",
+"Saree",
+"Three Piece",
+"Kurti",
+"Tops",
+"T-Shirt",
+"Gown",
+"Hijab",
+"Abaya",
+"Women's Pants"
+],
+
+"Kids & Baby":[
+"All",
+"Boys Clothing",
+"Girls Clothing",
+"Baby Clothing",
+"Baby Accessories",
+"Toys"
+],
+
+"Shoes":[
+"All",
+"Men's Shoes",
+"Women's Shoes",
+"Kids Shoes",
+"Sneakers",
+"Sandals",
+"Slippers"
+],
+
+"Bags & Accessories":[
+"All",
+"Backpacks",
+"Handbags",
+"Wallets",
+"Belts",
+"Caps",
+"Sunglasses",
+"Fashion Accessories"
+],
+
+"Watches":[
+"All",
+"Men's Watches",
+"Women's Watches",
+"Smart Watches",
+"Kids Watches"
+],
+
+"Electronics":[
+"All",
+"Mobile Accessories",
+"Earphones & Headphones",
+"Speakers",
+"Chargers",
+"Power Banks",
+"Smart Gadgets"
+],
+
+"Beauty & Personal Care":[
+"All",
+"Skincare",
+"Hair Care",
+"Makeup",
+"Perfume",
+"Personal Care"
+],
+
+"Home & Living":[
+"All",
+"Home Decor",
+"Bedding",
+"Storage",
+"Lighting",
+"Kitchen & Dining"
+]
+
+};
+
+
+const sizeData={
+
+"T-Shirt":[
+"S","M","L","XL","2XL","4XL"
+],
+
+"Polo T-Shirt":[
+"S","M","L","XL","2XL","4XL"
+],
+
+"Shirt":[
+"S","M","L","XL","2XL","4XL"
+],
+
+"Hoodie & Sweatshirt":[
+"S","M","L","XL","2XL","4XL"
+],
+
+"Jacket":[
+"S","M","L","XL","2XL","4XL"
+],
+
+"Panjabi":[
+"28","30","32","34","36","38","40","42","44","46","48"
+],
+
+"Pants":[
+"28","30","32","34","36","38","40"
+],
+
+"Jeans":[
+"28","30","32","34","36","38","40"
+],
+
+"Shorts":[
+"28","30","32","34","36","38","40"
+],
+
+"Saree":[
+"Free Size"
+],
+
+"Hijab":[
+"Free Size"
+],
+
+"Three Piece":[
+"S","M","L","XL","2XL"
+],
+
+"Kurti":[
+"S","M","L","XL","2XL"
+],
+
+"Tops":[
+"S","M","L","XL","2XL"
+],
+
+"Gown":[
+"S","M","L","XL","2XL"
+],
+
+"Abaya":[
+"S","M","L","XL","2XL"
+],
+
+"Women's Pants":[
+"28","30","32","34","36","38"
+]
+
+};
+
+
+const categoryAliases={
+
+"men":"Men's Fashion",
+"mens":"Men's Fashion",
+"men's":"Men's Fashion",
+"mens fashion":"Men's Fashion",
+"men's fashion":"Men's Fashion",
+
+"women":"Women's Fashion",
+"womens":"Women's Fashion",
+"women's":"Women's Fashion",
+"womens fashion":"Women's Fashion",
+"women's fashion":"Women's Fashion",
+
+"kids":"Kids & Baby",
+"kids & baby":"Kids & Baby",
+"baby":"Kids & Baby",
+
+"shoes":"Shoes",
+
+"bags":"Bags & Accessories",
+"accessories":"Bags & Accessories",
+
+"watches":"Watches",
+
+"electronics":"Electronics",
+
+"beauty":"Beauty & Personal Care",
+"beauty & personal care":"Beauty & Personal Care",
+
+"home":"Home & Living",
+"home & living":"Home & Living"
+
+};
+
+
+const urlParams=
+new URLSearchParams(
+window.location.search
+);
+
+const referral=
+urlParams.get("ref");
+
+const productFromURL=
+urlParams.get("product");
+
+
+if(referral)
+
+localStorage.setItem(
+"gadhuli_ref",
+referral
+);
+
+
+function cleanText(v){
+
+return String(v??"").trim()
+
+}
+
+
+function normalizeCategory(v){
+
+let x=
+cleanText(v);
+
+let k=
+x.toLowerCase();
+
+return categoryAliases[k]||
+Object.keys(categories).find(
+c=>
+c.toLowerCase()===k
+)||x
+
+}
+
+
+function normalizeSubcategory(v){
+
+let x=
+cleanText(v);
+
+let k=
+x.toLowerCase();
+
+for(
+const arr of Object.values(categories)
+){
+
+const found=
+arr.find(
+s=>
+s.toLowerCase()===k
+);
+
+if(found)
+return found
+
+}
+
+return x
+
+}
+
+
+function normalizeSizes(v){
+
+if(Array.isArray(v))
+
+return v
+.map(cleanText)
+.filter(Boolean);
+
+
+if(typeof v==="string"){
+
+try{
+
+let x=
+JSON.parse(v);
+
+if(Array.isArray(x))
+
+return x
+.map(cleanText)
+.filter(Boolean)
+
+}catch(e){}
+
+return v
+.split(",")
+.map(x=>x.trim())
+.filter(Boolean)
+
+}
+
+return []
+
+}
+
+
+function findProduct(id){
+
+return products.find(
+p=>
+String(p.id)===
+String(id)
+)
+
+}
+
+
+function formatMoney(v){
+
+return Number(v||0)
+.toLocaleString(
+"en-US",
+{
+maximumFractionDigits:2
+}
+)
+
+}
+
+
+function formatDate(d){
+
+try{
+
+return new Date(d)
+.toLocaleString(
+"en-BD",
+{
+dateStyle:"medium",
+timeStyle:"short"
+}
+)
+
+}catch(e){
+
+return String(d||"—")
+
+}
+
+}
+
+
+function escapeHtml(v){
+
+return String(v??"")
+.replaceAll("&","&amp;")
+.replaceAll("<","&lt;")
+.replaceAll(">","&gt;")
+.replaceAll('"',"&quot;")
+.replaceAll("'","&#039;")
+
+}
+
+
+function escapeAttr(v){
+
+return escapeHtml(v)
+
+}
+
+
+function openModal(id){
+
+document
+.getElementById(id)
+?.classList.add("show")
+
+}
+
+
+function closeModal(id){
+
+document
+.getElementById(id)
+?.classList.remove("show")
+
+}
+
+
+function updateProductURL(id){
+
+try{
+
+const u=
+new URL(
+window.location.href
+);
+
+if(id)
+
+u.searchParams.set(
+"product",
+id
+);
+
+else
+
+u.searchParams.delete(
+"product"
+);
+
+history.replaceState(
+null,
+"",
+u.toString()
+)
+
+}catch(e){}
+
+}
+
+
+document.addEventListener(
+"DOMContentLoaded",
+async()=>{
+
+normalizeCart();
+
+renderCategories();
+
+renderSubcategories();
+
+await loadAuth();
+
+await loadProducts();
+
+});
+
+
+function renderCategories(){
+
+const box=
+document.getElementById(
+"categoryList"
+);
+
+box.innerHTML="";
+
+
+let all=
+document.createElement(
+"button"
+);
+
+all.className=
+"cat-btn "+
+(!currentCategory?"active":"");
+
+all.textContent="All";
+
+all.onclick=()=>{
+
+currentCategory="";
+
+currentSubcategory="";
+
+renderCategories();
+
+renderSubcategories();
+
+renderProducts()
+
+};
+
+box.appendChild(all);
+
+
+Object.keys(categories)
+.forEach(c=>{
+
+let b=
+document.createElement(
+"button"
+);
+
+b.className=
+"cat-btn "+
+(
+currentCategory===c
+?
+"active"
+:
+""
+);
+
+b.textContent=c;
+
+b.onclick=()=>{
+
+currentCategory=c;
+
+currentSubcategory="";
+
+renderCategories();
+
+renderSubcategories();
+
+renderProducts()
+
+};
+
+box.appendChild(b)
+
+})
+
+}
+
+
+function renderSubcategories(){
+
+const w=
+document.getElementById(
+"subcategoryWrapper"
+);
+
+const box=
+document.getElementById(
+"subcategoryList"
+);
+
+box.innerHTML="";
+
+
+if(!currentCategory){
+
+w.classList.remove("show");
+
+return
+
+}
+
+
+w.classList.add("show");
+
+
+categories[currentCategory]
+.forEach(s=>{
+
+let b=
+document.createElement(
+"button"
+);
+
+b.className=
+"subcat-btn "+
+(
+(s==="All"&&!currentSubcategory)||
+currentSubcategory===s
+?
+"active"
+:
+""
+);
+
+b.textContent=s;
+
+b.onclick=()=>{
+
+currentSubcategory=
+s==="All"
+?
+""
+:
+s;
+
+renderSubcategories();
+
+renderProducts()
+
+};
+
+box.appendChild(b)
+
+})
+
+}
+
+
+async function loadProducts(){
+
+const grid=
+document.getElementById(
+"productGrid"
+);
+
+grid.innerHTML=
+'<div class="empty">Loading Products...</div>';
+
+
+if(!db){
+
+grid.innerHTML=
+'<div class="empty">Supabase connection পাওয়া যায়নি।</div>';
+
+return
+
+}
+
+
+const r=
+await db
+.from("products")
+.select("*")
+.order(
+"id",
+{
+ascending:false
+}
+);
+
+
+if(r.error){
+
+grid.innerHTML=
+'<div class="empty">Product load হয়নি ❌<br>'+
+escapeHtml(
+r.error.message
+)+
+'</div>';
+
+return
+
+}
+
+
+products=
+(r.data||[])
+.map(p=>{
+
+let category=
+normalizeCategory(
+p.category
+);
+
+let subcategory=
+normalizeSubcategory(
+p.subcategory
+);
+
+let sizes=
+normalizeSizes(
+p.sizes
+);
+
+if(!sizes.length)
+
+sizes=
+normalizeSizes(
+p.size
+);
+
+
+if(
+!sizes.length&&
+subcategory&&
+sizeData[subcategory]
+)
+
+sizes=
+sizeData[subcategory];
+
+
+return{
+...p,
+category,
+subcategory,
+sizes
+}
+
+});
+
+
+renderProducts();
+
+
+if(productFromURL){
+
+setTimeout(
+()=>{
+
+if(
+findProduct(
+productFromURL
+)
+)
+
+openDetails(
+productFromURL
+)
+
+},
+250
+)
+
+}
+
+}
+
+
+function getProductSizes(p){
+
+let sizes=
+normalizeSizes(
+p.sizes
+);
+
+if(!sizes.length)
+
+sizes=
+normalizeSizes(
+p.size
+);
+
+
+if(sizes.length)
+
+return sizes;
+
+
+return p.subcategory&&
+sizeData[p.subcategory]
+?
+sizeData[p.subcategory]
+:
+[]
+
+}
+
+
+function getProductImages(p){
+
+let v=
+p.images;
+
+
+if(Array.isArray(v))
+
+return v.filter(Boolean);
+
+
+if(typeof v==="string"){
+
+try{
+
+let x=
+JSON.parse(v);
+
+
+if(Array.isArray(x))
+
+return x.filter(Boolean);
+
+
+if(
+x&&
+Array.isArray(x.urls)
+)
+
+return x.urls.filter(Boolean)
+
+}catch(e){}
+
+
+if(v.trim())
+
+return[
+v.trim()
+]
+
+}
+
+
+if(
+v&&
+typeof v==="object"&&
+Array.isArray(v.urls)
+)
+
+return v.urls.filter(Boolean);
+
+
+if(p.image)
+
+return[
+p.image
+];
+
+
+return[
+"https://via.placeholder.com/500x500?text=Gadhuli"
+]
+
+}
+
+
+async function getApprovedReseller(){
+
+if(!currentUser||!db)
+
+return null;
+
+
+let r=
+await db
+.from("resellers")
+.select("*")
+.eq(
+"user_id",
+currentUser.id
+)
+.eq(
+"status",
+"Approved"
+)
+.maybeSingle();
+
+
+return r.error?
+null:
+r.data||null
+
+}
+
+
+function renderProducts(){
+
+const grid=
+document.getElementById(
+"productGrid"
+);
+
+const title=
+document.getElementById(
+"productTitle"
+);
+
+
+const q=
+(
+document.getElementById(
+"searchInput"
+).value||""
+)
+.trim()
+.toLowerCase();
+
+
+let filtered=
+products.filter(p=>{
+
+let cm=
+!currentCategory||
+normalizeCategory(
+p.category
+)===currentCategory;
+
+
+let sm=
+!currentSubcategory||
+normalizeSubcategory(
+p.subcategory
+)===currentSubcategory;
+
+
+let searchable=[
+p.name,
+p.category,
+p.subcategory,
+...getProductSizes(p)
+]
+.join(" ")
+.toLowerCase();
+
+
+return cm&&
+sm&&
+(!q||searchable.includes(q))
+
+});
+
+
+title.textContent=
+currentCategory
+?
+(
+"🛍️ "+
+(
+currentSubcategory||
+currentCategory
+)
+)
+:
+"🛍️ All Products";
+
+
+if(!filtered.length){
+
+grid.innerHTML=
+'<div class="empty">কোনো Product পাওয়া যায়নি 😔</div>';
+
+return
+
+}
+
+
+grid.innerHTML="";
+
+
+filtered.forEach(p=>{
+
+let c=
+document.createElement(
+"div"
+);
+
+c.className=
+"product-card";
+
+
+let imgs=
+getProductImages(p);
+
+
+let imageHTML=
+imgs
+.map(
+(img,i)=>
+`
+<img
+src="${escapeAttr(img)}"
+alt="${escapeAttr(
+(p.name||"Gadhuli Product")+
+" image "+
+(i+1)
+)}"
+onerror="this.src='https://via.placeholder.com/500x500?text=Gadhuli'"
+>
+`
+)
+.join("");
+
+
+c.innerHTML=
+
+`
+
+<div class="product-image-wrap">
+
+<div class="product-image-scroll">
+
+${imageHTML}
+
+</div>
+
+${
+imgs.length>1
+?
+`
+<div class="image-count">
+📷 ${imgs.length} Photos
+</div>
+
+<div class="swipe-hint">
+Swipe →
+</div>
+`
+:
+""
+}
+
+<button
+class="wish-small"
+aria-label="Wishlist"
+>
+${isWishlisted(p.id)?"❤️":"🤍"}
+</button>
+
+</div>
+
+
+<div class="product-info">
+
+<div class="product-name">
+${escapeHtml(
+p.name||"Product"
+)}
+</div>
+
+<div class="product-price">
+৳${formatMoney(p.price)}
+</div>
+
+<div class="product-meta">
+
+${escapeHtml(
+p.category||""
+)}
+
+${
+p.subcategory
+?
+" • "+
+escapeHtml(
+p.subcategory
+)
+:
+""
+}
+
+</div>
+
+
+<div class="product-buttons">
+
+<button
+class="btn btn-light details-btn"
+>
+👁️ Details
+</button>
+
+<button
+class="btn btn-pink add-btn"
+>
+🛒 Add
+</button>
+
+<button
+class="btn share-card-btn"
+>
+📤 Share
+</button>
+
+</div>
+
+</div>
+
+`;
+
+
+c.querySelector(
+".wish-small"
+).onclick=()=>toggleWishlist(
+p.id
+);
+
+
+c.querySelector(
+".details-btn"
+).onclick=()=>openDetails(
+p.id
+);
+
+
+c.querySelector(
+".add-btn"
+).onclick=()=>quickAdd(
+p.id
+);
+
+
+/* =========================================
+   PRODUCT CARD SHARE
+   ========================================= */
+
+c.querySelector(
+".share-card-btn"
+).onclick=(e)=>{
+
+e.stopPropagation();
+
+shareProduct(p);
+
+};
+
+
+grid.appendChild(c)
+
+});
+
+
+addResellButtons()
+
+}
+
+
+async function addResellButtons(){
+
+let r=
+await getApprovedReseller();
+
+currentReseller=r;
+
+
+if(!r)
+return;
+
+
+document
+.querySelectorAll(
+".product-card"
+)
+.forEach(card=>{
+
+let name=
+card
+.querySelector(
+".product-name"
+)
+?.textContent
+.trim();
+
+
+let p=
+products.find(
+x=>
+String(x.name||"")
+.trim()===
+name
+);
+
+
+if(!p)
+return;
+
+
+let b=
+card.querySelector(
+".product-buttons"
+);
+
+
+if(!b)
+return;
+
+
+if(
+b.querySelector(
+".resell-btn"
+)
+)
+return;
+
+
+let x=
+document.createElement(
+"button"
+);
+
+x.className=
+"btn btn-light resell-btn";
+
+x.textContent=
+"🤝 Resell";
+
+x.onclick=()=>resellProduct(
+p.id
+);
+
+b.appendChild(x)
+
+})
+
+}
+
+
+function handleSearch(){
+
+renderProducts()
+
+}
+
+
+function openDetails(id){
+
+let p=
+findProduct(id);
+
+if(!p)
+return;
+
+
+currentDetailProduct=p;
+
+updateProductURL(
+p.id
+);
+
+
+let imgs=
+getProductImages(p);
+
+let sizes=
+getProductSizes(p);
+
+
+document.getElementById(
+"detailTitle"
+).textContent=
+p.name||
+"Product";
+
+
+document.getElementById(
+"detailMainImage"
+).innerHTML=
+
+`
+
+<img
+class="detail-main-image"
+src="${escapeAttr(imgs[0])}"
+alt="${escapeAttr(
+p.name||
+"Gadhuli Product"
+)}"
+onerror="this.src='https://via.placeholder.com/500x500?text=Gadhuli'"
+>
+
+`;
+
+
+document.getElementById(
+"detailImages"
+).innerHTML=
+
+imgs
+.map(
+(u,i)=>
+`
+<img
+src="${escapeAttr(u)}"
+alt="Product image ${i+1}"
+onclick="setDetailMainImage('${escapeAttr(u)}')"
+onerror="this.src='https://via.placeholder.com/500x500?text=Gadhuli'"
+>
+`
+)
+.join("");
+
+
+let sizeHTML=
+sizes.length
+?
+`
+
+<b>
+Available Size:
+</b>
+
+<div class="size-list">
+
+${sizes
+.map(
+s=>
+`
+<button
+class="size-btn"
+data-size="${escapeAttr(s)}"
+>
+${escapeHtml(s)}
+</button>
+`
+)
+.join("")}
+
+</div>
+
+`
+:
+"";
+
+
+document.getElementById(
+"detailContent"
+).innerHTML=
+
+`
+
+<p>
+
+<b>
+Price:
+</b>
+
+<span class="product-price">
+৳${formatMoney(p.price)}
+</span>
+
+</p>
+
+
+<p>
+
+<b>
+Category:
+</b>
+
+${escapeHtml(
+p.category||"—"
+)}
+
+</p>
+
+
+<p>
+
+<b>
+Subcategory:
+</b>
+
+${escapeHtml(
+p.subcategory||"—"
+)}
+
+</p>
+
+
+<br>
+
+
+${
+p.description
+?
+`
+<p>
+${escapeHtml(
+p.description
+)}
+</p>
+`
+:
+""
+}
+
+
+${sizeHTML}
+
+
+<br>
+
+
+<button
+class="btn btn-pink full-btn"
+id="detailAddBtn"
+>
+🛒 Add to Cart
+</button>
+
+
+<br><br>
+
+
+<button
+class="btn btn-green full-btn"
+id="detailBuyBtn"
+>
+📦 Buy Now
+</button>
+
+
+<br><br>
+
+
+<button
+class="btn btn-light full-btn"
+id="detailReviewBtn"
+>
+⭐ Write Review
+</button>
+
+
+<br><br>
+
+
+<button
+class="btn share-btn full-btn"
+id="detailShareBtn"
+>
+📤 Share Product
+</button>
+
+`;
+
+
+let selected="";
+
+
+document
+.querySelectorAll(
+"#detailContent .size-btn"
+)
+.forEach(b=>{
+
+b.onclick=()=>{
+
+document
+.querySelectorAll(
+"#detailContent .size-btn"
+)
+.forEach(x=>
+x.classList.remove(
+"active"
+)
+);
+
+b.classList.add(
+"active"
+);
+
+selected=
+b.dataset.size
+
+}
+
+});
+
+
+document.getElementById(
+"detailAddBtn"
+).onclick=()=>{
+
+if(
+sizes.length&&
+!selected
+)
+
+return alert(
+"আগে Size select করুন।"
+);
+
+
+addCartItem(
+p,
+selected
+)
+
+};
+
+
+document.getElementById(
+"detailBuyBtn"
+).onclick=()=>{
+
+if(
+sizes.length&&
+!selected
+)
+
+return alert(
+"আগে Size select করুন।"
+);
+
+
+startSingleProductOrder(
+p.id,
+selected
+)
+
+};
+
+
+document.getElementById(
+"detailReviewBtn"
+).onclick=()=>
+openReview(
+p.id
+);
+
+
+document.getElementById(
+"detailShareBtn"
+).onclick=()=>
+shareProduct(
+p
+);
+
+
+loadReviews(
+p.id
+);
+
+
+openModal(
+"detailModal"
+)
+
+}
+
+
+function setDetailMainImage(url){
+
+const box=
+document.getElementById(
+"detailMainImage"
+);
+
+if(!box)
+return;
+
+
+box.innerHTML=
+
+`
+
+<img
+class="detail-main-image"
+src="${escapeAttr(url)}"
+alt="Gadhuli Product"
+onerror="this.src='https://via.placeholder.com/500x500?text=Gadhuli'"
+>
+
+`
+
+}
+
+
+/* =========================================
+   PRODUCT SHARE
+   =========================================
+   
+   Features:
+   ✅ Direct product link
+   ✅ Android Share menu
+   ✅ Browser Share
+   ✅ Copy link fallback
+   ✅ WhatsApp fallback
+   ✅ Referral link preserved
+   ========================================= */
+
+async function shareProduct(p){
+
+if(!p)
+return;
+
+
+/* =========================================
+   DIRECT PRODUCT LINK
+   ========================================= */
+
+let link=
+window.location.origin+
+window.location.pathname+
+"?product="+
+encodeURIComponent(
+p.id
+);
+
+
+/* =========================================
+   KEEP RESELLER REFERRAL
+   ========================================= */
+
+const savedRef=
+localStorage.getItem(
+"gadhuli_ref"
+);
+
+
+if(savedRef){
+
+link+=
+"&ref="+
+encodeURIComponent(
+savedRef
+);
+
+}
+
+
+/* =========================================
+   SHARE MESSAGE
+   ========================================= */
+
+let text=
+"🌸 Gadhuli Product\n\n"+
+"🛍️ "+
+(p.name||"Product")+
+"\n💰 Price: ৳"+
+formatMoney(p.price)+
+"\n\n🛒 Product দেখুন:\n"+
+link;
+
+
+/* =========================================
+   ANDROID / MOBILE NATIVE SHARE
+   ========================================= */
+
+if(
+navigator.share
+){
+
+try{
+
+await navigator.share({
+
+title:
+"Gadhuli - "+
+(p.name||"Product"),
+
+text:text,
+
+url:link
+
+});
+
+
+/*
+Share successful.
+*/
+
+return;
+
+}catch(e){
+
+/*
+User যদি নিজে Share menu Cancel করে,
+তাহলে কোনো fallback দেখাবো না।
+*/
+
+if(
+e?.name==="AbortError"
+){
+
+return;
+
+}
+
+/*
+Actual share error হলে নিচের
+Copy Link fallback চলবে।
+*/
+
+}
+
+
+/* =========================================
+   COPY LINK FALLBACK
+   ========================================= */
+
+try{
+
+if(
+navigator.clipboard &&
+window.isSecureContext
+){
+
+await navigator.clipboard.writeText(
+link
+);
+
+alert(
+"Product link copy হয়েছে ✅\n\n"+
+link
+);
+
+return;
+
+}
+
+}catch(e){
+
+}
+
+
+/* =========================================
+   WHATSAPP FINAL FALLBACK
+   ========================================= */
+
+window.open(
+"https://wa.me/?text="+
+encodeURIComponent(
+text
+),
+"_blank"
+);
+
+return;
+
+}
+
+
+/* =========================================
+   NO NATIVE SHARE AVAILABLE
+   ========================================= */
+
+try{
+
+if(
+navigator.clipboard &&
+window.isSecureContext
+){
+
+await navigator.clipboard.writeText(
+link
+);
+
+alert(
+"Product link copy হয়েছে ✅\n\n"+
+link
+);
+
+return;
+
+}
+
+}catch(e){
+
+}
+
+
+/* =========================================
+   WHATSAPP FALLBACK
+   ========================================= */
+
+window.open(
+"https://wa.me/?text="+
+encodeURIComponent(
+text
+),
+"_blank"
+);
+
+}
+
+
+function quickAdd(id){
+
+let p=
+findProduct(id);
+
+if(!p)
+return;
+
+
+let s=
+getProductSizes(p);
+
+
+if(s.length){
+
+openDetails(id);
+
+return
+
+}
+
+
+addCartItem(
+p,
+""
+)
+
+}
+
+
+function normalizeCart(){
+
+cart=
+cart
+.map(
+x=>
+
+typeof x==="string"||
+typeof x==="number"
+
+?
+
+{
+id:String(x),
+size:"",
+quantity:1
+}
+
+:
+
+x&&
+typeof x==="object"
+
+?
+
+{
+id:String(x.id),
+size:String(x.size||""),
+quantity:Math.max(
+1,
+Number(x.quantity||1)
+)
+}
+
+:
+null
+)
+.filter(Boolean);
+
+
+saveCart()
+
+}
+
+
+function saveCart(){
+
+localStorage.setItem(
+"gadhuli_cart",
+JSON.stringify(cart)
+)
+
+}
+
+
+function addCartItem(
+p,
+size
+){
+
+let x=
+cart.find(
+i=>
+String(i.id)===
+String(p.id)&&
+String(i.size||"")===
+String(size||"")
+);
+
+
+if(x)
+
+x.quantity++;
+
+else
+
+cart.push(
+{
+id:String(p.id),
+size:size||"",
+quantity:1
+}
+);
+
+
+saveCart();
+
+alert(
+"Cart-এ Product যোগ হয়েছে ✅"
+)
+
+}
+
+
+function openCart(){
+
+renderCart();
+
+openModal(
+"cartModal"
+)
+
+}
+
+
+function renderCart(){
+
+let box=
+document.getElementById(
+"cartContent"
+);
+
+
+if(!cart.length){
+
+box.innerHTML=
+'<div class="empty">🛒 Cart খালি।</div>';
+
+return
+
+}
+
+
+let sub=0;
+
+let html="";
+
+
+cart.forEach(
+(i,n)=>{
+
+let p=
+findProduct(i.id);
+
+if(!p)
+return;
+
+
+let q=
+Number(
+i.quantity||1
+);
+
+let line=
+Number(
+p.price||0
+)*q;
+
+sub+=line;
+
+
+html+=
+
+`
+
+<div class="cart-item">
+
+<img
+src="${escapeAttr(
+getProductImages(p)[0]
+)}"
+alt=""
+>
+
+<div class="cart-item-info">
+
+<b>
+${escapeHtml(
+p.name
+)}
+</b>
+
+<div>
+৳${formatMoney(p.price)}
+</div>
+
+
+${
+i.size
+?
+`
+<small>
+Size:
+${escapeHtml(i.size)}
+</small>
+`
+:
+""
+}
+
+
+<div class="qty-control">
+
+<button
+onclick="changeCartQuantity(${n},-1)"
+>
+−
+</button>
+
+<b>
+${q}
+</b>
+
+<button
+onclick="changeCartQuantity(${n},1)"
+>
++
+</button>
+
+<button
+onclick="removeCartItem(${n})"
+style="margin-left:10px"
+>
+🗑️
+</button>
+
+</div>
+
+</div>
+
+
+<b>
+৳${formatMoney(line)}
+</b>
+
+</div>
+
+`
+
+});
+
+
+box.innerHTML=
+html+
+
+`
+
+<div class="summary">
+
+<div class="summary-row">
+
+<span>
+Subtotal
+</span>
+
+<b>
+৳${formatMoney(sub)}
+</b>
+
+</div>
+
+
+<div class="summary-row">
+
+<span>
+Delivery
+</span>
+
+<span>
+Checkout-এ calculate হবে
+</span>
+
+</div>
+
+</div>
+
+
+<br>
+
+
+<button
+class="btn btn-pink full-btn"
+onclick="openOrderFromCart()"
+>
+📦 Checkout
+</button>
+
+`
+
+}
+
+
+function changeCartQuantity(
+i,
+a
+){
+
+if(!cart[i])
+return;
+
+
+cart[i].quantity+=a;
+
+
+if(
+cart[i].quantity<=0
+)
+
+cart.splice(
+i,
+1
+);
+
+
+saveCart();
+
+renderCart()
+
+}
+
+
+function removeCartItem(i){
+
+cart.splice(
+i,
+1
+);
+
+saveCart();
+
+renderCart()
+
+}
+
+
+function saveWishlist(){
+
+localStorage.setItem(
+"gadhuli_wishlist",
+JSON.stringify(wishlist)
+)
+
+}
+
+
+function isWishlisted(id){
+
+return wishlist.some(
+x=>
+String(x)===
+String(id)
+)
+
+}
+
+
+function toggleWishlist(id){
+
+let i=
+wishlist.findIndex(
+x=>
+String(x)===
+String(id)
+);
+
+
+if(i>=0)
+
+wishlist.splice(
+i,
+1
+);
+
+else
+
+wishlist.push(
+String(id)
+);
+
+
+saveWishlist();
+
+renderProducts()
+
+}
+
+
+function openWishlist(){
+
+let box=
+document.getElementById(
+"wishlistContent"
+);
+
+
+let items=
+wishlist
+.map(findProduct)
+.filter(Boolean);
+
+
+box.innerHTML=
+items.length
+
+?
+
+items
+.map(
+p=>
+
+`
+
+<div class="cart-item">
+
+<img
+src="${escapeAttr(
+getProductImages(p)[0]
+)}"
+alt=""
+>
+
+<div class="cart-item-info">
+
+<b>
+${escapeHtml(p.name)}
+</b>
+
+<div class="product-price">
+৳${formatMoney(p.price)}
+</div>
+
+<button
+class="btn btn-pink"
+onclick="quickAdd('${escapeAttr(p.id)}')"
+>
+🛒 Add
+</button>
+
+<button
+class="btn btn-light"
+onclick="toggleWishlist('${escapeAttr(p.id)}');openWishlist()"
+>
+❤️ Remove
+</button>
+
+</div>
+
+</div>
+
+`
+)
+.join("")
+
+:
+
+'<div class="empty">❤️ Wishlist খালি।</div>';
+
+
+openModal(
+"wishlistModal"
+)
+
+}
+
+
+async function openOrderFromCart(){
+
+if(!cart.length)
+
+return alert(
+"Cart খালি।"
+);
+
+
+if(
+!await requireVerifiedUser()
+)
+
+return;
+
+
+currentOrderProducts=[];
+
+
+cart.forEach(i=>{
+
+let p=
+findProduct(
+i.id
+);
+
+if(p)
+
+currentOrderProducts.push(
+{
+product:p,
+size:i.size||"",
+quantity:Number(
+i.quantity||1
+)
+}
+)
+
+});
+
+
+if(
+!currentOrderProducts.length
+)
+
+return alert(
+"Cart-এর Product পাওয়া যাচ্ছে না।"
+);
+
+
+closeModal(
+"cartModal"
+);
+
+showOrderModal()
+
+}
+
+
+async function startSingleProductOrder(
+id,
+size
+){
+
+let p=
+findProduct(id);
+
+if(!p)
+return;
+
+
+if(
+!await requireVerifiedUser()
+)
+
+return;
+
+
+let s=
+getProductSizes(p);
+
+
+if(
+s.length&&
+!size
+)
+
+return alert(
+"Order করার আগে Size select করুন।"
+);
+
+
+currentOrderProducts=[
+{
+product:p,
+size:size||"",
+quantity:1
+}
+];
+
+
+closeModal(
+"detailModal"
+);
+
+showOrderModal()
+
+}
+
+
+function showOrderModal(){
+
+renderOrderProducts();
+
+fillCustomerInfo();
+
+updateOrderTotal();
+
+togglePaymentFields();
+
+openModal(
+"orderModal"
+)
+
+}
+
+
+function renderOrderProducts(){
+
+document.getElementById(
+"orderProducts"
+).innerHTML=
+
+currentOrderProducts
+.map(
+(i,n)=>
+
+`
+
+<div class="cart-item">
+
+<img
+src="${escapeAttr(
+getProductImages(
+i.product
+)[0]
+)}"
+alt=""
+>
+
+<div class="cart-item-info">
+
+<b>
+${escapeHtml(
+i.product.name
+)}
+</b>
+
+<div>
+৳${formatMoney(
+i.product.price
+)}
+</div>
+
+
+${
+i.size
+?
+`
+<small>
+Size:
+${escapeHtml(i.size)}
+</small>
+`
+:
+""
+}
+
+
+<div class="qty-control">
+
+<button
+onclick="changeOrderQuantity(${n},-1)"
+>
+−
+</button>
+
+<b>
+${i.quantity}
+</b>
+
+<button
+onclick="changeOrderQuantity(${n},1)"
+>
++
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+`
+)
+.join("")
+
+}
+
+
+function changeOrderQuantity(
+i,
+a
+){
+
+if(!currentOrderProducts[i])
+return;
+
+
+currentOrderProducts[i].quantity=
+Math.max(
+1,
+currentOrderProducts[i].quantity+a
+);
+
+
+renderOrderProducts();
+
+updateOrderTotal()
+
+}
+
+
+async function fillCustomerInfo(){
+
+if(!currentUser)
+return;
+
+
+let r=
+await db
+.from("profiles")
+.select(
+"full_name,phone"
+)
+.eq(
+"id",
+currentUser.id
+)
+.maybeSingle();
+
+
+document.getElementById(
+"orderName"
+).value=
+r.data?.full_name||
+currentUser.user_metadata?.full_name||
+"";
+
+
+document.getElementById(
+"orderPhone"
+).value=
+r.data?.phone||
+currentUser.user_metadata?.phone||
+""
+
+}
+
+
+function calculateOrderSubtotal(){
+
+return currentOrderProducts
+.reduce(
+(t,i)=>
+t+
+Number(
+i.product.price||0
+)*
+Number(
+i.quantity||1
+),
+0
+)
+
+}
+
+
+function getDeliveryCharge(){
+
+return document.getElementById(
+"deliveryArea"
+).value===
+"Outside Dhaka"
+?
+120
+:
+60
+
+}
+
+
+function updateOrderTotal(){
+
+let s=
+calculateOrderSubtotal();
+
+let d=
+getDeliveryCharge();
+
+
+document.getElementById(
+"orderSummary"
+).innerHTML=
+
+`
+
+<div class="summary-row">
+
+<span>
+Subtotal
+</span>
+
+<b>
+৳${formatMoney(s)}
+</b>
+
+</div>
+
+
+<div class="summary-row">
+
+<span>
+Delivery
+</span>
+
+<b>
+৳${formatMoney(d)}
+</b>
+
+</div>
+
+
+<div class="summary-row summary-total">
+
+<span>
+Total
+</span>
+
+<span>
+৳${formatMoney(s+d)}
+</span>
+
+</div>
+
+`
+
+}
+
+
+function togglePaymentFields(){
+
+let m=
+document.getElementById(
+"paymentMethod"
+).value;
+
+let manual=
+m!=="Cash on Delivery";
+
+
+document.getElementById(
+"manualPaymentFields"
+).style.display=
+manual
+?
+"block"
+:
+"none";
+
+
+let note=
+document.getElementById(
+"paymentInstruction"
+);
+
+
+if(m==="bKash")
+
+note.textContent=
+"bKash payment-এর পরে যে নম্বর থেকে payment করেছেন এবং Transaction ID দিন।";
+
+else if(m==="Nagad")
+
+note.textContent=
+"Nagad payment-এর পরে payment number ও Transaction ID দিন।";
+
+else if(m==="Rocket")
+
+note.textContent=
+"Rocket payment-এর পরে payment number ও Transaction ID দিন।";
+
+else if(
+m==="Visa"||
+m==="Mastercard"
+)
+
+note.textContent=
+"Card payment gateway এখনো connected নয়। Gateway/reference পাওয়া থাকলে reference দিন; real card charge এখানে করা হবে না।";
+
+else
+
+note.textContent=""
+
+}
+
+
+async function getReferralReseller(){
+
+let code=
+localStorage.getItem(
+"gadhuli_ref"
+)||"";
+
+
+if(!code||!db)
+return null;
+
+
+let r=
+await db
+.from("resellers")
+.select("*")
+.eq(
+"reseller_code",
+code
+)
+.eq(
+"status",
+"Approved"
+)
+.maybeSingle();
+
+
+return r.error?
+null:
+r.data||null
+
+}
+
+
+/* =========================================
+   ORDER SYSTEM
+   ========================================= */
+
+async function placeOrder(){
+
+if(!currentUser)
+
+return alert(
+"আগে Login করুন।"
+);
+
+
+if(!currentUser.email_confirmed_at)
+
+return alert(
+"আপনার Email verify করুন।"
+);
+
+
+if(!currentOrderProducts.length)
+
+return alert(
+"Order Product পাওয়া যায়নি।"
+);
+
+
+let name=
+document.getElementById(
+"orderName"
+).value.trim();
+
+
+let phone=
+document.getElementById(
+"orderPhone"
+).value.trim();
+
+
+let district=
+document.getElementById(
+"orderDistrict"
+).value.trim();
+
+
+let thana=
+document.getElementById(
+"orderThana"
+).value.trim();
+
+
+let address=
+document.getElementById(
+"orderReceivePlace"
+).value.trim();
+
+
+let area=
+document.getElementById(
+"deliveryArea"
+).value;
+
+
+let method=
+document.getElementById(
+"paymentMethod"
+).value;
+
+
+if(
+!name||
+!phone||
+!district||
+!thana||
+!address
+)
+
+return alert(
+"সব required তথ্য পূরণ করুন।"
+);
+
+
+let pn="";
+
+let tx="";
+
+
+if(
+method!=="Cash on Delivery"
+){
+
+pn=
+document.getElementById(
+"paymentNumber"
+).value.trim();
+
+
+tx=
+document.getElementById(
+"transactionId"
+).value.trim();
+
+
+if(!pn||!tx)
+
+return alert(
+"Payment Number / Card Reference এবং Transaction ID / Payment Reference দিন।"
+)
+
+}
+
+
+let subtotal=
+calculateOrderSubtotal();
+
+
+let delivery=
+area==="Outside Dhaka"
+?
+120
+:
+60;
+
+
+let total=
+subtotal+
+delivery;
+
+
+let btn=
+document.getElementById(
+"placeOrderBtn"
+);
+
+
+btn.disabled=true;
+
+btn.textContent=
+"Order Save হচ্ছে...";
+
+
+try{
+
+let notes=
+method==="Cash on Delivery"
+?
+""
+:
+"Payment Number/Card Ref: "+
+pn+
+"\nPayment Reference: "+
+tx;
+
+
+let ref=
+await getReferralReseller();
+
+
+let orderR=
+await db
+.from("orders")
+.insert({
+
+user_id:
+currentUser.id,
+
+customer_name:
+name,
+
+customer_phone:
+phone,
+
+customer_email:
+currentUser.email||"",
+
+customer_district:
+district,
+
+customer_thana:
+thana,
+
+customer_receive_place:
+address,
+
+delivery_area:
+area,
+
+delivery_charge:
+delivery,
+
+subtotal:
+subtotal,
+
+total:
+total,
+
+payment_method:
+method,
+
+payment_status:
+"Pending",
+
+order_status:
+"Pending",
+
+reseller_id:
+ref?.user_id||null,
+
+reseller_code:
+ref?.reseller_code||"",
+
+notes:
+notes
+
+})
+.select()
+.single();
+
+
+if(orderR.error)
+throw orderR.error;
+
+
+let order=
+orderR.data;
+
+
+let items=
+currentOrderProducts.map(
+i=>
+({
+
+order_id:
+order.id,
+
+product_id:
+i.product.id,
+
+product_name:
+i.product.name||"Product",
+
+product_image:
+getProductImages(
+i.product
+)[0]||"",
+
+size:
+i.size||"",
+
+quantity:
+Number(
+i.quantity||1
+),
+
+unit_price:
+Number(
+i.product.price||0
+),
+
+line_total:
+Number(
+i.product.price||0
+)*
+Number(
+i.quantity||1
+)
+
+})
+);
+
+
+let ir=
+await db
+.from("order_items")
+.insert(items);
+
+
+if(ir.error)
+throw ir.error;
+
+
+currentOrderProducts.forEach(
+i=>{
+
+cart=
+cart.filter(
+c=>
+!(
+String(c.id)===
+String(i.product.id)&&
+String(c.size||"")===
+String(i.size||"")
+)
+)
+
+});
+
+
+saveCart();
+
+
+alert(
+"Order সফলভাবে Save হয়েছে ✅\n\nOrder ID: #"+
+order.id
+);
+
+
+closeModal(
+"orderModal"
+);
+
+
+currentOrderProducts=[];
+
+
+}catch(e){
+
+console.error(e);
+
+alert(
+"Order Save হয়নি ❌\n\n"+
+(e?.message||String(e))
+)
+
+}finally{
+
+btn.disabled=false;
+
+btn.textContent=
+"📦 Order Confirm করুন"
+
+}
+
+}
+
+
+/* =========================================
+   WHATSAPP HELPLINE ONLY
+   ========================================= */
+
+function openWhatsAppHelpline(){
+
+const phone=
+"8801333088194";
+
+
+const message=
+"Hello Gadhuli Support 👋\n\n"+
+"I need help regarding Gadhuli website/order.\n\n"+
+"Please help me.";
+
+
+window.open(
+"https://wa.me/"+
+phone+
+"?text="+
+encodeURIComponent(
+message
+),
+"_blank"
+)
+
+}
+
+
+/* =========================================
+   AUTH
+   ========================================= */
+
+async function loadAuth(){
+
+if(!db)
+return;
+
+
+let s=
+await db.auth.getSession();
+
+
+currentUser=
+s.data.session?.user||
+null;
+
+
+db.auth.onAuthStateChange(
+(e,s)=>{
+
+currentUser=
+s?.user||
+null;
+
+currentReseller=null;
+
+
+setTimeout(
+()=>{
+
+renderProducts();
+
+
+if(
+document
+.getElementById(
+"accountModal"
+)
+?.classList
+.contains("show")&&
+currentUser
+)
+
+renderAccount()
+
+},
+100
+)
+
+}
+
+)
+
+
+}
+
+
+async function requireVerifiedUser(){
+
+if(!currentUser){
+
+openAuth();
+
+return false
+
+}
+
+
+if(
+!currentUser.email_confirmed_at
+){
+
+alert(
+"আপনার Email verify করুন।"
+);
+
+return false
+
+}
+
+
+return true
+
+}
+
+
+function openAuth(){
+
+authMode="login";
+
+updateAuthUI();
+
+openModal(
+"authModal"
+)
+
+}
+
+
+function openCreateAccount(){
+
+authMode="signup";
+
+updateAuthUI();
+
+openModal(
+"authModal"
+)
+
+}
+
+
+function toggleAuthMode(){
+
+authMode=
+authMode==="login"
+?
+"signup"
+:
+"login";
+
+updateAuthUI()
+
+}
+
+
+function updateAuthUI(){
+
+let signup=
+authMode==="signup";
+
+
+document.getElementById(
+"signupFields"
+).style.display=
+signup
+?
+"block"
+:
+"none";
+
+
+document.getElementById(
+"authTitle"
+).textContent=
+signup
+?
+"📝 Create Account"
+:
+"🔐 Login";
+
+
+document.getElementById(
+"authSubmit"
+).textContent=
+signup
+?
+"Sign Up"
+:
+"Login";
+
+
+document.getElementById(
+"authToggle"
+).textContent=
+signup
+?
+"Already Account আছে? Login"
+:
+"New Account তৈরি করুন"
+
+}
+
+
+async function submitAuth(){
+
+if(!db)
+return;
+
+
+let email=
+document.getElementById(
+"authEmail"
+).value.trim();
+
+
+let password=
+document.getElementById(
+"authPassword"
+).value;
+
+
+if(!email||!password)
+
+return alert(
+"Email এবং Password দিন।"
+);
+
+
+if(authMode==="signup"){
+
+let name=
+document.getElementById(
+"signupName"
+).value.trim();
+
+
+let phone=
+document.getElementById(
+"signupPhone"
+).value.trim();
+
+
+if(!name||!phone)
+
+return alert(
+"Name এবং Phone দিন।"
+);
+
+
+let r=
+await db.auth.signUp({
+
+email,
+
+password,
+
+options:{
+data:{
+full_name:name,
+phone
+}
+}
+
+});
+
+
+if(r.error)
+
+return alert(
+"Signup হয়নি ❌\n"+
+r.error.message
+);
+
+
+alert(
+"Account তৈরি হয়েছে ✅\n\nEmail verification link check করুন।"
+);
+
+
+authMode="login";
+
+updateAuthUI()
+
+}else{
+
+let r=
+await db.auth.signInWithPassword(
+{
+email,
+password
+}
+);
+
+
+if(r.error)
+
+return alert(
+"Login হয়নি ❌\n"+
+r.error.message
+);
+
+
+currentUser=
+r.data.user;
+
+closeModal(
+"authModal"
+);
+
+
+alert(
+"Login successful ✅"
+)
+
+}
+
+}
+
+
+async function resetPassword(){
+
+let email=
+document.getElementById(
+"authEmail"
+).value.trim();
+
+
+if(!email)
+
+return alert(
+"আগে Email লিখুন।"
+);
+
+
+let r=
+await db.auth.resetPasswordForEmail(
+email,
+{
+redirectTo:
+window.location.origin
+}
+);
+
+
+if(r.error)
+
+return alert(
+r.error.message
+);
+
+
+alert(
+"Password reset link Email-এ পাঠানো হয়েছে।"
+)
+
+}
+
+
+/* =========================================
+   ACCOUNT
+   ========================================= */
+
+async function openAccount(){
+
+if(!currentUser){
+
+openAuth();
+
+return
+
+}
+
+
+await renderAccount();
+
+openModal(
+"accountModal"
+)
+
+}
+
+
+async function renderAccount(){
+
+let box=
+document.getElementById(
+"accountContent"
+);
+
+
+box.innerHTML=
+'<div class="empty">Account Loading...</div>';
+
+
+let p=
+await db
+.from("profiles")
+.select("*")
+.eq(
+"id",
+currentUser.id
+)
+.maybeSingle();
+
+
+let o=
+await db
+.from("orders")
+.select("*")
+.eq(
+"user_id",
+currentUser.id
+)
+.order(
+"created_at",
+{
+ascending:false
+}
+);
+
+
+let h=
+
+`
+
+<div class="account-card">
+
+<h3>
+👤 ${
+escapeHtml(
+p.data?.full_name||
+currentUser.email
+)
+}
+</h3>
+
+<p>
+Email:
+${escapeHtml(
+currentUser.email||""
+)}
+</p>
+
+<p>
+Phone:
+${escapeHtml(
+p.data?.phone||"—"
+)}
+</p>
+
+<p>
+Role:
+${escapeHtml(
+p.data?.role||"customer"
+)}
+</p>
+
+</div>
+
+
+<button
+class="btn btn-pink"
+onclick="openReseller()"
+>
+🤝 Reseller Center
+</button>
+
+
+${
+p.data?.role==="admin"
+?
+`
+
+<button
+class="btn btn-danger"
+onclick="openAdmin()"
+>
+👨‍💼 Admin Panel
+</button>
+
+`
+:
+""
+}
+
+
+<br><br>
+
+
+<h3 style="color:#8f174d">
+📜 My Orders
+</h3>
+
+`;
+
+
+if(o.error)
+
+h+=
+'<div class="empty">Orders load হয়নি।</div>';
+
+
+else if(!o.data?.length)
+
+h+=
+'<div class="empty">এখনো কোনো Order নেই।</div>';
+
+
+else
+
+h+=
+o.data
+.map(
+x=>
+
+`
+
+<div class="order-history-item">
+
+<b>
+Order #${x.id}
+</b>
+
+<span class="status">
+${escapeHtml(
+x.order_status
+)}
+</span>
+
+<p>
+Date:
+${formatDate(
+x.created_at
+)}
+</p>
+
+<p>
+Payment:
+${escapeHtml(
+x.payment_method
+)}
+—
+${escapeHtml(
+x.payment_status
+)}
+</p>
+
+
+${
+x.reseller_code
+?
+`
+<p>
+Reseller:
+<b>
+${escapeHtml(
+x.reseller_code
+)}
+</b>
+</p>
+`
+:
+""
+}
+
+
+<p>
+Total:
+<b>
+৳${formatMoney(x.total)}
+</b>
+</p>
+
+</div>
+
+`
+)
+.join("");
+
+
+box.innerHTML=
+h+
+
+`
+
+<br>
+
+<button
+class="btn btn-light full-btn"
+onclick="logout()"
+>
+🚪 Logout
+</button>
+
+`
+
+}
+
+
+async function logout(){
+
+await db.auth.signOut();
+
+currentUser=null;
+
+currentReseller=null;
+
+closeModal(
+"accountModal"
+);
+
+renderProducts();
+
+alert(
+"Logout হয়েছে।"
+)
+
+}
+
+
+/* =========================================
+   REVIEWS
+   ========================================= */
+
+function openReview(id){
+
+if(!currentUser){
+
+openAuth();
+
+return
+
+}
+
+
+document.getElementById(
+"reviewProductId"
+).value=id;
+
+
+document.getElementById(
+"reviewText"
+).value="";
+
+
+openModal(
+"reviewModal"
+)
+
+}
+
+
+async function submitReview(){
+
+if(!currentUser)
+
+return alert(
+"Review দিতে Login করুন।"
+);
+
+
+let id=
+document.getElementById(
+"reviewProductId"
+).value;
+
+
+let rating=
+Number(
+document.getElementById(
+"reviewRating"
+).value
+);
+
+
+let text=
+document.getElementById(
+"reviewText"
+).value.trim();
+
+
+let p=
+await db
+.from("profiles")
+.select("full_name")
+.eq(
+"id",
+currentUser.id
+)
+.maybeSingle();
+
+
+let r=
+await db
+.from("reviews")
+.insert({
+
+product_id:
+id,
+
+user_id:
+currentUser.id,
+
+user_name:
+p.data?.full_name||
+currentUser.email||
+"Customer",
+
+rating,
+
+review_text:
+text,
+
+status:
+"Pending"
+
+});
+
+
+if(r.error)
+
+return alert(
+"Review Submit হয়নি ❌\n"+
+r.error.message
+);
+
+
+closeModal(
+"reviewModal"
+);
+
+
+alert(
+"Review Submit হয়েছে ✅\n\nAdmin approve করার পর দেখা যাবে।"
+);
+
+
+if(currentDetailProduct)
+
+loadReviews(
+currentDetailProduct.id
+)
+
+}
+
+
+async function loadReviews(id){
+
+let box=
+document.getElementById(
+"productReviews"
+);
+
+
+let r=
+await db
+.from("reviews")
+.select("*")
+.eq(
+"product_id",
+id
+)
+.eq(
+"status",
+"Approved"
+)
+.order(
+"created_at",
+{
+ascending:false
+}
+);
+
+
+if(r.error){
+
+box.innerHTML="";
+
+return
+
+}
+
+
+box.innerHTML=
+r.data?.length
+
+?
+
+`
+
+<br>
+
+<h3 style="color:#8f174d">
+⭐ Customer Reviews
+</h3>
+
+`
+
++
+
+r.data
+.map(
+x=>
+
+`
+
+<div class="review-card">
+
+<b>
+${escapeHtml(
+x.user_name||
+"Customer"
+)}
+</b>
+
+<div class="stars">
+${"⭐".repeat(
+Number(x.rating||0)
+)}
+</div>
+
+<p>
+${escapeHtml(
+x.review_text||""
+)}
+</p>
+
+</div>
+
+`
+)
+.join("")
+
+:
+
+`
+
+<br>
+
+<div class="empty">
+এখনো কোনো approved review নেই।
+</div>
+
+`
+
+}
+
+
+/* =========================================
+   RESELLER
+   ========================================= */
+
+async function openReseller(){
+
+if(!currentUser){
+
+openAuth();
+
+return
+
+}
+
+
+let box=
+document.getElementById(
+"resellerContent"
+);
+
+
+box.innerHTML=
+'<div class="empty">Loading...</div>';
+
+
+let r=
+await db
+.from("resellers")
+.select("*")
+.eq(
+"user_id",
+currentUser.id
+)
+.maybeSingle();
+
+
+if(r.error){
+
+box.innerHTML=
+'<div class="empty">'+
+escapeHtml(
+r.error.message
+)+
+'</div>';
+
+openModal(
+"resellerModal"
+);
+
+return
+
+}
+
+
+if(!r.data){
+
+box.innerHTML=
+
+`
+
+<div class="account-card">
+
+<h3>
+🤝 Become a Gadhuli Reseller
+</h3>
+
+<br>
+
+<p>
+Product share করে sell করতে পারবেন।
+</p>
+
+<br>
+
+<p>
+Apply করার পর Admin review করবে।
+</p>
+
+<br>
+
+<button
+class="btn btn-pink full-btn"
+onclick="createReseller()"
+>
+🤝 Apply as Reseller
+</button>
+
+</div>
+
+`
+
+}else{
+
+let x=
+r.data;
+
+currentReseller=x;
+
+
+if(
+x.status==="Pending"
+)
+
+box.innerHTML=
+
+`
+
+<div class="account-card">
+
+<h3>
+⏳ Reseller Application Pending
+</h3>
+
+<div class="reseller-code">
+${escapeHtml(
+x.reseller_code
+)}
+</div>
+
+<p>
+<b>Status:</b>
+Pending
+</p>
+
+<p>
+<b>Commission:</b>
+${x.commission_rate}%
+</p>
+
+<p>
+Admin approve করলে Resell সুবিধা চালু হবে।
+</p>
+
+</div>
+
+`;
+
+
+else if(
+x.status==="Approved"
+)
+
+box.innerHTML=
+
+`
+
+<div class="account-card">
+
+<h3>
+🤝 Reseller Dashboard
+</h3>
+
+<div class="reseller-code">
+${escapeHtml(
+x.reseller_code
+)}
+</div>
+
+<p>
+<b>Status:</b>
+✅ Approved
+</p>
+
+<p>
+<b>Commission:</b>
+${x.commission_rate}%
+</p>
+
+<p>
+<b>Total Orders:</b>
+${x.total_orders}
+</p>
+
+<p>
+<b>Total Sales:</b>
+৳${formatMoney(
+x.total_sales
+)}
+</p>
+
+<p>
+<b>Total Commission:</b>
+৳${formatMoney(
+x.total_commission
+)}
+</p>
+
+</div>
+
+`;
+
+
+else
+
+box.innerHTML=
+
+`
+
+<div class="account-card">
+
+<h3>
+🚫 Reseller Suspended
+</h3>
+
+<div class="reseller-code">
+${escapeHtml(
+x.reseller_code
+)}
+</div>
+
+<p>
+বর্তমানে Resell সুবিধা বন্ধ।
+</p>
+
+</div>
+
+`
+
+}
+
+
+openModal(
+"resellerModal"
+)
+
+}
+
+
+async function createReseller(){
+
+if(!currentUser){
+
+openAuth();
+
+return
+
+}
+
+
+let e=
+await db
+.from("resellers")
+.select("*")
+.eq(
+"user_id",
+currentUser.id
+)
+.maybeSingle();
+
+
+if(e.error)
+
+return alert(
+"Reseller status check হয়নি ❌\n"+
+e.error.message
+);
+
+
+if(e.data)
+
+return openReseller();
+
+
+let code=
+"GADHULI"+
+Math.random()
+.toString(36)
+.substring(2,8)
+.toUpperCase();
+
+
+let r=
+await db
+.from("resellers")
+.insert({
+
+user_id:
+currentUser.id,
+
+reseller_code:
+code,
+
+commission_rate:
+5,
+
+total_orders:
+0,
+
+total_sales:
+0,
+
+total_commission:
+0,
+
+status:
+"Pending"
+
+});
+
+
+if(r.error)
+
+return alert(
+"Reseller application হয়নি ❌\n"+
+r.error.message
+);
+
+
+alert(
+"Reseller application সফল হয়েছে ✅\n\nStatus: Pending ⏳"
+);
+
+
+openReseller()
+
+}
+
+
+/* =========================================
+   RESELL PRODUCT
+   ========================================= */
+
+async function resellProduct(id){
+
+if(!currentUser){
+
+openAuth();
+
+return
+
+}
+
+
+let r=
+await getApprovedReseller();
+
+
+if(!r)
+
+return alert(
+"আপনার Approved Reseller account নেই।"
+);
+
+
+let p=
+findProduct(id);
+
+
+if(!p)
+
+return alert(
+"Product পাওয়া যায়নি।"
+);
+
+
+let link=
+window.location.origin+
+window.location.pathname+
+"?product="+
+encodeURIComponent(p.id)+
+"&ref="+
+encodeURIComponent(
+r.reseller_code
+);
+
+
+let msg=
+"🌸 Gadhuli Product\n\n"+
+"🛍️ "+
+p.name+
+"\n💰 Price: ৳"+
+formatMoney(p.price)+
+"\n\n🛒 Order করতে এখানে দেখুন:\n"+
+link;
+
+
+if(navigator.share){
+
+try{
+
+await navigator.share({
+
+title:
+"Gadhuli - "+
+p.name,
+
+text:
+msg,
+
+url:
+link
+
+})
+
+}catch(e){
+
+if(
+e?.name!=="AbortError"
+){
+
+window.open(
+"https://wa.me/?text="+
+encodeURIComponent(msg),
+"_blank"
+)
+
+}
+
+}
+
+}else{
+
+window.open(
+"https://wa.me/?text="+
+encodeURIComponent(msg),
+"_blank"
+)
+
+}
+
+}
+
+
+/* =========================================
+   ADMIN
+   ========================================= */
+
+async function openAdmin(){
+
+if(!currentUser){
+
+openAuth();
+
+return
+
+}
+
+
+if(!await isCurrentAdmin())
+
+return alert(
+"Admin access নেই।"
+);
+
+
+await renderAdmin();
+
+openModal(
+"adminModal"
+)
+
+}
+
+
+async function isCurrentAdmin(){
+
+if(!currentUser)
+return false;
+
+
+let r=
+await db
+.from("profiles")
+.select("role")
+.eq(
+"id",
+currentUser.id
+)
+.maybeSingle();
+
+
+return
+!r.error&&
+r.data?.role==="admin"
+
+}
+
+
+async function renderAdmin(){
+
+document.getElementById(
+"adminContent"
+).innerHTML=
+
+`
+
+<div
+style="
+display:flex;
+gap:8px;
+flex-wrap:wrap;
+margin-bottom:15px
+"
+>
+
+<button
+class="btn btn-pink"
+onclick="renderAdminOrders()"
+>
+📦 Orders
+</button>
+
+<button
+class="btn btn-light"
+onclick="renderAdminResellers()"
+>
+🤝 Resellers
+</button>
+
+<button
+class="btn btn-light"
+onclick="renderAdminReviews()"
+>
+⭐ Reviews
+</button>
+
+</div>
+
+<div id="adminSectionContent">
+Loading...
+</div>
+
+`;
+
+
+await renderAdminOrders()
+
+}
+
+
+/* =========================================
+   ADMIN ORDERS
+   ========================================= */
+
+async function renderAdminOrders(){
+
+let box=
+document.getElementById(
+"adminSectionContent"
+);
+
+
+if(!box)
+return;
+
+
+box.innerHTML=
+'<div class="empty">Orders Loading...</div>';
+
+
+let r=
+await db
+.from("orders")
+.select("*")
+.order(
+"created_at",
+{
+ascending:false
+}
+);
+
+
+if(r.error){
+
+box.innerHTML=
+'<div class="empty">'+
+escapeHtml(
+r.error.message
+)+
+'</div>';
+
+return
+
+}
+
+
+if(!r.data?.length){
+
+box.innerHTML=
+'<div class="empty">এখনো কোনো Order নেই।</div>';
+
+return
+
+}
+
+
+let h="";
+
+
+for(
+const o of r.data
+){
+
+let items=
+await db
+.from("order_items")
+.select("*")
+.eq(
+"order_id",
+o.id
+);
+
+
+h+=
+
+`
+
+<div class="admin-order">
+
+<div class="admin-order-head">
+
+<div>
+
+<b>
+Order #${o.id}
+</b>
+
+<br>
+
+<small>
+${formatDate(
+o.created_at
+)}
+</small>
+
+</div>
+
+<span class="status">
+${escapeHtml(
+o.order_status
+)}
+</span>
+
+</div>
+
+
+<p>
+<b>Customer:</b>
+${escapeHtml(
+o.customer_name
+)}
+</p>
+
+
+<p>
+<b>Phone:</b>
+${escapeHtml(
+o.customer_phone
+)}
+</p>
+
+
+<p>
+<b>Address:</b>
+${escapeHtml(
+o.customer_receive_place
+)},
+${escapeHtml(
+o.customer_thana
+)},
+${escapeHtml(
+o.customer_district
+)}
+</p>
+
+
+<p>
+<b>Payment:</b>
+${escapeHtml(
+o.payment_method
+)}
+—
+${escapeHtml(
+o.payment_status
+)}
+</p>
+
+
+${
+o.notes
+?
+`
+
+<p>
+<b>
+Payment/Notes:
+</b>
+<br>
+${escapeHtml(
+o.notes
+)}
+</p>
+
+`
+:
+""
+}
+
+
+${
+o.reseller_code
+?
+`
+
+<p>
+<b>
+Reseller:
+</b>
+${escapeHtml(
+o.reseller_code
+)}
+</p>
+
+`
+:
+""
+}
+
+
+<div class="admin-items">
+
+<b>
+Products
+</b>
+
+
+${
+(items.data||[])
+.map(
+i=>
+
+`
+
+<div
+style="
+padding:7px 0;
+border-bottom:1px solid #f0c4d6
+"
+>
+
+${escapeHtml(
+i.product_name
+)}
+
+${
+i.size
+?
+" — Size: "+
+escapeHtml(
+i.size
+)
+:
+""
+}
+
+×
+
+${i.quantity}
+
+=
+
+<b>
+৳${formatMoney(
+i.line_total
+)}
+</b>
+
+</div>
+
+`
+)
+.join("")
+}
+
+</div>
+
+
+<h3 style="color:#8f174d">
+
+Total:
+৳${formatMoney(
+o.total
+)}
+
+</h3>
+
+<br>
+
+
+<div class="admin-actions">
+
+<select
+onchange="updateOrderStatus(${o.id},this.value)"
+>
+
+${
+[
+"Pending",
+"Confirmed",
+"Processing",
+"Shipped",
+"Delivered",
+"Cancelled"
+]
+.map(
+s=>
+
+`
+
+<option
+value="${s}"
+${
+s===o.order_status
+?
+"selected"
+:
+""
+}
+>
+${s}
+</option>
+
+`
+)
+.join("")
+}
+
+</select>
+
+
+<select
+onchange="updatePaymentStatus(${o.id},this.value)"
+>
+
+${
+[
+"Pending",
+"Paid",
+"Failed",
+"Refunded"
+]
+.map(
+s=>
+
+`
+
+<option
+value="${s}"
+${
+s===o.payment_status
+?
+"selected"
+:
+""
+}
+>
+Payment: ${s}
+</option>
+
+`
+)
+.join("")
+}
+
+</select>
+
+</div>
+
+</div>
+
+`
+
+}
+
+
+box.innerHTML=h
+
+}
+
+
+/* =========================================
+   ADMIN RESELLERS
+   ========================================= */
+
+async function renderAdminResellers(){
+
+let box=
+document.getElementById(
+"adminSectionContent"
+);
+
+
+box.innerHTML=
+'<div class="empty">Resellers Loading...</div>';
+
+
+let r=
+await db
+.from("resellers")
+.select("*")
+.order(
+"created_at",
+{
+ascending:false
+}
+);
+
+
+if(r.error)
+
+return box.innerHTML=
+'<div class="empty">'+
+escapeHtml(
+r.error.message
+)+
+'</div>';
+
+
+if(!r.data?.length)
+
+return box.innerHTML=
+'<div class="empty">কোনো Reseller application নেই।</div>';
+
+
+let h=
+"<h3 style='color:#8f174d;margin-bottom:12px'>🤝 Reseller Management</h3>";
+
+
+for(
+const x of r.data
+){
+
+let p=
+await db
+.from("profiles")
+.select(
+"full_name,phone,role"
+)
+.eq(
+"id",
+x.user_id
+)
+.maybeSingle();
+
+
+h+=
+
+`
+
+<div class="reseller-admin-card">
+
+<div class="reseller-admin-head">
+
+<div>
+
+<b>
+${escapeHtml(
+p.data?.full_name||
+"User"
+)}
+</b>
+
+<br>
+
+<small>
+${escapeHtml(
+x.reseller_code
+)}
+</small>
+
+</div>
+
+<span class="status">
+${escapeHtml(
+x.status
+)}
+</span>
+
+</div>
+
+
+<p>
+<b>
+Phone:
+</b>
+${escapeHtml(
+p.data?.phone||"—"
+)}
+</p>
+
+
+<p>
+<b>
+Role:
+</b>
+${escapeHtml(
+p.data?.role||"customer"
+)}
+</p>
+
+
+<p>
+<b>
+Commission:
+</b>
+${x.commission_rate}%
+</p>
+
+
+<p>
+<b>
+Total Orders:
+</b>
+${x.total_orders}
+</p>
+
+
+<p>
+<b>
+Total Sales:
+</b>
+৳${formatMoney(
+x.total_sales
+)}
+</p>
+
+
+<p>
+<b>
+Total Commission:
+</b>
+৳${formatMoney(
+x.total_commission
+)}
+</p>
+
+<br>
+
+
+<div class="admin-actions">
+
+${
+x.status!=="Approved"
+?
+`
+
+<button
+class="btn btn-pink"
+onclick="approveReseller('${escapeAttr(x.user_id)}',${x.id})"
+>
+✅ Approve
+</button>
+
+`
+:
+""
+}
+
+
+${
+x.status!=="Suspended"
+?
+`
+
+<button
+class="btn btn-danger"
+onclick="suspendReseller('${escapeAttr(x.user_id)}',${x.id})"
+>
+🚫 Suspend
+</button>
+
+`
+:
+""
+}
+
+</div>
+
+</div>
+
+`
+
+}
+
+
+box.innerHTML=h
+
+}
+
+
+/* =========================================
+   APPROVE RESELLER
+   ========================================= */
+
+async function approveReseller(
+uid,
+rid
+){
+
+if(!await isCurrentAdmin())
+
+return alert(
+"Admin access নেই।"
+);
+
+
+let r=
+await db
+.from("resellers")
+.update({
+status:"Approved"
+})
+.eq(
+"id",
+rid
+);
+
+
+if(r.error)
+
+return alert(
+"Approve হয়নি ❌\n"+
+r.error.message
+);
+
+
+let p=
+await db
+.from("profiles")
+.update({
+role:"reseller"
+})
+.eq(
+"id",
+uid
+);
+
+
+if(p.error)
+
+return alert(
+"Profile role update হয়নি ❌\n"+
+p.error.message
+);
+
+
+alert(
+"Reseller Approved হয়েছে ✅"
+);
+
+
+renderAdminResellers()
+
+}
+
+
+/* =========================================
+   SUSPEND RESELLER
+   ========================================= */
+
+async function suspendReseller(
+uid,
+rid
+){
+
+if(!await isCurrentAdmin())
+
+return alert(
+"Admin access নেই।"
+);
+
+
+let r=
+await db
+.from("resellers")
+.update({
+status:"Suspended"
+})
+.eq(
+"id",
+rid
+);
+
+
+if(r.error)
+
+return alert(
+"Suspend হয়নি ❌\n"+
+r.error.message
+);
+
+
+let p=
+await db
+.from("profiles")
+.update({
+role:"customer"
+})
+.eq(
+"id",
+uid
+);
+
+
+if(p.error)
+
+return alert(
+"Profile role update হয়নি ❌\n"+
+p.error.message
+);
+
+
+alert(
+"Reseller Suspended হয়েছে 🚫"
+);
+
+
+renderAdminResellers()
+
+}
+
+
+/* =========================================
+   ADMIN REVIEWS
+   ========================================= */
+
+async function renderAdminReviews(){
+
+let box=
+document.getElementById(
+"adminSectionContent"
+);
+
+
+box.innerHTML=
+'<div class="empty">Reviews Loading...</div>';
+
+
+let r=
+await db
+.from("reviews")
+.select("*")
+.order(
+"created_at",
+{
+ascending:false
+}
+);
+
+
+if(r.error)
+
+return box.innerHTML=
+'<div class="empty">'+
+escapeHtml(
+r.error.message
+)+
+'</div>';
+
+
+if(!r.data?.length)
+
+return box.innerHTML=
+'<div class="empty">কোনো review নেই।</div>';
+
+
+box.innerHTML=
+r.data
+.map(
+x=>
+
+`
+
+<div class="review-card">
+
+<b>
+${escapeHtml(
+x.user_name||
+"Customer"
+)}
+</b>
+
+—
+Product #${x.product_id}
+
+<div class="stars">
+
+${"⭐".repeat(
+Number(
+x.rating||0
+)
+)}
+
+</div>
+
+<p>
+${escapeHtml(
+x.review_text||""
+)}
+</p>
+
+<p>
+
+Status:
+
+<span class="status">
+${escapeHtml(
+x.status
+)}
+</span>
+
+</p>
+
+
+<div class="admin-actions">
+
+${
+x.status!=="Approved"
+?
+`
+
+<button
+class="btn btn-pink"
+onclick="updateReviewStatus(${x.id},'Approved')"
+>
+✅ Approve
+</button>
+
+`
+:
+""
+}
+
+
+${
+x.status!=="Rejected"
+?
+`
+
+<button
+class="btn btn-danger"
+onclick="updateReviewStatus(${x.id},'Rejected')"
+>
+❌ Reject
+</button>
+
+`
+:
+""
+}
+
+</div>
+
+</div>
+
+`
+)
+.join("")
+
+}
+
+
+/* =========================================
+   UPDATE REVIEW STATUS
+   ========================================= */
+
+async function updateReviewStatus(
+id,
+status
+){
+
+if(!await isCurrentAdmin())
+
+return alert(
+"Admin access নেই।"
+);
+
+
+let r=
+await db
+.from("reviews")
+.update({
+status
+})
+.eq(
+"id",
+id
+);
+
+
+if(r.error)
+
+return alert(
+"Review status update হয়নি ❌\n"+
+r.error.message
+);
+
+
+renderAdminReviews()
+
+}
+
+
+/* =========================================
+   UPDATE ORDER STATUS
+   ========================================= */
+
+async function updateOrderStatus(
+id,
+status
+){
+
+if(!await isCurrentAdmin())
+
+return alert(
+"Admin access নেই।"
+);
+
+
+let old=
+await db
+.from("orders")
+.select("*")
+.eq(
+"id",
+id
+)
+.maybeSingle();
+
+
+if(
+old.error||
+!old.data
+)
+
+return alert(
+"Order পাওয়া যায়নি।"
+);
+
+
+let r=
+await db
+.from("orders")
+.update({
+order_status:
+status
+})
+.eq(
+"id",
+id
+);
+
+
+if(r.error)
+
+return alert(
+"Status update হয়নি ❌\n"+
+r.error.message
+);
+
+
+let verify=
+await db
+.from("orders")
+.select(
+"id,order_status"
+)
+.eq(
+"id",
+id
+)
+.maybeSingle();
+
+
+if(verify.error)
+
+return alert(
+"Update verify হয়নি ❌\n"+
+verify.error.message
+);
+
+
+if(
+verify.data?.order_status!==status
+)
+
+return alert(
+"Database status update হয়নি ❌"
+);
+
+
+if(
+status==="Delivered"&&
+old.data.order_status!=="Delivered"&&
+old.data.reseller_id
+)
+
+await postResellerCommission(
+old.data
+);
+
+
+renderAdminOrders()
+
+}
+
+
+/* =========================================
+   RESELLER COMMISSION
+   ========================================= */
+
+async function postResellerCommission(
+order
+){
+
+let r=
+await db
+.from("resellers")
+.select("*")
+.eq(
+"user_id",
+order.reseller_id
+)
+.maybeSingle();
+
+
+if(
+r.error||
+!r.data||
+r.data.status!=="Approved"
+)
+
+return;
+
+
+let notes=
+order.notes||"";
+
+
+if(
+notes.includes(
+"[COMMISSION_POSTED]"
+)
+)
+
+return;
+
+
+let commission=
+Number(
+order.subtotal||0
+)*
+Number(
+r.data.commission_rate||0
+)/
+100;
+
+
+let u=
+await db
+.from("resellers")
+.update({
+
+total_orders:
+Number(
+r.data.total_orders||0
+)+1,
+
+total_sales:
+Number(
+r.data.total_sales||0
+)+
+Number(
+order.subtotal||0
+),
+
+total_commission:
+Number(
+r.data.total_commission||0
+)+
+commission
+
+})
+.eq(
+"user_id",
+order.reseller_id
+);
+
+
+if(u.error){
+
+console.error(
+"Commission update failed",
+u.error
+);
+
+return
+
+}
+
+
+await db
+.from("orders")
+.update({
+
+notes:
+(notes?notes+"\n":"")+
+"[COMMISSION_POSTED] Commission: ৳"+
+commission.toFixed(2)
+
+})
+.eq(
+"id",
+order.id
+)
+
+}
+
+
+/* =========================================
+   PAYMENT STATUS
+   ========================================= */
+
+async function updatePaymentStatus(
+id,
+status
+){
+
+if(!await isCurrentAdmin())
+
+return alert(
+"Admin access নেই।"
+);
+
+
+let r=
+await db
+.from("orders")
+.update({
+payment_status:
+status
+})
+.eq(
+"id",
+id
+);
+
+
+if(r.error)
+
+return alert(
+"Payment status update হয়নি ❌\n"+
+r.error.message
+);
+
+
+let verify=
+await db
+.from("orders")
+.select(
+"id,payment_status"
+)
+.eq(
+"id",
+id
+)
+.maybeSingle();
+
+
+if(verify.error)
+
+return alert(
+"Payment update verify হয়নি ❌\n"+
+verify.error.message
+);
+
+
+if(
+verify.data?.payment_status!==status
+)
+
+return alert(
+"Database payment status update হয়নি ❌"
+);
+
+
+renderAdminOrders()
+
+}
+
+
+/* =========================================
+   MODAL EVENTS
+   ========================================= */
+
+document.addEventListener(
+"click",
+e=>{
+
+if(
+e.target.classList.contains(
+"modal"
+)
+)
+
+e.target.classList.remove(
+"show"
+)
+
+});
+
+
+document.addEventListener(
+"keydown",
+e=>{
+
+if(e.key==="Escape")
+
+document
+.querySelectorAll(
+".modal.show"
+)
+.forEach(
+m=>
+m.classList.remove(
+"show"
+)
+)
+
+});
+
+
+window.addEventListener(
+"popstate",
+()=>{
+
+const id=
+new URLSearchParams(
+window.location.search
+).get("product");
+
+
+if(
+id&&
+findProduct(id)
+)
+
+openDetails(id)
+
+});
+
+
+/* =========================================================
+   GADHULI PREMIUM MOBILE NAVIGATION JS
+   ========================================================= */
+(function(){
+  const ORDER_STATUSES=["Pending","Confirmed","Processing","Shipped","Delivered"];
+  let mobileResellerState=false;
+  let mobileBadgeTimer=null;
+
+  function qs(id){return document.getElementById(id)}
+  function setActiveNav(name){
+    ["Home","Cart","Help","Orders","Last"].forEach(x=>{
+      const el=qs("mobileNav"+x);
+      if(el) el.classList.toggle("active",name===x);
+    });
+  }
+
+  window.mobileNavHome=function(){
+    setActiveNav("Home");
+    closeModal("ordersMobileModal");
+    closeModal("profileMobileModal");
+    closeModal("cartModal");
+    window.scrollTo({top:0,behavior:"smooth"});
+  };
+
+  window.mobileNavCart=function(){
+    setActiveNav("Cart");
+    openCart();
+  };
+
+  window.mobileNavHelp=function(){
+    setActiveNav("Help");
+    openWhatsAppHelpline();
+  };
+
+  window.mobileNavOrders=async function(){
+    setActiveNav("Orders");
+    await openGadhuliMobileOrders();
+  };
+
+  window.mobileNavLast=function(){
+    setActiveNav("Last");
+    if(mobileResellerState){
+      openReseller();
+    }else{
+      openGadhuliMobileProfile();
+    }
+  };
+
+  function updateCartBadge(){
+    const badge=qs("mobileCartBadge");
+    if(!badge)return;
+    const total=(cart||[]).reduce((n,x)=>n+Math.max(1,Number(x?.quantity||1)),0);
+    badge.textContent=total>99?"99+":String(total);
+    badge.classList.toggle("show",total>0);
+  }
+
+  function getSeenOrderKey(){
+    return currentUser ? "gadhuli_order_status_seen_"+currentUser.id : "";
+  }
+
+  async function updateOrderBadge(){
+    const badge=qs("mobileOrderBadge");
+    if(!badge)return;
+    if(!currentUser||!db){
+      badge.classList.remove("show");
+      return;
+    }
+
+    const r=await db.from("orders")
+      .select("id,order_status,created_at")
+      .eq("user_id",currentUser.id)
+      .order("created_at",{ascending:false})
+      .limit(50);
+
+    if(r.error){
+      badge.classList.remove("show");
+      return;
+    }
+
+    const key=getSeenOrderKey();
+    let seen={};
+    try{seen=JSON.parse(localStorage.getItem(key)||"{}")}catch(e){seen={}}
+
+    if(!Object.keys(seen).length && r.data?.length){
+      const initial={};
+      r.data.forEach(o=>initial[String(o.id)]=o.order_status||"Pending");
+      localStorage.setItem(key,JSON.stringify(initial));
+      badge.classList.remove("show");
+      return;
+    }
+
+    let changed=0;
+    const latest={};
+    (r.data||[]).forEach(o=>{
+      const id=String(o.id);
+      const status=o.order_status||"Pending";
+      latest[id]=status;
+      if(seen[id]!==undefined && seen[id]!==status) changed++;
+      if(seen[id]===undefined && Object.keys(seen).length) changed++;
+    });
+
+    badge.textContent=changed>9?"9+":String(changed);
+    badge.classList.toggle("show",changed>0);
+  }
+
+  function markOrdersSeen(data){
+    if(!currentUser)return;
+    const key=getSeenOrderKey();
+    const seen={};
+    (data||[]).forEach(o=>seen[String(o.id)]=o.order_status||"Pending");
+    localStorage.setItem(key,JSON.stringify(seen));
+    const badge=qs("mobileOrderBadge");
+    if(badge)badge.classList.remove("show");
+  }
+
+  async function renderBottomLastButton(){
+    const icon=qs("mobileLastIcon"), label=qs("mobileLastLabel");
+    if(!icon||!label)return;
+    mobileResellerState=false;
+    if(currentUser&&db){
+      const r=await db.from("resellers").select("id,status")
+        .eq("user_id",currentUser.id).eq("status","Approved").maybeSingle();
+      mobileResellerState=!r.error&&!!r.data;
+    }
+    if(mobileResellerState){
+      icon.textContent="🤝";
+      label.textContent="Reseller";
+    }else{
+      icon.textContent="👤";
+      label.textContent="Profile";
+    }
+  }
+
+  window.renderGadhuliMobileNav=async function(){
+    updateCartBadge();
+    await renderBottomLastButton();
+    await updateOrderBadge();
+  };
+
+  window.openGadhuliMobileOrders=async function(){
+    const box=qs("ordersMobileContent");
+    if(!box)return;
+
+    if(!currentUser){
+      closeModal("ordersMobileModal");
+      openAuth();
+      return;
+    }
+
+    box.innerHTML='<div class="empty">📦 Orders Loading...</div>';
+    openModal("ordersMobileModal");
+
+    const r=await db.from("orders").select("*")
+      .eq("user_id",currentUser.id)
+      .order("created_at",{ascending:false});
+
+    if(r.error){
+      box.innerHTML='<div class="empty">Orders load হয়নি ❌<br>'+escapeHtml(r.error.message)+'</div>';
+      return;
+    }
+
+    const data=r.data||[];
+    if(!data.length){
+      box.innerHTML='<div class="empty">📦 এখনো কোনো Order নেই।</div>';
+      markOrdersSeen([]);
+      return;
+    }
+
+    let html="";
+    data.forEach(o=>{
+      const status=o.order_status||"Pending";
+      const cancelled=status==="Cancelled";
+      const currentIndex=ORDER_STATUSES.indexOf(status);
+
+      let tracking="";
+      if(cancelled){
+        tracking='<div class="tracking-cancelled">❌ এই Orderটি Cancelled</div>';
+      }else{
+        tracking='<div class="tracking">';
+        ORDER_STATUSES.forEach((st,i)=>{
+          const done=i<=currentIndex;
+          tracking+=`
+            <div class="tracking-step ${done?"done":""}">
+              <span class="tracking-dot"></span>
+              <div>${st}<br><small>${done?(i===currentIndex?"Current Status":"Completed"):"Waiting"}</small></div>
+              ${i<ORDER_STATUSES.length-1?`<span class="tracking-line ${i<currentIndex?"done":""}"></span>`:""}
+            </div>`;
+        });
+        tracking+="</div>";
+      }
+
+      html+=`
+        <div class="mobile-order-card">
+          <div class="mobile-order-head">
+            <div>
+              <b>Order #${escapeHtml(o.id)}</b><br>
+              <small>${formatDate(o.created_at)}</small>
+            </div>
+            <span class="status">${escapeHtml(status)}</span>
+          </div>
+          <div><b>Payment:</b> ${escapeHtml(o.payment_method||"—")} — ${escapeHtml(o.payment_status||"Pending")}</div>
+          <div><b>Delivery:</b> ${escapeHtml(o.delivery_area||"—")}</div>
+          <div class="mobile-order-total">Total: ৳${formatMoney(o.total)}</div>
+          ${tracking}
+        </div>`;
+    });
+
+    box.innerHTML=html;
+    markOrdersSeen(data);
+  };
+
+  window.openGadhuliMobileProfile=async function(){
+    const box=qs("profileMobileContent");
+    if(!box)return;
+
+    if(!currentUser){
+      closeModal("profileMobileModal");
+      openAuth();
+      return;
+    }
+
+    let profile=null;
+    if(db){
+      const r=await db.from("profiles").select("full_name,phone,role,commission_rate")
+        .eq("id",currentUser.id).maybeSingle();
+      if(!r.error)profile=r.data;
+    }
+
+    const name=profile?.full_name||currentUser.user_metadata?.full_name||currentUser.email?.split("@")[0]||"Gadhuli User";
+    const role=profile?.role||"customer";
+
+    box.innerHTML=`
+      <div class="profile-welcome">
+        <div class="profile-welcome-top">
+          <div class="profile-avatar">👤</div>
+          <div>
+            <h3>Welcome back, ${escapeHtml(name)} 👋</h3>
+            <p>Manage your Gadhuli account</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="profile-grid">
+        <button class="profile-action" onclick="openAccount();closeModal('profileMobileModal')">
+          <span>👤</span>My Profile<small>Account details</small>
+        </button>
+        <button class="profile-action" onclick="openGadhuliMobileOrders()">
+          <span>📦</span>My Orders<small>Order history</small>
+        </button>
+        <button class="profile-action" onclick="openGadhuliMobileOrders()">
+          <span>🚚</span>Track Order<small>Live status</small>
+        </button>
+        <button class="profile-action" onclick="openGadhuliChangePassword()">
+          <span>🔐</span>Change Password<small>Secure account</small>
+        </button>
+        <button class="profile-action" onclick="openGadhuliSavedAddress()">
+          <span>📍</span>Saved Address<small>Delivery address</small>
+        </button>
+        <button class="profile-action" onclick="openWishlist();closeModal('profileMobileModal')">
+          <span>❤️</span>Wishlist<small>Saved products</small>
+        </button>
+        ${role==="admin"?`
+        <button class="profile-action" onclick="openAdmin();closeModal('profileMobileModal')">
+          <span>👨‍💼</span>Admin Panel<small>Manage Gadhuli</small>
+        </button>`:""}
+        <button class="profile-action profile-logout" onclick="gadhuliLogout()">
+          <span>🚪</span>Logout<small>Sign out</small>
+        </button>
+      </div>`;
+
+    openModal("profileMobileModal");
+  };
+
+  window.openGadhuliChangePassword=function(){
+    closeModal("profileMobileModal");
+    if(!currentUser){openAuth();return;}
+    qs("newPassword1").value="";
+    qs("newPassword2").value="";
+    openModal("changePasswordModal");
+  };
+
+  window.changeGadhuliPassword=async function(){
+    const p1=qs("newPassword1").value;
+    const p2=qs("newPassword2").value;
+    if(p1.length<6)return alert("Password কমপক্ষে ৬ অক্ষরের হতে হবে।");
+    if(p1!==p2)return alert("দুইটি Password একই নয়।");
+    if(!db||!currentUser)return openAuth();
+
+    const r=await db.auth.updateUser({password:p1});
+    if(r.error)return alert("Password update হয়নি ❌\n\n"+r.error.message);
+    alert("Password সফলভাবে update হয়েছে ✅");
+    closeModal("changePasswordModal");
+  };
+
+  window.openGadhuliSavedAddress=function(){
+    closeModal("profileMobileModal");
+    const saved=JSON.parse(localStorage.getItem("gadhuli_saved_address")||"{}");
+    qs("savedDistrict").value=saved.district||"";
+    qs("savedThana").value=saved.thana||"";
+    qs("savedReceivePlace").value=saved.receivePlace||"";
+    openModal("savedAddressModal");
+  };
+
+  window.saveGadhuliAddress=function(){
+    const data={
+      district:qs("savedDistrict").value.trim(),
+      thana:qs("savedThana").value.trim(),
+      receivePlace:qs("savedReceivePlace").value.trim()
+    };
+    if(!data.district||!data.thana||!data.receivePlace)
+      return alert("সব Address তথ্য দিন।");
+    localStorage.setItem("gadhuli_saved_address",JSON.stringify(data));
+    alert("Saved Address সফলভাবে save হয়েছে ✅");
+    closeModal("savedAddressModal");
+  };
+
+  window.gadhuliLogout=async function(){
+    if(db)await db.auth.signOut();
+    currentUser=null;
+    currentReseller=null;
+    localStorage.removeItem("gadhuli_order_status_seen_"+(currentUser?.id||""));
+    closeModal("profileMobileModal");
+    alert("Logout হয়েছে ✅");
+    await renderGadhuliMobileNav();
+  };
+
+  /* Save Address automatically into checkout */
+  const originalShowOrderModal=window.showOrderModal;
+  if(typeof originalShowOrderModal==="function"){
+    window.showOrderModal=function(){
+      originalShowOrderModal();
+      setTimeout(()=>{
+        try{
+          const saved=JSON.parse(localStorage.getItem("gadhuli_saved_address")||"{}");
+          if(saved.district)qs("orderDistrict").value=saved.district;
+          if(saved.thana)qs("orderThana").value=saved.thana;
+          if(saved.receivePlace)qs("orderReceivePlace").value=saved.receivePlace;
+        }catch(e){}
+      },80);
+    };
+  }
+
+  /* Keep cart badge synced whenever existing cart functions run */
+  const originalSaveCart=window.saveCart;
+  if(typeof originalSaveCart==="function"){
+    window.saveCart=function(){
+      originalSaveCart();
+      updateCartBadge();
+    };
+  }
+
+  /* Initial render after original app initialization */
+  document.addEventListener("DOMContentLoaded",()=>{
+    setTimeout(()=>renderGadhuliMobileNav(),700);
+    if(mobileBadgeTimer)clearInterval(mobileBadgeTimer);
+    mobileBadgeTimer=setInterval(()=>{
+      updateCartBadge();
+      updateOrderBadge();
+      renderBottomLastButton();
+    },30000);
+  });
+
+  /* Auth changes can happen after login/signup */
+  if(db&&db.auth){
+    db.auth.onAuthStateChange(()=>{
+      setTimeout(()=>renderGadhuliMobileNav(),400);
+    });
+  }
+})();
+
+</script>
+
+</body>
+</html>
