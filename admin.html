@@ -15,14 +15,14 @@
 *{
 box-sizing:border-box;
 margin:0;
-padding:0
+padding:0;
 }
 
 :root{
 --orange:#FF6B00;
 --orange-dark:#E65100;
 --orange-light:#FFF3E8;
---orange-gradient:linear-gradient(135deg,#FF8A00,#FF5A00);
+--gradient:linear-gradient(135deg,#FF8A00,#FF5A00);
 --white:#fff;
 --bg:#FFFDF9;
 --text:#171717;
@@ -31,7 +31,11 @@ padding:0
 --green:#25D366;
 --red:#e53935;
 --blue:#1677ff;
---shadow:0 5px 20px rgba(255,107,0,.10)
+--shadow:0 5px 20px rgba(255,107,0,.10);
+}
+
+html{
+scroll-behavior:smooth;
 }
 
 body{
@@ -39,34 +43,37 @@ font-family:Arial,Helvetica,sans-serif;
 background:var(--bg);
 color:var(--text);
 line-height:1.5;
-min-height:100vh
+min-height:100vh;
 }
 
-button,input,select,textarea{
-font-family:inherit
+button,
+input,
+select,
+textarea{
+font-family:inherit;
 }
 
 button{
-cursor:pointer
+cursor:pointer;
 }
 
 img{
-max-width:100%
+max-width:100%;
 }
 
 .hidden{
-display:none!important
+display:none!important;
 }
 
 /* HEADER */
 
 header{
-background:var(--orange-gradient);
+background:var(--gradient);
 padding:10px 15px;
 box-shadow:0 3px 15px rgba(0,0,0,.15);
 position:sticky;
 top:0;
-z-index:1000
+z-index:1000;
 }
 
 .header-inner{
@@ -75,38 +82,37 @@ margin:auto;
 display:flex;
 align-items:center;
 justify-content:space-between;
-gap:15px
+gap:15px;
 }
 
 .header-brand{
 display:flex;
 align-items:center;
 gap:12px;
-min-width:0
+min-width:0;
 }
 
 .header-logo{
 width:110px;
 height:48px;
 object-fit:contain;
-object-position:center;
 background:#fff;
 border-radius:8px;
 padding:4px 7px;
 display:block;
-flex-shrink:0
+flex-shrink:0;
 }
 
 .header-title{
 font-size:21px;
 font-weight:800;
-color:#fff
+color:#fff;
 }
 
 .header-sub{
 font-size:12px;
 color:#fff;
-opacity:.9
+opacity:.9;
 }
 
 /* GENERAL */
@@ -114,7 +120,7 @@ opacity:.9
 .container{
 max-width:1250px;
 margin:20px auto;
-padding:0 15px
+padding:0 15px;
 }
 
 .card{
@@ -123,13 +129,13 @@ border:1px solid var(--border);
 border-radius:16px;
 padding:18px;
 margin-bottom:18px;
-box-shadow:var(--shadow)
+box-shadow:var(--shadow);
 }
 
 .card h2{
 color:var(--orange-dark);
 margin-bottom:15px;
-font-size:20px
+font-size:20px;
 }
 
 .btn{
@@ -138,60 +144,60 @@ padding:10px 15px;
 border-radius:9px;
 font-weight:700;
 margin:3px;
-transition:.2s
+transition:.2s;
 }
 
 .btn:hover{
-transform:translateY(-1px)
+transform:translateY(-1px);
 }
 
 .btn:disabled{
 opacity:.6;
 cursor:not-allowed;
-transform:none
+transform:none;
 }
 
 .btn-orange{
 background:var(--orange);
-color:#fff
+color:#fff;
 }
 
 .btn-light{
 background:var(--orange-light);
 color:var(--orange-dark);
-border:1px solid #ffd4b5
+border:1px solid #ffd4b5;
 }
 
 .btn-danger{
 background:var(--red);
-color:#fff
+color:#fff;
 }
 
 .btn-green{
 background:var(--green);
-color:#fff
+color:#fff;
 }
 
 .btn-blue{
 background:var(--blue);
-color:#fff
+color:#fff;
 }
 
 .btn-gray{
 background:#666;
-color:#fff
+color:#fff;
 }
 
 .full{
 width:100%;
-margin:0
+margin:0;
 }
 
 /* LOGIN */
 
 .login-box{
 max-width:430px;
-margin:55px auto
+margin:55px auto;
 }
 
 .login-logo{
@@ -199,24 +205,24 @@ display:block;
 width:145px;
 height:65px;
 object-fit:contain;
-margin:0 auto 18px
+margin:0 auto 18px;
 }
 
 .login-box h2{
 text-align:center;
 color:var(--orange-dark);
-margin-bottom:20px
+margin-bottom:20px;
 }
 
 .form-group{
-margin-bottom:14px
+margin-bottom:14px;
 }
 
 .form-group label{
 display:block;
 font-weight:700;
 margin-bottom:6px;
-color:#444
+color:#444;
 }
 
 input,
@@ -228,24 +234,24 @@ border:1px solid #ddd;
 border-radius:9px;
 outline:none;
 background:#fff;
-font-size:14px
+font-size:14px;
 }
 
 input:focus,
 select:focus,
 textarea:focus{
 border-color:var(--orange);
-box-shadow:0 0 0 2px rgba(255,107,0,.08)
+box-shadow:0 0 0 2px rgba(255,107,0,.08);
 }
 
 /* PASSWORD */
 
 .password-wrap{
-position:relative
+position:relative;
 }
 
 .password-wrap input{
-padding-right:52px
+padding-right:52px;
 }
 
 .password-eye{
@@ -260,11 +266,11 @@ background:transparent;
 border-radius:8px;
 font-size:20px;
 margin:0;
-padding:0
+padding:0;
 }
 
 .password-eye:hover{
-background:var(--orange-light)
+background:var(--orange-light);
 }
 
 /* STATS */
@@ -273,7 +279,7 @@ background:var(--orange-light)
 display:grid;
 grid-template-columns:repeat(4,1fr);
 gap:13px;
-margin-bottom:18px
+margin-bottom:18px;
 }
 
 .stat{
@@ -282,35 +288,41 @@ border:1px solid var(--border);
 border-radius:15px;
 padding:18px;
 text-align:center;
-box-shadow:var(--shadow)
+box-shadow:var(--shadow);
 }
 
 .stat-icon{
-font-size:26px
+font-size:26px;
 }
 
 .stat-label{
 font-size:13px;
-color:var(--muted)
+color:var(--muted);
 }
 
 .stat-number{
 font-size:26px;
 font-weight:800;
-color:var(--orange-dark)
+color:var(--orange-dark);
 }
 
-/* NAV */
+/* NAVIGATION */
 
 .admin-nav{
 display:grid;
 grid-template-columns:repeat(7,1fr);
-gap:8px
+gap:8px;
 }
 
 .admin-nav .btn{
 margin:0;
-min-height:45px
+min-height:46px;
+}
+
+.admin-nav .btn.active{
+background:var(--orange);
+color:#fff;
+border-color:var(--orange);
 }
 
 /* CONTENT */
@@ -320,20 +332,20 @@ background:var(--orange-light);
 border:1px solid #ffd3b2;
 padding:12px;
 border-radius:10px;
-margin-bottom:15px
+margin-bottom:15px;
 }
 
 .empty{
 padding:45px 15px;
 text-align:center;
-color:#888
+color:#888;
 }
 
 .loading{
 padding:40px;
 text-align:center;
 color:var(--orange-dark);
-font-weight:bold
+font-weight:bold;
 }
 
 .spinner{
@@ -345,12 +357,12 @@ border-top-color:var(--orange);
 border-radius:50%;
 animation:spin .8s linear infinite;
 vertical-align:middle;
-margin-right:7px
+margin-right:7px;
 }
 
 @keyframes spin{
 to{
-transform:rotate(360deg)
+transform:rotate(360deg);
 }
 }
 
@@ -359,7 +371,7 @@ transform:rotate(360deg)
 .product-grid{
 display:grid;
 grid-template-columns:repeat(3,1fr);
-gap:15px
+gap:15px;
 }
 
 .product-card{
@@ -367,7 +379,7 @@ background:#fff;
 border:1px solid var(--border);
 border-radius:14px;
 padding:13px;
-box-shadow:0 3px 12px rgba(0,0,0,.05)
+box-shadow:0 3px 12px rgba(0,0,0,.05);
 }
 
 .product-image{
@@ -375,24 +387,24 @@ width:100%;
 aspect-ratio:1/1;
 object-fit:cover;
 border-radius:10px;
-background:#f5f5f5
+background:#f5f5f5;
 }
 
 .product-name{
 font-weight:800;
-margin-top:9px
+margin-top:9px;
 }
 
 .product-price{
 font-size:19px;
 font-weight:800;
 color:var(--orange-dark);
-margin:4px 0
+margin:4px 0;
 }
 
 .product-meta{
 font-size:12px;
-color:#777
+color:#777;
 }
 
 /* IMAGES */
@@ -401,7 +413,7 @@ color:#777
 display:flex;
 flex-wrap:wrap;
 gap:8px;
-margin-top:10px
+margin-top:10px;
 }
 
 .image-preview img{
@@ -409,7 +421,7 @@ width:85px;
 height:85px;
 object-fit:cover;
 border-radius:9px;
-border:1px solid #ddd
+border:1px solid #ddd;
 }
 
 /* ORDERS */
@@ -423,7 +435,7 @@ border:1px solid var(--border);
 border-radius:14px;
 padding:15px;
 margin-bottom:12px;
-box-shadow:0 3px 12px rgba(0,0,0,.04)
+box-shadow:0 3px 12px rgba(0,0,0,.04);
 }
 
 .order-head,
@@ -433,7 +445,7 @@ display:flex;
 justify-content:space-between;
 align-items:flex-start;
 gap:10px;
-margin-bottom:12px
+margin-bottom:12px;
 }
 
 .status{
@@ -443,44 +455,44 @@ border-radius:20px;
 background:var(--orange-light);
 color:var(--orange-dark);
 font-size:12px;
-font-weight:700
+font-weight:700;
 }
 
 .order-info p,
 .reseller-info p{
-margin:5px 0
+margin:5px 0;
 }
 
 .items-box{
 background:#fffaf5;
 border-radius:10px;
 padding:10px;
-margin:12px 0
+margin:12px 0;
 }
 
 .item-row{
 padding:8px 0;
-border-bottom:1px solid #eee
+border-bottom:1px solid #eee;
 }
 
 .item-row:last-child{
-border-bottom:0
+border-bottom:0;
 }
 
 .admin-actions{
 display:flex;
 gap:7px;
 flex-wrap:wrap;
-margin-top:12px
+margin-top:12px;
 }
 
 .admin-actions .btn{
-margin:0
+margin:0;
 }
 
 .admin-actions select{
 width:auto;
-min-width:150px
+min-width:150px;
 }
 
 /* BANNERS */
@@ -488,7 +500,7 @@ min-width:150px
 .banner-grid{
 display:grid;
 grid-template-columns:repeat(2,1fr);
-gap:15px
+gap:15px;
 }
 
 .banner-image{
@@ -496,7 +508,7 @@ width:100%;
 aspect-ratio:16/7;
 object-fit:cover;
 border-radius:10px;
-background:#f5f5f5
+background:#f5f5f5;
 }
 
 .banner-active{
@@ -506,7 +518,7 @@ color:#138a3c;
 padding:4px 9px;
 border-radius:20px;
 font-size:12px;
-font-weight:bold
+font-weight:bold;
 }
 
 .banner-inactive{
@@ -516,7 +528,7 @@ color:#777;
 padding:4px 9px;
 border-radius:20px;
 font-size:12px;
-font-weight:bold
+font-weight:bold;
 }
 
 /* SUPPORT */
@@ -525,21 +537,21 @@ font-weight:bold
 background:#f0fff5;
 border:1px solid #bce8ca;
 border-radius:14px;
-padding:16px
+padding:16px;
 }
 
 .support-number{
 font-size:21px;
 font-weight:800;
 color:#128c3d;
-margin:8px 0
+margin:8px 0;
 }
 
 footer{
 text-align:center;
 padding:30px 15px;
 color:#777;
-font-size:13px
+font-size:13px;
 }
 
 /* SIZE */
@@ -547,7 +559,7 @@ font-size:13px
 .size-list{
 display:flex;
 flex-wrap:wrap;
-gap:6px
+gap:6px;
 }
 
 .size-label{
@@ -558,11 +570,11 @@ background:#fffaf5;
 border:1px solid #ffd0ad;
 padding:7px 10px;
 border-radius:8px;
-cursor:pointer
+cursor:pointer;
 }
 
 .size-label input{
-width:auto
+width:auto;
 }
 
 /* MOBILE */
@@ -570,7 +582,7 @@ width:auto
 @media(max-width:1050px){
 
 .admin-nav{
-grid-template-columns:repeat(4,1fr)
+grid-template-columns:repeat(4,1fr);
 }
 
 }
@@ -578,15 +590,15 @@ grid-template-columns:repeat(4,1fr)
 @media(max-width:800px){
 
 .stat-grid{
-grid-template-columns:repeat(2,1fr)
+grid-template-columns:repeat(2,1fr);
 }
 
 .product-grid{
-grid-template-columns:repeat(2,1fr)
+grid-template-columns:repeat(2,1fr);
 }
 
 .banner-grid{
-grid-template-columns:1fr
+grid-template-columns:1fr;
 }
 
 }
@@ -594,71 +606,71 @@ grid-template-columns:1fr
 @media(max-width:600px){
 
 header{
-padding:8px 10px
+padding:8px 10px;
 }
 
 .header-inner{
-gap:7px
+gap:7px;
 }
 
 .header-brand{
-gap:7px
+gap:7px;
 }
 
 .header-logo{
 width:88px;
 height:40px;
-padding:3px 5px
+padding:3px 5px;
 }
 
 .header-title{
-font-size:15px
+font-size:15px;
 }
 
 .header-sub{
-font-size:9px
+font-size:9px;
 }
 
 .header-inner > .btn{
 padding:8px 9px;
-font-size:12px
+font-size:12px;
 }
 
 .login-box{
-margin:35px auto
+margin:35px auto;
 }
 
 .login-logo{
 width:125px;
-height:55px
+height:55px;
 }
 
 .admin-nav{
-grid-template-columns:repeat(2,1fr)
+grid-template-columns:repeat(2,1fr);
 }
 
 .admin-nav .btn{
 font-size:13px;
-padding:9px 5px
+padding:9px 5px;
 }
 
 .product-grid{
-grid-template-columns:1fr
+grid-template-columns:1fr;
 }
 
 .order-head,
 .reseller-head,
 .banner-head{
-flex-direction:column
+flex-direction:column;
 }
 
 .admin-actions{
-flex-direction:column
+flex-direction:column;
 }
 
 .admin-actions .btn,
 .admin-actions select{
-width:100%
+width:100%;
 }
 
 }
@@ -667,8 +679,6 @@ width:100%
 </head>
 
 <body>
-
-<!-- HEADER -->
 
 <header>
 
@@ -699,7 +709,7 @@ Premium Marketplace Management
 <button
 type="button"
 class="btn btn-light"
-onclick="goHome()"
+id="websiteButton"
 >
 🏠 Website
 </button>
@@ -758,7 +768,6 @@ autocomplete="current-password"
 type="button"
 class="password-eye"
 id="passwordEye"
-onclick="togglePassword()"
 >
 👁️
 </button>
@@ -771,7 +780,6 @@ onclick="togglePassword()"
 type="button"
 id="loginButton"
 class="btn btn-orange full"
-onclick="adminLogin()"
 >
 🔐 Login
 </button>
@@ -786,14 +794,12 @@ style="margin-top:12px;text-align:center;"
 </div>
 
 
-<!-- ADMIN PANEL -->
+<!-- ADMIN -->
 
 <div
 id="adminPanel"
 class="container hidden"
 >
-
-<!-- STATS -->
 
 <div class="stat-grid">
 
@@ -830,65 +836,31 @@ class="container hidden"
 
 <div class="admin-nav">
 
-<button
-type="button"
-class="btn btn-orange"
-id="navOrders"
-onclick="showSection('orders')"
->
+<button type="button" class="btn btn-light active" data-section="orders">
 📦 Orders
 </button>
 
-<button
-type="button"
-class="btn btn-light"
-id="navProducts"
-onclick="showSection('products')"
->
+<button type="button" class="btn btn-light" data-section="products">
 🛍️ Products
 </button>
 
-<button
-type="button"
-class="btn btn-light"
-id="navAddProduct"
-onclick="showSection('addProduct')"
->
+<button type="button" class="btn btn-light" data-section="addProduct">
 ➕ Add Product
 </button>
 
-<button
-type="button"
-class="btn btn-light"
-id="navBanners"
-onclick="showSection('banners')"
->
+<button type="button" class="btn btn-light" data-section="banners">
 🖼️ Banners
 </button>
 
-<button
-type="button"
-class="btn btn-light"
-id="navResellers"
-onclick="showSection('resellers')"
->
+<button type="button" class="btn btn-light" data-section="resellers">
 🤝 Resellers
 </button>
 
-<button
-type="button"
-class="btn btn-light"
-id="navReviews"
-onclick="showSection('reviews')"
->
+<button type="button" class="btn btn-light" data-section="reviews">
 ⭐ Reviews
 </button>
 
-<button
-type="button"
-class="btn btn-light"
-onclick="refreshAdmin()"
->
+<button type="button" class="btn btn-light" id="refreshButton">
 🔄 Refresh
 </button>
 
@@ -918,7 +890,7 @@ Customer-এর কোনো সমস্যা হলে সরাসরি Gad
 <button
 type="button"
 class="btn btn-green"
-onclick="openWhatsApp()"
+id="whatsappButton"
 >
 💬 Open WhatsApp
 </button>
@@ -926,7 +898,7 @@ onclick="openWhatsApp()"
 <button
 type="button"
 class="btn btn-light"
-onclick="copyWhatsApp()"
+id="copyWhatsAppButton"
 >
 📋 Copy Number
 </button>
@@ -935,8 +907,6 @@ onclick="copyWhatsApp()"
 
 </div>
 
-
-<!-- SECTION -->
 
 <div id="sectionContent">
 
@@ -951,7 +921,7 @@ Loading...
 <button
 type="button"
 class="btn btn-danger full"
-onclick="adminLogout()"
+id="logoutButton"
 >
 🚪 Admin Logout
 </button>
@@ -988,15 +958,14 @@ const ADMIN_EMAIL =
 const WHATSAPP_NUMBER =
 "8801333088194";
 
-let db =
+const db =
 window.supabase.createClient(
 SUPABASE_URL,
 SUPABASE_KEY
 );
 
-let currentUser = null;
-
-let currentSection = "orders";
+let currentUser=null;
+let currentSection="orders";
 
 
 /* =====================================================
@@ -1006,11 +975,11 @@ HELPERS
 function esc(value){
 
 return String(value ?? "")
-.replaceAll("&","&amp;")
-.replaceAll("<","&lt;")
-.replaceAll(">","&gt;")
-.replaceAll('"',"&quot;")
-.replaceAll("'","&#039;");
+.replace(/&/g,"&amp;")
+.replace(/</g,"&lt;")
+.replace(/>/g,"&gt;")
+.replace(/"/g,"&quot;")
+.replace(/'/g,"&#039;");
 
 }
 
@@ -1032,11 +1001,13 @@ return "—";
 
 try{
 
-return new Date(value)
-.toLocaleString("en-BD",{
+return new Date(value).toLocaleString(
+"en-BD",
+{
 dateStyle:"medium",
 timeStyle:"short"
-});
+}
+);
 
 }catch(e){
 
@@ -1047,9 +1018,61 @@ return String(value);
 }
 
 
+function showError(message){
+
+const box=document.getElementById("sectionContent");
+
+box.innerHTML=`
+<div class="card">
+
+<div class="notice">
+
+<b style="color:#d32f2f">
+❌ Error
+</b>
+
+<br><br>
+
+${esc(message)}
+
+</div>
+
+</div>
+`;
+
+}
+
+
+/* =====================================================
+NAVIGATION
+===================================================== */
+
 function goHome(){
 
 window.location.href="index.html";
+
+}
+
+
+function setActiveNav(section){
+
+document
+.querySelectorAll(".admin-nav [data-section]")
+.forEach(button=>{
+
+button.classList.remove("active");
+
+});
+
+const active=document.querySelector(
+'.admin-nav [data-section="'+section+'"]'
+);
+
+if(active){
+
+active.classList.add("active");
+
+}
 
 }
 
@@ -1060,24 +1083,28 @@ PASSWORD
 
 function togglePassword(){
 
-const input =
+const input=
 document.getElementById("loginPassword");
 
-const eye =
+const eye=
 document.getElementById("passwordEye");
 
-if(!input || !eye)
+if(!input)
 return;
 
-if(input.type === "password"){
+if(input.type==="password"){
 
-input.type = "text";
-eye.textContent = "🙈";
+input.type="text";
+
+if(eye)
+eye.textContent="🙈";
 
 }else{
 
-input.type = "password";
-eye.textContent = "👁️";
+input.type="password";
+
+if(eye)
+eye.textContent="👁️";
 
 }
 
@@ -1085,7 +1112,7 @@ eye.textContent = "👁️";
 
 
 /* =====================================================
-ADMIN ROLE CHECK
+ADMIN CHECK
 ===================================================== */
 
 async function isAdmin(){
@@ -1099,8 +1126,7 @@ message:"Supabase user পাওয়া যায়নি।"
 
 }
 
-const r =
-await db
+const r=await db
 .from("profiles")
 .select("id,role")
 .eq("id",currentUser.id)
@@ -1108,12 +1134,10 @@ await db
 
 if(r.error){
 
-console.error("Profile role error:",r.error);
-
 return {
 ok:false,
 message:
-"profiles table পড়া যাচ্ছে না.\n\n"+
+"profiles table পড়া যাচ্ছে না:\n\n"+
 r.error.message
 };
 
@@ -1124,16 +1148,15 @@ if(!r.data){
 return {
 ok:false,
 message:
-"এই Auth User-এর জন্য profiles table-এ কোনো row পাওয়া যায়নি.\n\n"+
-"Auth User ID:\n"+
+"এই Auth User-এর জন্য profiles table-এ কোনো row নেই.\n\n"+
+"User ID:\n"+
 currentUser.id
 };
 
 }
 
 if(
-String(r.data.role || "")
-.toLowerCase() !== "admin"
+String(r.data.role || "").toLowerCase()!=="admin"
 ){
 
 return {
@@ -1160,126 +1183,114 @@ LOGIN
 
 async function adminLogin(){
 
-const email =
+const email=
 document.getElementById("loginEmail")
-.value
-.trim();
+.value.trim();
 
-const password =
+const password=
 document.getElementById("loginPassword")
 .value;
 
-const msg =
+const msg=
 document.getElementById("loginMessage");
 
-const btn =
+const button=
 document.getElementById("loginButton");
 
 
 if(!email || !password){
 
 msg.innerHTML=
-'<span style="color:#d32f2f">Email এবং Password দিন।</span>';
+'<span style="color:#d32f2f">'+
+"Email এবং Password দিন।"+
+"</span>";
 
 return;
 
 }
 
-btn.disabled=true;
-btn.textContent="⏳ Login হচ্ছে...";
+button.disabled=true;
+button.textContent="⏳ Login হচ্ছে...";
 
 msg.innerHTML=
-'<span style="color:#777">Supabase যাচাই করছে...</span>';
+'<span style="color:#777">'+
+"Supabase যাচাই করছে..."+
+"</span>";
 
 
 try{
 
-const r =
-await db.auth.signInWithPassword({
-email,
-password
+const r=await db.auth.signInWithPassword({
+email:email,
+password:password
 });
-
 
 if(r.error){
 
 msg.innerHTML=
 '<span style="color:#d32f2f">'+
 esc(r.error.message)+
-'</span>';
+"</span>";
 
 return;
 
 }
 
-
-if(!r.data || !r.data.user){
+if(!r.data?.user){
 
 msg.innerHTML=
-'<span style="color:#d32f2f">Supabase User পাওয়া যায়নি।</span>';
+'<span style="color:#d32f2f">'+
+"Supabase User পাওয়া যায়নি।"+
+"</span>";
 
 return;
 
 }
-
 
 currentUser=r.data.user;
 
-
-/* EMAIL CHECK */
-
 if(
-!currentUser.email ||
-currentUser.email.toLowerCase() !==
+String(currentUser.email || "").toLowerCase() !==
 ADMIN_EMAIL.toLowerCase()
 ){
 
 await db.auth.signOut();
-
 currentUser=null;
 
 msg.innerHTML=
 '<span style="color:#d32f2f">'+
 "এই Email-এর Admin access নেই।"+
-'</span>';
+"</span>";
 
 return;
 
 }
 
-
-/* PROFILE CHECK */
-
-const admin =
-await isAdmin();
-
+const admin=await isAdmin();
 
 if(!admin.ok){
 
 await db.auth.signOut();
-
 currentUser=null;
 
 msg.innerHTML=
 '<div style="color:#d32f2f;font-weight:bold">'+
-'Admin Login Check Failed ❌'+
-'</div>'+
+"Admin Login Check Failed ❌"+
+"</div>"+
 '<div style="margin-top:8px;color:#555;white-space:pre-line">'+
 esc(admin.message)+
-'</div>';
+"</div>";
 
 return;
 
 }
 
-
 msg.innerHTML=
 '<span style="color:#138a3c;font-weight:bold">'+
 "Admin Login Successful ✅"+
-'</span>';
+"</span>";
 
 showAdmin();
-
 
 }catch(error){
 
@@ -1288,12 +1299,12 @@ console.error("LOGIN ERROR:",error);
 msg.innerHTML=
 '<span style="color:#d32f2f">'+
 esc(error.message || error)+
-'</span>';
+"</span>";
 
 }finally{
 
-btn.disabled=false;
-btn.textContent="🔐 Login";
+button.disabled=false;
+button.textContent="🔐 Login";
 
 }
 
@@ -1329,8 +1340,7 @@ async function checkSession(){
 
 try{
 
-const r =
-await db.auth.getSession();
+const r=await db.auth.getSession();
 
 if(r.error){
 
@@ -1339,50 +1349,33 @@ return;
 
 }
 
-currentUser =
-r.data.session?.user || null;
+currentUser=r.data.session?.user || null;
 
 if(!currentUser)
 return;
 
-
 if(
-!currentUser.email ||
-currentUser.email.toLowerCase() !==
+String(currentUser.email || "").toLowerCase() !==
 ADMIN_EMAIL.toLowerCase()
 ){
 
 await db.auth.signOut();
-
 currentUser=null;
-
 return;
 
 }
 
-
-const admin =
-await isAdmin();
+const admin=await isAdmin();
 
 if(admin.ok){
 
 showAdmin();
 
-}else{
-
-console.warn(
-"Existing session is not admin:",
-admin.message
-);
-
 }
 
 }catch(error){
 
-console.error(
-"Session error:",
-error
-);
+console.error("Session error:",error);
 
 }
 
@@ -1422,7 +1415,9 @@ async function showSection(section){
 
 currentSection=section;
 
-const content =
+setActiveNav(section);
+
+const content=
 document.getElementById("sectionContent");
 
 content.innerHTML=`
@@ -1431,40 +1426,6 @@ content.innerHTML=`
 Loading...
 </div>
 `;
-
-
-document
-.querySelectorAll(".admin-nav .btn")
-.forEach(btn=>{
-
-btn.classList.remove("btn-orange");
-btn.classList.add("btn-light");
-
-});
-
-
-const activeMap={
-orders:"navOrders",
-products:"navProducts",
-addProduct:"navAddProduct",
-banners:"navBanners",
-resellers:"navResellers",
-reviews:"navReviews"
-};
-
-
-const active =
-document.getElementById(
-activeMap[section]
-);
-
-if(active){
-
-active.classList.remove("btn-light");
-active.classList.add("btn-orange");
-
-}
-
 
 try{
 
@@ -1506,15 +1467,11 @@ await renderReviews();
 
 }catch(error){
 
-console.error(error);
+console.error("SECTION ERROR:",error);
 
-content.innerHTML=`
-<div class="empty">
-❌ Error
-<br><br>
-${esc(error.message || error)}
-</div>
-`;
+showError(
+error.message || String(error)
+);
 
 }
 
@@ -1527,8 +1484,35 @@ REFRESH
 
 async function refreshAdmin(){
 
+const button=
+document.getElementById("refreshButton");
+
+if(button){
+
+button.disabled=true;
+button.textContent="⏳ Refresh...";
+
+}
+
+try{
+
 await loadStats();
 await showSection(currentSection);
+
+}catch(error){
+
+console.error(error);
+
+}finally{
+
+if(button){
+
+button.disabled=false;
+button.textContent="🔄 Refresh";
+
+}
+
+}
 
 }
 
@@ -1541,7 +1525,7 @@ async function loadStats(){
 
 try{
 
-const products =
+const products=
 await db
 .from("products")
 .select("id",{
@@ -1549,12 +1533,12 @@ count:"exact",
 head:true
 });
 
-const orders =
+const orders=
 await db
 .from("orders")
 .select("id,order_status");
 
-const resellers =
+const resellers=
 await db
 .from("resellers")
 .select("id,status");
@@ -1563,29 +1547,27 @@ await db
 document.getElementById("statProducts")
 .textContent=products.count || 0;
 
-
 const orderData=orders.data || [];
 
 document.getElementById("statOrders")
 .textContent=orderData.length;
 
-
 document.getElementById("statPending")
 .textContent=
 orderData.filter(x=>
-String(x.order_status || "Pending")
-.toLowerCase()==="pending"
+String(
+x.order_status || "Pending"
+).toLowerCase()==="pending"
 ).length;
-
 
 document.getElementById("statResellers")
 .textContent=
 (resellers.data || [])
 .filter(x=>
-String(x.status || "Pending")
-.toLowerCase()==="pending"
+String(
+x.status || "Pending"
+).toLowerCase()==="pending"
 ).length;
-
 
 }catch(error){
 
@@ -1602,30 +1584,22 @@ ORDERS
 
 async function renderOrders(){
 
-const box =
+const box=
 document.getElementById("sectionContent");
 
-const r =
-await db
+const r=await db
 .from("orders")
 .select("*")
 .order("created_at",{
 ascending:false
 });
 
-
 if(r.error){
 
-box.innerHTML=`
-<div class="empty">
-❌ ${esc(r.error.message)}
-</div>
-`;
-
+showError(r.error.message);
 return;
 
 }
-
 
 if(!r.data?.length){
 
@@ -1639,18 +1613,14 @@ return;
 
 }
 
-
 let html="";
-
 
 for(const order of r.data){
 
-const items =
-await db
+const items=await db
 .from("order_items")
 .select("*")
 .eq("order_id",order.id);
-
 
 html+=`
 
@@ -1659,9 +1629,15 @@ html+=`
 <div class="order-head">
 
 <div>
+
 <b>📦 Order #${esc(order.id)}</b>
+
 <br>
-<small>${formatDate(order.created_at)}</small>
+
+<small>
+${formatDate(order.created_at)}
+</small>
+
 </div>
 
 <span class="status">
@@ -1669,7 +1645,6 @@ ${esc(order.order_status || "Pending")}
 </span>
 
 </div>
-
 
 <div class="order-info">
 
@@ -1726,14 +1701,12 @@ ${esc(order.payment_status || "Pending")}
 
 </div>
 
-
 <div class="items-box">
 
 <b>🛍️ Products</b>
 
 ${
-(items.data || [])
-.map(item=>`
+(items.data || []).map(item=>`
 
 <div class="item-row">
 
@@ -1763,12 +1736,10 @@ Number(item.quantity || 1)
 
 </div>
 
-`)
-.join("")
+`).join("")
 }
 
 </div>
-
 
 <h3 style="color:var(--orange-dark)">
 Total:
@@ -1778,15 +1749,9 @@ order.total_amount
 )}
 </h3>
 
-
 <div class="admin-actions">
 
-<select
-onchange="updateOrderStatus(
-'${esc(order.id)}',
-this.value
-)"
->
+<select class="order-status-select">
 
 ${
 [
@@ -1796,13 +1761,12 @@ ${
 "Shipped",
 "Delivered",
 "Cancelled"
-]
-.map(status=>`
+].map(status=>`
 
 <option
 value="${esc(status)}"
 ${
-status ===
+status===
 (order.order_status || "Pending")
 ?
 "selected"
@@ -1813,19 +1777,12 @@ status ===
 ${status}
 </option>
 
-`)
-.join("")
+`).join("")
 }
 
 </select>
 
-
-<select
-onchange="updatePaymentStatus(
-'${esc(order.id)}',
-this.value
-)"
->
+<select class="payment-status-select">
 
 ${
 [
@@ -1833,13 +1790,12 @@ ${
 "Paid",
 "Failed",
 "Refunded"
-]
-.map(status=>`
+].map(status=>`
 
 <option
 value="${esc(status)}"
 ${
-status ===
+status===
 (order.payment_status || "Pending")
 ?
 "selected"
@@ -1850,20 +1806,14 @@ status ===
 Payment: ${status}
 </option>
 
-`)
-.join("")
+`).join("")
 }
 
 </select>
 
-
 <button
 type="button"
-class="btn btn-green"
-onclick="contactCustomer(
-'${esc(order.customer_phone || "")}',
-'${esc(order.customer_name || "Customer")}'
-)"
+class="btn btn-green customer-whatsapp"
 >
 💬 WhatsApp
 </button>
@@ -1871,13 +1821,79 @@ onclick="contactCustomer(
 </div>
 
 </div>
-
 `;
 
 }
 
-
 box.innerHTML=html;
+
+
+/* EVENT LISTENERS */
+
+const cards=box.querySelectorAll(".order-card");
+
+cards.forEach((card,index)=>{
+
+const order=r.data[index];
+
+const statusSelect=
+card.querySelector(".order-status-select");
+
+const paymentSelect=
+card.querySelector(".payment-status-select");
+
+const whatsapp=
+card.querySelector(".customer-whatsapp");
+
+if(statusSelect){
+
+statusSelect.addEventListener(
+"change",
+function(){
+
+updateOrderStatus(
+order.id,
+this.value
+);
+
+}
+);
+
+}
+
+if(paymentSelect){
+
+paymentSelect.addEventListener(
+"change",
+function(){
+
+updatePaymentStatus(
+order.id,
+this.value
+);
+
+}
+);
+
+}
+
+if(whatsapp){
+
+whatsapp.addEventListener(
+"click",
+function(){
+
+contactCustomer(
+order.customer_phone || "",
+order.customer_name || "Customer"
+);
+
+}
+);
+
+}
+
+});
 
 }
 
@@ -1888,14 +1904,12 @@ ORDER UPDATE
 
 async function updateOrderStatus(id,status){
 
-const r =
-await db
+const r=await db
 .from("orders")
 .update({
 order_status:status
 })
 .eq("id",id);
-
 
 if(r.error){
 
@@ -1918,14 +1932,12 @@ await renderOrders();
 
 async function updatePaymentStatus(id,status){
 
-const r =
-await db
+const r=await db
 .from("orders")
 .update({
 payment_status:status
 })
 .eq("id",id);
-
 
 if(r.error){
 
@@ -1951,30 +1963,22 @@ PRODUCTS
 
 async function renderProducts(){
 
-const box =
+const box=
 document.getElementById("sectionContent");
 
-const r =
-await db
+const r=await db
 .from("products")
 .select("*")
 .order("id",{
 ascending:false
 });
 
-
 if(r.error){
 
-box.innerHTML=`
-<div class="empty">
-❌ ${esc(r.error.message)}
-</div>
-`;
-
+showError(r.error.message);
 return;
 
 }
-
 
 if(!r.data?.length){
 
@@ -1988,7 +1992,7 @@ box.innerHTML=`
 <button
 type="button"
 class="btn btn-orange"
-onclick="showSection('addProduct')"
+id="emptyAddProduct"
 >
 ➕ Add Product
 </button>
@@ -1996,10 +2000,16 @@ onclick="showSection('addProduct')"
 </div>
 `;
 
+document
+.getElementById("emptyAddProduct")
+.addEventListener(
+"click",
+()=>showSection("addProduct")
+);
+
 return;
 
 }
-
 
 box.innerHTML=`
 
@@ -2018,13 +2028,14 @@ if(Array.isArray(product.images)){
 
 image=product.images[0] || "";
 
-}
-
-else if(typeof product.images==="string"){
+}else if(
+typeof product.images==="string"
+){
 
 try{
 
-const parsed=JSON.parse(product.images);
+const parsed=
+JSON.parse(product.images);
 
 image=
 Array.isArray(parsed)
@@ -2041,10 +2052,9 @@ image=product.images;
 
 }
 
-image =
+image=
 image ||
 "https://via.placeholder.com/500x500?text=Gadhuli";
-
 
 return `
 
@@ -2083,16 +2093,14 @@ product.subcategory
 
 <button
 type="button"
-class="btn btn-light"
-onclick="editProduct('${esc(product.id)}')"
+class="btn btn-light edit-product"
 >
 ✏️ Edit
 </button>
 
 <button
 type="button"
-class="btn btn-danger"
-onclick="deleteProduct('${esc(product.id)}')"
+class="btn btn-danger delete-product"
 >
 🗑️ Delete
 </button>
@@ -2107,8 +2115,30 @@ onclick="deleteProduct('${esc(product.id)}')"
 }
 
 </div>
-
 `;
+
+const cards=
+box.querySelectorAll(".product-card");
+
+cards.forEach((card,index)=>{
+
+const product=r.data[index];
+
+card
+.querySelector(".edit-product")
+.addEventListener(
+"click",
+()=>editProduct(product.id)
+);
+
+card
+.querySelector(".delete-product")
+.addEventListener(
+"click",
+()=>deleteProduct(product.id)
+);
+
+});
 
 }
 
@@ -2240,7 +2270,7 @@ ADD PRODUCT
 
 function renderAddProduct(){
 
-const box =
+const box=
 document.getElementById("sectionContent");
 
 box.innerHTML=`
@@ -2261,7 +2291,6 @@ placeholder="Product name"
 
 </div>
 
-
 <div class="form-group">
 
 <label>Price *</label>
@@ -2275,15 +2304,11 @@ placeholder="Price in ৳"
 
 </div>
 
-
 <div class="form-group">
 
 <label>Category *</label>
 
-<select
-id="productCategory"
-onchange="updateSubcategories()"
->
+<select id="productCategory">
 
 <option value="">
 Select Category
@@ -2303,15 +2328,11 @@ ${esc(category)}
 
 </div>
 
-
 <div class="form-group">
 
 <label>Subcategory</label>
 
-<select
-id="productSubcategory"
-onchange="updateSizes()"
->
+<select id="productSubcategory">
 
 <option value="">
 Select Subcategory
@@ -2320,7 +2341,6 @@ Select Subcategory
 </select>
 
 </div>
-
 
 <div class="form-group">
 
@@ -2335,7 +2355,6 @@ Subcategory select করুন।
 
 </div>
 
-
 <div class="form-group">
 
 <label>Description</label>
@@ -2348,7 +2367,6 @@ placeholder="Product description"
 
 </div>
 
-
 <div class="form-group">
 
 <label>Product Images *</label>
@@ -2358,7 +2376,6 @@ id="productImages"
 type="file"
 accept="image/*"
 multiple
-onchange="previewImages()"
 >
 
 <small>
@@ -2372,29 +2389,56 @@ class="image-preview"
 
 </div>
 
-
 <button
 type="button"
 id="saveProductButton"
 class="btn btn-orange full"
-onclick="saveProduct()"
 >
 💾 Save Product
 </button>
 
 </div>
-
 `;
+
+
+document
+.getElementById("productCategory")
+.addEventListener(
+"change",
+updateSubcategories
+);
+
+document
+.getElementById("productSubcategory")
+.addEventListener(
+"change",
+updateSizes
+);
+
+document
+.getElementById("productImages")
+.addEventListener(
+"change",
+previewImages
+);
+
+document
+.getElementById("saveProductButton")
+.addEventListener(
+"click",
+saveProduct
+);
 
 }
 
 
 function updateSubcategories(){
 
-const category =
-document.getElementById("productCategory").value;
+const category=
+document.getElementById("productCategory")
+.value;
 
-const select =
+const select=
 document.getElementById("productSubcategory");
 
 select.innerHTML=
@@ -2420,13 +2464,14 @@ updateSizes();
 
 function updateSizes(){
 
-const sub =
-document.getElementById("productSubcategory").value;
+const sub=
+document.getElementById("productSubcategory")
+.value;
 
-const box =
+const box=
 document.getElementById("sizeOptions");
 
-const sizes =
+const sizes=
 sizeData[sub] || [];
 
 if(!sizes.length){
@@ -2460,10 +2505,10 @@ ${esc(size)}
 
 function previewImages(){
 
-const input =
+const input=
 document.getElementById("productImages");
 
-const box =
+const box=
 document.getElementById("imagePreview");
 
 box.innerHTML="";
@@ -2473,10 +2518,11 @@ Array.from(input.files || []);
 
 if(files.length>5){
 
-alert("Maximum 5টি ছবি select করা যাবে।");
+alert(
+"Maximum 5টি ছবি select করা যাবে।"
+);
 
 input.value="";
-
 return;
 
 }
@@ -2503,28 +2549,32 @@ SAVE PRODUCT
 async function saveProduct(){
 
 const name=
-document.getElementById("productName").value.trim();
+document.getElementById("productName")
+.value.trim();
 
 const price=
 Number(
-document.getElementById("productPrice").value
+document.getElementById("productPrice")
+.value
 );
 
 const category=
-document.getElementById("productCategory").value;
+document.getElementById("productCategory")
+.value;
 
 const subcategory=
-document.getElementById("productSubcategory").value;
+document.getElementById("productSubcategory")
+.value;
 
 const description=
-document.getElementById("productDescription").value.trim();
+document.getElementById("productDescription")
+.value.trim();
 
 const input=
 document.getElementById("productImages");
 
 const files=
 Array.from(input.files || []);
-
 
 if(
 !name ||
@@ -2541,7 +2591,6 @@ return;
 
 }
 
-
 if(files.length>5){
 
 alert(
@@ -2552,16 +2601,13 @@ return;
 
 }
 
-
 const sizes=
 Array.from(
 document.querySelectorAll(".size-check:checked")
 ).map(x=>x.value);
 
-
 const button=
 document.getElementById("saveProductButton");
-
 
 try{
 
@@ -2569,7 +2615,6 @@ button.disabled=true;
 button.textContent="⏳ Uploading...";
 
 const urls=[];
-
 
 for(const file of files){
 
@@ -2583,14 +2628,14 @@ const path=
 "products/"+
 Date.now()+
 "-"+
-Math.random().toString(36).substring(2,8)+
+Math.random()
+.toString(36)
+.substring(2,8)+
 "-"+
 safe;
 
-
 const upload=
-await db
-.storage
+await db.storage
 .from("product-images")
 .upload(
 path,
@@ -2603,10 +2648,8 @@ upsert:false
 if(upload.error)
 throw upload.error;
 
-
 const pub=
-db
-.storage
+db.storage
 .from("product-images")
 .getPublicUrl(path);
 
@@ -2615,7 +2658,6 @@ pub.data.publicUrl
 );
 
 }
-
 
 const r=
 await db
@@ -2632,16 +2674,15 @@ images:urls
 
 });
 
-
 if(r.error)
 throw r.error;
 
-
-alert("Product Save হয়েছে ✅");
+alert(
+"Product Save হয়েছে ✅"
+);
 
 await loadStats();
 await showSection("products");
-
 
 }catch(error){
 
@@ -2674,7 +2715,9 @@ alert(
 
 async function deleteProduct(id){
 
-if(!confirm("এই Product Delete করবেন?"))
+if(!confirm(
+"এই Product Delete করবেন?"
+))
 return;
 
 const r=
@@ -2682,7 +2725,6 @@ await db
 .from("products")
 .delete()
 .eq("id",id);
-
 
 if(r.error){
 
@@ -2695,7 +2737,9 @@ return;
 
 }
 
-alert("Product Delete হয়েছে ✅");
+alert(
+"Product Delete হয়েছে ✅"
+);
 
 await loadStats();
 await renderProducts();
@@ -2720,7 +2764,6 @@ await db
 ascending:true
 });
 
-
 if(r.error){
 
 box.innerHTML=`
@@ -2731,11 +2774,7 @@ box.innerHTML=`
 
 <div class="notice">
 
-❌ advertisements table পাওয়া যায়নি অথবা access নেই।
-
-<br><br>
-
-Supabase SQL Editor-এ table create করুন এবং RLS policy check করুন।
+❌ Banner data load হয়নি।
 
 <br><br>
 
@@ -2753,7 +2792,6 @@ return;
 
 }
 
-
 box.innerHTML=`
 
 <div class="card">
@@ -2768,7 +2806,6 @@ box.innerHTML=`
 id="bannerImage"
 type="file"
 accept="image/*"
-onchange="previewBanner()"
 >
 
 <div
@@ -2777,7 +2814,6 @@ class="image-preview"
 ></div>
 
 </div>
-
 
 <div class="form-group">
 
@@ -2794,7 +2830,6 @@ class="image-preview"
 </select>
 
 </div>
-
 
 <div class="form-group">
 
@@ -2816,12 +2851,10 @@ Active
 
 </div>
 
-
 <button
 type="button"
 id="saveBannerButton"
 class="btn btn-orange full"
-onclick="saveBanner()"
 >
 🖼️ Upload Banner
 </button>
@@ -2861,7 +2894,7 @@ Banner #${esc(b.id)}
 <br>
 
 <small>
-Sort: ${esc(b.sort_order)}
+Sort: ${esc(b.sort_order ?? 1)}
 </small>
 
 </div>
@@ -2876,34 +2909,24 @@ b.active
 
 </div>
 
-
 <img
 src="${esc(b.image_url)}"
 class="banner-image"
 alt="Gadhuli Banner"
 >
 
-
 <div class="admin-actions">
 
 <button
 type="button"
-class="btn btn-light"
-onclick="toggleBanner(
-'${esc(b.id)}',
-${!b.active}
-)"
+class="btn btn-light banner-toggle"
 >
 ${b.active ? "🙈 Hide" : "👁️ Activate"}
 </button>
 
-
 <button
 type="button"
-class="btn btn-danger"
-onclick="deleteBanner(
-'${esc(b.id)}'
-)"
+class="btn btn-danger banner-delete"
 >
 🗑️ Delete
 </button>
@@ -2921,24 +2944,22 @@ onclick="deleteBanner(
 }
 
 </div>
-
 `;
 
-}
-
-
-function previewBanner(){
 
 const input=
 document.getElementById("bannerImage");
 
-const box=
+const preview=
 document.getElementById("bannerPreview");
 
-box.innerHTML="";
+input.addEventListener(
+"change",
+function(){
 
-const file=
-input.files?.[0];
+preview.innerHTML="";
+
+const file=this.files?.[0];
 
 if(!file)
 return;
@@ -2954,7 +2975,47 @@ img.style.height="100px";
 img.style.objectFit="cover";
 img.style.borderRadius="9px";
 
-box.appendChild(img);
+preview.appendChild(img);
+
+}
+);
+
+
+document
+.getElementById("saveBannerButton")
+.addEventListener(
+"click",
+saveBanner
+);
+
+
+const cards=
+box.querySelectorAll(".banner-card");
+
+cards.forEach((card,index)=>{
+
+const banner=r.data[index];
+
+card
+.querySelector(".banner-toggle")
+.addEventListener(
+"click",
+()=>toggleBanner(
+banner.id,
+!banner.active
+)
+);
+
+card
+.querySelector(".banner-delete")
+.addEventListener(
+"click",
+()=>deleteBanner(
+banner.id
+)
+);
+
+});
 
 }
 
@@ -2969,30 +3030,31 @@ input.files?.[0];
 
 const sort=
 Number(
-document.getElementById("bannerSort").value
+document.getElementById("bannerSort")
+.value
 );
 
 const active=
-document.getElementById("bannerActive").checked;
+document.getElementById("bannerActive")
+.checked;
 
 if(!file){
 
-alert("Banner image select করুন।");
+alert(
+"Banner image select করুন।"
+);
 
 return;
 
 }
 
-
 const button=
 document.getElementById("saveBannerButton");
-
 
 try{
 
 button.disabled=true;
 button.textContent="⏳ Uploading...";
-
 
 const safe=
 file.name.replace(
@@ -3004,14 +3066,14 @@ const path=
 "banners/"+
 Date.now()+
 "-"+
-Math.random().toString(36).substring(2,8)+
+Math.random()
+.toString(36)
+.substring(2,8)+
 "-"+
 safe;
 
-
 const upload=
-await db
-.storage
+await db.storage
 .from("product-images")
 .upload(
 path,
@@ -3021,18 +3083,14 @@ upsert:false
 }
 );
 
-
 if(upload.error)
 throw upload.error;
 
-
 const publicUrl=
-db
-.storage
+db.storage
 .from("product-images")
 .getPublicUrl(path)
 .data.publicUrl;
-
 
 const r=
 await db
@@ -3045,15 +3103,14 @@ active:active
 
 });
 
-
 if(r.error)
 throw r.error;
 
-
-alert("Banner Upload হয়েছে ✅");
+alert(
+"Banner Upload হয়েছে ✅"
+);
 
 await renderBanners();
-
 
 }catch(error){
 
@@ -3084,7 +3141,6 @@ active:value
 })
 .eq("id",id);
 
-
 if(r.error){
 
 alert(
@@ -3103,7 +3159,9 @@ await renderBanners();
 
 async function deleteBanner(id){
 
-if(!confirm("এই Banner Delete করবেন?"))
+if(!confirm(
+"এই Banner Delete করবেন?"
+))
 return;
 
 const r=
@@ -3111,7 +3169,6 @@ await db
 .from("advertisements")
 .delete()
 .eq("id",id);
-
 
 if(r.error){
 
@@ -3124,7 +3181,9 @@ return;
 
 }
 
-alert("Banner Delete হয়েছে ✅");
+alert(
+"Banner Delete হয়েছে ✅"
+);
 
 await renderBanners();
 
@@ -3148,19 +3207,12 @@ await db
 ascending:false
 });
 
-
 if(r.error){
 
-box.innerHTML=`
-<div class="empty">
-❌ ${esc(r.error.message)}
-</div>
-`;
-
+showError(r.error.message);
 return;
 
 }
-
 
 if(!r.data?.length){
 
@@ -3174,9 +3226,7 @@ return;
 
 }
 
-
 let html="";
-
 
 for(const reseller of r.data){
 
@@ -3186,7 +3236,6 @@ await db
 .select("full_name,phone,role")
 .eq("id",reseller.user_id)
 .maybeSingle();
-
 
 html+=`
 
@@ -3223,7 +3272,6 @@ reseller.status ||
 </span>
 
 </div>
-
 
 <div class="reseller-info">
 
@@ -3273,20 +3321,15 @@ reseller.total_commission
 
 </div>
 
-
 <div class="admin-actions">
 
 ${
-reseller.status !== "Approved"
+reseller.status!=="Approved"
 ?
 `
 <button
 type="button"
-class="btn btn-orange"
-onclick="approveReseller(
-'${esc(reseller.user_id)}',
-'${esc(reseller.id)}'
-)"
+class="btn btn-orange approve-reseller"
 >
 ✅ Approve
 </button>
@@ -3295,18 +3338,13 @@ onclick="approveReseller(
 ""
 }
 
-
 ${
-reseller.status !== "Suspended"
+reseller.status!=="Suspended"
 ?
 `
 <button
 type="button"
-class="btn btn-danger"
-onclick="suspendReseller(
-'${esc(reseller.user_id)}',
-'${esc(reseller.id)}'
-)"
+class="btn btn-danger suspend-reseller"
 >
 🚫 Suspend
 </button>
@@ -3318,13 +3356,50 @@ onclick="suspendReseller(
 </div>
 
 </div>
-
 `;
 
 }
 
-
 box.innerHTML=html;
+
+const cards=
+box.querySelectorAll(".reseller-card");
+
+cards.forEach((card,index)=>{
+
+const reseller=r.data[index];
+
+const approve=
+card.querySelector(".approve-reseller");
+
+const suspend=
+card.querySelector(".suspend-reseller");
+
+if(approve){
+
+approve.addEventListener(
+"click",
+()=>approveReseller(
+reseller.user_id,
+reseller.id
+)
+);
+
+}
+
+if(suspend){
+
+suspend.addEventListener(
+"click",
+()=>suspendReseller(
+reseller.user_id,
+reseller.id
+)
+);
+
+}
+
+});
 
 }
 
@@ -3339,7 +3414,6 @@ status:"Approved"
 })
 .eq("id",id);
 
-
 if(r.error){
 
 alert(
@@ -3351,7 +3425,6 @@ return;
 
 }
 
-
 const p=
 await db
 .from("profiles")
@@ -3359,7 +3432,6 @@ await db
 role:"reseller"
 })
 .eq("id",uid);
-
 
 if(p.error){
 
@@ -3372,8 +3444,9 @@ return;
 
 }
 
-
-alert("Reseller Approved হয়েছে ✅");
+alert(
+"Reseller Approved হয়েছে ✅"
+);
 
 await loadStats();
 await renderResellers();
@@ -3383,7 +3456,9 @@ await renderResellers();
 
 async function suspendReseller(uid,id){
 
-if(!confirm("এই Reseller Suspend করবেন?"))
+if(!confirm(
+"এই Reseller Suspend করবেন?"
+))
 return;
 
 const r=
@@ -3393,7 +3468,6 @@ await db
 status:"Suspended"
 })
 .eq("id",id);
-
 
 if(r.error){
 
@@ -3406,7 +3480,6 @@ return;
 
 }
 
-
 const p=
 await db
 .from("profiles")
@@ -3414,7 +3487,6 @@ await db
 role:"customer"
 })
 .eq("id",uid);
-
 
 if(p.error){
 
@@ -3427,8 +3499,9 @@ return;
 
 }
 
-
-alert("Reseller Suspended হয়েছে 🚫");
+alert(
+"Reseller Suspended হয়েছে 🚫"
+);
 
 await loadStats();
 await renderResellers();
@@ -3453,19 +3526,12 @@ await db
 ascending:false
 });
 
-
 if(r.error){
 
-box.innerHTML=`
-<div class="empty">
-❌ ${esc(r.error.message)}
-</div>
-`;
-
+showError(r.error.message);
 return;
 
 }
-
 
 if(!r.data?.length){
 
@@ -3478,7 +3544,6 @@ box.innerHTML=`
 return;
 
 }
-
 
 box.innerHTML=
 r.data.map(review=>`
@@ -3523,28 +3588,18 @@ review.status ||
 
 </p>
 
-
 <div class="admin-actions">
 
 <button
 type="button"
-class="btn btn-orange"
-onclick="updateReview(
-'${esc(review.id)}',
-'Approved'
-)"
+class="btn btn-orange review-approve"
 >
 ✅ Approve
 </button>
 
-
 <button
 type="button"
-class="btn btn-danger"
-onclick="updateReview(
-'${esc(review.id)}',
-'Rejected'
-)"
+class="btn btn-danger review-reject"
 >
 ❌ Reject
 </button>
@@ -3554,6 +3609,36 @@ onclick="updateReview(
 </div>
 
 `).join("");
+
+
+const cards=
+box.querySelectorAll(".review-card");
+
+cards.forEach((card,index)=>{
+
+const review=r.data[index];
+
+card
+.querySelector(".review-approve")
+.addEventListener(
+"click",
+()=>updateReview(
+review.id,
+"Approved"
+)
+);
+
+card
+.querySelector(".review-reject")
+.addEventListener(
+"click",
+()=>updateReview(
+review.id,
+"Rejected"
+)
+);
+
+});
 
 }
 
@@ -3567,7 +3652,6 @@ await db
 status:status
 })
 .eq("id",id);
-
 
 if(r.error){
 
@@ -3614,11 +3698,15 @@ await navigator.clipboard.writeText(
 "01333-088194"
 );
 
-alert("WhatsApp number copy হয়েছে ✅");
+alert(
+"WhatsApp number copy হয়েছে ✅"
+);
 
 }catch(error){
 
-alert("WhatsApp: 01333-088194");
+alert(
+"WhatsApp: 01333-088194"
+);
 
 }
 
@@ -3631,22 +3719,21 @@ let clean=
 String(phone || "")
 .replace(/[^0-9]/g,"");
 
-
 if(clean.startsWith("01")){
 
 clean="88"+clean;
 
 }
 
-
 if(!clean){
 
-alert("Customer phone পাওয়া যায়নি।");
+alert(
+"Customer phone পাওয়া যায়নি।"
+);
 
 return;
 
 }
-
 
 const message=
 "Hello "+
@@ -3666,25 +3753,133 @@ encodeURIComponent(message),
 
 
 /* =====================================================
-ENTER KEY LOGIN
+EVENT LISTENERS
 ===================================================== */
 
-document.addEventListener(
+function setupEvents(){
+
+/* NAV BUTTONS */
+
+document
+.querySelectorAll(".admin-nav [data-section]")
+.forEach(button=>{
+
+button.addEventListener(
+"click",
+function(){
+
+const section=
+this.getAttribute("data-section");
+
+showSection(section);
+
+}
+);
+
+});
+
+
+/* REFRESH */
+
+document
+.getElementById("refreshButton")
+.addEventListener(
+"click",
+refreshAdmin
+);
+
+
+/* WEBSITE */
+
+document
+.getElementById("websiteButton")
+.addEventListener(
+"click",
+goHome
+);
+
+
+/* LOGIN */
+
+document
+.getElementById("loginButton")
+.addEventListener(
+"click",
+adminLogin
+);
+
+
+/* PASSWORD */
+
+document
+.getElementById("passwordEye")
+.addEventListener(
+"click",
+togglePassword
+);
+
+
+/* LOGOUT */
+
+document
+.getElementById("logoutButton")
+.addEventListener(
+"click",
+adminLogout
+);
+
+
+/* WHATSAPP */
+
+document
+.getElementById("whatsappButton")
+.addEventListener(
+"click",
+openWhatsApp
+);
+
+
+/* COPY */
+
+document
+.getElementById("copyWhatsAppButton")
+.addEventListener(
+"click",
+copyWhatsApp
+);
+
+
+/* ENTER LOGIN */
+
+document
+.getElementById("loginPassword")
+.addEventListener(
 "keydown",
 function(event){
 
-if(
-event.key==="Enter" &&
-!document
-.getElementById("loginSection")
-.classList.contains("hidden")
-){
+if(event.key==="Enter"){
 
 adminLogin();
 
 }
 
 });
+
+document
+.getElementById("loginEmail")
+.addEventListener(
+"keydown",
+function(event){
+
+if(event.key==="Enter"){
+
+adminLogin();
+
+}
+
+});
+
+}
 
 
 /* =====================================================
@@ -3695,9 +3890,12 @@ document.addEventListener(
 "DOMContentLoaded",
 function(){
 
+setupEvents();
+
 checkSession();
 
-});
+}
+);
 
 </script>
 
