@@ -9,10 +9,11 @@ name="viewport"
 content="width=device-width,initial-scale=1.0"
 >
 
+<meta name="theme-color" content="#FF6B00">
+
 <title>Gadhuli | Admin</title>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="supabase.js"></script>
 
 <style>
 
@@ -22,10 +23,28 @@ margin:0;
 padding:0
 }
 
+:root{
+--orange:#FF6B00;
+--orange-dark:#E65100;
+--orange-light:#FFF3E8;
+--orange-gradient:linear-gradient(135deg,#FF8A00,#FF5A00);
+--white:#ffffff;
+--bg:#FFFDF9;
+--text:#171717;
+--muted:#777;
+--border:#eeeeee;
+--green:#25D366;
+--red:#e53935;
+--blue:#1677ff;
+--shadow:0 5px 20px rgba(255,107,0,.10);
+}
+
 body{
 font-family:Arial,Helvetica,sans-serif;
-background:#fff7fa;
-color:#222
+background:var(--bg);
+color:var(--text);
+line-height:1.5;
+padding-bottom:30px
 }
 
 button,
@@ -39,19 +58,26 @@ button{
 cursor:pointer
 }
 
+img{
+max-width:100%
+}
+
+/* =========================
+HEADER
+========================= */
+
 header{
-background:linear-gradient(
-135deg,
-#8f174d,
-#d52b72,
-#bd3475
-);
+background:var(--orange-gradient);
 color:white;
-padding:15px
+padding:14px 15px;
+box-shadow:0 3px 12px rgba(0,0,0,.12);
+position:sticky;
+top:0;
+z-index:100
 }
 
 .header-inner{
-max-width:1200px;
+max-width:1250px;
 margin:auto;
 display:flex;
 align-items:center;
@@ -62,110 +88,109 @@ gap:15px
 .header-brand{
 display:flex;
 align-items:center;
-gap:10px
+gap:12px
 }
 
 .header-brand img{
-width:110px;
-height:42px;
+width:115px;
+height:45px;
 object-fit:contain;
 background:white;
-border-radius:8px
+border-radius:9px;
+padding:3px
 }
 
-.header-brand h1{
-font-size:21px
+.header-title{
+font-size:21px;
+font-weight:800
 }
+
+.header-sub{
+font-size:12px;
+opacity:.9
+}
+
+/* =========================
+CONTAINER
+========================= */
 
 .container{
-max-width:1200px;
+max-width:1250px;
 margin:20px auto;
 padding:0 15px
 }
 
 .card{
 background:white;
-border:1px solid #f0c4d6;
-border-radius:15px;
+border:1px solid var(--border);
+border-radius:16px;
 padding:18px;
 margin-bottom:18px;
-box-shadow:0 3px 12px rgba(143,23,77,.08)
+box-shadow:var(--shadow)
 }
 
 .card h2{
-color:#8f174d;
+color:var(--orange-dark);
 margin-bottom:15px;
 font-size:20px
 }
 
-.form-group{
-margin-bottom:12px
+.card h3{
+margin-bottom:10px
 }
 
-.form-group label{
-display:block;
-font-weight:bold;
-color:#555;
-margin-bottom:6px
-}
-
-input,
-select,
-textarea{
-width:100%;
-padding:11px;
-border:1px solid #f0b3cc;
-border-radius:9px;
-outline:none;
-background:white
-}
-
-input:focus,
-select:focus,
-textarea:focus{
-border-color:#8f174d
-}
+/* =========================
+BUTTONS
+========================= */
 
 .btn{
 border:0;
-padding:10px 14px;
+padding:10px 15px;
 border-radius:9px;
 font-weight:bold;
-margin:3px
+margin:3px;
+transition:.2s;
+display:inline-block
 }
 
-.btn-pink{
-background:#8f174d;
+.btn:hover{
+transform:translateY(-1px);
+opacity:.92
+}
+
+.btn-orange{
+background:var(--orange);
 color:white
 }
 
-.btn-pink:hover{
-background:#d52b72
+.btn-orange-dark{
+background:var(--orange-dark);
+color:white
 }
 
 .btn-light{
-background:#fff0f6;
-color:#8f174d;
-border:1px solid #f0b3cc
+background:var(--orange-light);
+color:var(--orange-dark);
+border:1px solid #ffd5b5
 }
 
 .btn-danger{
-background:#a20f48;
+background:var(--red);
 color:white
 }
 
 .btn-green{
-background:#25D366;
-color:white
-}
-
-.btn-orange{
-background:#e67e22;
+background:var(--green);
 color:white
 }
 
 .btn-blue{
-background:#1677ff;
+background:var(--blue);
+color:white
+}
+
+.btn-gray{
+background:#666;
 color:white
 }
 
@@ -177,11 +202,9 @@ width:100%
 display:none!important
 }
 
-.empty{
-text-align:center;
-padding:35px 15px;
-color:#888
-}
+/* =========================
+LOGIN
+========================= */
 
 .login-box{
 max-width:430px;
@@ -190,57 +213,129 @@ margin:70px auto
 
 .login-box h2{
 text-align:center;
-color:#8f174d;
+color:var(--orange-dark);
 margin-bottom:20px
 }
 
-.admin-nav{
-display:flex;
-gap:8px;
-flex-wrap:wrap;
-margin-bottom:18px
+.login-logo{
+display:block;
+width:150px;
+height:65px;
+object-fit:contain;
+margin:0 auto 20px;
+border-radius:10px
 }
 
-.admin-nav button{
-flex:1;
-min-width:130px
+/* =========================
+FORM
+========================= */
+
+.form-group{
+margin-bottom:13px
 }
+
+.form-group label{
+display:block;
+font-weight:bold;
+color:#444;
+margin-bottom:6px
+}
+
+input,
+select,
+textarea{
+width:100%;
+padding:11px 12px;
+border:1px solid #ddd;
+border-radius:9px;
+outline:none;
+background:white;
+font-size:14px
+}
+
+input:focus,
+select:focus,
+textarea:focus{
+border-color:var(--orange);
+box-shadow:0 0 0 2px rgba(255,107,0,.08)
+}
+
+input[type="checkbox"]{
+width:auto
+}
+
+/* =========================
+NAV
+========================= */
+
+.admin-nav{
+display:grid;
+grid-template-columns:repeat(7,1fr);
+gap:8px
+}
+
+.admin-nav .btn{
+margin:0;
+min-height:44px
+}
+
+/* =========================
+STATS
+========================= */
 
 .stat-grid{
 display:grid;
 grid-template-columns:repeat(4,1fr);
-gap:12px;
+gap:13px;
 margin-bottom:18px
 }
 
 .stat{
 background:white;
-border:1px solid #f0c4d6;
-border-radius:13px;
-padding:16px;
-text-align:center
+border:1px solid var(--border);
+border-radius:15px;
+padding:18px;
+text-align:center;
+box-shadow:var(--shadow)
+}
+
+.stat-icon{
+font-size:26px
+}
+
+.stat-label{
+font-size:13px;
+color:var(--muted);
+margin-top:5px
 }
 
 .stat-number{
-font-size:25px;
-font-weight:bold;
-color:#8f174d;
-margin-top:5px
+font-size:26px;
+font-weight:800;
+color:var(--orange-dark);
+margin-top:4px
 }
+
+/* =========================
+CARDS
+========================= */
 
 .order-card,
 .reseller-card,
 .review-card,
-.product-card{
+.product-card,
+.banner-card{
 background:white;
-border:1px solid #f0c4d6;
-border-radius:13px;
+border:1px solid var(--border);
+border-radius:14px;
 padding:15px;
-margin-bottom:12px
+margin-bottom:12px;
+box-shadow:0 3px 12px rgba(0,0,0,.04)
 }
 
 .order-head,
-.reseller-head{
+.reseller-head,
+.banner-head{
 display:flex;
 justify-content:space-between;
 align-items:flex-start;
@@ -249,16 +344,17 @@ margin-bottom:12px
 }
 
 .order-head b,
-.reseller-head b{
-color:#8f174d
+.reseller-head b,
+.banner-head b{
+color:var(--orange-dark)
 }
 
 .status{
 display:inline-block;
 padding:5px 10px;
 border-radius:20px;
-background:#fff0f6;
-color:#8f174d;
+background:var(--orange-light);
+color:var(--orange-dark);
 font-size:12px;
 font-weight:bold
 }
@@ -266,19 +362,19 @@ font-weight:bold
 .order-info p,
 .reseller-info p{
 margin:5px 0;
-line-height:1.45
+line-height:1.5
 }
 
 .items-box{
-background:#fff7fa;
+background:#fffaf5;
 border-radius:10px;
 padding:10px;
 margin:12px 0
 }
 
 .item-row{
-padding:7px 0;
-border-bottom:1px solid #f0c4d6
+padding:8px 0;
+border-bottom:1px solid #eee
 }
 
 .item-row:last-child{
@@ -294,8 +390,61 @@ margin-top:12px
 
 .admin-actions select{
 width:auto;
-min-width:145px
+min-width:150px
 }
+
+.notice{
+background:var(--orange-light);
+border:1px solid #ffd2b0;
+padding:12px;
+border-radius:10px;
+margin-bottom:12px
+}
+
+.empty{
+text-align:center;
+padding:40px 15px;
+color:#888
+}
+
+/* =========================
+PRODUCTS
+========================= */
+
+.product-grid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:14px
+}
+
+.product-image{
+width:100%;
+aspect-ratio:1/1;
+object-fit:cover;
+border-radius:11px;
+background:#f5f5f5
+}
+
+.product-name{
+font-weight:bold;
+margin-top:9px
+}
+
+.product-price{
+color:var(--orange-dark);
+font-size:19px;
+font-weight:800;
+margin:5px 0
+}
+
+.product-meta{
+font-size:12px;
+color:#777
+}
+
+/* =========================
+IMAGE PREVIEW
+========================= */
 
 .image-preview{
 display:flex;
@@ -305,76 +454,134 @@ margin-top:10px
 }
 
 .image-preview img{
-width:80px;
-height:80px;
+width:85px;
+height:85px;
 object-fit:cover;
 border-radius:9px;
-border:1px solid #f0c4d6
+border:1px solid #ddd
 }
 
-.product-grid{
+/* =========================
+BANNERS
+========================= */
+
+.banner-grid{
 display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:12px
+grid-template-columns:repeat(2,1fr);
+gap:14px
 }
 
-.product-image{
+.banner-image{
 width:100%;
-aspect-ratio:1/1;
+aspect-ratio:16/7;
 object-fit:cover;
-border-radius:10px;
-background:#fff0f6
+border-radius:11px;
+background:#f5f5f5
 }
 
-.product-name{
-font-weight:bold;
+.banner-info{
 margin-top:9px
 }
 
-.product-price{
-color:#8f174d;
-font-size:19px;
-font-weight:bold;
-margin:5px 0
+.banner-active{
+display:inline-block;
+background:#e9fff0;
+color:#138a3c;
+padding:4px 9px;
+border-radius:20px;
+font-size:12px;
+font-weight:bold
 }
 
-.product-meta{
+.banner-inactive{
+display:inline-block;
+background:#f3f3f3;
+color:#777;
+padding:4px 9px;
+border-radius:20px;
 font-size:12px;
-color:#777
+font-weight:bold
 }
+
+/* =========================
+SUPPORT
+========================= */
 
 .support-box{
-background:#f1fff5;
-border:1px solid #b9e8c8;
-border-radius:13px;
-padding:15px
+background:#f0fff5;
+border:1px solid #bce8ca;
+border-radius:14px;
+padding:16px
 }
 
 .support-number{
-font-size:20px;
+font-size:21px;
 font-weight:bold;
 color:#128c3d;
 margin:8px 0
 }
 
+/* =========================
+FILTER
+========================= */
+
 .filter-grid{
 display:grid;
-grid-template-columns:repeat(2,1fr);
-gap:10px
+grid-template-columns:repeat(3,1fr);
+gap:10px;
+margin-bottom:15px
 }
 
-.notice{
-background:#fff7fa;
-border:1px solid #f0c4d6;
-padding:12px;
-border-radius:10px;
-margin-bottom:12px
-}
+/* =========================
+FOOTER
+========================= */
 
 footer{
 text-align:center;
 padding:25px 15px;
-color:#777
+color:#777;
+font-size:13px
+}
+
+/* =========================
+LOADING
+========================= */
+
+.loading{
+padding:35px;
+text-align:center;
+color:var(--orange-dark);
+font-weight:bold
+}
+
+.spinner{
+display:inline-block;
+width:20px;
+height:20px;
+border:3px solid #ffd9c0;
+border-top-color:var(--orange);
+border-radius:50%;
+animation:spin .8s linear infinite;
+vertical-align:middle;
+margin-right:7px
+}
+
+@keyframes spin{
+to{
+transform:rotate(360deg)
+}
+}
+
+/* =========================
+RESPONSIVE
+========================= */
+
+@media(max-width:1050px){
+
+.admin-nav{
+grid-template-columns:repeat(4,1fr)
+}
+
 }
 
 @media(max-width:800px){
@@ -387,6 +594,14 @@ grid-template-columns:repeat(2,1fr)
 grid-template-columns:repeat(2,1fr)
 }
 
+.banner-grid{
+grid-template-columns:1fr
+}
+
+.filter-grid{
+grid-template-columns:1fr
+}
+
 }
 
 @media(max-width:600px){
@@ -396,21 +611,57 @@ flex-direction:column;
 text-align:center
 }
 
+.header-brand{
+flex-direction:column
+}
+
+.admin-nav{
+grid-template-columns:repeat(2,1fr)
+}
+
 .product-grid{
 grid-template-columns:1fr
 }
 
-.filter-grid{
-grid-template-columns:1fr
-}
-
 .order-head,
-.reseller-head{
+.reseller-head,
+.banner-head{
 flex-direction:column
 }
 
+.admin-actions{
+flex-direction:column
+}
+
+.admin-actions .btn,
 .admin-actions select{
-width:100%
+width:100%;
+margin:2px 0
+}
+
+.stat{
+padding:14px 8px
+}
+
+.stat-number{
+font-size:22px
+}
+
+}
+
+/* =========================
+MOBILE TOP ACTION
+========================= */
+
+.mobile-help{
+display:none
+}
+
+@media(max-width:600px){
+
+.mobile-help{
+display:block;
+margin-bottom:15px
 }
 
 }
@@ -421,6 +672,10 @@ width:100%
 
 <body>
 
+<!-- =========================
+HEADER
+========================= -->
+
 <header>
 
 <div class="header-inner">
@@ -429,12 +684,20 @@ width:100%
 
 <img
 src="logo.png"
-alt="Gadhuli"
+alt="Gadhuli Logo"
 >
 
-<h1>
+<div>
+
+<div class="header-title">
 👨‍💼 Gadhuli Admin
-</h1>
+</div>
+
+<div class="header-sub">
+Premium Marketplace Management
+</div>
+
+</div>
 
 </div>
 
@@ -450,7 +713,9 @@ onclick="goHome()"
 </header>
 
 
-<!-- LOGIN -->
+<!-- =========================
+LOGIN
+========================= -->
 
 <div
 id="loginSection"
@@ -458,6 +723,12 @@ class="container"
 >
 
 <div class="card login-box">
+
+<img
+src="logo.png"
+class="login-logo"
+alt="Gadhuli"
+>
 
 <h2>
 🔐 Admin Login
@@ -486,13 +757,13 @@ Password
 <input
 id="loginPassword"
 type="password"
-placeholder="Password"
+placeholder="Admin Password"
 >
 
 </div>
 
 <button
-class="btn btn-pink full"
+class="btn btn-orange full"
 onclick="adminLogin()"
 >
 🔐 Login
@@ -508,19 +779,27 @@ style="margin-top:12px;text-align:center"
 </div>
 
 
-<!-- ADMIN PANEL -->
+<!-- =========================
+ADMIN PANEL
+========================= -->
 
 <div
 id="adminPanel"
 class="container hidden"
 >
 
+<!-- STATS -->
+
 <div class="stat-grid">
 
 <div class="stat">
 
-<div>
-🛍️ Products
+<div class="stat-icon">
+🛍️
+</div>
+
+<div class="stat-label">
+Products
 </div>
 
 <div
@@ -535,8 +814,12 @@ id="statProducts"
 
 <div class="stat">
 
-<div>
-📦 Orders
+<div class="stat-icon">
+📦
+</div>
+
+<div class="stat-label">
+Orders
 </div>
 
 <div
@@ -551,8 +834,12 @@ id="statOrders"
 
 <div class="stat">
 
-<div>
-⏳ Pending Orders
+<div class="stat-icon">
+⏳
+</div>
+
+<div class="stat-label">
+Pending Orders
 </div>
 
 <div
@@ -567,8 +854,12 @@ id="statPending"
 
 <div class="stat">
 
-<div>
-🤝 Reseller Requests
+<div class="stat-icon">
+🤝
+</div>
+
+<div class="stat-label">
+Reseller Requests
 </div>
 
 <div
@@ -590,20 +881,47 @@ id="statResellers"
 <div class="admin-nav">
 
 <button
-class="btn btn-pink"
+id="navOrders"
+class="btn btn-orange"
 onclick="showSection('orders')"
 >
 📦 Orders
 </button>
 
 <button
+id="navProducts"
 class="btn btn-light"
-onclick="showSection('resellers')"
+onclick="showSection('products')"
 >
-🤝 Reseller Requests
+🛍️ Products
 </button>
 
 <button
+id="navAdd"
+class="btn btn-light"
+onclick="showSection('addProduct')"
+>
+➕ Add Product
+</button>
+
+<button
+id="navBanners"
+class="btn btn-light"
+onclick="showSection('banners')"
+>
+🖼️ Banners
+</button>
+
+<button
+id="navResellers"
+class="btn btn-light"
+onclick="showSection('resellers')"
+>
+🤝 Resellers
+</button>
+
+<button
+id="navReviews"
 class="btn btn-light"
 onclick="showSection('reviews')"
 >
@@ -612,19 +930,26 @@ onclick="showSection('reviews')"
 
 <button
 class="btn btn-light"
-onclick="showSection('products')"
+onclick="refreshAdmin()"
 >
-🛍️ Products
-</button>
-
-<button
-class="btn btn-light"
-onclick="showSection('addProduct')"
->
-➕ Add Product
+🔄 Refresh
 </button>
 
 </div>
+
+</div>
+
+
+<!-- MOBILE SUPPORT -->
+
+<div class="mobile-help">
+
+<button
+class="btn btn-green full"
+onclick="openWhatsApp()"
+>
+💬 WhatsApp Customer Support
+</button>
 
 </div>
 
@@ -640,7 +965,7 @@ onclick="showSection('addProduct')"
 <div class="support-box">
 
 <p>
-Customer-এর সমস্যা হলে সরাসরি WhatsApp-এ যোগাযোগ করতে পারবে।
+Customer-এর কোনো সমস্যা হলে সরাসরি Gadhuli WhatsApp Helpline-এ যোগাযোগ করতে পারবে।
 </p>
 
 <div class="support-number">
@@ -668,8 +993,17 @@ onclick="copyWhatsApp()"
 
 <!-- CONTENT -->
 
-<div id="sectionContent"></div>
+<div id="sectionContent">
 
+<div class="loading">
+<span class="spinner"></span>
+Loading...
+</div>
+
+</div>
+
+
+<!-- LOGOUT -->
 
 <br>
 
@@ -685,8 +1019,8 @@ onclick="adminLogout()"
 
 <footer>
 
-Gadhuli Admin Panel<br>
-
+<b>Gadhuli Admin Panel</b>
+<br><br>
 © 2026 Gadhuli. All Rights Reserved.
 
 </footer>
@@ -694,15 +1028,44 @@ Gadhuli Admin Panel<br>
 
 <script>
 
-const db=
-window.gadhuliSupabase;
+/* =====================================================
+   SUPABASE CONNECTION
+===================================================== */
+
+const SUPABASE_URL =
+"https://ypmmdytgfuhydzacjbkw.supabase.co";
+
+const SUPABASE_KEY =
+"sb_publishable_ZhmwEV_6UngmzzxcJmETgw_smrA7qDL";
+
+let db=null;
+
+try{
+
+db=
+window.supabase.createClient(
+SUPABASE_URL,
+SUPABASE_KEY
+);
+
+}catch(error){
+
+console.error(
+"Supabase connection error:",
+error
+);
+
+}
 
 
-const ADMIN_EMAIL=
+/* =====================================================
+   ADMIN SETTINGS
+===================================================== */
+
+const ADMIN_EMAIL =
 "hridoyff974@gmail.com";
 
-
-const WHATSAPP_NUMBER=
+const WHATSAPP_NUMBER =
 "8801333088194";
 
 
@@ -710,6 +1073,10 @@ let currentUser=null;
 
 let currentSection="orders";
 
+
+/* =====================================================
+   CATEGORY DATA
+===================================================== */
 
 const categories={
 
@@ -799,6 +1166,10 @@ const categories={
 };
 
 
+/* =====================================================
+   SIZE DATA
+===================================================== */
+
 const sizeData={
 
 "T-Shirt":[
@@ -872,6 +1243,10 @@ const sizeData={
 };
 
 
+/* =====================================================
+   HELPERS
+===================================================== */
+
 function esc(v){
 
 return String(v??"")
@@ -921,15 +1296,14 @@ return String(v||"—");
 
 function goHome(){
 
-window.location.href=
-"index.html";
+window.location.href="index.html";
 
 }
 
 
-/* =========================
-   LOGIN
-   ========================= */
+/* =====================================================
+   ADMIN LOGIN
+===================================================== */
 
 async function adminLogin(){
 
@@ -943,12 +1317,10 @@ return;
 
 }
 
-
 let email=
 document.getElementById(
 "loginEmail"
 ).value.trim();
-
 
 let password=
 document.getElementById(
@@ -981,7 +1353,7 @@ if(r.error){
 document.getElementById(
 "loginMessage"
 ).innerHTML=
-'<span style="color:#b00020">'+
+'<span style="color:#d32f2f">'+
 esc(r.error.message)+
 '</span>';
 
@@ -995,11 +1367,14 @@ r.data.user;
 
 
 if(
+!currentUser.email||
 currentUser.email.toLowerCase()!==
 ADMIN_EMAIL.toLowerCase()
 ){
 
 await db.auth.signOut();
+
+currentUser=null;
 
 alert(
 "এই Email-এর Admin access নেই।"
@@ -1018,6 +1393,8 @@ if(!admin){
 
 await db.auth.signOut();
 
+currentUser=null;
+
 alert(
 "আপনার profile-এ Admin role নেই।"
 );
@@ -1032,9 +1409,9 @@ showAdmin();
 }
 
 
-/* =========================
+/* =====================================================
    CHECK ADMIN
-   ========================= */
+===================================================== */
 
 async function isAdmin(){
 
@@ -1053,8 +1430,16 @@ currentUser.id
 .maybeSingle();
 
 
-if(r.error)
+if(r.error){
+
+console.error(
+"Admin role check:",
+r.error
+);
+
 return false;
+
+}
 
 
 return r.data?.role==="admin";
@@ -1062,9 +1447,9 @@ return r.data?.role==="admin";
 }
 
 
-/* =========================
+/* =====================================================
    SHOW ADMIN
-   ========================= */
+===================================================== */
 
 function showAdmin(){
 
@@ -1072,11 +1457,9 @@ document
 .getElementById("loginSection")
 .classList.add("hidden");
 
-
 document
 .getElementById("adminPanel")
 .classList.remove("hidden");
-
 
 loadStats();
 
@@ -1085,9 +1468,9 @@ showSection("orders");
 }
 
 
-/* =========================
-   AUTO LOGIN
-   ========================= */
+/* =====================================================
+   AUTO SESSION
+===================================================== */
 
 async function checkSession(){
 
@@ -1097,6 +1480,15 @@ return;
 
 let s=
 await db.auth.getSession();
+
+
+if(s.error){
+
+console.error(s.error);
+
+return;
+
+}
 
 
 currentUser=
@@ -1109,11 +1501,14 @@ return;
 
 
 if(
+!currentUser.email||
 currentUser.email.toLowerCase()!==
 ADMIN_EMAIL.toLowerCase()
 ){
 
 await db.auth.signOut();
+
+currentUser=null;
 
 return;
 
@@ -1129,12 +1524,13 @@ showAdmin();
 }
 
 
-/* =========================
+/* =====================================================
    LOGOUT
-   ========================= */
+===================================================== */
 
 async function adminLogout(){
 
+if(db)
 await db.auth.signOut();
 
 currentUser=null;
@@ -1143,7 +1539,6 @@ document
 .getElementById("adminPanel")
 .classList.add("hidden");
 
-
 document
 .getElementById("loginSection")
 .classList.remove("hidden");
@@ -1151,32 +1546,35 @@ document
 }
 
 
-/* =========================
+/* =====================================================
    SECTION
-   ========================= */
+===================================================== */
 
 async function showSection(section){
 
 currentSection=section;
+
+updateNav(section);
+
 
 let box=
 document.getElementById(
 "sectionContent"
 );
 
-
 box.innerHTML=
-'<div class="empty">Loading...</div>';
+`
+<div class="loading">
+<span class="spinner"></span>
+Loading...
+</div>
+`;
 
+
+try{
 
 if(section==="orders")
 await renderOrders();
-
-else if(section==="resellers")
-await renderResellers();
-
-else if(section==="reviews")
-await renderReviews();
 
 else if(section==="products")
 await renderProducts();
@@ -1184,19 +1582,116 @@ await renderProducts();
 else if(section==="addProduct")
 renderAddProduct();
 
+else if(section==="banners")
+await renderBanners();
+
+else if(section==="resellers")
+await renderResellers();
+
+else if(section==="reviews")
+await renderReviews();
+
+}catch(error){
+
+console.error(error);
+
+box.innerHTML=
+`
+<div class="empty">
+❌ Something went wrong.
+<br><br>
+${esc(error.message||String(error))}
+</div>
+`;
+
+}
+
 }
 
 
-/* =========================
+/* =====================================================
+   NAV COLOR
+===================================================== */
+
+function updateNav(section){
+
+const ids=[
+"navOrders",
+"navProducts",
+"navAdd",
+"navBanners",
+"navResellers",
+"navReviews"
+];
+
+ids.forEach(id=>{
+
+const el=
+document.getElementById(id);
+
+if(el)
+el.className=
+"btn btn-light";
+
+});
+
+
+const map={
+orders:"navOrders",
+products:"navProducts",
+addProduct:"navAdd",
+banners:"navBanners",
+resellers:"navResellers",
+reviews:"navReviews"
+};
+
+const active=
+document.getElementById(
+map[section]
+);
+
+if(active)
+active.className=
+"btn btn-orange";
+
+}
+
+
+/* =====================================================
+   REFRESH
+===================================================== */
+
+async function refreshAdmin(){
+
+await loadStats();
+
+await showSection(
+currentSection
+);
+
+}
+
+
+/* =====================================================
    STATS
-   ========================= */
+===================================================== */
 
 async function loadStats(){
+
+if(!db)
+return;
+
 
 let p=
 await db
 .from("products")
-.select("id",{count:"exact",head:true});
+.select(
+"id",
+{
+count:"exact",
+head:true
+}
+);
 
 
 let o=
@@ -1235,7 +1730,9 @@ document.getElementById(
 "statPending"
 ).textContent=
 orders.filter(
-x=>x.order_status==="Pending"
+x=>
+(x.order_status||"Pending")
+==="Pending"
 ).length;
 
 
@@ -1250,9 +1747,9 @@ x=>x.status==="Pending"
 }
 
 
-/* =========================
+/* =====================================================
    ORDERS
-   ========================= */
+===================================================== */
 
 async function renderOrders(){
 
@@ -1277,9 +1774,11 @@ ascending:false
 if(r.error){
 
 box.innerHTML=
-'<div class="empty">'+
-esc(r.error.message)+
-'</div>';
+`
+<div class="empty">
+❌ ${esc(r.error.message)}
+</div>
+`;
 
 return;
 
@@ -1289,7 +1788,11 @@ return;
 if(!r.data?.length){
 
 box.innerHTML=
-'<div class="empty">এখনো কোনো Order নেই।</div>';
+`
+<div class="empty">
+📦 এখনো কোনো Order নেই।
+</div>
+`;
 
 return;
 
@@ -1322,7 +1825,7 @@ html+=`
 <div>
 
 <b>
-📦 Order #${o.id}
+📦 Order #${esc(o.id)}
 </b>
 
 <br>
@@ -1352,30 +1855,38 @@ ${esc(o.customer_name)}
 ${esc(o.customer_phone)}
 </p>
 
+${
+o.customer_email
+?
+`
 <p>
 <b>Email:</b>
 ${esc(o.customer_email)}
 </p>
+`
+:
+""
+}
 
 <p>
 <b>Address:</b>
-${esc(o.customer_receive_place)},
-${esc(o.customer_thana)},
-${esc(o.customer_district)}
+${esc(o.customer_receive_place||o.address||"—")},
+${esc(o.customer_thana||o.thana||"—")},
+${esc(o.customer_district||o.district||"—")}
 </p>
 
 <p>
 <b>Delivery:</b>
-${esc(o.delivery_area)}
+${esc(o.delivery_area||"—")}
 —
 ৳${money(o.delivery_charge)}
 </p>
 
 <p>
 <b>Payment:</b>
-${esc(o.payment_method)}
+${esc(o.payment_method||"—")}
 —
-${esc(o.payment_status)}
+${esc(o.payment_status||"Pending")}
 </p>
 
 ${
@@ -1419,7 +1930,7 @@ ${
 
 <div class="item-row">
 
-${esc(i.product_name)}
+${esc(i.product_name||"Product")}
 
 ${
 i.size
@@ -1429,12 +1940,28 @@ i.size
 ""
 }
 
-× ${i.quantity}
+× ${Number(i.quantity||1)}
 
+${
+i.line_total!=null
+?
+`
 =
 <b>
 ৳${money(i.line_total)}
 </b>
+`
+:
+`
+=
+<b>
+৳${money(
+Number(i.price||0)*
+Number(i.quantity||1)
+)}
+</b>
+`
+}
 
 </div>
 
@@ -1445,10 +1972,10 @@ i.size
 </div>
 
 
-<h3 style="color:#8f174d">
+<h3 style="color:var(--orange-dark)">
 
 Total:
-৳${money(o.total)}
+৳${money(o.total??o.total_amount)}
 
 </h3>
 
@@ -1456,7 +1983,7 @@ Total:
 <div class="admin-actions">
 
 <select
-onchange="updateOrderStatus(${o.id},this.value)"
+onchange="updateOrderStatus('${esc(o.id)}',this.value)"
 >
 
 ${
@@ -1471,8 +1998,8 @@ ${
 .map(s=>`
 
 <option
-value="${s}"
-${s===o.order_status?"selected":""}
+value="${esc(s)}"
+${s===(o.order_status||"Pending")?"selected":""}
 >
 ${s}
 </option>
@@ -1485,7 +2012,7 @@ ${s}
 
 
 <select
-onchange="updatePaymentStatus(${o.id},this.value)"
+onchange="updatePaymentStatus('${esc(o.id)}',this.value)"
 >
 
 ${
@@ -1498,8 +2025,8 @@ ${
 .map(s=>`
 
 <option
-value="${s}"
-${s===o.payment_status?"selected":""}
+value="${esc(s)}"
+${s===(o.payment_status||"Pending")?"selected":""}
 >
 Payment: ${s}
 </option>
@@ -1513,7 +2040,7 @@ Payment: ${s}
 
 <button
 class="btn btn-green"
-onclick="contactCustomer('${esc(o.customer_phone)}','${esc(o.customer_name)}')"
+onclick="contactCustomer('${esc(o.customer_phone||"")}','${esc(o.customer_name||"Customer")}')"
 >
 💬 WhatsApp Customer
 </button>
@@ -1532,14 +2059,16 @@ box.innerHTML=html;
 }
 
 
-/* =========================
-   ORDER STATUS
-   ========================= */
+/* =====================================================
+   UPDATE ORDER STATUS
+===================================================== */
 
 async function updateOrderStatus(id,status){
 
 if(!await isAdmin())
-return alert("Admin access নেই।");
+return alert(
+"Admin access নেই।"
+);
 
 
 let old=
@@ -1552,7 +2081,9 @@ await db
 
 if(old.error||!old.data){
 
-alert("Order পাওয়া যায়নি।");
+alert(
+"Order পাওয়া যায়নি।"
+);
 
 return;
 
@@ -1571,7 +2102,7 @@ order_status:status
 if(r.error){
 
 alert(
-"Status update হয়নি ❌\n"+
+"Status update হয়নি ❌\n\n"+
 r.error.message
 );
 
@@ -1610,7 +2141,9 @@ old.data.order_status!=="Delivered"&&
 old.data.reseller_id
 ){
 
-await postCommission(old.data);
+await postCommission(
+old.data
+);
 
 }
 
@@ -1627,14 +2160,16 @@ await renderOrders();
 }
 
 
-/* =========================
+/* =====================================================
    PAYMENT STATUS
-   ========================= */
+===================================================== */
 
 async function updatePaymentStatus(id,status){
 
 if(!await isAdmin())
-return alert("Admin access নেই।");
+return alert(
+"Admin access নেই।"
+);
 
 
 let r=
@@ -1649,7 +2184,7 @@ payment_status:status
 if(r.error){
 
 alert(
-"Payment status update হয়নি ❌\n"+
+"Payment status update হয়নি ❌\n\n"+
 r.error.message
 );
 
@@ -1668,9 +2203,1503 @@ await renderOrders();
 }
 
 
-/* =========================
+/* =====================================================
+   PRODUCTS
+===================================================== */
+
+async function renderProducts(){
+
+let box=
+document.getElementById(
+"sectionContent"
+);
+
+
+let r=
+await db
+.from("products")
+.select("*")
+.order(
+"id",
+{
+ascending:false
+}
+);
+
+
+if(r.error){
+
+box.innerHTML=
+`
+<div class="empty">
+❌ ${esc(r.error.message)}
+</div>
+`;
+
+return;
+
+}
+
+
+if(!r.data?.length){
+
+box.innerHTML=
+`
+<div class="empty">
+🛍️ কোনো Product নেই।
+<br><br>
+<button
+class="btn btn-orange"
+onclick="showSection('addProduct')"
+>
+➕ Add First Product
+</button>
+</div>
+`;
+
+return;
+
+}
+
+
+box.innerHTML=`
+
+<div class="notice">
+
+🛍️ এখানে Homepage-এর সব Product manage করা যাবে।
+
+<br>
+
+<strong>
+Product image সর্বোচ্চ ৫টি।
+</strong>
+
+</div>
+
+
+<div class="product-grid">
+
+${
+r.data.map(p=>{
+
+let img="";
+
+
+if(Array.isArray(p.images))
+img=p.images[0];
+
+else if(
+typeof p.images==="string"
+){
+
+try{
+
+let x=
+JSON.parse(p.images);
+
+if(Array.isArray(x))
+img=x[0];
+
+}catch(e){
+
+img=p.images;
+
+}
+
+}
+
+
+img=
+img||
+"https://via.placeholder.com/500x500?text=Gadhuli";
+
+
+return `
+
+<div class="product-card">
+
+<img
+class="product-image"
+src="${esc(img)}"
+alt="${esc(p.name)}"
+onerror="this.src='https://via.placeholder.com/500x500?text=Gadhuli'"
+>
+
+
+<div class="product-name">
+${esc(p.name)}
+</div>
+
+
+<div class="product-price">
+৳${money(p.price)}
+</div>
+
+
+<div class="product-meta">
+
+${esc(p.category||"")}
+
+${
+p.subcategory
+?
+" • "+esc(p.subcategory)
+:
+""
+}
+
+</div>
+
+
+${
+p.description
+?
+`
+<p style="
+font-size:13px;
+color:#777;
+margin-top:7px;
+">
+${esc(
+String(p.description).substring(0,100)
+)}
+${String(p.description).length>100?"...":""}
+</p>
+`
+:
+""
+}
+
+
+<div style="margin-top:10px">
+
+<button
+class="btn btn-light"
+onclick="editProduct('${esc(p.id)}')"
+>
+✏️ Edit
+</button>
+
+
+<button
+class="btn btn-danger"
+onclick="deleteProduct('${esc(p.id)}')"
+>
+🗑️ Delete
+</button>
+
+</div>
+
+</div>
+
+`;
+
+}).join("")
+}
+
+</div>
+
+`;
+
+}
+
+
+/* =====================================================
+   ADD PRODUCT
+===================================================== */
+
+function renderAddProduct(){
+
+let box=
+document.getElementById(
+"sectionContent"
+);
+
+
+box.innerHTML=`
+
+<div class="card">
+
+<h2>
+➕ Add New Product
+</h2>
+
+
+<div class="notice">
+
+📌 Product add করার সময় Category এবং Subcategory ঠিকভাবে select করুন।
+<br>
+📌 সর্বোচ্চ ৫টি ছবি upload করা যাবে।
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+Product Name *
+</label>
+
+<input
+id="productName"
+type="text"
+placeholder="Product name"
+>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+Price *
+</label>
+
+<input
+id="productPrice"
+type="number"
+min="0"
+step="0.01"
+placeholder="Price in ৳"
+>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+Category *
+</label>
+
+<select
+id="productCategory"
+onchange="updateSubcategories()"
+>
+
+<option value="">
+Select Category
+</option>
+
+${
+Object.keys(categories)
+.map(c=>`
+<option value="${esc(c)}">
+${esc(c)}
+</option>
+`)
+.join("")
+}
+
+</select>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+Subcategory
+</label>
+
+<select
+id="productSubcategory"
+onchange="updateSizes()"
+>
+
+<option value="">
+Select Subcategory
+</option>
+
+</select>
+
+</div>
+
+
+<div
+class="form-group"
+id="sizeSection"
+>
+
+<label>
+Available Sizes
+</label>
+
+<div id="sizeOptions">
+
+Category/Subcategory select করুন।
+
+</div>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+Description
+</label>
+
+<textarea
+id="productDescription"
+rows="5"
+placeholder="Product description"
+></textarea>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+Product Images *
+</label>
+
+<input
+id="productImages"
+type="file"
+accept="image/*"
+multiple
+onchange="previewImages()"
+>
+
+<small>
+১ থেকে ৫টি ছবি select করুন।
+</small>
+
+<div
+id="imagePreview"
+class="image-preview"
+></div>
+
+</div>
+
+
+<button
+id="saveProductButton"
+class="btn btn-orange full"
+onclick="saveProduct()"
+>
+💾 Save Product
+</button>
+
+</div>
+
+`;
+
+}
+
+
+/* =====================================================
+   SUBCATEGORY
+===================================================== */
+
+function updateSubcategories(){
+
+let category=
+document.getElementById(
+"productCategory"
+).value;
+
+
+let box=
+document.getElementById(
+"productSubcategory"
+);
+
+
+box.innerHTML=
+'<option value="">Select Subcategory</option>';
+
+
+if(!category){
+
+updateSizes();
+
+return;
+
+}
+
+
+(categories[category]||[])
+.forEach(s=>{
+
+let o=
+document.createElement("option");
+
+o.value=s;
+
+o.textContent=s;
+
+box.appendChild(o);
+
+});
+
+
+updateSizes();
+
+}
+
+
+/* =====================================================
+   SIZES
+===================================================== */
+
+function updateSizes(){
+
+let sub=
+document.getElementById(
+"productSubcategory"
+).value;
+
+
+let box=
+document.getElementById(
+"sizeOptions"
+);
+
+
+if(!sub){
+
+box.innerHTML=
+"Subcategory select করুন।";
+
+return;
+
+}
+
+
+let sizes=
+sizeData[sub]||[];
+
+
+if(!sizes.length){
+
+box.innerHTML=
+`
+<small>
+এই Product-এর জন্য Size প্রয়োজন নেই।
+</small>
+`;
+
+return;
+
+}
+
+
+box.innerHTML=
+sizes.map(s=>`
+
+<label
+style="
+display:inline-flex;
+align-items:center;
+gap:6px;
+margin:4px;
+padding:7px 10px;
+border:1px solid #ffd0b0;
+border-radius:8px;
+background:#fffaf5;
+cursor:pointer;
+"
+>
+
+<input
+type="checkbox"
+class="size-check"
+value="${esc(s)}"
+>
+
+${esc(s)}
+
+</label>
+
+`).join("");
+
+}
+
+
+/* =====================================================
+   IMAGE PREVIEW
+===================================================== */
+
+function previewImages(){
+
+let input=
+document.getElementById(
+"productImages"
+);
+
+
+let box=
+document.getElementById(
+"imagePreview"
+);
+
+
+box.innerHTML="";
+
+
+let files=
+Array.from(
+input.files||[]
+);
+
+
+if(files.length>5){
+
+alert(
+"Maximum 5টি ছবি select করা যাবে।"
+);
+
+input.value="";
+
+return;
+
+}
+
+
+files.forEach(file=>{
+
+if(!file.type.startsWith("image/"))
+return;
+
+
+let url=
+URL.createObjectURL(file);
+
+
+let img=
+document.createElement("img");
+
+img.src=url;
+
+img.onload=()=>{
+URL.revokeObjectURL(url)
+};
+
+box.appendChild(img);
+
+});
+
+}
+
+
+/* =====================================================
+   SAVE PRODUCT
+===================================================== */
+
+async function saveProduct(){
+
+if(!await isAdmin())
+return alert(
+"Admin access নেই।"
+);
+
+
+let name=
+document.getElementById(
+"productName"
+).value.trim();
+
+
+let price=
+Number(
+document.getElementById(
+"productPrice"
+).value
+);
+
+
+let category=
+document.getElementById(
+"productCategory"
+).value;
+
+
+let subcategory=
+document.getElementById(
+"productSubcategory"
+).value;
+
+
+let description=
+document.getElementById(
+"productDescription"
+).value.trim();
+
+
+let input=
+document.getElementById(
+"productImages"
+);
+
+
+let files=
+Array.from(
+input.files||[]
+);
+
+
+if(
+!name||
+price<=0||
+!category||
+!files.length
+){
+
+alert(
+"Product Name, Price, Category এবং Image দিন।"
+);
+
+return;
+
+}
+
+
+if(files.length>5){
+
+alert(
+"Maximum 5টি ছবি দেওয়া যাবে।"
+);
+
+return;
+
+}
+
+
+let sizes=
+Array.from(
+document.querySelectorAll(
+".size-check:checked"
+)
+)
+.map(x=>x.value);
+
+
+if(
+subcategory&&
+sizeData[subcategory]?.length&&
+!sizes.length
+){
+
+alert(
+"Product-এর Size select করুন।"
+);
+
+return;
+
+}
+
+
+const button=
+document.getElementById(
+"saveProductButton"
+);
+
+
+try{
+
+button.disabled=true;
+
+button.textContent=
+"⏳ Uploading...";
+
+
+let urls=[];
+
+
+for(
+const file of files
+){
+
+let safe=
+file.name
+.replace(
+/[^a-zA-Z0-9._-]/g,
+"_"
+);
+
+
+let path=
+"products/"+
+Date.now()+
+"-"+
+Math.random()
+.toString(36)
+.substring(2,8)+
+"-"+
+safe;
+
+
+let upload=
+await db
+.storage
+.from("product-images")
+.upload(
+path,
+file,
+{
+upsert:false
+}
+);
+
+
+if(upload.error)
+throw upload.error;
+
+
+let pub=
+db
+.storage
+.from("product-images")
+.getPublicUrl(path);
+
+
+urls.push(
+pub.data.publicUrl
+);
+
+}
+
+
+let r=
+await db
+.from("products")
+.insert({
+
+name,
+price,
+category,
+subcategory,
+sizes,
+description,
+images:urls
+
+});
+
+
+if(r.error)
+throw r.error;
+
+
+alert(
+"Product Save হয়েছে ✅"
+);
+
+
+await loadStats();
+
+await showSection(
+"products"
+);
+
+
+}catch(e){
+
+console.error(e);
+
+alert(
+"Product Save হয়নি ❌\n\n"+
+(e?.message||String(e))
+);
+
+}finally{
+
+button.disabled=false;
+
+button.textContent=
+"💾 Save Product";
+
+}
+
+}
+
+
+/* =====================================================
+   DELETE PRODUCT
+===================================================== */
+
+async function deleteProduct(id){
+
+if(!await isAdmin())
+return alert(
+"Admin access নেই।"
+);
+
+
+if(
+!confirm(
+"এই Product Delete করবেন?"
+)
+)
+return;
+
+
+let r=
+await db
+.from("products")
+.delete()
+.eq("id",id);
+
+
+if(r.error){
+
+alert(
+"Product Delete হয়নি ❌\n\n"+
+r.error.message
+);
+
+return;
+
+}
+
+
+alert(
+"Product Delete হয়েছে ✅"
+);
+
+
+await loadStats();
+
+await renderProducts();
+
+}
+
+
+/* =====================================================
+   EDIT PRODUCT
+===================================================== */
+
+function editProduct(id){
+
+alert(
+"ছবি Edit করা যাবে না।\n\n"+
+"নতুন Product যোগ করুন।"
+);
+
+}
+
+
+/* =====================================================
+   BANNER MANAGEMENT
+===================================================== */
+
+async function renderBanners(){
+
+let box=
+document.getElementById(
+"sectionContent"
+);
+
+
+let r=
+await db
+.from("advertisements")
+.select("*")
+.order(
+"sort_order",
+{
+ascending:true
+}
+);
+
+
+if(r.error){
+
+box.innerHTML=`
+
+<div class="card">
+
+<h2>
+🖼️ Advertisement / Banner
+</h2>
+
+<div class="notice">
+
+⚠️ Banner system চালু করার জন্য Supabase-এ
+<code>advertisements</code> table থাকতে হবে।
+
+<br><br>
+
+Required fields:
+<br>
+<b>image_url</b>,
+<b>sort_order</b>,
+<b>active</b>
+
+</div>
+
+<button
+class="btn btn-orange"
+onclick="renderBannerSetupHelp()"
+>
+ℹ️ Setup Information
+</button>
+
+</div>
+
+`;
+
+return;
+
+}
+
+
+box.innerHTML=`
+
+<div class="card">
+
+<h2>
+🖼️ Advertisement / Banner Management
+</h2>
+
+<div class="notice">
+
+Homepage-এর banner এখান থেকে manage করা যাবে।
+<br>
+<strong>সর্বোচ্চ ৫টি active banner</strong> রাখা যাবে।
+<br>
+Active banner homepage slider-এ দেখাবে।
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+Banner Image
+</label>
+
+<input
+id="bannerImage"
+type="file"
+accept="image/*"
+onchange="previewBanner()"
+>
+
+<div
+id="bannerPreview"
+class="image-preview"
+></div>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+Sort Order
+</label>
+
+<input
+id="bannerSort"
+type="number"
+min="1"
+max="5"
+value="1"
+placeholder="1"
+>
+
+</div>
+
+
+<div class="form-group">
+
+<label
+style="
+display:flex;
+align-items:center;
+gap:8px;
+cursor:pointer;
+"
+>
+
+<input
+id="bannerActive"
+type="checkbox"
+checked
+>
+
+Active Banner
+
+</label>
+
+</div>
+
+
+<button
+id="saveBannerButton"
+class="btn btn-orange full"
+onclick="saveBanner()"
+>
+🖼️ Upload Banner
+</button>
+
+</div>
+
+
+<div class="card">
+
+<h2>
+📋 Current Banners
+</h2>
+
+${
+!r.data?.length
+?
+`
+<div class="empty">
+এখনো কোনো Banner নেই।
+</div>
+`
+:
+`
+<div class="banner-grid">
+
+${
+r.data.map(b=>{
+
+let img=
+b.image_url||
+b.image||
+b.url||
+"";
+
+
+return `
+
+<div class="banner-card">
+
+<div class="banner-head">
+
+<div>
+
+<b>
+Banner #${esc(b.id)}
+</b>
+
+<br>
+
+<small>
+Sort: ${esc(b.sort_order??"—")}
+</small>
+
+</div>
+
+${
+b.active
+?
+`
+<span class="banner-active">
+ACTIVE
+</span>
+`
+:
+`
+<span class="banner-inactive">
+HIDDEN
+</span>
+`
+}
+
+</div>
+
+
+${
+img
+?
+`
+<img
+class="banner-image"
+src="${esc(img)}"
+alt="Gadhuli Banner"
+onerror="this.style.display='none'"
+>
+`
+:
+`
+<div class="empty">
+Image পাওয়া যায়নি।
+</div>
+`
+}
+
+
+<div class="admin-actions">
+
+<button
+class="btn btn-light"
+onclick="toggleBanner('${esc(b.id)}',${!b.active})"
+>
+${
+b.active
+?
+"🙈 Hide"
+:
+"👁️ Activate"
+}
+</button>
+
+
+<button
+class="btn btn-danger"
+onclick="deleteBanner('${esc(b.id)}','${esc(img)}')"
+>
+🗑️ Delete
+</button>
+
+</div>
+
+</div>
+
+`;
+
+}).join("")
+}
+
+</div>
+`
+}
+
+</div>
+
+`;
+
+}
+
+
+/* =====================================================
+   BANNER PREVIEW
+===================================================== */
+
+function previewBanner(){
+
+let input=
+document.getElementById(
+"bannerImage"
+);
+
+let box=
+document.getElementById(
+"bannerPreview"
+);
+
+box.innerHTML="";
+
+
+let file=
+input.files?.[0];
+
+
+if(!file)
+return;
+
+
+let url=
+URL.createObjectURL(file);
+
+
+let img=
+document.createElement("img");
+
+img.src=url;
+
+img.style.width="180px";
+
+img.style.height="90px";
+
+img.style.objectFit="cover";
+
+img.style.borderRadius="9px";
+
+box.appendChild(img);
+
+}
+
+
+/* =====================================================
+   SAVE BANNER
+===================================================== */
+
+async function saveBanner(){
+
+if(!await isAdmin())
+return alert(
+"Admin access নেই।"
+);
+
+
+let input=
+document.getElementById(
+"bannerImage"
+);
+
+
+let file=
+input.files?.[0];
+
+
+let sort=
+Number(
+document.getElementById(
+"bannerSort"
+).value
+);
+
+
+let active=
+document.getElementById(
+"bannerActive"
+).checked;
+
+
+if(!file){
+
+alert(
+"Banner image select করুন।"
+);
+
+return;
+
+}
+
+
+if(sort<1||sort>5){
+
+alert(
+"Sort Order 1 থেকে 5-এর মধ্যে দিন।"
+);
+
+return;
+
+}
+
+
+let button=
+document.getElementById(
+"saveBannerButton"
+);
+
+
+try{
+
+button.disabled=true;
+
+button.textContent=
+"⏳ Uploading...";
+
+
+let safe=
+file.name
+.replace(
+/[^a-zA-Z0-9._-]/g,
+"_"
+);
+
+
+let path=
+"banners/"+
+Date.now()+
+"-"+
+Math.random()
+.toString(36)
+.substring(2,8)+
+"-"+
+safe;
+
+
+let upload=
+await db
+.storage
+.from("product-images")
+.upload(
+path,
+file,
+{
+upsert:false
+}
+);
+
+
+if(upload.error)
+throw upload.error;
+
+
+let pub=
+db
+.storage
+.from("product-images")
+.getPublicUrl(path);
+
+
+let image_url=
+pub.data.publicUrl;
+
+
+let r=
+await db
+.from("advertisements")
+.insert({
+
+image_url,
+sort_order:sort,
+active
+
+});
+
+
+if(r.error)
+throw r.error;
+
+
+alert(
+"Banner Upload হয়েছে ✅"
+);
+
+
+await showSection(
+"banners"
+);
+
+
+}catch(e){
+
+console.error(e);
+
+alert(
+"Banner Upload হয়নি ❌\n\n"+
+(e?.message||String(e))
+);
+
+}finally{
+
+button.disabled=false;
+
+button.textContent=
+"🖼️ Upload Banner";
+
+}
+
+}
+
+
+/* =====================================================
+   TOGGLE BANNER
+===================================================== */
+
+async function toggleBanner(id,value){
+
+if(!await isAdmin())
+return alert(
+"Admin access নেই।"
+);
+
+
+let r=
+await db
+.from("advertisements")
+.update({
+active:value
+})
+.eq(
+"id",
+id
+);
+
+
+if(r.error){
+
+alert(
+"Banner status update হয়নি ❌\n\n"+
+r.error.message
+);
+
+return;
+
+}
+
+
+await renderBanners();
+
+}
+
+
+/* =====================================================
+   DELETE BANNER
+===================================================== */
+
+async function deleteBanner(id,imageUrl){
+
+if(!await isAdmin())
+return alert(
+"Admin access নেই।"
+);
+
+
+if(
+!confirm(
+"এই Banner Delete করবেন?"
+)
+)
+return;
+
+
+let r=
+await db
+.from("advertisements")
+.delete()
+.eq(
+"id",
+id
+);
+
+
+if(r.error){
+
+alert(
+"Banner Delete হয়নি ❌\n\n"+
+r.error.message
+);
+
+return;
+
+}
+
+
+alert(
+"Banner Delete হয়েছে ✅"
+);
+
+
+await renderBanners();
+
+}
+
+
+/* =====================================================
+   BANNER SETUP HELP
+===================================================== */
+
+function renderBannerSetupHelp(){
+
+alert(
+"Banner system-এর জন্য Supabase-এ advertisements table তৈরি করতে হবে।\n\n"+
+"Fields:\n"+
+"id\n"+
+"image_url\n"+
+"sort_order\n"+
+"active\n"+
+"created_at\n\n"+
+"এবং Banner image product-images Storage bucket-এর banners/ folder-এ রাখা হবে।"
+);
+
+}
+
+
+/* =====================================================
    RESELLERS
-   ========================= */
+===================================================== */
 
 async function renderResellers(){
 
@@ -1695,9 +3724,11 @@ ascending:false
 if(r.error){
 
 box.innerHTML=
-'<div class="empty">'+
-esc(r.error.message)+
-'</div>';
+`
+<div class="empty">
+❌ ${esc(r.error.message)}
+</div>
+`;
 
 return;
 
@@ -1707,7 +3738,11 @@ return;
 if(!r.data?.length){
 
 box.innerHTML=
-'<div class="empty">কোনো Reseller Request নেই।</div>';
+`
+<div class="empty">
+🤝 কোনো Reseller Request নেই।
+</div>
+`;
 
 return;
 
@@ -1719,8 +3754,15 @@ let html=`
 <div class="notice">
 
 🤝 এখানে customer-এর reseller application দেখা যাবে।
+
 <br>
-<strong>Approve</strong> করলে reseller status চালু হবে এবং profile role <b>reseller</b> হবে।
+
+<strong>
+Approve
+</strong>
+করলে reseller status চালু হবে এবং profile role
+<b>reseller</b>
+হবে।
 
 </div>
 
@@ -1827,8 +3869,8 @@ x.status!=="Approved"
 ?
 `
 <button
-class="btn btn-pink"
-onclick="approveReseller('${x.user_id}',${x.id})"
+class="btn btn-orange"
+onclick="approveReseller('${esc(x.user_id)}','${esc(x.id)}')"
 >
 ✅ Accept / Approve
 </button>
@@ -1851,7 +3893,7 @@ x.status!=="Suspended"
 `
 <button
 class="btn btn-danger"
-onclick="suspendReseller('${x.user_id}',${x.id})"
+onclick="suspendReseller('${esc(x.user_id)}','${esc(x.id)}')"
 >
 🚫 Suspend
 </button>
@@ -1859,7 +3901,7 @@ onclick="suspendReseller('${x.user_id}',${x.id})"
 :
 `
 <button
-class="btn btn-orange"
+class="btn btn-gray"
 disabled
 >
 🚫 Suspended
@@ -1881,14 +3923,16 @@ box.innerHTML=html;
 }
 
 
-/* =========================
+/* =====================================================
    APPROVE RESELLER
-   ========================= */
+===================================================== */
 
 async function approveReseller(uid,rid){
 
 if(!await isAdmin())
-return alert("Admin access নেই।");
+return alert(
+"Admin access নেই।"
+);
 
 
 if(
@@ -1905,13 +3949,16 @@ await db
 .update({
 status:"Approved"
 })
-.eq("id",rid);
+.eq(
+"id",
+rid
+);
 
 
 if(r.error){
 
 alert(
-"Reseller Approve হয়নি ❌\n"+
+"Reseller Approve হয়নি ❌\n\n"+
 r.error.message
 );
 
@@ -1920,17 +3967,16 @@ return;
 }
 
 
-/*
-Profile role update
-*/
-
 let p=
 await db
 .from("profiles")
 .update({
 role:"reseller"
 })
-.eq("id",uid);
+.eq(
+"id",
+uid
+);
 
 
 if(p.error){
@@ -1948,8 +3994,7 @@ return;
 
 
 alert(
-"Reseller Request Accepted ✅\n\n"+
-"Customer এখন Reseller হিসেবে কাজ করতে পারবে।"
+"Reseller Request Accepted ✅"
 );
 
 
@@ -1960,14 +4005,16 @@ await renderResellers();
 }
 
 
-/* =========================
+/* =====================================================
    SUSPEND RESELLER
-   ========================= */
+===================================================== */
 
 async function suspendReseller(uid,rid){
 
 if(!await isAdmin())
-return alert("Admin access নেই।");
+return alert(
+"Admin access নেই।"
+);
 
 
 if(
@@ -1984,13 +4031,16 @@ await db
 .update({
 status:"Suspended"
 })
-.eq("id",rid);
+.eq(
+"id",
+rid
+);
 
 
 if(r.error){
 
 alert(
-"Suspend হয়নি ❌\n"+
+"Suspend হয়নি ❌\n\n"+
 r.error.message
 );
 
@@ -2005,7 +4055,10 @@ await db
 .update({
 role:"customer"
 })
-.eq("id",uid);
+.eq(
+"id",
+uid
+);
 
 
 if(p.error){
@@ -2034,9 +4087,9 @@ await renderResellers();
 }
 
 
-/* =========================
+/* =====================================================
    REVIEWS
-   ========================= */
+===================================================== */
 
 async function renderReviews(){
 
@@ -2061,9 +4114,11 @@ ascending:false
 if(r.error){
 
 box.innerHTML=
-'<div class="empty">'+
-esc(r.error.message)+
-'</div>';
+`
+<div class="empty">
+❌ ${esc(r.error.message)}
+</div>
+`;
 
 return;
 
@@ -2073,7 +4128,11 @@ return;
 if(!r.data?.length){
 
 box.innerHTML=
-'<div class="empty">কোনো Review নেই।</div>';
+`
+<div class="empty">
+⭐ কোনো Review নেই।
+</div>
+`;
 
 return;
 
@@ -2091,12 +4150,16 @@ ${esc(x.user_name||"Customer")}
 
 —
 
-Product #${esc(x.product_id)}
+Product #
+${esc(x.product_id)}
 
 <div style="margin:7px 0">
 
 ${"⭐".repeat(
+Math.min(
+5,
 Number(x.rating||0)
+)
 )}
 
 </div>
@@ -2123,8 +4186,8 @@ x.status!=="Approved"
 ?
 `
 <button
-class="btn btn-pink"
-onclick="updateReview(${x.id},'Approved')"
+class="btn btn-orange"
+onclick="updateReview('${esc(x.id)}','Approved')"
 >
 ✅ Approve
 </button>
@@ -2140,7 +4203,7 @@ x.status!=="Rejected"
 `
 <button
 class="btn btn-danger"
-onclick="updateReview(${x.id},'Rejected')"
+onclick="updateReview('${esc(x.id)}','Rejected')"
 >
 ❌ Reject
 </button>
@@ -2158,14 +4221,16 @@ onclick="updateReview(${x.id},'Rejected')"
 }
 
 
-/* =========================
+/* =====================================================
    REVIEW UPDATE
-   ========================= */
+===================================================== */
 
 async function updateReview(id,status){
 
 if(!await isAdmin())
-return alert("Admin access নেই।");
+return alert(
+"Admin access নেই।"
+);
 
 
 let r=
@@ -2174,13 +4239,16 @@ await db
 .update({
 status
 })
-.eq("id",id);
+.eq(
+"id",
+id
+);
 
 
 if(r.error){
 
 alert(
-"Review update হয়নি ❌\n"+
+"Review update হয়নি ❌\n\n"+
 r.error.message
 );
 
@@ -2194,793 +4262,21 @@ await renderReviews();
 }
 
 
-/* =========================
-   PRODUCTS
-   ========================= */
-
-async function renderProducts(){
-
-let box=
-document.getElementById(
-"sectionContent"
-);
-
-
-let r=
-await db
-.from("products")
-.select("*")
-.order(
-"id",
-{
-ascending:false
-}
-);
-
-
-if(r.error){
-
-box.innerHTML=
-'<div class="empty">'+
-esc(r.error.message)+
-'</div>';
-
-return;
-
-}
-
-
-if(!r.data?.length){
-
-box.innerHTML=
-'<div class="empty">কোনো Product নেই।</div>';
-
-return;
-
-}
-
-
-box.innerHTML=`
-
-<div class="product-grid">
-
-${
-r.data.map(p=>{
-
-let img="";
-
-if(Array.isArray(p.images))
-img=p.images[0];
-
-else if(typeof p.images==="string"){
-
-try{
-
-let x=
-JSON.parse(p.images);
-
-if(Array.isArray(x))
-img=x[0];
-
-}catch(e){
-
-img=p.images;
-
-}
-
-}
-
-img=
-img||
-"https://via.placeholder.com/500x500?text=Gadhuli";
-
-
-return `
-
-<div class="product-card">
-
-<img
-class="product-image"
-src="${esc(img)}"
-onerror="this.src='https://via.placeholder.com/500x500?text=Gadhuli'"
->
-
-<div class="product-name">
-${esc(p.name)}
-</div>
-
-<div class="product-price">
-৳${money(p.price)}
-</div>
-
-<div class="product-meta">
-${esc(p.category||"")}
-${p.subcategory?" • "+esc(p.subcategory):""}
-</div>
-
-<br>
-
-<button
-class="btn btn-light"
-onclick="editProduct('${esc(p.id)}')"
->
-✏️ Edit
-</button>
-
-<button
-class="btn btn-danger"
-onclick="deleteProduct('${esc(p.id)}')"
->
-🗑️ Delete
-</button>
-
-</div>
-
-`;
-
-}).join("")
-}
-
-</div>
-
-`;
-
-}
-
-
-/* =========================
-   ADD PRODUCT
-   ========================= */
-
-function renderAddProduct(){
-
-let box=
-document.getElementById(
-"sectionContent"
-);
-
-
-box.innerHTML=`
-
-<div class="card">
-
-<h2>
-➕ Add New Product
-</h2>
-
-
-<div class="form-group">
-
-<label>
-Product Name *
-</label>
-
-<input
-id="productName"
-type="text"
-placeholder="Product name"
->
-
-</div>
-
-
-<div class="form-group">
-
-<label>
-Price *
-</label>
-
-<input
-id="productPrice"
-type="number"
-placeholder="Price"
->
-
-</div>
-
-
-<div class="form-group">
-
-<label>
-Category *
-</label>
-
-<select
-id="productCategory"
-onchange="updateSubcategories()"
->
-
-<option value="">
-Select Category
-</option>
-
-${
-Object.keys(categories)
-.map(c=>`
-<option value="${esc(c)}">
-${esc(c)}
-</option>
-`)
-.join("")
-}
-
-</select>
-
-</div>
-
-
-<div class="form-group">
-
-<label>
-Subcategory
-</label>
-
-<select
-id="productSubcategory"
-onchange="updateSizes()"
->
-
-<option value="">
-Select Subcategory
-</option>
-
-</select>
-
-</div>
-
-
-<div
-class="form-group"
-id="sizeSection"
->
-
-<label>
-Available Sizes
-</label>
-
-<div id="sizeOptions">
-Category/Subcategory select করুন।
-</div>
-
-</div>
-
-
-<div class="form-group">
-
-<label>
-Description
-</label>
-
-<textarea
-id="productDescription"
-rows="5"
-placeholder="Product description"
-></textarea>
-
-</div>
-
-
-<div class="form-group">
-
-<label>
-Product Images *
-</label>
-
-<input
-id="productImages"
-type="file"
-accept="image/*"
-multiple
-onchange="previewImages()"
->
-
-<small>
-১ থেকে ৫টি ছবি select করুন।
-</small>
-
-<div
-id="imagePreview"
-class="image-preview"
-></div>
-
-</div>
-
-
-<button
-class="btn btn-pink full"
-onclick="saveProduct()"
->
-💾 Save Product
-</button>
-
-</div>
-
-`;
-
-}
-
-
-/* =========================
-   SUBCATEGORY
-   ========================= */
-
-function updateSubcategories(){
-
-let category=
-document.getElementById(
-"productCategory"
-).value;
-
-
-let box=
-document.getElementById(
-"productSubcategory"
-);
-
-
-box.innerHTML=
-'<option value="">Select Subcategory</option>';
-
-
-if(!category)
-return;
-
-
-(categories[category]||[])
-.forEach(s=>{
-
-let o=
-document.createElement("option");
-
-o.value=s;
-
-o.textContent=s;
-
-box.appendChild(o);
-
-});
-
-
-updateSizes();
-
-}
-
-
-/* =========================
-   SIZES
-   ========================= */
-
-function updateSizes(){
-
-let sub=
-document.getElementById(
-"productSubcategory"
-).value;
-
-
-let box=
-document.getElementById(
-"sizeOptions"
-);
-
-
-if(!sub){
-
-box.innerHTML=
-"Subcategory select করুন।";
-
-return;
-
-}
-
-
-let sizes=
-sizeData[sub]||[];
-
-
-if(!sizes.length){
-
-box.innerHTML=
-"<small>এই Product-এর জন্য Size প্রয়োজন নেই।</small>";
-
-return;
-
-}
-
-
-box.innerHTML=
-sizes.map(s=>`
-
-<label
-style="
-display:inline-flex;
-align-items:center;
-gap:5px;
-margin:5px;
-padding:7px 10px;
-border:1px solid #f0b3cc;
-border-radius:8px;
-background:#fff7fa;
-"
->
-
-<input
-type="checkbox"
-class="size-check"
-value="${esc(s)}"
-style="width:auto"
->
-
-${esc(s)}
-
-</label>
-
-`).join("");
-
-}
-
-
-/* =========================
-   IMAGE PREVIEW
-   ========================= */
-
-function previewImages(){
-
-let input=
-document.getElementById(
-"productImages"
-);
-
-
-let box=
-document.getElementById(
-"imagePreview"
-);
-
-
-box.innerHTML="";
-
-
-let files=
-Array.from(input.files||[]);
-
-
-if(files.length>5){
-
-alert(
-"Maximum 5টি ছবি select করা যাবে।"
-);
-
-input.value="";
-
-return;
-
-}
-
-
-files.forEach(file=>{
-
-let url=
-URL.createObjectURL(file);
-
-
-let img=
-document.createElement("img");
-
-img.src=url;
-
-box.appendChild(img);
-
-});
-
-}
-
-
-/* =========================
-   SAVE PRODUCT
-   ========================= */
-
-async function saveProduct(){
-
-if(!await isAdmin())
-return alert("Admin access নেই।");
-
-
-let name=
-document.getElementById(
-"productName"
-).value.trim();
-
-
-let price=
-Number(
-document.getElementById(
-"productPrice"
-).value
-);
-
-
-let category=
-document.getElementById(
-"productCategory"
-).value;
-
-
-let subcategory=
-document.getElementById(
-"productSubcategory"
-).value;
-
-
-let description=
-document.getElementById(
-"productDescription"
-).value.trim();
-
-
-let files=
-Array.from(
-document.getElementById(
-"productImages"
-).files||[]
-);
-
-
-if(
-!name||
-!price||
-!category||
-!files.length
-){
-
-alert(
-"Product Name, Price, Category এবং Image দিন।"
-);
-
-return;
-
-}
-
-
-if(files.length>5){
-
-alert(
-"Maximum 5টি ছবি দেওয়া যাবে।"
-);
-
-return;
-
-}
-
-
-let sizes=
-Array.from(
-document.querySelectorAll(
-".size-check:checked"
-)
-)
-.map(x=>x.value);
-
-
-if(
-subcategory&&
-sizeData[subcategory]?.length&&
-!sizes.length
-){
-
-alert(
-"Product-এর Size select করুন।"
-);
-
-return;
-
-}
-
-
-let button=
-event?.target;
-
-
-try{
-
-if(button){
-
-button.disabled=true;
-
-button.textContent=
-"Uploading...";
-
-}
-
-
-let urls=[];
-
-
-for(
-const file of files
-){
-
-let safe=
-file.name
-.replace(
-/[^a-zA-Z0-9._-]/g,
-"_"
-);
-
-
-let path=
-"products/"+
-Date.now()+
-"-"+
-Math.random()
-.toString(36)
-.substring(2,8)+
-"-"+
-safe;
-
-
-let upload=
-await db
-.storage
-.from("product-images")
-.upload(
-path,
-file,
-{
-upsert:false
-}
-);
-
-
-if(upload.error)
-throw upload.error;
-
-
-let pub=
-db
-.storage
-.from("product-images")
-.getPublicUrl(path);
-
-
-urls.push(
-pub.data.publicUrl
-);
-
-}
-
-
-let r=
-await db
-.from("products")
-.insert({
-
-name,
-price,
-category,
-subcategory,
-sizes,
-description,
-images:urls
-
-});
-
-
-if(r.error)
-throw r.error;
-
-
-alert(
-"Product Save হয়েছে ✅"
-);
-
-
-showSection("products");
-
-await loadStats();
-
-
-}catch(e){
-
-console.error(e);
-
-alert(
-"Product Save হয়নি ❌\n\n"+
-(e?.message||String(e))
-);
-
-}finally{
-
-if(button){
-
-button.disabled=false;
-
-button.textContent=
-"💾 Save Product";
-
-}
-
-}
-
-}
-
-
-/* =========================
-   DELETE PRODUCT
-   ========================= */
-
-async function deleteProduct(id){
-
-if(!await isAdmin())
-return alert("Admin access নেই।");
-
-
-if(
-!confirm(
-"এই Product Delete করবেন?"
-)
-)
-return;
-
-
-let r=
-await db
-.from("products")
-.delete()
-.eq("id",id);
-
-
-if(r.error){
-
-alert(
-"Product Delete হয়নি ❌\n"+
-r.error.message
-);
-
-return;
-
-}
-
-
-alert(
-"Product Delete হয়েছে ✅"
-);
-
-
-await loadStats();
-
-await renderProducts();
-
-}
-
-
-/* =========================
-   EDIT PRODUCT
-   ========================= */
-
-function editProduct(id){
-
-alert(
-"ছবি Edit করা যাবে না।\n\n"+
-"নতুন Product যোগ করুন।"
-);
-
-}
-
-
-/* =========================
-   WHATSAPP
-   ========================= */
+/* =====================================================
+   WHATSAPP SUPPORT
+===================================================== */
 
 function openWhatsApp(){
+
+const message=
+"Hello Gadhuli Support 👋\n\n"+
+"I need help regarding Gadhuli website/order.";
 
 window.open(
 "https://wa.me/"+
 WHATSAPP_NUMBER+
 "?text="+
-encodeURIComponent(
-"Hello Gadhuli Support 👋\n\nI need help regarding Gadhuli."
-),
+encodeURIComponent(message),
 "_blank"
 );
 
@@ -3010,6 +4306,10 @@ alert(
 }
 
 
+/* =====================================================
+   CONTACT CUSTOMER
+===================================================== */
+
 function contactCustomer(phone,name){
 
 let clean=
@@ -3024,6 +4324,17 @@ if(clean.startsWith("01"))
 clean=
 "88"+
 clean;
+
+
+if(!clean){
+
+alert(
+"Customer phone পাওয়া যায়নি।"
+);
+
+return;
+
+}
 
 
 let msg=
@@ -3045,11 +4356,15 @@ encodeURIComponent(msg),
 }
 
 
-/* =========================
+/* =====================================================
    RESELLER COMMISSION
-   ========================= */
+===================================================== */
 
 async function postCommission(order){
+
+if(!order.reseller_id)
+return;
+
 
 let r=
 await db
@@ -3067,7 +4382,6 @@ r.error||
 !r.data||
 r.data.status!=="Approved"
 )
-
 return;
 
 
@@ -3080,13 +4394,22 @@ notes.includes(
 "[COMMISSION_POSTED]"
 )
 )
-
 return;
 
 
+let base=
+Number(
+order.subtotal||
+order.total||
+0
+);
+
+
 let commission=
-Number(order.subtotal||0)*
-Number(r.data.commission_rate||0)/
+base*
+Number(
+r.data.commission_rate||0
+)/
 100;
 
 
@@ -3096,14 +4419,20 @@ await db
 .update({
 
 total_orders:
-Number(r.data.total_orders||0)+1,
+Number(
+r.data.total_orders||0
+)+1,
 
 total_sales:
-Number(r.data.total_sales||0)+
-Number(order.subtotal||0),
+Number(
+r.data.total_sales||0
+)+
+base,
 
 total_commission:
-Number(r.data.total_commission||0)+
+Number(
+r.data.total_commission||0
+)+
 commission
 
 })
@@ -3143,9 +4472,31 @@ order.id
 }
 
 
-/* =========================
+/* =====================================================
+   ENTER KEY LOGIN
+===================================================== */
+
+document.addEventListener(
+"keydown",
+function(e){
+
+if(
+e.key==="Enter"&&
+!document
+.getElementById("loginSection")
+.classList.contains("hidden")
+){
+
+adminLogin();
+
+}
+
+});
+
+
+/* =====================================================
    START
-   ========================= */
+===================================================== */
 
 document.addEventListener(
 "DOMContentLoaded",
@@ -3154,7 +4505,6 @@ document.addEventListener(
 checkSession();
 
 });
-
 
 </script>
 
