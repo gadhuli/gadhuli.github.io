@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html lang="bn">
-
 <head>
 
 <meta charset="UTF-8">
 
 <meta
-  name="viewport"
-  content="width=device-width,initial-scale=1.0"
+name="viewport"
+content="width=device-width,initial-scale=1.0"
 >
 
 <title>Gadhuli | Admin</title>
@@ -18,380 +17,401 @@
 <style>
 
 *{
-  box-sizing:border-box;
-  margin:0;
-  padding:0
+box-sizing:border-box;
+margin:0;
+padding:0
 }
 
 body{
-  font-family:Arial,sans-serif;
-  background:#fff7fa;
-  color:#333
+font-family:Arial,Helvetica,sans-serif;
+background:#fff7fa;
+color:#222
+}
+
+button,
+input,
+select,
+textarea{
+font-family:inherit
+}
+
+button{
+cursor:pointer
 }
 
 header{
-  background:linear-gradient(135deg,#8f174d,#d52b72);
-  color:#fff;
-  padding:14px 18px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  position:sticky;
-  top:0;
-  z-index:10;
-  box-shadow:0 3px 12px #0002
+background:linear-gradient(
+135deg,
+#8f174d,
+#d52b72,
+#bd3475
+);
+color:white;
+padding:15px
 }
 
-.logo{
-  display:flex;
-  align-items:center;
-  gap:9px
+.header-inner{
+max-width:1200px;
+margin:auto;
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:15px
 }
 
-.logo img{
-  width:40px;
-  height:40px;
-  object-fit:contain;
-  border-radius:8px;
-  background:#fff
+.header-brand{
+display:flex;
+align-items:center;
+gap:10px
 }
 
-.logo h1{
-  font-size:21px
+.header-brand img{
+width:110px;
+height:42px;
+object-fit:contain;
+background:white;
+border-radius:8px
 }
 
-.back{
-  color:#fff;
-  text-decoration:none;
-  border:1px solid #ffffff80;
-  border-radius:8px;
-  padding:8px 11px;
-  font-weight:bold
+.header-brand h1{
+font-size:21px
 }
 
 .container{
-  max-width:1100px;
-  margin:22px auto;
-  padding:0 14px
+max-width:1200px;
+margin:20px auto;
+padding:0 15px
 }
 
 .card{
-  background:#fff;
-  border-radius:14px;
-  padding:18px;
-  margin-bottom:18px;
-  box-shadow:0 4px 15px #8f174d14
+background:white;
+border:1px solid #f0c4d6;
+border-radius:15px;
+padding:18px;
+margin-bottom:18px;
+box-shadow:0 3px 12px rgba(143,23,77,.08)
 }
 
 .card h2{
-  color:#8f174d;
-  margin-bottom:15px
+color:#8f174d;
+margin-bottom:15px;
+font-size:20px
+}
+
+.form-group{
+margin-bottom:12px
+}
+
+.form-group label{
+display:block;
+font-weight:bold;
+color:#555;
+margin-bottom:6px
 }
 
 input,
 select,
 textarea{
-  width:100%;
-  padding:11px;
-  margin:6px 0 11px;
-  border:1px solid #ddd;
-  border-radius:8px;
-  font-size:15px;
-  background:#fff
+width:100%;
+padding:11px;
+border:1px solid #f0b3cc;
+border-radius:9px;
+outline:none;
+background:white
 }
 
-label{
-  display:block;
-  font-weight:bold;
-  color:#555;
-  margin-top:5px
+input:focus,
+select:focus,
+textarea:focus{
+border-color:#8f174d
 }
 
-button{
-  border:0;
-  border-radius:8px;
-  padding:10px 14px;
-  background:#8f174d;
-  color:#fff;
-  font-weight:bold;
-  cursor:pointer
+.btn{
+border:0;
+padding:10px 14px;
+border-radius:9px;
+font-weight:bold;
+margin:3px
 }
 
-button:hover{
-  background:#6f103b
+.btn-pink{
+background:#8f174d;
+color:white
 }
 
-button:disabled{
-  opacity:.6;
-  cursor:not-allowed
+.btn-pink:hover{
+background:#d52b72
 }
 
-.secondary{
-  background:#777
+.btn-light{
+background:#fff0f6;
+color:#8f174d;
+border:1px solid #f0b3cc
 }
 
-.danger{
-  background:#c62828
+.btn-danger{
+background:#a20f48;
+color:white
+}
+
+.btn-green{
+background:#25D366;
+color:white
+}
+
+.btn-orange{
+background:#e67e22;
+color:white
+}
+
+.btn-blue{
+background:#1677ff;
+color:white
+}
+
+.full{
+width:100%
 }
 
 .hidden{
-  display:none!important
-}
-
-.message{
-  display:none;
-  padding:10px;
-  border-radius:8px;
-  margin-bottom:10px
-}
-
-.success{
-  background:#e8f5e9;
-  color:#2e7d32
-}
-
-.error{
-  background:#ffebee;
-  color:#c62828
-}
-
-.help{
-  background:#fff7fa;
-  border-left:4px solid #8f174d;
-  padding:9px 11px;
-  border-radius:6px;
-  font-size:13px;
-  color:#666;
-  margin-bottom:10px
-}
-
-.size-section{
-  display:none;
-  background:#fff7fa;
-  border:1px solid #efbfd1;
-  border-radius:10px;
-  padding:12px;
-  margin-bottom:12px
-}
-
-.size-section.show{
-  display:block
-}
-
-.size-options{
-  display:flex;
-  flex-wrap:wrap;
-  gap:7px
-}
-
-.size-option input{
-  position:absolute;
-  opacity:0;
-  width:1px
-}
-
-.size-option label{
-  min-width:50px;
-  text-align:center;
-  padding:8px 10px;
-  border:1px solid #e2a8be;
-  border-radius:8px;
-  background:#fff;
-  color:#8f174d;
-  cursor:pointer
-}
-
-.size-option input:checked+label{
-  background:#8f174d;
-  color:#fff
-}
-
-.preview{
-  display:flex;
-  gap:8px;
-  flex-wrap:wrap;
-  margin:8px 0 12px
-}
-
-.preview img{
-  width:82px;
-  height:82px;
-  object-fit:cover;
-  border-radius:8px;
-  border:1px solid #ddd
-}
-
-.product{
-  border:1px solid #eee;
-  border-radius:11px;
-  padding:13px;
-  margin-bottom:10px;
-  display:flex;
-  gap:12px;
-  align-items:center
-}
-
-.product img{
-  width:78px;
-  height:78px;
-  object-fit:cover;
-  border-radius:8px
-}
-
-.product-info{
-  flex:1
-}
-
-.product-info h3{
-  color:#8f174d;
-  margin-bottom:4px
-}
-
-.muted{
-  color:#777;
-  font-size:13px
-}
-
-.actions{
-  display:flex;
-  gap:7px;
-  flex-wrap:wrap
-}
-
-.filter{
-  display:grid;
-  grid-template-columns:1fr 1fr auto;
-  gap:9px;
-  margin-bottom:12px
-}
-
-.order{
-  border:1px solid #ead7df;
-  border-radius:12px;
-  padding:14px;
-  margin-bottom:12px;
-  background:#fff
-}
-
-.order-head{
-  display:flex;
-  justify-content:space-between;
-  gap:10px;
-  flex-wrap:wrap
-}
-
-.order-id{
-  color:#8f174d;
-  font-weight:bold;
-  font-size:17px
-}
-
-.badge{
-  display:inline-block;
-  background:#f4e7ed;
-  color:#8f174d;
-  border-radius:20px;
-  padding:5px 9px;
-  font-size:12px;
-  font-weight:bold
-}
-
-.grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:8px;
-  margin-top:10px
-}
-
-.box{
-  background:#fff7fa;
-  border-radius:8px;
-  padding:9px;
-  font-size:13px
-}
-
-.items{
-  border-top:1px solid #eee;
-  margin-top:11px;
-  padding-top:10px
-}
-
-.item{
-  display:flex;
-  align-items:center;
-  gap:9px;
-  padding:7px 0;
-  border-bottom:1px dashed #eee
-}
-
-.item img{
-  width:52px;
-  height:52px;
-  object-fit:cover;
-  border-radius:7px
-}
-
-.item-info{
-  flex:1;
-  font-size:13px
-}
-
-.controls{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:8px;
-  margin-top:10px
-}
-
-.order-actions{
-  display:flex;
-  gap:7px;
-  flex-wrap:wrap;
-  margin-top:9px
+display:none!important
 }
 
 .empty{
-  text-align:center;
-  background:#fff7fa;
-  padding:18px;
-  border-radius:9px;
-  color:#777
+text-align:center;
+padding:35px 15px;
+color:#888
 }
 
-.loading{
-  text-align:center;
-  padding:15px;
-  color:#777
+.login-box{
+max-width:430px;
+margin:70px auto
+}
+
+.login-box h2{
+text-align:center;
+color:#8f174d;
+margin-bottom:20px
+}
+
+.admin-nav{
+display:flex;
+gap:8px;
+flex-wrap:wrap;
+margin-bottom:18px
+}
+
+.admin-nav button{
+flex:1;
+min-width:130px
+}
+
+.stat-grid{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:12px;
+margin-bottom:18px
+}
+
+.stat{
+background:white;
+border:1px solid #f0c4d6;
+border-radius:13px;
+padding:16px;
+text-align:center
+}
+
+.stat-number{
+font-size:25px;
+font-weight:bold;
+color:#8f174d;
+margin-top:5px
+}
+
+.order-card,
+.reseller-card,
+.review-card,
+.product-card{
+background:white;
+border:1px solid #f0c4d6;
+border-radius:13px;
+padding:15px;
+margin-bottom:12px
+}
+
+.order-head,
+.reseller-head{
+display:flex;
+justify-content:space-between;
+align-items:flex-start;
+gap:10px;
+margin-bottom:12px
+}
+
+.order-head b,
+.reseller-head b{
+color:#8f174d
+}
+
+.status{
+display:inline-block;
+padding:5px 10px;
+border-radius:20px;
+background:#fff0f6;
+color:#8f174d;
+font-size:12px;
+font-weight:bold
+}
+
+.order-info p,
+.reseller-info p{
+margin:5px 0;
+line-height:1.45
+}
+
+.items-box{
+background:#fff7fa;
+border-radius:10px;
+padding:10px;
+margin:12px 0
+}
+
+.item-row{
+padding:7px 0;
+border-bottom:1px solid #f0c4d6
+}
+
+.item-row:last-child{
+border-bottom:0
+}
+
+.admin-actions{
+display:flex;
+gap:6px;
+flex-wrap:wrap;
+margin-top:12px
+}
+
+.admin-actions select{
+width:auto;
+min-width:145px
+}
+
+.image-preview{
+display:flex;
+gap:8px;
+flex-wrap:wrap;
+margin-top:10px
+}
+
+.image-preview img{
+width:80px;
+height:80px;
+object-fit:cover;
+border-radius:9px;
+border:1px solid #f0c4d6
+}
+
+.product-grid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:12px
+}
+
+.product-image{
+width:100%;
+aspect-ratio:1/1;
+object-fit:cover;
+border-radius:10px;
+background:#fff0f6
+}
+
+.product-name{
+font-weight:bold;
+margin-top:9px
+}
+
+.product-price{
+color:#8f174d;
+font-size:19px;
+font-weight:bold;
+margin:5px 0
+}
+
+.product-meta{
+font-size:12px;
+color:#777
+}
+
+.support-box{
+background:#f1fff5;
+border:1px solid #b9e8c8;
+border-radius:13px;
+padding:15px
+}
+
+.support-number{
+font-size:20px;
+font-weight:bold;
+color:#128c3d;
+margin:8px 0
+}
+
+.filter-grid{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:10px
+}
+
+.notice{
+background:#fff7fa;
+border:1px solid #f0c4d6;
+padding:12px;
+border-radius:10px;
+margin-bottom:12px
+}
+
+footer{
+text-align:center;
+padding:25px 15px;
+color:#777
+}
+
+@media(max-width:800px){
+
+.stat-grid{
+grid-template-columns:repeat(2,1fr)
+}
+
+.product-grid{
+grid-template-columns:repeat(2,1fr)
+}
+
 }
 
 @media(max-width:600px){
 
-  .filter,
-  .grid,
-  .controls{
-    grid-template-columns:1fr
-  }
+.header-inner{
+flex-direction:column;
+text-align:center
+}
 
-  .product{
-    flex-wrap:wrap
-  }
+.product-grid{
+grid-template-columns:1fr
+}
 
-  .product .actions{
-    width:100%
-  }
+.filter-grid{
+grid-template-columns:1fr
+}
 
-  .product img{
-    width:70px;
-    height:70px
-  }
+.order-head,
+.reseller-head{
+flex-direction:column
+}
 
-  header{
-    padding:12px
-  }
-
-  .logo h1{
-    font-size:18px
-  }
+.admin-actions select{
+width:100%
+}
 
 }
 
@@ -403,2649 +423,2740 @@ button:disabled{
 
 <header>
 
-  <div class="logo">
+<div class="header-inner">
 
-    <img
-      src="logo.png"
-      alt="Gadhuli"
-    >
+<div class="header-brand">
 
-    <h1>
-      Gadhuli Admin
-    </h1>
+<img
+src="logo.png"
+alt="Gadhuli"
+>
 
-  </div>
+<h1>
+👨‍💼 Gadhuli Admin
+</h1>
 
-  <a
-    class="back"
-    href="index.html"
-  >
-    ← Website
-  </a>
+</div>
+
+<button
+class="btn btn-light"
+onclick="goHome()"
+>
+🏠 Website
+</button>
+
+</div>
 
 </header>
 
 
-<div class="container">
+<!-- LOGIN -->
 
-
-<!-- ================================
-     LOGIN
-================================ -->
-
-<section
-  id="loginSection"
-  class="card"
+<div
+id="loginSection"
+class="container"
 >
 
-  <h2>
-    🔐 Admin Login
-  </h2>
+<div class="card login-box">
 
-  <div
-    id="loginMessage"
-    class="message"
-  ></div>
+<h2>
+🔐 Admin Login
+</h2>
 
-  <form id="loginForm">
+<div class="form-group">
 
-    <label>Email</label>
+<label>
+Email
+</label>
 
-    <input
-      id="email"
-      type="email"
-      placeholder="Admin Email"
-      autocomplete="email"
-      required
-    >
-
-    <label>Password</label>
-
-    <input
-      id="password"
-      type="password"
-      placeholder="Password"
-      autocomplete="current-password"
-      required
-    >
-
-    <button
-      id="loginButton"
-      type="submit"
-    >
-      Login
-    </button>
-
-  </form>
-
-</section>
-
-
-<!-- ================================
-     ADMIN PANEL
-================================ -->
-
-<section
-  id="adminPanel"
-  class="hidden"
+<input
+id="loginEmail"
+type="email"
+placeholder="Admin Email"
 >
 
+</div>
 
-<!-- ================================
-     ORDER MANAGEMENT
-================================ -->
+<div class="form-group">
+
+<label>
+Password
+</label>
+
+<input
+id="loginPassword"
+type="password"
+placeholder="Password"
+>
+
+</div>
+
+<button
+class="btn btn-pink full"
+onclick="adminLogin()"
+>
+🔐 Login
+</button>
+
+<div
+id="loginMessage"
+style="margin-top:12px;text-align:center"
+></div>
+
+</div>
+
+</div>
+
+
+<!-- ADMIN PANEL -->
+
+<div
+id="adminPanel"
+class="container hidden"
+>
+
+<div class="stat-grid">
+
+<div class="stat">
+
+<div>
+🛍️ Products
+</div>
+
+<div
+class="stat-number"
+id="statProducts"
+>
+0
+</div>
+
+</div>
+
+
+<div class="stat">
+
+<div>
+📦 Orders
+</div>
+
+<div
+class="stat-number"
+id="statOrders"
+>
+0
+</div>
+
+</div>
+
+
+<div class="stat">
+
+<div>
+⏳ Pending Orders
+</div>
+
+<div
+class="stat-number"
+id="statPending"
+>
+0
+</div>
+
+</div>
+
+
+<div class="stat">
+
+<div>
+🤝 Reseller Requests
+</div>
+
+<div
+class="stat-number"
+id="statResellers"
+>
+0
+</div>
+
+</div>
+
+</div>
+
+
+<!-- NAV -->
 
 <div class="card">
 
-  <h2>
-    📦 Order Management
-  </h2>
+<div class="admin-nav">
 
-  <div
-    id="orderMessage"
-    class="message"
-  ></div>
+<button
+class="btn btn-pink"
+onclick="showSection('orders')"
+>
+📦 Orders
+</button>
 
-  <div class="filter">
+<button
+class="btn btn-light"
+onclick="showSection('resellers')"
+>
+🤝 Reseller Requests
+</button>
 
-    <select id="orderStatusFilter">
+<button
+class="btn btn-light"
+onclick="showSection('reviews')"
+>
+⭐ Reviews
+</button>
 
-      <option value="">
-        All Order Status
-      </option>
+<button
+class="btn btn-light"
+onclick="showSection('products')"
+>
+🛍️ Products
+</button>
 
-      <option value="Pending">
-        Pending
-      </option>
+<button
+class="btn btn-light"
+onclick="showSection('addProduct')"
+>
+➕ Add Product
+</button>
 
-      <option value="Confirmed">
-        Confirmed
-      </option>
-
-      <option value="Processing">
-        Processing
-      </option>
-
-      <option value="Shipped">
-        Shipped
-      </option>
-
-      <option value="Delivered">
-        Delivered
-      </option>
-
-      <option value="Cancelled">
-        Cancelled
-      </option>
-
-    </select>
-
-
-    <select id="paymentStatusFilter">
-
-      <option value="">
-        All Payment Status
-      </option>
-
-      <option value="Pending">
-        Pending
-      </option>
-
-      <option value="Paid">
-        Paid
-      </option>
-
-      <option value="Failed">
-        Failed
-      </option>
-
-      <option value="Refunded">
-        Refunded
-      </option>
-
-    </select>
-
-
-    <button
-      type="button"
-      id="refreshOrders"
-    >
-      🔄 Refresh
-    </button>
-
-  </div>
-
-
-  <div id="ordersList">
-
-    <div class="loading">
-      Loading orders...
-    </div>
-
-  </div>
+</div>
 
 </div>
 
 
-<!-- ================================
-     ADD PRODUCT
-================================ -->
+<!-- SUPPORT -->
 
 <div class="card">
 
-  <h2>
-    ➕ Add New Product
-  </h2>
+<h2>
+💬 Customer Support
+</h2>
 
-  <div
-    id="productMessage"
-    class="message"
-  ></div>
+<div class="support-box">
 
+<p>
+Customer-এর সমস্যা হলে সরাসরি WhatsApp-এ যোগাযোগ করতে পারবে।
+</p>
 
-  <form id="productForm">
+<div class="support-number">
+📱 01333-088194
+</div>
 
-    <label>
-      Product Name
-    </label>
+<button
+class="btn btn-green"
+onclick="openWhatsApp()"
+>
+💬 Open WhatsApp
+</button>
 
-    <input
-      id="productName"
-      required
-      placeholder="Product Name"
-    >
+<button
+class="btn btn-light"
+onclick="copyWhatsApp()"
+>
+📋 Copy Number
+</button>
 
-
-    <label>
-      Price (৳)
-    </label>
-
-    <input
-      id="productPrice"
-      type="number"
-      min="0"
-      required
-      placeholder="Product Price"
-    >
-
-
-    <label>
-      🏷️ Category
-    </label>
-
-    <select
-      id="productCategory"
-      required
-    >
-
-      <option value="">
-        Select Category
-      </option>
-
-      <option value="Men's Fashion">
-        Men's Fashion
-      </option>
-
-      <option value="Women's Fashion">
-        Women's Fashion
-      </option>
-
-      <option value="Kids & Baby">
-        Kids & Baby
-      </option>
-
-      <option value="Shoes">
-        Shoes
-      </option>
-
-      <option value="Bags & Accessories">
-        Bags & Accessories
-      </option>
-
-      <option value="Watches">
-        Watches
-      </option>
-
-      <option value="Electronics">
-        Electronics
-      </option>
-
-      <option value="Beauty & Personal Care">
-        Beauty & Personal Care
-      </option>
-
-      <option value="Home & Living">
-        Home & Living
-      </option>
-
-    </select>
-
-
-    <label>
-      📂 Subcategory
-    </label>
-
-    <select
-      id="productSubcategory"
-      disabled
-      required
-    >
-
-      <option value="">
-        First Select Category
-      </option>
-
-    </select>
-
-
-    <div class="help">
-      💡 আগে Category select করো, তারপর Subcategory আসবে।
-    </div>
-
-
-    <div
-      id="sizeSection"
-      class="size-section"
-    >
-
-      <b style="color:#8f174d">
-        📏 Product Size
-      </b>
-
-      <div
-        id="sizeHelp"
-        class="muted"
-        style="margin:7px 0"
-      ></div>
-
-      <div
-        id="sizeOptions"
-        class="size-options"
-      ></div>
-
-    </div>
-
-
-    <label>
-      📝 Description
-    </label>
-
-    <textarea
-      id="productDescription"
-      rows="4"
-      placeholder="Product description"
-    ></textarea>
-
-
-    <label>
-      🖼️ Product Images (1–5)
-    </label>
-
-    <input
-      id="images"
-      type="file"
-      accept="image/*"
-      multiple
-      required
-    >
-
-    <div
-      id="preview"
-      class="preview"
-    ></div>
-
-
-    <button
-      id="saveProductButton"
-      type="submit"
-    >
-      💾 Save Product
-    </button>
-
-  </form>
+</div>
 
 </div>
 
 
-<!-- ================================
-     PRODUCTS
-================================ -->
+<!-- CONTENT -->
 
-<div class="card">
-
-  <h2>
-    📦 Manage Products
-  </h2>
-
-  <div id="productsList">
-
-    <div class="loading">
-      Loading products...
-    </div>
-
-  </div>
+<div id="sectionContent"></div>
 
 
-  <button
-    id="logoutBtn"
-    class="secondary"
-    type="button"
-  >
-    🚪 Logout
-  </button>
+<br>
+
+<button
+class="btn btn-danger full"
+onclick="adminLogout()"
+>
+🚪 Admin Logout
+</button>
 
 </div>
 
 
-</section>
+<footer>
 
-</div>
+Gadhuli Admin Panel<br>
+
+© 2026 Gadhuli. All Rights Reserved.
+
+</footer>
 
 
 <script>
 
-/* =================================
-   SUPABASE
-================================= */
-
-const db = window.gadhuliSupabase;
-
-const ADMIN_EMAIL =
-  "hridoyff974@gmail.com";
+const db=
+window.gadhuliSupabase;
 
 
-/* =================================
-   ELEMENTS
-================================= */
-
-const loginSection =
-  document.getElementById("loginSection");
-
-const adminPanel =
-  document.getElementById("adminPanel");
-
-const loginForm =
-  document.getElementById("loginForm");
-
-const loginButton =
-  document.getElementById("loginButton");
-
-const emailInput =
-  document.getElementById("email");
-
-const passwordInput =
-  document.getElementById("password");
-
-const loginMessage =
-  document.getElementById("loginMessage");
-
-const orderMessage =
-  document.getElementById("orderMessage");
-
-const productMessage =
-  document.getElementById("productMessage");
-
-const productForm =
-  document.getElementById("productForm");
-
-const productName =
-  document.getElementById("productName");
-
-const productPrice =
-  document.getElementById("productPrice");
-
-const productCategory =
-  document.getElementById("productCategory");
-
-const productSubcategory =
-  document.getElementById("productSubcategory");
-
-const productDescription =
-  document.getElementById("productDescription");
-
-const images =
-  document.getElementById("images");
-
-const preview =
-  document.getElementById("preview");
-
-const sizeSection =
-  document.getElementById("sizeSection");
-
-const sizeHelp =
-  document.getElementById("sizeHelp");
-
-const sizeOptions =
-  document.getElementById("sizeOptions");
-
-const productsList =
-  document.getElementById("productsList");
-
-const ordersList =
-  document.getElementById("ordersList");
-
-const orderStatusFilter =
-  document.getElementById("orderStatusFilter");
-
-const paymentStatusFilter =
-  document.getElementById("paymentStatusFilter");
-
-const refreshOrders =
-  document.getElementById("refreshOrders");
-
-const logoutBtn =
-  document.getElementById("logoutBtn");
-
-const saveProductButton =
-  document.getElementById("saveProductButton");
+const ADMIN_EMAIL=
+"hridoyff974@gmail.com";
 
 
-/* =================================
-   SUPABASE CHECK
-================================= */
+const WHATSAPP_NUMBER=
+"8801333088194";
+
+
+let currentUser=null;
+
+let currentSection="orders";
+
+
+const categories={
+
+"Men's Fashion":[
+"T-Shirt",
+"Polo T-Shirt",
+"Shirt",
+"Panjabi",
+"Jeans",
+"Pants",
+"Shorts",
+"Hoodie & Sweatshirt",
+"Jacket"
+],
+
+"Women's Fashion":[
+"Saree",
+"Three Piece",
+"Kurti",
+"Tops",
+"T-Shirt",
+"Gown",
+"Hijab",
+"Abaya",
+"Women's Pants"
+],
+
+"Kids & Baby":[
+"Boys Clothing",
+"Girls Clothing",
+"Baby Clothing",
+"Baby Accessories",
+"Toys"
+],
+
+"Shoes":[
+"Men's Shoes",
+"Women's Shoes",
+"Kids Shoes",
+"Sneakers",
+"Sandals",
+"Slippers"
+],
+
+"Bags & Accessories":[
+"Backpacks",
+"Handbags",
+"Wallets",
+"Belts",
+"Caps",
+"Sunglasses",
+"Fashion Accessories"
+],
+
+"Watches":[
+"Men's Watches",
+"Women's Watches",
+"Smart Watches",
+"Kids Watches"
+],
+
+"Electronics":[
+"Mobile Accessories",
+"Earphones & Headphones",
+"Speakers",
+"Chargers",
+"Power Banks",
+"Smart Gadgets"
+],
+
+"Beauty & Personal Care":[
+"Skincare",
+"Hair Care",
+"Makeup",
+"Perfume",
+"Personal Care"
+],
+
+"Home & Living":[
+"Home Decor",
+"Bedding",
+"Storage",
+"Lighting",
+"Kitchen & Dining"
+]
+
+};
+
+
+const sizeData={
+
+"T-Shirt":[
+"S","M","L","XL","2XL","4XL"
+],
+
+"Polo T-Shirt":[
+"S","M","L","XL","2XL","4XL"
+],
+
+"Shirt":[
+"S","M","L","XL","2XL","4XL"
+],
+
+"Hoodie & Sweatshirt":[
+"S","M","L","XL","2XL","4XL"
+],
+
+"Jacket":[
+"S","M","L","XL","2XL","4XL"
+],
+
+"Panjabi":[
+"28","30","32","34","36","38","40","42","44","46","48"
+],
+
+"Pants":[
+"28","30","32","34","36","38","40"
+],
+
+"Jeans":[
+"28","30","32","34","36","38","40"
+],
+
+"Shorts":[
+"28","30","32","34","36","38","40"
+],
+
+"Saree":[
+"Free Size"
+],
+
+"Hijab":[
+"Free Size"
+],
+
+"Three Piece":[
+"S","M","L","XL","2XL"
+],
+
+"Kurti":[
+"S","M","L","XL","2XL"
+],
+
+"Tops":[
+"S","M","L","XL","2XL"
+],
+
+"Gown":[
+"S","M","L","XL","2XL"
+],
+
+"Abaya":[
+"S","M","L","XL","2XL"
+],
+
+"Women's Pants":[
+"28","30","32","34","36","38"
+]
+
+};
+
+
+function esc(v){
+
+return String(v??"")
+.replaceAll("&","&amp;")
+.replaceAll("<","&lt;")
+.replaceAll(">","&gt;")
+.replaceAll('"',"&quot;")
+.replaceAll("'","&#039;");
+
+}
+
+
+function money(v){
+
+return Number(v||0)
+.toLocaleString(
+"en-US",
+{
+maximumFractionDigits:2
+}
+);
+
+}
+
+
+function formatDate(v){
+
+try{
+
+return new Date(v)
+.toLocaleString(
+"en-BD",
+{
+dateStyle:"medium",
+timeStyle:"short"
+}
+);
+
+}catch(e){
+
+return String(v||"—");
+
+}
+
+}
+
+
+function goHome(){
+
+window.location.href=
+"index.html";
+
+}
+
+
+/* =========================
+   LOGIN
+   ========================= */
+
+async function adminLogin(){
 
 if(!db){
 
-  console.error(
-    "Supabase client পাওয়া যায়নি। supabase.js check করুন।"
-  );
-
-}
-
-
-/* =================================
-   CATEGORY DATA
-================================= */
-
-const CATEGORY_DATA = {
-
-  "Men's Fashion":[
-    "T-Shirt",
-    "Polo T-Shirt",
-    "Shirt",
-    "Panjabi",
-    "Jeans",
-    "Pants",
-    "Shorts",
-    "Hoodie & Sweatshirt",
-    "Jacket"
-  ],
-
-  "Women's Fashion":[
-    "Saree",
-    "Three Piece",
-    "Kurti",
-    "Tops",
-    "T-Shirt",
-    "Gown",
-    "Hijab",
-    "Abaya",
-    "Women's Pants"
-  ],
-
-  "Kids & Baby":[
-    "Boys Clothing",
-    "Girls Clothing",
-    "Baby Clothing",
-    "Baby Accessories",
-    "Toys"
-  ],
-
-  "Shoes":[
-    "Men's Shoes",
-    "Women's Shoes",
-    "Kids Shoes",
-    "Sneakers",
-    "Sandals",
-    "Slippers"
-  ],
-
-  "Bags & Accessories":[
-    "Backpacks",
-    "Handbags",
-    "Wallets",
-    "Belts",
-    "Caps",
-    "Sunglasses",
-    "Fashion Accessories"
-  ],
-
-  "Watches":[
-    "Men's Watches",
-    "Women's Watches",
-    "Smart Watches",
-    "Kids Watches"
-  ],
-
-  "Electronics":[
-    "Mobile Accessories",
-    "Earphones & Headphones",
-    "Speakers",
-    "Chargers",
-    "Power Banks",
-    "Smart Gadgets"
-  ],
-
-  "Beauty & Personal Care":[
-    "Skincare",
-    "Hair Care",
-    "Makeup",
-    "Perfume",
-    "Personal Care"
-  ],
-
-  "Home & Living":[
-    "Home Decor",
-    "Bedding",
-    "Storage",
-    "Lighting",
-    "Kitchen & Dining"
-  ]
-
-};
-
-
-/* =================================
-   SIZE DATA
-================================= */
-
-const SIZE_DATA = {
-
-  "T-Shirt":[
-    "S",
-    "M",
-    "L",
-    "XL",
-    "2XL",
-    "4XL"
-  ],
-
-  "Polo T-Shirt":[
-    "S",
-    "M",
-    "L",
-    "XL",
-    "2XL",
-    "4XL"
-  ],
-
-  "Shirt":[
-    "S",
-    "M",
-    "L",
-    "XL",
-    "2XL",
-    "4XL"
-  ],
-
-  "Panjabi":[
-    "28",
-    "30",
-    "32",
-    "34",
-    "36",
-    "38",
-    "40",
-    "42",
-    "44",
-    "46",
-    "48"
-  ],
-
-  "Pants":[
-    "28",
-    "30",
-    "32",
-    "34",
-    "36",
-    "38",
-    "40"
-  ],
-
-  "Jeans":[
-    "28",
-    "30",
-    "32",
-    "34",
-    "36",
-    "38",
-    "40"
-  ]
-
-};
-
-
-/* =================================
-   HELPERS
-================================= */
-
-function esc(value){
-
-  return String(value ?? "")
-    .replace(/&/g,"&amp;")
-    .replace(/</g,"&lt;")
-    .replace(/>/g,"&gt;")
-    .replace(/"/g,"&quot;")
-    .replace(/'/g,"&#039;");
-
-}
-
-
-function msg(element,text,type){
-
-  if(!element){
-    return;
-  }
-
-  element.textContent =
-    text;
-
-  element.className =
-    "message " + type;
-
-  element.style.display =
-    "block";
-
-}
-
-
-function hideMsg(element){
-
-  if(element){
-
-    element.style.display =
-      "none";
-
-  }
-
-}
-
-
-function money(value){
-
-  return Number(value || 0)
-    .toLocaleString("en-BD");
-
-}
-
-
-function formatDate(value){
-
-  try{
-
-    return new Date(value)
-      .toLocaleString(
-        "en-BD",
-        {
-          dateStyle:"medium",
-          timeStyle:"short"
-        }
-      );
-
-  }catch(error){
-
-    return value || "—";
-
-  }
-
-}
-
-
-function makeOptions(array,current){
-
-  return array
-    .map(item => {
-
-      return `
-        <option
-          value="${esc(item)}"
-          ${item === current ? "selected" : ""}
-        >
-          ${esc(item)}
-        </option>
-      `;
-
-    })
-    .join("");
-
-}
-
-
-/* =================================
-   CATEGORY CHANGE
-================================= */
-
-productCategory.addEventListener(
-  "change",
-  function(){
-
-    const category =
-      this.value;
-
-    productSubcategory.innerHTML =
-      "";
-
-    productSubcategory.disabled =
-      true;
-
-    showSizes(
-      "",
-      ""
-    );
-
-
-    if(!category){
-
-      productSubcategory.innerHTML =
-        `
-        <option value="">
-          First Select Category
-        </option>
-        `;
-
-      return;
-
-    }
-
-
-    productSubcategory.disabled =
-      false;
-
-    productSubcategory.innerHTML =
-      `
-      <option value="">
-        Select Subcategory
-      </option>
-      `;
-
-
-    const list =
-      CATEGORY_DATA[category] || [];
-
-
-    list.forEach(item => {
-
-      const option =
-        document.createElement(
-          "option"
-        );
-
-      option.value =
-        item;
-
-      option.textContent =
-        item;
-
-      productSubcategory.appendChild(
-        option
-      );
-
-    });
-
-  }
+alert(
+"Supabase connection পাওয়া যায়নি।"
 );
 
-
-/* =================================
-   SUBCATEGORY CHANGE
-================================= */
-
-productSubcategory.addEventListener(
-  "change",
-  function(){
-
-    showSizes(
-      productCategory.value,
-      this.value
-    );
-
-  }
-);
-
-
-/* =================================
-   SIZE
-================================= */
-
-function showSizes(category,subcategory){
-
-  sizeOptions.innerHTML =
-    "";
-
-  sizeHelp.textContent =
-    "";
-
-  sizeSection.classList
-    .remove("show");
-
-
-  if(!category){
-
-    return;
-
-  }
-
-
-  if(category === "Women's Fashion"){
-
-    return;
-
-  }
-
-
-  if(category === "Watches"){
-
-    sizeSection.classList
-      .add("show");
-
-    sizeHelp.textContent =
-      "Size প্রয়োজন নেই।";
-
-    sizeOptions.innerHTML =
-      `
-      <div class="help">
-        ⌚ No Size
-      </div>
-      `;
-
-    return;
-
-  }
-
-
-  const sizes =
-    SIZE_DATA[subcategory];
-
-
-  if(!sizes){
-
-    return;
-
-  }
-
-
-  sizeSection.classList
-    .add("show");
-
-  sizeHelp.textContent =
-    "Available size select করো।";
-
-
-  sizes.forEach((size,index) => {
-
-    const id =
-      "size_" +
-      Date.now() +
-      "_" +
-      index;
-
-
-    sizeOptions.insertAdjacentHTML(
-      "beforeend",
-      `
-      <div class="size-option">
-
-        <input
-          type="checkbox"
-          id="${id}"
-          value="${esc(size)}"
-          class="sizeCheck"
-        >
-
-        <label for="${id}">
-          ${esc(size)}
-        </label>
-
-      </div>
-      `
-    );
-
-  });
+return;
 
 }
 
 
-/* =================================
-   LOGIN
-================================= */
-
-loginForm.addEventListener(
-  "submit",
-  async function(event){
-
-    event.preventDefault();
+let email=
+document.getElementById(
+"loginEmail"
+).value.trim();
 
 
-    if(!db){
-
-      msg(
-        loginMessage,
-        "Supabase connect হয়নি। supabase.js check করুন।",
-        "error"
-      );
-
-      return;
-
-    }
+let password=
+document.getElementById(
+"loginPassword"
+).value;
 
 
-    const email =
-      emailInput.value.trim();
+if(!email||!password){
 
-    const password =
-      passwordInput.value;
-
-
-    if(!email || !password){
-
-      msg(
-        loginMessage,
-        "Email এবং Password দিন।",
-        "error"
-      );
-
-      return;
-
-    }
-
-
-    if(
-      email.toLowerCase() !==
-      ADMIN_EMAIL.toLowerCase()
-    ){
-
-      msg(
-        loginMessage,
-        "এই Email টি Admin Email নয়।",
-        "error"
-      );
-
-      return;
-
-    }
-
-
-    loginButton.disabled =
-      true;
-
-    loginButton.textContent =
-      "Login হচ্ছে...";
-
-
-    msg(
-      loginMessage,
-      "Supabase Login হচ্ছে... ⏳",
-      "success"
-    );
-
-
-    try{
-
-      const {
-        data,
-        error
-      } =
-        await db.auth.signInWithPassword({
-
-          email:email,
-
-          password:password
-
-        });
-
-
-      if(error){
-
-        throw error;
-
-      }
-
-
-      if(!data?.user){
-
-        throw new Error(
-          "Login user পাওয়া যায়নি।"
-        );
-
-      }
-
-
-      console.log(
-        "ADMIN LOGIN SUCCESS:",
-        data.user.id,
-        data.user.email
-      );
-
-
-      loginSection
-        .classList
-        .add("hidden");
-
-
-      adminPanel
-        .classList
-        .remove("hidden");
-
-
-      hideMsg(
-        loginMessage
-      );
-
-
-      await loadProducts();
-
-      await loadOrders();
-
-
-    }catch(error){
-
-      console.error(
-        "LOGIN ERROR:",
-        error
-      );
-
-
-      msg(
-        loginMessage,
-        "❌ Login হয়নি: " +
-        (
-          error?.message ||
-          "Unknown login error"
-        ),
-        "error"
-      );
-
-
-    }finally{
-
-      loginButton.disabled =
-        false;
-
-      loginButton.textContent =
-        "Login";
-
-    }
-
-  }
+alert(
+"Email এবং Password দিন।"
 );
 
-
-/* =================================
-   IMAGE PREVIEW
-================================= */
-
-images.addEventListener(
-  "change",
-  function(){
-
-    preview.innerHTML =
-      "";
-
-    const files =
-      [...this.files];
-
-
-    if(files.length > 5){
-
-      alert(
-        "Maximum 5 images allowed."
-      );
-
-      this.value =
-        "";
-
-      return;
-
-    }
-
-
-    files.forEach(file => {
-
-      const reader =
-        new FileReader();
-
-
-      reader.onload =
-      function(event){
-
-        preview.insertAdjacentHTML(
-          "beforeend",
-          `
-          <img
-            src="${event.target.result}"
-            alt="Preview"
-          >
-          `
-        );
-
-      };
-
-
-      reader.readAsDataURL(file);
-
-    });
-
-  }
-);
-
-
-/* =================================
-   ADD PRODUCT
-================================= */
-
-productForm.addEventListener(
-  "submit",
-  async function(event){
-
-    event.preventDefault();
-
-
-    const name =
-      productName.value.trim();
-
-    const price =
-      Number(productPrice.value);
-
-    const category =
-      productCategory.value;
-
-    const subcategory =
-      productSubcategory.value;
-
-    const description =
-      productDescription.value.trim();
-
-    const files =
-      [...images.files];
-
-
-    let sizes = [];
-
-
-    if(SIZE_DATA[subcategory]){
-
-      sizes =
-        [
-          ...document.querySelectorAll(
-            ".sizeCheck:checked"
-          )
-        ]
-        .map(
-          item =>
-            item.value
-        );
-
-    }
-
-
-    if(!name){
-
-      msg(
-        productMessage,
-        "Product Name দিন।",
-        "error"
-      );
-
-      return;
-
-    }
-
-
-    if(!price && price !== 0){
-
-      msg(
-        productMessage,
-        "Product Price দিন।",
-        "error"
-      );
-
-      return;
-
-    }
-
-
-    if(!category){
-
-      msg(
-        productMessage,
-        "Category select করুন।",
-        "error"
-      );
-
-      return;
-
-    }
-
-
-    if(!subcategory){
-
-      msg(
-        productMessage,
-        "Subcategory select করুন।",
-        "error"
-      );
-
-      return;
-
-    }
-
-
-    if(
-      SIZE_DATA[subcategory] &&
-      !sizes.length
-    ){
-
-      msg(
-        productMessage,
-        "কমপক্ষে একটি Size select করুন।",
-        "error"
-      );
-
-      return;
-
-    }
-
-
-    if(
-      files.length < 1 ||
-      files.length > 5
-    ){
-
-      msg(
-        productMessage,
-        "Please select 1–5 images.",
-        "error"
-      );
-
-      return;
-
-    }
-
-
-    saveProductButton.disabled =
-      true;
-
-    saveProductButton.textContent =
-      "Saving...";
-
-
-    try{
-
-      msg(
-        productMessage,
-        "Product save হচ্ছে... ⏳",
-        "success"
-      );
-
-
-      const urls = [];
-
-
-      for(const file of files){
-
-        const extension =
-          file.name
-            .split(".")
-            .pop()
-            .toLowerCase();
-
-
-        const path =
-          "products/" +
-          Date.now() +
-          "-" +
-          Math.random()
-            .toString(36)
-            .slice(2) +
-          "." +
-          extension;
-
-
-        const {
-          error
-        } =
-          await db.storage
-            .from("product-images")
-            .upload(
-              path,
-              file,
-              {
-                cacheControl:"3600",
-                upsert:false
-              }
-            );
-
-
-        if(error){
-
-          throw error;
-
-        }
-
-
-        const publicUrl =
-          db.storage
-            .from("product-images")
-            .getPublicUrl(path)
-            .data
-            .publicUrl;
-
-
-        urls.push(publicUrl);
-
-      }
-
-
-      const {
-        error:productError
-      } =
-        await db
-          .from("products")
-          .insert([{
-
-            name:name,
-
-            price:price,
-
-            category:category,
-
-            subcategory:subcategory,
-
-            sizes:sizes,
-
-            description:description,
-
-            images:urls
-
-          }]);
-
-
-      if(productError){
-
-        throw productError;
-
-      }
-
-
-      msg(
-        productMessage,
-        "✅ Product successfully saved!",
-        "success"
-      );
-
-
-      productForm.reset();
-
-      preview.innerHTML =
-        "";
-
-      productSubcategory.disabled =
-        true;
-
-      productSubcategory.innerHTML =
-        `
-        <option value="">
-          First Select Category
-        </option>
-        `;
-
-      sizeSection.classList
-        .remove("show");
-
-
-      await loadProducts();
-
-
-    }catch(error){
-
-      console.error(
-        "PRODUCT SAVE ERROR:",
-        error
-      );
-
-
-      msg(
-        productMessage,
-        "❌ Product Save হয়নি: " +
-        (
-          error?.message ||
-          "Unknown error"
-        ),
-        "error"
-      );
-
-
-    }finally{
-
-      saveProductButton.disabled =
-        false;
-
-      saveProductButton.textContent =
-        "💾 Save Product";
-
-    }
-
-  }
-);
-
-
-/* =================================
-   LOAD PRODUCTS
-================================= */
-
-async function loadProducts(){
-
-  productsList.innerHTML =
-    `
-    <div class="loading">
-      Loading products... ⏳
-    </div>
-    `;
-
-
-  try{
-
-    const {
-      data,
-      error
-    } =
-      await db
-        .from("products")
-        .select("*")
-        .order(
-          "id",
-          {
-            ascending:false
-          }
-        );
-
-
-    if(error){
-
-      throw error;
-
-    }
-
-
-    if(!data || data.length === 0){
-
-      productsList.innerHTML =
-        `
-        <div class="empty">
-          📦 No products found.
-        </div>
-        `;
-
-      return;
-
-    }
-
-
-    productsList.innerHTML =
-      "";
-
-
-    data.forEach(product => {
-
-      const image =
-        Array.isArray(product.images) &&
-        product.images.length
-          ?
-        product.images[0]
-          :
-        "https://via.placeholder.com/80?text=G";
-
-
-      const sizes =
-        Array.isArray(product.sizes) &&
-        product.sizes.length
-          ?
-        product.sizes.join(", ")
-          :
-        (
-          product.category === "Watches" ||
-          product.category === "Women's Fashion"
-            ?
-          "No Size"
-            :
-          "Not Applicable"
-        );
-
-
-      productsList.insertAdjacentHTML(
-        "beforeend",
-        `
-        <div class="product">
-
-          <img
-            src="${esc(image)}"
-            onerror="this.src='https://via.placeholder.com/80?text=G'"
-            alt="Product"
-          >
-
-
-          <div class="product-info">
-
-            <h3>
-              ${esc(product.name)}
-            </h3>
-
-            <p>
-              ৳${money(product.price)}
-            </p>
-
-            <p class="muted">
-              🏷️
-              ${esc(product.category || "Others")}
-            </p>
-
-            <p class="muted">
-              📂
-              ${esc(product.subcategory || "")}
-            </p>
-
-            <p class="muted">
-              📏 Size:
-              ${esc(sizes)}
-            </p>
-
-          </div>
-
-
-          <div class="actions">
-
-            <button
-              type="button"
-              class="secondary"
-              onclick="editProduct()"
-            >
-              ✏️ Edit
-            </button>
-
-
-            <button
-              type="button"
-              class="danger"
-              onclick="deleteProduct('${esc(product.id)}')"
-            >
-              🗑️ Delete
-            </button>
-
-          </div>
-
-        </div>
-        `
-      );
-
-    });
-
-
-  }catch(error){
-
-    console.error(
-      "PRODUCT LOAD ERROR:",
-      error
-    );
-
-
-    productsList.innerHTML =
-      `
-      <p style="color:#c62828">
-
-        ❌ Products load হয়নি:
-
-        ${esc(
-          error?.message ||
-          "Unknown error"
-        )}
-
-      </p>
-      `;
-
-  }
+return;
 
 }
 
 
-/* =================================
-   PRODUCT EDIT
-================================= */
+let r=
+await db.auth.signInWithPassword({
 
-window.editProduct =
-function(){
+email,
+password
 
-  alert(
-    "ছবি Edit করা যাবে না। নতুন Product যোগ করুন।"
-  );
+});
 
-};
 
+if(r.error){
 
-/* =================================
-   PRODUCT DELETE
-================================= */
+document.getElementById(
+"loginMessage"
+).innerHTML=
+'<span style="color:#b00020">'+
+esc(r.error.message)+
+'</span>';
 
-window.deleteProduct =
-async function(id){
-
-  if(
-    !confirm(
-      "এই Product টি Delete করতে চান?"
-    )
-  ){
-
-    return;
-
-  }
-
-
-  try{
-
-    const {
-      error
-    } =
-      await db
-        .from("products")
-        .delete()
-        .eq("id",id);
-
-
-    if(error){
-
-      throw error;
-
-    }
-
-
-    alert(
-      "Product deleted successfully. ✅"
-    );
-
-
-    await loadProducts();
-
-
-  }catch(error){
-
-    console.error(
-      "DELETE ERROR:",
-      error
-    );
-
-
-    alert(
-      "Delete হয়নি: " +
-      (
-        error?.message ||
-        "Unknown error"
-      )
-    );
-
-  }
-
-};
-
-
-/* =================================
-   LOAD ORDERS
-================================= */
-
-async function loadOrders(){
-
-  ordersList.innerHTML =
-    `
-    <div class="loading">
-      Loading orders... ⏳
-    </div>
-    `;
-
-
-  try{
-
-    let query =
-      db
-        .from("orders")
-        .select("*")
-        .order(
-          "created_at",
-          {
-            ascending:false
-          }
-        );
-
-
-    if(orderStatusFilter.value){
-
-      query =
-        query.eq(
-          "order_status",
-          orderStatusFilter.value
-        );
-
-    }
-
-
-    if(paymentStatusFilter.value){
-
-      query =
-        query.eq(
-          "payment_status",
-          paymentStatusFilter.value
-        );
-
-    }
-
-
-    const {
-      data:orders,
-      error
-    } =
-      await query;
-
-
-    if(error){
-
-      throw error;
-
-    }
-
-
-    if(!orders || orders.length === 0){
-
-      ordersList.innerHTML =
-        `
-        <div class="empty">
-          📦 কোনো order পাওয়া যায়নি।
-        </div>
-        `;
-
-      return;
-
-    }
-
-
-    const ids =
-      orders.map(
-        order => order.id
-      );
-
-
-    const {
-      data:items,
-      error:itemsError
-    } =
-      await db
-        .from("order_items")
-        .select("*")
-        .in("order_id",ids);
-
-
-    if(itemsError){
-
-      throw itemsError;
-
-    }
-
-
-    const groupedItems = {};
-
-
-    (items || []).forEach(item => {
-
-      if(
-        !groupedItems[item.order_id]
-      ){
-
-        groupedItems[item.order_id] =
-          [];
-
-      }
-
-
-      groupedItems[item.order_id]
-        .push(item);
-
-    });
-
-
-    ordersList.innerHTML =
-      "";
-
-
-    orders.forEach(order => {
-
-      const orderItems =
-        groupedItems[order.id] || [];
-
-
-      const div =
-        document.createElement("div");
-
-
-      div.className =
-        "order";
-
-
-      div.innerHTML = `
-
-        <div class="order-head">
-
-          <div>
-
-            <div class="order-id">
-              🧾 Order #${esc(order.id)}
-            </div>
-
-            <div class="muted">
-              ${esc(
-                formatDate(
-                  order.created_at
-                )
-              )}
-            </div>
-
-          </div>
-
-
-          <span class="badge">
-            ${esc(
-              order.order_status ||
-              "Pending"
-            )}
-          </span>
-
-        </div>
-
-
-        <div class="grid">
-
-          <div class="box">
-
-            <b>
-              👤 Customer
-            </b>
-
-            <br>
-
-            ${esc(
-              order.customer_name ||
-              "—"
-            )}
-
-            <br>
-
-            📱
-            ${esc(
-              order.customer_phone ||
-              "—"
-            )}
-
-            <br>
-
-            📧
-            ${esc(
-              order.customer_email ||
-              "—"
-            )}
-
-          </div>
-
-
-          <div class="box">
-
-            <b>
-              📍 Delivery
-            </b>
-
-            <br>
-
-            ${esc(
-              order.customer_district ||
-              "—"
-            )}
-
-            ,
-
-            ${esc(
-              order.customer_thana ||
-              "—"
-            )}
-
-            <br>
-
-            ${esc(
-              order.customer_receive_place ||
-              "—"
-            )}
-
-            <br>
-
-            🚚
-            ${esc(
-              order.delivery_area ||
-              "—"
-            )}
-
-            · ৳${money(
-              order.delivery_charge
-            )}
-
-          </div>
-
-
-          <div class="box">
-
-            <b>
-              💳 Payment
-            </b>
-
-            <br>
-
-            ${esc(
-              order.payment_method ||
-              "—"
-            )}
-
-            <br>
-
-            Status:
-
-            ${esc(
-              order.payment_status ||
-              "Pending"
-            )}
-
-          </div>
-
-
-          <div class="box">
-
-            <b>
-              💰 Total
-            </b>
-
-            <br>
-
-            Subtotal:
-            ৳${money(
-              order.subtotal
-            )}
-
-            <br>
-
-            <b>
-              Total:
-              ৳${money(
-                order.total
-              )}
-            </b>
-
-          </div>
-
-        </div>
-
-
-        <div class="items">
-
-          <b>
-            🛍️ Products
-          </b>
-
-
-          ${
-            orderItems.length
-              ?
-            orderItems.map(item => `
-
-              <div class="item">
-
-                <img
-                  src="${esc(
-                    item.product_image ||
-                    "https://via.placeholder.com/52?text=G"
-                  )}"
-                  onerror="this.src='https://via.placeholder.com/52?text=G'"
-                  alt="Product"
-                >
-
-
-                <div class="item-info">
-
-                  <b>
-                    ${esc(
-                      item.product_name ||
-                      "Product"
-                    )}
-                  </b>
-
-                  <br>
-
-                  Size:
-                  ${esc(
-                    item.size ||
-                    "N/A"
-                  )}
-
-                  · Qty:
-                  ${esc(
-                    item.quantity ||
-                    1
-                  )}
-
-                  · ৳
-                  ${money(
-                    item.unit_price
-                  )}
-
-                </div>
-
-
-                <b>
-                  ৳${money(
-                    item.line_total
-                  )}
-                </b>
-
-              </div>
-
-            `).join("")
-              :
-            `
-            <p class="muted">
-              Order items পাওয়া যায়নি।
-            </p>
-            `
-          }
-
-        </div>
-
-
-        <div class="controls">
-
-          <div>
-
-            <label>
-              Order Status
-            </label>
-
-            <select class="os">
-
-              ${makeOptions(
-                [
-                  "Pending",
-                  "Confirmed",
-                  "Processing",
-                  "Shipped",
-                  "Delivered",
-                  "Cancelled"
-                ],
-                order.order_status ||
-                "Pending"
-              )}
-
-            </select>
-
-          </div>
-
-
-          <div>
-
-            <label>
-              Payment Status
-            </label>
-
-            <select class="ps">
-
-              ${makeOptions(
-                [
-                  "Pending",
-                  "Paid",
-                  "Failed",
-                  "Refunded"
-                ],
-                order.payment_status ||
-                "Pending"
-              )}
-
-            </select>
-
-          </div>
-
-        </div>
-
-
-        <div class="order-actions">
-
-          <button
-            type="button"
-            class="saveOrder"
-          >
-            💾 Update Order
-          </button>
-
-        </div>
-
-      `;
-
-
-      div
-        .querySelector(".saveOrder")
-        .addEventListener(
-          "click",
-          function(){
-
-            updateOrder(
-              order.id,
-              div
-            );
-
-          }
-        );
-
-
-      ordersList.appendChild(div);
-
-    });
-
-
-  }catch(error){
-
-    console.error(
-      "ORDER LOAD ERROR:",
-      error
-    );
-
-
-    ordersList.innerHTML =
-      `
-      <div
-        class="message error"
-        style="display:block"
-      >
-
-        ❌ Orders load হয়নি:
-
-        ${esc(
-          error?.message ||
-          "Unknown error"
-        )}
-
-      </div>
-      `;
-
-  }
+return;
 
 }
 
 
-/* =================================
-   UPDATE ORDER — FIXED
-================================= */
+currentUser=
+r.data.user;
 
-async function updateOrder(id,box){
 
-  const button =
-    box.querySelector(
-      ".saveOrder"
-    );
+if(
+currentUser.email.toLowerCase()!==
+ADMIN_EMAIL.toLowerCase()
+){
 
+await db.auth.signOut();
 
-  try{
+alert(
+"এই Email-এর Admin access নেই।"
+);
 
-    button.disabled =
-      true;
-
-    button.textContent =
-      "Updating...";
-
-
-    /* =============================
-       CHECK CURRENT USER
-    ============================= */
-
-    const {
-      data:userData,
-      error:userError
-    } =
-      await db.auth.getUser();
-
-
-    if(userError){
-
-      throw userError;
-
-    }
-
-
-    const user =
-      userData?.user;
-
-
-    if(!user){
-
-      throw new Error(
-        "Admin login session পাওয়া যায়নি। আবার Login করুন।"
-      );
-
-    }
-
-
-    console.log(
-      "UPDATE USER:",
-      user.id,
-      user.email
-    );
-
-
-    /* =============================
-       GET NEW STATUS
-    ============================= */
-
-    const orderStatus =
-      box
-        .querySelector(".os")
-        .value;
-
-
-    const paymentStatus =
-      box
-        .querySelector(".ps")
-        .value;
-
-
-    console.log(
-      "UPDATING ORDER:",
-      id
-    );
-
-    console.log(
-      "NEW ORDER STATUS:",
-      orderStatus
-    );
-
-    console.log(
-      "NEW PAYMENT STATUS:",
-      paymentStatus
-    );
-
-
-    /* =============================
-       UPDATE
-       
-       IMPORTANT:
-       এখানে .select() নেই
-    ============================= */
-
-    const {
-      error:updateError
-    } =
-      await db
-        .from("orders")
-        .update({
-
-          order_status:
-            orderStatus,
-
-          payment_status:
-            paymentStatus
-
-        })
-        .eq(
-          "id",
-          id
-        );
-
-
-    if(updateError){
-
-      console.error(
-        "SUPABASE UPDATE ERROR:",
-        updateError
-      );
-
-      throw updateError;
-
-    }
-
-
-    /* =============================
-       VERIFY UPDATE
-    ============================= */
-
-    const {
-      data:verifyData,
-      error:verifyError
-    } =
-      await db
-        .from("orders")
-        .select(
-          "id,order_status,payment_status"
-        )
-        .eq(
-          "id",
-          id
-        )
-        .maybeSingle();
-
-
-    if(verifyError){
-
-      console.error(
-        "VERIFY ERROR:",
-        verifyError
-      );
-
-      throw verifyError;
-
-    }
-
-
-    if(!verifyData){
-
-      throw new Error(
-        "Order update verify করা যায়নি।"
-      );
-
-    }
-
-
-    /* =============================
-       CHECK ACTUAL VALUE
-    ============================= */
-
-    if(
-      verifyData.order_status !==
-      orderStatus
-      ||
-      verifyData.payment_status !==
-      paymentStatus
-    ){
-
-      throw new Error(
-        "Database-এ নতুন Order Status save হয়নি।"
-      );
-
-    }
-
-
-    /* =============================
-       SUCCESS
-    ============================= */
-
-    msg(
-      orderMessage,
-
-      "✅ Order #" +
-      id +
-      " updated successfully!",
-
-      "success"
-    );
-
-
-    await loadOrders();
-
-
-  }catch(error){
-
-    console.error(
-      "ORDER UPDATE ERROR:",
-      error
-    );
-
-
-    msg(
-      orderMessage,
-
-      "❌ Update হয়নি: " +
-      (
-        error?.message ||
-        "Unknown error"
-      ),
-
-      "error"
-    );
-
-
-  }finally{
-
-    button.disabled =
-      false;
-
-    button.textContent =
-      "💾 Update Order";
-
-  }
+return;
 
 }
 
 
-/* =================================
-   FILTERS
-================================= */
+let admin=
+await isAdmin();
 
-orderStatusFilter.addEventListener(
-  "change",
-  function(){
 
-    loadOrders();
+if(!admin){
 
-  }
+await db.auth.signOut();
+
+alert(
+"আপনার profile-এ Admin role নেই।"
 );
 
+return;
 
-paymentStatusFilter.addEventListener(
-  "change",
-  function(){
-
-    loadOrders();
-
-  }
-);
+}
 
 
-refreshOrders.addEventListener(
-  "click",
-  function(){
+showAdmin();
 
-    loadOrders();
-
-  }
-);
+}
 
 
-/* =================================
-   LOGOUT
-================================= */
+/* =========================
+   CHECK ADMIN
+   ========================= */
 
-logoutBtn.addEventListener(
-  "click",
-  async function(){
+async function isAdmin(){
 
-    try{
-
-      await db.auth.signOut();
-
-    }catch(error){
-
-      console.error(
-        "LOGOUT ERROR:",
-        error
-      );
-
-    }
+if(!currentUser)
+return false;
 
 
-    adminPanel
-      .classList
-      .add("hidden");
+let r=
+await db
+.from("profiles")
+.select("role")
+.eq(
+"id",
+currentUser.id
+)
+.maybeSingle();
 
 
-    loginSection
-      .classList
-      .remove("hidden");
+if(r.error)
+return false;
 
 
-    loginForm.reset();
+return r.data?.role==="admin";
+
+}
 
 
-    msg(
-      loginMessage,
-      "Logout হয়েছে।",
-      "success"
-    );
+/* =========================
+   SHOW ADMIN
+   ========================= */
 
-  }
-);
+function showAdmin(){
+
+document
+.getElementById("loginSection")
+.classList.add("hidden");
 
 
-/* =================================
+document
+.getElementById("adminPanel")
+.classList.remove("hidden");
+
+
+loadStats();
+
+showSection("orders");
+
+}
+
+
+/* =========================
    AUTO LOGIN
-================================= */
+   ========================= */
 
 async function checkSession(){
 
-  if(!db){
-
-    return;
-
-  }
+if(!db)
+return;
 
 
-  try{
-
-    const {
-      data,
-      error
-    } =
-      await db.auth.getSession();
+let s=
+await db.auth.getSession();
 
 
-    if(error){
-
-      throw error;
-
-    }
+currentUser=
+s.data.session?.user||
+null;
 
 
-    const session =
-      data?.session;
+if(!currentUser)
+return;
 
 
-    const user =
-      session?.user;
+if(
+currentUser.email.toLowerCase()!==
+ADMIN_EMAIL.toLowerCase()
+){
 
+await db.auth.signOut();
 
-    if(
-      user &&
-      user.email?.toLowerCase() ===
-      ADMIN_EMAIL.toLowerCase()
-    ){
-
-      console.log(
-        "AUTO LOGIN:",
-        user.id,
-        user.email
-      );
-
-
-      loginSection
-        .classList
-        .add("hidden");
-
-
-      adminPanel
-        .classList
-        .remove("hidden");
-
-
-      await loadProducts();
-
-      await loadOrders();
-
-    }
-
-
-  }catch(error){
-
-    console.error(
-      "AUTO LOGIN ERROR:",
-      error
-    );
-
-  }
+return;
 
 }
 
 
-/* =================================
+if(await isAdmin()){
+
+showAdmin();
+
+}
+
+}
+
+
+/* =========================
+   LOGOUT
+   ========================= */
+
+async function adminLogout(){
+
+await db.auth.signOut();
+
+currentUser=null;
+
+document
+.getElementById("adminPanel")
+.classList.add("hidden");
+
+
+document
+.getElementById("loginSection")
+.classList.remove("hidden");
+
+}
+
+
+/* =========================
+   SECTION
+   ========================= */
+
+async function showSection(section){
+
+currentSection=section;
+
+let box=
+document.getElementById(
+"sectionContent"
+);
+
+
+box.innerHTML=
+'<div class="empty">Loading...</div>';
+
+
+if(section==="orders")
+await renderOrders();
+
+else if(section==="resellers")
+await renderResellers();
+
+else if(section==="reviews")
+await renderReviews();
+
+else if(section==="products")
+await renderProducts();
+
+else if(section==="addProduct")
+renderAddProduct();
+
+}
+
+
+/* =========================
+   STATS
+   ========================= */
+
+async function loadStats(){
+
+let p=
+await db
+.from("products")
+.select("id",{count:"exact",head:true});
+
+
+let o=
+await db
+.from("orders")
+.select(
+"id,order_status"
+);
+
+
+let r=
+await db
+.from("resellers")
+.select(
+"id,status"
+);
+
+
+document.getElementById(
+"statProducts"
+).textContent=
+p.count||0;
+
+
+let orders=
+o.data||[];
+
+
+document.getElementById(
+"statOrders"
+).textContent=
+orders.length;
+
+
+document.getElementById(
+"statPending"
+).textContent=
+orders.filter(
+x=>x.order_status==="Pending"
+).length;
+
+
+document.getElementById(
+"statResellers"
+).textContent=
+(r.data||[])
+.filter(
+x=>x.status==="Pending"
+).length;
+
+}
+
+
+/* =========================
+   ORDERS
+   ========================= */
+
+async function renderOrders(){
+
+let box=
+document.getElementById(
+"sectionContent"
+);
+
+
+let r=
+await db
+.from("orders")
+.select("*")
+.order(
+"created_at",
+{
+ascending:false
+}
+);
+
+
+if(r.error){
+
+box.innerHTML=
+'<div class="empty">'+
+esc(r.error.message)+
+'</div>';
+
+return;
+
+}
+
+
+if(!r.data?.length){
+
+box.innerHTML=
+'<div class="empty">এখনো কোনো Order নেই।</div>';
+
+return;
+
+}
+
+
+let html="";
+
+
+for(
+const o of r.data
+){
+
+let items=
+await db
+.from("order_items")
+.select("*")
+.eq(
+"order_id",
+o.id
+);
+
+
+html+=`
+
+<div class="order-card">
+
+<div class="order-head">
+
+<div>
+
+<b>
+📦 Order #${o.id}
+</b>
+
+<br>
+
+<small>
+${formatDate(o.created_at)}
+</small>
+
+</div>
+
+<span class="status">
+${esc(o.order_status||"Pending")}
+</span>
+
+</div>
+
+
+<div class="order-info">
+
+<p>
+<b>Customer:</b>
+${esc(o.customer_name)}
+</p>
+
+<p>
+<b>Phone:</b>
+${esc(o.customer_phone)}
+</p>
+
+<p>
+<b>Email:</b>
+${esc(o.customer_email)}
+</p>
+
+<p>
+<b>Address:</b>
+${esc(o.customer_receive_place)},
+${esc(o.customer_thana)},
+${esc(o.customer_district)}
+</p>
+
+<p>
+<b>Delivery:</b>
+${esc(o.delivery_area)}
+—
+৳${money(o.delivery_charge)}
+</p>
+
+<p>
+<b>Payment:</b>
+${esc(o.payment_method)}
+—
+${esc(o.payment_status)}
+</p>
+
+${
+o.notes
+?
+`
+<p>
+<b>Notes:</b><br>
+${esc(o.notes)}
+</p>
+`
+:
+""
+}
+
+${
+o.reseller_code
+?
+`
+<p>
+<b>Reseller:</b>
+${esc(o.reseller_code)}
+</p>
+`
+:
+""
+}
+
+</div>
+
+
+<div class="items-box">
+
+<b>
+🛍️ Order Products
+</b>
+
+${
+(items.data||[])
+.map(i=>`
+
+<div class="item-row">
+
+${esc(i.product_name)}
+
+${
+i.size
+?
+` — Size: ${esc(i.size)}`
+:
+""
+}
+
+× ${i.quantity}
+
+=
+<b>
+৳${money(i.line_total)}
+</b>
+
+</div>
+
+`)
+.join("")
+}
+
+</div>
+
+
+<h3 style="color:#8f174d">
+
+Total:
+৳${money(o.total)}
+
+</h3>
+
+
+<div class="admin-actions">
+
+<select
+onchange="updateOrderStatus(${o.id},this.value)"
+>
+
+${
+[
+"Pending",
+"Confirmed",
+"Processing",
+"Shipped",
+"Delivered",
+"Cancelled"
+]
+.map(s=>`
+
+<option
+value="${s}"
+${s===o.order_status?"selected":""}
+>
+${s}
+</option>
+
+`)
+.join("")
+}
+
+</select>
+
+
+<select
+onchange="updatePaymentStatus(${o.id},this.value)"
+>
+
+${
+[
+"Pending",
+"Paid",
+"Failed",
+"Refunded"
+]
+.map(s=>`
+
+<option
+value="${s}"
+${s===o.payment_status?"selected":""}
+>
+Payment: ${s}
+</option>
+
+`)
+.join("")
+}
+
+</select>
+
+
+<button
+class="btn btn-green"
+onclick="contactCustomer('${esc(o.customer_phone)}','${esc(o.customer_name)}')"
+>
+💬 WhatsApp Customer
+</button>
+
+</div>
+
+</div>
+
+`;
+
+}
+
+
+box.innerHTML=html;
+
+}
+
+
+/* =========================
+   ORDER STATUS
+   ========================= */
+
+async function updateOrderStatus(id,status){
+
+if(!await isAdmin())
+return alert("Admin access নেই।");
+
+
+let old=
+await db
+.from("orders")
+.select("*")
+.eq("id",id)
+.maybeSingle();
+
+
+if(old.error||!old.data){
+
+alert("Order পাওয়া যায়নি।");
+
+return;
+
+}
+
+
+let r=
+await db
+.from("orders")
+.update({
+order_status:status
+})
+.eq("id",id);
+
+
+if(r.error){
+
+alert(
+"Status update হয়নি ❌\n"+
+r.error.message
+);
+
+return;
+
+}
+
+
+let verify=
+await db
+.from("orders")
+.select(
+"id,order_status"
+)
+.eq("id",id)
+.maybeSingle();
+
+
+if(
+verify.error||
+verify.data?.order_status!==status
+){
+
+alert(
+"Database status update verify হয়নি ❌"
+);
+
+return;
+
+}
+
+
+if(
+status==="Delivered"&&
+old.data.order_status!=="Delivered"&&
+old.data.reseller_id
+){
+
+await postCommission(old.data);
+
+}
+
+
+alert(
+"Order status update হয়েছে ✅"
+);
+
+
+await loadStats();
+
+await renderOrders();
+
+}
+
+
+/* =========================
+   PAYMENT STATUS
+   ========================= */
+
+async function updatePaymentStatus(id,status){
+
+if(!await isAdmin())
+return alert("Admin access নেই।");
+
+
+let r=
+await db
+.from("orders")
+.update({
+payment_status:status
+})
+.eq("id",id);
+
+
+if(r.error){
+
+alert(
+"Payment status update হয়নি ❌\n"+
+r.error.message
+);
+
+return;
+
+}
+
+
+alert(
+"Payment status update হয়েছে ✅"
+);
+
+
+await renderOrders();
+
+}
+
+
+/* =========================
+   RESELLERS
+   ========================= */
+
+async function renderResellers(){
+
+let box=
+document.getElementById(
+"sectionContent"
+);
+
+
+let r=
+await db
+.from("resellers")
+.select("*")
+.order(
+"created_at",
+{
+ascending:false
+}
+);
+
+
+if(r.error){
+
+box.innerHTML=
+'<div class="empty">'+
+esc(r.error.message)+
+'</div>';
+
+return;
+
+}
+
+
+if(!r.data?.length){
+
+box.innerHTML=
+'<div class="empty">কোনো Reseller Request নেই।</div>';
+
+return;
+
+}
+
+
+let html=`
+
+<div class="notice">
+
+🤝 এখানে customer-এর reseller application দেখা যাবে।
+<br>
+<strong>Approve</strong> করলে reseller status চালু হবে এবং profile role <b>reseller</b> হবে।
+
+</div>
+
+`;
+
+
+for(
+const x of r.data
+){
+
+let p=
+await db
+.from("profiles")
+.select(
+"full_name,phone,role"
+)
+.eq(
+"id",
+x.user_id
+)
+.maybeSingle();
+
+
+html+=`
+
+<div class="reseller-card">
+
+<div class="reseller-head">
+
+<div>
+
+<b>
+🤝 ${esc(
+p.data?.full_name||
+"Customer"
+)}
+</b>
+
+<br>
+
+<small>
+Code:
+${esc(x.reseller_code||"—")}
+</small>
+
+</div>
+
+<span class="status">
+${esc(x.status||"Pending")}
+</span>
+
+</div>
+
+
+<div class="reseller-info">
+
+<p>
+<b>Phone:</b>
+${esc(p.data?.phone||"—")}
+</p>
+
+<p>
+<b>User ID:</b>
+${esc(x.user_id||"—")}
+</p>
+
+<p>
+<b>Current Role:</b>
+${esc(p.data?.role||"customer")}
+</p>
+
+<p>
+<b>Commission:</b>
+${Number(x.commission_rate||0)}%
+</p>
+
+<p>
+<b>Application Date:</b>
+${formatDate(x.created_at)}
+</p>
+
+<p>
+<b>Total Orders:</b>
+${Number(x.total_orders||0)}
+</p>
+
+<p>
+<b>Total Sales:</b>
+৳${money(x.total_sales)}
+</p>
+
+<p>
+<b>Total Commission:</b>
+৳${money(x.total_commission)}
+</p>
+
+</div>
+
+
+<div class="admin-actions">
+
+${
+x.status!=="Approved"
+?
+`
+<button
+class="btn btn-pink"
+onclick="approveReseller('${x.user_id}',${x.id})"
+>
+✅ Accept / Approve
+</button>
+`
+:
+`
+<button
+class="btn btn-green"
+disabled
+>
+✅ Approved
+</button>
+`
+}
+
+
+${
+x.status!=="Suspended"
+?
+`
+<button
+class="btn btn-danger"
+onclick="suspendReseller('${x.user_id}',${x.id})"
+>
+🚫 Suspend
+</button>
+`
+:
+`
+<button
+class="btn btn-orange"
+disabled
+>
+🚫 Suspended
+</button>
+`
+}
+
+</div>
+
+</div>
+
+`;
+
+}
+
+
+box.innerHTML=html;
+
+}
+
+
+/* =========================
+   APPROVE RESELLER
+   ========================= */
+
+async function approveReseller(uid,rid){
+
+if(!await isAdmin())
+return alert("Admin access নেই।");
+
+
+if(
+!confirm(
+"এই customer-এর Reseller Request Approve করবেন?"
+)
+)
+return;
+
+
+let r=
+await db
+.from("resellers")
+.update({
+status:"Approved"
+})
+.eq("id",rid);
+
+
+if(r.error){
+
+alert(
+"Reseller Approve হয়নি ❌\n"+
+r.error.message
+);
+
+return;
+
+}
+
+
+/*
+Profile role update
+*/
+
+let p=
+await db
+.from("profiles")
+.update({
+role:"reseller"
+})
+.eq("id",uid);
+
+
+if(p.error){
+
+alert(
+"Reseller Approved হয়েছে, কিন্তু Profile role update হয়নি ❌\n\n"+
+p.error.message
+);
+
+await renderResellers();
+
+return;
+
+}
+
+
+alert(
+"Reseller Request Accepted ✅\n\n"+
+"Customer এখন Reseller হিসেবে কাজ করতে পারবে।"
+);
+
+
+await loadStats();
+
+await renderResellers();
+
+}
+
+
+/* =========================
+   SUSPEND RESELLER
+   ========================= */
+
+async function suspendReseller(uid,rid){
+
+if(!await isAdmin())
+return alert("Admin access নেই।");
+
+
+if(
+!confirm(
+"এই Reseller account Suspend করবেন?"
+)
+)
+return;
+
+
+let r=
+await db
+.from("resellers")
+.update({
+status:"Suspended"
+})
+.eq("id",rid);
+
+
+if(r.error){
+
+alert(
+"Suspend হয়নি ❌\n"+
+r.error.message
+);
+
+return;
+
+}
+
+
+let p=
+await db
+.from("profiles")
+.update({
+role:"customer"
+})
+.eq("id",uid);
+
+
+if(p.error){
+
+alert(
+"Reseller suspended হয়েছে, কিন্তু profile role update হয়নি ❌\n\n"+
+p.error.message
+);
+
+await renderResellers();
+
+return;
+
+}
+
+
+alert(
+"Reseller Suspended হয়েছে 🚫"
+);
+
+
+await loadStats();
+
+await renderResellers();
+
+}
+
+
+/* =========================
+   REVIEWS
+   ========================= */
+
+async function renderReviews(){
+
+let box=
+document.getElementById(
+"sectionContent"
+);
+
+
+let r=
+await db
+.from("reviews")
+.select("*")
+.order(
+"created_at",
+{
+ascending:false
+}
+);
+
+
+if(r.error){
+
+box.innerHTML=
+'<div class="empty">'+
+esc(r.error.message)+
+'</div>';
+
+return;
+
+}
+
+
+if(!r.data?.length){
+
+box.innerHTML=
+'<div class="empty">কোনো Review নেই।</div>';
+
+return;
+
+}
+
+
+box.innerHTML=
+r.data.map(x=>`
+
+<div class="review-card">
+
+<b>
+${esc(x.user_name||"Customer")}
+</b>
+
+—
+
+Product #${esc(x.product_id)}
+
+<div style="margin:7px 0">
+
+${"⭐".repeat(
+Number(x.rating||0)
+)}
+
+</div>
+
+<p>
+${esc(x.review_text||"")}
+</p>
+
+<p style="margin-top:8px">
+
+Status:
+
+<span class="status">
+${esc(x.status||"Pending")}
+</span>
+
+</p>
+
+
+<div class="admin-actions">
+
+${
+x.status!=="Approved"
+?
+`
+<button
+class="btn btn-pink"
+onclick="updateReview(${x.id},'Approved')"
+>
+✅ Approve
+</button>
+`
+:
+""
+}
+
+
+${
+x.status!=="Rejected"
+?
+`
+<button
+class="btn btn-danger"
+onclick="updateReview(${x.id},'Rejected')"
+>
+❌ Reject
+</button>
+`
+:
+""
+}
+
+</div>
+
+</div>
+
+`).join("");
+
+}
+
+
+/* =========================
+   REVIEW UPDATE
+   ========================= */
+
+async function updateReview(id,status){
+
+if(!await isAdmin())
+return alert("Admin access নেই।");
+
+
+let r=
+await db
+.from("reviews")
+.update({
+status
+})
+.eq("id",id);
+
+
+if(r.error){
+
+alert(
+"Review update হয়নি ❌\n"+
+r.error.message
+);
+
+return;
+
+}
+
+
+await renderReviews();
+
+}
+
+
+/* =========================
+   PRODUCTS
+   ========================= */
+
+async function renderProducts(){
+
+let box=
+document.getElementById(
+"sectionContent"
+);
+
+
+let r=
+await db
+.from("products")
+.select("*")
+.order(
+"id",
+{
+ascending:false
+}
+);
+
+
+if(r.error){
+
+box.innerHTML=
+'<div class="empty">'+
+esc(r.error.message)+
+'</div>';
+
+return;
+
+}
+
+
+if(!r.data?.length){
+
+box.innerHTML=
+'<div class="empty">কোনো Product নেই।</div>';
+
+return;
+
+}
+
+
+box.innerHTML=`
+
+<div class="product-grid">
+
+${
+r.data.map(p=>{
+
+let img="";
+
+if(Array.isArray(p.images))
+img=p.images[0];
+
+else if(typeof p.images==="string"){
+
+try{
+
+let x=
+JSON.parse(p.images);
+
+if(Array.isArray(x))
+img=x[0];
+
+}catch(e){
+
+img=p.images;
+
+}
+
+}
+
+img=
+img||
+"https://via.placeholder.com/500x500?text=Gadhuli";
+
+
+return `
+
+<div class="product-card">
+
+<img
+class="product-image"
+src="${esc(img)}"
+onerror="this.src='https://via.placeholder.com/500x500?text=Gadhuli'"
+>
+
+<div class="product-name">
+${esc(p.name)}
+</div>
+
+<div class="product-price">
+৳${money(p.price)}
+</div>
+
+<div class="product-meta">
+${esc(p.category||"")}
+${p.subcategory?" • "+esc(p.subcategory):""}
+</div>
+
+<br>
+
+<button
+class="btn btn-light"
+onclick="editProduct('${esc(p.id)}')"
+>
+✏️ Edit
+</button>
+
+<button
+class="btn btn-danger"
+onclick="deleteProduct('${esc(p.id)}')"
+>
+🗑️ Delete
+</button>
+
+</div>
+
+`;
+
+}).join("")
+}
+
+</div>
+
+`;
+
+}
+
+
+/* =========================
+   ADD PRODUCT
+   ========================= */
+
+function renderAddProduct(){
+
+let box=
+document.getElementById(
+"sectionContent"
+);
+
+
+box.innerHTML=`
+
+<div class="card">
+
+<h2>
+➕ Add New Product
+</h2>
+
+
+<div class="form-group">
+
+<label>
+Product Name *
+</label>
+
+<input
+id="productName"
+type="text"
+placeholder="Product name"
+>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+Price *
+</label>
+
+<input
+id="productPrice"
+type="number"
+placeholder="Price"
+>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+Category *
+</label>
+
+<select
+id="productCategory"
+onchange="updateSubcategories()"
+>
+
+<option value="">
+Select Category
+</option>
+
+${
+Object.keys(categories)
+.map(c=>`
+<option value="${esc(c)}">
+${esc(c)}
+</option>
+`)
+.join("")
+}
+
+</select>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+Subcategory
+</label>
+
+<select
+id="productSubcategory"
+onchange="updateSizes()"
+>
+
+<option value="">
+Select Subcategory
+</option>
+
+</select>
+
+</div>
+
+
+<div
+class="form-group"
+id="sizeSection"
+>
+
+<label>
+Available Sizes
+</label>
+
+<div id="sizeOptions">
+Category/Subcategory select করুন।
+</div>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+Description
+</label>
+
+<textarea
+id="productDescription"
+rows="5"
+placeholder="Product description"
+></textarea>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+Product Images *
+</label>
+
+<input
+id="productImages"
+type="file"
+accept="image/*"
+multiple
+onchange="previewImages()"
+>
+
+<small>
+১ থেকে ৫টি ছবি select করুন।
+</small>
+
+<div
+id="imagePreview"
+class="image-preview"
+></div>
+
+</div>
+
+
+<button
+class="btn btn-pink full"
+onclick="saveProduct()"
+>
+💾 Save Product
+</button>
+
+</div>
+
+`;
+
+}
+
+
+/* =========================
+   SUBCATEGORY
+   ========================= */
+
+function updateSubcategories(){
+
+let category=
+document.getElementById(
+"productCategory"
+).value;
+
+
+let box=
+document.getElementById(
+"productSubcategory"
+);
+
+
+box.innerHTML=
+'<option value="">Select Subcategory</option>';
+
+
+if(!category)
+return;
+
+
+(categories[category]||[])
+.forEach(s=>{
+
+let o=
+document.createElement("option");
+
+o.value=s;
+
+o.textContent=s;
+
+box.appendChild(o);
+
+});
+
+
+updateSizes();
+
+}
+
+
+/* =========================
+   SIZES
+   ========================= */
+
+function updateSizes(){
+
+let sub=
+document.getElementById(
+"productSubcategory"
+).value;
+
+
+let box=
+document.getElementById(
+"sizeOptions"
+);
+
+
+if(!sub){
+
+box.innerHTML=
+"Subcategory select করুন।";
+
+return;
+
+}
+
+
+let sizes=
+sizeData[sub]||[];
+
+
+if(!sizes.length){
+
+box.innerHTML=
+"<small>এই Product-এর জন্য Size প্রয়োজন নেই।</small>";
+
+return;
+
+}
+
+
+box.innerHTML=
+sizes.map(s=>`
+
+<label
+style="
+display:inline-flex;
+align-items:center;
+gap:5px;
+margin:5px;
+padding:7px 10px;
+border:1px solid #f0b3cc;
+border-radius:8px;
+background:#fff7fa;
+"
+>
+
+<input
+type="checkbox"
+class="size-check"
+value="${esc(s)}"
+style="width:auto"
+>
+
+${esc(s)}
+
+</label>
+
+`).join("");
+
+}
+
+
+/* =========================
+   IMAGE PREVIEW
+   ========================= */
+
+function previewImages(){
+
+let input=
+document.getElementById(
+"productImages"
+);
+
+
+let box=
+document.getElementById(
+"imagePreview"
+);
+
+
+box.innerHTML="";
+
+
+let files=
+Array.from(input.files||[]);
+
+
+if(files.length>5){
+
+alert(
+"Maximum 5টি ছবি select করা যাবে।"
+);
+
+input.value="";
+
+return;
+
+}
+
+
+files.forEach(file=>{
+
+let url=
+URL.createObjectURL(file);
+
+
+let img=
+document.createElement("img");
+
+img.src=url;
+
+box.appendChild(img);
+
+});
+
+}
+
+
+/* =========================
+   SAVE PRODUCT
+   ========================= */
+
+async function saveProduct(){
+
+if(!await isAdmin())
+return alert("Admin access নেই।");
+
+
+let name=
+document.getElementById(
+"productName"
+).value.trim();
+
+
+let price=
+Number(
+document.getElementById(
+"productPrice"
+).value
+);
+
+
+let category=
+document.getElementById(
+"productCategory"
+).value;
+
+
+let subcategory=
+document.getElementById(
+"productSubcategory"
+).value;
+
+
+let description=
+document.getElementById(
+"productDescription"
+).value.trim();
+
+
+let files=
+Array.from(
+document.getElementById(
+"productImages"
+).files||[]
+);
+
+
+if(
+!name||
+!price||
+!category||
+!files.length
+){
+
+alert(
+"Product Name, Price, Category এবং Image দিন।"
+);
+
+return;
+
+}
+
+
+if(files.length>5){
+
+alert(
+"Maximum 5টি ছবি দেওয়া যাবে।"
+);
+
+return;
+
+}
+
+
+let sizes=
+Array.from(
+document.querySelectorAll(
+".size-check:checked"
+)
+)
+.map(x=>x.value);
+
+
+if(
+subcategory&&
+sizeData[subcategory]?.length&&
+!sizes.length
+){
+
+alert(
+"Product-এর Size select করুন।"
+);
+
+return;
+
+}
+
+
+let button=
+event?.target;
+
+
+try{
+
+if(button){
+
+button.disabled=true;
+
+button.textContent=
+"Uploading...";
+
+}
+
+
+let urls=[];
+
+
+for(
+const file of files
+){
+
+let safe=
+file.name
+.replace(
+/[^a-zA-Z0-9._-]/g,
+"_"
+);
+
+
+let path=
+"products/"+
+Date.now()+
+"-"+
+Math.random()
+.toString(36)
+.substring(2,8)+
+"-"+
+safe;
+
+
+let upload=
+await db
+.storage
+.from("product-images")
+.upload(
+path,
+file,
+{
+upsert:false
+}
+);
+
+
+if(upload.error)
+throw upload.error;
+
+
+let pub=
+db
+.storage
+.from("product-images")
+.getPublicUrl(path);
+
+
+urls.push(
+pub.data.publicUrl
+);
+
+}
+
+
+let r=
+await db
+.from("products")
+.insert({
+
+name,
+price,
+category,
+subcategory,
+sizes,
+description,
+images:urls
+
+});
+
+
+if(r.error)
+throw r.error;
+
+
+alert(
+"Product Save হয়েছে ✅"
+);
+
+
+showSection("products");
+
+await loadStats();
+
+
+}catch(e){
+
+console.error(e);
+
+alert(
+"Product Save হয়নি ❌\n\n"+
+(e?.message||String(e))
+);
+
+}finally{
+
+if(button){
+
+button.disabled=false;
+
+button.textContent=
+"💾 Save Product";
+
+}
+
+}
+
+}
+
+
+/* =========================
+   DELETE PRODUCT
+   ========================= */
+
+async function deleteProduct(id){
+
+if(!await isAdmin())
+return alert("Admin access নেই।");
+
+
+if(
+!confirm(
+"এই Product Delete করবেন?"
+)
+)
+return;
+
+
+let r=
+await db
+.from("products")
+.delete()
+.eq("id",id);
+
+
+if(r.error){
+
+alert(
+"Product Delete হয়নি ❌\n"+
+r.error.message
+);
+
+return;
+
+}
+
+
+alert(
+"Product Delete হয়েছে ✅"
+);
+
+
+await loadStats();
+
+await renderProducts();
+
+}
+
+
+/* =========================
+   EDIT PRODUCT
+   ========================= */
+
+function editProduct(id){
+
+alert(
+"ছবি Edit করা যাবে না।\n\n"+
+"নতুন Product যোগ করুন।"
+);
+
+}
+
+
+/* =========================
+   WHATSAPP
+   ========================= */
+
+function openWhatsApp(){
+
+window.open(
+"https://wa.me/"+
+WHATSAPP_NUMBER+
+"?text="+
+encodeURIComponent(
+"Hello Gadhuli Support 👋\n\nI need help regarding Gadhuli."
+),
+"_blank"
+);
+
+}
+
+
+async function copyWhatsApp(){
+
+try{
+
+await navigator.clipboard.writeText(
+"01333-088194"
+);
+
+alert(
+"WhatsApp number copy হয়েছে ✅"
+);
+
+}catch(e){
+
+alert(
+"Number: 01333-088194"
+);
+
+}
+
+}
+
+
+function contactCustomer(phone,name){
+
+let clean=
+String(phone||"")
+.replace(
+/[^0-9]/g,
+""
+);
+
+
+if(clean.startsWith("01"))
+clean=
+"88"+
+clean;
+
+
+let msg=
+"Hello "+
+(name||"Customer")+
+" 👋\n\n"+
+"This is Gadhuli Support regarding your order.\n\n"+
+"How can we help you?";
+
+
+window.open(
+"https://wa.me/"+
+clean+
+"?text="+
+encodeURIComponent(msg),
+"_blank"
+);
+
+}
+
+
+/* =========================
+   RESELLER COMMISSION
+   ========================= */
+
+async function postCommission(order){
+
+let r=
+await db
+.from("resellers")
+.select("*")
+.eq(
+"user_id",
+order.reseller_id
+)
+.maybeSingle();
+
+
+if(
+r.error||
+!r.data||
+r.data.status!=="Approved"
+)
+
+return;
+
+
+let notes=
+order.notes||"";
+
+
+if(
+notes.includes(
+"[COMMISSION_POSTED]"
+)
+)
+
+return;
+
+
+let commission=
+Number(order.subtotal||0)*
+Number(r.data.commission_rate||0)/
+100;
+
+
+let u=
+await db
+.from("resellers")
+.update({
+
+total_orders:
+Number(r.data.total_orders||0)+1,
+
+total_sales:
+Number(r.data.total_sales||0)+
+Number(order.subtotal||0),
+
+total_commission:
+Number(r.data.total_commission||0)+
+commission
+
+})
+.eq(
+"user_id",
+order.reseller_id
+);
+
+
+if(u.error){
+
+console.error(
+"Commission update failed",
+u.error
+);
+
+return;
+
+}
+
+
+await db
+.from("orders")
+.update({
+
+notes:
+(notes?notes+"\n":"")+
+"[COMMISSION_POSTED] Commission: ৳"+
+commission.toFixed(2)
+
+})
+.eq(
+"id",
+order.id
+);
+
+}
+
+
+/* =========================
    START
-================================= */
+   ========================= */
+
+document.addEventListener(
+"DOMContentLoaded",
+()=>{
 
 checkSession();
+
+});
+
 
 </script>
 
 </body>
-
 </html>
