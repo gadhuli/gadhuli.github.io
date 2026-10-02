@@ -6,7 +6,7 @@
 
 <meta
   name="viewport"
-  content="width=device-width,initial-scale=1.0"
+  content="width=device-width, initial-scale=1.0"
 >
 
 <meta
@@ -16,17 +16,9 @@
 
 <title>Gadhuli | Official Website</title>
 
-<!-- Supabase Library -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-<!-- Your existing Supabase connection -->
-<script src="supabase.js"></script>
-
 <style>
-
-/* =====================================================
-   GLOBAL
-===================================================== */
 
 *{
   box-sizing:border-box;
@@ -34,15 +26,27 @@
   padding:0;
 }
 
-html{
-  scroll-behavior:smooth;
+:root{
+  --orange:#FF6B00;
+  --dark-orange:#E65100;
+  --light-orange:#FFF3E8;
+  --gradient:linear-gradient(135deg,#FF8A00,#FF5A00);
+  --white:#ffffff;
+  --offwhite:#FFFDF9;
+  --text:#171717;
+  --gray:#666;
+  --light-gray:#EEEEEE;
+  --green:#25D366;
+  --danger:#e53935;
+  --shadow:0 5px 20px rgba(0,0,0,.08);
+  --radius:14px;
 }
 
 body{
   font-family:Arial,Helvetica,sans-serif;
-  background:#fffdf9;
-  color:#171717;
-  padding-bottom:76px;
+  background:var(--offwhite);
+  color:var(--text);
+  padding-bottom:82px;
 }
 
 button,
@@ -54,6 +58,11 @@ textarea{
 
 button{
   cursor:pointer;
+  border:none;
+}
+
+img{
+  max-width:100%;
 }
 
 a{
@@ -61,83 +70,64 @@ a{
   color:inherit;
 }
 
-img{
-  max-width:100%;
-}
-
-
-/* =====================================================
-   HEADER
-===================================================== */
+/* ================= HEADER ================= */
 
 .top-header{
+  background:#fff;
   position:sticky;
   top:0;
   z-index:1000;
-  background:linear-gradient(
-    135deg,
-    #ff8a00,
-    #ff6b00,
-    #ff5a00
-  );
-  color:white;
-  box-shadow:0 3px 14px rgba(0,0,0,.16);
+  box-shadow:0 2px 12px rgba(0,0,0,.08);
 }
 
 .header-main{
-  max-width:1280px;
+  max-width:1400px;
   margin:auto;
-  padding:11px 16px;
+  padding:10px 16px;
   display:flex;
   align-items:center;
   gap:15px;
 }
 
 .logo-area{
+  width:150px;
+  min-width:150px;
+  height:58px;
   display:flex;
   align-items:center;
-  min-width:75px;
 }
 
 .logo-area img{
-  width:54px;
-  height:54px;
+  max-width:145px;
+  max-height:55px;
   object-fit:contain;
-  background:white;
-  border-radius:10px;
-  padding:4px;
+  display:block;
 }
 
-/*
-  পুরোনো Gadhuli লেখা intentionally রাখা হয়নি।
-  পরে তোমার নতুন logo.png বসালেই হবে।
-*/
-
-.search-box{
+.search-area{
   flex:1;
-  height:46px;
   display:flex;
-  background:white;
+  height:44px;
+  border:2px solid var(--orange);
   border-radius:8px;
   overflow:hidden;
-  box-shadow:0 2px 8px rgba(0,0,0,.08);
+  background:#fff;
 }
 
-.search-box input{
+.search-area input{
   flex:1;
-  border:0;
-  outline:0;
-  padding:0 16px;
+  border:none;
+  outline:none;
+  padding:0 15px;
   font-size:14px;
-  color:#222;
+  min-width:0;
 }
 
-.search-box button{
-  width:58px;
-  border:0;
-  background:#e65100;
-  color:white;
-  font-size:19px;
+.search-area button{
+  width:52px;
+  background:var(--orange);
+  color:#fff;
+  font-size:20px;
 }
 
 .header-actions{
@@ -145,304 +135,205 @@ img{
   gap:7px;
 }
 
-.header-actions button{
-  border:0;
-  background:rgba(255,255,255,.17);
-  color:white;
-  padding:10px 12px;
-  border-radius:7px;
+.header-action{
+  background:#fff;
+  border:1px solid #ddd;
+  border-radius:8px;
+  min-width:48px;
+  height:44px;
+  padding:0 9px;
   font-size:12px;
-  font-weight:bold;
+  color:#333;
 }
 
+.header-action:hover{
+  border-color:var(--orange);
+  color:var(--orange);
+}
 
-/* =====================================================
-   CATEGORY
-===================================================== */
+.cart-count,
+.wish-count{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-width:17px;
+  height:17px;
+  border-radius:50%;
+  background:var(--orange);
+  color:#fff;
+  font-size:10px;
+  margin-left:2px;
+}
+
+/* ================= CATEGORY ================= */
+
+.category-wrapper{
+  background:#fff;
+  border-top:1px solid #f2f2f2;
+  border-bottom:1px solid #ddd;
+}
 
 .category-bar{
-  background:#fff;
-  border-bottom:1px solid #eee;
+  max-width:1400px;
+  margin:auto;
+  display:flex;
   overflow-x:auto;
-  white-space:nowrap;
   scrollbar-width:none;
+  padding:8px 12px;
+  gap:7px;
 }
 
 .category-bar::-webkit-scrollbar{
   display:none;
 }
 
-.category-inner{
-  max-width:1280px;
-  margin:auto;
-  padding:9px 12px;
-  display:flex;
-  gap:6px;
-}
-
 .category-btn{
-  border:1px solid #ffe0c2;
-  background:#fff5eb;
-  color:#e65100;
-  padding:9px 14px;
-  border-radius:22px;
-  font-size:12px;
-  font-weight:bold;
+  flex:0 0 auto;
+  background:#fff;
+  border:1px solid #ddd;
+  color:#333;
+  padding:9px 13px;
+  border-radius:20px;
+  font-size:13px;
   white-space:nowrap;
-  transition:.2s;
 }
 
 .category-btn:hover,
 .category-btn.active{
-  background:#ff6b00;
-  color:white;
-  border-color:#ff6b00;
+  background:var(--orange);
+  border-color:var(--orange);
+  color:#fff;
 }
 
-
-/* =====================================================
-   SUBCATEGORY
-===================================================== */
-
-.subcategory-wrap{
+.subcategory-wrapper{
+  max-width:1400px;
+  margin:auto;
+  padding:0 14px 9px;
   display:none;
-  background:#fff;
-  border-bottom:1px solid #eee;
 }
 
-.subcategory-wrap.show{
+.subcategory-wrapper.show{
   display:block;
 }
 
-.subcategory-inner{
-  max-width:1280px;
-  margin:auto;
-  padding:8px 14px;
+.subcategory-list{
   display:flex;
-  gap:6px;
+  gap:7px;
   overflow-x:auto;
   scrollbar-width:none;
 }
 
-.subcategory-inner::-webkit-scrollbar{
+.subcategory-list::-webkit-scrollbar{
   display:none;
 }
 
 .subcategory-btn{
-  border:1px solid #ffd1aa;
-  background:#fffaf5;
-  color:#d94f00;
-  padding:7px 12px;
-  border-radius:18px;
-  font-size:11px;
-  font-weight:bold;
-  white-space:nowrap;
+  flex:0 0 auto;
+  background:var(--light-orange);
+  border:1px solid #ffd2b0;
+  color:#9b4300;
+  padding:7px 11px;
+  border-radius:16px;
+  font-size:12px;
 }
 
 .subcategory-btn:hover,
 .subcategory-btn.active{
-  background:#ff6b00;
-  color:white;
+  background:var(--orange);
+  color:#fff;
 }
 
+/* ================= BANNER ================= */
 
-/* =====================================================
-   ADVERTISEMENT SLIDER
-===================================================== */
-
-.ad-section{
-  max-width:1280px;
-  margin:14px auto 8px;
-  padding:0 14px;
+.banner-section{
+  max-width:1400px;
+  margin:12px auto;
+  padding:0 12px;
 }
 
-.ad-slider{
-  position:relative;
+.banner-slider{
   width:100%;
-  height:250px;
-  border-radius:14px;
+  height:270px;
+  border-radius:15px;
   overflow:hidden;
-  background:
-    linear-gradient(
-      135deg,
-      #ff8a00,
-      #ff5a00
-    );
-  box-shadow:0 5px 20px rgba(255,107,0,.18);
+  position:relative;
+  background:var(--gradient);
+  box-shadow:var(--shadow);
 }
 
-.ad-slide{
-  position:absolute;
-  inset:0;
-  opacity:0;
-  pointer-events:none;
-  transition:opacity .5s ease;
+.banner-slide{
+  width:100%;
+  height:100%;
+  display:none;
 }
 
-.ad-slide.active{
-  opacity:1;
-  pointer-events:auto;
+.banner-slide.active{
+  display:block;
 }
 
-.ad-slide img{
+.banner-slide img{
   width:100%;
   height:100%;
   object-fit:cover;
+  display:block;
 }
 
-.ad-placeholder{
+.banner-fallback{
   width:100%;
   height:100%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  flex-direction:column;
-  color:white;
-  text-align:center;
-  padding:20px;
+  background:var(--gradient);
 }
 
-.ad-placeholder h1{
-  font-size:32px;
-  font-weight:900;
-  margin-bottom:8px;
-}
-
-.ad-placeholder p{
-  font-size:14px;
-}
-
-.slider-arrow{
-  position:absolute;
-  top:50%;
-  transform:translateY(-50%);
-  width:38px;
-  height:38px;
-  border:0;
-  border-radius:50%;
-  background:rgba(255,255,255,.9);
-  color:#e65100;
-  font-size:20px;
-  z-index:5;
-  box-shadow:0 2px 8px rgba(0,0,0,.18);
-}
-
-.slider-prev{
-  left:12px;
-}
-
-.slider-next{
-  right:12px;
-}
-
-.slider-dots{
+.banner-dots{
   position:absolute;
   bottom:10px;
   left:50%;
   transform:translateX(-50%);
   display:flex;
   gap:5px;
-  z-index:5;
 }
 
-.slider-dot{
+.banner-dot{
   width:8px;
   height:8px;
-  border:0;
   border-radius:50%;
-  background:rgba(255,255,255,.65);
+  background:rgba(255,255,255,.55);
 }
 
-.slider-dot.active{
-  width:22px;
+.banner-dot.active{
+  background:#fff;
+  width:20px;
   border-radius:10px;
-  background:white;
 }
 
-
-/* =====================================================
-   HERO FALLBACK
-===================================================== */
-
-.hero{
-  max-width:1280px;
-  margin:14px auto;
-  padding:0 14px;
-}
-
-.hero-card{
-  min-height:170px;
-  border-radius:14px;
-  overflow:hidden;
-  background:linear-gradient(
-    120deg,
-    #ff8a00,
-    #ff5a00
-  );
-  color:white;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:28px;
-  box-shadow:0 5px 18px rgba(255,107,0,.2);
-}
-
-.hero-title{
-  font-size:30px;
-  font-weight:900;
-  margin-bottom:7px;
-}
-
-.hero-text{
-  font-size:14px;
-  margin-bottom:16px;
-}
-
-.hero-btn{
-  border:0;
-  background:white;
-  color:#e65100;
-  padding:11px 20px;
-  border-radius:7px;
-  font-weight:bold;
-}
-
-.hero-icon{
-  font-size:80px;
-}
-
-
-/* =====================================================
-   SECTION
-===================================================== */
+/* ================= SECTION ================= */
 
 .section{
-  max-width:1280px;
-  margin:21px auto;
-  padding:0 14px;
+  max-width:1400px;
+  margin:20px auto;
+  padding:0 12px;
+}
+
+.section-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:12px;
 }
 
 .section-title{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin-bottom:13px;
+  font-size:21px;
+  font-weight:800;
+  border-left:5px solid var(--orange);
+  padding-left:10px;
 }
 
-.section-title h2{
-  font-size:20px;
+.result-text{
+  font-size:13px;
+  color:#777;
 }
 
-.section-title span{
-  color:#e65100;
-  font-size:12px;
-  font-weight:bold;
-}
-
-
-/* =====================================================
-   PRODUCTS
-===================================================== */
+/* ================= PRODUCTS ================= */
 
 .product-grid{
   display:grid;
@@ -451,26 +342,47 @@ img{
 }
 
 .product-card{
-  position:relative;
+  background:#fff;
+  border-radius:var(--radius);
   overflow:hidden;
-  background:white;
+  box-shadow:var(--shadow);
   border:1px solid #eee;
-  border-radius:10px;
   transition:.2s;
+  position:relative;
 }
 
 .product-card:hover{
   transform:translateY(-3px);
-  box-shadow:0 8px 22px rgba(0,0,0,.09);
+  box-shadow:0 8px 25px rgba(0,0,0,.12);
 }
 
-.product-image{
-  display:block;
-  width:100%;
-  height:205px;
-  object-fit:cover;
+.product-image-box{
+  height:220px;
   background:#f7f7f7;
-  cursor:pointer;
+  position:relative;
+  overflow:hidden;
+}
+
+.product-image-box img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.wishlist-card{
+  position:absolute;
+  right:9px;
+  top:9px;
+  width:34px;
+  height:34px;
+  border-radius:50%;
+  background:#fff;
+  box-shadow:0 2px 8px rgba(0,0,0,.12);
+  font-size:18px;
+}
+
+.wishlist-card.active{
+  color:#e91e63;
 }
 
 .product-info{
@@ -478,123 +390,169 @@ img{
 }
 
 .product-name{
-  min-height:34px;
   font-size:14px;
-  font-weight:bold;
-  line-height:17px;
-}
-
-.product-category{
-  min-height:16px;
-  margin:5px 0;
-  color:#777;
-  font-size:11px;
+  line-height:20px;
+  height:40px;
+  overflow:hidden;
+  margin-bottom:6px;
 }
 
 .product-price{
-  color:#e65100;
-  font-size:18px;
-  font-weight:900;
+  color:var(--orange);
+  font-size:19px;
+  font-weight:800;
+  margin-bottom:8px;
 }
 
-.card-buttons{
+.product-category{
+  color:#888;
+  font-size:11px;
+  margin-bottom:9px;
+}
+
+.product-actions{
   display:grid;
   grid-template-columns:1fr 1fr;
   gap:6px;
-  margin-top:9px;
 }
 
-.card-buttons button{
-  border:0;
+.btn-cart{
+  background:#fff;
+  color:var(--orange);
+  border:1px solid var(--orange);
+  border-radius:7px;
   padding:9px 4px;
-  border-radius:6px;
-  font-size:11px;
+  font-size:12px;
   font-weight:bold;
 }
 
-.cart-btn{
-  background:#fff3e8;
-  color:#e65100;
+.btn-order{
+  background:var(--orange);
+  color:#fff;
+  border-radius:7px;
+  padding:9px 4px;
+  font-size:12px;
+  font-weight:bold;
 }
 
-.order-btn{
-  background:#ff6b00;
-  color:white;
+.btn-cart:hover{
+  background:var(--light-orange);
 }
 
-.wish-btn{
-  position:absolute;
-  top:8px;
-  right:8px;
-  width:33px;
-  height:33px;
-  border:0;
-  border-radius:50%;
-  background:white;
-  box-shadow:0 2px 8px rgba(0,0,0,.15);
-  z-index:3;
-  font-size:17px;
+.btn-order:hover{
+  background:var(--dark-orange);
 }
 
+.no-products{
+  grid-column:1/-1;
+  text-align:center;
+  background:#fff;
+  padding:45px 15px;
+  border-radius:14px;
+  color:#777;
+}
 
-/* =====================================================
-   MODAL
-===================================================== */
+.loading{
+  grid-column:1/-1;
+  text-align:center;
+  padding:45px;
+  color:var(--orange);
+  font-weight:bold;
+}
+
+/* ================= FOOTER ================= */
+
+.footer{
+  background:#171717;
+  color:#fff;
+  margin-top:35px;
+  padding:30px 15px 100px;
+}
+
+.footer-inner{
+  max-width:1400px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:2fr 1fr 1fr 1fr;
+  gap:25px;
+}
+
+.footer h3{
+  color:#fff;
+  margin-bottom:12px;
+}
+
+.footer p,
+.footer li{
+  color:#bbb;
+  font-size:13px;
+  line-height:24px;
+}
+
+.footer ul{
+  list-style:none;
+}
+
+.footer-bottom{
+  max-width:1400px;
+  margin:25px auto 0;
+  padding-top:15px;
+  border-top:1px solid #333;
+  text-align:center;
+  color:#999;
+  font-size:12px;
+}
+
+/* ================= MODAL ================= */
 
 .modal{
+  display:none;
   position:fixed;
   inset:0;
-  display:none;
-  align-items:center;
-  justify-content:center;
-  padding:15px;
-  background:rgba(0,0,0,.58);
   z-index:3000;
+  background:rgba(0,0,0,.58);
+  padding:15px;
+  overflow-y:auto;
 }
 
 .modal.show{
   display:flex;
+  align-items:center;
+  justify-content:center;
 }
 
 .modal-box{
-  position:relative;
   width:100%;
-  max-width:530px;
+  max-width:600px;
+  background:#fff;
+  border-radius:16px;
+  padding:20px;
+  position:relative;
   max-height:92vh;
   overflow-y:auto;
-  background:white;
-  border-radius:14px;
-  padding:20px;
 }
 
-.modal-large{
-  max-width:850px;
+.modal-box.large{
+  max-width:900px;
 }
 
-.close{
+.close-btn{
   position:absolute;
-  top:10px;
   right:12px;
-  width:32px;
-  height:32px;
-  border:0;
+  top:10px;
+  width:34px;
+  height:34px;
   border-radius:50%;
-  background:#eee;
-  font-size:19px;
+  background:#f2f2f2;
+  font-size:20px;
 }
 
 .modal-title{
-  margin-bottom:15px;
-  color:#e65100;
   font-size:21px;
-  font-weight:900;
-  padding-right:35px;
+  font-weight:800;
+  margin-bottom:15px;
+  padding-right:40px;
 }
-
-
-/* =====================================================
-   FORMS
-===================================================== */
 
 .form-group{
   margin-bottom:12px;
@@ -602,106 +560,134 @@ img{
 
 .form-group label{
   display:block;
-  margin-bottom:5px;
-  font-size:12px;
+  font-size:13px;
   font-weight:bold;
+  margin-bottom:5px;
 }
 
 .form-group input,
-.form-group textarea,
-.form-group select{
+.form-group select,
+.form-group textarea{
   width:100%;
-  padding:11px;
   border:1px solid #ddd;
-  border-radius:7px;
-  outline:0;
-  font-size:13px;
+  border-radius:8px;
+  padding:11px;
+  outline:none;
+  background:#fff;
 }
 
 .form-group input:focus,
-.form-group textarea:focus,
-.form-group select:focus{
-  border-color:#ff6b00;
+.form-group select:focus,
+.form-group textarea:focus{
+  border-color:var(--orange);
 }
 
 .primary-btn{
   width:100%;
-  border:0;
-  border-radius:7px;
+  background:var(--gradient);
+  color:#fff;
   padding:12px;
-  background:#ff6b00;
-  color:white;
+  border-radius:9px;
   font-weight:bold;
+  font-size:14px;
 }
 
 .secondary-btn{
   width:100%;
-  margin-top:7px;
-  border:1px solid #ffb980;
-  border-radius:7px;
+  background:#fff;
+  border:1px solid #ddd;
   padding:11px;
-  background:#fff3e8;
-  color:#e65100;
+  border-radius:9px;
   font-weight:bold;
+  margin-top:8px;
 }
 
+.link-btn{
+  background:none;
+  color:var(--orange);
+  font-size:13px;
+  margin-top:10px;
+}
 
-/* =====================================================
-   DETAIL
-===================================================== */
+/* ================= DETAILS ================= */
 
-.detail-images{
+.detail-layout{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:20px;
+}
+
+.detail-main-image{
+  width:100%;
+  height:390px;
+  object-fit:contain;
+  background:#f7f7f7;
+  border-radius:12px;
+}
+
+.detail-thumbs{
   display:flex;
-  gap:8px;
+  gap:7px;
+  margin-top:8px;
   overflow-x:auto;
-  margin-bottom:15px;
 }
 
-.detail-images img{
-  flex:0 0 auto;
-  width:180px;
-  height:180px;
+.detail-thumb{
+  width:65px;
+  height:65px;
   object-fit:cover;
-  border-radius:8px;
-  background:#f5f5f5;
+  border-radius:7px;
+  border:2px solid transparent;
+  cursor:pointer;
+}
+
+.detail-thumb.active{
+  border-color:var(--orange);
 }
 
 .detail-price{
-  margin:8px 0;
-  color:#e65100;
-  font-size:25px;
-  font-weight:900;
+  color:var(--orange);
+  font-size:28px;
+  font-weight:800;
+  margin:10px 0;
+}
+
+.detail-category{
+  color:#777;
+  font-size:13px;
+}
+
+.size-title{
+  font-weight:bold;
+  margin:14px 0 7px;
 }
 
 .size-list{
   display:flex;
   flex-wrap:wrap;
   gap:7px;
-  margin:8px 0 15px;
 }
 
 .size-btn{
-  border:1px solid #ddd;
-  background:white;
-  padding:8px 13px;
-  border-radius:6px;
+  background:#fff;
+  border:1px solid #bbb;
+  border-radius:7px;
+  padding:8px 12px;
 }
 
-.size-btn.selected{
-  border-color:#ff6b00;
-  background:#ff6b00;
-  color:white;
+.size-btn.active{
+  background:var(--orange);
+  color:#fff;
+  border-color:var(--orange);
 }
 
-
-/* =====================================================
-   CART
-===================================================== */
+/* ================= CART ================= */
 
 .cart-item{
-  display:flex;
-  align-items:center;
+  display:grid;
+  grid-template-columns:65px 1fr auto;
   gap:10px;
+  align-items:center;
   padding:10px 0;
   border-bottom:1px solid #eee;
 }
@@ -710,256 +696,275 @@ img{
   width:65px;
   height:65px;
   object-fit:cover;
-  border-radius:7px;
-}
-
-.cart-info{
-  flex:1;
+  border-radius:8px;
+  background:#f5f5f5;
 }
 
 .cart-name{
-  font-size:13px;
   font-weight:bold;
-}
-
-.cart-price{
-  color:#e65100;
-  font-size:13px;
-  font-weight:bold;
-}
-
-.qty{
-  display:flex;
-  align-items:center;
-  gap:6px;
-  margin-top:5px;
-}
-
-.qty button{
-  width:25px;
-  height:25px;
-  border:0;
-  border-radius:4px;
-  background:#fff3e8;
-  color:#e65100;
-}
-
-.cart-total{
-  margin:15px 0;
-  text-align:right;
-  color:#e65100;
-  font-size:19px;
-  font-weight:900;
-}
-
-
-/* =====================================================
-   PROFILE
-===================================================== */
-
-.profile-menu{
-  display:grid;
-  gap:7px;
-}
-
-.profile-menu button{
-  width:100%;
-  text-align:left;
-  border:1px solid #eee;
-  border-radius:7px;
-  padding:13px;
-  background:white;
-  font-weight:bold;
-}
-
-.profile-menu button:hover{
-  background:#fff3e8;
-  color:#e65100;
-}
-
-
-/* =====================================================
-   WHATSAPP
-===================================================== */
-
-.whatsapp-btn{
-  background:#25D366 !important;
-  color:white !important;
-}
-
-
-/* =====================================================
-   ORDERS
-===================================================== */
-
-.order-box{
-  margin-bottom:9px;
-  padding:12px;
-  border:1px solid #eee;
-  border-radius:8px;
-}
-
-.order-status{
-  display:inline-block;
-  padding:5px 8px;
-  border-radius:5px;
-  background:#fff3e8;
-  color:#e65100;
-  font-size:11px;
-  font-weight:bold;
-}
-
-
-/* =====================================================
-   EMPTY
-===================================================== */
-
-.empty{
-  grid-column:1/-1;
-  padding:35px 10px;
-  color:#777;
-  text-align:center;
   font-size:14px;
 }
 
+.cart-meta{
+  font-size:12px;
+  color:#777;
+  margin-top:3px;
+}
 
-/* =====================================================
-   BOTTOM NAV
-===================================================== */
+.qty-control{
+  display:flex;
+  align-items:center;
+  gap:5px;
+  margin-top:5px;
+}
+
+.qty-control button{
+  width:26px;
+  height:26px;
+  border-radius:5px;
+  background:#eee;
+}
+
+.remove-btn{
+  color:#e53935;
+  background:none;
+  font-size:12px;
+  margin-top:4px;
+}
+
+.cart-total{
+  display:flex;
+  justify-content:space-between;
+  font-size:19px;
+  font-weight:800;
+  padding:15px 0;
+}
+
+/* ================= PAYMENT ================= */
+
+.payment-options{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:7px;
+}
+
+.payment-option{
+  border:1px solid #ddd;
+  padding:9px 5px;
+  border-radius:8px;
+  text-align:center;
+  cursor:pointer;
+  font-size:12px;
+}
+
+.payment-option.active{
+  border-color:var(--orange);
+  background:var(--light-orange);
+  color:var(--dark-orange);
+}
+
+/* ================= PROFILE ================= */
+
+.profile-menu{
+  display:grid;
+  gap:8px;
+}
+
+.profile-item{
+  width:100%;
+  text-align:left;
+  padding:13px;
+  background:#fff;
+  border:1px solid #eee;
+  border-radius:9px;
+}
+
+.profile-item:hover{
+  border-color:var(--orange);
+  background:var(--light-orange);
+}
+
+/* ================= ORDERS ================= */
+
+.order-card{
+  border:1px solid #eee;
+  border-radius:10px;
+  padding:12px;
+  margin-bottom:9px;
+  background:#fff;
+}
+
+.order-head{
+  display:flex;
+  justify-content:space-between;
+  gap:8px;
+}
+
+.order-status{
+  color:var(--orange);
+  font-weight:bold;
+}
+
+.order-date{
+  color:#888;
+  font-size:11px;
+  margin-top:4px;
+}
+
+.order-total{
+  font-weight:bold;
+  margin-top:8px;
+}
+
+/* ================= WHATSAPP ================= */
+
+.whatsapp-help{
+  position:fixed;
+  right:18px;
+  bottom:95px;
+  width:56px;
+  height:56px;
+  border-radius:50%;
+  background:var(--green);
+  color:#fff;
+  z-index:1600;
+  font-size:26px;
+  box-shadow:0 5px 20px rgba(0,0,0,.2);
+}
+
+.whatsapp-help:hover{
+  transform:scale(1.06);
+}
+
+/* ================= BOTTOM NAV ================= */
 
 .bottom-nav{
   position:fixed;
   left:0;
   right:0;
   bottom:0;
-  z-index:2000;
-  display:none;
-  height:66px;
-  grid-template-columns:repeat(5,1fr);
-  background:white;
+  height:72px;
+  background:#fff;
   border-top:1px solid #ddd;
-  box-shadow:0 -3px 14px rgba(0,0,0,.09);
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  z-index:2000;
+  box-shadow:0 -4px 18px rgba(0,0,0,.08);
 }
 
 .bottom-nav button{
-  border:0;
-  background:white;
+  background:#fff;
   color:#555;
   display:flex;
   flex-direction:column;
   align-items:center;
   justify-content:center;
   gap:3px;
+  font-size:20px;
+  position:relative;
+}
+
+.bottom-nav button small{
   font-size:10px;
-}
-
-.bottom-nav button span{
-  font-size:21px;
-}
-
-.bottom-nav button.active{
-  color:#e65100;
   font-weight:bold;
 }
 
-.bottom-nav .whatsapp-nav{
-  color:#25a95a;
+.bottom-nav button.active{
+  color:var(--orange);
 }
 
-.bottom-nav .whatsapp-nav.active{
-  color:#25a95a;
+.bottom-nav button.whatsapp{
+  color:var(--green);
 }
 
+.bottom-nav button.whatsapp span{
+  width:35px;
+  height:35px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:var(--green);
+  color:#fff;
+  border-radius:50%;
+  font-size:18px;
+}
 
-/* =====================================================
-   FOOTER
-===================================================== */
+/* ================= TOAST ================= */
 
-footer{
-  margin-top:35px;
-  padding:25px 15px;
-  background:#171717;
-  color:white;
+.toast{
+  position:fixed;
+  left:50%;
+  bottom:90px;
+  transform:translateX(-50%) translateY(20px);
+  background:#222;
+  color:#fff;
+  padding:11px 17px;
+  border-radius:8px;
+  z-index:5000;
+  opacity:0;
+  pointer-events:none;
+  transition:.25s;
+  font-size:13px;
+  max-width:90%;
   text-align:center;
-  font-size:12px;
 }
 
-.footer-orange{
-  color:#ff8a00;
-  font-weight:900;
+.toast.show{
+  opacity:1;
+  transform:translateX(-50%) translateY(0);
 }
 
+/* ================= RESPONSIVE ================= */
 
-/* =====================================================
-   RESPONSIVE
-===================================================== */
-
-@media(max-width:1050px){
-
+@media(max-width:1100px){
   .product-grid{
     grid-template-columns:repeat(4,1fr);
   }
 
+  .footer-inner{
+    grid-template-columns:1fr 1fr;
+  }
 }
 
-@media(max-width:750px){
-
-  body{
-    padding-bottom:70px;
-  }
+@media(max-width:800px){
 
   .header-main{
-    padding:8px 10px;
     flex-wrap:wrap;
+    gap:8px;
   }
 
   .logo-area{
-    min-width:auto;
+    width:110px;
+    min-width:110px;
+    height:48px;
   }
 
   .logo-area img{
-    width:42px;
+    max-width:105px;
+    max-height:45px;
+  }
+
+  .search-area{
+    order:3;
+    flex-basis:100%;
     height:42px;
   }
 
   .header-actions{
+    margin-left:auto;
+  }
+
+  .header-action{
+    min-width:39px;
+    padding:0 6px;
+  }
+
+  .header-action span.label{
     display:none;
   }
 
-  .search-box{
-    order:3;
-    flex-basis:100%;
-    height:40px;
-  }
-
-  .ad-section{
-    margin-top:9px;
-  }
-
-  .ad-slider{
-    height:165px;
-    border-radius:10px;
-  }
-
-  .hero{
-    margin:10px auto;
-  }
-
-  .hero-card{
-    min-height:140px;
-    padding:20px;
-  }
-
-  .hero-title{
-    font-size:22px;
-  }
-
-  .hero-text{
-    font-size:12px;
-  }
-
-  .hero-icon{
-    font-size:50px;
+  .banner-slider{
+    height:190px;
   }
 
   .product-grid{
@@ -967,8 +972,8 @@ footer{
     gap:9px;
   }
 
-  .product-image{
-    height:170px;
+  .product-image-box{
+    height:190px;
   }
 
   .product-info{
@@ -976,399 +981,387 @@ footer{
   }
 
   .product-name{
-    font-size:12px;
+    font-size:13px;
   }
 
   .product-price{
-    font-size:16px;
-  }
-
-  .card-buttons button{
-    padding:8px 2px;
-    font-size:10px;
-  }
-
-  .bottom-nav{
-    display:grid;
-  }
-
-  .section-title h2{
     font-size:17px;
   }
 
-}
-
-@media(max-width:380px){
-
-  .product-image{
-    height:145px;
+  .product-actions{
+    grid-template-columns:1fr;
   }
 
-  .bottom-nav button span{
+  .detail-layout{
+    grid-template-columns:1fr;
+  }
+
+  .detail-main-image{
+    height:280px;
+  }
+
+  .payment-options{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .footer-inner{
+    grid-template-columns:1fr;
+  }
+
+  .whatsapp-help{
+    display:none;
+  }
+}
+
+@media(max-width:400px){
+
+  .product-grid{
+    gap:7px;
+  }
+
+  .product-image-box{
+    height:165px;
+  }
+
+  .section-title{
     font-size:18px;
   }
 
-  .bottom-nav button{
-    font-size:9px;
+  .bottom-nav{
+    height:68px;
   }
 
+  .bottom-nav button{
+    font-size:18px;
+  }
+
+  .bottom-nav button small{
+    font-size:9px;
+  }
 }
 
 </style>
-
 </head>
-
 
 <body>
 
-
-<!-- =====================================================
-     HEADER
-===================================================== -->
+<!-- ================= HEADER ================= -->
 
 <header class="top-header">
 
   <div class="header-main">
 
-    <div class="logo-area">
+    <a href="#" class="logo-area" onclick="goHome();return false;">
+      <img src="logo.png" alt="Gadhuli">
+    </a>
 
-      <img
-        src="logo.png"
-        alt="Gadhuli Logo"
-        onerror="this.style.display='none'"
-      >
-
-    </div>
-
-
-    <div class="search-box">
-
+    <div class="search-area">
       <input
-        type="text"
         id="searchInput"
-        placeholder="Search Product, Category, Size..."
+        type="search"
+        placeholder="Product, Category বা Size খুঁজুন..."
         oninput="searchProducts()"
       >
-
-      <button onclick="searchProducts()">
-        🔍
-      </button>
-
+      <button onclick="searchProducts()">🔍</button>
     </div>
-
 
     <div class="header-actions">
 
-      <button onclick="openProfile()">
-        👤 Account
+      <button
+        class="header-action"
+        onclick="openWishlist()"
+        title="Wishlist"
+      >
+        ❤️ <span class="wish-count" id="wishCount">0</span>
       </button>
 
-      <button onclick="openCart()">
-        🛒 Cart
+      <button
+        class="header-action"
+        onclick="openCart()"
+        title="Cart"
+      >
+        🛒 <span class="cart-count" id="cartCount">0</span>
       </button>
 
+      <button
+        class="header-action"
+        onclick="openProfile()"
+        title="Profile"
+      >
+        👤
+      </button>
+
+    </div>
+
+  </div>
+
+  <!-- ================= CATEGORIES ================= -->
+
+  <div class="category-wrapper">
+
+    <div class="category-bar">
+
+      <button class="category-btn active"
+        data-category="all"
+        onclick="filterCategory('all')">
+        All
+      </button>
+
+      <button class="category-btn"
+        data-category="Men's Fashion"
+        onclick="filterCategory(&quot;Men's Fashion&quot;)">
+        Men's Fashion
+      </button>
+
+      <button class="category-btn"
+        data-category="Women's Fashion"
+        onclick="filterCategory(&quot;Women's Fashion&quot;)">
+        Women's Fashion
+      </button>
+
+      <button class="category-btn"
+        data-category="Kids & Baby"
+        onclick="filterCategory('Kids & Baby')">
+        Kids & Baby
+      </button>
+
+      <button class="category-btn"
+        data-category="Shoes"
+        onclick="filterCategory('Shoes')">
+        Shoes
+      </button>
+
+      <button class="category-btn"
+        data-category="Bags & Accessories"
+        onclick="filterCategory('Bags & Accessories')">
+        Bags & Accessories
+      </button>
+
+      <button class="category-btn"
+        data-category="Watches"
+        onclick="filterCategory('Watches')">
+        Watches
+      </button>
+
+      <button class="category-btn"
+        data-category="Electronics"
+        onclick="filterCategory('Electronics')">
+        Electronics
+      </button>
+
+      <button class="category-btn"
+        data-category="Beauty & Personal Care"
+        onclick="filterCategory('Beauty & Personal Care')">
+        Beauty & Personal Care
+      </button>
+
+      <button class="category-btn"
+        data-category="Home & Living"
+        onclick="filterCategory('Home & Living')">
+        Home & Living
+      </button>
+
+    </div>
+
+    <div
+      id="subcategoryWrapper"
+      class="subcategory-wrapper"
+    >
+      <div
+        id="subcategoryList"
+        class="subcategory-list"
+      ></div>
     </div>
 
   </div>
 
 </header>
 
+<!-- ================= BANNER ================= -->
 
-<!-- =====================================================
-     CATEGORY
-===================================================== -->
-
-<nav class="category-bar">
-
-  <div class="category-inner">
-
-    <button
-      class="category-btn active"
-      onclick="filterCategory('All',this)"
-    >
-      All
-    </button>
-
-    <button
-      class="category-btn"
-      onclick="filterCategory('Men’s Fashion',this)"
-    >
-      👕 Men’s Fashion
-    </button>
-
-    <button
-      class="category-btn"
-      onclick="filterCategory('Women’s Fashion',this)"
-    >
-      👗 Women’s Fashion
-    </button>
-
-    <button
-      class="category-btn"
-      onclick="filterCategory('Kids & Baby',this)"
-    >
-      🧒 Kids & Baby
-    </button>
-
-    <button
-      class="category-btn"
-      onclick="filterCategory('Shoes',this)"
-    >
-      👟 Shoes
-    </button>
-
-    <button
-      class="category-btn"
-      onclick="filterCategory('Bags & Accessories',this)"
-    >
-      👜 Bags & Accessories
-    </button>
-
-    <button
-      class="category-btn"
-      onclick="filterCategory('Watches',this)"
-    >
-      ⌚ Watches
-    </button>
-
-    <button
-      class="category-btn"
-      onclick="filterCategory('Electronics',this)"
-    >
-      📱 Electronics
-    </button>
-
-    <button
-      class="category-btn"
-      onclick="filterCategory('Beauty & Personal Care',this)"
-    >
-      💄 Beauty
-    </button>
-
-    <button
-      class="category-btn"
-      onclick="filterCategory('Home & Living',this)"
-    >
-      🏠 Home & Living
-    </button>
-
-  </div>
-
-</nav>
-
-
-<!-- =====================================================
-     SUBCATEGORY
-===================================================== -->
-
-<div
-  class="subcategory-wrap"
-  id="subcategoryWrap"
->
+<section class="banner-section">
 
   <div
-    class="subcategory-inner"
-    id="subcategoryInner"
-  ></div>
-
-</div>
-
-
-<!-- =====================================================
-     ADVERTISEMENT
-===================================================== -->
-
-<section class="ad-section">
-
-  <div
-    class="ad-slider"
-    id="adSlider"
+    id="bannerSlider"
+    class="banner-slider"
   >
-
-    <div class="ad-slide active">
-
-      <div class="ad-placeholder">
-
-        <div style="font-size:58px">
-          🛍️
-        </div>
-
-        <h1>Shop Smart. Shop Easy.</h1>
-
-        <p>
-          Gadhuli Marketplace
-        </p>
-
-      </div>
-
-    </div>
-
-    <button
-      class="slider-arrow slider-prev"
-      onclick="previousAd()"
-      aria-label="Previous"
-    >
-      ‹
-    </button>
-
-    <button
-      class="slider-arrow slider-next"
-      onclick="nextAd()"
-      aria-label="Next"
-    >
-      ›
-    </button>
-
-    <div
-      class="slider-dots"
-      id="sliderDots"
-    ></div>
-
+    <div class="banner-fallback"></div>
   </div>
 
 </section>
 
+<!-- ================= PRODUCTS ================= -->
 
-<!-- =====================================================
-     HERO FALLBACK / WELCOME
-===================================================== -->
+<section class="section">
 
-<section class="hero">
+  <div class="section-head">
 
-  <div class="hero-card">
-
-    <div>
-
-      <div class="hero-title">
-        Welcome to Gadhuli
-      </div>
-
-      <div class="hero-text">
-        Discover products at your fingertips 🛍️
-      </div>
-
-      <button
-        class="hero-btn"
-        onclick="scrollToProducts()"
-      >
-        Shop Now →
-      </button>
-
-    </div>
-
-    <div class="hero-icon">
-      🛍️
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- =====================================================
-     PRODUCTS
-===================================================== -->
-
-<section
-  class="section"
-  id="productsSection"
->
-
-  <div class="section-title">
-
-    <h2>
-      🔥 Latest Products
+    <h2 class="section-title">
+      Products
     </h2>
 
-    <span id="productCount">
+    <div
+      id="resultText"
+      class="result-text"
+    >
       Loading...
-    </span>
+    </div>
 
   </div>
 
-
   <div
-    class="product-grid"
     id="productGrid"
+    class="product-grid"
   >
 
-    <div class="empty">
-      Product load হচ্ছে...
+    <div class="loading">
+      Product loading হচ্ছে...
     </div>
 
   </div>
 
 </section>
 
+<!-- ================= FOOTER ================= -->
 
-<!-- =====================================================
-     FOOTER
-===================================================== -->
+<footer class="footer">
 
-<footer>
+  <div class="footer-inner">
 
-  <div
-    class="footer-orange"
-    style="font-size:19px;margin-bottom:5px"
-  >
-    Gadhuli
+    <div>
+      <h3>Gadhuli</h3>
+      <p>
+        Online shopping marketplace.
+        সহজে পছন্দ করুন, অর্ডার করুন এবং
+        আপনার পছন্দের পণ্য পান।
+      </p>
+    </div>
+
+    <div>
+      <h3>Shopping</h3>
+      <ul>
+        <li>Men's Fashion</li>
+        <li>Women's Fashion</li>
+        <li>Kids & Baby</li>
+        <li>Shoes</li>
+      </ul>
+    </div>
+
+    <div>
+      <h3>Account</h3>
+      <ul>
+        <li onclick="openProfile()">My Profile</li>
+        <li onclick="openOrders()">My Orders</li>
+        <li onclick="openWishlist()">Wishlist</li>
+        <li onclick="openCart()">Cart</li>
+      </ul>
+    </div>
+
+    <div>
+      <h3>Help</h3>
+      <ul>
+        <li onclick="openWhatsAppHelp()">WhatsApp Helpline</li>
+        <li onclick="openTrack()">Track Order</li>
+        <li onclick="openSavedAddress()">Saved Address</li>
+        <li onclick="openReseller()">Reseller Center</li>
+      </ul>
+    </div>
+
   </div>
 
-  <div>
-    Shop Smart. Shop Easy.
-  </div>
-
-  <br>
-
-  <div>
+  <div class="footer-bottom">
     © 2026 Gadhuli. All Rights Reserved.
   </div>
 
 </footer>
 
 
-<!-- =====================================================
-     PRODUCT DETAIL MODAL
-===================================================== -->
+<!-- ================= WHATSAPP FLOATING ================= -->
+
+<button
+  class="whatsapp-help"
+  onclick="openWhatsAppHelp()"
+  title="WhatsApp Helpline"
+>
+  💬
+</button>
+
+
+<!-- ================= BOTTOM NAV ================= -->
+
+<nav class="bottom-nav">
+
+  <button
+    id="navHome"
+    class="active"
+    onclick="goHome()"
+  >
+    <span>⌂</span>
+    <small>Home</small>
+  </button>
+
+  <button onclick="openCart()">
+    <span>🛒</span>
+    <small>Cart</small>
+  </button>
+
+  <button
+    class="whatsapp"
+    onclick="openWhatsAppHelp()"
+  >
+    <span>💬</span>
+    <small>WhatsApp</small>
+  </button>
+
+  <button onclick="openOrdersOrProfile()">
+    <span>📦</span>
+    <small>Orders/Profile</small>
+  </button>
+
+  <button onclick="openProfile()">
+    <span>👤</span>
+    <small>My Profile</small>
+  </button>
+
+</nav>
+
+
+<!-- ================= DETAILS MODAL ================= -->
 
 <div
+  id="detailsModal"
   class="modal"
-  id="detailModal"
 >
 
-  <div class="modal-box modal-large">
+  <div class="modal-box large">
 
     <button
-      class="close"
-      onclick="closeModal('detailModal')"
+      class="close-btn"
+      onclick="closeModal('detailsModal')"
     >
       ×
     </button>
 
-    <div class="modal-title">
-      Product Details
-    </div>
-
-    <div id="detailContent"></div>
+    <div
+      id="detailsContent"
+    ></div>
 
   </div>
 
 </div>
 
 
-<!-- =====================================================
-     CART MODAL
-===================================================== -->
+<!-- ================= CART MODAL ================= -->
 
 <div
-  class="modal"
   id="cartModal"
+  class="modal"
 >
 
   <div class="modal-box">
 
     <button
-      class="close"
+      class="close-btn"
       onclick="closeModal('cartModal')"
     >
       ×
@@ -1385,310 +1378,323 @@ footer{
 </div>
 
 
-<!-- =====================================================
-     ORDER MODAL
-===================================================== -->
+<!-- ================= ORDER MODAL ================= -->
 
 <div
-  class="modal"
   id="orderModal"
+  class="modal"
 >
 
   <div class="modal-box">
 
     <button
-      class="close"
+      class="close-btn"
       onclick="closeModal('orderModal')"
     >
       ×
     </button>
 
     <div class="modal-title">
-      📦 Place Order
+      🛍️ Order Checkout
     </div>
 
+    <div id="orderSummary"></div>
 
-    <div id="orderProductInfo"></div>
-
-
-    <div class="form-group">
-
-      <label>
-        Customer Name
-      </label>
-
-      <input
-        id="customerName"
-        placeholder="আপনার নাম"
-      >
-
-    </div>
-
-
-    <div class="form-group">
-
-      <label>
-        Mobile Number
-      </label>
-
-      <input
-        id="customerMobile"
-        type="tel"
-        placeholder="01XXXXXXXXX"
-      >
-
-    </div>
-
-
-    <div class="form-group">
-
-      <label>
-        District
-      </label>
-
-      <input
-        id="customerDistrict"
-        placeholder="District"
-      >
-
-    </div>
-
-
-    <div class="form-group">
-
-      <label>
-        Thana / Upazila
-      </label>
-
-      <input
-        id="customerThana"
-        placeholder="Thana / Upazila"
-      >
-
-    </div>
-
-
-    <div class="form-group">
-
-      <label>
-        Full Address
-      </label>
-
-      <textarea
-        id="customerAddress"
-        rows="3"
-        placeholder="বাসা / রোড / এলাকা"
-      ></textarea>
-
-    </div>
-
-
-    <div class="form-group">
-
-      <label>
-        Delivery
-      </label>
-
-      <select id="deliveryCharge">
-
-        <option value="60">
-          Inside Dhaka — ৳60
-        </option>
-
-        <option value="120">
-          Outside Dhaka — ৳120
-        </option>
-
-      </select>
-
-    </div>
-
-
-    <div class="form-group">
-
-      <label>
-        Payment Method
-      </label>
-
-      <select id="paymentMethod">
-
-        <option value="Cash on Delivery">
-          Cash on Delivery
-        </option>
-
-        <option value="bKash">
-          bKash
-        </option>
-
-        <option value="Nagad">
-          Nagad
-        </option>
-
-        <option value="Rocket">
-          Rocket
-        </option>
-
-        <option value="Visa">
-          Visa
-        </option>
-
-        <option value="Mastercard">
-          Mastercard
-        </option>
-
-      </select>
-
-    </div>
-
-
-    <div
-      class="form-group"
-      id="manualPaymentBox"
-      style="display:none"
+    <form
+      id="orderForm"
+      onsubmit="submitOrder(event)"
     >
 
-      <label>
-        Payment Number
-      </label>
+      <div class="form-group">
+        <label>Customer Name</label>
+        <input
+          id="orderName"
+          required
+          placeholder="আপনার নাম"
+        >
+      </div>
 
-      <input
-        id="paymentNumber"
-        placeholder="Payment Number"
+      <div class="form-group">
+        <label>Mobile Number</label>
+        <input
+          id="orderMobile"
+          required
+          inputmode="tel"
+          placeholder="01XXXXXXXXX"
+        >
+      </div>
+
+      <div class="form-group">
+        <label>District</label>
+        <input
+          id="orderDistrict"
+          required
+          placeholder="District"
+        >
+      </div>
+
+      <div class="form-group">
+        <label>Thana / Upazila</label>
+        <input
+          id="orderThana"
+          required
+          placeholder="Thana / Upazila"
+        >
+      </div>
+
+      <div class="form-group">
+        <label>Receive Place / Address</label>
+        <textarea
+          id="orderAddress"
+          rows="3"
+          required
+          placeholder="সম্পূর্ণ ঠিকানা"
+        ></textarea>
+      </div>
+
+      <div class="form-group">
+
+        <label>Delivery</label>
+
+        <select
+          id="deliverySelect"
+          onchange="updateOrderTotal()"
+        >
+          <option value="60">
+            Inside Dhaka - ৳60
+          </option>
+
+          <option value="120">
+            Outside Dhaka - ৳120
+          </option>
+        </select>
+
+      </div>
+
+      <div class="form-group">
+
+        <label>Payment Method</label>
+
+        <div class="payment-options">
+
+          <div
+            class="payment-option active"
+            data-payment="Cash on Delivery"
+            onclick="selectPayment(this)"
+          >
+            Cash on Delivery
+          </div>
+
+          <div
+            class="payment-option"
+            data-payment="bKash"
+            onclick="selectPayment(this)"
+          >
+            bKash
+          </div>
+
+          <div
+            class="payment-option"
+            data-payment="Nagad"
+            onclick="selectPayment(this)"
+          >
+            Nagad
+          </div>
+
+          <div
+            class="payment-option"
+            data-payment="Rocket"
+            onclick="selectPayment(this)"
+          >
+            Rocket
+          </div>
+
+          <div
+            class="payment-option"
+            data-payment="Visa"
+            onclick="selectPayment(this)"
+          >
+            Visa
+          </div>
+
+          <div
+            class="payment-option"
+            data-payment="Mastercard"
+            onclick="selectPayment(this)"
+          >
+            Mastercard
+          </div>
+
+        </div>
+
+        <input
+          type="hidden"
+          id="paymentMethod"
+          value="Cash on Delivery"
+        >
+
+      </div>
+
+      <div
+        id="manualPaymentBox"
+        style="display:none"
       >
 
-      <br><br>
+        <div class="form-group">
+          <label>Payment Number</label>
+          <input
+            id="paymentNumber"
+            placeholder="যে number থেকে payment করেছেন"
+          >
+        </div>
 
-      <label>
-        Transaction Reference
-      </label>
+        <div class="form-group">
+          <label>Transaction Reference</label>
+          <input
+            id="paymentReference"
+            placeholder="Transaction ID / Reference"
+          >
+        </div>
 
-      <input
-        id="paymentReference"
-        placeholder="Transaction ID / Reference"
+      </div>
+
+      <div
+        id="orderTotalBox"
+        style="
+          background:#FFF3E8;
+          padding:13px;
+          border-radius:9px;
+          margin:12px 0;
+        "
+      ></div>
+
+      <button
+        type="submit"
+        class="primary-btn"
       >
+        Confirm Order
+      </button>
 
-    </div>
-
-
-    <div
-      id="orderTotal"
-      class="cart-total"
-    >
-      Total: ৳0
-    </div>
-
-
-    <button
-      class="primary-btn"
-      onclick="submitOrder()"
-    >
-      Confirm Order
-    </button>
+    </form>
 
   </div>
 
 </div>
 
 
-<!-- =====================================================
-     PROFILE MODAL
-===================================================== -->
+<!-- ================= WISHLIST MODAL ================= -->
 
 <div
+  id="wishlistModal"
   class="modal"
-  id="profileModal"
 >
 
   <div class="modal-box">
 
     <button
-      class="close"
-      onclick="closeModal('profileModal')"
+      class="close-btn"
+      onclick="closeModal('wishlistModal')"
     >
       ×
     </button>
 
     <div class="modal-title">
-      👤 My Profile
+      ❤️ Wishlist
     </div>
 
-    <div id="profileArea"></div>
+    <div id="wishlistContent"></div>
 
   </div>
 
 </div>
 
 
-<!-- =====================================================
-     LOGIN
-===================================================== -->
+<!-- ================= PROFILE MODAL ================= -->
 
 <div
+  id="profileModal"
   class="modal"
-  id="loginModal"
 >
 
   <div class="modal-box">
 
     <button
-      class="close"
+      class="close-btn"
+      onclick="closeModal('profileModal')"
+    >
+      ×
+    </button>
+
+    <div
+      id="profileContent"
+    ></div>
+
+  </div>
+
+</div>
+
+
+<!-- ================= LOGIN MODAL ================= -->
+
+<div
+  id="loginModal"
+  class="modal"
+>
+
+  <div class="modal-box">
+
+    <button
+      class="close-btn"
       onclick="closeModal('loginModal')"
     >
       ×
     </button>
 
     <div class="modal-title">
-      🔐 Login
-    </div>
-
-
-    <div class="form-group">
-
-      <label>
-        Email
-      </label>
-
-      <input
-        id="loginEmail"
-        type="email"
-      >
-
-    </div>
-
-
-    <div class="form-group">
-
-      <label>
-        Password
-      </label>
-
-      <input
-        id="loginPassword"
-        type="password"
-      >
-
-    </div>
-
-
-    <button
-      class="primary-btn"
-      onclick="loginUser()"
-    >
       Login
-    </button>
+    </div>
 
+    <form onsubmit="loginUser(event)">
+
+      <div class="form-group">
+        <label>Email</label>
+        <input
+          id="loginEmail"
+          type="email"
+          required
+          placeholder="Email"
+        >
+      </div>
+
+      <div class="form-group">
+        <label>Password</label>
+        <input
+          id="loginPassword"
+          type="password"
+          required
+          placeholder="Password"
+        >
+      </div>
+
+      <button
+        class="primary-btn"
+        type="submit"
+      >
+        Login
+      </button>
+
+    </form>
 
     <button
-      class="secondary-btn"
-      onclick="showCreateAccount()"
+      class="link-btn"
+      onclick="openSignup()"
     >
       Create Account
     </button>
 
-
     <button
-      class="secondary-btn"
-      onclick="forgotPassword()"
+      class="link-btn"
+      onclick="openForgot()"
     >
       Forgot Password?
     </button>
@@ -1698,93 +1704,129 @@ footer{
 </div>
 
 
-<!-- =====================================================
-     SIGNUP
-===================================================== -->
+<!-- ================= SIGNUP MODAL ================= -->
 
 <div
-  class="modal"
   id="signupModal"
+  class="modal"
 >
 
   <div class="modal-box">
 
     <button
-      class="close"
+      class="close-btn"
       onclick="closeModal('signupModal')"
     >
       ×
     </button>
 
     <div class="modal-title">
-      ✨ Create Account
-    </div>
-
-
-    <div class="form-group">
-
-      <label>
-        Name
-      </label>
-
-      <input id="signupName">
-
-    </div>
-
-
-    <div class="form-group">
-
-      <label>
-        Email
-      </label>
-
-      <input
-        id="signupEmail"
-        type="email"
-      >
-
-    </div>
-
-
-    <div class="form-group">
-
-      <label>
-        Password
-      </label>
-
-      <input
-        id="signupPassword"
-        type="password"
-      >
-
-    </div>
-
-
-    <button
-      class="primary-btn"
-      onclick="signupUser()"
-    >
       Create Account
-    </button>
+    </div>
+
+    <form onsubmit="signupUser(event)">
+
+      <div class="form-group">
+        <label>Full Name</label>
+        <input
+          id="signupName"
+          required
+          placeholder="Full Name"
+        >
+      </div>
+
+      <div class="form-group">
+        <label>Email</label>
+        <input
+          id="signupEmail"
+          type="email"
+          required
+          placeholder="Email"
+        >
+      </div>
+
+      <div class="form-group">
+        <label>Password</label>
+        <input
+          id="signupPassword"
+          type="password"
+          minlength="6"
+          required
+          placeholder="Minimum 6 characters"
+        >
+      </div>
+
+      <button
+        class="primary-btn"
+        type="submit"
+      >
+        Create Account
+      </button>
+
+    </form>
 
   </div>
 
 </div>
 
 
-<!-- =====================================================
-     ORDERS
-===================================================== -->
+<!-- ================= FORGOT MODAL ================= -->
 
 <div
+  id="forgotModal"
   class="modal"
-  id="ordersModal"
 >
 
   <div class="modal-box">
 
     <button
-      class="close"
+      class="close-btn"
+      onclick="closeModal('forgotModal')"
+    >
+      ×
+    </button>
+
+    <div class="modal-title">
+      Forgot Password
+    </div>
+
+    <form onsubmit="forgotPassword(event)">
+
+      <div class="form-group">
+        <label>Email</label>
+        <input
+          id="forgotEmail"
+          type="email"
+          required
+          placeholder="আপনার email"
+        >
+      </div>
+
+      <button
+        class="primary-btn"
+        type="submit"
+      >
+        Send Reset Link
+      </button>
+
+    </form>
+
+  </div>
+
+</div>
+
+
+<!-- ================= ORDERS MODAL ================= -->
+
+<div
+  id="ordersModal"
+  class="modal"
+>
+
+  <div class="modal-box">
+
+    <button
+      class="close-btn"
       onclick="closeModal('ordersModal')"
     >
       ×
@@ -1801,19 +1843,17 @@ footer{
 </div>
 
 
-<!-- =====================================================
-     TRACK ORDER
-===================================================== -->
+<!-- ================= TRACK MODAL ================= -->
 
 <div
-  class="modal"
   id="trackModal"
+  class="modal"
 >
 
   <div class="modal-box">
 
     <button
-      class="close"
+      class="close-btn"
       onclick="closeModal('trackModal')"
     >
       ×
@@ -1823,42 +1863,34 @@ footer{
       🚚 Track Order
     </div>
 
+    <form onsubmit="trackOrder(event)">
 
-    <div class="form-group">
+      <div class="form-group">
+        <label>Order ID</label>
+        <input
+          id="trackOrderId"
+          required
+          placeholder="Order ID"
+        >
+      </div>
 
-      <label>
-        Order ID
-      </label>
+      <div class="form-group">
+        <label>Mobile Number</label>
+        <input
+          id="trackMobile"
+          required
+          placeholder="01XXXXXXXXX"
+        >
+      </div>
 
-      <input
-        id="trackOrderId"
-        placeholder="Order ID"
+      <button
+        class="primary-btn"
+        type="submit"
       >
+        Track
+      </button>
 
-    </div>
-
-
-    <div class="form-group">
-
-      <label>
-        Mobile Number
-      </label>
-
-      <input
-        id="trackMobile"
-        placeholder="01XXXXXXXXX"
-      >
-
-    </div>
-
-
-    <button
-      class="primary-btn"
-      onclick="searchTrackOrder()"
-    >
-      Track Order
-    </button>
-
+    </form>
 
     <div
       id="trackResult"
@@ -1870,19 +1902,17 @@ footer{
 </div>
 
 
-<!-- =====================================================
-     SAVED ADDRESS
-===================================================== -->
+<!-- ================= SAVED ADDRESS ================= -->
 
 <div
-  class="modal"
   id="addressModal"
+  class="modal"
 >
 
   <div class="modal-box">
 
     <button
-      class="close"
+      class="close-btn"
       onclick="closeModal('addressModal')"
     >
       ×
@@ -1892,64 +1922,14 @@ footer{
       📍 Saved Address
     </div>
 
-
     <div class="form-group">
-
-      <label>
-        Name
-      </label>
-
-      <input id="savedName">
-
-    </div>
-
-
-    <div class="form-group">
-
-      <label>
-        Mobile
-      </label>
-
-      <input id="savedMobile">
-
-    </div>
-
-
-    <div class="form-group">
-
-      <label>
-        District
-      </label>
-
-      <input id="savedDistrict">
-
-    </div>
-
-
-    <div class="form-group">
-
-      <label>
-        Thana / Upazila
-      </label>
-
-      <input id="savedThana">
-
-    </div>
-
-
-    <div class="form-group">
-
-      <label>
-        Full Address
-      </label>
-
+      <label>Address</label>
       <textarea
-        id="savedFullAddress"
-        rows="3"
+        id="savedAddressInput"
+        rows="5"
+        placeholder="আপনার address এখানে লিখুন"
       ></textarea>
-
     </div>
-
 
     <button
       class="primary-btn"
@@ -1963,281 +1943,174 @@ footer{
 </div>
 
 
-<!-- =====================================================
-     WHATSAPP HELPLINE
-===================================================== -->
+<!-- ================= RESELLER ================= -->
 
 <div
-  class="modal"
-  id="helpModal"
->
-
-  <div class="modal-box">
-
-    <button
-      class="close"
-      onclick="closeModal('helpModal')"
-    >
-      ×
-    </button>
-
-    <div class="modal-title">
-      💬 WhatsApp Helpline
-    </div>
-
-
-    <p
-      style="
-        font-size:14px;
-        line-height:23px;
-        margin-bottom:15px;
-      "
-    >
-      Website ব্যবহার করতে কোনো সমস্যা হলে অথবা
-      কোনো সাহায্যের প্রয়োজন হলে আমাদের WhatsApp
-      Helpline-এ যোগাযোগ করুন।
-    </p>
-
-
-    <button
-      class="primary-btn whatsapp-btn"
-      onclick="openWhatsAppHelp()"
-    >
-      💬 WhatsApp Helpline
-    </button>
-
-  </div>
-
-</div>
-
-
-<!-- =====================================================
-     RESELLER
-===================================================== -->
-
-<div
-  class="modal"
   id="resellerModal"
+  class="modal"
 >
 
   <div class="modal-box">
 
     <button
-      class="close"
+      class="close-btn"
       onclick="closeModal('resellerModal')"
     >
       ×
     </button>
 
     <div class="modal-title">
-      🏪 Reseller Center
+      💼 Reseller Center
     </div>
 
-
-    <div
+    <p
       style="
-        background:#fff3e8;
-        padding:15px;
-        border-radius:8px;
-        line-height:24px;
+        color:#666;
+        line-height:23px;
+        margin-bottom:15px;
       "
     >
+      Gadhuli products resell করে commission
+      earn করার জন্য আপনার account ব্যবহার করুন।
+    </p>
 
-      <b>
-        Gadhuli Reseller
-      </b>
-
-      <br><br>
-
-      আপনার Reseller Dashboard এখানে থাকবে।
-
-      <br>
-
-      Product resell করে commission
-      earn করার system পরবর্তী ধাপে
-      connect করা যাবে।
-
-    </div>
+    <button
+      class="primary-btn"
+      onclick="openLoginFromReseller()"
+    >
+      Login / Continue
+    </button>
 
   </div>
 
 </div>
 
 
-<!-- =====================================================
-     BOTTOM NAVIGATION
-===================================================== -->
+<!-- ================= TOAST ================= -->
 
-<nav class="bottom-nav">
-
-
-  <button
-    class="active"
-    onclick="goHome(this)"
-  >
-
-    <span>
-      🏠
-    </span>
-
-    Home
-
-  </button>
-
-
-  <button
-    onclick="openCart();setNav(this)"
-  >
-
-    <span>
-      🛒
-    </span>
-
-    Cart
-
-  </button>
-
-
-  <button
-    class="whatsapp-nav"
-    onclick="openHelp();setNav(this)"
-  >
-
-    <span>
-      💬
-    </span>
-
-    WhatsApp
-
-  </button>
-
-
-  <button
-    onclick="openOrders();setNav(this)"
-  >
-
-    <span>
-      📦
-    </span>
-
-    Orders
-
-  </button>
-
-
-  <button
-    onclick="openProfile();setNav(this)"
-  >
-
-    <span>
-      👤
-    </span>
-
-    Profile
-
-  </button>
-
-
-</nav>
+<div
+  id="toast"
+  class="toast"
+></div>
 
 
 <script>
 
 /* =====================================================
-   SUPABASE CONNECTION
-===================================================== */
+   GADHULI SUPABASE CONNECTION
+   ===================================================== */
 
-/*
-  IMPORTANT:
-  supabase.js আগে load হয়েছে।
+const SUPABASE_URL =
+"https://ypmmdytgfuhydzacjbkw.supabase.co";
 
-  তোমার supabase.js:
+const SUPABASE_KEY =
+"sb_publishable_ZhmwEV_6UngmzzxcJmETgw_smrA7qDL";
 
-  window.gadhuliSupabase =
+let db = null;
+
+try{
+
+  if(
+    window.supabase &&
+    typeof window.supabase.createClient === "function"
+  ){
+
+    window.gadhuliSupabase =
       window.supabase.createClient(
-          SUPABASE_URL,
-          SUPABASE_KEY
+        SUPABASE_URL,
+        SUPABASE_KEY
       );
 
-  তাই এখানে নতুন client বানানো হচ্ছে না।
-*/
+    db = window.gadhuliSupabase;
 
-const db = window.gadhuliSupabase;
+  }else{
 
-console.log(
-  "Gadhuli Supabase:",
-  db ? "CONNECTED ✅" : "NOT CONNECTED ❌"
-);
+    console.error("Supabase library load হয়নি.");
 
+  }
 
-/* =====================================================
-   DATA
-===================================================== */
+}catch(error){
 
-let products = [];
-
-let cart =
-  JSON.parse(
-    localStorage.getItem("gadhuli_cart") || "[]"
-  );
-
-let wishlist =
-  JSON.parse(
-    localStorage.getItem("gadhuli_wishlist") || "[]"
-  );
-
-let currentCategory = "All";
-
-let currentSubcategory = "All";
-
-let selectedProduct = null;
-
-let selectedSize = "";
-
-let orderItems = [];
-
-let advertisements = [];
-
-let currentAd = 0;
-
-let adTimer = null;
-
-
-/* =====================================================
-   CATEGORY LIST
-===================================================== */
-
-const categoryNames = [
-
-  "Men’s Fashion",
-  "Women’s Fashion",
-  "Kids & Baby",
-  "Shoes",
-  "Bags & Accessories",
-  "Watches",
-  "Electronics",
-  "Beauty & Personal Care",
-  "Home & Living"
-
-];
-
-
-/* =====================================================
-   MONEY
-===================================================== */
-
-function money(value){
-
-  return "৳" +
-    Number(value || 0)
-      .toLocaleString("en-BD");
+  console.error("Supabase connection error:",error);
 
 }
 
 
 /* =====================================================
-   SAVE CART
-===================================================== */
+   WHATSAPP HELPLINE
+   YOUR NUMBER: 01333088194
+   ===================================================== */
+
+const WHATSAPP_HELPLINE =
+"8801333088194";
+
+
+/* =====================================================
+   GLOBAL DATA
+   ===================================================== */
+
+let products = [];
+
+let filteredProducts = [];
+
+let cart = [];
+
+let wishlist = [];
+
+let selectedCategory = "all";
+
+let selectedSubcategory = "";
+
+let currentDetailProduct = null;
+
+let currentOrderItems = [];
+
+let selectedPayment =
+"Cash on Delivery";
+
+let bannerImages = [];
+
+let bannerIndex = 0;
+
+let bannerTimer = null;
+
+
+/* =====================================================
+   LOCAL STORAGE
+   ===================================================== */
+
+function loadLocalData(){
+
+  try{
+
+    cart =
+      JSON.parse(
+        localStorage.getItem("gadhuli_cart") || "[]"
+      );
+
+  }catch(e){
+
+    cart = [];
+
+  }
+
+  try{
+
+    wishlist =
+      JSON.parse(
+        localStorage.getItem("gadhuli_wishlist") || "[]"
+      );
+
+  }catch(e){
+
+    wishlist = [];
+
+  }
+
+  updateCounts();
+
+}
+
 
 function saveCart(){
 
@@ -2246,12 +2119,10 @@ function saveCart(){
     JSON.stringify(cart)
   );
 
+  updateCounts();
+
 }
 
-
-/* =====================================================
-   SAVE WISHLIST
-===================================================== */
 
 function saveWishlist(){
 
@@ -2260,12 +2131,80 @@ function saveWishlist(){
     JSON.stringify(wishlist)
   );
 
+  updateCounts();
+
+}
+
+
+function updateCounts(){
+
+  const cartCount =
+    cart.reduce(
+      (sum,item)=>
+        sum + Number(item.qty || 1),
+      0
+    );
+
+  const cartEl =
+    document.getElementById("cartCount");
+
+  const wishEl =
+    document.getElementById("wishCount");
+
+  if(cartEl)
+    cartEl.textContent = cartCount;
+
+  if(wishEl)
+    wishEl.textContent =
+      wishlist.length;
+
 }
 
 
 /* =====================================================
-   ESCAPE HTML
-===================================================== */
+   HELPERS
+   ===================================================== */
+
+function money(value){
+
+  return "৳" +
+    Number(value || 0).toLocaleString("en-BD");
+
+}
+
+
+function norm(value){
+
+  return String(value || "")
+    .toLowerCase()
+    .replace(/[’']/g,"'")
+    .replace(/\s+/g," ")
+    .trim();
+
+}
+
+
+function toast(message){
+
+  const el =
+    document.getElementById("toast");
+
+  if(!el) return;
+
+  el.textContent = message;
+
+  el.classList.add("show");
+
+  clearTimeout(window.toastTimer);
+
+  window.toastTimer =
+    setTimeout(
+      () => el.classList.remove("show"),
+      2500
+    );
+
+}
+
 
 function escapeHTML(value){
 
@@ -2279,117 +2218,110 @@ function escapeHTML(value){
 }
 
 
-/* =====================================================
-   PRODUCT IMAGE
-===================================================== */
+function closeModal(id){
 
-function getProductImage(product){
+  const el =
+    document.getElementById(id);
 
-  if(
-    Array.isArray(product?.images) &&
-    product.images.length
-  ){
+  if(el)
+    el.classList.remove("show");
 
-    return product.images[0];
-
-  }
+}
 
 
-  if(
-    typeof product?.images === "string" &&
-    product.images.trim()
-  ){
+function showModal(id){
 
-    try{
+  const el =
+    document.getElementById(id);
 
-      const arr =
-        JSON.parse(product.images);
-
-      if(
-        Array.isArray(arr) &&
-        arr.length
-      ){
-
-        return arr[0];
-
-      }
-
-    }catch(e){}
-
-    return product.images;
-
-  }
-
-
-  return "https://via.placeholder.com/500?text=Gadhuli";
+  if(el)
+    el.classList.add("show");
 
 }
 
 
 /* =====================================================
-   PRODUCT IMAGES
-===================================================== */
+   IMAGE HELPERS
+   ===================================================== */
 
-function getProductImages(product){
+function getImages(product){
 
-  if(
-    Array.isArray(product?.images)
-  ){
+  let images = [];
 
-    return product.images;
+  if(Array.isArray(product?.images)){
 
-  }
+    images = product.images;
 
-
-  if(
-    typeof product?.images === "string" &&
-    product.images.trim()
-  ){
+  }else if(typeof product?.images === "string"){
 
     try{
 
-      const arr =
+      const parsed =
         JSON.parse(product.images);
 
-      if(Array.isArray(arr)){
-
-        return arr;
-
-      }
+      if(Array.isArray(parsed))
+        images = parsed;
 
     }catch(e){
 
-      return [product.images];
+      images =
+        product.images
+          .split(",")
+          .map(x=>x.trim())
+          .filter(Boolean);
 
     }
 
   }
 
+  if(
+    !images.length &&
+    product?.image_url
+  ){
 
-  return [];
+    images.push(product.image_url);
+
+  }
+
+  if(
+    !images.length &&
+    product?.image
+  ){
+
+    images.push(product.image);
+
+  }
+
+  return images.filter(Boolean);
+
+}
+
+
+function getProductImage(product){
+
+  const images =
+    getImages(product);
+
+  return images[0] ||
+    "https://via.placeholder.com/500x500?text=Gadhuli";
 
 }
 
 
 /* =====================================================
-   LOAD PRODUCTS
-===================================================== */
+   LOAD PRODUCTS FROM SUPABASE
+   ===================================================== */
 
 async function loadProducts(){
 
   const grid =
-    document.getElementById(
-      "productGrid"
-    );
-
+    document.getElementById("productGrid");
 
   if(!db){
 
     grid.innerHTML = `
-      <div class="empty">
-        Supabase connection পাওয়া যায়নি ❌
-        <br><br>
-        supabase.js check করুন।
+      <div class="no-products">
+        Supabase connection পাওয়া যায়নি।
       </div>
     `;
 
@@ -2397,6 +2329,11 @@ async function loadProducts(){
 
   }
 
+  grid.innerHTML = `
+    <div class="loading">
+      Product loading হচ্ছে...
+    </div>
+  `;
 
   try{
 
@@ -2409,80 +2346,425 @@ async function loadProducts(){
         .select("*")
         .order(
           "created_at",
-          {ascending:false}
+          {
+            ascending:false
+          }
         );
 
+    if(error)
+      throw error;
 
-    if(error){
+    products =
+      Array.isArray(data)
+        ? data
+        : [];
 
-      console.error(
-        "Products error:",
-        error
-      );
+    filteredProducts =
+      [...products];
 
-      grid.innerHTML = `
-        <div class="empty">
-          Product load হয়নি ❌
-          <br><br>
-          ${escapeHTML(error.message)}
-        </div>
-      `;
-
-      return;
-
-    }
-
-
-    products = data || [];
-
-    renderProducts(products);
-
-    buildSubcategories();
+    renderProducts();
 
   }catch(error){
 
-    console.error(error);
+    console.error(
+      "Product load error:",
+      error
+    );
 
     grid.innerHTML = `
-      <div class="empty">
-        Product load হয়নি ❌
+      <div class="no-products">
+        <h3>Product load হয়নি ❌</h3>
+        <p style="margin-top:8px;">
+          ${escapeHTML(error.message || "Unknown error")}
+        </p>
       </div>
     `;
 
   }
+
+}
+
+
+/* =====================================================
+   CATEGORY / SUBCATEGORY
+   ===================================================== */
+
+const subcategories = {
+
+  "Men's Fashion":[
+    "T-Shirt",
+    "Polo",
+    "Shirt",
+    "Panjabi",
+    "Hoodie",
+    "Jacket",
+    "Pants",
+    "Jeans",
+    "Shorts"
+  ],
+
+  "Women's Fashion":[
+    "Saree",
+    "Three Piece",
+    "Dress",
+    "Kameez",
+    "Tops",
+    "Hijab",
+    "Abaya"
+  ],
+
+  "Kids & Baby":[
+    "Boys",
+    "Girls",
+    "Baby Dress",
+    "Baby Accessories"
+  ],
+
+  "Shoes":[
+    "Men Shoes",
+    "Women Shoes",
+    "Kids Shoes",
+    "Sneakers",
+    "Sandal"
+  ],
+
+  "Bags & Accessories":[
+    "Bag",
+    "Wallet",
+    "Belt",
+    "Sunglasses",
+    "Cap",
+    "Accessories"
+  ],
+
+  "Watches":[
+    "Men Watches",
+    "Women Watches",
+    "Smart Watch",
+    "Kids Watch"
+  ],
+
+  "Electronics":[
+    "Mobile Accessories",
+    "Earphone",
+    "Headphone",
+    "Smart Device",
+    "Gadget"
+  ],
+
+  "Beauty & Personal Care":[
+    "Skincare",
+    "Hair Care",
+    "Makeup",
+    "Perfume",
+    "Personal Care"
+  ],
+
+  "Home & Living":[
+    "Home Decor",
+    "Kitchen",
+    "Furniture",
+    "Storage",
+    "Other"
+  ]
+
+};
+
+
+function categoryMatches(productCategory, selected){
+
+  if(selected === "all")
+    return true;
+
+  const a =
+    norm(productCategory);
+
+  const b =
+    norm(selected);
+
+  if(a === b)
+    return true;
+
+  const aliases = {
+
+    "men's fashion":[
+      "men's fashion",
+      "mens fashion",
+      "men fashion",
+      "men"
+    ],
+
+    "women's fashion":[
+      "women's fashion",
+      "womens fashion",
+      "women fashion",
+      "women"
+    ],
+
+    "kids & baby":[
+      "kids & baby",
+      "kids and baby",
+      "kids",
+      "baby"
+    ],
+
+    "bags & accessories":[
+      "bags & accessories",
+      "bags and accessories",
+      "bags",
+      "accessories"
+    ],
+
+    "beauty & personal care":[
+      "beauty & personal care",
+      "beauty and personal care",
+      "beauty",
+      "personal care"
+    ],
+
+    "home & living":[
+      "home & living",
+      "home and living",
+      "home"
+    ]
+
+  };
+
+  const list =
+    aliases[b] || [b];
+
+  return list.includes(a);
+
+}
+
+
+function filterCategory(category){
+
+  selectedCategory =
+    category;
+
+  selectedSubcategory =
+    "";
+
+  document
+    .querySelectorAll(".category-btn")
+    .forEach(btn=>{
+
+      btn.classList.toggle(
+        "active",
+        norm(btn.dataset.category) ===
+        norm(category)
+      );
+
+    });
+
+  renderSubcategories();
+
+  applyFilters();
+
+}
+
+
+function renderSubcategories(){
+
+  const wrapper =
+    document.getElementById(
+      "subcategoryWrapper"
+    );
+
+  const list =
+    document.getElementById(
+      "subcategoryList"
+    );
+
+  if(
+    selectedCategory === "all" ||
+    !subcategories[selectedCategory]
+  ){
+
+    wrapper.classList.remove("show");
+
+    list.innerHTML = "";
+
+    return;
+
+  }
+
+  wrapper.classList.add("show");
+
+  list.innerHTML = "";
+
+  const allBtn =
+    document.createElement("button");
+
+  allBtn.className =
+    "subcategory-btn active";
+
+  allBtn.textContent =
+    "All";
+
+  allBtn.onclick = () => {
+
+    selectedSubcategory = "";
+
+    document
+      .querySelectorAll(".subcategory-btn")
+      .forEach(x=>
+        x.classList.remove("active")
+      );
+
+    allBtn.classList.add("active");
+
+    applyFilters();
+
+  };
+
+  list.appendChild(allBtn);
+
+  subcategories[selectedCategory]
+    .forEach(sub=>{
+
+      const btn =
+        document.createElement("button");
+
+      btn.className =
+        "subcategory-btn";
+
+      btn.textContent =
+        sub;
+
+      btn.onclick = () => {
+
+        selectedSubcategory =
+          sub;
+
+        document
+          .querySelectorAll(".subcategory-btn")
+          .forEach(x=>
+            x.classList.remove("active")
+          );
+
+        btn.classList.add("active");
+
+        applyFilters();
+
+      };
+
+      list.appendChild(btn);
+
+    });
+
+}
+
+
+/* =====================================================
+   SEARCH + FILTER
+   ===================================================== */
+
+function applyFilters(){
+
+  const search =
+    norm(
+      document.getElementById(
+        "searchInput"
+      )?.value
+    );
+
+  filteredProducts =
+    products.filter(product=>{
+
+      const categoryOK =
+        categoryMatches(
+          product.category,
+          selectedCategory
+        );
+
+      let subcategoryOK =
+        true;
+
+      if(selectedSubcategory){
+
+        subcategoryOK =
+          norm(product.subcategory) ===
+          norm(selectedSubcategory);
+
+      }
+
+      const text =
+        [
+          product.name,
+          product.category,
+          product.subcategory,
+          product.size,
+          product.sizes,
+          product.description
+        ]
+        .map(norm)
+        .join(" ");
+
+      const searchOK =
+        !search ||
+        text.includes(search);
+
+      return(
+        categoryOK &&
+        subcategoryOK &&
+        searchOK
+      );
+
+    });
+
+  renderProducts();
+
+}
+
+
+function searchProducts(){
+
+  applyFilters();
 
 }
 
 
 /* =====================================================
    RENDER PRODUCTS
-===================================================== */
+   ===================================================== */
 
-function renderProducts(list){
+function renderProducts(){
 
   const grid =
     document.getElementById(
       "productGrid"
     );
 
-  const count =
+  const result =
     document.getElementById(
-      "productCount"
+      "resultText"
     );
 
+  if(result){
 
-  count.textContent =
-    `${list.length} Products`;
+    result.textContent =
+      filteredProducts.length +
+      " products";
 
+  }
 
-  if(!list.length){
+  if(!filteredProducts.length){
 
     grid.innerHTML = `
-      <div
-        class="empty"
-        style="grid-column:1/-1"
-      >
-        কোনো Product পাওয়া যায়নি 😔
+      <div class="no-products">
+        <div style="font-size:35px;">
+          🛍️
+        </div>
+
+        <h3 style="margin-top:10px;">
+          কোনো product পাওয়া যায়নি
+        </h3>
+
+        <p style="margin-top:6px;">
+          অন্য category বা search দিয়ে চেষ্টা করুন।
+        </p>
       </div>
     `;
 
@@ -2490,771 +2772,489 @@ function renderProducts(list){
 
   }
 
-
   grid.innerHTML =
-    list.map(product => {
+    filteredProducts
+      .map(product=>{
 
-      const liked =
-        wishlist.some(
-          item =>
-            String(item.id) ===
-            String(product.id)
-        );
+        const liked =
+          wishlist.includes(product.id);
 
+        return `
 
-      return `
-
-        <div class="product-card">
-
-
-          <button
-            class="wish-btn"
-            onclick="toggleWishlist('${escapeHTML(product.id)}')"
-          >
-            ${liked ? "❤️" : "♡"}
-          </button>
-
-
-          <img
-            class="product-image"
-            src="${escapeHTML(getProductImage(product))}"
-            alt="${escapeHTML(product.name || "Product")}"
-            onclick="openDetails('${escapeHTML(product.id)}')"
-            onerror="
-              this.src='https://via.placeholder.com/500?text=Gadhuli'
-            "
+          <article
+            class="product-card"
           >
 
+            <div
+              class="product-image-box"
+              onclick="openDetails('${escapeHTML(String(product.id))}')"
+            >
 
-          <div class="product-info">
-
-
-            <div class="product-name">
-              ${escapeHTML(
-                product.name ||
-                "Unnamed Product"
-              )}
-            </div>
-
-
-            <div class="product-category">
-
-              ${escapeHTML(
-                product.category || ""
-              )}
-
-              ${
-                product.subcategory
-                ? " • " +
-                  escapeHTML(
-                    product.subcategory
-                  )
-                : ""
-              }
-
-            </div>
-
-
-            <div class="product-price">
-              ${money(product.price)}
-            </div>
-
-
-            <div class="card-buttons">
-
+              <img
+                src="${escapeHTML(getProductImage(product))}"
+                alt="${escapeHTML(product.name || "Product")}"
+                loading="lazy"
+                onerror="this.src='https://via.placeholder.com/500x500?text=Gadhuli'"
+              >
 
               <button
-                class="cart-btn"
-                onclick="addToCart('${escapeHTML(product.id)}')"
+                class="wishlist-card ${liked ? "active" : ""}"
+                onclick="event.stopPropagation();toggleWishlist('${escapeHTML(String(product.id))}')"
               >
-                🛒 Cart
+                ${liked ? "♥" : "♡"}
               </button>
-
-
-              <button
-                class="order-btn"
-                onclick="orderNow('${escapeHTML(product.id)}')"
-              >
-                ⚡ Order
-              </button>
-
 
             </div>
 
+            <div class="product-info">
 
-          </div>
+              <div class="product-name">
+                ${escapeHTML(product.name || "Unnamed Product")}
+              </div>
 
-        </div>
+              <div class="product-price">
+                ${money(product.price)}
+              </div>
 
-      `;
+              <div class="product-category">
+                ${escapeHTML(product.category || "")}
+                ${
+                  product.subcategory
+                    ? " • " +
+                      escapeHTML(product.subcategory)
+                    : ""
+                }
+              </div>
 
-    }).join("");
+              <div class="product-actions">
 
-}
+                <button
+                  class="btn-cart"
+                  onclick="addToCart('${escapeHTML(String(product.id))}')"
+                >
+                  🛒 Add to Cart
+                </button>
 
+                <button
+                  class="btn-order"
+                  onclick="orderNow('${escapeHTML(String(product.id))}')"
+                >
+                  ⚡ Order Now
+                </button>
 
-/* =====================================================
-   BUILD SUBCATEGORIES
-===================================================== */
+              </div>
 
-function buildSubcategories(){
+            </div>
 
-  const wrap =
-    document.getElementById(
-      "subcategoryWrap"
-    );
+          </article>
 
-  const inner =
-    document.getElementById(
-      "subcategoryInner"
-    );
+        `;
 
-
-  if(
-    currentCategory === "All" ||
-    !products.length
-  ){
-
-    wrap.classList.remove("show");
-
-    inner.innerHTML = "";
-
-    return;
-
-  }
-
-
-  const subs = [
-
-    ...new Set(
-
-      products
-        .filter(
-          product =>
-            String(
-              product.category || ""
-            ).toLowerCase()
-            ===
-            currentCategory.toLowerCase()
-        )
-        .map(
-          product =>
-            String(
-              product.subcategory || ""
-            ).trim()
-        )
-        .filter(Boolean)
-
-    )
-
-  ];
-
-
-  if(!subs.length){
-
-    wrap.classList.remove("show");
-
-    inner.innerHTML = "";
-
-    return;
-
-  }
-
-
-  wrap.classList.add("show");
-
-
-  inner.innerHTML = `
-
-    <button
-      class="subcategory-btn active"
-      onclick="filterSubcategory('All',this)"
-    >
-      All
-    </button>
-
-    ${
-      subs.map(sub => `
-
-        <button
-          class="subcategory-btn"
-          onclick="
-            filterSubcategory(
-              '${escapeHTML(sub)}',
-              this
-            )
-          "
-        >
-          ${escapeHTML(sub)}
-        </button>
-
-      `).join("")
-    }
-
-  `;
+      })
+      .join("");
 
 }
 
 
 /* =====================================================
-   CATEGORY FILTER
-===================================================== */
+   FIND PRODUCT
+   ===================================================== */
 
-function filterCategory(
-  category,
-  button
-){
+function findProduct(id){
 
-  currentCategory = category;
-
-  currentSubcategory = "All";
-
-
-  document
-    .querySelectorAll(
-      ".category-btn"
-    )
-    .forEach(btn =>
-      btn.classList.remove("active")
-    );
-
-
-  if(button){
-
-    button.classList.add("active");
-
-  }
-
-
-  document.getElementById(
-    "searchInput"
-  ).value = "";
-
-
-  buildSubcategories();
-
-
-  if(category === "All"){
-
-    document
-      .getElementById(
-        "subcategoryWrap"
-      )
-      .classList.remove("show");
-
-    renderProducts(products);
-
-    return;
-
-  }
-
-
-  const filtered =
-    products.filter(
-      product =>
-        String(
-          product.category || ""
-        ).toLowerCase()
-        ===
-        category.toLowerCase()
-    );
-
-
-  renderProducts(filtered);
-
-}
-
-
-/* =====================================================
-   SUBCATEGORY FILTER
-===================================================== */
-
-function filterSubcategory(
-  subcategory,
-  button
-){
-
-  currentSubcategory =
-    subcategory;
-
-
-  document
-    .querySelectorAll(
-      ".subcategory-btn"
-    )
-    .forEach(btn =>
-      btn.classList.remove("active")
-    );
-
-
-  if(button){
-
-    button.classList.add("active");
-
-  }
-
-
-  let filtered =
-    products.filter(
-      product =>
-        String(
-          product.category || ""
-        ).toLowerCase()
-        ===
-        currentCategory.toLowerCase()
-    );
-
-
-  if(subcategory !== "All"){
-
-    filtered =
-      filtered.filter(
-        product =>
-          String(
-            product.subcategory || ""
-          ).toLowerCase()
-          ===
-          subcategory.toLowerCase()
-      );
-
-  }
-
-
-  renderProducts(filtered);
-
-}
-
-
-/* =====================================================
-   SEARCH
-===================================================== */
-
-function searchProducts(){
-
-  const term =
-    document
-      .getElementById(
-        "searchInput"
-      )
-      .value
-      .trim()
-      .toLowerCase();
-
-
-  if(!term){
-
-    if(currentCategory === "All"){
-
-      renderProducts(products);
-
-    }else{
-
-      let filtered =
-        products.filter(
-          product =>
-            String(
-              product.category || ""
-            ).toLowerCase()
-            ===
-            currentCategory.toLowerCase()
-        );
-
-
-      if(
-        currentSubcategory !==
-        "All"
-      ){
-
-        filtered =
-          filtered.filter(
-            product =>
-              String(
-                product.subcategory || ""
-              ).toLowerCase()
-              ===
-              currentSubcategory.toLowerCase()
-          );
-
-      }
-
-
-      renderProducts(filtered);
-
-    }
-
-    return;
-
-  }
-
-
-  const filtered =
-    products.filter(
-      product => {
-
-        const text = [
-
-          product.name,
-          product.category,
-          product.subcategory,
-          product.description,
-          product.sizes
-
-        ]
-        .join(" ")
-        .toLowerCase();
-
-
-        return text.includes(term);
-
-      }
-    );
-
-
-  renderProducts(filtered);
+  return products.find(
+    p=>String(p.id) === String(id)
+  );
 
 }
 
 
 /* =====================================================
    PRODUCT DETAILS
-===================================================== */
+   ===================================================== */
 
 function openDetails(id){
 
   const product =
-    products.find(
-      p =>
-        String(p.id) ===
-        String(id)
-    );
+    findProduct(id);
 
+  if(!product){
 
-  if(!product) return;
+    toast("Product পাওয়া যায়নি");
 
+    return;
 
-  selectedProduct =
+  }
+
+  currentDetailProduct =
     product;
 
-  selectedSize = "";
-
-
   const images =
-    getProductImages(product);
+    getImages(product);
 
-
-  const imageHTML =
-    images.length
-
-    ? images.map(img => `
-
-        <img
-          src="${escapeHTML(img)}"
-          alt="Product"
-          onerror="
-            this.src='https://via.placeholder.com/500?text=Gadhuli'
-          "
-        >
-
-      `).join("")
-
-    : `
-
-        <img
-          src="${escapeHTML(
-            getProductImage(product)
-          )}"
-          alt="Product"
-        >
-
-      `;
-
+  const mainImage =
+    images[0] ||
+    getProductImage(product);
 
   let sizes = [];
 
-
   if(Array.isArray(product.sizes)){
 
-    sizes =
-      product.sizes;
+    sizes = product.sizes;
 
-  }else if(
-    typeof product.sizes ===
-    "string"
-  ){
+  }else if(typeof product.sizes === "string"){
 
     try{
 
-      sizes =
-        JSON.parse(
+      const parsed =
+        JSON.parse(product.sizes);
+
+      if(Array.isArray(parsed))
+        sizes = parsed;
+      else
+        sizes =
           product.sizes
-        );
+            .split(",")
+            .map(x=>x.trim())
+            .filter(Boolean);
 
     }catch(e){
 
       sizes =
         product.sizes
           .split(",")
-          .map(
-            x => x.trim()
-          )
+          .map(x=>x.trim())
           .filter(Boolean);
 
     }
 
   }
 
+  const content =
+    document.getElementById(
+      "detailsContent"
+    );
 
-  const sizeHTML =
-    sizes.length
+  content.innerHTML = `
 
-    ? `
+    <div class="detail-layout">
 
-      <div style="margin-top:15px">
+      <div>
 
-        <b>
-          Size:
-        </b>
+        <img
+          id="detailMainImage"
+          class="detail-main-image"
+          src="${escapeHTML(mainImage)}"
+          onerror="this.src='https://via.placeholder.com/500x500?text=Gadhuli'"
+        >
 
-        <div class="size-list">
+        <div class="detail-thumbs">
 
           ${
-            sizes.map(size => `
+            images
+              .map((img,i)=>`
 
-              <button
-                class="size-btn"
-                onclick="
-                  selectSize(
-                    this,
-                    '${escapeHTML(size)}'
-                  )
-                "
-              >
-                ${escapeHTML(size)}
-              </button>
+                <img
+                  class="detail-thumb ${i===0 ? "active" : ""}"
+                  src="${escapeHTML(img)}"
+                  onclick="changeDetailImage(this,'${escapeHTML(img)}')"
+                >
 
-            `).join("")
+              `)
+              .join("")
           }
 
         </div>
 
       </div>
 
-    `
+      <div>
 
-    : "";
+        <h2>
+          ${escapeHTML(product.name || "")}
+        </h2>
 
+        <div class="detail-price">
+          ${money(product.price)}
+        </div>
 
-  document.getElementById(
-    "detailContent"
-  ).innerHTML = `
-
-
-    <div class="detail-images">
-
-      ${imageHTML}
-
-    </div>
-
-
-    <h2>
-      ${escapeHTML(
-        product.name || ""
-      )}
-    </h2>
-
-
-    <div class="detail-price">
-      ${money(product.price)}
-    </div>
-
-
-    <div
-      style="
-        font-size:13px;
-        color:#777;
-        margin-bottom:12px;
-      "
-    >
-
-      ${escapeHTML(
-        product.category || ""
-      )}
-
-      ${
-        product.subcategory
-        ? " • " +
-          escapeHTML(
+        <div class="detail-category">
+          ${escapeHTML(product.category || "")}
+          ${
             product.subcategory
-          )
-        : ""
-      }
+              ? " • " +
+                escapeHTML(product.subcategory)
+              : ""
+          }
+        </div>
+
+        ${
+          sizes.length
+          ? `
+
+            <div class="size-title">
+              Select Size
+            </div>
+
+            <div class="size-list">
+
+              ${sizes.map(size=>`
+
+                <button
+                  class="size-btn"
+                  onclick="selectSize(this,'${escapeHTML(size)}')"
+                >
+                  ${escapeHTML(size)}
+                </button>
+
+              `).join("")}
+
+            </div>
+
+          `
+          : ""
+        }
+
+        <div
+          style="
+            margin-top:16px;
+            line-height:23px;
+            color:#555;
+          "
+        >
+          ${escapeHTML(product.description || "এই product-এর কোনো description দেওয়া হয়নি।")}
+        </div>
+
+        <div
+          style="
+            display:grid;
+            grid-template-columns:1fr 1fr;
+            gap:8px;
+            margin-top:18px;
+          "
+        >
+
+          <button
+            class="btn-cart"
+            onclick="addCurrentDetailToCart()"
+          >
+            🛒 Add to Cart
+          </button>
+
+          <button
+            class="btn-order"
+            onclick="orderCurrentDetail()"
+          >
+            ⚡ Order Now
+          </button>
+
+        </div>
+
+        <button
+          class="secondary-btn"
+          onclick="shareProduct()"
+        >
+          🔗 Share Product
+        </button>
+
+        <button
+          class="secondary-btn"
+          onclick="resellProduct()"
+        >
+          💼 Resell This Product
+        </button>
+
+      </div>
 
     </div>
-
-
-    ${sizeHTML}
-
-
-    <div
-      style="
-        margin:12px 0;
-        line-height:22px;
-        font-size:14px;
-      "
-    >
-      ${escapeHTML(
-        product.description ||
-        "No description available."
-      )}
-    </div>
-
-
-    <div class="card-buttons">
-
-
-      <button
-        class="cart-btn"
-        onclick="
-          addToCart(
-            '${escapeHTML(product.id)}'
-          )
-        "
-      >
-        🛒 Add to Cart
-      </button>
-
-
-      <button
-        class="order-btn"
-        onclick="
-          orderNow(
-            '${escapeHTML(product.id)}'
-          )
-        "
-      >
-        ⚡ Order Now
-      </button>
-
-
-    </div>
-
 
   `;
 
-
-  openModal(
-    "detailModal"
-  );
+  showModal("detailsModal");
 
 }
 
 
-/* =====================================================
-   SIZE
-===================================================== */
+function changeDetailImage(el,url){
 
-function selectSize(
-  button,
-  size
-){
+  const main =
+    document.getElementById(
+      "detailMainImage"
+    );
 
-  selectedSize = size;
-
+  if(main)
+    main.src = url;
 
   document
-    .querySelectorAll(
-      ".size-btn"
-    )
-    .forEach(
-      btn =>
-        btn.classList.remove(
-          "selected"
-        )
+    .querySelectorAll(".detail-thumb")
+    .forEach(x=>
+      x.classList.remove("active")
     );
 
+  el.classList.add("active");
 
-  button.classList.add(
-    "selected"
+}
+
+
+function selectSize(btn,size){
+
+  document
+    .querySelectorAll(".size-btn")
+    .forEach(x=>
+      x.classList.remove("active")
+    );
+
+  btn.classList.add("active");
+
+  if(currentDetailProduct){
+
+    currentDetailProduct._selectedSize =
+      size;
+
+  }
+
+}
+
+
+function getSelectedSize(){
+
+  return currentDetailProduct?._selectedSize || "";
+
+}
+
+
+function addCurrentDetailToCart(){
+
+  if(!currentDetailProduct)
+    return;
+
+  addToCart(
+    currentDetailProduct.id,
+    getSelectedSize()
   );
 
 }
 
 
-/* =====================================================
-   ADD TO CART
-===================================================== */
+function orderCurrentDetail(){
 
-function addToCart(id){
+  if(!currentDetailProduct)
+    return;
+
+  orderNow(
+    currentDetailProduct.id,
+    getSelectedSize()
+  );
+
+}
+
+
+async function shareProduct(){
+
+  if(!currentDetailProduct)
+    return;
+
+  const url =
+    window.location.origin +
+    window.location.pathname +
+    "?product=" +
+    encodeURIComponent(
+      currentDetailProduct.id
+    );
+
+  try{
+
+    if(navigator.share){
+
+      await navigator.share({
+        title:currentDetailProduct.name,
+        text:
+          "Gadhuli - " +
+          currentDetailProduct.name,
+        url
+      });
+
+    }else{
+
+      await navigator.clipboard.writeText(url);
+
+      toast("Product link copied!");
+
+    }
+
+  }catch(e){}
+
+}
+
+
+function resellProduct(){
+
+  closeModal("detailsModal");
+
+  openReseller();
+
+}
+
+
+/* =====================================================
+   CART
+   ===================================================== */
+
+function addToCart(id,size=""){
 
   const product =
-    products.find(
-      p =>
-        String(p.id) ===
-        String(id)
-    );
+    findProduct(id);
 
+  if(!product){
 
-  if(!product) return;
+    toast("Product পাওয়া যায়নি");
 
+    return;
+
+  }
 
   const existing =
-    cart.find(
-      item =>
-        String(item.id) ===
-        String(product.id)
+    cart.find(item=>
+      String(item.id) === String(id) &&
+      String(item.selectedSize || "") ===
+      String(size || "")
     );
-
 
   if(existing){
 
     existing.qty =
-      Number(
-        existing.qty || 1
-      ) + 1;
+      Number(existing.qty || 1) + 1;
 
   }else{
 
     cart.push({
 
-      ...product,
-
+      id:product.id,
+      name:product.name,
+      price:Number(product.price || 0),
+      image:getProductImage(product),
       qty:1,
-
-      selectedSize:""
+      selectedSize:size || ""
 
     });
 
   }
 
-
   saveCart();
 
-
-  alert(
-    "Product Cart-এ যোগ হয়েছে ✅"
-  );
+  toast("Cart-এ product যোগ হয়েছে 🛒");
 
 }
 
-
-/* =====================================================
-   OPEN CART
-===================================================== */
 
 function openCart(){
 
   renderCart();
 
-  openModal(
-    "cartModal"
-  );
+  showModal("cartModal");
 
 }
 
-
-/* =====================================================
-   RENDER CART
-===================================================== */
 
 function renderCart(){
 
@@ -3263,13 +3263,25 @@ function renderCart(){
       "cartContent"
     );
 
-
   if(!cart.length){
 
     box.innerHTML = `
 
-      <div class="empty">
-        🛒 Cart এখনো খালি।
+      <div
+        style="
+          text-align:center;
+          padding:35px 10px;
+          color:#777;
+        "
+      >
+        <div style="font-size:45px;">
+          🛒
+        </div>
+
+        <h3 style="margin-top:10px;">
+          Your cart is empty
+        </h3>
+
       </div>
 
     `;
@@ -3278,133 +3290,94 @@ function renderCart(){
 
   }
 
+  let subtotal = 0;
 
-  let total = 0;
+  box.innerHTML =
+    cart.map((item,index)=>{
 
+      const total =
+        Number(item.price || 0) *
+        Number(item.qty || 1);
 
-  const html =
-    cart.map(
-      (item,index) => {
+      subtotal += total;
 
-        const qty =
-          Number(
-            item.qty || 1
-          );
+      return `
 
-        const price =
-          Number(
-            item.price || 0
-          );
+        <div class="cart-item">
 
+          <img
+            src="${escapeHTML(item.image || getProductImage(findProduct(item.id) || {}))}"
+            onerror="this.src='https://via.placeholder.com/100x100?text=Gadhuli'"
+          >
 
-        total +=
-          price * qty;
+          <div>
 
+            <div class="cart-name">
+              ${escapeHTML(item.name)}
+            </div>
 
-        return `
+            <div class="cart-meta">
+              ${money(item.price)}
+              ${
+                item.selectedSize
+                  ? " • Size: " +
+                    escapeHTML(item.selectedSize)
+                  : ""
+              }
+            </div>
 
-          <div class="cart-item">
+            <div class="qty-control">
 
+              <button
+                onclick="changeQty(${index},-1)"
+              >
+                −
+              </button>
 
-            <img
-              src="${escapeHTML(
-                getProductImage(item)
-              )}"
-              alt="Product"
-            >
+              <b>
+                ${item.qty}
+              </b>
 
-
-            <div class="cart-info">
-
-
-              <div class="cart-name">
-                ${escapeHTML(
-                  item.name || ""
-                )}
-              </div>
-
-
-              <div class="cart-price">
-                ${money(
-                  price * qty
-                )}
-              </div>
-
-
-              <div class="qty">
-
-
-                <button
-                  onclick="
-                    changeQty(
-                      ${index},
-                      -1
-                    )
-                  "
-                >
-                  −
-                </button>
-
-
-                <span>
-                  ${qty}
-                </span>
-
-
-                <button
-                  onclick="
-                    changeQty(
-                      ${index},
-                      1
-                    )
-                  "
-                >
-                  +
-                </button>
-
-
-                <button
-                  onclick="
-                    removeCart(
-                      ${index}
-                    )
-                  "
-                  style="margin-left:5px"
-                >
-                  🗑️
-                </button>
-
-
-              </div>
-
+              <button
+                onclick="changeQty(${index},1)"
+              >
+                +
+              </button>
 
             </div>
 
+            <button
+              class="remove-btn"
+              onclick="removeCart(${index})"
+            >
+              Remove
+            </button>
+
           </div>
 
-        `;
+          <b>
+            ${money(total)}
+          </b>
 
-      }
-    )
+        </div>
+
+      `;
+
+    })
     .join("");
 
-
-  box.innerHTML = `
-
-    ${html}
-
+  box.innerHTML += `
 
     <div class="cart-total">
-      Subtotal:
-      ${money(total)}
+      <span>Subtotal</span>
+      <span>${money(subtotal)}</span>
     </div>
-
 
     <button
       class="primary-btn"
       onclick="orderCart()"
     >
-      ⚡ Order Cart Items
+      ⚡ Order All Cart Items
     </button>
 
   `;
@@ -3412,36 +3385,20 @@ function renderCart(){
 }
 
 
-/* =====================================================
-   CART QUANTITY
-===================================================== */
-
-function changeQty(
-  index,
-  change
-){
+function changeQty(index,change){
 
   if(!cart[index])
     return;
 
-
   cart[index].qty =
-    Number(
-      cart[index].qty || 1
-    ) + change;
+    Number(cart[index].qty || 1) +
+    change;
 
+  if(cart[index].qty <= 0){
 
-  if(
-    cart[index].qty <= 0
-  ){
-
-    cart.splice(
-      index,
-      1
-    );
+    cart.splice(index,1);
 
   }
-
 
   saveCart();
 
@@ -3450,16 +3407,9 @@ function changeQty(
 }
 
 
-/* =====================================================
-   REMOVE CART
-===================================================== */
-
 function removeCart(index){
 
-  cart.splice(
-    index,
-    1
-  );
+  cart.splice(index,1);
 
   saveCart();
 
@@ -3470,563 +3420,513 @@ function removeCart(index){
 
 /* =====================================================
    ORDER NOW
-===================================================== */
+   ===================================================== */
 
-function orderNow(id){
+function orderNow(id,size=""){
 
   const product =
-    products.find(
-      p =>
-        String(p.id) ===
-        String(id)
-    );
+    findProduct(id);
 
+  if(!product){
 
-  if(!product)
-    return;
-
-
-  selectedProduct =
-    product;
-
-  selectedSize = "";
-
-
-  orderItems = [{
-
-    ...product,
-
-    qty:1,
-
-    selectedSize:""
-
-  }];
-
-
-  document.getElementById(
-    "orderProductInfo"
-  ).innerHTML = `
-
-    <div class="order-box">
-
-      <b>
-        ${escapeHTML(
-          product.name || ""
-        )}
-      </b>
-
-      <br>
-
-      <span
-        style="
-          color:#e65100;
-          font-weight:bold;
-        "
-      >
-        ${money(product.price)}
-      </span>
-
-    </div>
-
-  `;
-
-
-  updateOrderTotal();
-
-
-  closeModal(
-    "detailModal"
-  );
-
-
-  openModal(
-    "orderModal"
-  );
-
-}
-
-
-/* =====================================================
-   ORDER CART
-===================================================== */
-
-function orderCart(){
-
-  if(!cart.length){
-
-    alert(
-      "Cart খালি।"
-    );
+    toast("Product পাওয়া যায়নি");
 
     return;
 
   }
 
+  currentOrderItems = [{
 
-  orderItems =
-    cart.map(
-      item => ({
-        ...item
-      })
+    id:product.id,
+    name:product.name,
+    price:Number(product.price || 0),
+    image:getProductImage(product),
+    qty:1,
+    selectedSize:
+      size ||
+      product._selectedSize ||
+      ""
+
+  }];
+
+  closeModal("detailsModal");
+  closeModal("cartModal");
+
+  renderOrderSummary();
+
+  updateOrderTotal();
+
+  showModal("orderModal");
+
+}
+
+
+function orderCart(){
+
+  if(!cart.length){
+
+    toast("Cart empty");
+
+    return;
+
+  }
+
+  currentOrderItems =
+    cart.map(item=>({...item}));
+
+  closeModal("cartModal");
+
+  renderOrderSummary();
+
+  updateOrderTotal();
+
+  showModal("orderModal");
+
+}
+
+
+function renderOrderSummary(){
+
+  const box =
+    document.getElementById(
+      "orderSummary"
     );
 
+  let subtotal = 0;
 
-  document.getElementById(
-    "orderProductInfo"
-  ).innerHTML = `
+  box.innerHTML = `
 
-    <div class="order-box">
-
-      <b>
-        ${orderItems.length}
-        টি Product
-      </b>
-
-      <br><br>
+    <div
+      style="
+        background:#f8f8f8;
+        padding:11px;
+        border-radius:9px;
+        margin-bottom:13px;
+      "
+    >
 
       ${
-        orderItems.map(
-          item =>
-            `${escapeHTML(
-              item.name || ""
-            )} × ${
-              item.qty || 1
-            }`
-        ).join("<br>")
+        currentOrderItems
+          .map(item=>{
+
+            const line =
+              Number(item.price || 0) *
+              Number(item.qty || 1);
+
+            subtotal += line;
+
+            return `
+
+              <div
+                style="
+                  display:flex;
+                  justify-content:space-between;
+                  gap:8px;
+                  padding:5px 0;
+                  font-size:13px;
+                "
+              >
+
+                <span>
+                  ${escapeHTML(item.name)}
+                  × ${item.qty}
+                  ${
+                    item.selectedSize
+                      ? " (" +
+                        escapeHTML(item.selectedSize) +
+                        ")"
+                      : ""
+                  }
+                </span>
+
+                <b>
+                  ${money(line)}
+                </b>
+
+              </div>
+
+            `;
+
+          })
+          .join("")
       }
+
+      <div
+        style="
+          border-top:1px solid #ddd;
+          margin-top:6px;
+          padding-top:7px;
+          display:flex;
+          justify-content:space-between;
+        "
+      >
+        <b>Subtotal</b>
+        <b>${money(subtotal)}</b>
+      </div>
 
     </div>
 
   `;
 
-
-  updateOrderTotal();
-
-
-  closeModal(
-    "cartModal"
-  );
-
-
-  openModal(
-    "orderModal"
-  );
-
 }
 
 
-/* =====================================================
-   ORDER TOTAL
-===================================================== */
-
 function updateOrderTotal(){
-
-  let total = 0;
-
-
-  orderItems.forEach(
-    item => {
-
-      total +=
-        Number(
-          item.price || 0
-        ) *
-        Number(
-          item.qty || 1
-        );
-
-    }
-  );
-
 
   const delivery =
     Number(
       document.getElementById(
-        "deliveryCharge"
-      ).value || 60
+        "deliverySelect"
+      )?.value || 60
     );
 
+  const subtotal =
+    currentOrderItems.reduce(
+      (sum,item)=>
+        sum +
+        Number(item.price || 0) *
+        Number(item.qty || 1),
+      0
+    );
 
-  document.getElementById(
-    "orderTotal"
-  ).textContent =
-    `Total: ${money(
-      total + delivery
-    )}`;
+  const total =
+    subtotal + delivery;
+
+  const box =
+    document.getElementById(
+      "orderTotalBox"
+    );
+
+  if(box){
+
+    box.innerHTML = `
+
+      <div
+        style="
+          display:flex;
+          justify-content:space-between;
+        "
+      >
+        <span>Subtotal</span>
+        <b>${money(subtotal)}</b>
+      </div>
+
+      <div
+        style="
+          display:flex;
+          justify-content:space-between;
+          margin-top:5px;
+        "
+      >
+        <span>Delivery</span>
+        <b>${money(delivery)}</b>
+      </div>
+
+      <div
+        style="
+          display:flex;
+          justify-content:space-between;
+          margin-top:8px;
+          padding-top:8px;
+          border-top:1px solid #ffd2b0;
+          font-size:19px;
+        "
+      >
+        <span>Total</span>
+        <b style="color:#E65100;">
+          ${money(total)}
+        </b>
+      </div>
+
+    `;
+
+  }
 
 }
 
 
 /* =====================================================
    PAYMENT
-===================================================== */
+   ===================================================== */
 
-document
-  .getElementById(
+function selectPayment(el){
+
+  document
+    .querySelectorAll(".payment-option")
+    .forEach(x=>
+      x.classList.remove("active")
+    );
+
+  el.classList.add("active");
+
+  selectedPayment =
+    el.dataset.payment;
+
+  document.getElementById(
     "paymentMethod"
-  )
-  .addEventListener(
-    "change",
-    function(){
+  ).value =
+    selectedPayment;
 
-      const manual =
-        document.getElementById(
-          "manualPaymentBox"
-        );
+  const manual =
+    document.getElementById(
+      "manualPaymentBox"
+    );
 
+  if(manual){
 
-      if(
-        [
-          "bKash",
-          "Nagad",
-          "Rocket"
-        ].includes(
-          this.value
-        )
-      ){
+    manual.style.display =
+      selectedPayment ===
+      "Cash on Delivery"
+        ? "none"
+        : "block";
 
-        manual.style.display =
-          "block";
+  }
 
-      }else{
-
-        manual.style.display =
-          "none";
-
-      }
-
-    }
-  );
+}
 
 
 /* =====================================================
-   DELIVERY
-===================================================== */
+   SUBMIT ORDER TO SUPABASE
+   ===================================================== */
 
-document
-  .getElementById(
-    "deliveryCharge"
-  )
-  .addEventListener(
-    "change",
-    updateOrderTotal
-  );
+async function submitOrder(event){
 
+  event.preventDefault();
 
-/* =====================================================
-   SUBMIT ORDER
-===================================================== */
+  if(!db){
 
-async function submitOrder(){
+    toast("Supabase connection পাওয়া যায়নি");
+
+    return;
+
+  }
+
+  if(!currentOrderItems.length){
+
+    toast("Order item নেই");
+
+    return;
+
+  }
 
   const name =
     document.getElementById(
-      "customerName"
+      "orderName"
     ).value.trim();
-
 
   const mobile =
     document.getElementById(
-      "customerMobile"
+      "orderMobile"
     ).value.trim();
-
 
   const district =
     document.getElementById(
-      "customerDistrict"
+      "orderDistrict"
     ).value.trim();
-
 
   const thana =
     document.getElementById(
-      "customerThana"
+      "orderThana"
     ).value.trim();
-
 
   const address =
     document.getElementById(
-      "customerAddress"
+      "orderAddress"
     ).value.trim();
-
 
   const delivery =
     Number(
       document.getElementById(
-        "deliveryCharge"
+        "deliverySelect"
       ).value
     );
-
 
   const payment =
     document.getElementById(
       "paymentMethod"
     ).value;
 
-
-  const paymentNumber =
-    document.getElementById(
-      "paymentNumber"
-    ).value.trim();
-
-
-  const paymentReference =
-    document.getElementById(
-      "paymentReference"
-    ).value.trim();
-
-
-  if(
-    !name ||
-    !mobile ||
-    !address
-  ){
-
-    alert(
-      "Name, Mobile এবং Address পূরণ করুন।"
+  const subtotal =
+    currentOrderItems.reduce(
+      (sum,item)=>
+        sum +
+        Number(item.price || 0) *
+        Number(item.qty || 1),
+      0
     );
-
-    return;
-
-  }
-
-
-  if(!orderItems.length){
-
-    alert(
-      "Order item পাওয়া যায়নি।"
-    );
-
-    return;
-
-  }
-
-
-  let subtotal = 0;
-
-
-  orderItems.forEach(
-    item => {
-
-      subtotal +=
-        Number(
-          item.price || 0
-        ) *
-        Number(
-          item.qty || 1
-        );
-
-    }
-  );
-
 
   const total =
     subtotal + delivery;
 
-
-  if(!db){
-
-    alert(
-      "Supabase connection নেই ❌"
+  const submitButton =
+    document.querySelector(
+      "#orderForm .primary-btn"
     );
 
-    return;
+  if(submitButton){
+
+    submitButton.disabled = true;
+
+    submitButton.textContent =
+      "Order Saving...";
 
   }
-
 
   try{
 
     const {
-      data:userData
+      data:{
+        user
+      } = {}
     } =
       await db.auth.getUser();
 
-
-    const user =
-      userData?.user || null;
-
-
-    const orderPayload = {
-
-      user_id:
-        user?.id || null,
-
-      customer_name:
-        name,
-
-      customer_phone:
-        mobile,
-
-      district:
-        district,
-
-      thana:
-        thana,
-
-      address:
-        address,
-
-      delivery_charge:
-        delivery,
-
-      payment_method:
-        payment,
-
-      payment_status:
-        "Pending",
-
-      status:
-        "Pending",
-
-      total_amount:
-        total
-
-    };
-
-
-    /*
-      Payment number/reference
-      থাকলে database column থাকলে
-      পরের step-এ admin schema অনুযায়ী
-      আলাদা করে connect করা যাবে।
-    */
-
-
     const {
       data:order,
-      error
+      error:orderError
     } =
       await db
         .from("orders")
-        .insert(
-          orderPayload
-        )
+        .insert({
+
+          user_id:
+            user?.id || null,
+
+          customer_name:
+            name,
+
+          customer_phone:
+            mobile,
+
+          district:
+            district,
+
+          thana:
+            thana,
+
+          address:
+            address,
+
+          delivery_charge:
+            delivery,
+
+          payment_method:
+            payment,
+
+          payment_status:
+            "Pending",
+
+          status:
+            "Pending",
+
+          total_amount:
+            total
+
+        })
         .select()
         .single();
 
+    if(orderError)
+      throw orderError;
 
-    if(error){
+    const orderItems =
+      currentOrderItems.map(item=>({
 
-      console.error(
-        "Order error:",
-        error
-      );
+        order_id:
+          order.id,
 
+        product_id:
+          item.id,
 
-      alert(
-        "Order save হয়নি ❌\n\n" +
-        error.message
-      );
+        product_name:
+          item.name,
 
-      return;
+        price:
+          Number(item.price || 0),
 
-    }
+        quantity:
+          Number(item.qty || 1),
 
+        size:
+          item.selectedSize || ""
 
-    const items =
-      orderItems.map(
-        item => ({
-
-          order_id:
-            order.id,
-
-          product_id:
-            item.id,
-
-          product_name:
-            item.name,
-
-          price:
-            Number(
-              item.price || 0
-            ),
-
-          quantity:
-            Number(
-              item.qty || 1
-            ),
-
-          size:
-            item.selectedSize || ""
-
-        })
-      );
-
+      }));
 
     const {
       error:itemError
     } =
       await db
         .from("order_items")
-        .insert(
-          items
-        );
+        .insert(orderItems);
 
+    if(itemError)
+      throw itemError;
 
-    if(itemError){
+    toast(
+      "Order successfully placed! ✅"
+    );
 
-      console.error(
-        "Order items error:",
-        itemError
-      );
-
-      alert(
-        "Order তৈরি হয়েছে, কিন্তু order items save করতে সমস্যা হয়েছে।"
-      );
-
-      return;
-
-    }
-
-
-    /*
-      Cart থেকে ordered products remove
-    */
-
-    const orderedIds =
-      orderItems.map(
-        item =>
-          String(item.id)
-      );
-
-
-    cart =
-      cart.filter(
-        item =>
-          !orderedIds.includes(
-            String(item.id)
-          )
-      );
-
+    cart = [];
 
     saveCart();
 
+    closeModal("orderModal");
 
-    alert(
-      "Order সফলভাবে নেওয়া হয়েছে ✅\n\n" +
-      "Order ID: " +
-      order.id
+    document
+      .getElementById("orderForm")
+      .reset();
+
+    selectedPayment =
+      "Cash on Delivery";
+
+    document
+      .querySelectorAll(".payment-option")
+      .forEach((x,i)=>
+        x.classList.toggle(
+          "active",
+          i === 0
+        )
+      );
+
+    document.getElementById(
+      "paymentMethod"
+    ).value =
+      "Cash on Delivery";
+
+    document.getElementById(
+      "manualPaymentBox"
+    ).style.display =
+      "none";
+
+    currentOrderItems = [];
+
+    setTimeout(
+      ()=>openOrders(),
+      700
     );
-
-
-    closeModal(
-      "orderModal"
-    );
-
-
-    orderItems = [];
-
 
   }catch(error){
 
     console.error(
+      "Order error:",
       error
     );
 
-
-    alert(
-      "Order process-এ সমস্যা হয়েছে ❌"
+    toast(
+      "Order হয়নি: " +
+      (error.message || "Unknown error")
     );
+
+  }finally{
+
+    if(submitButton){
+
+      submitButton.disabled = false;
+
+      submitButton.textContent =
+        "Confirm Order";
+
+    }
 
   }
 
@@ -4035,705 +3935,654 @@ async function submitOrder(){
 
 /* =====================================================
    WISHLIST
-===================================================== */
+   ===================================================== */
 
 function toggleWishlist(id){
 
-  const product =
-    products.find(
-      p =>
-        String(p.id) ===
-        String(id)
-    );
-
-
-  if(!product)
-    return;
-
-
   const index =
     wishlist.findIndex(
-      item =>
-        String(item.id) ===
-        String(id)
+      x=>String(x) === String(id)
     );
-
 
   if(index >= 0){
 
-    wishlist.splice(
-      index,
-      1
-    );
+    wishlist.splice(index,1);
 
-    alert(
-      "Wishlist থেকে remove হয়েছে"
-    );
+    toast("Wishlist থেকে remove হয়েছে");
 
   }else{
 
-    wishlist.push(
-      product
-    );
+    wishlist.push(id);
 
-    alert(
-      "Wishlist-এ যোগ হয়েছে ❤️"
-    );
+    toast("Wishlist-এ যোগ হয়েছে ❤️");
 
   }
-
 
   saveWishlist();
 
+  renderProducts();
 
-  refreshCurrentProducts();
+}
+
+
+function openWishlist(){
+
+  const box =
+    document.getElementById(
+      "wishlistContent"
+    );
+
+  const items =
+    products.filter(product=>
+      wishlist.some(
+        id=>String(id) ===
+        String(product.id)
+      )
+    );
+
+  if(!items.length){
+
+    box.innerHTML = `
+
+      <div
+        style="
+          text-align:center;
+          padding:35px 10px;
+          color:#777;
+        "
+      >
+        ❤️
+        <h3 style="margin-top:10px;">
+          Wishlist empty
+        </h3>
+      </div>
+
+    `;
+
+  }else{
+
+    box.innerHTML =
+      items.map(product=>`
+
+        <div
+          style="
+            display:grid;
+            grid-template-columns:65px 1fr auto;
+            gap:10px;
+            align-items:center;
+            padding:10px 0;
+            border-bottom:1px solid #eee;
+          "
+        >
+
+          <img
+            src="${escapeHTML(getProductImage(product))}"
+            style="
+              width:65px;
+              height:65px;
+              object-fit:cover;
+              border-radius:8px;
+            "
+          >
+
+          <div>
+
+            <b>
+              ${escapeHTML(product.name)}
+            </b>
+
+            <div
+              style="
+                color:#FF6B00;
+                font-weight:bold;
+                margin-top:4px;
+              "
+            >
+              ${money(product.price)}
+            </div>
+
+          </div>
+
+          <button
+            class="btn-order"
+            onclick="orderNow('${escapeHTML(String(product.id))}')"
+          >
+            Order
+          </button>
+
+        </div>
+
+      `).join("");
+
+  }
+
+  showModal("wishlistModal");
 
 }
 
 
 /* =====================================================
-   REFRESH CURRENT PRODUCTS
-===================================================== */
-
-function refreshCurrentProducts(){
-
-  let filtered =
-    products;
-
-
-  if(
-    currentCategory !==
-    "All"
-  ){
-
-    filtered =
-      filtered.filter(
-        product =>
-          String(
-            product.category || ""
-          ).toLowerCase()
-          ===
-          currentCategory.toLowerCase()
-      );
-
-  }
-
-
-  if(
-    currentSubcategory !==
-    "All"
-  ){
-
-    filtered =
-      filtered.filter(
-        product =>
-          String(
-            product.subcategory || ""
-          ).toLowerCase()
-          ===
-          currentSubcategory.toLowerCase()
-      );
-
-  }
-
-
-  renderProducts(
-    filtered
-  );
-
-}
-
-
-/* =====================================================
-   PROFILE
-===================================================== */
+   AUTH / PROFILE
+   ===================================================== */
 
 async function openProfile(){
 
-  openModal(
-    "profileModal"
-  );
-
-
-  const area =
+  const box =
     document.getElementById(
-      "profileArea"
+      "profileContent"
     );
 
-
-  area.innerHTML = `
-
-    <div class="empty">
-      Loading...
-    </div>
-
-  `;
-
-
-  if(!db){
-
-    showLoggedOutProfile();
-
-    return;
-
-  }
-
+  let user = null;
 
   try{
 
-    const {
-      data
-    } =
-      await db.auth.getUser();
+    if(db){
 
+      const {
+        data
+      } =
+        await db.auth.getUser();
 
-    if(data?.user){
-
-      showLoggedInProfile(
-        data.user
-      );
-
-    }else{
-
-      showLoggedOutProfile();
+      user =
+        data?.user || null;
 
     }
 
-  }catch(error){
+  }catch(e){}
 
-    console.error(
-      error
-    );
+  if(!user){
 
-    showLoggedOutProfile();
+    box.innerHTML = `
+
+      <div
+        style="
+          text-align:center;
+          padding:10px 0 15px;
+        "
+      >
+
+        <div style="font-size:50px;">
+          👤
+        </div>
+
+        <h2 style="margin-top:8px;">
+          My Profile
+        </h2>
+
+        <p
+          style="
+            color:#777;
+            margin:8px 0 18px;
+          "
+        >
+          Login করলে orders ও account manage
+          করতে পারবেন।
+        </p>
+
+      </div>
+
+      <button
+        class="primary-btn"
+        onclick="openLogin()"
+      >
+        Login
+      </button>
+
+      <button
+        class="secondary-btn"
+        onclick="openSignup()"
+      >
+        Create Account
+      </button>
+
+    `;
+
+  }else{
+
+    box.innerHTML = `
+
+      <div
+        style="
+          background:#FFF3E8;
+          padding:15px;
+          border-radius:12px;
+          margin-bottom:12px;
+        "
+      >
+
+        <div style="font-size:25px;">
+          👤
+        </div>
+
+        <b>
+          ${escapeHTML(
+            user.user_metadata?.full_name ||
+            user.email ||
+            "Gadhuli User"
+          )}
+        </b>
+
+        <div
+          style="
+            color:#777;
+            font-size:12px;
+            margin-top:4px;
+          "
+        >
+          ${escapeHTML(user.email || "")}
+        </div>
+
+      </div>
+
+      <div class="profile-menu">
+
+        <button
+          class="profile-item"
+          onclick="openOrders()"
+        >
+          📦 My Orders
+        </button>
+
+        <button
+          class="profile-item"
+          onclick="openTrack()"
+        >
+          🚚 Track Order
+        </button>
+
+        <button
+          class="profile-item"
+          onclick="openSavedAddress()"
+        >
+          📍 Saved Address
+        </button>
+
+        <button
+          class="profile-item"
+          onclick="openWishlist()"
+        >
+          ❤️ Wishlist
+        </button>
+
+        <button
+          class="profile-item"
+          onclick="openReseller()"
+        >
+          💼 Reseller / Dashboard
+        </button>
+
+        <button
+          class="profile-item"
+          onclick="changePassword()"
+        >
+          🔐 Change Password
+        </button>
+
+        <button
+          class="profile-item"
+          onclick="logoutUser()"
+        >
+          🚪 Logout
+        </button>
+
+      </div>
+
+    `;
 
   }
 
-}
-
-
-/* =====================================================
-   LOGGED OUT
-===================================================== */
-
-function showLoggedOutProfile(){
-
-  document.getElementById(
-    "profileArea"
-  ).innerHTML = `
-
-    <div class="profile-menu">
-
-
-      <button
-        onclick="openLogin()"
-      >
-        🔐 Login
-      </button>
-
-
-      <button
-        onclick="showCreateAccount()"
-      >
-        ✨ Create Account
-      </button>
-
-
-      <button
-        onclick="openOrders()"
-      >
-        📦 My Orders
-      </button>
-
-
-      <button
-        onclick="openHelp()"
-      >
-        💬 WhatsApp Helpline
-      </button>
-
-
-    </div>
-
-  `;
+  showModal("profileModal");
 
 }
 
-
-/* =====================================================
-   LOGGED IN
-===================================================== */
-
-function showLoggedInProfile(
-  user
-){
-
-  document.getElementById(
-    "profileArea"
-  ).innerHTML = `
-
-
-    <div
-      style="
-        background:#fff3e8;
-        padding:14px;
-        border-radius:8px;
-        margin-bottom:10px;
-      "
-    >
-
-      <b>
-        👤
-        ${escapeHTML(
-          user.email || ""
-        )}
-      </b>
-
-    </div>
-
-
-    <div class="profile-menu">
-
-
-      <button
-        onclick="openOrders()"
-      >
-        📦 My Orders
-      </button>
-
-
-      <button
-        onclick="trackOrder()"
-      >
-        🚚 Track Order
-      </button>
-
-
-      <button
-        onclick="changePassword()"
-      >
-        🔑 Change Password
-      </button>
-
-
-      <button
-        onclick="savedAddress()"
-      >
-        📍 Saved Address
-      </button>
-
-
-      <button
-        onclick="showWishlist()"
-      >
-        ❤️ Wishlist
-      </button>
-
-
-      <button
-        onclick="openReseller()"
-      >
-        🏪 Reseller / Dashboard
-      </button>
-
-
-      <button
-        onclick="openHelp()"
-      >
-        💬 WhatsApp Helpline
-      </button>
-
-
-      <button
-        onclick="logoutUser()"
-      >
-        🚪 Logout
-      </button>
-
-
-    </div>
-
-  `;
-
-}
-
-
-/* =====================================================
-   LOGIN
-===================================================== */
 
 function openLogin(){
 
-  closeModal(
-    "profileModal"
-  );
+  closeModal("profileModal");
 
-  openModal(
-    "loginModal"
-  );
+  closeModal("signupModal");
+
+  closeModal("forgotModal");
+
+  showModal("loginModal");
 
 }
 
 
-async function loginUser(){
+function openSignup(){
+
+  closeModal("loginModal");
+
+  closeModal("profileModal");
+
+  showModal("signupModal");
+
+}
+
+
+function openForgot(){
+
+  closeModal("loginModal");
+
+  showModal("forgotModal");
+
+}
+
+
+async function loginUser(event){
+
+  event.preventDefault();
 
   if(!db){
 
-    alert(
-      "Supabase connection setup হয়নি।"
-    );
+    toast("Supabase connection নেই");
 
     return;
 
   }
-
 
   const email =
     document.getElementById(
       "loginEmail"
     ).value.trim();
-
 
   const password =
     document.getElementById(
       "loginPassword"
     ).value;
 
+  try{
 
-  if(
-    !email ||
-    !password
-  ){
+    const {
+      error
+    } =
+      await db.auth.signInWithPassword({
+        email,
+        password
+      });
 
-    alert(
-      "Email এবং Password দিন।"
+    if(error)
+      throw error;
+
+    toast("Login successful ✅");
+
+    closeModal("loginModal");
+
+    setTimeout(
+      ()=>openProfile(),
+      300
     );
 
-    return;
+  }catch(error){
 
-  }
-
-
-  const {
-    error
-  } =
-    await db.auth.signInWithPassword({
-
-      email,
-      password
-
-    });
-
-
-  if(error){
-
-    alert(
-      "Login হয়নি ❌\n" +
-      error.message
+    toast(
+      "Login হয়নি: " +
+      (error.message || "")
     );
 
-    return;
-
   }
-
-
-  alert(
-    "Login successful ✅"
-  );
-
-
-  closeModal(
-    "loginModal"
-  );
 
 }
 
 
-/* =====================================================
-   SIGNUP
-===================================================== */
+async function signupUser(event){
 
-function showCreateAccount(){
-
-  closeModal(
-    "loginModal"
-  );
-
-  closeModal(
-    "profileModal"
-  );
-
-  openModal(
-    "signupModal"
-  );
-
-}
-
-
-async function signupUser(){
+  event.preventDefault();
 
   if(!db){
 
-    alert(
-      "Supabase connection setup হয়নি।"
-    );
+    toast("Supabase connection নেই");
 
     return;
 
   }
-
 
   const name =
     document.getElementById(
       "signupName"
     ).value.trim();
 
-
   const email =
     document.getElementById(
       "signupEmail"
     ).value.trim();
-
 
   const password =
     document.getElementById(
       "signupPassword"
     ).value;
 
+  try{
 
-  if(
-    !name ||
-    !email ||
-    !password
-  ){
+    const {
+      data,
+      error
+    } =
+      await db.auth.signUp({
 
-    alert(
-      "সব তথ্য পূরণ করুন।"
-    );
+        email,
 
-    return;
+        password,
 
-  }
-
-
-  if(password.length < 6){
-
-    alert(
-      "Password কমপক্ষে 6 characters হতে হবে।"
-    );
-
-    return;
-
-  }
-
-
-  const {
-    error
-  } =
-    await db.auth.signUp({
-
-      email,
-
-      password,
-
-      options:{
-        data:{
-          full_name:name
+        options:{
+          data:{
+            full_name:name
+          }
         }
-      }
 
-    });
+      });
 
+    if(error)
+      throw error;
 
-  if(error){
-
-    alert(
-      "Account create হয়নি ❌\n" +
-      error.message
+    toast(
+      data?.session
+        ? "Account created ✅"
+        : "Account created. Email verify করুন."
     );
 
-    return;
+    closeModal("signupModal");
+
+  }catch(error){
+
+    toast(
+      "Signup হয়নি: " +
+      (error.message || "")
+    );
 
   }
-
-
-  alert(
-    "Account তৈরি হয়েছে ✅\n" +
-    "Email verification প্রয়োজন হতে পারে।"
-  );
-
-
-  closeModal(
-    "signupModal"
-  );
 
 }
 
 
-/* =====================================================
-   FORGOT PASSWORD
-===================================================== */
+async function forgotPassword(event){
 
-async function forgotPassword(){
+  event.preventDefault();
 
   if(!db){
 
-    alert(
-      "Supabase connection setup হয়নি।"
-    );
+    toast("Supabase connection নেই");
 
     return;
 
   }
-
 
   const email =
     document.getElementById(
-      "loginEmail"
+      "forgotEmail"
     ).value.trim();
 
+  try{
 
-  if(!email){
+    const {
+      error
+    } =
+      await db.auth.resetPasswordForEmail(
+        email,
+        {
+          redirectTo:
+            window.location.origin +
+            window.location.pathname
+        }
+      );
 
-    alert(
-      "আগে Email লিখুন।"
+    if(error)
+      throw error;
+
+    toast(
+      "Password reset link email-এ পাঠানো হয়েছে।"
     );
 
-    return;
+    closeModal("forgotModal");
+
+  }catch(error){
+
+    toast(
+      "Reset হয়নি: " +
+      (error.message || "")
+    );
 
   }
-
-
-  const {
-    error
-  } =
-    await db.auth.resetPasswordForEmail(
-
-      email,
-
-      {
-        redirectTo:
-          window.location.origin +
-          window.location.pathname
-      }
-
-    );
-
-
-  if(error){
-
-    alert(
-      "Reset email পাঠানো যায়নি ❌\n" +
-      error.message
-    );
-
-    return;
-
-  }
-
-
-  alert(
-    "Password reset email পাঠানো হয়েছে ✅"
-  );
 
 }
 
-
-/* =====================================================
-   LOGOUT
-===================================================== */
 
 async function logoutUser(){
 
   if(db){
 
-    await db.auth.signOut();
+    try{
+
+      await db.auth.signOut();
+
+    }catch(e){}
 
   }
 
+  closeModal("profileModal");
 
-  closeModal(
-    "profileModal"
-  );
+  toast("Logout successful");
+
+}
 
 
-  alert(
-    "Logout হয়েছে ✅"
-  );
+async function changePassword(){
+
+  if(!db){
+
+    toast("Supabase connection নেই");
+
+    return;
+
+  }
+
+  const password =
+    prompt(
+      "নতুন password দিন (minimum 6 characters):"
+    );
+
+  if(!password)
+    return;
+
+  if(password.length < 6){
+
+    toast("Password minimum 6 characters হতে হবে");
+
+    return;
+
+  }
+
+  try{
+
+    const {
+      error
+    } =
+      await db.auth.updateUser({
+        password
+      });
+
+    if(error)
+      throw error;
+
+    toast("Password changed successfully ✅");
+
+  }catch(error){
+
+    toast(
+      "Password change হয়নি: " +
+      (error.message || "")
+    );
+
+  }
 
 }
 
 
 /* =====================================================
    ORDERS
-===================================================== */
+   ===================================================== */
 
 async function openOrders(){
 
-  closeModal(
-    "profileModal"
-  );
-
-  openModal(
-    "ordersModal"
-  );
-
+  closeModal("profileModal");
 
   const box =
     document.getElementById(
       "ordersContent"
     );
 
-
   box.innerHTML = `
-
-    <div class="empty">
-      Loading...
+    <div class="loading">
+      Orders loading...
     </div>
-
   `;
 
+  showModal("ordersModal");
 
   if(!db){
 
     box.innerHTML = `
-
-      <div class="empty">
-        Supabase connection প্রয়োজন।
+      <div class="no-products">
+        Supabase connection নেই।
       </div>
-
     `;
 
     return;
 
   }
 
-
   try{
 
     const {
-      data:userData
+      data:{
+        user
+      } = {}
     } =
       await db.auth.getUser();
-
-
-    const user =
-      userData?.user;
-
 
     if(!user){
 
       box.innerHTML = `
 
-        <div class="empty">
+        <div
+          style="
+            text-align:center;
+            padding:25px 10px;
+          "
+        >
 
-          Orders দেখতে Login করুন।
+          <div style="font-size:45px;">
+            🔐
+          </div>
 
-          <br><br>
+          <h3 style="margin-top:8px;">
+            Login required
+          </h3>
 
           <button
             class="primary-btn"
-            onclick="openLogin()"
+            style="margin-top:15px;"
+            onclick="closeModal('ordersModal');openLogin()"
           >
             Login
           </button>
@@ -4746,7 +4595,6 @@ async function openOrders(){
 
     }
 
-
     const {
       data,
       error
@@ -4754,46 +4602,29 @@ async function openOrders(){
       await db
         .from("orders")
         .select("*")
-        .eq(
-          "user_id",
-          user.id
-        )
+        .eq("user_id",user.id)
         .order(
           "created_at",
-          {ascending:false}
+          {
+            ascending:false
+          }
         );
 
-
-    if(error){
-
-      console.error(
-        error
-      );
-
-
-      box.innerHTML = `
-
-        <div class="empty">
-          Orders load হয়নি ❌
-          <br><br>
-          ${escapeHTML(
-            error.message
-          )}
-        </div>
-
-      `;
-
-      return;
-
-    }
-
+    if(error)
+      throw error;
 
     if(!data?.length){
 
       box.innerHTML = `
 
-        <div class="empty">
-          এখনো কোনো Order নেই।
+        <div
+          style="
+            text-align:center;
+            padding:30px;
+            color:#777;
+          "
+        >
+          এখনো কোনো order নেই।
         </div>
 
       `;
@@ -4802,59 +4633,100 @@ async function openOrders(){
 
     }
 
-
     box.innerHTML =
-      data.map(
-        order => `
+      data.map(order=>`
 
-          <div class="order-box">
+        <div class="order-card">
+
+          <div class="order-head">
 
             <b>
-              Order #${escapeHTML(
-                order.id
-              )}
+              Order #${escapeHTML(String(order.id))}
             </b>
 
-            <br><br>
-
-            <span>
-              Total:
-              <strong>
-                ${money(
-                  order.total_amount
-                )}
-              </strong>
-            </span>
-
-            <br><br>
-
             <span class="order-status">
-              ${escapeHTML(
-                order.status ||
-                "Pending"
-              )}
+              ${escapeHTML(order.status || "Pending")}
             </span>
 
           </div>
 
-        `
-      ).join("");
+          <div class="order-date">
+            ${escapeHTML(
+              order.created_at
+                ? new Date(order.created_at)
+                  .toLocaleString("en-BD")
+                : ""
+            )}
+          </div>
 
+          <div class="order-total">
+            Total: ${money(order.total_amount)}
+          </div>
+
+          <div
+            style="
+              margin-top:5px;
+              color:#777;
+              font-size:12px;
+            "
+          >
+            Payment:
+            ${escapeHTML(order.payment_method || "")}
+          </div>
+
+        </div>
+
+      `).join("");
 
   }catch(error){
 
-    console.error(
-      error
-    );
-
-
     box.innerHTML = `
 
-      <div class="empty">
-        Orders load হয়নি ❌
+      <div class="no-products">
+        Orders load হয়নি.
+        <br>
+        ${escapeHTML(error.message || "")}
       </div>
 
     `;
+
+  }
+
+}
+
+
+async function openOrdersOrProfile(){
+
+  if(!db){
+
+    openProfile();
+
+    return;
+
+  }
+
+  try{
+
+    const {
+      data:{
+        user
+      } = {}
+    } =
+      await db.auth.getUser();
+
+    if(user){
+
+      openOrders();
+
+    }else{
+
+      openProfile();
+
+    }
+
+  }catch(e){
+
+    openProfile();
 
   }
 
@@ -4863,85 +4735,46 @@ async function openOrders(){
 
 /* =====================================================
    TRACK ORDER
-===================================================== */
+   ===================================================== */
 
-function trackOrder(){
+function openTrack(){
 
-  closeModal(
-    "profileModal"
-  );
+  closeModal("profileModal");
 
-  openModal(
-    "trackModal"
-  );
+  showModal("trackModal");
 
 }
 
 
-async function searchTrackOrder(){
+async function trackOrder(event){
+
+  event.preventDefault();
+
+  if(!db){
+
+    toast("Supabase connection নেই");
+
+    return;
+
+  }
 
   const orderId =
     document.getElementById(
       "trackOrderId"
     ).value.trim();
 
-
   const mobile =
     document.getElementById(
       "trackMobile"
     ).value.trim();
-
 
   const result =
     document.getElementById(
       "trackResult"
     );
 
-
-  if(
-    !orderId ||
-    !mobile
-  ){
-
-    result.innerHTML = `
-
-      <div
-        class="order-box"
-        style="color:#e65100"
-      >
-        Order ID এবং Mobile Number দিন।
-      </div>
-
-    `;
-
-    return;
-
-  }
-
-
-  if(!db){
-
-    result.innerHTML = `
-
-      <div class="order-box">
-        Supabase connection নেই ❌
-      </div>
-
-    `;
-
-    return;
-
-  }
-
-
-  result.innerHTML = `
-
-    <div class="empty">
-      Searching...
-    </div>
-
-  `;
-
+  result.innerHTML =
+    `<div class="loading">Checking...</div>`;
 
   try{
 
@@ -4952,86 +4785,62 @@ async function searchTrackOrder(){
       await db
         .from("orders")
         .select("*")
-        .eq(
-          "id",
-          orderId
-        )
-        .eq(
-          "customer_phone",
-          mobile
-        )
+        .eq("id",orderId)
+        .eq("customer_phone",mobile)
         .maybeSingle();
 
-
-    if(error){
-
-      result.innerHTML = `
-
-        <div class="order-box">
-          ${escapeHTML(
-            error.message
-          )}
-        </div>
-
-      `;
-
-      return;
-
-    }
-
+    if(error)
+      throw error;
 
     if(!data){
 
       result.innerHTML = `
-
-        <div class="order-box">
-          কোনো Order পাওয়া যায়নি।
+        <div
+          style="
+            background:#fff0f0;
+            padding:12px;
+            border-radius:8px;
+            color:#c62828;
+          "
+        >
+          Order পাওয়া যায়নি।
         </div>
-
       `;
 
       return;
 
     }
 
-
     result.innerHTML = `
 
-      <div class="order-box">
+      <div class="order-card">
 
         <b>
-          Order #${escapeHTML(
-            data.id
-          )}
+          Order #${escapeHTML(String(data.id))}
         </b>
 
-        <br><br>
+        <div
+          style="
+            margin-top:8px;
+          "
+        >
+          Status:
+          <strong
+            style="color:#FF6B00;"
+          >
+            ${escapeHTML(data.status || "Pending")}
+          </strong>
+        </div>
 
-        Total:
-        <strong>
-          ${money(
-            data.total_amount
-          )}
-        </strong>
+        <div style="margin-top:6px;">
+          Total:
+          <b>${money(data.total_amount)}</b>
+        </div>
 
-        <br><br>
-
-        Status:
-
-        <span class="order-status">
-          ${escapeHTML(
-            data.status ||
-            "Pending"
-          )}
-        </span>
-
-        <br><br>
-
-        Payment:
-        ${escapeHTML(
-          data.payment_status ||
-          "Pending"
-        )}
+        <div style="margin-top:6px;">
+          Payment:
+          ${escapeHTML(data.payment_method || "")}
+        </div>
 
       </div>
 
@@ -5039,846 +4848,393 @@ async function searchTrackOrder(){
 
   }catch(error){
 
-    console.error(
-      error
-    );
-
     result.innerHTML = `
-
-      <div class="order-box">
-        Track করতে সমস্যা হয়েছে ❌
+      <div
+        style="
+          color:#c62828;
+          padding:10px;
+        "
+      >
+        ${escapeHTML(error.message || "Error")}
       </div>
-
     `;
 
   }
-
-}
-
-
-/* =====================================================
-   CHANGE PASSWORD
-===================================================== */
-
-async function changePassword(){
-
-  if(!db){
-
-    alert(
-      "Supabase connection setup হয়নি।"
-    );
-
-    return;
-
-  }
-
-
-  const newPassword =
-    prompt(
-      "নতুন Password লিখুন:"
-    );
-
-
-  if(!newPassword)
-    return;
-
-
-  if(newPassword.length < 6){
-
-    alert(
-      "Password কমপক্ষে 6 characters হতে হবে।"
-    );
-
-    return;
-
-  }
-
-
-  const {
-    error
-  } =
-    await db.auth.updateUser({
-
-      password:
-        newPassword
-
-    });
-
-
-  if(error){
-
-    alert(
-      "Password change হয়নি ❌\n" +
-      error.message
-    );
-
-    return;
-
-  }
-
-
-  alert(
-    "Password successfully changed ✅"
-  );
 
 }
 
 
 /* =====================================================
    SAVED ADDRESS
-===================================================== */
+   ===================================================== */
 
-function savedAddress(){
+function openSavedAddress(){
 
-  const saved =
-    JSON.parse(
-      localStorage.getItem(
-        "gadhuli_saved_address"
-      ) || "null"
+  closeModal("profileModal");
+
+  const input =
+    document.getElementById(
+      "savedAddressInput"
     );
 
+  input.value =
+    localStorage.getItem(
+      "gadhuli_saved_address"
+    ) || "";
 
-  document.getElementById(
-    "savedName"
-  ).value =
-    saved?.name || "";
-
-
-  document.getElementById(
-    "savedMobile"
-  ).value =
-    saved?.mobile || "";
-
-
-  document.getElementById(
-    "savedDistrict"
-  ).value =
-    saved?.district || "";
-
-
-  document.getElementById(
-    "savedThana"
-  ).value =
-    saved?.thana || "";
-
-
-  document.getElementById(
-    "savedFullAddress"
-  ).value =
-    saved?.address || "";
-
-
-  closeModal(
-    "profileModal"
-  );
-
-
-  openModal(
-    "addressModal"
-  );
+  showModal("addressModal");
 
 }
 
 
 function saveAddress(){
 
-  const data = {
-
-    name:
-      document.getElementById(
-        "savedName"
-      ).value.trim(),
-
-    mobile:
-      document.getElementById(
-        "savedMobile"
-      ).value.trim(),
-
-    district:
-      document.getElementById(
-        "savedDistrict"
-      ).value.trim(),
-
-    thana:
-      document.getElementById(
-        "savedThana"
-      ).value.trim(),
-
-    address:
-      document.getElementById(
-        "savedFullAddress"
-      ).value.trim()
-
-  };
-
+  const value =
+    document.getElementById(
+      "savedAddressInput"
+    ).value.trim();
 
   localStorage.setItem(
-
     "gadhuli_saved_address",
-
-    JSON.stringify(data)
-
+    value
   );
 
+  toast("Address saved ✅");
 
-  alert(
-    "Address saved ✅"
-  );
-
-
-  closeModal(
-    "addressModal"
-  );
-
-}
-
-
-/* =====================================================
-   WISHLIST VIEW
-===================================================== */
-
-function showWishlist(){
-
-  closeModal(
-    "profileModal"
-  );
-
-
-  if(!wishlist.length){
-
-    alert(
-      "Wishlist খালি ❤️"
-    );
-
-    return;
-
-  }
-
-
-  const ids =
-    wishlist.map(
-      item =>
-        String(item.id)
-    );
-
-
-  const filtered =
-    products.filter(
-      p =>
-        ids.includes(
-          String(p.id)
-        )
-    );
-
-
-  renderProducts(
-    filtered
-  );
-
-
-  document
-    .getElementById(
-      "productsSection"
-    )
-    .scrollIntoView({
-      behavior:"smooth"
-    });
+  closeModal("addressModal");
 
 }
 
 
 /* =====================================================
    RESELLER
-===================================================== */
+   ===================================================== */
 
 function openReseller(){
 
-  closeModal(
-    "profileModal"
-  );
+  closeModal("profileModal");
 
-  openModal(
-    "resellerModal"
-  );
+  showModal("resellerModal");
+
+}
+
+
+function openLoginFromReseller(){
+
+  closeModal("resellerModal");
+
+  openLogin();
 
 }
 
 
 /* =====================================================
    WHATSAPP HELPLINE
-===================================================== */
-
-function openHelp(){
-
-  openModal(
-    "helpModal"
-  );
-
-}
-
+   SEPARATE FROM ORDER SYSTEM
+   ===================================================== */
 
 function openWhatsAppHelp(){
 
-  /*
-    এখানে তোমার নিজের WhatsApp number বসাবে।
-
-    Example:
-    8801XXXXXXXXX
-
-    + অথবা space দেবে না।
-  */
-
-  const whatsappNumber =
-    "8801XXXXXXXXX";
-
-
-  if(
-    whatsappNumber.includes(
-      "X"
-    )
-  ){
-
-    alert(
-      "আগে WhatsApp Helpline number বসাতে হবে।"
-    );
-
-    return;
-
-  }
-
-
   const message =
-    encodeURIComponent(
-      "Hello Gadhuli Support, আমার website নিয়ে সাহায্য দরকার।"
-    );
+    "Assalamu Alaikum, Gadhuli website e amar ekta problem hocche. Please help korun.";
 
+  const url =
+    "https://wa.me/" +
+    WHATSAPP_HELPLINE +
+    "?text=" +
+    encodeURIComponent(message);
 
   window.open(
-
-    "https://wa.me/" +
-    whatsappNumber +
-    "?text=" +
-    message,
-
+    url,
     "_blank"
-
   );
 
 }
 
 
 /* =====================================================
-   MODALS
-===================================================== */
-
-function openModal(id){
-
-  const modal =
-    document.getElementById(
-      id
-    );
-
-
-  if(modal){
-
-    modal.classList.add(
-      "show"
-    );
-
-  }
-
-}
-
-
-function closeModal(id){
-
-  const modal =
-    document.getElementById(
-      id
-    );
-
-
-  if(modal){
-
-    modal.classList.remove(
-      "show"
-    );
-
-  }
-
-}
-
-
-/* =====================================================
-   CLOSE OUTSIDE
-===================================================== */
-
-document
-  .querySelectorAll(
-    ".modal"
-  )
-  .forEach(
-    modal => {
-
-      modal.addEventListener(
-        "click",
-        function(e){
-
-          if(
-            e.target ===
-            modal
-          ){
-
-            modal.classList.remove(
-              "show"
-            );
-
-          }
-
-        }
-      );
-
-    }
-  );
-
-
-/* =====================================================
-   BOTTOM NAV
-===================================================== */
-
-function setNav(button){
-
-  document
-    .querySelectorAll(
-      ".bottom-nav button"
-    )
-    .forEach(
-      btn =>
-        btn.classList.remove(
-          "active"
-        )
-    );
-
-
-  button.classList.add(
-    "active"
-  );
-
-}
-
-
-function goHome(button){
-
-  setNav(
-    button
-  );
-
-
-  window.scrollTo({
-
-    top:0,
-
-    behavior:"smooth"
-
-  });
-
-}
-
-
-/* =====================================================
-   SCROLL PRODUCTS
-===================================================== */
-
-function scrollToProducts(){
-
-  document
-    .getElementById(
-      "productsSection"
-    )
-    .scrollIntoView({
-
-      behavior:"smooth"
-
-    });
-
-}
-
-
-/* =====================================================
-   ADVERTISEMENT
-===================================================== */
+   BANNER
+   ===================================================== */
 
 async function loadAdvertisements(){
 
+  const slider =
+    document.getElementById(
+      "bannerSlider"
+    );
+
   if(!db){
+
+    renderFallbackBanner();
 
     return;
 
   }
-
 
   try{
 
     /*
-      Expected table:
+      Supabase table expected:
 
       advertisements
 
-      id
       image_url
-      title
-      active
       sort_order
-      created_at
+      active
 
+      Admin website থেকে 1-5 image
+      দিলে homepage automatically দেখাবে।
     */
-
 
     const {
       data,
       error
     } =
       await db
-        .from(
-          "advertisements"
-        )
+        .from("advertisements")
         .select("*")
-        .eq(
-          "active",
-          true
-        )
+        .eq("active",true)
         .order(
           "sort_order",
-          {ascending:true}
+          {
+            ascending:true
+          }
         )
         .limit(5);
 
+    if(error)
+      throw error;
 
-    if(error){
+    const images =
+      (data || [])
+        .map(item=>
+          item.image_url ||
+          item.image ||
+          item.url
+        )
+        .filter(Boolean)
+        .slice(0,5);
 
-      console.warn(
-        "Advertisement table:",
-        error.message
-      );
+    if(!images.length){
+
+      renderFallbackBanner();
 
       return;
 
     }
 
+    bannerImages =
+      images;
 
-    advertisements =
-      data || [];
-
-
-    renderAdvertisements();
+    renderBanners();
 
   }catch(error){
 
+    /*
+      advertisements table না থাকলেও
+      product loading বন্ধ হবে না।
+    */
+
     console.warn(
-      "Advertisement load:",
-      error
+      "Advertisement load skipped:",
+      error.message
     );
+
+    renderFallbackBanner();
 
   }
 
 }
 
 
-/* =====================================================
-   RENDER ADS
-===================================================== */
-
-function renderAdvertisements(){
+function renderFallbackBanner(){
 
   const slider =
     document.getElementById(
-      "adSlider"
+      "bannerSlider"
     );
 
+  slider.innerHTML =
+    `<div class="banner-fallback"></div>`;
 
-  const dots =
+}
+
+
+function renderBanners(){
+
+  const slider =
     document.getElementById(
-      "sliderDots"
+      "bannerSlider"
     );
 
+  if(!bannerImages.length){
 
-  if(!advertisements.length){
-
-    /*
-      Default welcome banner
-      থাকবে যতক্ষণ Admin থেকে
-      advertisement upload না করা হয়।
-    */
-
-    dots.innerHTML = "";
+    renderFallbackBanner();
 
     return;
 
   }
 
+  slider.innerHTML =
 
-  slider.innerHTML = `
+    bannerImages
+      .map((img,index)=>`
 
-    ${
-      advertisements.map(
-        (ad,index) => `
+        <div
+          class="banner-slide ${index===0 ? "active" : ""}"
+        >
 
-          <div
-            class="
-              ad-slide
-              ${
-                index === 0
-                ? "active"
-                : ""
-              }
-            "
+          <img
+            src="${escapeHTML(img)}"
+            alt="Gadhuli Banner"
+            onerror="this.parentElement.style.display='none'"
           >
 
-            <img
-              src="${escapeHTML(
-                ad.image_url ||
-                ad.image ||
-                ""
-              )}"
-              alt="${escapeHTML(
-                ad.title ||
-                "Advertisement"
-              )}"
-              onerror="
-                this.parentElement.style.display='none'
-              "
-            >
+        </div>
 
-          </div>
+      `)
+      .join("") +
 
-        `
-      ).join("")
-    }
+    `
 
+      ${
+        bannerImages.length > 1
+          ? `
+            <div class="banner-dots">
 
-    <button
-      class="slider-arrow slider-prev"
-      onclick="previousAd()"
-    >
-      ‹
-    </button>
+              ${
+                bannerImages
+                  .map((_,i)=>`
+                    <div
+                      class="banner-dot ${i===0 ? "active" : ""}"
+                    ></div>
+                  `)
+                  .join("")
+              }
 
+            </div>
+          `
+          : ""
+      }
 
-    <button
-      class="slider-arrow slider-next"
-      onclick="nextAd()"
-    >
-      ›
-    </button>
+    `;
 
+  if(bannerImages.length > 1){
 
-    <div
-      class="slider-dots"
-      id="sliderDots"
-    ></div>
+    clearInterval(bannerTimer);
 
-  `;
+    bannerTimer =
+      setInterval(
+        nextBanner,
+        4000
+      );
 
-
-  currentAd = 0;
-
-
-  renderAdDots();
-
-
-  startAdSlider();
+  }
 
 }
 
 
-/* =====================================================
-   AD DOTS
-===================================================== */
+function nextBanner(){
 
-function renderAdDots(){
-
-  const dots =
-    document.getElementById(
-      "sliderDots"
+  const slides =
+    document.querySelectorAll(
+      ".banner-slide"
     );
 
+  const dots =
+    document.querySelectorAll(
+      ".banner-dot"
+    );
 
-  if(!dots)
+  if(!slides.length)
     return;
 
+  slides[bannerIndex]
+    .classList.remove("active");
 
-  dots.innerHTML =
-    advertisements.map(
-      (_,index) => `
+  if(dots[bannerIndex])
+    dots[bannerIndex]
+      .classList.remove("active");
 
-        <button
-          class="
-            slider-dot
-            ${
-              index === currentAd
-              ? "active"
-              : ""
-            }
-          "
-          onclick="
-            goToAd(${index})
-          "
-        ></button>
+  bannerIndex =
+    (bannerIndex + 1) %
+    slides.length;
 
-      `
-    ).join("");
+  slides[bannerIndex]
+    .classList.add("active");
+
+  if(dots[bannerIndex])
+    dots[bannerIndex]
+      .classList.add("active");
 
 }
 
 
 /* =====================================================
-   SHOW AD
-===================================================== */
+   HOME
+   ===================================================== */
 
-function showAd(index){
+function goHome(){
 
-  if(
-    !advertisements.length
-  )
-    return;
-
-
-  if(
-    index < 0
-  ){
-
-    index =
-      advertisements.length - 1;
-
-  }
-
-
-  if(
-    index >=
-    advertisements.length
-  ){
-
-    index = 0;
-
-  }
-
-
-  currentAd = index;
-
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
 
   document
     .querySelectorAll(
-      ".ad-slide"
+      ".bottom-nav button"
     )
-    .forEach(
-      (slide,i) => {
+    .forEach(x=>
+      x.classList.remove("active")
+    );
 
-        slide.classList.toggle(
-          "active",
-          i === currentAd
-        );
+  document
+    .getElementById("navHome")
+    ?.classList.add("active");
+
+}
+
+
+/* =====================================================
+   MODAL OUTSIDE CLICK
+   ===================================================== */
+
+document
+  .querySelectorAll(".modal")
+  .forEach(modal=>{
+
+    modal.addEventListener(
+      "click",
+      event=>{
+
+        if(event.target === modal){
+
+          modal.classList.remove(
+            "show"
+          );
+
+        }
 
       }
     );
 
-
-  renderAdDots();
-
-}
-
-
-/* =====================================================
-   NEXT AD
-===================================================== */
-
-function nextAd(){
-
-  showAd(
-    currentAd + 1
-  );
-
-}
-
-
-/* =====================================================
-   PREVIOUS AD
-===================================================== */
-
-function previousAd(){
-
-  showAd(
-    currentAd - 1
-  );
-
-}
-
-
-/* =====================================================
-   GO AD
-===================================================== */
-
-function goToAd(index){
-
-  showAd(
-    index
-  );
-
-  startAdSlider();
-
-}
-
-
-/* =====================================================
-   AUTO SLIDER
-===================================================== */
-
-function startAdSlider(){
-
-  if(adTimer){
-
-    clearInterval(
-      adTimer
-    );
-
-  }
-
-
-  if(
-    advertisements.length <= 1
-  )
-    return;
-
-
-  adTimer =
-    setInterval(
-      () => {
-
-        nextAd();
-
-      },
-      5000
-    );
-
-}
+  });
 
 
 /* =====================================================
    AUTH STATE
-===================================================== */
+   ===================================================== */
 
 if(db){
 
   db.auth.onAuthStateChange(
-    (
-      event,
-      session
-    ) => {
+    (event,session)=>{
 
       console.log(
         "Auth:",
         event,
-        session?.user?.email ||
-        "No user"
+        !!session
       );
 
     }
@@ -5888,63 +5244,23 @@ if(db){
 
 
 /* =====================================================
-   LOAD SAVED ADDRESS INTO ORDER
-===================================================== */
+   INIT
+   ===================================================== */
 
-function loadSavedAddressIntoOrder(){
+document.addEventListener(
+  "DOMContentLoaded",
+  ()=>{
 
-  const saved =
-    JSON.parse(
-      localStorage.getItem(
-        "gadhuli_saved_address"
-      ) || "null"
-    );
+    loadLocalData();
 
+    renderSubcategories();
 
-  if(!saved)
-    return;
+    loadProducts();
 
+    loadAdvertisements();
 
-  document.getElementById(
-    "customerName"
-  ).value =
-    saved.name || "";
-
-
-  document.getElementById(
-    "customerMobile"
-  ).value =
-    saved.mobile || "";
-
-
-  document.getElementById(
-    "customerDistrict"
-  ).value =
-    saved.district || "";
-
-
-  document.getElementById(
-    "customerThana"
-  ).value =
-    saved.thana || "";
-
-
-  document.getElementById(
-    "customerAddress"
-  ).value =
-    saved.address || "";
-
-}
-
-
-/* =====================================================
-   START
-===================================================== */
-
-loadProducts();
-
-loadAdvertisements();
-
+  }
+);
 
 </script>
 
