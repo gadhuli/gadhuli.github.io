@@ -3,9 +3,7 @@
 <head>
 
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-
 <meta name="theme-color" content="#FF6B00">
 
 <title>Gadhuli | Admin</title>
@@ -33,7 +31,7 @@ padding:0
 --green:#25D366;
 --red:#e53935;
 --blue:#1677ff;
---shadow:0 5px 20px rgba(255,107,0,.10);
+--shadow:0 5px 20px rgba(255,107,0,.10)
 }
 
 body{
@@ -41,7 +39,7 @@ font-family:Arial,Helvetica,sans-serif;
 background:var(--bg);
 color:var(--text);
 line-height:1.5;
-padding-bottom:30px
+min-height:100vh
 }
 
 button,input,select,textarea{
@@ -56,14 +54,19 @@ img{
 max-width:100%
 }
 
+.hidden{
+display:none!important
+}
+
+/* HEADER */
+
 header{
 background:var(--orange-gradient);
-color:#fff;
-padding:14px 15px;
-box-shadow:0 3px 12px rgba(0,0,0,.12);
+padding:10px 15px;
+box-shadow:0 3px 15px rgba(0,0,0,.15);
 position:sticky;
 top:0;
-z-index:100
+z-index:1000
 }
 
 .header-inner{
@@ -78,27 +81,35 @@ gap:15px
 .header-brand{
 display:flex;
 align-items:center;
-gap:12px
+gap:12px;
+min-width:0
 }
 
-.header-brand img{
-width:115px;
-height:45px;
+.header-logo{
+width:110px;
+height:48px;
 object-fit:contain;
+object-position:center;
 background:#fff;
-border-radius:9px;
-padding:3px
+border-radius:8px;
+padding:4px 7px;
+display:block;
+flex-shrink:0
 }
 
 .header-title{
 font-size:21px;
-font-weight:800
+font-weight:800;
+color:#fff
 }
 
 .header-sub{
 font-size:12px;
+color:#fff;
 opacity:.9
 }
+
+/* GENERAL */
 
 .container{
 max-width:1250px;
@@ -121,23 +132,23 @@ margin-bottom:15px;
 font-size:20px
 }
 
-.card h3{
-margin-bottom:10px
-}
-
 .btn{
 border:0;
 padding:10px 15px;
 border-radius:9px;
-font-weight:bold;
+font-weight:700;
 margin:3px;
-transition:.2s;
-display:inline-block
+transition:.2s
 }
 
 .btn:hover{
-transform:translateY(-1px);
-opacity:.92
+transform:translateY(-1px)
+}
+
+.btn:disabled{
+opacity:.6;
+cursor:not-allowed;
+transform:none
 }
 
 .btn-orange{
@@ -145,15 +156,10 @@ background:var(--orange);
 color:#fff
 }
 
-.btn-orange-dark{
-background:var(--orange-dark);
-color:#fff
-}
-
 .btn-light{
 background:var(--orange-light);
 color:var(--orange-dark);
-border:1px solid #ffd5b5
+border:1px solid #ffd4b5
 }
 
 .btn-danger{
@@ -177,16 +183,23 @@ color:#fff
 }
 
 .full{
-width:100%
+width:100%;
+margin:0
 }
 
-.hidden{
-display:none!important
-}
+/* LOGIN */
 
 .login-box{
 max-width:430px;
-margin:70px auto
+margin:55px auto
+}
+
+.login-logo{
+display:block;
+width:145px;
+height:65px;
+object-fit:contain;
+margin:0 auto 18px
 }
 
 .login-box h2{
@@ -195,27 +208,20 @@ color:var(--orange-dark);
 margin-bottom:20px
 }
 
-.login-logo{
-display:block;
-width:150px;
-height:65px;
-object-fit:contain;
-margin:0 auto 20px;
-border-radius:10px
-}
-
 .form-group{
-margin-bottom:13px
+margin-bottom:14px
 }
 
 .form-group label{
 display:block;
-font-weight:bold;
-color:#444;
-margin-bottom:6px
+font-weight:700;
+margin-bottom:6px;
+color:#444
 }
 
-input,select,textarea{
+input,
+select,
+textarea{
 width:100%;
 padding:11px 12px;
 border:1px solid #ddd;
@@ -232,15 +238,10 @@ border-color:var(--orange);
 box-shadow:0 0 0 2px rgba(255,107,0,.08)
 }
 
-input[type="checkbox"]{
-width:auto
-}
-
-/* PASSWORD EYE */
+/* PASSWORD */
 
 .password-wrap{
-position:relative;
-width:100%
+position:relative
 }
 
 .password-wrap input{
@@ -258,24 +259,15 @@ border:0;
 background:transparent;
 border-radius:8px;
 font-size:20px;
-cursor:pointer;
-margin:0
+margin:0;
+padding:0
 }
 
 .password-eye:hover{
 background:var(--orange-light)
 }
 
-.admin-nav{
-display:grid;
-grid-template-columns:repeat(7,1fr);
-gap:8px
-}
-
-.admin-nav .btn{
-margin:0;
-min-height:44px
-}
+/* STATS */
 
 .stat-grid{
 display:grid;
@@ -299,21 +291,132 @@ font-size:26px
 
 .stat-label{
 font-size:13px;
-color:var(--muted);
-margin-top:5px
+color:var(--muted)
 }
 
 .stat-number{
 font-size:26px;
 font-weight:800;
-color:var(--orange-dark);
-margin-top:4px
+color:var(--orange-dark)
 }
+
+/* NAV */
+
+.admin-nav{
+display:grid;
+grid-template-columns:repeat(7,1fr);
+gap:8px
+}
+
+.admin-nav .btn{
+margin:0;
+min-height:45px
+}
+
+/* CONTENT */
+
+.notice{
+background:var(--orange-light);
+border:1px solid #ffd3b2;
+padding:12px;
+border-radius:10px;
+margin-bottom:15px
+}
+
+.empty{
+padding:45px 15px;
+text-align:center;
+color:#888
+}
+
+.loading{
+padding:40px;
+text-align:center;
+color:var(--orange-dark);
+font-weight:bold
+}
+
+.spinner{
+display:inline-block;
+width:20px;
+height:20px;
+border:3px solid #ffd7bf;
+border-top-color:var(--orange);
+border-radius:50%;
+animation:spin .8s linear infinite;
+vertical-align:middle;
+margin-right:7px
+}
+
+@keyframes spin{
+to{
+transform:rotate(360deg)
+}
+}
+
+/* PRODUCTS */
+
+.product-grid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:15px
+}
+
+.product-card{
+background:#fff;
+border:1px solid var(--border);
+border-radius:14px;
+padding:13px;
+box-shadow:0 3px 12px rgba(0,0,0,.05)
+}
+
+.product-image{
+width:100%;
+aspect-ratio:1/1;
+object-fit:cover;
+border-radius:10px;
+background:#f5f5f5
+}
+
+.product-name{
+font-weight:800;
+margin-top:9px
+}
+
+.product-price{
+font-size:19px;
+font-weight:800;
+color:var(--orange-dark);
+margin:4px 0
+}
+
+.product-meta{
+font-size:12px;
+color:#777
+}
+
+/* IMAGES */
+
+.image-preview{
+display:flex;
+flex-wrap:wrap;
+gap:8px;
+margin-top:10px
+}
+
+.image-preview img{
+width:85px;
+height:85px;
+object-fit:cover;
+border-radius:9px;
+border:1px solid #ddd
+}
+
+/* ORDERS */
 
 .order-card,
 .reseller-card,
 .review-card,
-.product-card,
 .banner-card{
 background:#fff;
 border:1px solid var(--border);
@@ -333,12 +436,6 @@ gap:10px;
 margin-bottom:12px
 }
 
-.order-head b,
-.reseller-head b,
-.banner-head b{
-color:var(--orange-dark)
-}
-
 .status{
 display:inline-block;
 padding:5px 10px;
@@ -346,13 +443,12 @@ border-radius:20px;
 background:var(--orange-light);
 color:var(--orange-dark);
 font-size:12px;
-font-weight:bold
+font-weight:700
 }
 
 .order-info p,
 .reseller-info p{
-margin:5px 0;
-line-height:1.5
+margin:5px 0
 }
 
 .items-box{
@@ -373,9 +469,13 @@ border-bottom:0
 
 .admin-actions{
 display:flex;
-gap:6px;
+gap:7px;
 flex-wrap:wrap;
 margin-top:12px
+}
+
+.admin-actions .btn{
+margin:0
 }
 
 .admin-actions select{
@@ -383,82 +483,20 @@ width:auto;
 min-width:150px
 }
 
-.notice{
-background:var(--orange-light);
-border:1px solid #ffd2b0;
-padding:12px;
-border-radius:10px;
-margin-bottom:12px
-}
-
-.empty{
-text-align:center;
-padding:40px 15px;
-color:#888
-}
-
-.product-grid{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:14px
-}
-
-.product-image{
-width:100%;
-aspect-ratio:1/1;
-object-fit:cover;
-border-radius:11px;
-background:#f5f5f5
-}
-
-.product-name{
-font-weight:bold;
-margin-top:9px
-}
-
-.product-price{
-color:var(--orange-dark);
-font-size:19px;
-font-weight:800;
-margin:5px 0
-}
-
-.product-meta{
-font-size:12px;
-color:#777
-}
-
-.image-preview{
-display:flex;
-gap:8px;
-flex-wrap:wrap;
-margin-top:10px
-}
-
-.image-preview img{
-width:85px;
-height:85px;
-object-fit:cover;
-border-radius:9px;
-border:1px solid #ddd
-}
+/* BANNERS */
 
 .banner-grid{
 display:grid;
 grid-template-columns:repeat(2,1fr);
-gap:14px
+gap:15px
 }
 
 .banner-image{
 width:100%;
 aspect-ratio:16/7;
 object-fit:cover;
-border-radius:11px;
+border-radius:10px;
 background:#f5f5f5
-}
-
-.banner-info{
-margin-top:9px
 }
 
 .banner-active{
@@ -481,6 +519,8 @@ font-size:12px;
 font-weight:bold
 }
 
+/* SUPPORT */
+
 .support-box{
 background:#f0fff5;
 border:1px solid #bce8ca;
@@ -490,46 +530,42 @@ padding:16px
 
 .support-number{
 font-size:21px;
-font-weight:bold;
+font-weight:800;
 color:#128c3d;
 margin:8px 0
 }
 
 footer{
 text-align:center;
-padding:25px 15px;
+padding:30px 15px;
 color:#777;
 font-size:13px
 }
 
-.loading{
-padding:35px;
-text-align:center;
-color:var(--orange-dark);
-font-weight:bold
+/* SIZE */
+
+.size-list{
+display:flex;
+flex-wrap:wrap;
+gap:6px
 }
 
-.spinner{
-display:inline-block;
-width:20px;
-height:20px;
-border:3px solid #ffd9c0;
-border-top-color:var(--orange);
-border-radius:50%;
-animation:spin .8s linear infinite;
-vertical-align:middle;
-margin-right:7px
+.size-label{
+display:inline-flex;
+align-items:center;
+gap:5px;
+background:#fffaf5;
+border:1px solid #ffd0ad;
+padding:7px 10px;
+border-radius:8px;
+cursor:pointer
 }
 
-@keyframes spin{
-to{
-transform:rotate(360deg)
-}
+.size-label input{
+width:auto
 }
 
-.mobile-help{
-display:none
-}
+/* MOBILE */
 
 @media(max-width:1050px){
 
@@ -557,17 +593,53 @@ grid-template-columns:1fr
 
 @media(max-width:600px){
 
+header{
+padding:8px 10px
+}
+
 .header-inner{
-flex-direction:column;
-text-align:center
+gap:7px
 }
 
 .header-brand{
-flex-direction:column
+gap:7px
+}
+
+.header-logo{
+width:88px;
+height:40px;
+padding:3px 5px
+}
+
+.header-title{
+font-size:15px
+}
+
+.header-sub{
+font-size:9px
+}
+
+.header-inner > .btn{
+padding:8px 9px;
+font-size:12px
+}
+
+.login-box{
+margin:35px auto
+}
+
+.login-logo{
+width:125px;
+height:55px
 }
 
 .admin-nav{
 grid-template-columns:repeat(2,1fr)
+}
+
+.admin-nav .btn{
+font-size:13px;
+padding:9px 5px
 }
 
 .product-grid{
@@ -586,30 +658,17 @@ flex-direction:column
 
 .admin-actions .btn,
 .admin-actions select{
-width:100%;
-margin:2px 0
-}
-
-.stat{
-padding:14px 8px
-}
-
-.stat-number{
-font-size:22px
-}
-
-.mobile-help{
-display:block;
-margin-bottom:15px
+width:100%
 }
 
 }
 
 </style>
-
 </head>
 
 <body>
+
+<!-- HEADER -->
 
 <header>
 
@@ -617,7 +676,11 @@ margin-bottom:15px
 
 <div class="header-brand">
 
-<img src="logo.png" alt="Gadhuli Logo">
+<img
+src="logo.png"
+class="header-logo"
+alt="Gadhuli"
+>
 
 <div>
 
@@ -633,7 +696,11 @@ Premium Marketplace Management
 
 </div>
 
-<button class="btn btn-light" onclick="goHome()">
+<button
+type="button"
+class="btn btn-light"
+onclick="goHome()"
+>
 🏠 Website
 </button>
 
@@ -644,7 +711,10 @@ Premium Marketplace Management
 
 <!-- LOGIN -->
 
-<div id="loginSection" class="container">
+<div
+id="loginSection"
+class="container"
+>
 
 <div class="card login-box">
 
@@ -660,9 +730,7 @@ alt="Gadhuli"
 
 <div class="form-group">
 
-<label>
-Email
-</label>
+<label>Email</label>
 
 <input
 id="loginEmail"
@@ -675,9 +743,7 @@ autocomplete="email"
 
 <div class="form-group">
 
-<label>
-Password
-</label>
+<label>Password</label>
 
 <div class="password-wrap">
 
@@ -693,7 +759,6 @@ type="button"
 class="password-eye"
 id="passwordEye"
 onclick="togglePassword()"
-aria-label="Show password"
 >
 👁️
 </button>
@@ -703,6 +768,8 @@ aria-label="Show password"
 </div>
 
 <button
+type="button"
+id="loginButton"
 class="btn btn-orange full"
 onclick="adminLogin()"
 >
@@ -711,7 +778,7 @@ onclick="adminLogin()"
 
 <div
 id="loginMessage"
-style="margin-top:12px;text-align:center"
+style="margin-top:12px;text-align:center;"
 ></div>
 
 </div>
@@ -721,69 +788,37 @@ style="margin-top:12px;text-align:center"
 
 <!-- ADMIN PANEL -->
 
-<div id="adminPanel" class="container hidden">
+<div
+id="adminPanel"
+class="container hidden"
+>
 
 <!-- STATS -->
 
 <div class="stat-grid">
 
 <div class="stat">
-
 <div class="stat-icon">🛍️</div>
-
-<div class="stat-label">
-Products
+<div class="stat-label">Products</div>
+<div class="stat-number" id="statProducts">0</div>
 </div>
-
-<div class="stat-number" id="statProducts">
-0
-</div>
-
-</div>
-
 
 <div class="stat">
-
 <div class="stat-icon">📦</div>
-
-<div class="stat-label">
-Orders
+<div class="stat-label">Orders</div>
+<div class="stat-number" id="statOrders">0</div>
 </div>
-
-<div class="stat-number" id="statOrders">
-0
-</div>
-
-</div>
-
 
 <div class="stat">
-
 <div class="stat-icon">⏳</div>
-
-<div class="stat-label">
-Pending Orders
+<div class="stat-label">Pending Orders</div>
+<div class="stat-number" id="statPending">0</div>
 </div>
-
-<div class="stat-number" id="statPending">
-0
-</div>
-
-</div>
-
 
 <div class="stat">
-
 <div class="stat-icon">🤝</div>
-
-<div class="stat-label">
-Reseller Requests
-</div>
-
-<div class="stat-number" id="statResellers">
-0
-</div>
-
+<div class="stat-label">Reseller Requests</div>
+<div class="stat-number" id="statResellers">0</div>
 </div>
 
 </div>
@@ -796,54 +831,61 @@ Reseller Requests
 <div class="admin-nav">
 
 <button
-id="navOrders"
+type="button"
 class="btn btn-orange"
+id="navOrders"
 onclick="showSection('orders')"
 >
 📦 Orders
 </button>
 
 <button
-id="navProducts"
+type="button"
 class="btn btn-light"
+id="navProducts"
 onclick="showSection('products')"
 >
 🛍️ Products
 </button>
 
 <button
-id="navAdd"
+type="button"
 class="btn btn-light"
+id="navAddProduct"
 onclick="showSection('addProduct')"
 >
 ➕ Add Product
 </button>
 
 <button
-id="navBanners"
+type="button"
 class="btn btn-light"
+id="navBanners"
 onclick="showSection('banners')"
 >
 🖼️ Banners
 </button>
 
 <button
-id="navResellers"
+type="button"
 class="btn btn-light"
+id="navResellers"
 onclick="showSection('resellers')"
 >
 🤝 Resellers
 </button>
 
 <button
-id="navReviews"
+type="button"
 class="btn btn-light"
+id="navReviews"
 onclick="showSection('reviews')"
 >
 ⭐ Reviews
 </button>
 
 <button
+type="button"
 class="btn btn-light"
 onclick="refreshAdmin()"
 >
@@ -856,18 +898,6 @@ onclick="refreshAdmin()"
 
 
 <!-- SUPPORT -->
-
-<div class="mobile-help">
-
-<button
-class="btn btn-green full"
-onclick="openWhatsApp()"
->
-💬 WhatsApp Customer Support
-</button>
-
-</div>
-
 
 <div class="card">
 
@@ -886,6 +916,7 @@ Customer-এর কোনো সমস্যা হলে সরাসরি Gad
 </div>
 
 <button
+type="button"
 class="btn btn-green"
 onclick="openWhatsApp()"
 >
@@ -893,6 +924,7 @@ onclick="openWhatsApp()"
 </button>
 
 <button
+type="button"
 class="btn btn-light"
 onclick="copyWhatsApp()"
 >
@@ -904,7 +936,7 @@ onclick="copyWhatsApp()"
 </div>
 
 
-<!-- CONTENT -->
+<!-- SECTION -->
 
 <div id="sectionContent">
 
@@ -916,9 +948,8 @@ Loading...
 </div>
 
 
-<br>
-
 <button
+type="button"
 class="btn btn-danger full"
 onclick="adminLogout()"
 >
@@ -942,7 +973,7 @@ onclick="adminLogout()"
 <script>
 
 /* =====================================================
-   SUPABASE
+SUPABASE
 ===================================================== */
 
 const SUPABASE_URL =
@@ -951,35 +982,17 @@ const SUPABASE_URL =
 const SUPABASE_KEY =
 "sb_publishable_ZhmwEV_6UngmzzxcJmETgw_smrA7qDL";
 
-let db = null;
-
-try{
-
-db =
-window.supabase.createClient(
-SUPABASE_URL,
-SUPABASE_KEY
-);
-
-}catch(error){
-
-console.error(
-"Supabase connection error:",
-error
-);
-
-}
-
-
-/* =====================================================
-   SETTINGS
-===================================================== */
-
 const ADMIN_EMAIL =
 "hridoyff974@gmail.com";
 
 const WHATSAPP_NUMBER =
 "8801333088194";
+
+let db =
+window.supabase.createClient(
+SUPABASE_URL,
+SUPABASE_KEY
+);
 
 let currentUser = null;
 
@@ -987,10 +1000,1124 @@ let currentSection = "orders";
 
 
 /* =====================================================
-   CATEGORY DATA
+HELPERS
 ===================================================== */
 
-const categories = {
+function esc(value){
+
+return String(value ?? "")
+.replaceAll("&","&amp;")
+.replaceAll("<","&lt;")
+.replaceAll(">","&gt;")
+.replaceAll('"',"&quot;")
+.replaceAll("'","&#039;");
+
+}
+
+
+function money(value){
+
+return Number(value || 0)
+.toLocaleString("en-US",{
+maximumFractionDigits:2
+});
+
+}
+
+
+function formatDate(value){
+
+if(!value)
+return "—";
+
+try{
+
+return new Date(value)
+.toLocaleString("en-BD",{
+dateStyle:"medium",
+timeStyle:"short"
+});
+
+}catch(e){
+
+return String(value);
+
+}
+
+}
+
+
+function goHome(){
+
+window.location.href="index.html";
+
+}
+
+
+/* =====================================================
+PASSWORD
+===================================================== */
+
+function togglePassword(){
+
+const input =
+document.getElementById("loginPassword");
+
+const eye =
+document.getElementById("passwordEye");
+
+if(!input || !eye)
+return;
+
+if(input.type === "password"){
+
+input.type = "text";
+eye.textContent = "🙈";
+
+}else{
+
+input.type = "password";
+eye.textContent = "👁️";
+
+}
+
+}
+
+
+/* =====================================================
+ADMIN ROLE CHECK
+===================================================== */
+
+async function isAdmin(){
+
+if(!currentUser){
+
+return {
+ok:false,
+message:"Supabase user পাওয়া যায়নি।"
+};
+
+}
+
+const r =
+await db
+.from("profiles")
+.select("id,role")
+.eq("id",currentUser.id)
+.maybeSingle();
+
+if(r.error){
+
+console.error("Profile role error:",r.error);
+
+return {
+ok:false,
+message:
+"profiles table পড়া যাচ্ছে না.\n\n"+
+r.error.message
+};
+
+}
+
+if(!r.data){
+
+return {
+ok:false,
+message:
+"এই Auth User-এর জন্য profiles table-এ কোনো row পাওয়া যায়নি.\n\n"+
+"Auth User ID:\n"+
+currentUser.id
+};
+
+}
+
+if(
+String(r.data.role || "")
+.toLowerCase() !== "admin"
+){
+
+return {
+ok:false,
+message:
+"এই profile-এর role = "+
+(r.data.role || "NULL")+
+"\n\nAdmin role হতে হবে: admin"
+};
+
+}
+
+return {
+ok:true,
+data:r.data
+};
+
+}
+
+
+/* =====================================================
+LOGIN
+===================================================== */
+
+async function adminLogin(){
+
+const email =
+document.getElementById("loginEmail")
+.value
+.trim();
+
+const password =
+document.getElementById("loginPassword")
+.value;
+
+const msg =
+document.getElementById("loginMessage");
+
+const btn =
+document.getElementById("loginButton");
+
+
+if(!email || !password){
+
+msg.innerHTML=
+'<span style="color:#d32f2f">Email এবং Password দিন।</span>';
+
+return;
+
+}
+
+btn.disabled=true;
+btn.textContent="⏳ Login হচ্ছে...";
+
+msg.innerHTML=
+'<span style="color:#777">Supabase যাচাই করছে...</span>';
+
+
+try{
+
+const r =
+await db.auth.signInWithPassword({
+email,
+password
+});
+
+
+if(r.error){
+
+msg.innerHTML=
+'<span style="color:#d32f2f">'+
+esc(r.error.message)+
+'</span>';
+
+return;
+
+}
+
+
+if(!r.data || !r.data.user){
+
+msg.innerHTML=
+'<span style="color:#d32f2f">Supabase User পাওয়া যায়নি।</span>';
+
+return;
+
+}
+
+
+currentUser=r.data.user;
+
+
+/* EMAIL CHECK */
+
+if(
+!currentUser.email ||
+currentUser.email.toLowerCase() !==
+ADMIN_EMAIL.toLowerCase()
+){
+
+await db.auth.signOut();
+
+currentUser=null;
+
+msg.innerHTML=
+'<span style="color:#d32f2f">'+
+"এই Email-এর Admin access নেই।"+
+'</span>';
+
+return;
+
+}
+
+
+/* PROFILE CHECK */
+
+const admin =
+await isAdmin();
+
+
+if(!admin.ok){
+
+await db.auth.signOut();
+
+currentUser=null;
+
+msg.innerHTML=
+'<div style="color:#d32f2f;font-weight:bold">'+
+'Admin Login Check Failed ❌'+
+'</div>'+
+'<div style="margin-top:8px;color:#555;white-space:pre-line">'+
+esc(admin.message)+
+'</div>';
+
+return;
+
+}
+
+
+msg.innerHTML=
+'<span style="color:#138a3c;font-weight:bold">'+
+"Admin Login Successful ✅"+
+'</span>';
+
+showAdmin();
+
+
+}catch(error){
+
+console.error("LOGIN ERROR:",error);
+
+msg.innerHTML=
+'<span style="color:#d32f2f">'+
+esc(error.message || error)+
+'</span>';
+
+}finally{
+
+btn.disabled=false;
+btn.textContent="🔐 Login";
+
+}
+
+}
+
+
+/* =====================================================
+SHOW ADMIN
+===================================================== */
+
+function showAdmin(){
+
+document
+.getElementById("loginSection")
+.classList.add("hidden");
+
+document
+.getElementById("adminPanel")
+.classList.remove("hidden");
+
+loadStats();
+
+showSection("orders");
+
+}
+
+
+/* =====================================================
+SESSION
+===================================================== */
+
+async function checkSession(){
+
+try{
+
+const r =
+await db.auth.getSession();
+
+if(r.error){
+
+console.error(r.error);
+return;
+
+}
+
+currentUser =
+r.data.session?.user || null;
+
+if(!currentUser)
+return;
+
+
+if(
+!currentUser.email ||
+currentUser.email.toLowerCase() !==
+ADMIN_EMAIL.toLowerCase()
+){
+
+await db.auth.signOut();
+
+currentUser=null;
+
+return;
+
+}
+
+
+const admin =
+await isAdmin();
+
+if(admin.ok){
+
+showAdmin();
+
+}else{
+
+console.warn(
+"Existing session is not admin:",
+admin.message
+);
+
+}
+
+}catch(error){
+
+console.error(
+"Session error:",
+error
+);
+
+}
+
+}
+
+
+/* =====================================================
+LOGOUT
+===================================================== */
+
+async function adminLogout(){
+
+await db.auth.signOut();
+
+currentUser=null;
+
+document
+.getElementById("adminPanel")
+.classList.add("hidden");
+
+document
+.getElementById("loginSection")
+.classList.remove("hidden");
+
+document
+.getElementById("loginMessage")
+.innerHTML="";
+
+}
+
+
+/* =====================================================
+SECTION SWITCH
+===================================================== */
+
+async function showSection(section){
+
+currentSection=section;
+
+const content =
+document.getElementById("sectionContent");
+
+content.innerHTML=`
+<div class="loading">
+<span class="spinner"></span>
+Loading...
+</div>
+`;
+
+
+document
+.querySelectorAll(".admin-nav .btn")
+.forEach(btn=>{
+
+btn.classList.remove("btn-orange");
+btn.classList.add("btn-light");
+
+});
+
+
+const activeMap={
+orders:"navOrders",
+products:"navProducts",
+addProduct:"navAddProduct",
+banners:"navBanners",
+resellers:"navResellers",
+reviews:"navReviews"
+};
+
+
+const active =
+document.getElementById(
+activeMap[section]
+);
+
+if(active){
+
+active.classList.remove("btn-light");
+active.classList.add("btn-orange");
+
+}
+
+
+try{
+
+if(section==="orders"){
+
+await renderOrders();
+
+}
+
+else if(section==="products"){
+
+await renderProducts();
+
+}
+
+else if(section==="addProduct"){
+
+renderAddProduct();
+
+}
+
+else if(section==="banners"){
+
+await renderBanners();
+
+}
+
+else if(section==="resellers"){
+
+await renderResellers();
+
+}
+
+else if(section==="reviews"){
+
+await renderReviews();
+
+}
+
+}catch(error){
+
+console.error(error);
+
+content.innerHTML=`
+<div class="empty">
+❌ Error
+<br><br>
+${esc(error.message || error)}
+</div>
+`;
+
+}
+
+}
+
+
+/* =====================================================
+REFRESH
+===================================================== */
+
+async function refreshAdmin(){
+
+await loadStats();
+await showSection(currentSection);
+
+}
+
+
+/* =====================================================
+STATS
+===================================================== */
+
+async function loadStats(){
+
+try{
+
+const products =
+await db
+.from("products")
+.select("id",{
+count:"exact",
+head:true
+});
+
+const orders =
+await db
+.from("orders")
+.select("id,order_status");
+
+const resellers =
+await db
+.from("resellers")
+.select("id,status");
+
+
+document.getElementById("statProducts")
+.textContent=products.count || 0;
+
+
+const orderData=orders.data || [];
+
+document.getElementById("statOrders")
+.textContent=orderData.length;
+
+
+document.getElementById("statPending")
+.textContent=
+orderData.filter(x=>
+String(x.order_status || "Pending")
+.toLowerCase()==="pending"
+).length;
+
+
+document.getElementById("statResellers")
+.textContent=
+(resellers.data || [])
+.filter(x=>
+String(x.status || "Pending")
+.toLowerCase()==="pending"
+).length;
+
+
+}catch(error){
+
+console.error("Stats error:",error);
+
+}
+
+}
+
+
+/* =====================================================
+ORDERS
+===================================================== */
+
+async function renderOrders(){
+
+const box =
+document.getElementById("sectionContent");
+
+const r =
+await db
+.from("orders")
+.select("*")
+.order("created_at",{
+ascending:false
+});
+
+
+if(r.error){
+
+box.innerHTML=`
+<div class="empty">
+❌ ${esc(r.error.message)}
+</div>
+`;
+
+return;
+
+}
+
+
+if(!r.data?.length){
+
+box.innerHTML=`
+<div class="empty">
+📦 এখনো কোনো Order নেই।
+</div>
+`;
+
+return;
+
+}
+
+
+let html="";
+
+
+for(const order of r.data){
+
+const items =
+await db
+.from("order_items")
+.select("*")
+.eq("order_id",order.id);
+
+
+html+=`
+
+<div class="order-card">
+
+<div class="order-head">
+
+<div>
+<b>📦 Order #${esc(order.id)}</b>
+<br>
+<small>${formatDate(order.created_at)}</small>
+</div>
+
+<span class="status">
+${esc(order.order_status || "Pending")}
+</span>
+
+</div>
+
+
+<div class="order-info">
+
+<p>
+<b>Customer:</b>
+${esc(order.customer_name || "—")}
+</p>
+
+<p>
+<b>Phone:</b>
+${esc(order.customer_phone || "—")}
+</p>
+
+<p>
+<b>Address:</b>
+${esc(
+order.customer_receive_place ||
+order.address ||
+"—"
+)}
+</p>
+
+<p>
+<b>District:</b>
+${esc(
+order.customer_district ||
+order.district ||
+"—"
+)}
+</p>
+
+<p>
+<b>Thana:</b>
+${esc(
+order.customer_thana ||
+order.thana ||
+"—"
+)}
+</p>
+
+<p>
+<b>Delivery:</b>
+${esc(order.delivery_area || "—")}
+—
+৳${money(order.delivery_charge)}
+</p>
+
+<p>
+<b>Payment:</b>
+${esc(order.payment_method || "—")}
+—
+${esc(order.payment_status || "Pending")}
+</p>
+
+</div>
+
+
+<div class="items-box">
+
+<b>🛍️ Products</b>
+
+${
+(items.data || [])
+.map(item=>`
+
+<div class="item-row">
+
+${esc(item.product_name || "Product")}
+
+${
+item.size
+?
+` — Size: ${esc(item.size)}`
+:
+""
+}
+
+× ${Number(item.quantity || 1)}
+
+=
+
+<b>
+৳${money(
+item.line_total ??
+(
+Number(item.price || 0) *
+Number(item.quantity || 1)
+)
+)}
+</b>
+
+</div>
+
+`)
+.join("")
+}
+
+</div>
+
+
+<h3 style="color:var(--orange-dark)">
+Total:
+৳${money(
+order.total ??
+order.total_amount
+)}
+</h3>
+
+
+<div class="admin-actions">
+
+<select
+onchange="updateOrderStatus(
+'${esc(order.id)}',
+this.value
+)"
+>
+
+${
+[
+"Pending",
+"Confirmed",
+"Processing",
+"Shipped",
+"Delivered",
+"Cancelled"
+]
+.map(status=>`
+
+<option
+value="${esc(status)}"
+${
+status ===
+(order.order_status || "Pending")
+?
+"selected"
+:
+""
+}
+>
+${status}
+</option>
+
+`)
+.join("")
+}
+
+</select>
+
+
+<select
+onchange="updatePaymentStatus(
+'${esc(order.id)}',
+this.value
+)"
+>
+
+${
+[
+"Pending",
+"Paid",
+"Failed",
+"Refunded"
+]
+.map(status=>`
+
+<option
+value="${esc(status)}"
+${
+status ===
+(order.payment_status || "Pending")
+?
+"selected"
+:
+""
+}
+>
+Payment: ${status}
+</option>
+
+`)
+.join("")
+}
+
+</select>
+
+
+<button
+type="button"
+class="btn btn-green"
+onclick="contactCustomer(
+'${esc(order.customer_phone || "")}',
+'${esc(order.customer_name || "Customer")}'
+)"
+>
+💬 WhatsApp
+</button>
+
+</div>
+
+</div>
+
+`;
+
+}
+
+
+box.innerHTML=html;
+
+}
+
+
+/* =====================================================
+ORDER UPDATE
+===================================================== */
+
+async function updateOrderStatus(id,status){
+
+const r =
+await db
+.from("orders")
+.update({
+order_status:status
+})
+.eq("id",id);
+
+
+if(r.error){
+
+alert(
+"Order status update হয়নি ❌\n\n"+
+r.error.message
+);
+
+return;
+
+}
+
+alert("Order status update হয়েছে ✅");
+
+await loadStats();
+await renderOrders();
+
+}
+
+
+async function updatePaymentStatus(id,status){
+
+const r =
+await db
+.from("orders")
+.update({
+payment_status:status
+})
+.eq("id",id);
+
+
+if(r.error){
+
+alert(
+"Payment status update হয়নি ❌\n\n"+
+r.error.message
+);
+
+return;
+
+}
+
+alert("Payment status update হয়েছে ✅");
+
+await renderOrders();
+
+}
+
+
+/* =====================================================
+PRODUCTS
+===================================================== */
+
+async function renderProducts(){
+
+const box =
+document.getElementById("sectionContent");
+
+const r =
+await db
+.from("products")
+.select("*")
+.order("id",{
+ascending:false
+});
+
+
+if(r.error){
+
+box.innerHTML=`
+<div class="empty">
+❌ ${esc(r.error.message)}
+</div>
+`;
+
+return;
+
+}
+
+
+if(!r.data?.length){
+
+box.innerHTML=`
+<div class="empty">
+
+🛍️ কোনো Product নেই।
+
+<br><br>
+
+<button
+type="button"
+class="btn btn-orange"
+onclick="showSection('addProduct')"
+>
+➕ Add Product
+</button>
+
+</div>
+`;
+
+return;
+
+}
+
+
+box.innerHTML=`
+
+<div class="notice">
+🛍️ Homepage-এর Product এখানে manage করা যাবে।
+</div>
+
+<div class="product-grid">
+
+${
+r.data.map(product=>{
+
+let image="";
+
+if(Array.isArray(product.images)){
+
+image=product.images[0] || "";
+
+}
+
+else if(typeof product.images==="string"){
+
+try{
+
+const parsed=JSON.parse(product.images);
+
+image=
+Array.isArray(parsed)
+?
+(parsed[0] || "")
+:
+product.images;
+
+}catch(e){
+
+image=product.images;
+
+}
+
+}
+
+image =
+image ||
+"https://via.placeholder.com/500x500?text=Gadhuli";
+
+
+return `
+
+<div class="product-card">
+
+<img
+class="product-image"
+src="${esc(image)}"
+alt="${esc(product.name)}"
+onerror="this.src='https://via.placeholder.com/500x500?text=Gadhuli'"
+>
+
+<div class="product-name">
+${esc(product.name)}
+</div>
+
+<div class="product-price">
+৳${money(product.price)}
+</div>
+
+<div class="product-meta">
+
+${esc(product.category || "")}
+
+${
+product.subcategory
+?
+" • "+esc(product.subcategory)
+:
+""
+}
+
+</div>
+
+<div style="margin-top:10px">
+
+<button
+type="button"
+class="btn btn-light"
+onclick="editProduct('${esc(product.id)}')"
+>
+✏️ Edit
+</button>
+
+<button
+type="button"
+class="btn btn-danger"
+onclick="deleteProduct('${esc(product.id)}')"
+>
+🗑️ Delete
+</button>
+
+</div>
+
+</div>
+
+`;
+
+}).join("")
+}
+
+</div>
+
+`;
+
+}
+
+
+/* =====================================================
+CATEGORIES
+===================================================== */
+
+const categories={
 
 "Men's Fashion":[
 "T-Shirt",
@@ -1009,7 +2136,6 @@ const categories = {
 "Three Piece",
 "Kurti",
 "Tops",
-"T-Shirt",
 "Gown",
 "Hijab",
 "Abaya",
@@ -1078,20 +2204,12 @@ const categories = {
 };
 
 
-/* =====================================================
-   SIZE DATA
-===================================================== */
-
-const sizeData = {
+const sizeData={
 
 "T-Shirt":["S","M","L","XL","2XL","4XL"],
-
 "Polo T-Shirt":["S","M","L","XL","2XL","4XL"],
-
 "Shirt":["S","M","L","XL","2XL","4XL"],
-
 "Hoodie & Sweatshirt":["S","M","L","XL","2XL","4XL"],
-
 "Jacket":["S","M","L","XL","2XL","4XL"],
 
 "Panjabi":[
@@ -1100,1410 +2218,40 @@ const sizeData = {
 ],
 
 "Pants":["28","30","32","34","36","38","40"],
-
 "Jeans":["28","30","32","34","36","38","40"],
-
 "Shorts":["28","30","32","34","36","38","40"],
 
-"Saree":["Free Size"],
-
-"Hijab":["Free Size"],
-
 "Three Piece":["S","M","L","XL","2XL"],
-
 "Kurti":["S","M","L","XL","2XL"],
-
 "Tops":["S","M","L","XL","2XL"],
-
 "Gown":["S","M","L","XL","2XL"],
-
 "Abaya":["S","M","L","XL","2XL"],
+"Women's Pants":["28","30","32","34","36","38"],
 
-"Women's Pants":["28","30","32","34","36","38"]
+"Saree":["Free Size"],
+"Hijab":["Free Size"]
 
 };
 
 
 /* =====================================================
-   HELPERS
-===================================================== */
-
-function esc(v){
-
-return String(v ?? "")
-.replaceAll("&","&amp;")
-.replaceAll("<","&lt;")
-.replaceAll(">","&gt;")
-.replaceAll('"',"&quot;")
-.replaceAll("'","&#039;");
-
-}
-
-
-function money(v){
-
-return Number(v || 0)
-.toLocaleString(
-"en-US",
-{
-maximumFractionDigits:2
-}
-);
-
-}
-
-
-function formatDate(v){
-
-try{
-
-return new Date(v)
-.toLocaleString(
-"en-BD",
-{
-dateStyle:"medium",
-timeStyle:"short"
-}
-);
-
-}catch(e){
-
-return String(v || "—");
-
-}
-
-}
-
-
-function goHome(){
-
-window.location.href =
-"index.html";
-
-}
-
-
-/* =====================================================
-   PASSWORD SHOW / HIDE
-===================================================== */
-
-function togglePassword(){
-
-const input =
-document.getElementById(
-"loginPassword"
-);
-
-const eye =
-document.getElementById(
-"passwordEye"
-);
-
-if(!input || !eye)
-return;
-
-if(input.type === "password"){
-
-input.type = "text";
-
-eye.textContent = "🙈";
-
-eye.setAttribute(
-"aria-label",
-"Hide password"
-);
-
-}else{
-
-input.type = "password";
-
-eye.textContent = "👁️";
-
-eye.setAttribute(
-"aria-label",
-"Show password"
-);
-
-}
-
-}
-
-
-/* =====================================================
-   ADMIN LOGIN
-===================================================== */
-
-async function adminLogin(){
-
-if(!db){
-
-alert(
-"Supabase connection পাওয়া যায়নি।"
-);
-
-return;
-
-}
-
-const email =
-document.getElementById(
-"loginEmail"
-).value.trim();
-
-const password =
-document.getElementById(
-"loginPassword"
-).value;
-
-
-if(!email || !password){
-
-alert(
-"Email এবং Password দিন।"
-);
-
-return;
-
-}
-
-
-const message =
-document.getElementById(
-"loginMessage"
-);
-
-message.innerHTML =
-'<span style="color:#FF6B00;font-weight:bold">⏳ Login হচ্ছে...</span>';
-
-
-try{
-
-const r =
-await db.auth.signInWithPassword({
-
-email,
-password
-
-});
-
-
-if(r.error){
-
-message.innerHTML =
-'<span style="color:#d32f2f">'+
-esc(r.error.message)+
-'</span>';
-
-return;
-
-}
-
-
-currentUser =
-r.data.user;
-
-
-if(
-!currentUser ||
-!currentUser.email ||
-currentUser.email.toLowerCase() !==
-ADMIN_EMAIL.toLowerCase()
-){
-
-await db.auth.signOut();
-
-currentUser = null;
-
-message.innerHTML =
-'<span style="color:#d32f2f">এই Email-এর Admin access নেই।</span>';
-
-return;
-
-}
-
-
-/* CHECK PROFILE */
-
-const admin =
-await isAdmin();
-
-
-if(!admin){
-
-await db.auth.signOut();
-
-currentUser = null;
-
-message.innerHTML =
-'<span style="color:#d32f2f">'+
-"আপনার profile-এ Admin role নেই।"+
-'</span>';
-
-return;
-
-}
-
-
-message.innerHTML =
-'<span style="color:#138a3c;font-weight:bold">'+
-"Admin Login Successful ✅"+
-'</span>';
-
-
-showAdmin();
-
-}catch(error){
-
-console.error(error);
-
-message.innerHTML =
-'<span style="color:#d32f2f">'+
-esc(error.message || String(error))+
-'</span>';
-
-}
-
-}
-
-
-/* =====================================================
-   CHECK ADMIN ROLE
-===================================================== */
-
-async function isAdmin(){
-
-if(!currentUser)
-return false;
-
-
-try{
-
-const r =
-await db
-.from("profiles")
-.select("id,role")
-.eq(
-"id",
-currentUser.id
-)
-.maybeSingle();
-
-
-if(r.error){
-
-console.error(
-"Admin role check error:",
-r.error
-);
-
-return false;
-
-}
-
-
-if(!r.data){
-
-console.error(
-"No profile found for:",
-currentUser.id
-);
-
-return false;
-
-}
-
-
-return String(r.data.role || "")
-.toLowerCase() ===
-"admin";
-
-}catch(error){
-
-console.error(
-"Admin role check exception:",
-error
-);
-
-return false;
-
-}
-
-}
-
-
-/* =====================================================
-   SHOW ADMIN
-===================================================== */
-
-function showAdmin(){
-
-document
-.getElementById("loginSection")
-.classList.add("hidden");
-
-document
-.getElementById("adminPanel")
-.classList.remove("hidden");
-
-loadStats();
-
-showSection("orders");
-
-}
-
-
-/* =====================================================
-   SESSION
-===================================================== */
-
-async function checkSession(){
-
-if(!db)
-return;
-
-
-try{
-
-const s =
-await db.auth.getSession();
-
-
-if(s.error){
-
-console.error(s.error);
-
-return;
-
-}
-
-
-currentUser =
-s.data.session?.user || null;
-
-
-if(!currentUser)
-return;
-
-
-if(
-!currentUser.email ||
-currentUser.email.toLowerCase() !==
-ADMIN_EMAIL.toLowerCase()
-){
-
-await db.auth.signOut();
-
-currentUser = null;
-
-return;
-
-}
-
-
-const admin =
-await isAdmin();
-
-
-if(admin){
-
-showAdmin();
-
-}else{
-
-console.log(
-"Logged in but profile role is not admin."
-);
-
-}
-
-}catch(error){
-
-console.error(
-"Session check:",
-error
-);
-
-}
-
-}
-
-
-/* =====================================================
-   LOGOUT
-===================================================== */
-
-async function adminLogout(){
-
-if(db)
-await db.auth.signOut();
-
-currentUser = null;
-
-document
-.getElementById("adminPanel")
-.classList.add("hidden");
-
-document
-.getElementById("loginSection")
-.classList.remove("hidden");
-
-document
-.getElementById("loginPassword")
-.value = "";
-
-}
-
-
-/* =====================================================
-   SECTION
-===================================================== */
-
-async function showSection(section){
-
-currentSection = section;
-
-updateNav(section);
-
-const box =
-document.getElementById(
-"sectionContent"
-);
-
-box.innerHTML = `
-<div class="loading">
-<span class="spinner"></span>
-Loading...
-</div>
-`;
-
-try{
-
-if(section === "orders")
-await renderOrders();
-
-else if(section === "products")
-await renderProducts();
-
-else if(section === "addProduct")
-renderAddProduct();
-
-else if(section === "banners")
-await renderBanners();
-
-else if(section === "resellers")
-await renderResellers();
-
-else if(section === "reviews")
-await renderReviews();
-
-}catch(error){
-
-console.error(error);
-
-box.innerHTML = `
-<div class="empty">
-
-❌ Something went wrong.
-
-<br><br>
-
-${esc(
-error.message ||
-String(error)
-)}
-
-</div>
-`;
-
-}
-
-}
-
-
-/* =====================================================
-   NAV
-===================================================== */
-
-function updateNav(section){
-
-const ids = [
-"navOrders",
-"navProducts",
-"navAdd",
-"navBanners",
-"navResellers",
-"navReviews"
-];
-
-ids.forEach(id=>{
-
-const el =
-document.getElementById(id);
-
-if(el)
-el.className =
-"btn btn-light";
-
-});
-
-
-const map = {
-
-orders:"navOrders",
-products:"navProducts",
-addProduct:"navAdd",
-banners:"navBanners",
-resellers:"navResellers",
-reviews:"navReviews"
-
-};
-
-
-const active =
-document.getElementById(
-map[section]
-);
-
-if(active)
-active.className =
-"btn btn-orange";
-
-}
-
-
-/* =====================================================
-   REFRESH
-===================================================== */
-
-async function refreshAdmin(){
-
-await loadStats();
-
-await showSection(
-currentSection
-);
-
-}
-
-
-/* =====================================================
-   STATS
-===================================================== */
-
-async function loadStats(){
-
-if(!db)
-return;
-
-
-const p =
-await db
-.from("products")
-.select(
-"id",
-{
-count:"exact",
-head:true
-}
-);
-
-
-const o =
-await db
-.from("orders")
-.select(
-"id,order_status"
-);
-
-
-const r =
-await db
-.from("resellers")
-.select(
-"id,status"
-);
-
-
-document.getElementById(
-"statProducts"
-).textContent =
-p.count || 0;
-
-
-const orders =
-o.data || [];
-
-
-document.getElementById(
-"statOrders"
-).textContent =
-orders.length;
-
-
-document.getElementById(
-"statPending"
-).textContent =
-orders.filter(
-x =>
-(x.order_status || "Pending") ===
-"Pending"
-).length;
-
-
-document.getElementById(
-"statResellers"
-).textContent =
-(r.data || [])
-.filter(
-x => x.status === "Pending"
-).length;
-
-}
-
-
-/* =====================================================
-   ORDERS
-===================================================== */
-
-async function renderOrders(){
-
-const box =
-document.getElementById(
-"sectionContent"
-);
-
-
-const r =
-await db
-.from("orders")
-.select("*")
-.order(
-"created_at",
-{
-ascending:false
-}
-);
-
-
-if(r.error){
-
-box.innerHTML = `
-<div class="empty">
-❌ ${esc(r.error.message)}
-</div>
-`;
-
-return;
-
-}
-
-
-if(!r.data?.length){
-
-box.innerHTML = `
-<div class="empty">
-📦 এখনো কোনো Order নেই।
-</div>
-`;
-
-return;
-
-}
-
-
-let html = "";
-
-
-for(const o of r.data){
-
-const items =
-await db
-.from("order_items")
-.select("*")
-.eq(
-"order_id",
-o.id
-);
-
-
-html += `
-
-<div class="order-card">
-
-<div class="order-head">
-
-<div>
-
-<b>
-📦 Order #${esc(o.id)}
-</b>
-
-<br>
-
-<small>
-${formatDate(o.created_at)}
-</small>
-
-</div>
-
-<span class="status">
-${esc(
-o.order_status ||
-"Pending"
-)}
-</span>
-
-</div>
-
-
-<div class="order-info">
-
-<p>
-<b>Customer:</b>
-${esc(o.customer_name)}
-</p>
-
-<p>
-<b>Phone:</b>
-${esc(o.customer_phone)}
-</p>
-
-${
-o.customer_email
-?
-`
-<p>
-<b>Email:</b>
-${esc(o.customer_email)}
-</p>
-`
-:
-""
-}
-
-<p>
-<b>Address:</b>
-${esc(
-o.customer_receive_place ||
-o.address ||
-"—"
-)},
-${esc(
-o.customer_thana ||
-o.thana ||
-"—"
-)},
-${esc(
-o.customer_district ||
-o.district ||
-"—"
-)}
-</p>
-
-<p>
-<b>Delivery:</b>
-${esc(
-o.delivery_area ||
-"—"
-)}
-—
-৳${money(
-o.delivery_charge
-)}
-</p>
-
-<p>
-<b>Payment:</b>
-${esc(
-o.payment_method ||
-"—"
-)}
-—
-${esc(
-o.payment_status ||
-"Pending"
-)}
-</p>
-
-${
-o.notes
-?
-`
-<p>
-<b>Notes:</b><br>
-${esc(o.notes)}
-</p>
-`
-:
-""
-}
-
-${
-o.reseller_code
-?
-`
-<p>
-<b>Reseller:</b>
-${esc(o.reseller_code)}
-</p>
-`
-:
-""
-}
-
-</div>
-
-
-<div class="items-box">
-
-<b>
-🛍️ Order Products
-</b>
-
-${
-(items.data || [])
-.map(i=>`
-
-<div class="item-row">
-
-${esc(
-i.product_name ||
-"Product"
-)}
-
-${
-i.size
-?
-` — Size: ${esc(i.size)}`
-:
-""
-}
-
-× ${Number(
-i.quantity || 1
-)}
-
-=
-<b>
-৳${money(
-i.line_total != null
-?
-i.line_total
-:
-Number(i.price || 0) *
-Number(i.quantity || 1)
-)}
-</b>
-
-</div>
-
-`)
-.join("")
-}
-
-</div>
-
-
-<h3 style="color:var(--orange-dark)">
-
-Total:
-৳${money(
-o.total ??
-o.total_amount
-)}
-
-</h3>
-
-
-<div class="admin-actions">
-
-<select
-onchange="updateOrderStatus('${esc(o.id)}',this.value)"
->
-
-${
-[
-"Pending",
-"Confirmed",
-"Processing",
-"Shipped",
-"Delivered",
-"Cancelled"
-]
-.map(s=>`
-
-<option
-value="${esc(s)}"
-${s ===
-(o.order_status || "Pending")
-?
-"selected"
-:
-""}
->
-${s}
-</option>
-
-`)
-.join("")
-}
-
-</select>
-
-
-<select
-onchange="updatePaymentStatus('${esc(o.id)}',this.value)"
->
-
-${
-[
-"Pending",
-"Paid",
-"Failed",
-"Refunded"
-]
-.map(s=>`
-
-<option
-value="${esc(s)}"
-${s ===
-(o.payment_status || "Pending")
-?
-"selected"
-:
-""}
->
-Payment: ${s}
-</option>
-
-`)
-.join("")
-}
-
-</select>
-
-
-<button
-class="btn btn-green"
-onclick="contactCustomer(
-'${esc(o.customer_phone || "")}',
-'${esc(o.customer_name || "Customer")}'
-)"
->
-💬 WhatsApp Customer
-</button>
-
-</div>
-
-</div>
-
-`;
-
-}
-
-
-box.innerHTML = html;
-
-}
-
-
-/* =====================================================
-   ORDER STATUS
-===================================================== */
-
-async function updateOrderStatus(id,status){
-
-if(!await isAdmin())
-return alert(
-"Admin access নেই।"
-);
-
-
-const old =
-await db
-.from("orders")
-.select("*")
-.eq("id",id)
-.maybeSingle();
-
-
-if(old.error || !old.data){
-
-alert(
-"Order পাওয়া যায়নি।"
-);
-
-return;
-
-}
-
-
-const r =
-await db
-.from("orders")
-.update({
-order_status:status
-})
-.eq(
-"id",
-id
-);
-
-
-if(r.error){
-
-alert(
-"Status update হয়নি ❌\n\n"+
-r.error.message
-);
-
-return;
-
-}
-
-
-const verify =
-await db
-.from("orders")
-.select(
-"id,order_status"
-)
-.eq("id",id)
-.maybeSingle();
-
-
-if(
-verify.error ||
-verify.data?.order_status !== status
-){
-
-alert(
-"Database status update verify হয়নি ❌"
-);
-
-return;
-
-}
-
-
-if(
-status === "Delivered" &&
-old.data.order_status !== "Delivered" &&
-old.data.reseller_id
-){
-
-await postCommission(
-old.data
-);
-
-}
-
-
-alert(
-"Order status update হয়েছে ✅"
-);
-
-await loadStats();
-
-await renderOrders();
-
-}
-
-
-/* =====================================================
-   PAYMENT STATUS
-===================================================== */
-
-async function updatePaymentStatus(id,status){
-
-if(!await isAdmin())
-return alert(
-"Admin access নেই।"
-);
-
-
-const r =
-await db
-.from("orders")
-.update({
-payment_status:status
-})
-.eq(
-"id",
-id
-);
-
-
-if(r.error){
-
-alert(
-"Payment status update হয়নি ❌\n\n"+
-r.error.message
-);
-
-return;
-
-}
-
-
-alert(
-"Payment status update হয়েছে ✅"
-);
-
-await renderOrders();
-
-}
-
-
-/* =====================================================
-   PRODUCTS
-===================================================== */
-
-async function renderProducts(){
-
-const box =
-document.getElementById(
-"sectionContent"
-);
-
-
-const r =
-await db
-.from("products")
-.select("*")
-.order(
-"id",
-{
-ascending:false
-}
-);
-
-
-if(r.error){
-
-box.innerHTML = `
-<div class="empty">
-❌ ${esc(r.error.message)}
-</div>
-`;
-
-return;
-
-}
-
-
-if(!r.data?.length){
-
-box.innerHTML = `
-<div class="empty">
-
-🛍️ কোনো Product নেই।
-
-<br><br>
-
-<button
-class="btn btn-orange"
-onclick="showSection('addProduct')"
->
-➕ Add First Product
-</button>
-
-</div>
-`;
-
-return;
-
-}
-
-
-box.innerHTML = `
-
-<div class="notice">
-
-🛍️ এখানে Homepage-এর সব Product manage করা যাবে।
-
-<br>
-
-<strong>
-Product image সর্বোচ্চ ৫টি।
-</strong>
-
-</div>
-
-
-<div class="product-grid">
-
-${
-r.data.map(p=>{
-
-let img = "";
-
-
-if(Array.isArray(p.images))
-img = p.images[0];
-
-else if(
-typeof p.images === "string"
-){
-
-try{
-
-const x =
-JSON.parse(p.images);
-
-if(Array.isArray(x))
-img = x[0];
-
-}catch(e){
-
-img = p.images;
-
-}
-
-}
-
-
-img =
-img ||
-"https://via.placeholder.com/500x500?text=Gadhuli";
-
-
-return `
-
-<div class="product-card">
-
-<img
-class="product-image"
-src="${esc(img)}"
-alt="${esc(p.name)}"
-onerror="this.src='https://via.placeholder.com/500x500?text=Gadhuli'"
->
-
-
-<div class="product-name">
-${esc(p.name)}
-</div>
-
-
-<div class="product-price">
-৳${money(p.price)}
-</div>
-
-
-<div class="product-meta">
-
-${esc(p.category || "")}
-
-${
-p.subcategory
-?
-" • " + esc(p.subcategory)
-:
-""
-}
-
-</div>
-
-
-${
-p.description
-?
-`
-<p style="
-font-size:13px;
-color:#777;
-margin-top:7px;
-">
-${esc(
-String(p.description).substring(
-0,
-100
-)
-)}
-${
-String(p.description).length > 100
-?
-"..."
-:
-""
-}
-</p>
-`
-:
-""
-}
-
-
-<div style="margin-top:10px">
-
-<button
-class="btn btn-light"
-onclick="editProduct('${esc(p.id)}')"
->
-✏️ Edit
-</button>
-
-
-<button
-class="btn btn-danger"
-onclick="deleteProduct('${esc(p.id)}')"
->
-🗑️ Delete
-</button>
-
-</div>
-
-</div>
-
-`;
-
-}).join("")
-}
-
-</div>
-
-`;
-
-}
-
-
-/* =====================================================
-   ADD PRODUCT
+ADD PRODUCT
 ===================================================== */
 
 function renderAddProduct(){
 
 const box =
-document.getElementById(
-"sectionContent"
-);
+document.getElementById("sectionContent");
 
-
-box.innerHTML = `
+box.innerHTML=`
 
 <div class="card">
 
-<h2>
-➕ Add New Product
-</h2>
-
-
-<div class="notice">
-
-📌 Product add করার সময় Category এবং Subcategory ঠিকভাবে select করুন।
-
-<br>
-
-📌 সর্বোচ্চ ৫টি ছবি upload করা যাবে।
-
-</div>
-
+<h2>➕ Add New Product</h2>
 
 <div class="form-group">
 
-<label>
-Product Name *
-</label>
+<label>Product Name *</label>
 
 <input
 id="productName"
@@ -2516,15 +2264,12 @@ placeholder="Product name"
 
 <div class="form-group">
 
-<label>
-Price *
-</label>
+<label>Price *</label>
 
 <input
 id="productPrice"
 type="number"
 min="0"
-step="0.01"
 placeholder="Price in ৳"
 >
 
@@ -2533,9 +2278,7 @@ placeholder="Price in ৳"
 
 <div class="form-group">
 
-<label>
-Category *
-</label>
+<label>Category *</label>
 
 <select
 id="productCategory"
@@ -2548,9 +2291,9 @@ Select Category
 
 ${
 Object.keys(categories)
-.map(c=>`
-<option value="${esc(c)}">
-${esc(c)}
+.map(category=>`
+<option value="${esc(category)}">
+${esc(category)}
 </option>
 `)
 .join("")
@@ -2563,9 +2306,7 @@ ${esc(c)}
 
 <div class="form-group">
 
-<label>
-Subcategory
-</label>
+<label>Subcategory</label>
 
 <select
 id="productSubcategory"
@@ -2581,19 +2322,15 @@ Select Subcategory
 </div>
 
 
+<div class="form-group">
+
+<label>Available Sizes</label>
+
 <div
-class="form-group"
-id="sizeSection"
+id="sizeOptions"
+class="size-list"
 >
-
-<label>
-Available Sizes
-</label>
-
-<div id="sizeOptions">
-
-Category/Subcategory select করুন।
-
+Subcategory select করুন।
 </div>
 
 </div>
@@ -2601,9 +2338,7 @@ Category/Subcategory select করুন।
 
 <div class="form-group">
 
-<label>
-Description
-</label>
+<label>Description</label>
 
 <textarea
 id="productDescription"
@@ -2616,9 +2351,7 @@ placeholder="Product description"
 
 <div class="form-group">
 
-<label>
-Product Images *
-</label>
+<label>Product Images *</label>
 
 <input
 id="productImages"
@@ -2641,6 +2374,7 @@ class="image-preview"
 
 
 <button
+type="button"
 id="saveProductButton"
 class="btn btn-orange full"
 onclick="saveProduct()"
@@ -2655,128 +2389,67 @@ onclick="saveProduct()"
 }
 
 
-/* =====================================================
-   SUBCATEGORY
-===================================================== */
-
 function updateSubcategories(){
 
 const category =
-document.getElementById(
-"productCategory"
-).value;
+document.getElementById("productCategory").value;
 
+const select =
+document.getElementById("productSubcategory");
 
-const box =
-document.getElementById(
-"productSubcategory"
-);
-
-
-box.innerHTML =
+select.innerHTML=
 '<option value="">Select Subcategory</option>';
 
-
-if(!category){
-
-updateSizes();
-
-return;
-
-}
-
-
 (categories[category] || [])
-.forEach(s=>{
+.forEach(item=>{
 
-const o =
-document.createElement(
-"option"
-);
+const option=
+document.createElement("option");
 
-o.value = s;
+option.value=item;
+option.textContent=item;
 
-o.textContent = s;
-
-box.appendChild(o);
+select.appendChild(option);
 
 });
 
-
 updateSizes();
 
 }
 
-
-/* =====================================================
-   SIZES
-===================================================== */
 
 function updateSizes(){
 
 const sub =
-document.getElementById(
-"productSubcategory"
-).value;
-
+document.getElementById("productSubcategory").value;
 
 const box =
-document.getElementById(
-"sizeOptions"
-);
-
-
-if(!sub){
-
-box.innerHTML =
-"Subcategory select করুন।";
-
-return;
-
-}
-
+document.getElementById("sizeOptions");
 
 const sizes =
 sizeData[sub] || [];
 
-
 if(!sizes.length){
 
-box.innerHTML = `
-<small>
-এই Product-এর জন্য Size প্রয়োজন নেই।
-</small>
-`;
+box.innerHTML=
+"এই Product-এর জন্য Size নেই।";
 
 return;
 
 }
 
+box.innerHTML=
+sizes.map(size=>`
 
-box.innerHTML =
-sizes.map(s=>`
-
-<label
-style="
-display:inline-flex;
-align-items:center;
-gap:6px;
-margin:4px;
-padding:7px 10px;
-border:1px solid #ffd0b0;
-border-radius:8px;
-background:#fffaf5;
-cursor:pointer;
-"
->
+<label class="size-label">
 
 <input
 type="checkbox"
 class="size-check"
-value="${esc(s)}"
+value="${esc(size)}"
 >
 
-${esc(s)}
+${esc(size)}
 
 </label>
 
@@ -2785,64 +2458,36 @@ ${esc(s)}
 }
 
 
-/* =====================================================
-   IMAGE PREVIEW
-===================================================== */
-
 function previewImages(){
 
 const input =
-document.getElementById(
-"productImages"
-);
-
+document.getElementById("productImages");
 
 const box =
-document.getElementById(
-"imagePreview"
-);
+document.getElementById("imagePreview");
 
+box.innerHTML="";
 
-box.innerHTML = "";
+const files=
+Array.from(input.files || []);
 
+if(files.length>5){
 
-const files =
-Array.from(
-input.files || []
-);
+alert("Maximum 5টি ছবি select করা যাবে।");
 
-
-if(files.length > 5){
-
-alert(
-"Maximum 5টি ছবি select করা যাবে।"
-);
-
-input.value = "";
+input.value="";
 
 return;
 
 }
 
-
 files.forEach(file=>{
 
-if(!file.type.startsWith("image/"))
-return;
-
-
-const url =
-URL.createObjectURL(file);
-
-
-const img =
+const img=
 document.createElement("img");
 
-img.src = url;
-
-img.onload = ()=>{
-URL.revokeObjectURL(url)
-};
+img.src=
+URL.createObjectURL(file);
 
 box.appendChild(img);
 
@@ -2852,64 +2497,38 @@ box.appendChild(img);
 
 
 /* =====================================================
-   SAVE PRODUCT
+SAVE PRODUCT
 ===================================================== */
 
 async function saveProduct(){
 
-if(!await isAdmin())
-return alert(
-"Admin access নেই।"
-);
+const name=
+document.getElementById("productName").value.trim();
 
-
-const name =
-document.getElementById(
-"productName"
-).value.trim();
-
-
-const price =
+const price=
 Number(
-document.getElementById(
-"productPrice"
-).value
+document.getElementById("productPrice").value
 );
 
+const category=
+document.getElementById("productCategory").value;
 
-const category =
-document.getElementById(
-"productCategory"
-).value;
+const subcategory=
+document.getElementById("productSubcategory").value;
 
+const description=
+document.getElementById("productDescription").value.trim();
 
-const subcategory =
-document.getElementById(
-"productSubcategory"
-).value;
+const input=
+document.getElementById("productImages");
 
-
-const description =
-document.getElementById(
-"productDescription"
-).value.trim();
-
-
-const input =
-document.getElementById(
-"productImages"
-);
-
-
-const files =
-Array.from(
-input.files || []
-);
+const files=
+Array.from(input.files || []);
 
 
 if(
 !name ||
-price <= 0 ||
+price<=0 ||
 !category ||
 !files.length
 ){
@@ -2923,7 +2542,7 @@ return;
 }
 
 
-if(files.length > 5){
+if(files.length>5){
 
 alert(
 "Maximum 5টি ছবি দেওয়া যাবে।"
@@ -2934,68 +2553,42 @@ return;
 }
 
 
-const sizes =
+const sizes=
 Array.from(
-document.querySelectorAll(
-".size-check:checked"
-)
-)
-.map(x=>x.value);
+document.querySelectorAll(".size-check:checked")
+).map(x=>x.value);
 
 
-if(
-subcategory &&
-sizeData[subcategory]?.length &&
-!sizes.length
-){
-
-alert(
-"Product-এর Size select করুন।"
-);
-
-return;
-
-}
-
-
-const button =
-document.getElementById(
-"saveProductButton"
-);
+const button=
+document.getElementById("saveProductButton");
 
 
 try{
 
-button.disabled = true;
+button.disabled=true;
+button.textContent="⏳ Uploading...";
 
-button.textContent =
-"⏳ Uploading...";
-
-
-const urls = [];
+const urls=[];
 
 
 for(const file of files){
 
-const safe =
+const safe=
 file.name.replace(
 /[^a-zA-Z0-9._-]/g,
 "_"
 );
 
-
-const path =
-"products/" +
-Date.now() +
-"-" +
-Math.random()
-.toString(36)
-.substring(2,8) +
-"-" +
+const path=
+"products/"+
+Date.now()+
+"-"+
+Math.random().toString(36).substring(2,8)+
+"-"+
 safe;
 
 
-const upload =
+const upload=
 await db
 .storage
 .from("product-images")
@@ -3007,17 +2600,15 @@ upsert:false
 }
 );
 
-
 if(upload.error)
 throw upload.error;
 
 
-const pub =
+const pub=
 db
 .storage
 .from("product-images")
 .getPublicUrl(path);
-
 
 urls.push(
 pub.data.publicUrl
@@ -3026,17 +2617,17 @@ pub.data.publicUrl
 }
 
 
-const r =
+const r=
 await db
 .from("products")
 .insert({
 
-name,
-price,
-category,
-subcategory,
-sizes,
-description,
+name:name,
+price:price,
+category:category,
+subcategory:subcategory,
+sizes:sizes,
+description:description,
 images:urls
 
 });
@@ -3046,65 +2637,51 @@ if(r.error)
 throw r.error;
 
 
-alert(
-"Product Save হয়েছে ✅"
-);
-
+alert("Product Save হয়েছে ✅");
 
 await loadStats();
-
-await showSection(
-"products"
-);
+await showSection("products");
 
 
-}catch(e){
+}catch(error){
 
-console.error(e);
+console.error(error);
 
 alert(
 "Product Save হয়নি ❌\n\n"+
-(e?.message || String(e))
+(error.message || error)
 );
 
 }finally{
 
-button.disabled = false;
-
-button.textContent =
-"💾 Save Product";
+button.disabled=false;
+button.textContent="💾 Save Product";
 
 }
 
 }
 
 
-/* =====================================================
-   DELETE PRODUCT
-===================================================== */
+function editProduct(id){
+
+alert(
+"ছবি Edit করা যাবে না।\n\n"+
+"নতুন Product যোগ করুন।"
+);
+
+}
+
 
 async function deleteProduct(id){
 
-if(!await isAdmin())
-return alert(
-"Admin access নেই।"
-);
-
-
-if(!confirm(
-"এই Product Delete করবেন?"
-))
+if(!confirm("এই Product Delete করবেন?"))
 return;
 
-
-const r =
+const r=
 await db
 .from("products")
 .delete()
-.eq(
-"id",
-id
-);
+.eq("id",id);
 
 
 if(r.error){
@@ -3118,89 +2695,55 @@ return;
 
 }
 
-
-alert(
-"Product Delete হয়েছে ✅"
-);
+alert("Product Delete হয়েছে ✅");
 
 await loadStats();
-
 await renderProducts();
 
 }
 
 
 /* =====================================================
-   EDIT PRODUCT
-===================================================== */
-
-function editProduct(id){
-
-alert(
-"ছবি Edit করা যাবে না।\n\n"+
-"নতুন Product যোগ করুন।"
-);
-
-}
-
-
-/* =====================================================
-   BANNERS
+BANNERS
 ===================================================== */
 
 async function renderBanners(){
 
-const box =
-document.getElementById(
-"sectionContent"
-);
+const box=
+document.getElementById("sectionContent");
 
-
-const r =
+const r=
 await db
 .from("advertisements")
 .select("*")
-.order(
-"sort_order",
-{
+.order("sort_order",{
 ascending:true
-}
-);
+});
 
 
 if(r.error){
 
-box.innerHTML = `
+box.innerHTML=`
 
 <div class="card">
 
-<h2>
-🖼️ Advertisement / Banner
-</h2>
+<h2>🖼️ Banner Management</h2>
 
 <div class="notice">
 
-⚠️ Banner system চালু করার জন্য Supabase-এ
-<code>advertisements</code> table থাকতে হবে।
+❌ advertisements table পাওয়া যায়নি অথবা access নেই।
 
 <br><br>
 
-Required fields:
+Supabase SQL Editor-এ table create করুন এবং RLS policy check করুন।
 
+<br><br>
+
+Error:
 <br>
-
-<b>image_url</b>,
-<b>sort_order</b>,
-<b>active</b>
+${esc(r.error.message)}
 
 </div>
-
-<button
-class="btn btn-orange"
-onclick="renderBannerSetupHelp()"
->
-ℹ️ Setup Information
-</button>
 
 </div>
 
@@ -3211,37 +2754,15 @@ return;
 }
 
 
-box.innerHTML = `
+box.innerHTML=`
 
 <div class="card">
 
-<h2>
-🖼️ Advertisement / Banner Management
-</h2>
-
-<div class="notice">
-
-Homepage-এর banner এখান থেকে manage করা যাবে।
-
-<br>
-
-<strong>
-সর্বোচ্চ ৫টি active banner
-</strong>
-রাখা যাবে।
-
-<br>
-
-Active banner homepage slider-এ দেখাবে।
-
-</div>
-
+<h2>🖼️ Add Banner</h2>
 
 <div class="form-group">
 
-<label>
-Banner Image
-</label>
+<label>Banner Image</label>
 
 <input
 id="bannerImage"
@@ -3260,31 +2781,28 @@ class="image-preview"
 
 <div class="form-group">
 
-<label>
-Sort Order
-</label>
+<label>Sort Order</label>
 
-<input
-id="bannerSort"
-type="number"
-min="1"
-max="5"
-value="1"
->
+<select id="bannerSort">
+
+<option value="1">1</option>
+<option value="2">2</option>
+<option value="3">3</option>
+<option value="4">4</option>
+<option value="5">5</option>
+
+</select>
 
 </div>
 
 
 <div class="form-group">
 
-<label
-style="
+<label style="
 display:flex;
 align-items:center;
 gap:8px;
-cursor:pointer;
-"
->
+">
 
 <input
 id="bannerActive"
@@ -3292,7 +2810,7 @@ type="checkbox"
 checked
 >
 
-Active Banner
+Active
 
 </label>
 
@@ -3300,6 +2818,7 @@ Active Banner
 
 
 <button
+type="button"
 id="saveBannerButton"
 class="btn btn-orange full"
 onclick="saveBanner()"
@@ -3312,9 +2831,7 @@ onclick="saveBanner()"
 
 <div class="card">
 
-<h2>
-📋 Current Banners
-</h2>
+<h2>📋 Current Banners</h2>
 
 ${
 !r.data?.length
@@ -3329,16 +2846,7 @@ ${
 <div class="banner-grid">
 
 ${
-r.data.map(b=>{
-
-const img =
-b.image_url ||
-b.image ||
-b.url ||
-"";
-
-
-return `
+r.data.map(b=>`
 
 <div class="banner-card">
 
@@ -3353,8 +2861,7 @@ Banner #${esc(b.id)}
 <br>
 
 <small>
-Sort:
-${esc(b.sort_order ?? "—")}
+Sort: ${esc(b.sort_order)}
 </small>
 
 </div>
@@ -3362,66 +2869,40 @@ ${esc(b.sort_order ?? "—")}
 ${
 b.active
 ?
-`
-<span class="banner-active">
-ACTIVE
-</span>
-`
+`<span class="banner-active">ACTIVE</span>`
 :
-`
-<span class="banner-inactive">
-HIDDEN
-</span>
-`
+`<span class="banner-inactive">HIDDEN</span>`
 }
 
 </div>
 
 
-${
-img
-?
-`
 <img
+src="${esc(b.image_url)}"
 class="banner-image"
-src="${esc(img)}"
 alt="Gadhuli Banner"
-onerror="this.style.display='none'"
 >
-`
-:
-`
-<div class="empty">
-Image পাওয়া যায়নি।
-</div>
-`
-}
 
 
 <div class="admin-actions">
 
 <button
+type="button"
 class="btn btn-light"
 onclick="toggleBanner(
 '${esc(b.id)}',
 ${!b.active}
 )"
 >
-${
-b.active
-?
-"🙈 Hide"
-:
-"👁️ Activate"
-}
+${b.active ? "🙈 Hide" : "👁️ Activate"}
 </button>
 
 
 <button
+type="button"
 class="btn btn-danger"
 onclick="deleteBanner(
-'${esc(b.id)}',
-'${esc(img)}'
+'${esc(b.id)}'
 )"
 >
 🗑️ Delete
@@ -3431,9 +2912,8 @@ onclick="deleteBanner(
 
 </div>
 
-`;
-
-}).join("")
+`)
+.join("")
 }
 
 </div>
@@ -3447,146 +2927,89 @@ onclick="deleteBanner(
 }
 
 
-/* =====================================================
-   BANNER PREVIEW
-===================================================== */
-
 function previewBanner(){
 
-const input =
-document.getElementById(
-"bannerImage"
-);
+const input=
+document.getElementById("bannerImage");
 
-const box =
-document.getElementById(
-"bannerPreview"
-);
+const box=
+document.getElementById("bannerPreview");
 
-box.innerHTML = "";
+box.innerHTML="";
 
-
-const file =
+const file=
 input.files?.[0];
-
 
 if(!file)
 return;
 
-
-const url =
-URL.createObjectURL(file);
-
-
-const img =
+const img=
 document.createElement("img");
 
-img.src = url;
+img.src=
+URL.createObjectURL(file);
 
-img.style.width = "180px";
-
-img.style.height = "90px";
-
-img.style.objectFit = "cover";
-
-img.style.borderRadius = "9px";
+img.style.width="220px";
+img.style.height="100px";
+img.style.objectFit="cover";
+img.style.borderRadius="9px";
 
 box.appendChild(img);
 
 }
 
 
-/* =====================================================
-   SAVE BANNER
-===================================================== */
-
 async function saveBanner(){
 
-if(!await isAdmin())
-return alert(
-"Admin access নেই।"
-);
+const input=
+document.getElementById("bannerImage");
 
-
-const input =
-document.getElementById(
-"bannerImage"
-);
-
-
-const file =
+const file=
 input.files?.[0];
 
-
-const sort =
+const sort=
 Number(
-document.getElementById(
-"bannerSort"
-).value
+document.getElementById("bannerSort").value
 );
 
-
-const active =
-document.getElementById(
-"bannerActive"
-).checked;
-
+const active=
+document.getElementById("bannerActive").checked;
 
 if(!file){
 
-alert(
-"Banner image select করুন।"
-);
+alert("Banner image select করুন।");
 
 return;
 
 }
 
 
-if(sort < 1 || sort > 5){
-
-alert(
-"Sort Order 1 থেকে 5-এর মধ্যে দিন।"
-);
-
-return;
-
-}
-
-
-const button =
-document.getElementById(
-"saveBannerButton"
-);
+const button=
+document.getElementById("saveBannerButton");
 
 
 try{
 
-button.disabled = true;
-
-button.textContent =
-"⏳ Uploading...";
+button.disabled=true;
+button.textContent="⏳ Uploading...";
 
 
-const safe =
+const safe=
 file.name.replace(
 /[^a-zA-Z0-9._-]/g,
 "_"
 );
 
-
-const path =
-"banners/" +
-Date.now() +
-"-" +
-Math.random()
-.toString(36)
-.substring(2,8) +
-"-" +
+const path=
+"banners/"+
+Date.now()+
+"-"+
+Math.random().toString(36).substring(2,8)+
+"-"+
 safe;
 
 
-const upload =
+const upload=
 await db
 .storage
 .from("product-images")
@@ -3603,25 +3026,22 @@ if(upload.error)
 throw upload.error;
 
 
-const pub =
+const publicUrl=
 db
 .storage
 .from("product-images")
-.getPublicUrl(path);
+.getPublicUrl(path)
+.data.publicUrl;
 
 
-const image_url =
-pub.data.publicUrl;
-
-
-const r =
+const r=
 await db
 .from("advertisements")
 .insert({
 
-image_url,
+image_url:publicUrl,
 sort_order:sort,
-active
+active:active
 
 });
 
@@ -3630,58 +3050,39 @@ if(r.error)
 throw r.error;
 
 
-alert(
-"Banner Upload হয়েছে ✅"
-);
+alert("Banner Upload হয়েছে ✅");
 
-await showSection(
-"banners"
-);
+await renderBanners();
 
 
-}catch(e){
+}catch(error){
 
-console.error(e);
+console.error(error);
 
 alert(
 "Banner Upload হয়নি ❌\n\n"+
-(e?.message || String(e))
+(error.message || error)
 );
 
 }finally{
 
-button.disabled = false;
-
-button.textContent =
-"🖼️ Upload Banner";
+button.disabled=false;
+button.textContent="🖼️ Upload Banner";
 
 }
 
 }
 
-
-/* =====================================================
-   TOGGLE BANNER
-===================================================== */
 
 async function toggleBanner(id,value){
 
-if(!await isAdmin())
-return alert(
-"Admin access নেই।"
-);
-
-
-const r =
+const r=
 await db
 .from("advertisements")
 .update({
 active:value
 })
-.eq(
-"id",
-id
-);
+.eq("id",id);
 
 
 if(r.error){
@@ -3695,38 +3096,21 @@ return;
 
 }
 
-
 await renderBanners();
 
 }
 
 
-/* =====================================================
-   DELETE BANNER
-===================================================== */
+async function deleteBanner(id){
 
-async function deleteBanner(id,imageUrl){
-
-if(!await isAdmin())
-return alert(
-"Admin access নেই।"
-);
-
-
-if(!confirm(
-"এই Banner Delete করবেন?"
-))
+if(!confirm("এই Banner Delete করবেন?"))
 return;
 
-
-const r =
+const r=
 await db
 .from("advertisements")
 .delete()
-.eq(
-"id",
-id
-);
+.eq("id",id);
 
 
 if(r.error){
@@ -3740,10 +3124,7 @@ return;
 
 }
 
-
-alert(
-"Banner Delete হয়েছে ✅"
-);
+alert("Banner Delete হয়েছে ✅");
 
 await renderBanners();
 
@@ -3751,51 +3132,26 @@ await renderBanners();
 
 
 /* =====================================================
-   BANNER SETUP
-===================================================== */
-
-function renderBannerSetupHelp(){
-
-alert(
-"Banner system-এর জন্য Supabase-এ advertisements table তৈরি করতে হবে.\n\n"+
-"Fields:\n"+
-"id\n"+
-"image_url\n"+
-"sort_order\n"+
-"active\n"+
-"created_at"
-);
-
-}
-
-
-/* =====================================================
-   RESELLERS
+RESELLERS
 ===================================================== */
 
 async function renderResellers(){
 
-const box =
-document.getElementById(
-"sectionContent"
-);
+const box=
+document.getElementById("sectionContent");
 
-
-const r =
+const r=
 await db
 .from("resellers")
 .select("*")
-.order(
-"created_at",
-{
+.order("created_at",{
 ascending:false
-}
-);
+});
 
 
 if(r.error){
 
-box.innerHTML = `
+box.innerHTML=`
 <div class="empty">
 ❌ ${esc(r.error.message)}
 </div>
@@ -3808,7 +3164,7 @@ return;
 
 if(!r.data?.length){
 
-box.innerHTML = `
+box.innerHTML=`
 <div class="empty">
 🤝 কোনো Reseller Request নেই।
 </div>
@@ -3819,42 +3175,20 @@ return;
 }
 
 
-let html = `
-
-<div class="notice">
-
-🤝 এখানে customer-এর reseller application দেখা যাবে।
-
-<br>
-
-<strong>
-Approve
-</strong>
-করলে reseller status চালু হবে এবং profile role
-<b>reseller</b>
-হবে।
-
-</div>
-
-`;
+let html="";
 
 
-for(const x of r.data){
+for(const reseller of r.data){
 
-const p =
+const profile=
 await db
 .from("profiles")
-.select(
-"full_name,phone,role"
-)
-.eq(
-"id",
-x.user_id
-)
+.select("full_name,phone,role")
+.eq("id",reseller.user_id)
 .maybeSingle();
 
 
-html += `
+html+=`
 
 <div class="reseller-card">
 
@@ -3864,7 +3198,7 @@ html += `
 
 <b>
 🤝 ${esc(
-p.data?.full_name ||
+profile.data?.full_name ||
 "Customer"
 )}
 </b>
@@ -3874,7 +3208,7 @@ p.data?.full_name ||
 <small>
 Code:
 ${esc(
-x.reseller_code ||
+reseller.reseller_code ||
 "—"
 )}
 </small>
@@ -3883,7 +3217,7 @@ x.reseller_code ||
 
 <span class="status">
 ${esc(
-x.status ||
+reseller.status ||
 "Pending"
 )}
 </span>
@@ -3896,23 +3230,15 @@ x.status ||
 <p>
 <b>Phone:</b>
 ${esc(
-p.data?.phone ||
+profile.data?.phone ||
 "—"
 )}
 </p>
 
 <p>
-<b>User ID:</b>
+<b>Role:</b>
 ${esc(
-x.user_id ||
-"—"
-)}
-</p>
-
-<p>
-<b>Current Role:</b>
-${esc(
-p.data?.role ||
+profile.data?.role ||
 "customer"
 )}
 </p>
@@ -3920,35 +3246,28 @@ p.data?.role ||
 <p>
 <b>Commission:</b>
 ${Number(
-x.commission_rate || 0
+reseller.commission_rate || 0
 )}%
-</p>
-
-<p>
-<b>Application Date:</b>
-${formatDate(
-x.created_at
-)}
 </p>
 
 <p>
 <b>Total Orders:</b>
 ${Number(
-x.total_orders || 0
+reseller.total_orders || 0
 )}
 </p>
 
 <p>
 <b>Total Sales:</b>
 ৳${money(
-x.total_sales
+reseller.total_sales
 )}
 </p>
 
 <p>
 <b>Total Commission:</b>
 ৳${money(
-x.total_commission
+reseller.total_commission
 )}
 </p>
 
@@ -3958,54 +3277,42 @@ x.total_commission
 <div class="admin-actions">
 
 ${
-x.status !== "Approved"
+reseller.status !== "Approved"
 ?
 `
 <button
+type="button"
 class="btn btn-orange"
 onclick="approveReseller(
-'${esc(x.user_id)}',
-'${esc(x.id)}'
+'${esc(reseller.user_id)}',
+'${esc(reseller.id)}'
 )"
 >
-✅ Accept / Approve
+✅ Approve
 </button>
 `
 :
-`
-<button
-class="btn btn-green"
-disabled
->
-✅ Approved
-</button>
-`
+""
 }
 
 
 ${
-x.status !== "Suspended"
+reseller.status !== "Suspended"
 ?
 `
 <button
+type="button"
 class="btn btn-danger"
 onclick="suspendReseller(
-'${esc(x.user_id)}',
-'${esc(x.id)}'
+'${esc(reseller.user_id)}',
+'${esc(reseller.id)}'
 )"
 >
 🚫 Suspend
 </button>
 `
 :
-`
-<button
-class="btn btn-gray"
-disabled
->
-🚫 Suspended
-</button>
-`
+""
 }
 
 </div>
@@ -4017,45 +3324,26 @@ disabled
 }
 
 
-box.innerHTML = html;
+box.innerHTML=html;
 
 }
 
 
-/* =====================================================
-   APPROVE RESELLER
-===================================================== */
+async function approveReseller(uid,id){
 
-async function approveReseller(uid,rid){
-
-if(!await isAdmin())
-return alert(
-"Admin access নেই।"
-);
-
-
-if(!confirm(
-"এই customer-এর Reseller Request Approve করবেন?"
-))
-return;
-
-
-const r =
+const r=
 await db
 .from("resellers")
 .update({
 status:"Approved"
 })
-.eq(
-"id",
-rid
-);
+.eq("id",id);
 
 
 if(r.error){
 
 alert(
-"Reseller Approve হয়নি ❌\n\n"+
+"Approve হয়নি ❌\n\n"+
 r.error.message
 );
 
@@ -4064,71 +3352,47 @@ return;
 }
 
 
-const p =
+const p=
 await db
 .from("profiles")
 .update({
 role:"reseller"
 })
-.eq(
-"id",
-uid
-);
+.eq("id",uid);
 
 
 if(p.error){
 
 alert(
-"Reseller Approved হয়েছে, কিন্তু Profile role update হয়নি ❌\n\n"+
+"Reseller status update হয়েছে, কিন্তু profile role update হয়নি ❌\n\n"+
 p.error.message
 );
 
-await renderResellers();
-
 return;
 
 }
 
 
-alert(
-"Reseller Request Accepted ✅"
-);
+alert("Reseller Approved হয়েছে ✅");
 
 await loadStats();
-
 await renderResellers();
 
 }
 
 
-/* =====================================================
-   SUSPEND RESELLER
-===================================================== */
+async function suspendReseller(uid,id){
 
-async function suspendReseller(uid,rid){
-
-if(!await isAdmin())
-return alert(
-"Admin access নেই।"
-);
-
-
-if(!confirm(
-"এই Reseller account Suspend করবেন?"
-))
+if(!confirm("এই Reseller Suspend করবেন?"))
 return;
 
-
-const r =
+const r=
 await db
 .from("resellers")
 .update({
 status:"Suspended"
 })
-.eq(
-"id",
-rid
-);
+.eq("id",id);
 
 
 if(r.error){
@@ -4143,16 +3407,13 @@ return;
 }
 
 
-const p =
+const p=
 await db
 .from("profiles")
 .update({
 role:"customer"
 })
-.eq(
-"id",
-uid
-);
+.eq("id",uid);
 
 
 if(p.error){
@@ -4162,51 +3423,40 @@ alert(
 p.error.message
 );
 
-await renderResellers();
-
 return;
 
 }
 
 
-alert(
-"Reseller Suspended হয়েছে 🚫"
-);
+alert("Reseller Suspended হয়েছে 🚫");
 
 await loadStats();
-
 await renderResellers();
 
 }
 
 
 /* =====================================================
-   REVIEWS
+REVIEWS
 ===================================================== */
 
 async function renderReviews(){
 
-const box =
-document.getElementById(
-"sectionContent"
-);
+const box=
+document.getElementById("sectionContent");
 
-
-const r =
+const r=
 await db
 .from("reviews")
 .select("*")
-.order(
-"created_at",
-{
+.order("created_at",{
 ascending:false
-}
-);
+});
 
 
 if(r.error){
 
-box.innerHTML = `
+box.innerHTML=`
 <div class="empty">
 ❌ ${esc(r.error.message)}
 </div>
@@ -4219,7 +3469,7 @@ return;
 
 if(!r.data?.length){
 
-box.innerHTML = `
+box.innerHTML=`
 <div class="empty">
 ⭐ কোনো Review নেই।
 </div>
@@ -4230,48 +3480,43 @@ return;
 }
 
 
-box.innerHTML =
-r.data.map(x=>`
+box.innerHTML=
+r.data.map(review=>`
 
 <div class="review-card">
 
 <b>
 ${esc(
-x.user_name ||
+review.user_name ||
 "Customer"
 )}
 </b>
 
-—
+<br>
 
-Product #
-${esc(x.product_id)}
-
-<div style="margin:7px 0">
-
+<span>
 ${"⭐".repeat(
 Math.min(
 5,
-Number(x.rating || 0)
+Number(review.rating || 0)
 )
 )}
+</span>
 
-</div>
-
-<p>
+<p style="margin-top:7px">
 ${esc(
-x.review_text ||
+review.review_text ||
 ""
 )}
 </p>
 
-<p style="margin-top:8px">
+<p style="margin-top:7px">
 
 Status:
 
 <span class="status">
 ${esc(
-x.status ||
+review.status ||
 "Pending"
 )}
 </span>
@@ -4281,42 +3526,28 @@ x.status ||
 
 <div class="admin-actions">
 
-${
-x.status !== "Approved"
-?
-`
 <button
+type="button"
 class="btn btn-orange"
 onclick="updateReview(
-'${esc(x.id)}',
+'${esc(review.id)}',
 'Approved'
 )"
 >
 ✅ Approve
 </button>
-`
-:
-""
-}
 
 
-${
-x.status !== "Rejected"
-?
-`
 <button
+type="button"
 class="btn btn-danger"
 onclick="updateReview(
-'${esc(x.id)}',
+'${esc(review.id)}',
 'Rejected'
 )"
 >
 ❌ Reject
 </button>
-`
-:
-""
-}
 
 </div>
 
@@ -4327,28 +3558,15 @@ onclick="updateReview(
 }
 
 
-/* =====================================================
-   REVIEW UPDATE
-===================================================== */
-
 async function updateReview(id,status){
 
-if(!await isAdmin())
-return alert(
-"Admin access নেই।"
-);
-
-
-const r =
+const r=
 await db
 .from("reviews")
 .update({
-status
+status:status
 })
-.eq(
-"id",
-id
-);
+.eq("id",id);
 
 
 if(r.error){
@@ -4362,27 +3580,25 @@ return;
 
 }
 
-
 await renderReviews();
 
 }
 
 
 /* =====================================================
-   WHATSAPP SUPPORT
+WHATSAPP
 ===================================================== */
 
 function openWhatsApp(){
 
-const message =
+const message=
 "Hello Gadhuli Support 👋\n\n"+
 "I need help regarding Gadhuli website/order.";
 
-
 window.open(
-"https://wa.me/" +
-WHATSAPP_NUMBER +
-"?text=" +
+"https://wa.me/"+
+WHATSAPP_NUMBER+
+"?text="+
 encodeURIComponent(message),
 "_blank"
 );
@@ -4398,64 +3614,51 @@ await navigator.clipboard.writeText(
 "01333-088194"
 );
 
-alert(
-"WhatsApp number copy হয়েছে ✅"
-);
+alert("WhatsApp number copy হয়েছে ✅");
 
-}catch(e){
+}catch(error){
 
-alert(
-"Number: 01333-088194"
-);
+alert("WhatsApp: 01333-088194");
 
 }
 
 }
 
-
-/* =====================================================
-   CONTACT CUSTOMER
-===================================================== */
 
 function contactCustomer(phone,name){
 
-let clean =
+let clean=
 String(phone || "")
-.replace(
-/[^0-9]/g,
-""
-);
+.replace(/[^0-9]/g,"");
 
 
-if(clean.startsWith("01"))
-clean =
-"88" + clean;
+if(clean.startsWith("01")){
+
+clean="88"+clean;
+
+}
 
 
 if(!clean){
 
-alert(
-"Customer phone পাওয়া যায়নি।"
-);
+alert("Customer phone পাওয়া যায়নি।");
 
 return;
 
 }
 
 
-const msg =
-"Hello " +
-(name || "Customer") +
-" 👋\n\n" +
-"This is Gadhuli Support regarding your order.\n\n" +
-"How can we help you?";
-
+const message=
+"Hello "+
+(name || "Customer")+
+" 👋\n\n"+
+"This is Gadhuli regarding your order.";
 
 window.open(
-"https://wa.me/" +
-clean +
-"?text=" +
-encodeURIComponent(msg),
+"https://wa.me/"+
+clean+
+"?text="+
+encodeURIComponent(message),
 "_blank"
 );
 
@@ -4463,131 +3666,15 @@ encodeURIComponent(msg),
 
 
 /* =====================================================
-   RESELLER COMMISSION
-===================================================== */
-
-async function postCommission(order){
-
-if(!order.reseller_id)
-return;
-
-
-const r =
-await db
-.from("resellers")
-.select("*")
-.eq(
-"user_id",
-order.reseller_id
-)
-.maybeSingle();
-
-
-if(
-r.error ||
-!r.data ||
-r.data.status !== "Approved"
-)
-return;
-
-
-const notes =
-order.notes || "";
-
-
-if(
-notes.includes(
-"[COMMISSION_POSTED]"
-)
-)
-return;
-
-
-const base =
-Number(
-order.subtotal ||
-order.total ||
-0
-);
-
-
-const commission =
-base *
-Number(
-r.data.commission_rate || 0
-) /
-100;
-
-
-const u =
-await db
-.from("resellers")
-.update({
-
-total_orders:
-Number(
-r.data.total_orders || 0
-) + 1,
-
-total_sales:
-Number(
-r.data.total_sales || 0
-) +
-base,
-
-total_commission:
-Number(
-r.data.total_commission || 0
-) +
-commission
-
-})
-.eq(
-"user_id",
-order.reseller_id
-);
-
-
-if(u.error){
-
-console.error(
-"Commission update failed",
-u.error
-);
-
-return;
-
-}
-
-
-await db
-.from("orders")
-.update({
-
-notes:
-(notes ? notes + "\n" : "") +
-"[COMMISSION_POSTED] Commission: ৳" +
-commission.toFixed(2)
-
-})
-.eq(
-"id",
-order.id
-);
-
-}
-
-
-/* =====================================================
-   ENTER KEY LOGIN
+ENTER KEY LOGIN
 ===================================================== */
 
 document.addEventListener(
 "keydown",
-function(e){
+function(event){
 
 if(
-e.key === "Enter" &&
+event.key==="Enter" &&
 !document
 .getElementById("loginSection")
 .classList.contains("hidden")
@@ -4601,12 +3688,12 @@ adminLogin();
 
 
 /* =====================================================
-   START
+START
 ===================================================== */
 
 document.addEventListener(
 "DOMContentLoaded",
-()=>{
+function(){
 
 checkSession();
 
