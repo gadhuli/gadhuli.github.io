@@ -20,6 +20,10 @@
 
 <style>
 
+/* =====================================================
+   RESET
+   ===================================================== */
+
 *{
   box-sizing:border-box;
   margin:0;
@@ -31,7 +35,7 @@
   --dark-orange:#E65100;
   --light-orange:#FFF3E8;
   --gradient:linear-gradient(135deg,#FF8A00,#FF5A00);
-  --white:#ffffff;
+  --white:#fff;
   --offwhite:#FFFDF9;
   --text:#171717;
   --gray:#666;
@@ -42,11 +46,15 @@
   --radius:14px;
 }
 
+html{
+  scroll-behavior:smooth;
+}
+
 body{
   font-family:Arial,Helvetica,sans-serif;
   background:var(--offwhite);
   color:var(--text);
-  padding-bottom:82px;
+  padding-bottom:92px;
 }
 
 button,
@@ -70,7 +78,67 @@ a{
   color:inherit;
 }
 
-/* ================= HEADER ================= */
+
+/* =====================================================
+   GLOBAL LOADER
+   ===================================================== */
+
+.global-loader{
+  position:fixed;
+  inset:0;
+  background:rgba(255,253,249,.98);
+  z-index:10000;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+}
+
+.global-loader.show{
+  display:flex;
+}
+
+.loader-box{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  min-width:210px;
+}
+
+.loader-logo{
+  width:160px;
+  height:75px;
+  object-fit:contain;
+  margin-bottom:18px;
+}
+
+.loader-spinner{
+  width:40px;
+  height:40px;
+  border:4px solid #ffe0c7;
+  border-top-color:var(--orange);
+  border-radius:50%;
+  animation:gadhuliSpin .8s linear infinite;
+}
+
+.loader-text{
+  margin-top:12px;
+  color:var(--orange);
+  font-size:15px;
+  font-weight:700;
+}
+
+@keyframes gadhuliSpin{
+  to{
+    transform:rotate(360deg);
+  }
+}
+
+
+/* =====================================================
+   HEADER
+   ===================================================== */
 
 .top-header{
   background:#fff;
@@ -107,9 +175,9 @@ a{
 .search-area{
   flex:1;
   display:flex;
-  height:44px;
+  height:46px;
   border:2px solid var(--orange);
-  border-radius:8px;
+  border-radius:9px;
   overflow:hidden;
   background:#fff;
 }
@@ -124,7 +192,7 @@ a{
 }
 
 .search-area button{
-  width:52px;
+  width:55px;
   background:var(--orange);
   color:#fff;
   font-size:20px;
@@ -132,18 +200,19 @@ a{
 
 .header-actions{
   display:flex;
-  gap:7px;
+  gap:8px;
 }
 
 .header-action{
   background:#fff;
   border:1px solid #ddd;
-  border-radius:8px;
-  min-width:48px;
-  height:44px;
-  padding:0 9px;
-  font-size:12px;
+  border-radius:9px;
+  min-width:52px;
+  height:46px;
+  padding:0 10px;
+  font-size:18px;
   color:#333;
+  transition:.2s;
 }
 
 .header-action:hover{
@@ -156,8 +225,8 @@ a{
   display:inline-flex;
   align-items:center;
   justify-content:center;
-  min-width:17px;
-  height:17px;
+  min-width:18px;
+  height:18px;
   border-radius:50%;
   background:var(--orange);
   color:#fff;
@@ -165,7 +234,10 @@ a{
   margin-left:2px;
 }
 
-/* ================= CATEGORY ================= */
+
+/* =====================================================
+   CATEGORY
+   ===================================================== */
 
 .category-wrapper{
   background:#fff;
@@ -179,8 +251,8 @@ a{
   display:flex;
   overflow-x:auto;
   scrollbar-width:none;
-  padding:8px 12px;
-  gap:7px;
+  padding:9px 12px;
+  gap:8px;
 }
 
 .category-bar::-webkit-scrollbar{
@@ -192,7 +264,7 @@ a{
   background:#fff;
   border:1px solid #ddd;
   color:#333;
-  padding:9px 13px;
+  padding:10px 14px;
   border-radius:20px;
   font-size:13px;
   white-space:nowrap;
@@ -208,7 +280,7 @@ a{
 .subcategory-wrapper{
   max-width:1400px;
   margin:auto;
-  padding:0 14px 9px;
+  padding:0 14px 10px;
   display:none;
 }
 
@@ -218,7 +290,7 @@ a{
 
 .subcategory-list{
   display:flex;
-  gap:7px;
+  gap:8px;
   overflow-x:auto;
   scrollbar-width:none;
 }
@@ -232,9 +304,9 @@ a{
   background:var(--light-orange);
   border:1px solid #ffd2b0;
   color:#9b4300;
-  padding:7px 11px;
-  border-radius:16px;
-  font-size:12px;
+  padding:9px 13px;
+  border-radius:17px;
+  font-size:13px;
 }
 
 .subcategory-btn:hover,
@@ -243,7 +315,10 @@ a{
   color:#fff;
 }
 
-/* ================= BANNER ================= */
+
+/* =====================================================
+   BANNER
+   ===================================================== */
 
 .banner-section{
   max-width:1400px;
@@ -282,6 +357,9 @@ a{
   width:100%;
   height:100%;
   background:var(--gradient);
+  display:flex;
+  align-items:center;
+  justify-content:center;
 }
 
 .banner-dots{
@@ -306,7 +384,10 @@ a{
   border-radius:10px;
 }
 
-/* ================= SECTION ================= */
+
+/* =====================================================
+   SECTION
+   ===================================================== */
 
 .section{
   max-width:1400px;
@@ -333,12 +414,23 @@ a{
   color:#777;
 }
 
-/* ================= PRODUCTS ================= */
+
+/* =====================================================
+   PRODUCT SLIDER
+   ===================================================== */
 
 .product-grid{
-  display:grid;
-  grid-template-columns:repeat(5,1fr);
+  display:flex;
   gap:13px;
+  overflow-x:auto;
+  overflow-y:hidden;
+  scroll-behavior:smooth;
+  scrollbar-width:none;
+  padding:3px 2px 12px;
+}
+
+.product-grid::-webkit-scrollbar{
+  display:none;
 }
 
 .product-card{
@@ -349,6 +441,8 @@ a{
   border:1px solid #eee;
   transition:.2s;
   position:relative;
+  flex:0 0 245px;
+  width:245px;
 }
 
 .product-card:hover{
@@ -361,6 +455,7 @@ a{
   background:#f7f7f7;
   position:relative;
   overflow:hidden;
+  cursor:pointer;
 }
 
 .product-image-box img{
@@ -373,12 +468,12 @@ a{
   position:absolute;
   right:9px;
   top:9px;
-  width:34px;
-  height:34px;
+  width:38px;
+  height:38px;
   border-radius:50%;
   background:#fff;
   box-shadow:0 2px 8px rgba(0,0,0,.12);
-  font-size:18px;
+  font-size:20px;
 }
 
 .wishlist-card.active{
@@ -416,23 +511,24 @@ a{
   gap:6px;
 }
 
+.btn-cart,
+.btn-order{
+  min-height:42px;
+  border-radius:8px;
+  padding:9px 5px;
+  font-size:12px;
+  font-weight:bold;
+}
+
 .btn-cart{
   background:#fff;
   color:var(--orange);
   border:1px solid var(--orange);
-  border-radius:7px;
-  padding:9px 4px;
-  font-size:12px;
-  font-weight:bold;
 }
 
 .btn-order{
   background:var(--orange);
   color:#fff;
-  border-radius:7px;
-  padding:9px 4px;
-  font-size:12px;
-  font-weight:bold;
 }
 
 .btn-cart:hover{
@@ -444,7 +540,7 @@ a{
 }
 
 .no-products{
-  grid-column:1/-1;
+  min-width:100%;
   text-align:center;
   background:#fff;
   padding:45px 15px;
@@ -453,20 +549,23 @@ a{
 }
 
 .loading{
-  grid-column:1/-1;
+  min-width:100%;
   text-align:center;
   padding:45px;
   color:var(--orange);
   font-weight:bold;
 }
 
-/* ================= FOOTER ================= */
+
+/* =====================================================
+   FOOTER
+   ===================================================== */
 
 .footer{
   background:#171717;
   color:#fff;
   margin-top:35px;
-  padding:30px 15px 100px;
+  padding:30px 15px 110px;
 }
 
 .footer-inner{
@@ -489,6 +588,14 @@ a{
   line-height:24px;
 }
 
+.footer li{
+  cursor:pointer;
+}
+
+.footer li:hover{
+  color:#fff;
+}
+
 .footer ul{
   list-style:none;
 }
@@ -503,7 +610,10 @@ a{
   font-size:12px;
 }
 
-/* ================= MODAL ================= */
+
+/* =====================================================
+   MODAL
+   ===================================================== */
 
 .modal{
   display:none;
@@ -540,11 +650,11 @@ a{
   position:absolute;
   right:12px;
   top:10px;
-  width:34px;
-  height:34px;
+  width:38px;
+  height:38px;
   border-radius:50%;
   background:#f2f2f2;
-  font-size:20px;
+  font-size:23px;
 }
 
 .modal-title{
@@ -554,26 +664,38 @@ a{
   padding-right:40px;
 }
 
+
+/* =====================================================
+   FORM
+   ===================================================== */
+
 .form-group{
-  margin-bottom:12px;
+  margin-bottom:13px;
 }
 
 .form-group label{
   display:block;
-  font-size:13px;
+  font-size:14px;
   font-weight:bold;
-  margin-bottom:5px;
+  margin-bottom:6px;
 }
 
 .form-group input,
 .form-group select,
 .form-group textarea{
   width:100%;
+  min-height:46px;
   border:1px solid #ddd;
-  border-radius:8px;
-  padding:11px;
+  border-radius:9px;
+  padding:11px 13px;
   outline:none;
   background:#fff;
+  font-size:14px;
+}
+
+.form-group textarea{
+  min-height:95px;
+  resize:vertical;
 }
 
 .form-group input:focus,
@@ -586,16 +708,18 @@ a{
   width:100%;
   background:var(--gradient);
   color:#fff;
+  min-height:48px;
   padding:12px;
   border-radius:9px;
   font-weight:bold;
-  font-size:14px;
+  font-size:15px;
 }
 
 .secondary-btn{
   width:100%;
   background:#fff;
   border:1px solid #ddd;
+  min-height:46px;
   padding:11px;
   border-radius:9px;
   font-weight:bold;
@@ -605,11 +729,14 @@ a{
 .link-btn{
   background:none;
   color:var(--orange);
-  font-size:13px;
-  margin-top:10px;
+  font-size:14px;
+  margin-top:12px;
 }
 
-/* ================= DETAILS ================= */
+
+/* =====================================================
+   DETAILS
+   ===================================================== */
 
 .detail-layout{
   display:grid;
@@ -659,20 +786,24 @@ a{
 
 .size-title{
   font-weight:bold;
-  margin:14px 0 7px;
+  margin:15px 0 8px;
 }
 
 .size-list{
   display:flex;
   flex-wrap:wrap;
-  gap:7px;
+  gap:8px;
 }
 
 .size-btn{
   background:#fff;
   border:1px solid #bbb;
-  border-radius:7px;
-  padding:8px 12px;
+  border-radius:8px;
+  padding:11px 16px;
+  min-width:52px;
+  min-height:44px;
+  font-size:14px;
+  font-weight:600;
 }
 
 .size-btn.active{
@@ -681,7 +812,10 @@ a{
   border-color:var(--orange);
 }
 
-/* ================= CART ================= */
+
+/* =====================================================
+   CART
+   ===================================================== */
 
 .cart-item{
   display:grid;
@@ -714,22 +848,23 @@ a{
 .qty-control{
   display:flex;
   align-items:center;
-  gap:5px;
-  margin-top:5px;
+  gap:7px;
+  margin-top:6px;
 }
 
 .qty-control button{
-  width:26px;
-  height:26px;
-  border-radius:5px;
+  width:32px;
+  height:32px;
+  border-radius:6px;
   background:#eee;
+  font-size:18px;
 }
 
 .remove-btn{
   color:#e53935;
   background:none;
   font-size:12px;
-  margin-top:4px;
+  margin-top:5px;
 }
 
 .cart-total{
@@ -740,21 +875,29 @@ a{
   padding:15px 0;
 }
 
-/* ================= PAYMENT ================= */
+
+/* =====================================================
+   PAYMENT
+   ===================================================== */
 
 .payment-options{
   display:grid;
   grid-template-columns:repeat(3,1fr);
-  gap:7px;
+  gap:9px;
 }
 
 .payment-option{
   border:1px solid #ddd;
-  padding:9px 5px;
-  border-radius:8px;
+  padding:13px 7px;
+  min-height:50px;
+  border-radius:9px;
   text-align:center;
   cursor:pointer;
-  font-size:12px;
+  font-size:13px;
+  font-weight:600;
+  display:flex;
+  align-items:center;
+  justify-content:center;
 }
 
 .payment-option.active{
@@ -763,20 +906,26 @@ a{
   color:var(--dark-orange);
 }
 
-/* ================= PROFILE ================= */
+
+/* =====================================================
+   PROFILE
+   ===================================================== */
 
 .profile-menu{
   display:grid;
-  gap:8px;
+  gap:9px;
 }
 
 .profile-item{
   width:100%;
   text-align:left;
-  padding:13px;
+  padding:15px;
+  min-height:50px;
   background:#fff;
   border:1px solid #eee;
   border-radius:9px;
+  font-size:14px;
+  font-weight:600;
 }
 
 .profile-item:hover{
@@ -784,12 +933,15 @@ a{
   background:var(--light-orange);
 }
 
-/* ================= ORDERS ================= */
+
+/* =====================================================
+   ORDERS
+   ===================================================== */
 
 .order-card{
   border:1px solid #eee;
   border-radius:10px;
-  padding:12px;
+  padding:13px;
   margin-bottom:9px;
   background:#fff;
 }
@@ -816,19 +968,22 @@ a{
   margin-top:8px;
 }
 
-/* ================= WHATSAPP ================= */
+
+/* =====================================================
+   WHATSAPP
+   ===================================================== */
 
 .whatsapp-help{
   position:fixed;
   right:18px;
-  bottom:95px;
-  width:56px;
-  height:56px;
+  bottom:105px;
+  width:58px;
+  height:58px;
   border-radius:50%;
   background:var(--green);
   color:#fff;
   z-index:1600;
-  font-size:26px;
+  font-size:27px;
   box-shadow:0 5px 20px rgba(0,0,0,.2);
 }
 
@@ -836,20 +991,24 @@ a{
   transform:scale(1.06);
 }
 
-/* ================= BOTTOM NAV ================= */
+
+/* =====================================================
+   BOTTOM NAVIGATION - BIG
+   ===================================================== */
 
 .bottom-nav{
   position:fixed;
   left:0;
   right:0;
   bottom:0;
-  height:72px;
+  height:84px;
   background:#fff;
   border-top:1px solid #ddd;
   display:grid;
   grid-template-columns:repeat(5,1fr);
   z-index:2000;
-  box-shadow:0 -4px 18px rgba(0,0,0,.08);
+  box-shadow:0 -5px 20px rgba(0,0,0,.10);
+  padding-bottom:4px;
 }
 
 .bottom-nav button{
@@ -859,14 +1018,21 @@ a{
   flex-direction:column;
   align-items:center;
   justify-content:center;
-  gap:3px;
-  font-size:20px;
+  gap:5px;
+  font-size:25px;
   position:relative;
+  min-height:78px;
+  transition:.2s;
+}
+
+.bottom-nav button span{
+  line-height:30px;
 }
 
 .bottom-nav button small{
-  font-size:10px;
-  font-weight:bold;
+  font-size:12px;
+  font-weight:700;
+  white-space:nowrap;
 }
 
 .bottom-nav button.active{
@@ -878,27 +1044,31 @@ a{
 }
 
 .bottom-nav button.whatsapp span{
-  width:35px;
-  height:35px;
+  width:43px;
+  height:43px;
   display:flex;
   align-items:center;
   justify-content:center;
   background:var(--green);
   color:#fff;
   border-radius:50%;
-  font-size:18px;
+  font-size:22px;
+  box-shadow:0 3px 10px rgba(37,211,102,.25);
 }
 
-/* ================= TOAST ================= */
+
+/* =====================================================
+   TOAST
+   ===================================================== */
 
 .toast{
   position:fixed;
   left:50%;
-  bottom:90px;
+  bottom:105px;
   transform:translateX(-50%) translateY(20px);
   background:#222;
   color:#fff;
-  padding:11px 17px;
+  padding:12px 18px;
   border-radius:8px;
   z-index:5000;
   opacity:0;
@@ -914,16 +1084,22 @@ a{
   transform:translateX(-50%) translateY(0);
 }
 
-/* ================= RESPONSIVE ================= */
+
+/* =====================================================
+   RESPONSIVE
+   ===================================================== */
 
 @media(max-width:1100px){
-  .product-grid{
-    grid-template-columns:repeat(4,1fr);
+
+  .product-card{
+    flex-basis:225px;
+    width:225px;
   }
 
   .footer-inner{
     grid-template-columns:1fr 1fr;
   }
+
 }
 
 @media(max-width:800px){
@@ -947,7 +1123,7 @@ a{
   .search-area{
     order:3;
     flex-basis:100%;
-    height:42px;
+    height:44px;
   }
 
   .header-actions{
@@ -955,12 +1131,10 @@ a{
   }
 
   .header-action{
-    min-width:39px;
-    padding:0 6px;
-  }
-
-  .header-action span.label{
-    display:none;
+    min-width:46px;
+    height:44px;
+    padding:0 7px;
+    font-size:17px;
   }
 
   .banner-slider{
@@ -968,8 +1142,12 @@ a{
   }
 
   .product-grid{
-    grid-template-columns:repeat(2,1fr);
-    gap:9px;
+    gap:10px;
+  }
+
+  .product-card{
+    flex:0 0 190px;
+    width:190px;
   }
 
   .product-image-box{
@@ -992,6 +1170,12 @@ a{
     grid-template-columns:1fr;
   }
 
+  .btn-cart,
+  .btn-order{
+    min-height:43px;
+    font-size:12px;
+  }
+
   .detail-layout{
     grid-template-columns:1fr;
   }
@@ -1011,33 +1195,145 @@ a{
   .whatsapp-help{
     display:none;
   }
+
+  .global-loader .loader-logo{
+    width:145px;
+    height:65px;
+  }
+
+}
+
+@media(max-width:500px){
+
+  .header-main{
+    padding:8px 10px;
+  }
+
+  .logo-area{
+    width:100px;
+    min-width:100px;
+  }
+
+  .logo-area img{
+    max-width:96px;
+  }
+
+  .header-action{
+    min-width:43px;
+    padding:0 5px;
+  }
+
+  .category-bar{
+    padding-left:9px;
+    padding-right:9px;
+  }
+
+  .category-btn{
+    padding:10px 13px;
+  }
+
+  .banner-section{
+    margin-top:9px;
+    padding:0 9px;
+  }
+
+  .banner-slider{
+    height:175px;
+    border-radius:12px;
+  }
+
+  .section{
+    padding:0 9px;
+  }
+
+  .section-title{
+    font-size:19px;
+  }
+
+  .product-card{
+    flex:0 0 180px;
+    width:180px;
+  }
+
+  .product-image-box{
+    height:180px;
+  }
+
+  .modal{
+    padding:8px;
+  }
+
+  .modal-box{
+    padding:17px;
+    border-radius:14px;
+  }
+
+  .payment-option{
+    min-height:54px;
+    font-size:13px;
+  }
+
 }
 
 @media(max-width:400px){
 
-  .product-grid{
-    gap:7px;
+  body{
+    padding-bottom:84px;
+  }
+
+  .bottom-nav{
+    height:82px;
+  }
+
+  .bottom-nav button{
+    min-height:76px;
+    font-size:23px;
+  }
+
+  .bottom-nav button small{
+    font-size:10px;
+  }
+
+  .bottom-nav button.whatsapp span{
+    width:40px;
+    height:40px;
+    font-size:21px;
+  }
+
+  .product-card{
+    flex:0 0 168px;
+    width:168px;
   }
 
   .product-image-box{
     height:165px;
   }
 
-  .section-title{
-    font-size:18px;
+  .product-actions{
+    gap:5px;
   }
 
-  .bottom-nav{
-    height:68px;
+}
+
+
+/* =====================================================
+   MOBILE: HIDE LONG HEADER LABELS
+   ===================================================== */
+
+@media(min-width:801px){
+
+  .header-action span.label{
+    display:inline;
   }
 
-  .bottom-nav button{
-    font-size:18px;
+}
+
+@media(max-width:800px){
+
+  .header-action span.label{
+    display:none;
   }
 
-  .bottom-nav button small{
-    font-size:9px;
-  }
 }
 
 </style>
@@ -1045,24 +1341,66 @@ a{
 
 <body>
 
-<!-- ================= HEADER ================= -->
+
+<!-- =====================================================
+     GLOBAL LOADING SCREEN
+     ===================================================== -->
+
+<div id="globalLoader" class="global-loader">
+
+  <div class="loader-box">
+
+    <img
+      src="logo.png"
+      alt="Gadhuli"
+      class="loader-logo"
+    >
+
+    <div class="loader-spinner"></div>
+
+    <div class="loader-text">
+      Loading...
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- =====================================================
+     HEADER
+     ===================================================== -->
 
 <header class="top-header">
 
   <div class="header-main">
 
-    <a href="#" class="logo-area" onclick="goHome();return false;">
-      <img src="logo.png" alt="Gadhuli">
+    <a
+      href="#"
+      class="logo-area"
+      onclick="goHome();return false;"
+    >
+      <img
+        src="logo.png"
+        alt="Gadhuli"
+      >
     </a>
 
     <div class="search-area">
+
       <input
         id="searchInput"
         type="search"
-        placeholder="Product, Category বা Size খুঁজুন..."
+        placeholder="Search Product, Category or Size..."
         oninput="searchProducts()"
       >
-      <button onclick="searchProducts()">🔍</button>
+
+      <button
+        onclick="searchProducts()"
+      >
+        🔍
+      </button>
+
     </div>
 
     <div class="header-actions">
@@ -1072,7 +1410,13 @@ a{
         onclick="openWishlist()"
         title="Wishlist"
       >
-        ❤️ <span class="wish-count" id="wishCount">0</span>
+        ❤️
+        <span
+          class="wish-count"
+          id="wishCount"
+        >
+          0
+        </span>
       </button>
 
       <button
@@ -1080,7 +1424,13 @@ a{
         onclick="openCart()"
         title="Cart"
       >
-        🛒 <span class="cart-count" id="cartCount">0</span>
+        🛒
+        <span
+          class="cart-count"
+          id="cartCount"
+        >
+          0
+        </span>
       </button>
 
       <button
@@ -1095,89 +1445,118 @@ a{
 
   </div>
 
-  <!-- ================= CATEGORIES ================= -->
+
+  <!-- =====================================================
+       CATEGORY
+       ===================================================== -->
 
   <div class="category-wrapper">
 
     <div class="category-bar">
 
-      <button class="category-btn active"
+      <button
+        class="category-btn active"
         data-category="all"
-        onclick="filterCategory('all')">
+        onclick="filterCategory('all')"
+      >
         All
       </button>
 
-      <button class="category-btn"
+      <button
+        class="category-btn"
         data-category="Men's Fashion"
-        onclick="filterCategory(&quot;Men's Fashion&quot;)">
+        onclick="filterCategory(&quot;Men's Fashion&quot;)"
+      >
         Men's Fashion
       </button>
 
-      <button class="category-btn"
+      <button
+        class="category-btn"
         data-category="Women's Fashion"
-        onclick="filterCategory(&quot;Women's Fashion&quot;)">
+        onclick="filterCategory(&quot;Women's Fashion&quot;)"
+      >
         Women's Fashion
       </button>
 
-      <button class="category-btn"
+      <button
+        class="category-btn"
         data-category="Kids & Baby"
-        onclick="filterCategory('Kids & Baby')">
+        onclick="filterCategory('Kids & Baby')"
+      >
         Kids & Baby
       </button>
 
-      <button class="category-btn"
+      <button
+        class="category-btn"
         data-category="Shoes"
-        onclick="filterCategory('Shoes')">
+        onclick="filterCategory('Shoes')"
+      >
         Shoes
       </button>
 
-      <button class="category-btn"
+      <button
+        class="category-btn"
         data-category="Bags & Accessories"
-        onclick="filterCategory('Bags & Accessories')">
+        onclick="filterCategory('Bags & Accessories')"
+      >
         Bags & Accessories
       </button>
 
-      <button class="category-btn"
+      <button
+        class="category-btn"
         data-category="Watches"
-        onclick="filterCategory('Watches')">
+        onclick="filterCategory('Watches')"
+      >
         Watches
       </button>
 
-      <button class="category-btn"
+      <button
+        class="category-btn"
         data-category="Electronics"
-        onclick="filterCategory('Electronics')">
+        onclick="filterCategory('Electronics')"
+      >
         Electronics
       </button>
 
-      <button class="category-btn"
+      <button
+        class="category-btn"
         data-category="Beauty & Personal Care"
-        onclick="filterCategory('Beauty & Personal Care')">
+        onclick="filterCategory('Beauty & Personal Care')"
+      >
         Beauty & Personal Care
       </button>
 
-      <button class="category-btn"
+      <button
+        class="category-btn"
         data-category="Home & Living"
-        onclick="filterCategory('Home & Living')">
+        onclick="filterCategory('Home & Living')"
+      >
         Home & Living
       </button>
 
     </div>
 
+
     <div
       id="subcategoryWrapper"
       class="subcategory-wrapper"
     >
+
       <div
         id="subcategoryList"
         class="subcategory-list"
       ></div>
+
     </div>
 
   </div>
 
 </header>
 
-<!-- ================= BANNER ================= -->
+
+<!-- =====================================================
+     BANNER
+     ===================================================== -->
 
 <section class="banner-section">
 
@@ -1185,12 +1564,17 @@ a{
     id="bannerSlider"
     class="banner-slider"
   >
+
     <div class="banner-fallback"></div>
+
   </div>
 
 </section>
 
-<!-- ================= PRODUCTS ================= -->
+
+<!-- =====================================================
+     PRODUCTS
+     ===================================================== -->
 
 <section class="section">
 
@@ -1215,56 +1599,71 @@ a{
   >
 
     <div class="loading">
-      Product loading হচ্ছে...
+      Product loading...
     </div>
 
   </div>
 
 </section>
 
-<!-- ================= FOOTER ================= -->
+
+<!-- =====================================================
+     FOOTER
+     ===================================================== -->
 
 <footer class="footer">
 
   <div class="footer-inner">
 
     <div>
+
       <h3>Gadhuli</h3>
+
       <p>
         Online shopping marketplace.
-        সহজে পছন্দ করুন, অর্ডার করুন এবং
-        আপনার পছন্দের পণ্য পান।
+        Shop smart, shop easy and get
+        your favorite products from Gadhuli.
       </p>
+
     </div>
 
     <div>
+
       <h3>Shopping</h3>
+
       <ul>
         <li>Men's Fashion</li>
         <li>Women's Fashion</li>
         <li>Kids & Baby</li>
         <li>Shoes</li>
       </ul>
+
     </div>
 
     <div>
+
       <h3>Account</h3>
+
       <ul>
         <li onclick="openProfile()">My Profile</li>
         <li onclick="openOrders()">My Orders</li>
         <li onclick="openWishlist()">Wishlist</li>
         <li onclick="openCart()">Cart</li>
       </ul>
+
     </div>
 
     <div>
+
       <h3>Help</h3>
+
       <ul>
         <li onclick="openWhatsAppHelp()">WhatsApp Helpline</li>
         <li onclick="openTrack()">Track Order</li>
         <li onclick="openSavedAddress()">Saved Address</li>
         <li onclick="openReseller()">Reseller Center</li>
       </ul>
+
     </div>
 
   </div>
@@ -1276,7 +1675,9 @@ a{
 </footer>
 
 
-<!-- ================= WHATSAPP FLOATING ================= -->
+<!-- =====================================================
+     WHATSAPP FLOATING
+     ===================================================== -->
 
 <button
   class="whatsapp-help"
@@ -1287,7 +1688,9 @@ a{
 </button>
 
 
-<!-- ================= BOTTOM NAV ================= -->
+<!-- =====================================================
+     BOTTOM NAVIGATION
+     ===================================================== -->
 
 <nav class="bottom-nav">
 
@@ -1300,7 +1703,9 @@ a{
     <small>Home</small>
   </button>
 
-  <button onclick="openCart()">
+  <button
+    onclick="openCart()"
+  >
     <span>🛒</span>
     <small>Cart</small>
   </button>
@@ -1313,20 +1718,26 @@ a{
     <small>WhatsApp</small>
   </button>
 
-  <button onclick="openOrdersOrProfile()">
+  <button
+    onclick="openOrdersOrProfile()"
+  >
     <span>📦</span>
-    <small>Orders/Profile</small>
+    <small>Orders</small>
   </button>
 
-  <button onclick="openProfile()">
+  <button
+    onclick="openProfile()"
+  >
     <span>👤</span>
-    <small>My Profile</small>
+    <small>Profile</small>
   </button>
 
 </nav>
 
 
-<!-- ================= DETAILS MODAL ================= -->
+<!-- =====================================================
+     DETAILS MODAL
+     ===================================================== -->
 
 <div
   id="detailsModal"
@@ -1351,7 +1762,9 @@ a{
 </div>
 
 
-<!-- ================= CART MODAL ================= -->
+<!-- =====================================================
+     CART MODAL
+     ===================================================== -->
 
 <div
   id="cartModal"
@@ -1378,7 +1791,9 @@ a{
 </div>
 
 
-<!-- ================= ORDER MODAL ================= -->
+<!-- =====================================================
+     ORDER MODAL
+     ===================================================== -->
 
 <div
   id="orderModal"
@@ -1406,60 +1821,93 @@ a{
     >
 
       <div class="form-group">
-        <label>Customer Name</label>
+
+        <label>
+          Customer Name
+        </label>
+
         <input
           id="orderName"
           required
-          placeholder="আপনার নাম"
+          placeholder="Your name"
         >
+
       </div>
 
+
       <div class="form-group">
-        <label>Mobile Number</label>
+
+        <label>
+          Mobile Number
+        </label>
+
         <input
           id="orderMobile"
           required
           inputmode="tel"
           placeholder="01XXXXXXXXX"
         >
+
       </div>
 
+
       <div class="form-group">
-        <label>District</label>
+
+        <label>
+          District
+        </label>
+
         <input
           id="orderDistrict"
           required
           placeholder="District"
         >
+
       </div>
 
+
       <div class="form-group">
-        <label>Thana / Upazila</label>
+
+        <label>
+          Thana / Upazila
+        </label>
+
         <input
           id="orderThana"
           required
           placeholder="Thana / Upazila"
         >
+
       </div>
 
+
       <div class="form-group">
-        <label>Receive Place / Address</label>
+
+        <label>
+          Receive Place / Address
+        </label>
+
         <textarea
           id="orderAddress"
           rows="3"
           required
-          placeholder="সম্পূর্ণ ঠিকানা"
+          placeholder="Full delivery address"
         ></textarea>
+
       </div>
+
 
       <div class="form-group">
 
-        <label>Delivery</label>
+        <label>
+          Delivery
+        </label>
 
         <select
           id="deliverySelect"
           onchange="updateOrderTotal()"
         >
+
           <option value="60">
             Inside Dhaka - ৳60
           </option>
@@ -1467,13 +1915,17 @@ a{
           <option value="120">
             Outside Dhaka - ৳120
           </option>
+
         </select>
 
       </div>
 
+
       <div class="form-group">
 
-        <label>Payment Method</label>
+        <label>
+          Payment Method
+        </label>
 
         <div class="payment-options">
 
@@ -1535,28 +1987,40 @@ a{
 
       </div>
 
+
       <div
         id="manualPaymentBox"
         style="display:none"
       >
 
         <div class="form-group">
-          <label>Payment Number</label>
+
+          <label>
+            Payment Number
+          </label>
+
           <input
             id="paymentNumber"
-            placeholder="যে number থেকে payment করেছেন"
+            placeholder="Payment number"
           >
+
         </div>
 
         <div class="form-group">
-          <label>Transaction Reference</label>
+
+          <label>
+            Transaction Reference
+          </label>
+
           <input
             id="paymentReference"
             placeholder="Transaction ID / Reference"
           >
+
         </div>
 
       </div>
+
 
       <div
         id="orderTotalBox"
@@ -1567,6 +2031,7 @@ a{
           margin:12px 0;
         "
       ></div>
+
 
       <button
         type="submit"
@@ -1582,7 +2047,9 @@ a{
 </div>
 
 
-<!-- ================= WISHLIST MODAL ================= -->
+<!-- =====================================================
+     WISHLIST MODAL
+     ===================================================== -->
 
 <div
   id="wishlistModal"
@@ -1609,7 +2076,9 @@ a{
 </div>
 
 
-<!-- ================= PROFILE MODAL ================= -->
+<!-- =====================================================
+     PROFILE MODAL
+     ===================================================== -->
 
 <div
   id="profileModal"
@@ -1634,7 +2103,9 @@ a{
 </div>
 
 
-<!-- ================= LOGIN MODAL ================= -->
+<!-- =====================================================
+     LOGIN MODAL
+     ===================================================== -->
 
 <div
   id="loginModal"
@@ -1657,24 +2128,36 @@ a{
     <form onsubmit="loginUser(event)">
 
       <div class="form-group">
-        <label>Email</label>
+
+        <label>
+          Email
+        </label>
+
         <input
           id="loginEmail"
           type="email"
           required
           placeholder="Email"
         >
+
       </div>
 
+
       <div class="form-group">
-        <label>Password</label>
+
+        <label>
+          Password
+        </label>
+
         <input
           id="loginPassword"
           type="password"
           required
           placeholder="Password"
         >
+
       </div>
+
 
       <button
         class="primary-btn"
@@ -1685,12 +2168,14 @@ a{
 
     </form>
 
+
     <button
       class="link-btn"
       onclick="openSignup()"
     >
       Create Account
     </button>
+
 
     <button
       class="link-btn"
@@ -1704,7 +2189,9 @@ a{
 </div>
 
 
-<!-- ================= SIGNUP MODAL ================= -->
+<!-- =====================================================
+     SIGNUP MODAL
+     ===================================================== -->
 
 <div
   id="signupModal"
@@ -1727,26 +2214,42 @@ a{
     <form onsubmit="signupUser(event)">
 
       <div class="form-group">
-        <label>Full Name</label>
+
+        <label>
+          Full Name
+        </label>
+
         <input
           id="signupName"
           required
           placeholder="Full Name"
         >
+
       </div>
 
+
       <div class="form-group">
-        <label>Email</label>
+
+        <label>
+          Email
+        </label>
+
         <input
           id="signupEmail"
           type="email"
           required
           placeholder="Email"
         >
+
       </div>
 
+
       <div class="form-group">
-        <label>Password</label>
+
+        <label>
+          Password
+        </label>
+
         <input
           id="signupPassword"
           type="password"
@@ -1754,7 +2257,9 @@ a{
           required
           placeholder="Minimum 6 characters"
         >
+
       </div>
+
 
       <button
         class="primary-btn"
@@ -1770,7 +2275,9 @@ a{
 </div>
 
 
-<!-- ================= FORGOT MODAL ================= -->
+<!-- =====================================================
+     FORGOT PASSWORD
+     ===================================================== -->
 
 <div
   id="forgotModal"
@@ -1793,14 +2300,20 @@ a{
     <form onsubmit="forgotPassword(event)">
 
       <div class="form-group">
-        <label>Email</label>
+
+        <label>
+          Email
+        </label>
+
         <input
           id="forgotEmail"
           type="email"
           required
-          placeholder="আপনার email"
+          placeholder="Your email"
         >
+
       </div>
+
 
       <button
         class="primary-btn"
@@ -1816,7 +2329,9 @@ a{
 </div>
 
 
-<!-- ================= ORDERS MODAL ================= -->
+<!-- =====================================================
+     ORDERS
+     ===================================================== -->
 
 <div
   id="ordersModal"
@@ -1843,7 +2358,9 @@ a{
 </div>
 
 
-<!-- ================= TRACK MODAL ================= -->
+<!-- =====================================================
+     TRACK
+     ===================================================== -->
 
 <div
   id="trackModal"
@@ -1866,22 +2383,34 @@ a{
     <form onsubmit="trackOrder(event)">
 
       <div class="form-group">
-        <label>Order ID</label>
+
+        <label>
+          Order ID
+        </label>
+
         <input
           id="trackOrderId"
           required
           placeholder="Order ID"
         >
+
       </div>
 
+
       <div class="form-group">
-        <label>Mobile Number</label>
+
+        <label>
+          Mobile Number
+        </label>
+
         <input
           id="trackMobile"
           required
           placeholder="01XXXXXXXXX"
         >
+
       </div>
+
 
       <button
         class="primary-btn"
@@ -1891,6 +2420,7 @@ a{
       </button>
 
     </form>
+
 
     <div
       id="trackResult"
@@ -1902,7 +2432,9 @@ a{
 </div>
 
 
-<!-- ================= SAVED ADDRESS ================= -->
+<!-- =====================================================
+     SAVED ADDRESS
+     ===================================================== -->
 
 <div
   id="addressModal"
@@ -1923,13 +2455,19 @@ a{
     </div>
 
     <div class="form-group">
-      <label>Address</label>
+
+      <label>
+        Address
+      </label>
+
       <textarea
         id="savedAddressInput"
         rows="5"
-        placeholder="আপনার address এখানে লিখুন"
+        placeholder="Enter your address"
       ></textarea>
+
     </div>
+
 
     <button
       class="primary-btn"
@@ -1943,7 +2481,9 @@ a{
 </div>
 
 
-<!-- ================= RESELLER ================= -->
+<!-- =====================================================
+     RESELLER
+     ===================================================== -->
 
 <div
   id="resellerModal"
@@ -1970,8 +2510,8 @@ a{
         margin-bottom:15px;
       "
     >
-      Gadhuli products resell করে commission
-      earn করার জন্য আপনার account ব্যবহার করুন।
+      Resell Gadhuli products and earn commission
+      through your account.
     </p>
 
     <button
@@ -1986,7 +2526,9 @@ a{
 </div>
 
 
-<!-- ================= TOAST ================= -->
+<!-- =====================================================
+     TOAST
+     ===================================================== -->
 
 <div
   id="toast"
@@ -1997,7 +2539,7 @@ a{
 <script>
 
 /* =====================================================
-   GADHULI SUPABASE CONNECTION
+   SUPABASE CONNECTION
    ===================================================== */
 
 const SUPABASE_URL =
@@ -2023,22 +2565,20 @@ try{
 
     db = window.gadhuliSupabase;
 
-  }else{
-
-    console.error("Supabase library load হয়নি.");
-
   }
 
 }catch(error){
 
-  console.error("Supabase connection error:",error);
+  console.error(
+    "Supabase connection error:",
+    error
+  );
 
 }
 
 
 /* =====================================================
-   WHATSAPP HELPLINE
-   YOUR NUMBER: 01333088194
+   WHATSAPP
    ===================================================== */
 
 const WHATSAPP_HELPLINE =
@@ -2074,6 +2614,48 @@ let bannerIndex = 0;
 
 let bannerTimer = null;
 
+let productSlideTimer = null;
+
+
+/* =====================================================
+   LOADER
+   ===================================================== */
+
+function showLoader(
+  text="Loading..."
+){
+
+  const loader =
+    document.getElementById(
+      "globalLoader"
+    );
+
+  const textEl =
+    document.querySelector(
+      ".loader-text"
+    );
+
+  if(textEl)
+    textEl.textContent = text;
+
+  if(loader)
+    loader.classList.add("show");
+
+}
+
+
+function hideLoader(){
+
+  const loader =
+    document.getElementById(
+      "globalLoader"
+    );
+
+  if(loader)
+    loader.classList.remove("show");
+
+}
+
 
 /* =====================================================
    LOCAL STORAGE
@@ -2085,7 +2667,9 @@ function loadLocalData(){
 
     cart =
       JSON.parse(
-        localStorage.getItem("gadhuli_cart") || "[]"
+        localStorage.getItem(
+          "gadhuli_cart"
+        ) || "[]"
       );
 
   }catch(e){
@@ -2098,7 +2682,9 @@ function loadLocalData(){
 
     wishlist =
       JSON.parse(
-        localStorage.getItem("gadhuli_wishlist") || "[]"
+        localStorage.getItem(
+          "gadhuli_wishlist"
+        ) || "[]"
       );
 
   }catch(e){
@@ -2141,18 +2727,24 @@ function updateCounts(){
   const cartCount =
     cart.reduce(
       (sum,item)=>
-        sum + Number(item.qty || 1),
+        sum +
+        Number(item.qty || 1),
       0
     );
 
   const cartEl =
-    document.getElementById("cartCount");
+    document.getElementById(
+      "cartCount"
+    );
 
   const wishEl =
-    document.getElementById("wishCount");
+    document.getElementById(
+      "wishCount"
+    );
 
   if(cartEl)
-    cartEl.textContent = cartCount;
+    cartEl.textContent =
+      cartCount;
 
   if(wishEl)
     wishEl.textContent =
@@ -2168,7 +2760,9 @@ function updateCounts(){
 function money(value){
 
   return "৳" +
-    Number(value || 0).toLocaleString("en-BD");
+    Number(
+      value || 0
+    ).toLocaleString("en-BD");
 
 }
 
@@ -2187,19 +2781,29 @@ function norm(value){
 function toast(message){
 
   const el =
-    document.getElementById("toast");
+    document.getElementById(
+      "toast"
+    );
 
-  if(!el) return;
+  if(!el)
+    return;
 
-  el.textContent = message;
+  el.textContent =
+    message;
 
   el.classList.add("show");
 
-  clearTimeout(window.toastTimer);
+  clearTimeout(
+    window.toastTimer
+  );
 
   window.toastTimer =
     setTimeout(
-      () => el.classList.remove("show"),
+      ()=>{
+        el.classList.remove(
+          "show"
+        );
+      },
       2500
     );
 
@@ -2224,7 +2828,9 @@ function closeModal(id){
     document.getElementById(id);
 
   if(el)
-    el.classList.remove("show");
+    el.classList.remove(
+      "show"
+    );
 
 }
 
@@ -2235,7 +2841,9 @@ function showModal(id){
     document.getElementById(id);
 
   if(el)
-    el.classList.add("show");
+    el.classList.add(
+      "show"
+    );
 
 }
 
@@ -2250,17 +2858,33 @@ function getImages(product){
 
   if(Array.isArray(product?.images)){
 
-    images = product.images;
+    images =
+      product.images;
 
-  }else if(typeof product?.images === "string"){
+  }else if(
+    typeof product?.images === "string"
+  ){
 
     try{
 
       const parsed =
-        JSON.parse(product.images);
+        JSON.parse(
+          product.images
+        );
 
-      if(Array.isArray(parsed))
+      if(Array.isArray(parsed)){
+
         images = parsed;
+
+      }else{
+
+        images =
+          product.images
+            .split(",")
+            .map(x=>x.trim())
+            .filter(Boolean);
+
+      }
 
     }catch(e){
 
@@ -2279,7 +2903,9 @@ function getImages(product){
     product?.image_url
   ){
 
-    images.push(product.image_url);
+    images.push(
+      product.image_url
+    );
 
   }
 
@@ -2288,7 +2914,9 @@ function getImages(product){
     product?.image
   ){
 
-    images.push(product.image);
+    images.push(
+      product.image
+    );
 
   }
 
@@ -2302,22 +2930,32 @@ function getProductImage(product){
   const images =
     getImages(product);
 
-  return images[0] ||
-    "https://via.placeholder.com/500x500?text=Gadhuli";
+  return (
+    images[0] ||
+    "https://via.placeholder.com/500x500?text=Gadhuli"
+  );
 
 }
 
 
 /* =====================================================
-   LOAD PRODUCTS FROM SUPABASE
+   LOAD PRODUCTS
    ===================================================== */
 
 async function loadProducts(){
 
   const grid =
-    document.getElementById("productGrid");
+    document.getElementById(
+      "productGrid"
+    );
+
+  showLoader(
+    "Loading Products..."
+  );
 
   if(!db){
+
+    hideLoader();
 
     grid.innerHTML = `
       <div class="no-products">
@@ -2331,7 +2969,7 @@ async function loadProducts(){
 
   grid.innerHTML = `
     <div class="loading">
-      Product loading হচ্ছে...
+      Product loading...
     </div>
   `;
 
@@ -2373,12 +3011,24 @@ async function loadProducts(){
 
     grid.innerHTML = `
       <div class="no-products">
-        <h3>Product load হয়নি ❌</h3>
+
+        <h3>
+          Product load হয়নি ❌
+        </h3>
+
         <p style="margin-top:8px;">
-          ${escapeHTML(error.message || "Unknown error")}
+          ${escapeHTML(
+            error.message ||
+            "Unknown error"
+          )}
         </p>
+
       </div>
     `;
+
+  }finally{
+
+    hideLoader();
 
   }
 
@@ -2386,7 +3036,7 @@ async function loadProducts(){
 
 
 /* =====================================================
-   CATEGORY / SUBCATEGORY
+   CATEGORIES
    ===================================================== */
 
 const subcategories = {
@@ -2471,7 +3121,10 @@ const subcategories = {
 };
 
 
-function categoryMatches(productCategory, selected){
+function categoryMatches(
+  productCategory,
+  selected
+){
 
   if(selected === "all")
     return true;
@@ -2531,14 +3184,17 @@ function categoryMatches(productCategory, selected){
   };
 
   const list =
-    aliases[b] || [b];
+    aliases[b] ||
+    [b];
 
   return list.includes(a);
 
 }
 
 
-function filterCategory(category){
+function filterCategory(
+  category
+){
 
   selectedCategory =
     category;
@@ -2547,12 +3203,16 @@ function filterCategory(category){
     "";
 
   document
-    .querySelectorAll(".category-btn")
+    .querySelectorAll(
+      ".category-btn"
+    )
     .forEach(btn=>{
 
       btn.classList.toggle(
         "active",
-        norm(btn.dataset.category) ===
+        norm(
+          btn.dataset.category
+        ) ===
         norm(category)
       );
 
@@ -2579,10 +3239,14 @@ function renderSubcategories(){
 
   if(
     selectedCategory === "all" ||
-    !subcategories[selectedCategory]
+    !subcategories[
+      selectedCategory
+    ]
   ){
 
-    wrapper.classList.remove("show");
+    wrapper.classList.remove(
+      "show"
+    );
 
     list.innerHTML = "";
 
@@ -2590,12 +3254,16 @@ function renderSubcategories(){
 
   }
 
-  wrapper.classList.add("show");
+  wrapper.classList.add(
+    "show"
+  );
 
   list.innerHTML = "";
 
   const allBtn =
-    document.createElement("button");
+    document.createElement(
+      "button"
+    );
 
   allBtn.className =
     "subcategory-btn active";
@@ -2605,60 +3273,80 @@ function renderSubcategories(){
 
   allBtn.onclick = () => {
 
-    selectedSubcategory = "";
+    selectedSubcategory =
+      "";
 
     document
-      .querySelectorAll(".subcategory-btn")
+      .querySelectorAll(
+        ".subcategory-btn"
+      )
       .forEach(x=>
-        x.classList.remove("active")
+        x.classList.remove(
+          "active"
+        )
       );
 
-    allBtn.classList.add("active");
+    allBtn.classList.add(
+      "active"
+    );
 
     applyFilters();
 
   };
 
-  list.appendChild(allBtn);
+  list.appendChild(
+    allBtn
+  );
 
-  subcategories[selectedCategory]
-    .forEach(sub=>{
+  subcategories[
+    selectedCategory
+  ].forEach(sub=>{
 
-      const btn =
-        document.createElement("button");
+    const btn =
+      document.createElement(
+        "button"
+      );
 
-      btn.className =
-        "subcategory-btn";
+    btn.className =
+      "subcategory-btn";
 
-      btn.textContent =
+    btn.textContent =
+      sub;
+
+    btn.onclick = () => {
+
+      selectedSubcategory =
         sub;
 
-      btn.onclick = () => {
+      document
+        .querySelectorAll(
+          ".subcategory-btn"
+        )
+        .forEach(x=>
+          x.classList.remove(
+            "active"
+          )
+        );
 
-        selectedSubcategory =
-          sub;
+      btn.classList.add(
+        "active"
+      );
 
-        document
-          .querySelectorAll(".subcategory-btn")
-          .forEach(x=>
-            x.classList.remove("active")
-          );
+      applyFilters();
 
-        btn.classList.add("active");
+    };
 
-        applyFilters();
+    list.appendChild(
+      btn
+    );
 
-      };
-
-      list.appendChild(btn);
-
-    });
+  });
 
 }
 
 
 /* =====================================================
-   SEARCH + FILTER
+   SEARCH
    ===================================================== */
 
 function applyFilters(){
@@ -2685,8 +3373,12 @@ function applyFilters(){
       if(selectedSubcategory){
 
         subcategoryOK =
-          norm(product.subcategory) ===
-          norm(selectedSubcategory);
+          norm(
+            product.subcategory
+          ) ===
+          norm(
+            selectedSubcategory
+          );
 
       }
 
@@ -2750,22 +3442,30 @@ function renderProducts(){
 
   }
 
+  clearInterval(
+    productSlideTimer
+  );
+
   if(!filteredProducts.length){
 
     grid.innerHTML = `
+
       <div class="no-products">
+
         <div style="font-size:35px;">
           🛍️
         </div>
 
         <h3 style="margin-top:10px;">
-          কোনো product পাওয়া যায়নি
+          No products found
         </h3>
 
         <p style="margin-top:6px;">
-          অন্য category বা search দিয়ে চেষ্টা করুন।
+          Try another category or search.
         </p>
+
       </div>
+
     `;
 
     return;
@@ -2777,7 +3477,9 @@ function renderProducts(){
       .map(product=>{
 
         const liked =
-          wishlist.includes(product.id);
+          wishlist.includes(
+            product.id
+          );
 
         return `
 
@@ -2806,25 +3508,37 @@ function renderProducts(){
 
             </div>
 
+
             <div class="product-info">
 
               <div class="product-name">
-                ${escapeHTML(product.name || "Unnamed Product")}
+                ${escapeHTML(
+                  product.name ||
+                  "Unnamed Product"
+                )}
               </div>
 
               <div class="product-price">
-                ${money(product.price)}
+                ${money(
+                  product.price
+                )}
               </div>
 
               <div class="product-category">
-                ${escapeHTML(product.category || "")}
+                ${escapeHTML(
+                  product.category ||
+                  ""
+                )}
                 ${
                   product.subcategory
                     ? " • " +
-                      escapeHTML(product.subcategory)
+                      escapeHTML(
+                        product.subcategory
+                      )
                     : ""
                 }
               </div>
+
 
               <div class="product-actions">
 
@@ -2853,6 +3567,69 @@ function renderProducts(){
       })
       .join("");
 
+  startProductAutoSlide();
+
+}
+
+
+/* =====================================================
+   PRODUCT AUTO SLIDE
+   ===================================================== */
+
+function startProductAutoSlide(){
+
+  clearInterval(
+    productSlideTimer
+  );
+
+  const grid =
+    document.getElementById(
+      "productGrid"
+    );
+
+  if(!grid)
+    return;
+
+  if(
+    grid.scrollWidth <=
+    grid.clientWidth + 5
+  ){
+
+    return;
+
+  }
+
+  productSlideTimer =
+    setInterval(()=>{
+
+      const maxScroll =
+        grid.scrollWidth -
+        grid.clientWidth;
+
+      if(
+        grid.scrollLeft >=
+        maxScroll - 5
+      ){
+
+        grid.scrollTo({
+          left:0,
+          behavior:"smooth"
+        });
+
+      }else{
+
+        grid.scrollBy({
+          left:
+            window.innerWidth <= 500
+              ? 190
+              : 260,
+          behavior:"smooth"
+        });
+
+      }
+
+    },3000);
+
 }
 
 
@@ -2863,7 +3640,9 @@ function renderProducts(){
 function findProduct(id){
 
   return products.find(
-    p=>String(p.id) === String(id)
+    p=>
+      String(p.id) ===
+      String(id)
   );
 
 }
@@ -2880,7 +3659,9 @@ function openDetails(id){
 
   if(!product){
 
-    toast("Product পাওয়া যায়নি");
+    toast(
+      "Product not found"
+    );
 
     return;
 
@@ -2898,25 +3679,41 @@ function openDetails(id){
 
   let sizes = [];
 
-  if(Array.isArray(product.sizes)){
+  if(
+    Array.isArray(
+      product.sizes
+    )
+  ){
 
-    sizes = product.sizes;
+    sizes =
+      product.sizes;
 
-  }else if(typeof product.sizes === "string"){
+  }else if(
+    typeof product.sizes ===
+    "string"
+  ){
 
     try{
 
       const parsed =
-        JSON.parse(product.sizes);
+        JSON.parse(
+          product.sizes
+        );
 
-      if(Array.isArray(parsed))
-        sizes = parsed;
-      else
+      if(Array.isArray(parsed)){
+
+        sizes =
+          parsed;
+
+      }else{
+
         sizes =
           product.sizes
             .split(",")
             .map(x=>x.trim())
             .filter(Boolean);
+
+      }
 
     }catch(e){
 
@@ -2955,7 +3752,11 @@ function openDetails(id){
               .map((img,i)=>`
 
                 <img
-                  class="detail-thumb ${i===0 ? "active" : ""}"
+                  class="detail-thumb ${
+                    i===0
+                      ? "active"
+                      : ""
+                  }"
                   src="${escapeHTML(img)}"
                   onclick="changeDetailImage(this,'${escapeHTML(img)}')"
                 >
@@ -2968,52 +3769,69 @@ function openDetails(id){
 
       </div>
 
+
       <div>
 
         <h2>
-          ${escapeHTML(product.name || "")}
+          ${escapeHTML(
+            product.name ||
+            ""
+          )}
         </h2>
 
         <div class="detail-price">
-          ${money(product.price)}
+          ${money(
+            product.price
+          )}
         </div>
 
         <div class="detail-category">
-          ${escapeHTML(product.category || "")}
+          ${escapeHTML(
+            product.category ||
+            ""
+          )}
           ${
             product.subcategory
               ? " • " +
-                escapeHTML(product.subcategory)
+                escapeHTML(
+                  product.subcategory
+                )
               : ""
           }
         </div>
 
+
         ${
           sizes.length
-          ? `
+            ? `
 
-            <div class="size-title">
-              Select Size
-            </div>
+              <div class="size-title">
+                Select Size
+              </div>
 
-            <div class="size-list">
+              <div class="size-list">
 
-              ${sizes.map(size=>`
+                ${
+                  sizes
+                    .map(size=>`
 
-                <button
-                  class="size-btn"
-                  onclick="selectSize(this,'${escapeHTML(size)}')"
-                >
-                  ${escapeHTML(size)}
-                </button>
+                      <button
+                        class="size-btn"
+                        onclick="selectSize(this,'${escapeHTML(size)}')"
+                      >
+                        ${escapeHTML(size)}
+                      </button>
 
-              `).join("")}
+                    `)
+                    .join("")
+                }
 
-            </div>
+              </div>
 
-          `
-          : ""
+            `
+            : ""
         }
+
 
         <div
           style="
@@ -3022,8 +3840,12 @@ function openDetails(id){
             color:#555;
           "
         >
-          ${escapeHTML(product.description || "এই product-এর কোনো description দেওয়া হয়নি।")}
+          ${escapeHTML(
+            product.description ||
+            "No description available."
+          )}
         </div>
+
 
         <div
           style="
@@ -3050,12 +3872,14 @@ function openDetails(id){
 
         </div>
 
+
         <button
           class="secondary-btn"
           onclick="shareProduct()"
         >
           🔗 Share Product
         </button>
+
 
         <button
           class="secondary-btn"
@@ -3070,12 +3894,17 @@ function openDetails(id){
 
   `;
 
-  showModal("detailsModal");
+  showModal(
+    "detailsModal"
+  );
 
 }
 
 
-function changeDetailImage(el,url){
+function changeDetailImage(
+  el,
+  url
+){
 
   const main =
     document.getElementById(
@@ -3086,29 +3915,45 @@ function changeDetailImage(el,url){
     main.src = url;
 
   document
-    .querySelectorAll(".detail-thumb")
+    .querySelectorAll(
+      ".detail-thumb"
+    )
     .forEach(x=>
-      x.classList.remove("active")
+      x.classList.remove(
+        "active"
+      )
     );
 
-  el.classList.add("active");
+  el.classList.add(
+    "active"
+  );
 
 }
 
 
-function selectSize(btn,size){
+function selectSize(
+  btn,
+  size
+){
 
   document
-    .querySelectorAll(".size-btn")
+    .querySelectorAll(
+      ".size-btn"
+    )
     .forEach(x=>
-      x.classList.remove("active")
+      x.classList.remove(
+        "active"
+      )
     );
 
-  btn.classList.add("active");
+  btn.classList.add(
+    "active"
+  );
 
   if(currentDetailProduct){
 
-    currentDetailProduct._selectedSize =
+    currentDetailProduct
+      ._selectedSize =
       size;
 
   }
@@ -3118,7 +3963,11 @@ function selectSize(btn,size){
 
 function getSelectedSize(){
 
-  return currentDetailProduct?._selectedSize || "";
+  return (
+    currentDetailProduct
+      ?._selectedSize ||
+    ""
+  );
 
 }
 
@@ -3167,7 +4016,8 @@ async function shareProduct(){
     if(navigator.share){
 
       await navigator.share({
-        title:currentDetailProduct.name,
+        title:
+          currentDetailProduct.name,
         text:
           "Gadhuli - " +
           currentDetailProduct.name,
@@ -3176,9 +4026,12 @@ async function shareProduct(){
 
     }else{
 
-      await navigator.clipboard.writeText(url);
+      await navigator.clipboard
+        .writeText(url);
 
-      toast("Product link copied!");
+      toast(
+        "Product link copied!"
+      );
 
     }
 
@@ -3189,7 +4042,9 @@ async function shareProduct(){
 
 function resellProduct(){
 
-  closeModal("detailsModal");
+  closeModal(
+    "detailsModal"
+  );
 
   openReseller();
 
@@ -3200,14 +4055,19 @@ function resellProduct(){
    CART
    ===================================================== */
 
-function addToCart(id,size=""){
+function addToCart(
+  id,
+  size=""
+){
 
   const product =
     findProduct(id);
 
   if(!product){
 
-    toast("Product পাওয়া যায়নি");
+    toast(
+      "Product not found"
+    );
 
     return;
 
@@ -3215,26 +4075,47 @@ function addToCart(id,size=""){
 
   const existing =
     cart.find(item=>
-      String(item.id) === String(id) &&
-      String(item.selectedSize || "") ===
-      String(size || "")
+      String(item.id) ===
+      String(id) &&
+      String(
+        item.selectedSize || ""
+      ) ===
+      String(
+        size || ""
+      )
     );
 
   if(existing){
 
     existing.qty =
-      Number(existing.qty || 1) + 1;
+      Number(
+        existing.qty || 1
+      ) + 1;
 
   }else{
 
     cart.push({
 
-      id:product.id,
-      name:product.name,
-      price:Number(product.price || 0),
-      image:getProductImage(product),
+      id:
+        product.id,
+
+      name:
+        product.name,
+
+      price:
+        Number(
+          product.price || 0
+        ),
+
+      image:
+        getProductImage(
+          product
+        ),
+
       qty:1,
-      selectedSize:size || ""
+
+      selectedSize:
+        size || ""
 
     });
 
@@ -3242,7 +4123,9 @@ function addToCart(id,size=""){
 
   saveCart();
 
-  toast("Cart-এ product যোগ হয়েছে 🛒");
+  toast(
+    "Product added to cart 🛒"
+  );
 
 }
 
@@ -3251,7 +4134,9 @@ function openCart(){
 
   renderCart();
 
-  showModal("cartModal");
+  showModal(
+    "cartModal"
+  );
 
 }
 
@@ -3274,6 +4159,7 @@ function renderCart(){
           color:#777;
         "
       >
+
         <div style="font-size:45px;">
           🛒
         </div>
@@ -3293,85 +4179,121 @@ function renderCart(){
   let subtotal = 0;
 
   box.innerHTML =
-    cart.map((item,index)=>{
+    cart
+      .map(
+        (item,index)=>{
 
-      const total =
-        Number(item.price || 0) *
-        Number(item.qty || 1);
+          const total =
+            Number(
+              item.price || 0
+            ) *
+            Number(
+              item.qty || 1
+            );
 
-      subtotal += total;
+          subtotal +=
+            total;
 
-      return `
+          return `
 
-        <div class="cart-item">
+            <div class="cart-item">
 
-          <img
-            src="${escapeHTML(item.image || getProductImage(findProduct(item.id) || {}))}"
-            onerror="this.src='https://via.placeholder.com/100x100?text=Gadhuli'"
-          >
-
-          <div>
-
-            <div class="cart-name">
-              ${escapeHTML(item.name)}
-            </div>
-
-            <div class="cart-meta">
-              ${money(item.price)}
-              ${
-                item.selectedSize
-                  ? " • Size: " +
-                    escapeHTML(item.selectedSize)
-                  : ""
-              }
-            </div>
-
-            <div class="qty-control">
-
-              <button
-                onclick="changeQty(${index},-1)"
+              <img
+                src="${escapeHTML(
+                  item.image ||
+                  getProductImage(
+                    findProduct(
+                      item.id
+                    ) || {}
+                  )
+                )}"
+                onerror="this.src='https://via.placeholder.com/100x100?text=Gadhuli'"
               >
-                −
-              </button>
+
+
+              <div>
+
+                <div class="cart-name">
+                  ${escapeHTML(
+                    item.name
+                  )}
+                </div>
+
+                <div class="cart-meta">
+
+                  ${money(
+                    item.price
+                  )}
+
+                  ${
+                    item.selectedSize
+                      ? " • Size: " +
+                        escapeHTML(
+                          item.selectedSize
+                        )
+                      : ""
+                  }
+
+                </div>
+
+
+                <div class="qty-control">
+
+                  <button
+                    onclick="changeQty(${index},-1)"
+                  >
+                    −
+                  </button>
+
+                  <b>
+                    ${item.qty}
+                  </b>
+
+                  <button
+                    onclick="changeQty(${index},1)"
+                  >
+                    +
+                  </button>
+
+                </div>
+
+
+                <button
+                  class="remove-btn"
+                  onclick="removeCart(${index})"
+                >
+                  Remove
+                </button>
+
+              </div>
+
 
               <b>
-                ${item.qty}
+                ${money(total)}
               </b>
-
-              <button
-                onclick="changeQty(${index},1)"
-              >
-                +
-              </button>
 
             </div>
 
-            <button
-              class="remove-btn"
-              onclick="removeCart(${index})"
-            >
-              Remove
-            </button>
+          `;
 
-          </div>
-
-          <b>
-            ${money(total)}
-          </b>
-
-        </div>
-
-      `;
-
-    })
-    .join("");
+        }
+      )
+      .join("");
 
   box.innerHTML += `
 
     <div class="cart-total">
-      <span>Subtotal</span>
-      <span>${money(subtotal)}</span>
+
+      <span>
+        Subtotal
+      </span>
+
+      <span>
+        ${money(subtotal)}
+      </span>
+
     </div>
+
 
     <button
       class="primary-btn"
@@ -3385,18 +4307,27 @@ function renderCart(){
 }
 
 
-function changeQty(index,change){
+function changeQty(
+  index,
+  change
+){
 
   if(!cart[index])
     return;
 
   cart[index].qty =
-    Number(cart[index].qty || 1) +
-    change;
+    Number(
+      cart[index].qty || 1
+    ) + change;
 
-  if(cart[index].qty <= 0){
+  if(
+    cart[index].qty <= 0
+  ){
 
-    cart.splice(index,1);
+    cart.splice(
+      index,
+      1
+    );
 
   }
 
@@ -3407,9 +4338,14 @@ function changeQty(index,change){
 }
 
 
-function removeCart(index){
+function removeCart(
+  index
+){
 
-  cart.splice(index,1);
+  cart.splice(
+    index,
+    1
+  );
 
   saveCart();
 
@@ -3419,17 +4355,22 @@ function removeCart(index){
 
 
 /* =====================================================
-   ORDER NOW
+   ORDER
    ===================================================== */
 
-function orderNow(id,size=""){
+function orderNow(
+  id,
+  size=""
+){
 
   const product =
     findProduct(id);
 
   if(!product){
 
-    toast("Product পাওয়া যায়নি");
+    toast(
+      "Product not found"
+    );
 
     return;
 
@@ -3437,11 +4378,24 @@ function orderNow(id,size=""){
 
   currentOrderItems = [{
 
-    id:product.id,
-    name:product.name,
-    price:Number(product.price || 0),
-    image:getProductImage(product),
+    id:
+      product.id,
+
+    name:
+      product.name,
+
+    price:
+      Number(
+        product.price || 0
+      ),
+
+    image:
+      getProductImage(
+        product
+      ),
+
     qty:1,
+
     selectedSize:
       size ||
       product._selectedSize ||
@@ -3449,14 +4403,21 @@ function orderNow(id,size=""){
 
   }];
 
-  closeModal("detailsModal");
-  closeModal("cartModal");
+  closeModal(
+    "detailsModal"
+  );
+
+  closeModal(
+    "cartModal"
+  );
 
   renderOrderSummary();
 
   updateOrderTotal();
 
-  showModal("orderModal");
+  showModal(
+    "orderModal"
+  );
 
 }
 
@@ -3465,22 +4426,32 @@ function orderCart(){
 
   if(!cart.length){
 
-    toast("Cart empty");
+    toast(
+      "Cart is empty"
+    );
 
     return;
 
   }
 
   currentOrderItems =
-    cart.map(item=>({...item}));
+    cart.map(
+      item=>({
+        ...item
+      })
+    );
 
-  closeModal("cartModal");
+  closeModal(
+    "cartModal"
+  );
 
   renderOrderSummary();
 
   updateOrderTotal();
 
-  showModal("orderModal");
+  showModal(
+    "orderModal"
+  );
 
 }
 
@@ -3510,10 +4481,15 @@ function renderOrderSummary(){
           .map(item=>{
 
             const line =
-              Number(item.price || 0) *
-              Number(item.qty || 1);
+              Number(
+                item.price || 0
+              ) *
+              Number(
+                item.qty || 1
+              );
 
-            subtotal += line;
+            subtotal +=
+              line;
 
             return `
 
@@ -3522,21 +4498,29 @@ function renderOrderSummary(){
                   display:flex;
                   justify-content:space-between;
                   gap:8px;
-                  padding:5px 0;
+                  padding:6px 0;
                   font-size:13px;
                 "
               >
 
                 <span>
-                  ${escapeHTML(item.name)}
+
+                  ${escapeHTML(
+                    item.name
+                  )}
+
                   × ${item.qty}
+
                   ${
                     item.selectedSize
                       ? " (" +
-                        escapeHTML(item.selectedSize) +
+                        escapeHTML(
+                          item.selectedSize
+                        ) +
                         ")"
                       : ""
                   }
+
                 </span>
 
                 <b>
@@ -3551,6 +4535,7 @@ function renderOrderSummary(){
           .join("")
       }
 
+
       <div
         style="
           border-top:1px solid #ddd;
@@ -3560,8 +4545,15 @@ function renderOrderSummary(){
           justify-content:space-between;
         "
       >
-        <b>Subtotal</b>
-        <b>${money(subtotal)}</b>
+
+        <b>
+          Subtotal
+        </b>
+
+        <b>
+          ${money(subtotal)}
+        </b>
+
       </div>
 
     </div>
@@ -3577,20 +4569,26 @@ function updateOrderTotal(){
     Number(
       document.getElementById(
         "deliverySelect"
-      )?.value || 60
+      )?.value ||
+      60
     );
 
   const subtotal =
     currentOrderItems.reduce(
       (sum,item)=>
         sum +
-        Number(item.price || 0) *
-        Number(item.qty || 1),
+        Number(
+          item.price || 0
+        ) *
+        Number(
+          item.qty || 1
+        ),
       0
     );
 
   const total =
-    subtotal + delivery;
+    subtotal +
+    delivery;
 
   const box =
     document.getElementById(
@@ -3607,9 +4605,17 @@ function updateOrderTotal(){
           justify-content:space-between;
         "
       >
-        <span>Subtotal</span>
-        <b>${money(subtotal)}</b>
+
+        <span>
+          Subtotal
+        </span>
+
+        <b>
+          ${money(subtotal)}
+        </b>
+
       </div>
+
 
       <div
         style="
@@ -3618,9 +4624,17 @@ function updateOrderTotal(){
           margin-top:5px;
         "
       >
-        <span>Delivery</span>
-        <b>${money(delivery)}</b>
+
+        <span>
+          Delivery
+        </span>
+
+        <b>
+          ${money(delivery)}
+        </b>
+
       </div>
+
 
       <div
         style="
@@ -3632,10 +4646,17 @@ function updateOrderTotal(){
           font-size:19px;
         "
       >
-        <span>Total</span>
-        <b style="color:#E65100;">
+
+        <span>
+          Total
+        </span>
+
+        <b
+          style="color:#E65100;"
+        >
           ${money(total)}
         </b>
+
       </div>
 
     `;
@@ -3649,15 +4670,23 @@ function updateOrderTotal(){
    PAYMENT
    ===================================================== */
 
-function selectPayment(el){
+function selectPayment(
+  el
+){
 
   document
-    .querySelectorAll(".payment-option")
+    .querySelectorAll(
+      ".payment-option"
+    )
     .forEach(x=>
-      x.classList.remove("active")
+      x.classList.remove(
+        "active"
+      )
     );
 
-  el.classList.add("active");
+  el.classList.add(
+    "active"
+  );
 
   selectedPayment =
     el.dataset.payment;
@@ -3686,16 +4715,20 @@ function selectPayment(el){
 
 
 /* =====================================================
-   SUBMIT ORDER TO SUPABASE
+   SUBMIT ORDER
    ===================================================== */
 
-async function submitOrder(event){
+async function submitOrder(
+  event
+){
 
   event.preventDefault();
 
   if(!db){
 
-    toast("Supabase connection পাওয়া যায়নি");
+    toast(
+      "Supabase connection পাওয়া যায়নি"
+    );
 
     return;
 
@@ -3703,7 +4736,9 @@ async function submitOrder(event){
 
   if(!currentOrderItems.length){
 
-    toast("Order item নেই");
+    toast(
+      "No order items"
+    );
 
     return;
 
@@ -3750,13 +4785,18 @@ async function submitOrder(event){
     currentOrderItems.reduce(
       (sum,item)=>
         sum +
-        Number(item.price || 0) *
-        Number(item.qty || 1),
+        Number(
+          item.price || 0
+        ) *
+        Number(
+          item.qty || 1
+        ),
       0
     );
 
   const total =
-    subtotal + delivery;
+    subtotal +
+    delivery;
 
   const submitButton =
     document.querySelector(
@@ -3765,10 +4805,11 @@ async function submitOrder(event){
 
   if(submitButton){
 
-    submitButton.disabled = true;
+    submitButton.disabled =
+      true;
 
     submitButton.textContent =
-      "Order Saving...";
+      "Saving Order...";
 
   }
 
@@ -3790,7 +4831,8 @@ async function submitOrder(event){
         .insert({
 
           user_id:
-            user?.id || null,
+            user?.id ||
+            null,
 
           customer_name:
             name,
@@ -3830,34 +4872,43 @@ async function submitOrder(event){
       throw orderError;
 
     const orderItems =
-      currentOrderItems.map(item=>({
+      currentOrderItems.map(
+        item=>({
 
-        order_id:
-          order.id,
+          order_id:
+            order.id,
 
-        product_id:
-          item.id,
+          product_id:
+            item.id,
 
-        product_name:
-          item.name,
+          product_name:
+            item.name,
 
-        price:
-          Number(item.price || 0),
+          price:
+            Number(
+              item.price || 0
+            ),
 
-        quantity:
-          Number(item.qty || 1),
+          quantity:
+            Number(
+              item.qty || 1
+            ),
 
-        size:
-          item.selectedSize || ""
+          size:
+            item.selectedSize ||
+            ""
 
-      }));
+        })
+      );
 
     const {
       error:itemError
     } =
       await db
         .from("order_items")
-        .insert(orderItems);
+        .insert(
+          orderItems
+        );
 
     if(itemError)
       throw itemError;
@@ -3870,22 +4921,29 @@ async function submitOrder(event){
 
     saveCart();
 
-    closeModal("orderModal");
+    closeModal(
+      "orderModal"
+    );
 
     document
-      .getElementById("orderForm")
+      .getElementById(
+        "orderForm"
+      )
       .reset();
 
     selectedPayment =
       "Cash on Delivery";
 
     document
-      .querySelectorAll(".payment-option")
-      .forEach((x,i)=>
-        x.classList.toggle(
-          "active",
-          i === 0
-        )
+      .querySelectorAll(
+        ".payment-option"
+      )
+      .forEach(
+        (x,i)=>
+          x.classList.toggle(
+            "active",
+            i === 0
+          )
       );
 
     document.getElementById(
@@ -3913,15 +4971,19 @@ async function submitOrder(event){
     );
 
     toast(
-      "Order হয়নি: " +
-      (error.message || "Unknown error")
+      "Order failed: " +
+      (
+        error.message ||
+        "Unknown error"
+      )
     );
 
   }finally{
 
     if(submitButton){
 
-      submitButton.disabled = false;
+      submitButton.disabled =
+        false;
 
       submitButton.textContent =
         "Confirm Order";
@@ -3937,24 +4999,37 @@ async function submitOrder(event){
    WISHLIST
    ===================================================== */
 
-function toggleWishlist(id){
+function toggleWishlist(
+  id
+){
 
   const index =
     wishlist.findIndex(
-      x=>String(x) === String(id)
+      x=>
+        String(x) ===
+        String(id)
     );
 
   if(index >= 0){
 
-    wishlist.splice(index,1);
+    wishlist.splice(
+      index,
+      1
+    );
 
-    toast("Wishlist থেকে remove হয়েছে");
+    toast(
+      "Removed from wishlist"
+    );
 
   }else{
 
-    wishlist.push(id);
+    wishlist.push(
+      id
+    );
 
-    toast("Wishlist-এ যোগ হয়েছে ❤️");
+    toast(
+      "Added to wishlist ❤️"
+    );
 
   }
 
@@ -3973,11 +5048,13 @@ function openWishlist(){
     );
 
   const items =
-    products.filter(product=>
-      wishlist.some(
-        id=>String(id) ===
-        String(product.id)
-      )
+    products.filter(
+      product=>
+        wishlist.some(
+          id=>
+            String(id) ===
+            String(product.id)
+        )
     );
 
   if(!items.length){
@@ -3991,10 +5068,15 @@ function openWishlist(){
           color:#777;
         "
       >
-        ❤️
+
+        <div style="font-size:45px;">
+          ❤️
+        </div>
+
         <h3 style="margin-top:10px;">
-          Wishlist empty
+          Wishlist is empty
         </h3>
+
       </div>
 
     `;
@@ -4002,67 +5084,81 @@ function openWishlist(){
   }else{
 
     box.innerHTML =
-      items.map(product=>`
+      items
+        .map(product=>`
 
-        <div
-          style="
-            display:grid;
-            grid-template-columns:65px 1fr auto;
-            gap:10px;
-            align-items:center;
-            padding:10px 0;
-            border-bottom:1px solid #eee;
-          "
-        >
-
-          <img
-            src="${escapeHTML(getProductImage(product))}"
+          <div
             style="
-              width:65px;
-              height:65px;
-              object-fit:cover;
-              border-radius:8px;
+              display:grid;
+              grid-template-columns:65px 1fr auto;
+              gap:10px;
+              align-items:center;
+              padding:10px 0;
+              border-bottom:1px solid #eee;
             "
           >
 
-          <div>
-
-            <b>
-              ${escapeHTML(product.name)}
-            </b>
-
-            <div
+            <img
+              src="${escapeHTML(
+                getProductImage(
+                  product
+                )
+              )}"
               style="
-                color:#FF6B00;
-                font-weight:bold;
-                margin-top:4px;
+                width:65px;
+                height:65px;
+                object-fit:cover;
+                border-radius:8px;
               "
             >
-              ${money(product.price)}
+
+
+            <div>
+
+              <b>
+                ${escapeHTML(
+                  product.name
+                )}
+              </b>
+
+              <div
+                style="
+                  color:#FF6B00;
+                  font-weight:bold;
+                  margin-top:4px;
+                "
+              >
+                ${money(
+                  product.price
+                )}
+              </div>
+
             </div>
+
+
+            <button
+              class="btn-order"
+              onclick="orderNow('${escapeHTML(String(product.id))}')"
+            >
+              Order
+            </button>
 
           </div>
 
-          <button
-            class="btn-order"
-            onclick="orderNow('${escapeHTML(String(product.id))}')"
-          >
-            Order
-          </button>
-
-        </div>
-
-      `).join("");
+        `)
+        .join("");
 
   }
 
-  showModal("wishlistModal");
+  showModal(
+    "wishlistModal"
+  );
 
 }
 
 
 /* =====================================================
-   AUTH / PROFILE
+   PROFILE
    ===================================================== */
 
 async function openProfile(){
@@ -4084,7 +5180,8 @@ async function openProfile(){
         await db.auth.getUser();
 
       user =
-        data?.user || null;
+        data?.user ||
+        null;
 
     }
 
@@ -4115,11 +5212,12 @@ async function openProfile(){
             margin:8px 0 18px;
           "
         >
-          Login করলে orders ও account manage
-          করতে পারবেন।
+          Login to manage your orders
+          and account.
         </p>
 
       </div>
+
 
       <button
         class="primary-btn"
@@ -4127,6 +5225,7 @@ async function openProfile(){
       >
         Login
       </button>
+
 
       <button
         class="secondary-btn"
@@ -4156,7 +5255,8 @@ async function openProfile(){
 
         <b>
           ${escapeHTML(
-            user.user_metadata?.full_name ||
+            user.user_metadata
+              ?.full_name ||
             user.email ||
             "Gadhuli User"
           )}
@@ -4169,10 +5269,14 @@ async function openProfile(){
             margin-top:4px;
           "
         >
-          ${escapeHTML(user.email || "")}
+          ${escapeHTML(
+            user.email ||
+            ""
+          )}
         </div>
 
       </div>
+
 
       <div class="profile-menu">
 
@@ -4231,51 +5335,79 @@ async function openProfile(){
 
   }
 
-  showModal("profileModal");
+  showModal(
+    "profileModal"
+  );
 
 }
 
 
 function openLogin(){
 
-  closeModal("profileModal");
+  closeModal(
+    "profileModal"
+  );
 
-  closeModal("signupModal");
+  closeModal(
+    "signupModal"
+  );
 
-  closeModal("forgotModal");
+  closeModal(
+    "forgotModal"
+  );
 
-  showModal("loginModal");
+  showModal(
+    "loginModal"
+  );
 
 }
 
 
 function openSignup(){
 
-  closeModal("loginModal");
+  closeModal(
+    "loginModal"
+  );
 
-  closeModal("profileModal");
+  closeModal(
+    "profileModal"
+  );
 
-  showModal("signupModal");
+  showModal(
+    "signupModal"
+  );
 
 }
 
 
 function openForgot(){
 
-  closeModal("loginModal");
+  closeModal(
+    "loginModal"
+  );
 
-  showModal("forgotModal");
+  showModal(
+    "forgotModal"
+  );
 
 }
 
 
-async function loginUser(event){
+/* =====================================================
+   LOGIN
+   ===================================================== */
+
+async function loginUser(
+  event
+){
 
   event.preventDefault();
 
   if(!db){
 
-    toast("Supabase connection নেই");
+    toast(
+      "Supabase connection unavailable"
+    );
 
     return;
 
@@ -4296,17 +5428,22 @@ async function loginUser(event){
     const {
       error
     } =
-      await db.auth.signInWithPassword({
-        email,
-        password
-      });
+      await db.auth
+        .signInWithPassword({
+          email,
+          password
+        });
 
     if(error)
       throw error;
 
-    toast("Login successful ✅");
+    toast(
+      "Login successful ✅"
+    );
 
-    closeModal("loginModal");
+    closeModal(
+      "loginModal"
+    );
 
     setTimeout(
       ()=>openProfile(),
@@ -4316,8 +5453,11 @@ async function loginUser(event){
   }catch(error){
 
     toast(
-      "Login হয়নি: " +
-      (error.message || "")
+      "Login failed: " +
+      (
+        error.message ||
+        ""
+      )
     );
 
   }
@@ -4325,13 +5465,21 @@ async function loginUser(event){
 }
 
 
-async function signupUser(event){
+/* =====================================================
+   SIGNUP
+   ===================================================== */
+
+async function signupUser(
+  event
+){
 
   event.preventDefault();
 
   if(!db){
 
-    toast("Supabase connection নেই");
+    toast(
+      "Supabase connection unavailable"
+    );
 
     return;
 
@@ -4378,16 +5526,21 @@ async function signupUser(event){
     toast(
       data?.session
         ? "Account created ✅"
-        : "Account created. Email verify করুন."
+        : "Account created. Please verify your email."
     );
 
-    closeModal("signupModal");
+    closeModal(
+      "signupModal"
+    );
 
   }catch(error){
 
     toast(
-      "Signup হয়নি: " +
-      (error.message || "")
+      "Signup failed: " +
+      (
+        error.message ||
+        ""
+      )
     );
 
   }
@@ -4395,13 +5548,21 @@ async function signupUser(event){
 }
 
 
-async function forgotPassword(event){
+/* =====================================================
+   FORGOT PASSWORD
+   ===================================================== */
+
+async function forgotPassword(
+  event
+){
 
   event.preventDefault();
 
   if(!db){
 
-    toast("Supabase connection নেই");
+    toast(
+      "Supabase connection unavailable"
+    );
 
     return;
 
@@ -4417,35 +5578,45 @@ async function forgotPassword(event){
     const {
       error
     } =
-      await db.auth.resetPasswordForEmail(
-        email,
-        {
-          redirectTo:
-            window.location.origin +
-            window.location.pathname
-        }
-      );
+      await db.auth
+        .resetPasswordForEmail(
+          email,
+          {
+            redirectTo:
+              window.location.origin +
+              window.location.pathname
+          }
+        );
 
     if(error)
       throw error;
 
     toast(
-      "Password reset link email-এ পাঠানো হয়েছে।"
+      "Password reset link sent to your email."
     );
 
-    closeModal("forgotModal");
+    closeModal(
+      "forgotModal"
+    );
 
   }catch(error){
 
     toast(
-      "Reset হয়নি: " +
-      (error.message || "")
+      "Reset failed: " +
+      (
+        error.message ||
+        ""
+      )
     );
 
   }
 
 }
 
+
+/* =====================================================
+   LOGOUT
+   ===================================================== */
 
 async function logoutUser(){
 
@@ -4459,18 +5630,28 @@ async function logoutUser(){
 
   }
 
-  closeModal("profileModal");
+  closeModal(
+    "profileModal"
+  );
 
-  toast("Logout successful");
+  toast(
+    "Logout successful"
+  );
 
 }
 
+
+/* =====================================================
+   CHANGE PASSWORD
+   ===================================================== */
 
 async function changePassword(){
 
   if(!db){
 
-    toast("Supabase connection নেই");
+    toast(
+      "Supabase connection unavailable"
+    );
 
     return;
 
@@ -4478,7 +5659,7 @@ async function changePassword(){
 
   const password =
     prompt(
-      "নতুন password দিন (minimum 6 characters):"
+      "Enter new password (minimum 6 characters):"
     );
 
   if(!password)
@@ -4486,7 +5667,9 @@ async function changePassword(){
 
   if(password.length < 6){
 
-    toast("Password minimum 6 characters হতে হবে");
+    toast(
+      "Password must be at least 6 characters."
+    );
 
     return;
 
@@ -4497,20 +5680,26 @@ async function changePassword(){
     const {
       error
     } =
-      await db.auth.updateUser({
-        password
-      });
+      await db.auth
+        .updateUser({
+          password
+        });
 
     if(error)
       throw error;
 
-    toast("Password changed successfully ✅");
+    toast(
+      "Password changed successfully ✅"
+    );
 
   }catch(error){
 
     toast(
-      "Password change হয়নি: " +
-      (error.message || "")
+      "Password change failed: " +
+      (
+        error.message ||
+        ""
+      )
     );
 
   }
@@ -4524,7 +5713,9 @@ async function changePassword(){
 
 async function openOrders(){
 
-  closeModal("profileModal");
+  closeModal(
+    "profileModal"
+  );
 
   const box =
     document.getElementById(
@@ -4537,13 +5728,15 @@ async function openOrders(){
     </div>
   `;
 
-  showModal("ordersModal");
+  showModal(
+    "ordersModal"
+  );
 
   if(!db){
 
     box.innerHTML = `
       <div class="no-products">
-        Supabase connection নেই।
+        Supabase connection unavailable.
       </div>
     `;
 
@@ -4602,7 +5795,10 @@ async function openOrders(){
       await db
         .from("orders")
         .select("*")
-        .eq("user_id",user.id)
+        .eq(
+          "user_id",
+          user.id
+        )
         .order(
           "created_at",
           {
@@ -4624,7 +5820,7 @@ async function openOrders(){
             color:#777;
           "
         >
-          এখনো কোনো order নেই।
+          No orders yet.
         </div>
 
       `;
@@ -4634,58 +5830,83 @@ async function openOrders(){
     }
 
     box.innerHTML =
-      data.map(order=>`
+      data
+        .map(order=>`
 
-        <div class="order-card">
+          <div class="order-card">
 
-          <div class="order-head">
+            <div class="order-head">
 
-            <b>
-              Order #${escapeHTML(String(order.id))}
-            </b>
+              <b>
+                Order #${escapeHTML(
+                  String(order.id)
+                )}
+              </b>
 
-            <span class="order-status">
-              ${escapeHTML(order.status || "Pending")}
-            </span>
+              <span class="order-status">
+                ${escapeHTML(
+                  order.status ||
+                  "Pending"
+                )}
+              </span>
+
+            </div>
+
+            <div class="order-date">
+
+              ${escapeHTML(
+                order.created_at
+                  ? new Date(
+                      order.created_at
+                    ).toLocaleString(
+                      "en-BD"
+                    )
+                  : ""
+              )}
+
+            </div>
+
+            <div class="order-total">
+              Total:
+              ${money(
+                order.total_amount
+              )}
+            </div>
+
+            <div
+              style="
+                margin-top:5px;
+                color:#777;
+                font-size:12px;
+              "
+            >
+              Payment:
+              ${escapeHTML(
+                order.payment_method ||
+                ""
+              )}
+            </div>
 
           </div>
 
-          <div class="order-date">
-            ${escapeHTML(
-              order.created_at
-                ? new Date(order.created_at)
-                  .toLocaleString("en-BD")
-                : ""
-            )}
-          </div>
-
-          <div class="order-total">
-            Total: ${money(order.total_amount)}
-          </div>
-
-          <div
-            style="
-              margin-top:5px;
-              color:#777;
-              font-size:12px;
-            "
-          >
-            Payment:
-            ${escapeHTML(order.payment_method || "")}
-          </div>
-
-        </div>
-
-      `).join("");
+        `)
+        .join("");
 
   }catch(error){
 
     box.innerHTML = `
 
       <div class="no-products">
-        Orders load হয়নি.
+
+        Orders load failed.
+
         <br>
-        ${escapeHTML(error.message || "")}
+
+        ${escapeHTML(
+          error.message ||
+          ""
+        )}
+
       </div>
 
     `;
@@ -4739,20 +5960,28 @@ async function openOrdersOrProfile(){
 
 function openTrack(){
 
-  closeModal("profileModal");
+  closeModal(
+    "profileModal"
+  );
 
-  showModal("trackModal");
+  showModal(
+    "trackModal"
+  );
 
 }
 
 
-async function trackOrder(event){
+async function trackOrder(
+  event
+){
 
   event.preventDefault();
 
   if(!db){
 
-    toast("Supabase connection নেই");
+    toast(
+      "Supabase connection unavailable"
+    );
 
     return;
 
@@ -4785,8 +6014,14 @@ async function trackOrder(event){
       await db
         .from("orders")
         .select("*")
-        .eq("id",orderId)
-        .eq("customer_phone",mobile)
+        .eq(
+          "id",
+          orderId
+        )
+        .eq(
+          "customer_phone",
+          mobile
+        )
         .maybeSingle();
 
     if(error)
@@ -4795,6 +6030,7 @@ async function trackOrder(event){
     if(!data){
 
       result.innerHTML = `
+
         <div
           style="
             background:#fff0f0;
@@ -4803,8 +6039,9 @@ async function trackOrder(event){
             color:#c62828;
           "
         >
-          Order পাওয়া যায়নি।
+          Order not found.
         </div>
+
       `;
 
       return;
@@ -4816,7 +6053,9 @@ async function trackOrder(event){
       <div class="order-card">
 
         <b>
-          Order #${escapeHTML(String(data.id))}
+          Order #${escapeHTML(
+            String(data.id)
+          )}
         </b>
 
         <div
@@ -4824,22 +6063,39 @@ async function trackOrder(event){
             margin-top:8px;
           "
         >
+
           Status:
+
           <strong
             style="color:#FF6B00;"
           >
-            ${escapeHTML(data.status || "Pending")}
+            ${escapeHTML(
+              data.status ||
+              "Pending"
+            )}
           </strong>
+
         </div>
 
         <div style="margin-top:6px;">
+
           Total:
-          <b>${money(data.total_amount)}</b>
+          <b>
+            ${money(
+              data.total_amount
+            )}
+          </b>
+
         </div>
 
         <div style="margin-top:6px;">
+
           Payment:
-          ${escapeHTML(data.payment_method || "")}
+          ${escapeHTML(
+            data.payment_method ||
+            ""
+          )}
+
         </div>
 
       </div>
@@ -4849,14 +6105,19 @@ async function trackOrder(event){
   }catch(error){
 
     result.innerHTML = `
+
       <div
         style="
           color:#c62828;
           padding:10px;
         "
       >
-        ${escapeHTML(error.message || "Error")}
+        ${escapeHTML(
+          error.message ||
+          "Error"
+        )}
       </div>
+
     `;
 
   }
@@ -4870,7 +6131,9 @@ async function trackOrder(event){
 
 function openSavedAddress(){
 
-  closeModal("profileModal");
+  closeModal(
+    "profileModal"
+  );
 
   const input =
     document.getElementById(
@@ -4882,7 +6145,9 @@ function openSavedAddress(){
       "gadhuli_saved_address"
     ) || "";
 
-  showModal("addressModal");
+  showModal(
+    "addressModal"
+  );
 
 }
 
@@ -4899,9 +6164,13 @@ function saveAddress(){
     value
   );
 
-  toast("Address saved ✅");
+  toast(
+    "Address saved ✅"
+  );
 
-  closeModal("addressModal");
+  closeModal(
+    "addressModal"
+  );
 
 }
 
@@ -4912,16 +6181,22 @@ function saveAddress(){
 
 function openReseller(){
 
-  closeModal("profileModal");
+  closeModal(
+    "profileModal"
+  );
 
-  showModal("resellerModal");
+  showModal(
+    "resellerModal"
+  );
 
 }
 
 
 function openLoginFromReseller(){
 
-  closeModal("resellerModal");
+  closeModal(
+    "resellerModal"
+  );
 
   openLogin();
 
@@ -4930,19 +6205,21 @@ function openLoginFromReseller(){
 
 /* =====================================================
    WHATSAPP HELPLINE
-   SEPARATE FROM ORDER SYSTEM
+   ENGLISH MESSAGE
    ===================================================== */
 
 function openWhatsAppHelp(){
 
   const message =
-    "Assalamu Alaikum, Gadhuli website e amar ekta problem hocche. Please help korun.";
+    "Hello, I am facing a problem on the Gadhuli website. Please help me.";
 
   const url =
     "https://wa.me/" +
     WHATSAPP_HELPLINE +
     "?text=" +
-    encodeURIComponent(message);
+    encodeURIComponent(
+      message
+    );
 
   window.open(
     url,
@@ -4953,7 +6230,7 @@ function openWhatsAppHelp(){
 
 
 /* =====================================================
-   BANNER
+   BANNERS
    ===================================================== */
 
 async function loadAdvertisements(){
@@ -4973,27 +6250,19 @@ async function loadAdvertisements(){
 
   try{
 
-    /*
-      Supabase table expected:
-
-      advertisements
-
-      image_url
-      sort_order
-      active
-
-      Admin website থেকে 1-5 image
-      দিলে homepage automatically দেখাবে।
-    */
-
     const {
       data,
       error
     } =
       await db
-        .from("advertisements")
+        .from(
+          "advertisements"
+        )
         .select("*")
-        .eq("active",true)
+        .eq(
+          "active",
+          true
+        )
         .order(
           "sort_order",
           {
@@ -5026,14 +6295,11 @@ async function loadAdvertisements(){
     bannerImages =
       images;
 
+    bannerIndex = 0;
+
     renderBanners();
 
   }catch(error){
-
-    /*
-      advertisements table না থাকলেও
-      product loading বন্ধ হবে না।
-    */
 
     console.warn(
       "Advertisement load skipped:",
@@ -5078,21 +6344,27 @@ function renderBanners(){
   slider.innerHTML =
 
     bannerImages
-      .map((img,index)=>`
+      .map(
+        (img,index)=>`
 
-        <div
-          class="banner-slide ${index===0 ? "active" : ""}"
-        >
-
-          <img
-            src="${escapeHTML(img)}"
-            alt="Gadhuli Banner"
-            onerror="this.parentElement.style.display='none'"
+          <div
+            class="banner-slide ${
+              index===0
+                ? "active"
+                : ""
+            }"
           >
 
-        </div>
+            <img
+              src="${escapeHTML(img)}"
+              alt="Gadhuli Banner"
+              onerror="this.parentElement.style.display='none'"
+            >
 
-      `)
+          </div>
+
+        `
+      )
       .join("") +
 
     `
@@ -5100,28 +6372,42 @@ function renderBanners(){
       ${
         bannerImages.length > 1
           ? `
+
             <div class="banner-dots">
 
               ${
                 bannerImages
-                  .map((_,i)=>`
-                    <div
-                      class="banner-dot ${i===0 ? "active" : ""}"
-                    ></div>
-                  `)
+                  .map(
+                    (_,i)=>`
+
+                      <div
+                        class="banner-dot ${
+                          i===0
+                            ? "active"
+                            : ""
+                        }"
+                      ></div>
+
+                    `
+                  )
                   .join("")
               }
 
             </div>
+
           `
           : ""
       }
 
     `;
 
-  if(bannerImages.length > 1){
+  if(
+    bannerImages.length > 1
+  ){
 
-    clearInterval(bannerTimer);
+    clearInterval(
+      bannerTimer
+    );
 
     bannerTimer =
       setInterval(
@@ -5149,23 +6435,37 @@ function nextBanner(){
   if(!slides.length)
     return;
 
-  slides[bannerIndex]
-    .classList.remove("active");
+  slides[
+    bannerIndex
+  ].classList.remove(
+    "active"
+  );
 
   if(dots[bannerIndex])
-    dots[bannerIndex]
-      .classList.remove("active");
+    dots[
+      bannerIndex
+    ].classList.remove(
+      "active"
+    );
 
   bannerIndex =
-    (bannerIndex + 1) %
+    (
+      bannerIndex + 1
+    ) %
     slides.length;
 
-  slides[bannerIndex]
-    .classList.add("active");
+  slides[
+    bannerIndex
+  ].classList.add(
+    "active"
+  );
 
   if(dots[bannerIndex])
-    dots[bannerIndex]
-      .classList.add("active");
+    dots[
+      bannerIndex
+    ].classList.add(
+      "active"
+    );
 
 }
 
@@ -5186,12 +6486,18 @@ function goHome(){
       ".bottom-nav button"
     )
     .forEach(x=>
-      x.classList.remove("active")
+      x.classList.remove(
+        "active"
+      )
     );
 
   document
-    .getElementById("navHome")
-    ?.classList.add("active");
+    .getElementById(
+      "navHome"
+    )
+    ?.classList.add(
+      "active"
+    );
 
 }
 
@@ -5201,25 +6507,32 @@ function goHome(){
    ===================================================== */
 
 document
-  .querySelectorAll(".modal")
-  .forEach(modal=>{
+  .querySelectorAll(
+    ".modal"
+  )
+  .forEach(
+    modal=>{
 
-    modal.addEventListener(
-      "click",
-      event=>{
+      modal.addEventListener(
+        "click",
+        event=>{
 
-        if(event.target === modal){
+          if(
+            event.target ===
+            modal
+          ){
 
-          modal.classList.remove(
-            "show"
-          );
+            modal.classList.remove(
+              "show"
+            );
+
+          }
 
         }
+      );
 
-      }
-    );
-
-  });
+    }
+  );
 
 
 /* =====================================================
@@ -5244,20 +6557,23 @@ if(db){
 
 
 /* =====================================================
-   INIT
+   INITIALIZE
    ===================================================== */
 
 document.addEventListener(
   "DOMContentLoaded",
-  ()=>{
+  async ()=>{
 
     loadLocalData();
 
     renderSubcategories();
 
-    loadProducts();
+    await Promise.allSettled([
+      loadProducts(),
+      loadAdvertisements()
+    ]);
 
-    loadAdvertisements();
+    hideLoader();
 
   }
 );
