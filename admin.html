@@ -4,10 +4,7 @@
 
 <meta charset="UTF-8">
 
-<meta
-name="viewport"
-content="width=device-width,initial-scale=1.0"
->
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 
 <meta name="theme-color" content="#FF6B00">
 
@@ -28,11 +25,11 @@ padding:0
 --orange-dark:#E65100;
 --orange-light:#FFF3E8;
 --orange-gradient:linear-gradient(135deg,#FF8A00,#FF5A00);
---white:#ffffff;
+--white:#fff;
 --bg:#FFFDF9;
 --text:#171717;
 --muted:#777;
---border:#eeeeee;
+--border:#eee;
 --green:#25D366;
 --red:#e53935;
 --blue:#1677ff;
@@ -47,10 +44,7 @@ line-height:1.5;
 padding-bottom:30px
 }
 
-button,
-input,
-select,
-textarea{
+button,input,select,textarea{
 font-family:inherit
 }
 
@@ -62,13 +56,9 @@ img{
 max-width:100%
 }
 
-/* =========================
-HEADER
-========================= */
-
 header{
 background:var(--orange-gradient);
-color:white;
+color:#fff;
 padding:14px 15px;
 box-shadow:0 3px 12px rgba(0,0,0,.12);
 position:sticky;
@@ -95,7 +85,7 @@ gap:12px
 width:115px;
 height:45px;
 object-fit:contain;
-background:white;
+background:#fff;
 border-radius:9px;
 padding:3px
 }
@@ -110,10 +100,6 @@ font-size:12px;
 opacity:.9
 }
 
-/* =========================
-CONTAINER
-========================= */
-
 .container{
 max-width:1250px;
 margin:20px auto;
@@ -121,7 +107,7 @@ padding:0 15px
 }
 
 .card{
-background:white;
+background:#fff;
 border:1px solid var(--border);
 border-radius:16px;
 padding:18px;
@@ -138,10 +124,6 @@ font-size:20px
 .card h3{
 margin-bottom:10px
 }
-
-/* =========================
-BUTTONS
-========================= */
 
 .btn{
 border:0;
@@ -160,12 +142,12 @@ opacity:.92
 
 .btn-orange{
 background:var(--orange);
-color:white
+color:#fff
 }
 
 .btn-orange-dark{
 background:var(--orange-dark);
-color:white
+color:#fff
 }
 
 .btn-light{
@@ -176,22 +158,22 @@ border:1px solid #ffd5b5
 
 .btn-danger{
 background:var(--red);
-color:white
+color:#fff
 }
 
 .btn-green{
 background:var(--green);
-color:white
+color:#fff
 }
 
 .btn-blue{
 background:var(--blue);
-color:white
+color:#fff
 }
 
 .btn-gray{
 background:#666;
-color:white
+color:#fff
 }
 
 .full{
@@ -201,10 +183,6 @@ width:100%
 .hidden{
 display:none!important
 }
-
-/* =========================
-LOGIN
-========================= */
 
 .login-box{
 max-width:430px;
@@ -226,10 +204,6 @@ margin:0 auto 20px;
 border-radius:10px
 }
 
-/* =========================
-FORM
-========================= */
-
 .form-group{
 margin-bottom:13px
 }
@@ -241,15 +215,13 @@ color:#444;
 margin-bottom:6px
 }
 
-input,
-select,
-textarea{
+input,select,textarea{
 width:100%;
 padding:11px 12px;
 border:1px solid #ddd;
 border-radius:9px;
 outline:none;
-background:white;
+background:#fff;
 font-size:14px
 }
 
@@ -264,9 +236,35 @@ input[type="checkbox"]{
 width:auto
 }
 
-/* =========================
-NAV
-========================= */
+/* PASSWORD EYE */
+
+.password-wrap{
+position:relative;
+width:100%
+}
+
+.password-wrap input{
+padding-right:52px
+}
+
+.password-eye{
+position:absolute;
+right:5px;
+top:50%;
+transform:translateY(-50%);
+width:42px;
+height:38px;
+border:0;
+background:transparent;
+border-radius:8px;
+font-size:20px;
+cursor:pointer;
+margin:0
+}
+
+.password-eye:hover{
+background:var(--orange-light)
+}
 
 .admin-nav{
 display:grid;
@@ -279,10 +277,6 @@ margin:0;
 min-height:44px
 }
 
-/* =========================
-STATS
-========================= */
-
 .stat-grid{
 display:grid;
 grid-template-columns:repeat(4,1fr);
@@ -291,7 +285,7 @@ margin-bottom:18px
 }
 
 .stat{
-background:white;
+background:#fff;
 border:1px solid var(--border);
 border-radius:15px;
 padding:18px;
@@ -316,16 +310,12 @@ color:var(--orange-dark);
 margin-top:4px
 }
 
-/* =========================
-CARDS
-========================= */
-
 .order-card,
 .reseller-card,
 .review-card,
 .product-card,
 .banner-card{
-background:white;
+background:#fff;
 border:1px solid var(--border);
 border-radius:14px;
 padding:15px;
@@ -407,10 +397,6 @@ padding:40px 15px;
 color:#888
 }
 
-/* =========================
-PRODUCTS
-========================= */
-
 .product-grid{
 display:grid;
 grid-template-columns:repeat(3,1fr);
@@ -442,10 +428,6 @@ font-size:12px;
 color:#777
 }
 
-/* =========================
-IMAGE PREVIEW
-========================= */
-
 .image-preview{
 display:flex;
 gap:8px;
@@ -460,10 +442,6 @@ object-fit:cover;
 border-radius:9px;
 border:1px solid #ddd
 }
-
-/* =========================
-BANNERS
-========================= */
 
 .banner-grid{
 display:grid;
@@ -503,10 +481,6 @@ font-size:12px;
 font-weight:bold
 }
 
-/* =========================
-SUPPORT
-========================= */
-
 .support-box{
 background:#f0fff5;
 border:1px solid #bce8ca;
@@ -521,31 +495,12 @@ color:#128c3d;
 margin:8px 0
 }
 
-/* =========================
-FILTER
-========================= */
-
-.filter-grid{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:10px;
-margin-bottom:15px
-}
-
-/* =========================
-FOOTER
-========================= */
-
 footer{
 text-align:center;
 padding:25px 15px;
 color:#777;
 font-size:13px
 }
-
-/* =========================
-LOADING
-========================= */
 
 .loading{
 padding:35px;
@@ -572,9 +527,9 @@ transform:rotate(360deg)
 }
 }
 
-/* =========================
-RESPONSIVE
-========================= */
+.mobile-help{
+display:none
+}
 
 @media(max-width:1050px){
 
@@ -595,10 +550,6 @@ grid-template-columns:repeat(2,1fr)
 }
 
 .banner-grid{
-grid-template-columns:1fr
-}
-
-.filter-grid{
 grid-template-columns:1fr
 }
 
@@ -647,18 +598,6 @@ padding:14px 8px
 font-size:22px
 }
 
-}
-
-/* =========================
-MOBILE TOP ACTION
-========================= */
-
-.mobile-help{
-display:none
-}
-
-@media(max-width:600px){
-
 .mobile-help{
 display:block;
 margin-bottom:15px
@@ -672,20 +611,13 @@ margin-bottom:15px
 
 <body>
 
-<!-- =========================
-HEADER
-========================= -->
-
 <header>
 
 <div class="header-inner">
 
 <div class="header-brand">
 
-<img
-src="logo.png"
-alt="Gadhuli Logo"
->
+<img src="logo.png" alt="Gadhuli Logo">
 
 <div>
 
@@ -701,10 +633,7 @@ Premium Marketplace Management
 
 </div>
 
-<button
-class="btn btn-light"
-onclick="goHome()"
->
+<button class="btn btn-light" onclick="goHome()">
 🏠 Website
 </button>
 
@@ -713,14 +642,9 @@ onclick="goHome()"
 </header>
 
 
-<!-- =========================
-LOGIN
-========================= -->
+<!-- LOGIN -->
 
-<div
-id="loginSection"
-class="container"
->
+<div id="loginSection" class="container">
 
 <div class="card login-box">
 
@@ -744,6 +668,7 @@ Email
 id="loginEmail"
 type="email"
 placeholder="Admin Email"
+autocomplete="email"
 >
 
 </div>
@@ -754,11 +679,26 @@ placeholder="Admin Email"
 Password
 </label>
 
+<div class="password-wrap">
+
 <input
 id="loginPassword"
 type="password"
 placeholder="Admin Password"
+autocomplete="current-password"
 >
+
+<button
+type="button"
+class="password-eye"
+id="passwordEye"
+onclick="togglePassword()"
+aria-label="Show password"
+>
+👁️
+</button>
+
+</div>
 
 </div>
 
@@ -779,14 +719,9 @@ style="margin-top:12px;text-align:center"
 </div>
 
 
-<!-- =========================
-ADMIN PANEL
-========================= -->
+<!-- ADMIN PANEL -->
 
-<div
-id="adminPanel"
-class="container hidden"
->
+<div id="adminPanel" class="container hidden">
 
 <!-- STATS -->
 
@@ -794,18 +729,13 @@ class="container hidden"
 
 <div class="stat">
 
-<div class="stat-icon">
-🛍️
-</div>
+<div class="stat-icon">🛍️</div>
 
 <div class="stat-label">
 Products
 </div>
 
-<div
-class="stat-number"
-id="statProducts"
->
+<div class="stat-number" id="statProducts">
 0
 </div>
 
@@ -814,18 +744,13 @@ id="statProducts"
 
 <div class="stat">
 
-<div class="stat-icon">
-📦
-</div>
+<div class="stat-icon">📦</div>
 
 <div class="stat-label">
 Orders
 </div>
 
-<div
-class="stat-number"
-id="statOrders"
->
+<div class="stat-number" id="statOrders">
 0
 </div>
 
@@ -834,18 +759,13 @@ id="statOrders"
 
 <div class="stat">
 
-<div class="stat-icon">
-⏳
-</div>
+<div class="stat-icon">⏳</div>
 
 <div class="stat-label">
 Pending Orders
 </div>
 
-<div
-class="stat-number"
-id="statPending"
->
+<div class="stat-number" id="statPending">
 0
 </div>
 
@@ -854,18 +774,13 @@ id="statPending"
 
 <div class="stat">
 
-<div class="stat-icon">
-🤝
-</div>
+<div class="stat-icon">🤝</div>
 
 <div class="stat-label">
 Reseller Requests
 </div>
 
-<div
-class="stat-number"
-id="statResellers"
->
+<div class="stat-number" id="statResellers">
 0
 </div>
 
@@ -940,7 +855,7 @@ onclick="refreshAdmin()"
 </div>
 
 
-<!-- MOBILE SUPPORT -->
+<!-- SUPPORT -->
 
 <div class="mobile-help">
 
@@ -953,8 +868,6 @@ onclick="openWhatsApp()"
 
 </div>
 
-
-<!-- SUPPORT -->
 
 <div class="card">
 
@@ -1003,8 +916,6 @@ Loading...
 </div>
 
 
-<!-- LOGOUT -->
-
 <br>
 
 <button
@@ -1020,7 +931,9 @@ onclick="adminLogout()"
 <footer>
 
 <b>Gadhuli Admin Panel</b>
+
 <br><br>
+
 © 2026 Gadhuli. All Rights Reserved.
 
 </footer>
@@ -1029,7 +942,7 @@ onclick="adminLogout()"
 <script>
 
 /* =====================================================
-   SUPABASE CONNECTION
+   SUPABASE
 ===================================================== */
 
 const SUPABASE_URL =
@@ -1038,11 +951,11 @@ const SUPABASE_URL =
 const SUPABASE_KEY =
 "sb_publishable_ZhmwEV_6UngmzzxcJmETgw_smrA7qDL";
 
-let db=null;
+let db = null;
 
 try{
 
-db=
+db =
 window.supabase.createClient(
 SUPABASE_URL,
 SUPABASE_KEY
@@ -1059,7 +972,7 @@ error
 
 
 /* =====================================================
-   ADMIN SETTINGS
+   SETTINGS
 ===================================================== */
 
 const ADMIN_EMAIL =
@@ -1068,17 +981,16 @@ const ADMIN_EMAIL =
 const WHATSAPP_NUMBER =
 "8801333088194";
 
+let currentUser = null;
 
-let currentUser=null;
-
-let currentSection="orders";
+let currentSection = "orders";
 
 
 /* =====================================================
    CATEGORY DATA
 ===================================================== */
 
-const categories={
+const categories = {
 
 "Men's Fashion":[
 "T-Shirt",
@@ -1170,75 +1082,44 @@ const categories={
    SIZE DATA
 ===================================================== */
 
-const sizeData={
+const sizeData = {
 
-"T-Shirt":[
-"S","M","L","XL","2XL","4XL"
-],
+"T-Shirt":["S","M","L","XL","2XL","4XL"],
 
-"Polo T-Shirt":[
-"S","M","L","XL","2XL","4XL"
-],
+"Polo T-Shirt":["S","M","L","XL","2XL","4XL"],
 
-"Shirt":[
-"S","M","L","XL","2XL","4XL"
-],
+"Shirt":["S","M","L","XL","2XL","4XL"],
 
-"Hoodie & Sweatshirt":[
-"S","M","L","XL","2XL","4XL"
-],
+"Hoodie & Sweatshirt":["S","M","L","XL","2XL","4XL"],
 
-"Jacket":[
-"S","M","L","XL","2XL","4XL"
-],
+"Jacket":["S","M","L","XL","2XL","4XL"],
 
 "Panjabi":[
-"28","30","32","34","36","38","40","42","44","46","48"
+"28","30","32","34","36","38",
+"40","42","44","46","48"
 ],
 
-"Pants":[
-"28","30","32","34","36","38","40"
-],
+"Pants":["28","30","32","34","36","38","40"],
 
-"Jeans":[
-"28","30","32","34","36","38","40"
-],
+"Jeans":["28","30","32","34","36","38","40"],
 
-"Shorts":[
-"28","30","32","34","36","38","40"
-],
+"Shorts":["28","30","32","34","36","38","40"],
 
-"Saree":[
-"Free Size"
-],
+"Saree":["Free Size"],
 
-"Hijab":[
-"Free Size"
-],
+"Hijab":["Free Size"],
 
-"Three Piece":[
-"S","M","L","XL","2XL"
-],
+"Three Piece":["S","M","L","XL","2XL"],
 
-"Kurti":[
-"S","M","L","XL","2XL"
-],
+"Kurti":["S","M","L","XL","2XL"],
 
-"Tops":[
-"S","M","L","XL","2XL"
-],
+"Tops":["S","M","L","XL","2XL"],
 
-"Gown":[
-"S","M","L","XL","2XL"
-],
+"Gown":["S","M","L","XL","2XL"],
 
-"Abaya":[
-"S","M","L","XL","2XL"
-],
+"Abaya":["S","M","L","XL","2XL"],
 
-"Women's Pants":[
-"28","30","32","34","36","38"
-]
+"Women's Pants":["28","30","32","34","36","38"]
 
 };
 
@@ -1249,7 +1130,7 @@ const sizeData={
 
 function esc(v){
 
-return String(v??"")
+return String(v ?? "")
 .replaceAll("&","&amp;")
 .replaceAll("<","&lt;")
 .replaceAll(">","&gt;")
@@ -1261,7 +1142,7 @@ return String(v??"")
 
 function money(v){
 
-return Number(v||0)
+return Number(v || 0)
 .toLocaleString(
 "en-US",
 {
@@ -1287,7 +1168,7 @@ timeStyle:"short"
 
 }catch(e){
 
-return String(v||"—");
+return String(v || "—");
 
 }
 
@@ -1296,7 +1177,54 @@ return String(v||"—");
 
 function goHome(){
 
-window.location.href="index.html";
+window.location.href =
+"index.html";
+
+}
+
+
+/* =====================================================
+   PASSWORD SHOW / HIDE
+===================================================== */
+
+function togglePassword(){
+
+const input =
+document.getElementById(
+"loginPassword"
+);
+
+const eye =
+document.getElementById(
+"passwordEye"
+);
+
+if(!input || !eye)
+return;
+
+if(input.type === "password"){
+
+input.type = "text";
+
+eye.textContent = "🙈";
+
+eye.setAttribute(
+"aria-label",
+"Hide password"
+);
+
+}else{
+
+input.type = "password";
+
+eye.textContent = "👁️";
+
+eye.setAttribute(
+"aria-label",
+"Show password"
+);
+
+}
 
 }
 
@@ -1317,18 +1245,18 @@ return;
 
 }
 
-let email=
+const email =
 document.getElementById(
 "loginEmail"
 ).value.trim();
 
-let password=
+const password =
 document.getElementById(
 "loginPassword"
 ).value;
 
 
-if(!email||!password){
+if(!email || !password){
 
 alert(
 "Email এবং Password দিন।"
@@ -1339,7 +1267,18 @@ return;
 }
 
 
-let r=
+const message =
+document.getElementById(
+"loginMessage"
+);
+
+message.innerHTML =
+'<span style="color:#FF6B00;font-weight:bold">⏳ Login হচ্ছে...</span>';
+
+
+try{
+
+const r =
 await db.auth.signInWithPassword({
 
 email,
@@ -1350,9 +1289,7 @@ password
 
 if(r.error){
 
-document.getElementById(
-"loginMessage"
-).innerHTML=
+message.innerHTML =
 '<span style="color:#d32f2f">'+
 esc(r.error.message)+
 '</span>';
@@ -1362,30 +1299,32 @@ return;
 }
 
 
-currentUser=
+currentUser =
 r.data.user;
 
 
 if(
-!currentUser.email||
-currentUser.email.toLowerCase()!==
+!currentUser ||
+!currentUser.email ||
+currentUser.email.toLowerCase() !==
 ADMIN_EMAIL.toLowerCase()
 ){
 
 await db.auth.signOut();
 
-currentUser=null;
+currentUser = null;
 
-alert(
-"এই Email-এর Admin access নেই।"
-);
+message.innerHTML =
+'<span style="color:#d32f2f">এই Email-এর Admin access নেই।</span>';
 
 return;
 
 }
 
 
-let admin=
+/* CHECK PROFILE */
+
+const admin =
 await isAdmin();
 
 
@@ -1393,24 +1332,42 @@ if(!admin){
 
 await db.auth.signOut();
 
-currentUser=null;
+currentUser = null;
 
-alert(
-"আপনার profile-এ Admin role নেই।"
-);
+message.innerHTML =
+'<span style="color:#d32f2f">'+
+"আপনার profile-এ Admin role নেই।"+
+'</span>';
 
 return;
 
 }
 
 
+message.innerHTML =
+'<span style="color:#138a3c;font-weight:bold">'+
+"Admin Login Successful ✅"+
+'</span>';
+
+
 showAdmin();
+
+}catch(error){
+
+console.error(error);
+
+message.innerHTML =
+'<span style="color:#d32f2f">'+
+esc(error.message || String(error))+
+'</span>';
+
+}
 
 }
 
 
 /* =====================================================
-   CHECK ADMIN
+   CHECK ADMIN ROLE
 ===================================================== */
 
 async function isAdmin(){
@@ -1419,10 +1376,12 @@ if(!currentUser)
 return false;
 
 
-let r=
+try{
+
+const r =
 await db
 .from("profiles")
-.select("role")
+.select("id,role")
 .eq(
 "id",
 currentUser.id
@@ -1433,7 +1392,7 @@ currentUser.id
 if(r.error){
 
 console.error(
-"Admin role check:",
+"Admin role check error:",
 r.error
 );
 
@@ -1442,7 +1401,32 @@ return false;
 }
 
 
-return r.data?.role==="admin";
+if(!r.data){
+
+console.error(
+"No profile found for:",
+currentUser.id
+);
+
+return false;
+
+}
+
+
+return String(r.data.role || "")
+.toLowerCase() ===
+"admin";
+
+}catch(error){
+
+console.error(
+"Admin role check exception:",
+error
+);
+
+return false;
+
+}
 
 }
 
@@ -1469,7 +1453,7 @@ showSection("orders");
 
 
 /* =====================================================
-   AUTO SESSION
+   SESSION
 ===================================================== */
 
 async function checkSession(){
@@ -1478,7 +1462,9 @@ if(!db)
 return;
 
 
-let s=
+try{
+
+const s =
 await db.auth.getSession();
 
 
@@ -1491,9 +1477,8 @@ return;
 }
 
 
-currentUser=
-s.data.session?.user||
-null;
+currentUser =
+s.data.session?.user || null;
 
 
 if(!currentUser)
@@ -1501,23 +1486,42 @@ return;
 
 
 if(
-!currentUser.email||
-currentUser.email.toLowerCase()!==
+!currentUser.email ||
+currentUser.email.toLowerCase() !==
 ADMIN_EMAIL.toLowerCase()
 ){
 
 await db.auth.signOut();
 
-currentUser=null;
+currentUser = null;
 
 return;
 
 }
 
 
-if(await isAdmin()){
+const admin =
+await isAdmin();
+
+
+if(admin){
 
 showAdmin();
+
+}else{
+
+console.log(
+"Logged in but profile role is not admin."
+);
+
+}
+
+}catch(error){
+
+console.error(
+"Session check:",
+error
+);
 
 }
 
@@ -1533,7 +1537,7 @@ async function adminLogout(){
 if(db)
 await db.auth.signOut();
 
-currentUser=null;
+currentUser = null;
 
 document
 .getElementById("adminPanel")
@@ -1542,6 +1546,10 @@ document
 document
 .getElementById("loginSection")
 .classList.remove("hidden");
+
+document
+.getElementById("loginPassword")
+.value = "";
 
 }
 
@@ -1552,55 +1560,58 @@ document
 
 async function showSection(section){
 
-currentSection=section;
+currentSection = section;
 
 updateNav(section);
 
-
-let box=
+const box =
 document.getElementById(
 "sectionContent"
 );
 
-box.innerHTML=
-`
+box.innerHTML = `
 <div class="loading">
 <span class="spinner"></span>
 Loading...
 </div>
 `;
 
-
 try{
 
-if(section==="orders")
+if(section === "orders")
 await renderOrders();
 
-else if(section==="products")
+else if(section === "products")
 await renderProducts();
 
-else if(section==="addProduct")
+else if(section === "addProduct")
 renderAddProduct();
 
-else if(section==="banners")
+else if(section === "banners")
 await renderBanners();
 
-else if(section==="resellers")
+else if(section === "resellers")
 await renderResellers();
 
-else if(section==="reviews")
+else if(section === "reviews")
 await renderReviews();
 
 }catch(error){
 
 console.error(error);
 
-box.innerHTML=
-`
+box.innerHTML = `
 <div class="empty">
+
 ❌ Something went wrong.
+
 <br><br>
-${esc(error.message||String(error))}
+
+${esc(
+error.message ||
+String(error)
+)}
+
 </div>
 `;
 
@@ -1610,12 +1621,12 @@ ${esc(error.message||String(error))}
 
 
 /* =====================================================
-   NAV COLOR
+   NAV
 ===================================================== */
 
 function updateNav(section){
 
-const ids=[
+const ids = [
 "navOrders",
 "navProducts",
 "navAdd",
@@ -1626,32 +1637,35 @@ const ids=[
 
 ids.forEach(id=>{
 
-const el=
+const el =
 document.getElementById(id);
 
 if(el)
-el.className=
+el.className =
 "btn btn-light";
 
 });
 
 
-const map={
+const map = {
+
 orders:"navOrders",
 products:"navProducts",
 addProduct:"navAdd",
 banners:"navBanners",
 resellers:"navResellers",
 reviews:"navReviews"
+
 };
 
-const active=
+
+const active =
 document.getElementById(
 map[section]
 );
 
 if(active)
-active.className=
+active.className =
 "btn btn-orange";
 
 }
@@ -1682,7 +1696,7 @@ if(!db)
 return;
 
 
-let p=
+const p =
 await db
 .from("products")
 .select(
@@ -1694,7 +1708,7 @@ head:true
 );
 
 
-let o=
+const o =
 await db
 .from("orders")
 .select(
@@ -1702,7 +1716,7 @@ await db
 );
 
 
-let r=
+const r =
 await db
 .from("resellers")
 .select(
@@ -1712,36 +1726,36 @@ await db
 
 document.getElementById(
 "statProducts"
-).textContent=
-p.count||0;
+).textContent =
+p.count || 0;
 
 
-let orders=
-o.data||[];
+const orders =
+o.data || [];
 
 
 document.getElementById(
 "statOrders"
-).textContent=
+).textContent =
 orders.length;
 
 
 document.getElementById(
 "statPending"
-).textContent=
+).textContent =
 orders.filter(
-x=>
-(x.order_status||"Pending")
-==="Pending"
+x =>
+(x.order_status || "Pending") ===
+"Pending"
 ).length;
 
 
 document.getElementById(
 "statResellers"
-).textContent=
-(r.data||[])
+).textContent =
+(r.data || [])
 .filter(
-x=>x.status==="Pending"
+x => x.status === "Pending"
 ).length;
 
 }
@@ -1753,13 +1767,13 @@ x=>x.status==="Pending"
 
 async function renderOrders(){
 
-let box=
+const box =
 document.getElementById(
 "sectionContent"
 );
 
 
-let r=
+const r =
 await db
 .from("orders")
 .select("*")
@@ -1773,8 +1787,7 @@ ascending:false
 
 if(r.error){
 
-box.innerHTML=
-`
+box.innerHTML = `
 <div class="empty">
 ❌ ${esc(r.error.message)}
 </div>
@@ -1787,8 +1800,7 @@ return;
 
 if(!r.data?.length){
 
-box.innerHTML=
-`
+box.innerHTML = `
 <div class="empty">
 📦 এখনো কোনো Order নেই।
 </div>
@@ -1799,14 +1811,12 @@ return;
 }
 
 
-let html="";
+let html = "";
 
 
-for(
-const o of r.data
-){
+for(const o of r.data){
 
-let items=
+const items =
 await db
 .from("order_items")
 .select("*")
@@ -1816,7 +1826,7 @@ o.id
 );
 
 
-html+=`
+html += `
 
 <div class="order-card">
 
@@ -1837,7 +1847,10 @@ ${formatDate(o.created_at)}
 </div>
 
 <span class="status">
-${esc(o.order_status||"Pending")}
+${esc(
+o.order_status ||
+"Pending"
+)}
 </span>
 
 </div>
@@ -1870,23 +1883,46 @@ ${esc(o.customer_email)}
 
 <p>
 <b>Address:</b>
-${esc(o.customer_receive_place||o.address||"—")},
-${esc(o.customer_thana||o.thana||"—")},
-${esc(o.customer_district||o.district||"—")}
+${esc(
+o.customer_receive_place ||
+o.address ||
+"—"
+)},
+${esc(
+o.customer_thana ||
+o.thana ||
+"—"
+)},
+${esc(
+o.customer_district ||
+o.district ||
+"—"
+)}
 </p>
 
 <p>
 <b>Delivery:</b>
-${esc(o.delivery_area||"—")}
+${esc(
+o.delivery_area ||
+"—"
+)}
 —
-৳${money(o.delivery_charge)}
+৳${money(
+o.delivery_charge
+)}
 </p>
 
 <p>
 <b>Payment:</b>
-${esc(o.payment_method||"—")}
+${esc(
+o.payment_method ||
+"—"
+)}
 —
-${esc(o.payment_status||"Pending")}
+${esc(
+o.payment_status ||
+"Pending"
+)}
 </p>
 
 ${
@@ -1925,12 +1961,15 @@ ${esc(o.reseller_code)}
 </b>
 
 ${
-(items.data||[])
+(items.data || [])
 .map(i=>`
 
 <div class="item-row">
 
-${esc(i.product_name||"Product")}
+${esc(
+i.product_name ||
+"Product"
+)}
 
 ${
 i.size
@@ -1940,28 +1979,21 @@ i.size
 ""
 }
 
-× ${Number(i.quantity||1)}
+× ${Number(
+i.quantity || 1
+)}
 
-${
-i.line_total!=null
-?
-`
-=
-<b>
-৳${money(i.line_total)}
-</b>
-`
-:
-`
 =
 <b>
 ৳${money(
-Number(i.price||0)*
-Number(i.quantity||1)
+i.line_total != null
+?
+i.line_total
+:
+Number(i.price || 0) *
+Number(i.quantity || 1)
 )}
 </b>
-`
-}
 
 </div>
 
@@ -1975,7 +2007,10 @@ Number(i.quantity||1)
 <h3 style="color:var(--orange-dark)">
 
 Total:
-৳${money(o.total??o.total_amount)}
+৳${money(
+o.total ??
+o.total_amount
+)}
 
 </h3>
 
@@ -1999,7 +2034,12 @@ ${
 
 <option
 value="${esc(s)}"
-${s===(o.order_status||"Pending")?"selected":""}
+${s ===
+(o.order_status || "Pending")
+?
+"selected"
+:
+""}
 >
 ${s}
 </option>
@@ -2026,7 +2066,12 @@ ${
 
 <option
 value="${esc(s)}"
-${s===(o.payment_status||"Pending")?"selected":""}
+${s ===
+(o.payment_status || "Pending")
+?
+"selected"
+:
+""}
 >
 Payment: ${s}
 </option>
@@ -2040,7 +2085,10 @@ Payment: ${s}
 
 <button
 class="btn btn-green"
-onclick="contactCustomer('${esc(o.customer_phone||"")}','${esc(o.customer_name||"Customer")}')"
+onclick="contactCustomer(
+'${esc(o.customer_phone || "")}',
+'${esc(o.customer_name || "Customer")}'
+)"
 >
 💬 WhatsApp Customer
 </button>
@@ -2054,13 +2102,13 @@ onclick="contactCustomer('${esc(o.customer_phone||"")}','${esc(o.customer_name||
 }
 
 
-box.innerHTML=html;
+box.innerHTML = html;
 
 }
 
 
 /* =====================================================
-   UPDATE ORDER STATUS
+   ORDER STATUS
 ===================================================== */
 
 async function updateOrderStatus(id,status){
@@ -2071,7 +2119,7 @@ return alert(
 );
 
 
-let old=
+const old =
 await db
 .from("orders")
 .select("*")
@@ -2079,7 +2127,7 @@ await db
 .maybeSingle();
 
 
-if(old.error||!old.data){
+if(old.error || !old.data){
 
 alert(
 "Order পাওয়া যায়নি।"
@@ -2090,13 +2138,16 @@ return;
 }
 
 
-let r=
+const r =
 await db
 .from("orders")
 .update({
 order_status:status
 })
-.eq("id",id);
+.eq(
+"id",
+id
+);
 
 
 if(r.error){
@@ -2111,7 +2162,7 @@ return;
 }
 
 
-let verify=
+const verify =
 await db
 .from("orders")
 .select(
@@ -2122,8 +2173,8 @@ await db
 
 
 if(
-verify.error||
-verify.data?.order_status!==status
+verify.error ||
+verify.data?.order_status !== status
 ){
 
 alert(
@@ -2136,8 +2187,8 @@ return;
 
 
 if(
-status==="Delivered"&&
-old.data.order_status!=="Delivered"&&
+status === "Delivered" &&
+old.data.order_status !== "Delivered" &&
 old.data.reseller_id
 ){
 
@@ -2151,7 +2202,6 @@ old.data
 alert(
 "Order status update হয়েছে ✅"
 );
-
 
 await loadStats();
 
@@ -2172,13 +2222,16 @@ return alert(
 );
 
 
-let r=
+const r =
 await db
 .from("orders")
 .update({
 payment_status:status
 })
-.eq("id",id);
+.eq(
+"id",
+id
+);
 
 
 if(r.error){
@@ -2197,7 +2250,6 @@ alert(
 "Payment status update হয়েছে ✅"
 );
 
-
 await renderOrders();
 
 }
@@ -2209,13 +2261,13 @@ await renderOrders();
 
 async function renderProducts(){
 
-let box=
+const box =
 document.getElementById(
 "sectionContent"
 );
 
 
-let r=
+const r =
 await db
 .from("products")
 .select("*")
@@ -2229,8 +2281,7 @@ ascending:false
 
 if(r.error){
 
-box.innerHTML=
-`
+box.innerHTML = `
 <div class="empty">
 ❌ ${esc(r.error.message)}
 </div>
@@ -2243,17 +2294,20 @@ return;
 
 if(!r.data?.length){
 
-box.innerHTML=
-`
+box.innerHTML = `
 <div class="empty">
+
 🛍️ কোনো Product নেই।
+
 <br><br>
+
 <button
 class="btn btn-orange"
 onclick="showSection('addProduct')"
 >
 ➕ Add First Product
 </button>
+
 </div>
 `;
 
@@ -2262,7 +2316,7 @@ return;
 }
 
 
-box.innerHTML=`
+box.innerHTML = `
 
 <div class="notice">
 
@@ -2282,35 +2336,35 @@ Product image সর্বোচ্চ ৫টি।
 ${
 r.data.map(p=>{
 
-let img="";
+let img = "";
 
 
 if(Array.isArray(p.images))
-img=p.images[0];
+img = p.images[0];
 
 else if(
-typeof p.images==="string"
+typeof p.images === "string"
 ){
 
 try{
 
-let x=
+const x =
 JSON.parse(p.images);
 
 if(Array.isArray(x))
-img=x[0];
+img = x[0];
 
 }catch(e){
 
-img=p.images;
+img = p.images;
 
 }
 
 }
 
 
-img=
-img||
+img =
+img ||
 "https://via.placeholder.com/500x500?text=Gadhuli";
 
 
@@ -2338,12 +2392,12 @@ ${esc(p.name)}
 
 <div class="product-meta">
 
-${esc(p.category||"")}
+${esc(p.category || "")}
 
 ${
 p.subcategory
 ?
-" • "+esc(p.subcategory)
+" • " + esc(p.subcategory)
 :
 ""
 }
@@ -2361,9 +2415,18 @@ color:#777;
 margin-top:7px;
 ">
 ${esc(
-String(p.description).substring(0,100)
+String(p.description).substring(
+0,
+100
+)
 )}
-${String(p.description).length>100?"...":""}
+${
+String(p.description).length > 100
+?
+"..."
+:
+""
+}
 </p>
 `
 :
@@ -2410,13 +2473,13 @@ onclick="deleteProduct('${esc(p.id)}')"
 
 function renderAddProduct(){
 
-let box=
+const box =
 document.getElementById(
 "sectionContent"
 );
 
 
-box.innerHTML=`
+box.innerHTML = `
 
 <div class="card">
 
@@ -2428,7 +2491,9 @@ box.innerHTML=`
 <div class="notice">
 
 📌 Product add করার সময় Category এবং Subcategory ঠিকভাবে select করুন।
+
 <br>
+
 📌 সর্বোচ্চ ৫টি ছবি upload করা যাবে।
 
 </div>
@@ -2596,19 +2661,19 @@ onclick="saveProduct()"
 
 function updateSubcategories(){
 
-let category=
+const category =
 document.getElementById(
 "productCategory"
 ).value;
 
 
-let box=
+const box =
 document.getElementById(
 "productSubcategory"
 );
 
 
-box.innerHTML=
+box.innerHTML =
 '<option value="">Select Subcategory</option>';
 
 
@@ -2621,15 +2686,17 @@ return;
 }
 
 
-(categories[category]||[])
+(categories[category] || [])
 .forEach(s=>{
 
-let o=
-document.createElement("option");
+const o =
+document.createElement(
+"option"
+);
 
-o.value=s;
+o.value = s;
 
-o.textContent=s;
+o.textContent = s;
 
 box.appendChild(o);
 
@@ -2647,13 +2714,13 @@ updateSizes();
 
 function updateSizes(){
 
-let sub=
+const sub =
 document.getElementById(
 "productSubcategory"
 ).value;
 
 
-let box=
+const box =
 document.getElementById(
 "sizeOptions"
 );
@@ -2661,7 +2728,7 @@ document.getElementById(
 
 if(!sub){
 
-box.innerHTML=
+box.innerHTML =
 "Subcategory select করুন।";
 
 return;
@@ -2669,14 +2736,13 @@ return;
 }
 
 
-let sizes=
-sizeData[sub]||[];
+const sizes =
+sizeData[sub] || [];
 
 
 if(!sizes.length){
 
-box.innerHTML=
-`
+box.innerHTML = `
 <small>
 এই Product-এর জন্য Size প্রয়োজন নেই।
 </small>
@@ -2687,7 +2753,7 @@ return;
 }
 
 
-box.innerHTML=
+box.innerHTML =
 sizes.map(s=>`
 
 <label
@@ -2725,34 +2791,34 @@ ${esc(s)}
 
 function previewImages(){
 
-let input=
+const input =
 document.getElementById(
 "productImages"
 );
 
 
-let box=
+const box =
 document.getElementById(
 "imagePreview"
 );
 
 
-box.innerHTML="";
+box.innerHTML = "";
 
 
-let files=
+const files =
 Array.from(
-input.files||[]
+input.files || []
 );
 
 
-if(files.length>5){
+if(files.length > 5){
 
 alert(
 "Maximum 5টি ছবি select করা যাবে।"
 );
 
-input.value="";
+input.value = "";
 
 return;
 
@@ -2765,16 +2831,16 @@ if(!file.type.startsWith("image/"))
 return;
 
 
-let url=
+const url =
 URL.createObjectURL(file);
 
 
-let img=
+const img =
 document.createElement("img");
 
-img.src=url;
+img.src = url;
 
-img.onload=()=>{
+img.onload = ()=>{
 URL.revokeObjectURL(url)
 };
 
@@ -2797,13 +2863,13 @@ return alert(
 );
 
 
-let name=
+const name =
 document.getElementById(
 "productName"
 ).value.trim();
 
 
-let price=
+const price =
 Number(
 document.getElementById(
 "productPrice"
@@ -2811,40 +2877,40 @@ document.getElementById(
 );
 
 
-let category=
+const category =
 document.getElementById(
 "productCategory"
 ).value;
 
 
-let subcategory=
+const subcategory =
 document.getElementById(
 "productSubcategory"
 ).value;
 
 
-let description=
+const description =
 document.getElementById(
 "productDescription"
 ).value.trim();
 
 
-let input=
+const input =
 document.getElementById(
 "productImages"
 );
 
 
-let files=
+const files =
 Array.from(
-input.files||[]
+input.files || []
 );
 
 
 if(
-!name||
-price<=0||
-!category||
+!name ||
+price <= 0 ||
+!category ||
 !files.length
 ){
 
@@ -2857,7 +2923,7 @@ return;
 }
 
 
-if(files.length>5){
+if(files.length > 5){
 
 alert(
 "Maximum 5টি ছবি দেওয়া যাবে।"
@@ -2868,7 +2934,7 @@ return;
 }
 
 
-let sizes=
+const sizes =
 Array.from(
 document.querySelectorAll(
 ".size-check:checked"
@@ -2878,8 +2944,8 @@ document.querySelectorAll(
 
 
 if(
-subcategory&&
-sizeData[subcategory]?.length&&
+subcategory &&
+sizeData[subcategory]?.length &&
 !sizes.length
 ){
 
@@ -2892,7 +2958,7 @@ return;
 }
 
 
-const button=
+const button =
 document.getElementById(
 "saveProductButton"
 );
@@ -2900,39 +2966,36 @@ document.getElementById(
 
 try{
 
-button.disabled=true;
+button.disabled = true;
 
-button.textContent=
+button.textContent =
 "⏳ Uploading...";
 
 
-let urls=[];
+const urls = [];
 
 
-for(
-const file of files
-){
+for(const file of files){
 
-let safe=
-file.name
-.replace(
+const safe =
+file.name.replace(
 /[^a-zA-Z0-9._-]/g,
 "_"
 );
 
 
-let path=
-"products/"+
-Date.now()+
-"-"+
+const path =
+"products/" +
+Date.now() +
+"-" +
 Math.random()
 .toString(36)
-.substring(2,8)+
-"-"+
+.substring(2,8) +
+"-" +
 safe;
 
 
-let upload=
+const upload =
 await db
 .storage
 .from("product-images")
@@ -2949,7 +3012,7 @@ if(upload.error)
 throw upload.error;
 
 
-let pub=
+const pub =
 db
 .storage
 .from("product-images")
@@ -2963,7 +3026,7 @@ pub.data.publicUrl
 }
 
 
-let r=
+const r =
 await db
 .from("products")
 .insert({
@@ -3001,14 +3064,14 @@ console.error(e);
 
 alert(
 "Product Save হয়নি ❌\n\n"+
-(e?.message||String(e))
+(e?.message || String(e))
 );
 
 }finally{
 
-button.disabled=false;
+button.disabled = false;
 
-button.textContent=
+button.textContent =
 "💾 Save Product";
 
 }
@@ -3028,19 +3091,20 @@ return alert(
 );
 
 
-if(
-!confirm(
+if(!confirm(
 "এই Product Delete করবেন?"
-)
-)
+))
 return;
 
 
-let r=
+const r =
 await db
 .from("products")
 .delete()
-.eq("id",id);
+.eq(
+"id",
+id
+);
 
 
 if(r.error){
@@ -3058,7 +3122,6 @@ return;
 alert(
 "Product Delete হয়েছে ✅"
 );
-
 
 await loadStats();
 
@@ -3082,18 +3145,18 @@ alert(
 
 
 /* =====================================================
-   BANNER MANAGEMENT
+   BANNERS
 ===================================================== */
 
 async function renderBanners(){
 
-let box=
+const box =
 document.getElementById(
 "sectionContent"
 );
 
 
-let r=
+const r =
 await db
 .from("advertisements")
 .select("*")
@@ -3107,7 +3170,7 @@ ascending:true
 
 if(r.error){
 
-box.innerHTML=`
+box.innerHTML = `
 
 <div class="card">
 
@@ -3123,7 +3186,9 @@ box.innerHTML=`
 <br><br>
 
 Required fields:
+
 <br>
+
 <b>image_url</b>,
 <b>sort_order</b>,
 <b>active</b>
@@ -3146,7 +3211,7 @@ return;
 }
 
 
-box.innerHTML=`
+box.innerHTML = `
 
 <div class="card">
 
@@ -3157,9 +3222,16 @@ box.innerHTML=`
 <div class="notice">
 
 Homepage-এর banner এখান থেকে manage করা যাবে।
+
 <br>
-<strong>সর্বোচ্চ ৫টি active banner</strong> রাখা যাবে।
+
+<strong>
+সর্বোচ্চ ৫টি active banner
+</strong>
+রাখা যাবে।
+
 <br>
+
 Active banner homepage slider-এ দেখাবে।
 
 </div>
@@ -3198,7 +3270,6 @@ type="number"
 min="1"
 max="5"
 value="1"
-placeholder="1"
 >
 
 </div>
@@ -3260,10 +3331,10 @@ ${
 ${
 r.data.map(b=>{
 
-let img=
-b.image_url||
-b.image||
-b.url||
+const img =
+b.image_url ||
+b.image ||
+b.url ||
 "";
 
 
@@ -3282,7 +3353,8 @@ Banner #${esc(b.id)}
 <br>
 
 <small>
-Sort: ${esc(b.sort_order??"—")}
+Sort:
+${esc(b.sort_order ?? "—")}
 </small>
 
 </div>
@@ -3330,7 +3402,10 @@ Image পাওয়া যায়নি।
 
 <button
 class="btn btn-light"
-onclick="toggleBanner('${esc(b.id)}',${!b.active})"
+onclick="toggleBanner(
+'${esc(b.id)}',
+${!b.active}
+)"
 >
 ${
 b.active
@@ -3344,7 +3419,10 @@ b.active
 
 <button
 class="btn btn-danger"
-onclick="deleteBanner('${esc(b.id)}','${esc(img)}')"
+onclick="deleteBanner(
+'${esc(b.id)}',
+'${esc(img)}'
+)"
 >
 🗑️ Delete
 </button>
@@ -3375,20 +3453,20 @@ onclick="deleteBanner('${esc(b.id)}','${esc(img)}')"
 
 function previewBanner(){
 
-let input=
+const input =
 document.getElementById(
 "bannerImage"
 );
 
-let box=
+const box =
 document.getElementById(
 "bannerPreview"
 );
 
-box.innerHTML="";
+box.innerHTML = "";
 
 
-let file=
+const file =
 input.files?.[0];
 
 
@@ -3396,22 +3474,22 @@ if(!file)
 return;
 
 
-let url=
+const url =
 URL.createObjectURL(file);
 
 
-let img=
+const img =
 document.createElement("img");
 
-img.src=url;
+img.src = url;
 
-img.style.width="180px";
+img.style.width = "180px";
 
-img.style.height="90px";
+img.style.height = "90px";
 
-img.style.objectFit="cover";
+img.style.objectFit = "cover";
 
-img.style.borderRadius="9px";
+img.style.borderRadius = "9px";
 
 box.appendChild(img);
 
@@ -3430,17 +3508,17 @@ return alert(
 );
 
 
-let input=
+const input =
 document.getElementById(
 "bannerImage"
 );
 
 
-let file=
+const file =
 input.files?.[0];
 
 
-let sort=
+const sort =
 Number(
 document.getElementById(
 "bannerSort"
@@ -3448,7 +3526,7 @@ document.getElementById(
 );
 
 
-let active=
+const active =
 document.getElementById(
 "bannerActive"
 ).checked;
@@ -3465,7 +3543,7 @@ return;
 }
 
 
-if(sort<1||sort>5){
+if(sort < 1 || sort > 5){
 
 alert(
 "Sort Order 1 থেকে 5-এর মধ্যে দিন।"
@@ -3476,7 +3554,7 @@ return;
 }
 
 
-let button=
+const button =
 document.getElementById(
 "saveBannerButton"
 );
@@ -3484,32 +3562,31 @@ document.getElementById(
 
 try{
 
-button.disabled=true;
+button.disabled = true;
 
-button.textContent=
+button.textContent =
 "⏳ Uploading...";
 
 
-let safe=
-file.name
-.replace(
+const safe =
+file.name.replace(
 /[^a-zA-Z0-9._-]/g,
 "_"
 );
 
 
-let path=
-"banners/"+
-Date.now()+
-"-"+
+const path =
+"banners/" +
+Date.now() +
+"-" +
 Math.random()
 .toString(36)
-.substring(2,8)+
-"-"+
+.substring(2,8) +
+"-" +
 safe;
 
 
-let upload=
+const upload =
 await db
 .storage
 .from("product-images")
@@ -3526,18 +3603,18 @@ if(upload.error)
 throw upload.error;
 
 
-let pub=
+const pub =
 db
 .storage
 .from("product-images")
 .getPublicUrl(path);
 
 
-let image_url=
+const image_url =
 pub.data.publicUrl;
 
 
-let r=
+const r =
 await db
 .from("advertisements")
 .insert({
@@ -3557,7 +3634,6 @@ alert(
 "Banner Upload হয়েছে ✅"
 );
 
-
 await showSection(
 "banners"
 );
@@ -3569,14 +3645,14 @@ console.error(e);
 
 alert(
 "Banner Upload হয়নি ❌\n\n"+
-(e?.message||String(e))
+(e?.message || String(e))
 );
 
 }finally{
 
-button.disabled=false;
+button.disabled = false;
 
-button.textContent=
+button.textContent =
 "🖼️ Upload Banner";
 
 }
@@ -3596,7 +3672,7 @@ return alert(
 );
 
 
-let r=
+const r =
 await db
 .from("advertisements")
 .update({
@@ -3637,15 +3713,13 @@ return alert(
 );
 
 
-if(
-!confirm(
+if(!confirm(
 "এই Banner Delete করবেন?"
-)
-)
+))
 return;
 
 
-let r=
+const r =
 await db
 .from("advertisements")
 .delete()
@@ -3671,27 +3745,25 @@ alert(
 "Banner Delete হয়েছে ✅"
 );
 
-
 await renderBanners();
 
 }
 
 
 /* =====================================================
-   BANNER SETUP HELP
+   BANNER SETUP
 ===================================================== */
 
 function renderBannerSetupHelp(){
 
 alert(
-"Banner system-এর জন্য Supabase-এ advertisements table তৈরি করতে হবে।\n\n"+
+"Banner system-এর জন্য Supabase-এ advertisements table তৈরি করতে হবে.\n\n"+
 "Fields:\n"+
 "id\n"+
 "image_url\n"+
 "sort_order\n"+
 "active\n"+
-"created_at\n\n"+
-"এবং Banner image product-images Storage bucket-এর banners/ folder-এ রাখা হবে।"
+"created_at"
 );
 
 }
@@ -3703,13 +3775,13 @@ alert(
 
 async function renderResellers(){
 
-let box=
+const box =
 document.getElementById(
 "sectionContent"
 );
 
 
-let r=
+const r =
 await db
 .from("resellers")
 .select("*")
@@ -3723,8 +3795,7 @@ ascending:false
 
 if(r.error){
 
-box.innerHTML=
-`
+box.innerHTML = `
 <div class="empty">
 ❌ ${esc(r.error.message)}
 </div>
@@ -3737,8 +3808,7 @@ return;
 
 if(!r.data?.length){
 
-box.innerHTML=
-`
+box.innerHTML = `
 <div class="empty">
 🤝 কোনো Reseller Request নেই।
 </div>
@@ -3749,7 +3819,7 @@ return;
 }
 
 
-let html=`
+let html = `
 
 <div class="notice">
 
@@ -3769,11 +3839,9 @@ Approve
 `;
 
 
-for(
-const x of r.data
-){
+for(const x of r.data){
 
-let p=
+const p =
 await db
 .from("profiles")
 .select(
@@ -3786,7 +3854,7 @@ x.user_id
 .maybeSingle();
 
 
-html+=`
+html += `
 
 <div class="reseller-card">
 
@@ -3796,7 +3864,7 @@ html+=`
 
 <b>
 🤝 ${esc(
-p.data?.full_name||
+p.data?.full_name ||
 "Customer"
 )}
 </b>
@@ -3805,13 +3873,19 @@ p.data?.full_name||
 
 <small>
 Code:
-${esc(x.reseller_code||"—")}
+${esc(
+x.reseller_code ||
+"—"
+)}
 </small>
 
 </div>
 
 <span class="status">
-${esc(x.status||"Pending")}
+${esc(
+x.status ||
+"Pending"
+)}
 </span>
 
 </div>
@@ -3821,42 +3895,61 @@ ${esc(x.status||"Pending")}
 
 <p>
 <b>Phone:</b>
-${esc(p.data?.phone||"—")}
+${esc(
+p.data?.phone ||
+"—"
+)}
 </p>
 
 <p>
 <b>User ID:</b>
-${esc(x.user_id||"—")}
+${esc(
+x.user_id ||
+"—"
+)}
 </p>
 
 <p>
 <b>Current Role:</b>
-${esc(p.data?.role||"customer")}
+${esc(
+p.data?.role ||
+"customer"
+)}
 </p>
 
 <p>
 <b>Commission:</b>
-${Number(x.commission_rate||0)}%
+${Number(
+x.commission_rate || 0
+)}%
 </p>
 
 <p>
 <b>Application Date:</b>
-${formatDate(x.created_at)}
+${formatDate(
+x.created_at
+)}
 </p>
 
 <p>
 <b>Total Orders:</b>
-${Number(x.total_orders||0)}
+${Number(
+x.total_orders || 0
+)}
 </p>
 
 <p>
 <b>Total Sales:</b>
-৳${money(x.total_sales)}
+৳${money(
+x.total_sales
+)}
 </p>
 
 <p>
 <b>Total Commission:</b>
-৳${money(x.total_commission)}
+৳${money(
+x.total_commission
+)}
 </p>
 
 </div>
@@ -3865,12 +3958,15 @@ ${Number(x.total_orders||0)}
 <div class="admin-actions">
 
 ${
-x.status!=="Approved"
+x.status !== "Approved"
 ?
 `
 <button
 class="btn btn-orange"
-onclick="approveReseller('${esc(x.user_id)}','${esc(x.id)}')"
+onclick="approveReseller(
+'${esc(x.user_id)}',
+'${esc(x.id)}'
+)"
 >
 ✅ Accept / Approve
 </button>
@@ -3888,12 +3984,15 @@ disabled
 
 
 ${
-x.status!=="Suspended"
+x.status !== "Suspended"
 ?
 `
 <button
 class="btn btn-danger"
-onclick="suspendReseller('${esc(x.user_id)}','${esc(x.id)}')"
+onclick="suspendReseller(
+'${esc(x.user_id)}',
+'${esc(x.id)}'
+)"
 >
 🚫 Suspend
 </button>
@@ -3918,7 +4017,7 @@ disabled
 }
 
 
-box.innerHTML=html;
+box.innerHTML = html;
 
 }
 
@@ -3935,15 +4034,13 @@ return alert(
 );
 
 
-if(
-!confirm(
+if(!confirm(
 "এই customer-এর Reseller Request Approve করবেন?"
-)
-)
+))
 return;
 
 
-let r=
+const r =
 await db
 .from("resellers")
 .update({
@@ -3967,7 +4064,7 @@ return;
 }
 
 
-let p=
+const p =
 await db
 .from("profiles")
 .update({
@@ -3997,7 +4094,6 @@ alert(
 "Reseller Request Accepted ✅"
 );
 
-
 await loadStats();
 
 await renderResellers();
@@ -4017,15 +4113,13 @@ return alert(
 );
 
 
-if(
-!confirm(
+if(!confirm(
 "এই Reseller account Suspend করবেন?"
-)
-)
+))
 return;
 
 
-let r=
+const r =
 await db
 .from("resellers")
 .update({
@@ -4049,7 +4143,7 @@ return;
 }
 
 
-let p=
+const p =
 await db
 .from("profiles")
 .update({
@@ -4079,7 +4173,6 @@ alert(
 "Reseller Suspended হয়েছে 🚫"
 );
 
-
 await loadStats();
 
 await renderResellers();
@@ -4093,13 +4186,13 @@ await renderResellers();
 
 async function renderReviews(){
 
-let box=
+const box =
 document.getElementById(
 "sectionContent"
 );
 
 
-let r=
+const r =
 await db
 .from("reviews")
 .select("*")
@@ -4113,8 +4206,7 @@ ascending:false
 
 if(r.error){
 
-box.innerHTML=
-`
+box.innerHTML = `
 <div class="empty">
 ❌ ${esc(r.error.message)}
 </div>
@@ -4127,8 +4219,7 @@ return;
 
 if(!r.data?.length){
 
-box.innerHTML=
-`
+box.innerHTML = `
 <div class="empty">
 ⭐ কোনো Review নেই।
 </div>
@@ -4139,13 +4230,16 @@ return;
 }
 
 
-box.innerHTML=
+box.innerHTML =
 r.data.map(x=>`
 
 <div class="review-card">
 
 <b>
-${esc(x.user_name||"Customer")}
+${esc(
+x.user_name ||
+"Customer"
+)}
 </b>
 
 —
@@ -4158,14 +4252,17 @@ ${esc(x.product_id)}
 ${"⭐".repeat(
 Math.min(
 5,
-Number(x.rating||0)
+Number(x.rating || 0)
 )
 )}
 
 </div>
 
 <p>
-${esc(x.review_text||"")}
+${esc(
+x.review_text ||
+""
+)}
 </p>
 
 <p style="margin-top:8px">
@@ -4173,7 +4270,10 @@ ${esc(x.review_text||"")}
 Status:
 
 <span class="status">
-${esc(x.status||"Pending")}
+${esc(
+x.status ||
+"Pending"
+)}
 </span>
 
 </p>
@@ -4182,12 +4282,15 @@ ${esc(x.status||"Pending")}
 <div class="admin-actions">
 
 ${
-x.status!=="Approved"
+x.status !== "Approved"
 ?
 `
 <button
 class="btn btn-orange"
-onclick="updateReview('${esc(x.id)}','Approved')"
+onclick="updateReview(
+'${esc(x.id)}',
+'Approved'
+)"
 >
 ✅ Approve
 </button>
@@ -4198,12 +4301,15 @@ onclick="updateReview('${esc(x.id)}','Approved')"
 
 
 ${
-x.status!=="Rejected"
+x.status !== "Rejected"
 ?
 `
 <button
 class="btn btn-danger"
-onclick="updateReview('${esc(x.id)}','Rejected')"
+onclick="updateReview(
+'${esc(x.id)}',
+'Rejected'
+)"
 >
 ❌ Reject
 </button>
@@ -4233,7 +4339,7 @@ return alert(
 );
 
 
-let r=
+const r =
 await db
 .from("reviews")
 .update({
@@ -4268,14 +4374,15 @@ await renderReviews();
 
 function openWhatsApp(){
 
-const message=
+const message =
 "Hello Gadhuli Support 👋\n\n"+
 "I need help regarding Gadhuli website/order.";
 
+
 window.open(
-"https://wa.me/"+
-WHATSAPP_NUMBER+
-"?text="+
+"https://wa.me/" +
+WHATSAPP_NUMBER +
+"?text=" +
 encodeURIComponent(message),
 "_blank"
 );
@@ -4312,8 +4419,8 @@ alert(
 
 function contactCustomer(phone,name){
 
-let clean=
-String(phone||"")
+let clean =
+String(phone || "")
 .replace(
 /[^0-9]/g,
 ""
@@ -4321,9 +4428,8 @@ String(phone||"")
 
 
 if(clean.startsWith("01"))
-clean=
-"88"+
-clean;
+clean =
+"88" + clean;
 
 
 if(!clean){
@@ -4337,18 +4443,18 @@ return;
 }
 
 
-let msg=
-"Hello "+
-(name||"Customer")+
-" 👋\n\n"+
-"This is Gadhuli Support regarding your order.\n\n"+
+const msg =
+"Hello " +
+(name || "Customer") +
+" 👋\n\n" +
+"This is Gadhuli Support regarding your order.\n\n" +
 "How can we help you?";
 
 
 window.open(
-"https://wa.me/"+
-clean+
-"?text="+
+"https://wa.me/" +
+clean +
+"?text=" +
 encodeURIComponent(msg),
 "_blank"
 );
@@ -4366,7 +4472,7 @@ if(!order.reseller_id)
 return;
 
 
-let r=
+const r =
 await db
 .from("resellers")
 .select("*")
@@ -4378,15 +4484,15 @@ order.reseller_id
 
 
 if(
-r.error||
-!r.data||
-r.data.status!=="Approved"
+r.error ||
+!r.data ||
+r.data.status !== "Approved"
 )
 return;
 
 
-let notes=
-order.notes||"";
+const notes =
+order.notes || "";
 
 
 if(
@@ -4397,42 +4503,42 @@ notes.includes(
 return;
 
 
-let base=
+const base =
 Number(
-order.subtotal||
-order.total||
+order.subtotal ||
+order.total ||
 0
 );
 
 
-let commission=
-base*
+const commission =
+base *
 Number(
-r.data.commission_rate||0
-)/
+r.data.commission_rate || 0
+) /
 100;
 
 
-let u=
+const u =
 await db
 .from("resellers")
 .update({
 
 total_orders:
 Number(
-r.data.total_orders||0
-)+1,
+r.data.total_orders || 0
+) + 1,
 
 total_sales:
 Number(
-r.data.total_sales||0
-)+
+r.data.total_sales || 0
+) +
 base,
 
 total_commission:
 Number(
-r.data.total_commission||0
-)+
+r.data.total_commission || 0
+) +
 commission
 
 })
@@ -4459,8 +4565,8 @@ await db
 .update({
 
 notes:
-(notes?notes+"\n":"")+
-"[COMMISSION_POSTED] Commission: ৳"+
+(notes ? notes + "\n" : "") +
+"[COMMISSION_POSTED] Commission: ৳" +
 commission.toFixed(2)
 
 })
@@ -4481,7 +4587,7 @@ document.addEventListener(
 function(e){
 
 if(
-e.key==="Enter"&&
+e.key === "Enter" &&
 !document
 .getElementById("loginSection")
 .classList.contains("hidden")
