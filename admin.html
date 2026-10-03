@@ -28,9 +28,9 @@ padding:0;
 --text:#171717;
 --muted:#777;
 --border:#eee;
---green:#25D366;
 --red:#e53935;
 --blue:#1677ff;
+--green:#18a957;
 --shadow:0 5px 20px rgba(255,107,0,.10);
 }
 
@@ -65,7 +65,9 @@ max-width:100%;
 display:none!important;
 }
 
-/* HEADER */
+/* =========================
+HEADER
+========================= */
 
 header{
 background:var(--gradient);
@@ -115,7 +117,9 @@ color:#fff;
 opacity:.9;
 }
 
-/* GENERAL */
+/* =========================
+GENERAL
+========================= */
 
 .container{
 max-width:1250px;
@@ -193,7 +197,9 @@ width:100%;
 margin:0;
 }
 
-/* LOGIN */
+/* =========================
+LOGIN
+========================= */
 
 .login-box{
 max-width:430px;
@@ -244,7 +250,9 @@ border-color:var(--orange);
 box-shadow:0 0 0 2px rgba(255,107,0,.08);
 }
 
-/* PASSWORD */
+/* =========================
+PASSWORD
+========================= */
 
 .password-wrap{
 position:relative;
@@ -273,7 +281,9 @@ padding:0;
 background:var(--orange-light);
 }
 
-/* STATS */
+/* =========================
+STATS
+========================= */
 
 .stat-grid{
 display:grid;
@@ -289,6 +299,11 @@ border-radius:15px;
 padding:18px;
 text-align:center;
 box-shadow:var(--shadow);
+transition:.2s;
+}
+
+.stat:hover{
+transform:translateY(-2px);
 }
 
 .stat-icon{
@@ -306,7 +321,9 @@ font-weight:800;
 color:var(--orange-dark);
 }
 
-/* NAVIGATION */
+/* =========================
+NAVIGATION
+========================= */
 
 .admin-nav{
 display:grid;
@@ -325,7 +342,9 @@ color:#fff;
 border-color:var(--orange);
 }
 
-/* CONTENT */
+/* =========================
+CONTENT
+========================= */
 
 .notice{
 background:var(--orange-light);
@@ -366,7 +385,9 @@ transform:rotate(360deg);
 }
 }
 
-/* PRODUCTS */
+/* =========================
+PRODUCTS
+========================= */
 
 .product-grid{
 display:grid;
@@ -380,6 +401,12 @@ border:1px solid var(--border);
 border-radius:14px;
 padding:13px;
 box-shadow:0 3px 12px rgba(0,0,0,.05);
+transition:.2s;
+}
+
+.product-card:hover{
+transform:translateY(-2px);
+box-shadow:0 7px 20px rgba(255,107,0,.12);
 }
 
 .product-image{
@@ -407,7 +434,9 @@ font-size:12px;
 color:#777;
 }
 
-/* IMAGES */
+/* =========================
+IMAGES
+========================= */
 
 .image-preview{
 display:flex;
@@ -424,7 +453,9 @@ border-radius:9px;
 border:1px solid #ddd;
 }
 
-/* ORDERS */
+/* =========================
+ORDERS
+========================= */
 
 .order-card,
 .reseller-card,
@@ -495,7 +526,9 @@ width:auto;
 min-width:150px;
 }
 
-/* BANNERS */
+/* =========================
+BANNERS
+========================= */
 
 .banner-grid{
 display:grid;
@@ -531,30 +564,9 @@ font-size:12px;
 font-weight:bold;
 }
 
-/* SUPPORT */
-
-.support-box{
-background:#f0fff5;
-border:1px solid #bce8ca;
-border-radius:14px;
-padding:16px;
-}
-
-.support-number{
-font-size:21px;
-font-weight:800;
-color:#128c3d;
-margin:8px 0;
-}
-
-footer{
-text-align:center;
-padding:30px 15px;
-color:#777;
-font-size:13px;
-}
-
-/* SIZE */
+/* =========================
+SIZE
+========================= */
 
 .size-list{
 display:flex;
@@ -577,7 +589,20 @@ cursor:pointer;
 width:auto;
 }
 
-/* MOBILE */
+/* =========================
+FOOTER
+========================= */
+
+footer{
+text-align:center;
+padding:30px 15px;
+color:#777;
+font-size:13px;
+}
+
+/* =========================
+MOBILE
+========================= */
 
 @media(max-width:1050px){
 
@@ -680,6 +705,10 @@ width:100%;
 
 <body>
 
+<!-- =========================
+HEADER
+========================= -->
+
 <header>
 
 <div class="header-inner">
@@ -719,7 +748,9 @@ id="websiteButton"
 </header>
 
 
-<!-- LOGIN -->
+<!-- =========================
+LOGIN
+========================= -->
 
 <div
 id="loginSection"
@@ -794,73 +825,168 @@ style="margin-top:12px;text-align:center;"
 </div>
 
 
-<!-- ADMIN -->
+<!-- =========================
+ADMIN PANEL
+========================= -->
 
 <div
 id="adminPanel"
 class="container hidden"
 >
 
+<!-- STATS -->
+
 <div class="stat-grid">
 
 <div class="stat">
-<div class="stat-icon">🛍️</div>
-<div class="stat-label">Products</div>
-<div class="stat-number" id="statProducts">0</div>
+
+<div class="stat-icon">
+🛍️
 </div>
+
+<div class="stat-label">
+Products
+</div>
+
+<div
+class="stat-number"
+id="statProducts"
+>
+0
+</div>
+
+</div>
+
 
 <div class="stat">
-<div class="stat-icon">📦</div>
-<div class="stat-label">Orders</div>
-<div class="stat-number" id="statOrders">0</div>
+
+<div class="stat-icon">
+📦
 </div>
+
+<div class="stat-label">
+Orders
+</div>
+
+<div
+class="stat-number"
+id="statOrders"
+>
+0
+</div>
+
+</div>
+
 
 <div class="stat">
-<div class="stat-icon">⏳</div>
-<div class="stat-label">Pending Orders</div>
-<div class="stat-number" id="statPending">0</div>
+
+<div class="stat-icon">
+⏳
 </div>
+
+<div class="stat-label">
+Pending Orders
+</div>
+
+<div
+class="stat-number"
+id="statPending"
+>
+0
+</div>
+
+</div>
+
 
 <div class="stat">
-<div class="stat-icon">🤝</div>
-<div class="stat-label">Reseller Requests</div>
-<div class="stat-number" id="statResellers">0</div>
+
+<div class="stat-icon">
+🤝
+</div>
+
+<div class="stat-label">
+Reseller Requests
+</div>
+
+<div
+class="stat-number"
+id="statResellers"
+>
+0
 </div>
 
 </div>
 
+</div>
 
-<!-- NAV -->
+
+<!-- =========================
+NAVIGATION
+========================= -->
 
 <div class="card">
 
 <div class="admin-nav">
 
-<button type="button" class="btn btn-light active" data-section="orders">
+<button
+type="button"
+class="btn btn-light active"
+data-section="orders"
+>
 📦 Orders
 </button>
 
-<button type="button" class="btn btn-light" data-section="products">
+
+<button
+type="button"
+class="btn btn-light"
+data-section="products"
+>
 🛍️ Products
 </button>
 
-<button type="button" class="btn btn-light" data-section="addProduct">
+
+<button
+type="button"
+class="btn btn-light"
+data-section="addProduct"
+>
 ➕ Add Product
 </button>
 
-<button type="button" class="btn btn-light" data-section="banners">
+
+<button
+type="button"
+class="btn btn-light"
+data-section="banners"
+>
 🖼️ Banners
 </button>
 
-<button type="button" class="btn btn-light" data-section="resellers">
+
+<button
+type="button"
+class="btn btn-light"
+data-section="resellers"
+>
 🤝 Resellers
 </button>
 
-<button type="button" class="btn btn-light" data-section="reviews">
+
+<button
+type="button"
+class="btn btn-light"
+data-section="reviews"
+>
 ⭐ Reviews
 </button>
 
-<button type="button" class="btn btn-light" id="refreshButton">
+
+<button
+type="button"
+class="btn btn-light"
+id="refreshButton"
+>
 🔄 Refresh
 </button>
 
@@ -869,54 +995,22 @@ class="container hidden"
 </div>
 
 
-<!-- SUPPORT -->
-
-<div class="card">
-
-<h2>
-💬 Customer Support
-</h2>
-
-<div class="support-box">
-
-<p>
-Customer-এর কোনো সমস্যা হলে সরাসরি Gadhuli WhatsApp Helpline-এ যোগাযোগ করতে পারবে।
-</p>
-
-<div class="support-number">
-📱 01333-088194
-</div>
-
-<button
-type="button"
-class="btn btn-green"
-id="whatsappButton"
->
-💬 Open WhatsApp
-</button>
-
-<button
-type="button"
-class="btn btn-light"
-id="copyWhatsAppButton"
->
-📋 Copy Number
-</button>
-
-</div>
-
-</div>
-
+<!-- MAIN CONTENT -->
 
 <div id="sectionContent">
 
 <div class="loading">
+
 <span class="spinner"></span>
+
 Loading...
-</div>
 
 </div>
 
+</div>
+
+
+<!-- LOGOUT -->
 
 <button
 type="button"
@@ -931,7 +1025,9 @@ id="logoutButton"
 
 <footer>
 
-<b>Gadhuli Admin Panel</b>
+<b>
+Gadhuli Admin Panel
+</b>
 
 <br><br>
 
@@ -955,8 +1051,6 @@ const SUPABASE_KEY =
 const ADMIN_EMAIL =
 "hridoyff974@gmail.com";
 
-const WHATSAPP_NUMBER =
-"8801333088194";
 
 const db =
 window.supabase.createClient(
@@ -964,7 +1058,9 @@ SUPABASE_URL,
 SUPABASE_KEY
 );
 
+
 let currentUser=null;
+
 let currentSection="orders";
 
 
@@ -987,9 +1083,12 @@ return String(value ?? "")
 function money(value){
 
 return Number(value || 0)
-.toLocaleString("en-US",{
+.toLocaleString(
+"en-US",
+{
 maximumFractionDigits:2
-});
+}
+);
 
 }
 
@@ -1020,9 +1119,11 @@ return String(value);
 
 function showError(message){
 
-const box=document.getElementById("sectionContent");
+const box=
+document.getElementById("sectionContent");
 
 box.innerHTML=`
+
 <div class="card">
 
 <div class="notice">
@@ -1038,6 +1139,7 @@ ${esc(message)}
 </div>
 
 </div>
+
 `;
 
 }
@@ -1057,16 +1159,23 @@ window.location.href="index.html";
 function setActiveNav(section){
 
 document
-.querySelectorAll(".admin-nav [data-section]")
+.querySelectorAll(
+".admin-nav [data-section]"
+)
 .forEach(button=>{
 
 button.classList.remove("active");
 
 });
 
-const active=document.querySelector(
-'.admin-nav [data-section="'+section+'"]'
+
+const active=
+document.querySelector(
+'.admin-nav [data-section="'+
+section+
+'"]'
 );
+
 
 if(active){
 
@@ -1084,27 +1193,39 @@ PASSWORD
 function togglePassword(){
 
 const input=
-document.getElementById("loginPassword");
+document.getElementById(
+"loginPassword"
+);
 
 const eye=
-document.getElementById("passwordEye");
+document.getElementById(
+"passwordEye"
+);
+
 
 if(!input)
 return;
+
 
 if(input.type==="password"){
 
 input.type="text";
 
-if(eye)
+if(eye){
+
 eye.textContent="🙈";
+
+}
 
 }else{
 
 input.type="password";
 
-if(eye)
+if(eye){
+
 eye.textContent="👁️";
+
+}
 
 }
 
@@ -1121,16 +1242,20 @@ if(!currentUser){
 
 return {
 ok:false,
-message:"Supabase user পাওয়া যায়নি।"
+message:
+"Supabase user পাওয়া যায়নি।"
 };
 
 }
 
-const r=await db
+
+const r=
+await db
 .from("profiles")
 .select("id,role")
 .eq("id",currentUser.id)
 .maybeSingle();
+
 
 if(r.error){
 
@@ -1142,6 +1267,7 @@ r.error.message
 };
 
 }
+
 
 if(!r.data){
 
@@ -1155,8 +1281,11 @@ currentUser.id
 
 }
 
+
 if(
-String(r.data.role || "").toLowerCase()!=="admin"
+String(
+r.data.role || ""
+).toLowerCase()!=="admin"
 ){
 
 return {
@@ -1168,6 +1297,7 @@ message:
 };
 
 }
+
 
 return {
 ok:true,
@@ -1184,18 +1314,28 @@ LOGIN
 async function adminLogin(){
 
 const email=
-document.getElementById("loginEmail")
-.value.trim();
+document
+.getElementById("loginEmail")
+.value
+.trim();
+
 
 const password=
-document.getElementById("loginPassword")
+document
+.getElementById("loginPassword")
 .value;
 
+
 const msg=
-document.getElementById("loginMessage");
+document.getElementById(
+"loginMessage"
+);
+
 
 const button=
-document.getElementById("loginButton");
+document.getElementById(
+"loginButton"
+);
 
 
 if(!email || !password){
@@ -1209,8 +1349,12 @@ return;
 
 }
 
+
 button.disabled=true;
-button.textContent="⏳ Login হচ্ছে...";
+
+button.textContent=
+"⏳ Login হচ্ছে...";
+
 
 msg.innerHTML=
 '<span style="color:#777">'+
@@ -1220,10 +1364,15 @@ msg.innerHTML=
 
 try{
 
-const r=await db.auth.signInWithPassword({
+const r=
+await db.auth.signInWithPassword({
+
 email:email,
+
 password:password
+
 });
+
 
 if(r.error){
 
@@ -1236,6 +1385,7 @@ return;
 
 }
 
+
 if(!r.data?.user){
 
 msg.innerHTML=
@@ -1247,15 +1397,23 @@ return;
 
 }
 
-currentUser=r.data.user;
+
+currentUser=
+r.data.user;
+
 
 if(
-String(currentUser.email || "").toLowerCase() !==
+String(
+currentUser.email || ""
+).toLowerCase()
+!==
 ADMIN_EMAIL.toLowerCase()
 ){
 
 await db.auth.signOut();
+
 currentUser=null;
+
 
 msg.innerHTML=
 '<span style="color:#d32f2f">'+
@@ -1266,17 +1424,23 @@ return;
 
 }
 
-const admin=await isAdmin();
+
+const admin=
+await isAdmin();
+
 
 if(!admin.ok){
 
 await db.auth.signOut();
+
 currentUser=null;
+
 
 msg.innerHTML=
 '<div style="color:#d32f2f;font-weight:bold">'+
 "Admin Login Check Failed ❌"+
 "</div>"+
+
 '<div style="margin-top:8px;color:#555;white-space:pre-line">'+
 esc(admin.message)+
 "</div>";
@@ -1285,16 +1449,23 @@ return;
 
 }
 
+
 msg.innerHTML=
 '<span style="color:#138a3c;font-weight:bold">'+
 "Admin Login Successful ✅"+
 "</span>";
 
+
 showAdmin();
+
 
 }catch(error){
 
-console.error("LOGIN ERROR:",error);
+console.error(
+"LOGIN ERROR:",
+error
+);
+
 
 msg.innerHTML=
 '<span style="color:#d32f2f">'+
@@ -1304,7 +1475,9 @@ esc(error.message || error)+
 }finally{
 
 button.disabled=false;
-button.textContent="🔐 Login";
+
+button.textContent=
+"🔐 Login";
 
 }
 
@@ -1319,11 +1492,15 @@ function showAdmin(){
 
 document
 .getElementById("loginSection")
-.classList.add("hidden");
+.classList
+.add("hidden");
+
 
 document
 .getElementById("adminPanel")
-.classList.remove("hidden");
+.classList
+.remove("hidden");
+
 
 loadStats();
 
@@ -1340,32 +1517,48 @@ async function checkSession(){
 
 try{
 
-const r=await db.auth.getSession();
+const r=
+await db.auth.getSession();
+
 
 if(r.error){
 
 console.error(r.error);
+
 return;
 
 }
 
-currentUser=r.data.session?.user || null;
+
+currentUser=
+r.data.session?.user ||
+null;
+
 
 if(!currentUser)
 return;
 
+
 if(
-String(currentUser.email || "").toLowerCase() !==
+String(
+currentUser.email || ""
+).toLowerCase()
+!==
 ADMIN_EMAIL.toLowerCase()
 ){
 
 await db.auth.signOut();
+
 currentUser=null;
+
 return;
 
 }
 
-const admin=await isAdmin();
+
+const admin=
+await isAdmin();
+
 
 if(admin.ok){
 
@@ -1375,7 +1568,10 @@ showAdmin();
 
 }catch(error){
 
-console.error("Session error:",error);
+console.error(
+"Session error:",
+error
+);
 
 }
 
@@ -1392,13 +1588,18 @@ await db.auth.signOut();
 
 currentUser=null;
 
+
 document
 .getElementById("adminPanel")
-.classList.add("hidden");
+.classList
+.add("hidden");
+
 
 document
 .getElementById("loginSection")
-.classList.remove("hidden");
+.classList
+.remove("hidden");
+
 
 document
 .getElementById("loginMessage")
@@ -1413,19 +1614,31 @@ SECTION SWITCH
 
 async function showSection(section){
 
-currentSection=section;
+currentSection=
+section;
+
 
 setActiveNav(section);
 
+
 const content=
-document.getElementById("sectionContent");
+document.getElementById(
+"sectionContent"
+);
+
 
 content.innerHTML=`
+
 <div class="loading">
+
 <span class="spinner"></span>
+
 Loading...
+
 </div>
+
 `;
+
 
 try{
 
@@ -1467,10 +1680,15 @@ await renderReviews();
 
 }catch(error){
 
-console.error("SECTION ERROR:",error);
+console.error(
+"SECTION ERROR:",
+error
+);
+
 
 showError(
-error.message || String(error)
+error.message ||
+String(error)
 );
 
 }
@@ -1485,19 +1703,28 @@ REFRESH
 async function refreshAdmin(){
 
 const button=
-document.getElementById("refreshButton");
+document.getElementById(
+"refreshButton"
+);
+
 
 if(button){
 
 button.disabled=true;
-button.textContent="⏳ Refresh...";
+
+button.textContent=
+"⏳ Refresh...";
 
 }
+
 
 try{
 
 await loadStats();
-await showSection(currentSection);
+
+await showSection(
+currentSection
+);
 
 }catch(error){
 
@@ -1508,7 +1735,9 @@ console.error(error);
 if(button){
 
 button.disabled=false;
-button.textContent="🔄 Refresh";
+
+button.textContent=
+"🔄 Refresh";
 
 }
 
@@ -1528,15 +1757,25 @@ try{
 const products=
 await db
 .from("products")
-.select("id",{
+.select(
+"id",
+{
 count:"exact",
 head:true
-});
+}
+);
+
 
 const orders=
 await db
 .from("orders")
-.select("id,order_status");
+.select(
+"id,order_status"
+);
+
+
+let resellersData=[];
+
 
 const resellers=
 await db
@@ -1544,34 +1783,64 @@ await db
 .select("id,status");
 
 
-document.getElementById("statProducts")
-.textContent=products.count || 0;
+if(!resellers.error){
 
-const orderData=orders.data || [];
+resellersData=
+resellers.data || [];
 
-document.getElementById("statOrders")
-.textContent=orderData.length;
+}
 
-document.getElementById("statPending")
+
+document
+.getElementById("statProducts")
 .textContent=
-orderData.filter(x=>
+products.count || 0;
+
+
+const orderData=
+orders.data || [];
+
+
+document
+.getElementById("statOrders")
+.textContent=
+orderData.length;
+
+
+document
+.getElementById("statPending")
+.textContent=
+orderData.filter(
+x=>
 String(
-x.order_status || "Pending"
-).toLowerCase()==="pending"
+x.order_status ||
+"Pending"
+)
+.toLowerCase()
+==="pending"
 ).length;
 
-document.getElementById("statResellers")
+
+document
+.getElementById("statResellers")
 .textContent=
-(resellers.data || [])
-.filter(x=>
+resellersData.filter(
+x=>
 String(
-x.status || "Pending"
-).toLowerCase()==="pending"
+x.status ||
+"Pending"
+)
+.toLowerCase()
+==="pending"
 ).length;
+
 
 }catch(error){
 
-console.error("Stats error:",error);
+console.error(
+"Stats error:",
+error
+);
 
 }
 
@@ -1585,42 +1854,65 @@ ORDERS
 async function renderOrders(){
 
 const box=
-document.getElementById("sectionContent");
+document.getElementById(
+"sectionContent"
+);
 
-const r=await db
+
+const r=
+await db
 .from("orders")
 .select("*")
-.order("created_at",{
+.order(
+"created_at",
+{
 ascending:false
-});
+}
+);
+
 
 if(r.error){
 
-showError(r.error.message);
+showError(
+r.error.message
+);
+
 return;
 
 }
 
+
 if(!r.data?.length){
 
 box.innerHTML=`
+
 <div class="empty">
+
 📦 এখনো কোনো Order নেই।
+
 </div>
+
 `;
 
 return;
 
 }
 
+
 let html="";
+
 
 for(const order of r.data){
 
-const items=await db
+const items=
+await db
 .from("order_items")
 .select("*")
-.eq("order_id",order.id);
+.eq(
+"order_id",
+order.id
+);
+
 
 html+=`
 
@@ -1630,7 +1922,9 @@ html+=`
 
 <div>
 
-<b>📦 Order #${esc(order.id)}</b>
+<b>
+📦 Order #${esc(order.id)}
+</b>
 
 <br>
 
@@ -1641,76 +1935,138 @@ ${formatDate(order.created_at)}
 </div>
 
 <span class="status">
-${esc(order.order_status || "Pending")}
+
+${esc(
+order.order_status ||
+"Pending"
+)}
+
 </span>
 
 </div>
 
+
 <div class="order-info">
 
 <p>
+
 <b>Customer:</b>
-${esc(order.customer_name || "—")}
+
+${esc(
+order.customer_name ||
+"—"
+)}
+
 </p>
 
+
 <p>
+
 <b>Phone:</b>
-${esc(order.customer_phone || "—")}
+
+${esc(
+order.customer_phone ||
+"—"
+)}
+
 </p>
 
+
 <p>
+
 <b>Address:</b>
+
 ${esc(
 order.customer_receive_place ||
 order.address ||
 "—"
 )}
+
 </p>
 
+
 <p>
+
 <b>District:</b>
+
 ${esc(
 order.customer_district ||
 order.district ||
 "—"
 )}
+
 </p>
 
+
 <p>
+
 <b>Thana:</b>
+
 ${esc(
 order.customer_thana ||
 order.thana ||
 "—"
 )}
+
 </p>
 
+
 <p>
+
 <b>Delivery:</b>
-${esc(order.delivery_area || "—")}
+
+${esc(
+order.delivery_area ||
+"—"
+)}
+
 —
-৳${money(order.delivery_charge)}
+
+৳${money(
+order.delivery_charge
+)}
+
 </p>
 
+
 <p>
+
 <b>Payment:</b>
-${esc(order.payment_method || "—")}
+
+${esc(
+order.payment_method ||
+"—"
+)}
+
 —
-${esc(order.payment_status || "Pending")}
+
+${esc(
+order.payment_status ||
+"Pending"
+)}
+
 </p>
 
 </div>
 
+
 <div class="items-box">
 
-<b>🛍️ Products</b>
+<b>
+🛍️ Products
+</b>
+
 
 ${
-(items.data || []).map(item=>`
+(items.data || [])
+.map(item=>`
 
 <div class="item-row">
 
-${esc(item.product_name || "Product")}
+${esc(
+item.product_name ||
+"Product"
+)}
 
 ${
 item.size
@@ -1720,7 +2076,11 @@ item.size
 ""
 }
 
-× ${Number(item.quantity || 1)}
+×
+
+${Number(
+item.quantity || 1
+)}
 
 =
 
@@ -1736,22 +2096,31 @@ Number(item.quantity || 1)
 
 </div>
 
-`).join("")
+`)
+.join("")
 }
 
 </div>
 
+
 <h3 style="color:var(--orange-dark)">
+
 Total:
+
 ৳${money(
 order.total ??
 order.total_amount
 )}
+
 </h3>
+
 
 <div class="admin-actions">
 
-<select class="order-status-select">
+
+<select
+class="order-status-select"
+>
 
 ${
 [
@@ -1761,13 +2130,17 @@ ${
 "Shipped",
 "Delivered",
 "Cancelled"
-].map(status=>`
+]
+.map(status=>`
 
 <option
 value="${esc(status)}"
 ${
 status===
-(order.order_status || "Pending")
+(
+order.order_status ||
+"Pending"
+)
 ?
 "selected"
 :
@@ -1777,12 +2150,16 @@ status===
 ${status}
 </option>
 
-`).join("")
+`)
+.join("")
 }
 
 </select>
 
-<select class="payment-status-select">
+
+<select
+class="payment-status-select"
+>
 
 ${
 [
@@ -1790,60 +2167,73 @@ ${
 "Paid",
 "Failed",
 "Refunded"
-].map(status=>`
+]
+.map(status=>`
 
 <option
 value="${esc(status)}"
 ${
 status===
-(order.payment_status || "Pending")
+(
+order.payment_status ||
+"Pending"
+)
 ?
 "selected"
 :
 ""
 }
 >
+
 Payment: ${status}
+
 </option>
 
-`).join("")
+`)
+.join("")
 }
 
 </select>
 
-<button
-type="button"
-class="btn btn-green customer-whatsapp"
->
-💬 WhatsApp
-</button>
 
 </div>
 
 </div>
+
 `;
 
 }
+
 
 box.innerHTML=html;
 
 
 /* EVENT LISTENERS */
 
-const cards=box.querySelectorAll(".order-card");
+const cards=
+box.querySelectorAll(
+".order-card"
+);
 
-cards.forEach((card,index)=>{
 
-const order=r.data[index];
+cards.forEach(
+(card,index)=>{
+
+const order=
+r.data[index];
+
 
 const statusSelect=
-card.querySelector(".order-status-select");
+card.querySelector(
+".order-status-select"
+);
+
 
 const paymentSelect=
-card.querySelector(".payment-status-select");
+card.querySelector(
+".payment-status-select"
+);
 
-const whatsapp=
-card.querySelector(".customer-whatsapp");
 
 if(statusSelect){
 
@@ -1861,6 +2251,7 @@ this.value
 
 }
 
+
 if(paymentSelect){
 
 paymentSelect.addEventListener(
@@ -1877,39 +2268,31 @@ this.value
 
 }
 
-if(whatsapp){
-
-whatsapp.addEventListener(
-"click",
-function(){
-
-contactCustomer(
-order.customer_phone || "",
-order.customer_name || "Customer"
-);
-
-}
-);
-
-}
-
 });
 
 }
 
 
 /* =====================================================
-ORDER UPDATE
+ORDER STATUS UPDATE
 ===================================================== */
 
-async function updateOrderStatus(id,status){
+async function updateOrderStatus(
+id,
+status
+){
 
-const r=await db
+const r=
+await db
 .from("orders")
 .update({
 order_status:status
 })
-.eq("id",id);
+.eq(
+"id",
+id
+);
+
 
 if(r.error){
 
@@ -1922,22 +2305,39 @@ return;
 
 }
 
-alert("Order status update হয়েছে ✅");
+
+alert(
+"Order status update হয়েছে ✅"
+);
+
 
 await loadStats();
+
 await renderOrders();
 
 }
 
 
-async function updatePaymentStatus(id,status){
+/* =====================================================
+PAYMENT STATUS UPDATE
+===================================================== */
 
-const r=await db
+async function updatePaymentStatus(
+id,
+status
+){
+
+const r=
+await db
 .from("orders")
 .update({
 payment_status:status
 })
-.eq("id",id);
+.eq(
+"id",
+id
+);
+
 
 if(r.error){
 
@@ -1950,7 +2350,11 @@ return;
 
 }
 
-alert("Payment status update হয়েছে ✅");
+
+alert(
+"Payment status update হয়েছে ✅"
+);
+
 
 await renderOrders();
 
@@ -1964,25 +2368,38 @@ PRODUCTS
 async function renderProducts(){
 
 const box=
-document.getElementById("sectionContent");
+document.getElementById(
+"sectionContent"
+);
 
-const r=await db
+
+const r=
+await db
 .from("products")
 .select("*")
-.order("id",{
+.order(
+"id",
+{
 ascending:false
-});
+}
+);
+
 
 if(r.error){
 
-showError(r.error.message);
+showError(
+r.error.message
+);
+
 return;
 
 }
 
+
 if(!r.data?.length){
 
 box.innerHTML=`
+
 <div class="empty">
 
 🛍️ কোনো Product নেই।
@@ -1998,67 +2415,94 @@ id="emptyAddProduct"
 </button>
 
 </div>
+
 `;
 
+
 document
-.getElementById("emptyAddProduct")
+.getElementById(
+"emptyAddProduct"
+)
 .addEventListener(
 "click",
-()=>showSection("addProduct")
+()=>showSection(
+"addProduct"
+)
 );
 
 return;
 
 }
 
+
 box.innerHTML=`
 
 <div class="notice">
+
 🛍️ Homepage-এর Product এখানে manage করা যাবে।
+
 </div>
+
 
 <div class="product-grid">
 
 ${
-r.data.map(product=>{
+r.data.map(
+product=>{
 
 let image="";
 
-if(Array.isArray(product.images)){
 
-image=product.images[0] || "";
+if(Array.isArray(
+product.images
+)){
 
-}else if(
+image=
+product.images[0] ||
+"";
+
+}
+
+else if(
 typeof product.images==="string"
 ){
 
 try{
 
 const parsed=
-JSON.parse(product.images);
+JSON.parse(
+product.images
+);
 
 image=
 Array.isArray(parsed)
 ?
-(parsed[0] || "")
+(
+parsed[0] ||
+""
+)
 :
 product.images;
 
 }catch(e){
 
-image=product.images;
+image=
+product.images;
 
 }
 
 }
+
 
 image=
 image ||
 "https://via.placeholder.com/500x500?text=Gadhuli";
 
+
 return `
 
 <div class="product-card">
+
 
 <img
 class="product-image"
@@ -2067,29 +2511,46 @@ alt="${esc(product.name)}"
 onerror="this.src='https://via.placeholder.com/500x500?text=Gadhuli'"
 >
 
+
 <div class="product-name">
-${esc(product.name)}
+
+${esc(
+product.name
+)}
+
 </div>
 
+
 <div class="product-price">
-৳${money(product.price)}
+
+৳${money(
+product.price
+)}
+
 </div>
+
 
 <div class="product-meta">
 
-${esc(product.category || "")}
+${esc(
+product.category ||
+""
+)}
 
 ${
 product.subcategory
 ?
-" • "+esc(product.subcategory)
+" • "+
+esc(product.subcategory)
 :
 ""
 }
 
 </div>
 
+
 <div style="margin-top:10px">
+
 
 <button
 type="button"
@@ -2098,6 +2559,7 @@ class="btn btn-light edit-product"
 ✏️ Edit
 </button>
 
+
 <button
 type="button"
 class="btn btn-danger delete-product"
@@ -2105,37 +2567,56 @@ class="btn btn-danger delete-product"
 🗑️ Delete
 </button>
 
+
 </div>
 
 </div>
 
 `;
 
-}).join("")
+}
+).join("")
 }
 
 </div>
+
 `;
 
+
 const cards=
-box.querySelectorAll(".product-card");
-
-cards.forEach((card,index)=>{
-
-const product=r.data[index];
-
-card
-.querySelector(".edit-product")
-.addEventListener(
-"click",
-()=>editProduct(product.id)
+box.querySelectorAll(
+".product-card"
 );
 
+
+cards.forEach(
+(card,index)=>{
+
+const product=
+r.data[index];
+
+
 card
-.querySelector(".delete-product")
+.querySelector(
+".edit-product"
+)
 .addEventListener(
 "click",
-()=>deleteProduct(product.id)
+()=>editProduct(
+product.id
+)
+);
+
+
+card
+.querySelector(
+".delete-product"
+)
+.addEventListener(
+"click",
+()=>deleteProduct(
+product.id
+)
 );
 
 });
@@ -2234,32 +2715,157 @@ const categories={
 };
 
 
+/* =====================================================
+SIZE DATA
+===================================================== */
+
 const sizeData={
 
-"T-Shirt":["S","M","L","XL","2XL","4XL"],
-"Polo T-Shirt":["S","M","L","XL","2XL","4XL"],
-"Shirt":["S","M","L","XL","2XL","4XL"],
-"Hoodie & Sweatshirt":["S","M","L","XL","2XL","4XL"],
-"Jacket":["S","M","L","XL","2XL","4XL"],
-
-"Panjabi":[
-"28","30","32","34","36","38",
-"40","42","44","46","48"
+"T-Shirt":[
+"S",
+"M",
+"L",
+"XL",
+"2XL",
+"4XL"
 ],
 
-"Pants":["28","30","32","34","36","38","40"],
-"Jeans":["28","30","32","34","36","38","40"],
-"Shorts":["28","30","32","34","36","38","40"],
+"Polo T-Shirt":[
+"S",
+"M",
+"L",
+"XL",
+"2XL",
+"4XL"
+],
 
-"Three Piece":["S","M","L","XL","2XL"],
-"Kurti":["S","M","L","XL","2XL"],
-"Tops":["S","M","L","XL","2XL"],
-"Gown":["S","M","L","XL","2XL"],
-"Abaya":["S","M","L","XL","2XL"],
-"Women's Pants":["28","30","32","34","36","38"],
+"Shirt":[
+"S",
+"M",
+"L",
+"XL",
+"2XL",
+"4XL"
+],
 
-"Saree":["Free Size"],
-"Hijab":["Free Size"]
+"Hoodie & Sweatshirt":[
+"S",
+"M",
+"L",
+"XL",
+"2XL",
+"4XL"
+],
+
+"Jacket":[
+"S",
+"M",
+"L",
+"XL",
+"2XL",
+"4XL"
+],
+
+"Panjabi":[
+"28",
+"30",
+"32",
+"34",
+"36",
+"38",
+"40",
+"42",
+"44",
+"46",
+"48"
+],
+
+"Pants":[
+"28",
+"30",
+"32",
+"34",
+"36",
+"38",
+"40"
+],
+
+"Jeans":[
+"28",
+"30",
+"32",
+"34",
+"36",
+"38",
+"40"
+],
+
+"Shorts":[
+"28",
+"30",
+"32",
+"34",
+"36",
+"38",
+"40"
+],
+
+"Three Piece":[
+"S",
+"M",
+"L",
+"XL",
+"2XL"
+],
+
+"Kurti":[
+"S",
+"M",
+"L",
+"XL",
+"2XL"
+],
+
+"Tops":[
+"S",
+"M",
+"L",
+"XL",
+"2XL"
+],
+
+"Gown":[
+"S",
+"M",
+"L",
+"XL",
+"2XL"
+],
+
+"Abaya":[
+"S",
+"M",
+"L",
+"XL",
+"2XL"
+],
+
+"Women's Pants":[
+"28",
+"30",
+"32",
+"34",
+"36",
+"38"
+],
+
+"Saree":[
+"Free Size"
+],
+
+"Hijab":[
+"Free Size"
+]
 
 };
 
@@ -2271,17 +2877,25 @@ ADD PRODUCT
 function renderAddProduct(){
 
 const box=
-document.getElementById("sectionContent");
+document.getElementById(
+"sectionContent"
+);
+
 
 box.innerHTML=`
 
 <div class="card">
 
-<h2>➕ Add New Product</h2>
+<h2>
+➕ Add New Product
+</h2>
+
 
 <div class="form-group">
 
-<label>Product Name *</label>
+<label>
+Product Name *
+</label>
 
 <input
 id="productName"
@@ -2291,9 +2905,12 @@ placeholder="Product name"
 
 </div>
 
+
 <div class="form-group">
 
-<label>Price *</label>
+<label>
+Price *
+</label>
 
 <input
 id="productPrice"
@@ -2304,11 +2921,16 @@ placeholder="Price in ৳"
 
 </div>
 
+
 <div class="form-group">
 
-<label>Category *</label>
+<label>
+Category *
+</label>
 
-<select id="productCategory">
+<select
+id="productCategory"
+>
 
 <option value="">
 Select Category
@@ -2316,11 +2938,17 @@ Select Category
 
 ${
 Object.keys(categories)
-.map(category=>`
-<option value="${esc(category)}">
+.map(
+category=>`
+
+<option
+value="${esc(category)}"
+>
 ${esc(category)}
 </option>
-`)
+
+`
+)
 .join("")
 }
 
@@ -2328,11 +2956,16 @@ ${esc(category)}
 
 </div>
 
+
 <div class="form-group">
 
-<label>Subcategory</label>
+<label>
+Subcategory
+</label>
 
-<select id="productSubcategory">
+<select
+id="productSubcategory"
+>
 
 <option value="">
 Select Subcategory
@@ -2342,9 +2975,12 @@ Select Subcategory
 
 </div>
 
+
 <div class="form-group">
 
-<label>Available Sizes</label>
+<label>
+Available Sizes
+</label>
 
 <div
 id="sizeOptions"
@@ -2355,9 +2991,12 @@ Subcategory select করুন।
 
 </div>
 
+
 <div class="form-group">
 
-<label>Description</label>
+<label>
+Description
+</label>
 
 <textarea
 id="productDescription"
@@ -2367,9 +3006,12 @@ placeholder="Product description"
 
 </div>
 
+
 <div class="form-group">
 
-<label>Product Images *</label>
+<label>
+Product Images *
+</label>
 
 <input
 id="productImages"
@@ -2382,12 +3024,14 @@ multiple
 ১ থেকে ৫টি ছবি select করুন।
 </small>
 
+
 <div
 id="imagePreview"
 class="image-preview"
 ></div>
 
 </div>
+
 
 <button
 type="button"
@@ -2398,32 +3042,44 @@ class="btn btn-orange full"
 </button>
 
 </div>
+
 `;
 
 
 document
-.getElementById("productCategory")
+.getElementById(
+"productCategory"
+)
 .addEventListener(
 "change",
 updateSubcategories
 );
 
+
 document
-.getElementById("productSubcategory")
+.getElementById(
+"productSubcategory"
+)
 .addEventListener(
 "change",
 updateSizes
 );
 
+
 document
-.getElementById("productImages")
+.getElementById(
+"productImages"
+)
 .addEventListener(
 "change",
 previewImages
 );
 
+
 document
-.getElementById("saveProductButton")
+.getElementById(
+"saveProductButton"
+)
 .addEventListener(
 "click",
 saveProduct
@@ -2432,47 +3088,81 @@ saveProduct
 }
 
 
+/* =====================================================
+SUBCATEGORIES
+===================================================== */
+
 function updateSubcategories(){
 
 const category=
-document.getElementById("productCategory")
+document
+.getElementById(
+"productCategory"
+)
 .value;
 
+
 const select=
-document.getElementById("productSubcategory");
+document.getElementById(
+"productSubcategory"
+);
+
 
 select.innerHTML=
 '<option value="">Select Subcategory</option>';
 
-(categories[category] || [])
+
+(
+categories[category] ||
+[]
+)
 .forEach(item=>{
 
 const option=
-document.createElement("option");
+document.createElement(
+"option"
+);
 
 option.value=item;
+
 option.textContent=item;
 
-select.appendChild(option);
+select.appendChild(
+option
+);
 
 });
+
 
 updateSizes();
 
 }
 
 
+/* =====================================================
+SIZES
+===================================================== */
+
 function updateSizes(){
 
 const sub=
-document.getElementById("productSubcategory")
+document
+.getElementById(
+"productSubcategory"
+)
 .value;
 
+
 const box=
-document.getElementById("sizeOptions");
+document.getElementById(
+"sizeOptions"
+);
+
 
 const sizes=
-sizeData[sub] || [];
+sizeData[sub] ||
+[];
+
 
 if(!sizes.length){
 
@@ -2483,8 +3173,11 @@ return;
 
 }
 
+
 box.innerHTML=
-sizes.map(size=>`
+sizes
+.map(
+size=>`
 
 <label class="size-label">
 
@@ -2498,23 +3191,39 @@ ${esc(size)}
 
 </label>
 
-`).join("");
+`
+)
+.join("");
 
 }
 
 
+/* =====================================================
+IMAGE PREVIEW
+===================================================== */
+
 function previewImages(){
 
 const input=
-document.getElementById("productImages");
+document.getElementById(
+"productImages"
+);
+
 
 const box=
-document.getElementById("imagePreview");
+document.getElementById(
+"imagePreview"
+);
+
 
 box.innerHTML="";
 
+
 const files=
-Array.from(input.files || []);
+Array.from(
+input.files || []
+);
+
 
 if(files.length>5){
 
@@ -2523,19 +3232,30 @@ alert(
 );
 
 input.value="";
+
 return;
 
 }
 
-files.forEach(file=>{
+
+files.forEach(
+file=>{
 
 const img=
-document.createElement("img");
+document.createElement(
+"img"
+);
+
 
 img.src=
-URL.createObjectURL(file);
+URL.createObjectURL(
+file
+);
 
-box.appendChild(img);
+
+box.appendChild(
+img
+);
 
 });
 
@@ -2549,32 +3269,60 @@ SAVE PRODUCT
 async function saveProduct(){
 
 const name=
-document.getElementById("productName")
-.value.trim();
+document
+.getElementById(
+"productName"
+)
+.value
+.trim();
+
 
 const price=
 Number(
-document.getElementById("productPrice")
+document
+.getElementById(
+"productPrice"
+)
 .value
 );
 
+
 const category=
-document.getElementById("productCategory")
+document
+.getElementById(
+"productCategory"
+)
 .value;
+
 
 const subcategory=
-document.getElementById("productSubcategory")
+document
+.getElementById(
+"productSubcategory"
+)
 .value;
 
+
 const description=
-document.getElementById("productDescription")
-.value.trim();
+document
+.getElementById(
+"productDescription"
+)
+.value
+.trim();
+
 
 const input=
-document.getElementById("productImages");
+document.getElementById(
+"productImages"
+);
+
 
 const files=
-Array.from(input.files || []);
+Array.from(
+input.files || []
+);
+
 
 if(
 !name ||
@@ -2591,6 +3339,7 @@ return;
 
 }
 
+
 if(files.length>5){
 
 alert(
@@ -2601,28 +3350,45 @@ return;
 
 }
 
+
 const sizes=
 Array.from(
-document.querySelectorAll(".size-check:checked")
-).map(x=>x.value);
+document.querySelectorAll(
+".size-check:checked"
+)
+)
+.map(
+x=>x.value
+);
+
 
 const button=
-document.getElementById("saveProductButton");
+document.getElementById(
+"saveProductButton"
+);
+
 
 try{
 
 button.disabled=true;
-button.textContent="⏳ Uploading...";
+
+button.textContent=
+"⏳ Uploading...";
+
 
 const urls=[];
 
-for(const file of files){
+
+for(
+const file of files
+){
 
 const safe=
 file.name.replace(
 /[^a-zA-Z0-9._-]/g,
 "_"
 );
+
 
 const path=
 "products/"+
@@ -2633,6 +3399,7 @@ Math.random()
 .substring(2,8)+
 "-"+
 safe;
+
 
 const upload=
 await db.storage
@@ -2645,13 +3412,18 @@ upsert:false
 }
 );
 
+
 if(upload.error)
 throw upload.error;
+
 
 const pub=
 db.storage
 .from("product-images")
-.getPublicUrl(path);
+.getPublicUrl(
+path
+);
+
 
 urls.push(
 pub.data.publicUrl
@@ -2659,49 +3431,71 @@ pub.data.publicUrl
 
 }
 
+
 const r=
 await db
 .from("products")
 .insert({
 
 name:name,
+
 price:price,
+
 category:category,
+
 subcategory:subcategory,
+
 sizes:sizes,
+
 description:description,
+
 images:urls
 
 });
 
+
 if(r.error)
 throw r.error;
+
 
 alert(
 "Product Save হয়েছে ✅"
 );
 
+
 await loadStats();
-await showSection("products");
+
+await showSection(
+"products"
+);
+
 
 }catch(error){
 
 console.error(error);
+
 
 alert(
 "Product Save হয়নি ❌\n\n"+
 (error.message || error)
 );
 
+
 }finally{
 
 button.disabled=false;
-button.textContent="💾 Save Product";
+
+button.textContent=
+"💾 Save Product";
 
 }
 
 }
 
+
+/* =====================================================
+EDIT PRODUCT
+===================================================== */
 
 function editProduct(id){
 
@@ -2713,18 +3507,29 @@ alert(
 }
 
 
+/* =====================================================
+DELETE PRODUCT
+===================================================== */
+
 async function deleteProduct(id){
 
-if(!confirm(
+if(
+!confirm(
 "এই Product Delete করবেন?"
-))
+)
+)
 return;
+
 
 const r=
 await db
 .from("products")
 .delete()
-.eq("id",id);
+.eq(
+"id",
+id
+);
+
 
 if(r.error){
 
@@ -2737,11 +3542,14 @@ return;
 
 }
 
+
 alert(
 "Product Delete হয়েছে ✅"
 );
 
+
 await loadStats();
+
 await renderProducts();
 
 }
@@ -2754,15 +3562,22 @@ BANNERS
 async function renderBanners(){
 
 const box=
-document.getElementById("sectionContent");
+document.getElementById(
+"sectionContent"
+);
+
 
 const r=
 await db
 .from("advertisements")
 .select("*")
-.order("sort_order",{
+.order(
+"sort_order",
+{
 ascending:true
-});
+}
+);
+
 
 if(r.error){
 
@@ -2770,7 +3585,9 @@ box.innerHTML=`
 
 <div class="card">
 
-<h2>🖼️ Banner Management</h2>
+<h2>
+🖼️ Banner Management
+</h2>
 
 <div class="notice">
 
@@ -2779,8 +3596,12 @@ box.innerHTML=`
 <br><br>
 
 Error:
+
 <br>
-${esc(r.error.message)}
+
+${esc(
+r.error.message
+)}
 
 </div>
 
@@ -2792,21 +3613,28 @@ return;
 
 }
 
+
 box.innerHTML=`
 
 <div class="card">
 
-<h2>🖼️ Add Banner</h2>
+<h2>
+🖼️ Add Banner
+</h2>
+
 
 <div class="form-group">
 
-<label>Banner Image</label>
+<label>
+Banner Image
+</label>
 
 <input
 id="bannerImage"
 type="file"
 accept="image/*"
 >
+
 
 <div
 id="bannerPreview"
@@ -2815,29 +3643,51 @@ class="image-preview"
 
 </div>
 
+
 <div class="form-group">
 
-<label>Sort Order</label>
+<label>
+Sort Order
+</label>
 
-<select id="bannerSort">
+<select
+id="bannerSort"
+>
 
-<option value="1">1</option>
-<option value="2">2</option>
-<option value="3">3</option>
-<option value="4">4</option>
-<option value="5">5</option>
+<option value="1">
+1
+</option>
+
+<option value="2">
+2
+</option>
+
+<option value="3">
+3
+</option>
+
+<option value="4">
+4
+</option>
+
+<option value="5">
+5
+</option>
 
 </select>
 
 </div>
 
+
 <div class="form-group">
 
-<label style="
+<label
+style="
 display:flex;
 align-items:center;
 gap:8px;
-">
+"
+>
 
 <input
 id="bannerActive"
@@ -2850,6 +3700,7 @@ Active
 </label>
 
 </div>
+
 
 <button
 type="button"
@@ -2864,24 +3715,36 @@ class="btn btn-orange full"
 
 <div class="card">
 
-<h2>📋 Current Banners</h2>
+<h2>
+📋 Current Banners
+</h2>
+
 
 ${
 !r.data?.length
 ?
+
 `
 <div class="empty">
+
 এখনো কোনো Banner নেই।
+
 </div>
 `
+
 :
+
 `
+
 <div class="banner-grid">
 
 ${
-r.data.map(b=>`
+r.data
+.map(
+b=>`
 
 <div class="banner-card">
+
 
 <div class="banner-head">
 
@@ -2894,35 +3757,62 @@ Banner #${esc(b.id)}
 <br>
 
 <small>
-Sort: ${esc(b.sort_order ?? 1)}
+Sort:
+${esc(
+b.sort_order ?? 1
+)}
 </small>
 
 </div>
 
+
 ${
 b.active
+
 ?
-`<span class="banner-active">ACTIVE</span>`
+
+`<span class="banner-active">
+ACTIVE
+</span>`
+
 :
-`<span class="banner-inactive">HIDDEN</span>`
+
+`<span class="banner-inactive">
+HIDDEN
+</span>`
+
 }
 
 </div>
 
+
 <img
-src="${esc(b.image_url)}"
+src="${esc(
+b.image_url
+)}"
 class="banner-image"
 alt="Gadhuli Banner"
 >
 
+
 <div class="admin-actions">
+
 
 <button
 type="button"
 class="btn btn-light banner-toggle"
 >
-${b.active ? "🙈 Hide" : "👁️ Activate"}
+
+${
+b.active
+?
+"🙈 Hide"
+:
+"👁️ Activate"
+}
+
 </button>
+
 
 <button
 type="button"
@@ -2931,27 +3821,38 @@ class="btn btn-danger banner-delete"
 🗑️ Delete
 </button>
 
-</div>
 
 </div>
 
-`)
+</div>
+
+`
+)
 .join("")
 }
 
 </div>
+
 `
+
 }
 
 </div>
+
 `;
 
 
 const input=
-document.getElementById("bannerImage");
+document.getElementById(
+"bannerImage"
+);
+
 
 const preview=
-document.getElementById("bannerPreview");
+document.getElementById(
+"bannerPreview"
+);
+
 
 input.addEventListener(
 "change",
@@ -2959,30 +3860,48 @@ function(){
 
 preview.innerHTML="";
 
-const file=this.files?.[0];
+
+const file=
+this.files?.[0];
+
 
 if(!file)
 return;
 
+
 const img=
-document.createElement("img");
+document.createElement(
+"img"
+);
+
 
 img.src=
-URL.createObjectURL(file);
+URL.createObjectURL(
+file
+);
+
 
 img.style.width="220px";
+
 img.style.height="100px";
+
 img.style.objectFit="cover";
+
 img.style.borderRadius="9px";
 
-preview.appendChild(img);
+
+preview.appendChild(
+img
+);
 
 }
 );
 
 
 document
-.getElementById("saveBannerButton")
+.getElementById(
+"saveBannerButton"
+)
 .addEventListener(
 "click",
 saveBanner
@@ -2990,14 +3909,22 @@ saveBanner
 
 
 const cards=
-box.querySelectorAll(".banner-card");
+box.querySelectorAll(
+".banner-card"
+);
 
-cards.forEach((card,index)=>{
 
-const banner=r.data[index];
+cards.forEach(
+(card,index)=>{
+
+const banner=
+r.data[index];
+
 
 card
-.querySelector(".banner-toggle")
+.querySelector(
+".banner-toggle"
+)
 .addEventListener(
 "click",
 ()=>toggleBanner(
@@ -3006,8 +3933,11 @@ banner.id,
 )
 );
 
+
 card
-.querySelector(".banner-delete")
+.querySelector(
+".banner-delete"
+)
 .addEventListener(
 "click",
 ()=>deleteBanner(
@@ -3020,23 +3950,39 @@ banner.id
 }
 
 
+/* =====================================================
+SAVE BANNER
+===================================================== */
+
 async function saveBanner(){
 
 const input=
-document.getElementById("bannerImage");
+document.getElementById(
+"bannerImage"
+);
+
 
 const file=
 input.files?.[0];
 
+
 const sort=
 Number(
-document.getElementById("bannerSort")
+document
+.getElementById(
+"bannerSort"
+)
 .value
 );
 
+
 const active=
-document.getElementById("bannerActive")
+document
+.getElementById(
+"bannerActive"
+)
 .checked;
+
 
 if(!file){
 
@@ -3048,19 +3994,27 @@ return;
 
 }
 
+
 const button=
-document.getElementById("saveBannerButton");
+document.getElementById(
+"saveBannerButton"
+);
+
 
 try{
 
 button.disabled=true;
-button.textContent="⏳ Uploading...";
+
+button.textContent=
+"⏳ Uploading...";
+
 
 const safe=
 file.name.replace(
 /[^a-zA-Z0-9._-]/g,
 "_"
 );
+
 
 const path=
 "banners/"+
@@ -3071,6 +4025,7 @@ Math.random()
 .substring(2,8)+
 "-"+
 safe;
+
 
 const upload=
 await db.storage
@@ -3083,14 +4038,19 @@ upsert:false
 }
 );
 
+
 if(upload.error)
 throw upload.error;
+
 
 const publicUrl=
 db.storage
 .from("product-images")
-.getPublicUrl(path)
+.getPublicUrl(
+path
+)
 .data.publicUrl;
+
 
 const r=
 await db
@@ -3098,40 +4058,57 @@ await db
 .insert({
 
 image_url:publicUrl,
+
 sort_order:sort,
+
 active:active
 
 });
 
+
 if(r.error)
 throw r.error;
+
 
 alert(
 "Banner Upload হয়েছে ✅"
 );
 
+
 await renderBanners();
+
 
 }catch(error){
 
 console.error(error);
+
 
 alert(
 "Banner Upload হয়নি ❌\n\n"+
 (error.message || error)
 );
 
+
 }finally{
 
 button.disabled=false;
-button.textContent="🖼️ Upload Banner";
+
+button.textContent=
+"🖼️ Upload Banner";
 
 }
 
 }
 
 
-async function toggleBanner(id,value){
+/* =====================================================
+TOGGLE BANNER
+===================================================== */
+
+async function toggleBanner(
+id,
+value
+){
 
 const r=
 await db
@@ -3139,7 +4116,11 @@ await db
 .update({
 active:value
 })
-.eq("id",id);
+.eq(
+"id",
+id
+);
+
 
 if(r.error){
 
@@ -3152,23 +4133,35 @@ return;
 
 }
 
+
 await renderBanners();
 
 }
 
 
+/* =====================================================
+DELETE BANNER
+===================================================== */
+
 async function deleteBanner(id){
 
-if(!confirm(
+if(
+!confirm(
 "এই Banner Delete করবেন?"
-))
+)
+)
 return;
+
 
 const r=
 await db
 .from("advertisements")
 .delete()
-.eq("id",id);
+.eq(
+"id",
+id
+);
+
 
 if(r.error){
 
@@ -3181,9 +4174,11 @@ return;
 
 }
 
+
 alert(
 "Banner Delete হয়েছে ✅"
 );
+
 
 await renderBanners();
 
@@ -3197,183 +4192,287 @@ RESELLERS
 async function renderResellers(){
 
 const box=
-document.getElementById("sectionContent");
+document.getElementById(
+"sectionContent"
+);
+
 
 const r=
 await db
 .from("resellers")
 .select("*")
-.order("created_at",{
+.order(
+"created_at",
+{
 ascending:false
-});
+}
+);
+
 
 if(r.error){
 
-showError(r.error.message);
+showError(
+r.error.message
+);
+
 return;
 
 }
 
+
 if(!r.data?.length){
 
 box.innerHTML=`
+
 <div class="empty">
+
 🤝 কোনো Reseller Request নেই।
+
 </div>
+
 `;
 
 return;
 
 }
 
+
 let html="";
 
-for(const reseller of r.data){
+
+for(
+const reseller of r.data
+){
 
 const profile=
 await db
 .from("profiles")
-.select("full_name,phone,role")
-.eq("id",reseller.user_id)
+.select(
+"full_name,phone,role"
+)
+.eq(
+"id",
+reseller.user_id
+)
 .maybeSingle();
+
 
 html+=`
 
 <div class="reseller-card">
+
 
 <div class="reseller-head">
 
 <div>
 
 <b>
+
 🤝 ${esc(
 profile.data?.full_name ||
 "Customer"
 )}
+
 </b>
 
 <br>
 
 <small>
+
 Code:
+
 ${esc(
 reseller.reseller_code ||
 "—"
 )}
+
 </small>
 
 </div>
 
+
 <span class="status">
+
 ${esc(
 reseller.status ||
 "Pending"
 )}
+
 </span>
 
 </div>
 
+
 <div class="reseller-info">
 
 <p>
-<b>Phone:</b>
+
+<b>
+Phone:
+</b>
+
 ${esc(
 profile.data?.phone ||
 "—"
 )}
+
 </p>
 
+
 <p>
-<b>Role:</b>
+
+<b>
+Role:
+</b>
+
 ${esc(
 profile.data?.role ||
 "customer"
 )}
+
 </p>
 
+
 <p>
-<b>Commission:</b>
+
+<b>
+Commission:
+</b>
+
 ${Number(
-reseller.commission_rate || 0
+reseller.commission_rate ||
+0
 )}%
+
 </p>
 
+
 <p>
-<b>Total Orders:</b>
+
+<b>
+Total Orders:
+</b>
+
 ${Number(
-reseller.total_orders || 0
+reseller.total_orders ||
+0
 )}
+
 </p>
 
+
 <p>
-<b>Total Sales:</b>
+
+<b>
+Total Sales:
+</b>
+
 ৳${money(
 reseller.total_sales
 )}
+
 </p>
 
+
 <p>
-<b>Total Commission:</b>
+
+<b>
+Total Commission:
+</b>
+
 ৳${money(
 reseller.total_commission
 )}
+
 </p>
 
 </div>
 
+
 <div class="admin-actions">
+
 
 ${
 reseller.status!=="Approved"
+
 ?
+
 `
+
 <button
 type="button"
 class="btn btn-orange approve-reseller"
 >
 ✅ Approve
 </button>
+
 `
+
 :
+
 ""
+
 }
+
 
 ${
 reseller.status!=="Suspended"
+
 ?
+
 `
+
 <button
 type="button"
 class="btn btn-danger suspend-reseller"
 >
 🚫 Suspend
 </button>
+
 `
+
 :
+
 ""
+
 }
 
 </div>
 
 </div>
+
 `;
 
 }
 
+
 box.innerHTML=html;
 
+
 const cards=
-box.querySelectorAll(".reseller-card");
+box.querySelectorAll(
+".reseller-card"
+);
 
-cards.forEach((card,index)=>{
 
-const reseller=r.data[index];
+cards.forEach(
+(card,index)=>{
+
+const reseller=
+r.data[index];
+
 
 const approve=
-card.querySelector(".approve-reseller");
+card.querySelector(
+".approve-reseller"
+);
+
 
 const suspend=
-card.querySelector(".suspend-reseller");
+card.querySelector(
+".suspend-reseller"
+);
+
 
 if(approve){
 
@@ -3386,6 +4485,7 @@ reseller.id
 );
 
 }
+
 
 if(suspend){
 
@@ -3404,7 +4504,14 @@ reseller.id
 }
 
 
-async function approveReseller(uid,id){
+/* =====================================================
+APPROVE RESELLER
+===================================================== */
+
+async function approveReseller(
+uid,
+id
+){
 
 const r=
 await db
@@ -3412,7 +4519,11 @@ await db
 .update({
 status:"Approved"
 })
-.eq("id",id);
+.eq(
+"id",
+id
+);
+
 
 if(r.error){
 
@@ -3425,13 +4536,18 @@ return;
 
 }
 
+
 const p=
 await db
 .from("profiles")
 .update({
 role:"reseller"
 })
-.eq("id",uid);
+.eq(
+"id",
+uid
+);
+
 
 if(p.error){
 
@@ -3444,22 +4560,35 @@ return;
 
 }
 
+
 alert(
 "Reseller Approved হয়েছে ✅"
 );
 
+
 await loadStats();
+
 await renderResellers();
 
 }
 
 
-async function suspendReseller(uid,id){
+/* =====================================================
+SUSPEND RESELLER
+===================================================== */
 
-if(!confirm(
+async function suspendReseller(
+uid,
+id
+){
+
+if(
+!confirm(
 "এই Reseller Suspend করবেন?"
-))
+)
+)
 return;
+
 
 const r=
 await db
@@ -3467,7 +4596,11 @@ await db
 .update({
 status:"Suspended"
 })
-.eq("id",id);
+.eq(
+"id",
+id
+);
+
 
 if(r.error){
 
@@ -3480,13 +4613,18 @@ return;
 
 }
 
+
 const p=
 await db
 .from("profiles")
 .update({
 role:"customer"
 })
-.eq("id",uid);
+.eq(
+"id",
+uid
+);
+
 
 if(p.error){
 
@@ -3499,11 +4637,14 @@ return;
 
 }
 
+
 alert(
 "Reseller Suspended হয়েছে 🚫"
 );
 
+
 await loadStats();
+
 await renderResellers();
 
 }
@@ -3516,79 +4657,120 @@ REVIEWS
 async function renderReviews(){
 
 const box=
-document.getElementById("sectionContent");
+document.getElementById(
+"sectionContent"
+);
+
 
 const r=
 await db
 .from("reviews")
 .select("*")
-.order("created_at",{
+.order(
+"created_at",
+{
 ascending:false
-});
+}
+);
+
 
 if(r.error){
 
-showError(r.error.message);
+showError(
+r.error.message
+);
+
 return;
 
 }
 
+
 if(!r.data?.length){
 
 box.innerHTML=`
+
 <div class="empty">
+
 ⭐ কোনো Review নেই।
+
 </div>
+
 `;
 
 return;
 
 }
 
+
 box.innerHTML=
-r.data.map(review=>`
+r.data
+.map(
+review=>`
 
 <div class="review-card">
 
+
 <b>
+
 ${esc(
 review.user_name ||
 "Customer"
 )}
+
 </b>
+
 
 <br>
 
+
 <span>
-${"⭐".repeat(
+
+${
+"⭐".repeat(
 Math.min(
 5,
-Number(review.rating || 0)
+Number(
+review.rating || 0
 )
-)}
+)
+)
+}
+
 </span>
 
-<p style="margin-top:7px">
+
+<p
+style="margin-top:7px"
+>
+
 ${esc(
 review.review_text ||
 ""
 )}
+
 </p>
 
-<p style="margin-top:7px">
+
+<p
+style="margin-top:7px"
+>
 
 Status:
 
 <span class="status">
+
 ${esc(
 review.status ||
 "Pending"
 )}
+
 </span>
 
 </p>
 
+
 <div class="admin-actions">
+
 
 <button
 type="button"
@@ -3597,6 +4779,7 @@ class="btn btn-orange review-approve"
 ✅ Approve
 </button>
 
+
 <button
 type="button"
 class="btn btn-danger review-reject"
@@ -3604,22 +4787,33 @@ class="btn btn-danger review-reject"
 ❌ Reject
 </button>
 
-</div>
 
 </div>
 
-`).join("");
+</div>
+
+`
+)
+.join("");
 
 
 const cards=
-box.querySelectorAll(".review-card");
+box.querySelectorAll(
+".review-card"
+);
 
-cards.forEach((card,index)=>{
 
-const review=r.data[index];
+cards.forEach(
+(card,index)=>{
+
+const review=
+r.data[index];
+
 
 card
-.querySelector(".review-approve")
+.querySelector(
+".review-approve"
+)
 .addEventListener(
 "click",
 ()=>updateReview(
@@ -3628,8 +4822,11 @@ review.id,
 )
 );
 
+
 card
-.querySelector(".review-reject")
+.querySelector(
+".review-reject"
+)
 .addEventListener(
 "click",
 ()=>updateReview(
@@ -3643,7 +4840,14 @@ review.id,
 }
 
 
-async function updateReview(id,status){
+/* =====================================================
+UPDATE REVIEW
+===================================================== */
+
+async function updateReview(
+id,
+status
+){
 
 const r=
 await db
@@ -3651,7 +4855,11 @@ await db
 .update({
 status:status
 })
-.eq("id",id);
+.eq(
+"id",
+id
+);
+
 
 if(r.error){
 
@@ -3664,90 +4872,8 @@ return;
 
 }
 
+
 await renderReviews();
-
-}
-
-
-/* =====================================================
-WHATSAPP
-===================================================== */
-
-function openWhatsApp(){
-
-const message=
-"Hello Gadhuli Support 👋\n\n"+
-"I need help regarding Gadhuli website/order.";
-
-window.open(
-"https://wa.me/"+
-WHATSAPP_NUMBER+
-"?text="+
-encodeURIComponent(message),
-"_blank"
-);
-
-}
-
-
-async function copyWhatsApp(){
-
-try{
-
-await navigator.clipboard.writeText(
-"01333-088194"
-);
-
-alert(
-"WhatsApp number copy হয়েছে ✅"
-);
-
-}catch(error){
-
-alert(
-"WhatsApp: 01333-088194"
-);
-
-}
-
-}
-
-
-function contactCustomer(phone,name){
-
-let clean=
-String(phone || "")
-.replace(/[^0-9]/g,"");
-
-if(clean.startsWith("01")){
-
-clean="88"+clean;
-
-}
-
-if(!clean){
-
-alert(
-"Customer phone পাওয়া যায়নি।"
-);
-
-return;
-
-}
-
-const message=
-"Hello "+
-(name || "Customer")+
-" 👋\n\n"+
-"This is Gadhuli regarding your order.";
-
-window.open(
-"https://wa.me/"+
-clean+
-"?text="+
-encodeURIComponent(message),
-"_blank"
-);
 
 }
 
@@ -3758,20 +4884,28 @@ EVENT LISTENERS
 
 function setupEvents(){
 
-/* NAV BUTTONS */
+/* NAV */
 
 document
-.querySelectorAll(".admin-nav [data-section]")
-.forEach(button=>{
+.querySelectorAll(
+".admin-nav [data-section]"
+)
+.forEach(
+button=>{
 
 button.addEventListener(
 "click",
 function(){
 
 const section=
-this.getAttribute("data-section");
+this.getAttribute(
+"data-section"
+);
 
-showSection(section);
+
+showSection(
+section
+);
 
 }
 );
@@ -3782,7 +4916,9 @@ showSection(section);
 /* REFRESH */
 
 document
-.getElementById("refreshButton")
+.getElementById(
+"refreshButton"
+)
 .addEventListener(
 "click",
 refreshAdmin
@@ -3792,7 +4928,9 @@ refreshAdmin
 /* WEBSITE */
 
 document
-.getElementById("websiteButton")
+.getElementById(
+"websiteButton"
+)
 .addEventListener(
 "click",
 goHome
@@ -3802,7 +4940,9 @@ goHome
 /* LOGIN */
 
 document
-.getElementById("loginButton")
+.getElementById(
+"loginButton"
+)
 .addEventListener(
 "click",
 adminLogin
@@ -3812,7 +4952,9 @@ adminLogin
 /* PASSWORD */
 
 document
-.getElementById("passwordEye")
+.getElementById(
+"passwordEye"
+)
 .addEventListener(
 "click",
 togglePassword
@@ -3822,37 +4964,21 @@ togglePassword
 /* LOGOUT */
 
 document
-.getElementById("logoutButton")
+.getElementById(
+"logoutButton"
+)
 .addEventListener(
 "click",
 adminLogout
 );
 
 
-/* WHATSAPP */
-
-document
-.getElementById("whatsappButton")
-.addEventListener(
-"click",
-openWhatsApp
-);
-
-
-/* COPY */
-
-document
-.getElementById("copyWhatsAppButton")
-.addEventListener(
-"click",
-copyWhatsApp
-);
-
-
 /* ENTER LOGIN */
 
 document
-.getElementById("loginPassword")
+.getElementById(
+"loginPassword"
+)
 .addEventListener(
 "keydown",
 function(event){
@@ -3865,8 +4991,11 @@ adminLogin();
 
 });
 
+
 document
-.getElementById("loginEmail")
+.getElementById(
+"loginEmail"
+)
 .addEventListener(
 "keydown",
 function(event){
@@ -3894,8 +5023,7 @@ setupEvents();
 
 checkSession();
 
-}
-);
+});
 
 </script>
 
