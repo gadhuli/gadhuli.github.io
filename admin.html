@@ -22,6 +22,7 @@ padding:0;
 --orange:#FF6B00;
 --orange-dark:#E65100;
 --orange-light:#FFF3E8;
+--orange-soft:#FFF8F2;
 --gradient:linear-gradient(135deg,#FF8A00,#FF5A00);
 --white:#fff;
 --bg:#FFFDF9;
@@ -31,6 +32,7 @@ padding:0;
 --red:#e53935;
 --blue:#1677ff;
 --green:#18a957;
+--purple:#7c3aed;
 --shadow:0 5px 20px rgba(255,107,0,.10);
 }
 
@@ -454,76 +456,364 @@ border:1px solid #ddd;
 }
 
 /* =========================
-ORDERS
+PREMIUM ORDERS
 ========================= */
 
-.order-card,
-.reseller-card,
-.review-card,
-.banner-card{
+.orders-toolbar{
 background:#fff;
 border:1px solid var(--border);
-border-radius:14px;
+border-radius:16px;
 padding:15px;
-margin-bottom:12px;
-box-shadow:0 3px 12px rgba(0,0,0,.04);
+margin-bottom:15px;
+box-shadow:var(--shadow);
 }
 
-.order-head,
-.reseller-head,
-.banner-head{
+.orders-toolbar-top{
 display:flex;
+align-items:center;
 justify-content:space-between;
-align-items:flex-start;
-gap:10px;
-margin-bottom:12px;
+gap:12px;
+margin-bottom:13px;
 }
 
-.status{
-display:inline-block;
-padding:5px 10px;
-border-radius:20px;
-background:var(--orange-light);
+.orders-title{
+font-size:21px;
+font-weight:800;
 color:var(--orange-dark);
+}
+
+.orders-count{
+font-size:12px;
+color:#777;
+margin-top:2px;
+}
+
+.order-search{
+position:relative;
+flex:1;
+max-width:430px;
+}
+
+.order-search input{
+padding-left:40px;
+height:43px;
+}
+
+.order-search-icon{
+position:absolute;
+left:13px;
+top:50%;
+transform:translateY(-50%);
+font-size:17px;
+color:#999;
+}
+
+.order-filters{
+display:flex;
+gap:8px;
+overflow-x:auto;
+padding-bottom:3px;
+}
+
+.order-filter{
+border:1px solid #ffd4b5;
+background:#fffaf5;
+color:#9b4b12;
+border-radius:20px;
+padding:8px 13px;
+font-size:12px;
+font-weight:700;
+white-space:nowrap;
+cursor:pointer;
+transition:.2s;
+}
+
+.order-filter.active{
+background:var(--orange);
+color:#fff;
+border-color:var(--orange);
+}
+
+.payment-filter{
+margin-top:9px;
+display:flex;
+gap:8px;
+}
+
+.payment-filter button{
+border:1px solid #ddd;
+background:#fff;
+border-radius:20px;
+padding:7px 12px;
 font-size:12px;
 font-weight:700;
 }
 
-.order-info p,
-.reseller-info p{
-margin:5px 0;
+.payment-filter button.active{
+background:#171717;
+color:#fff;
+border-color:#171717;
+}
+
+.order-card{
+background:#fff;
+border:1px solid #ececec;
+border-radius:17px;
+padding:0;
+margin-bottom:15px;
+box-shadow:0 5px 18px rgba(0,0,0,.055);
+overflow:hidden;
+transition:.2s;
+}
+
+.order-card:hover{
+box-shadow:0 8px 25px rgba(255,107,0,.12);
+transform:translateY(-1px);
+}
+
+.order-card-top{
+padding:15px 17px;
+background:linear-gradient(
+135deg,
+#fffaf5,
+#fff
+);
+border-bottom:1px solid #eee;
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:12px;
+}
+
+.order-number{
+font-size:16px;
+font-weight:800;
+color:#222;
+}
+
+.order-date{
+font-size:11px;
+color:#888;
+margin-top:2px;
+}
+
+.order-badges{
+display:flex;
+align-items:center;
+gap:6px;
+flex-wrap:wrap;
+justify-content:flex-end;
+}
+
+.order-status-badge,
+.payment-status-badge{
+padding:6px 10px;
+border-radius:20px;
+font-size:11px;
+font-weight:800;
+white-space:nowrap;
+}
+
+.order-status-pending{
+background:#fff3cd;
+color:#946c00;
+}
+
+.order-status-confirmed{
+background:#e8f1ff;
+color:#1558a6;
+}
+
+.order-status-processing{
+background:#eee8ff;
+color:#6236a5;
+}
+
+.order-status-shipped{
+background:#e4f7ff;
+color:#087493;
+}
+
+.order-status-delivered{
+background:#e8fff0;
+color:#138a3c;
+}
+
+.order-status-cancelled{
+background:#ffe9e9;
+color:#c62828;
+}
+
+.payment-status-pending{
+background:#fff3cd;
+color:#946c00;
+}
+
+.payment-status-paid{
+background:#e8fff0;
+color:#138a3c;
+}
+
+.payment-status-failed{
+background:#ffe9e9;
+color:#c62828;
+}
+
+.payment-status-refunded{
+background:#eee;
+color:#555;
+}
+
+.order-main{
+padding:16px 17px;
+}
+
+.order-customer{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:10px;
+margin-bottom:14px;
+}
+
+.info-box{
+background:#fafafa;
+border:1px solid #eee;
+border-radius:11px;
+padding:11px 12px;
+}
+
+.info-label{
+font-size:10px;
+text-transform:uppercase;
+color:#999;
+font-weight:800;
+letter-spacing:.4px;
+margin-bottom:3px;
+}
+
+.info-value{
+font-size:13px;
+font-weight:700;
+color:#333;
+word-break:break-word;
 }
 
 .items-box{
 background:#fffaf5;
-border-radius:10px;
-padding:10px;
-margin:12px 0;
+border:1px solid #ffe4d1;
+border-radius:12px;
+padding:11px;
+margin:13px 0;
+}
+
+.items-title{
+font-size:13px;
+font-weight:800;
+color:var(--orange-dark);
+margin-bottom:6px;
 }
 
 .item-row{
-padding:8px 0;
-border-bottom:1px solid #eee;
+display:flex;
+justify-content:space-between;
+gap:10px;
+padding:10px 3px;
+border-bottom:1px solid #f0e4dc;
 }
 
 .item-row:last-child{
 border-bottom:0;
 }
 
-.admin-actions{
+.item-left{
+min-width:0;
+}
+
+.item-name{
+font-weight:700;
+font-size:13px;
+word-break:break-word;
+}
+
+.item-details{
+font-size:11px;
+color:#777;
+margin-top:2px;
+}
+
+.item-total{
+font-weight:800;
+font-size:13px;
+color:#333;
+white-space:nowrap;
+}
+
+.order-summary{
+border-top:1px dashed #ddd;
+padding-top:12px;
+margin-top:10px;
+}
+
+.summary-row{
 display:flex;
-gap:7px;
-flex-wrap:wrap;
-margin-top:12px;
+justify-content:space-between;
+gap:10px;
+font-size:13px;
+padding:4px 0;
+color:#555;
 }
 
-.admin-actions .btn{
-margin:0;
+.summary-total{
+display:flex;
+justify-content:space-between;
+gap:10px;
+padding-top:9px;
+margin-top:5px;
+border-top:1px solid #eee;
+font-size:17px;
+font-weight:900;
+color:var(--orange-dark);
 }
 
-.admin-actions select{
-width:auto;
-min-width:150px;
+.order-bottom{
+padding:13px 17px;
+background:#fafafa;
+border-top:1px solid #eee;
+}
+
+.order-control-grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:10px;
+}
+
+.control-label{
+font-size:10px;
+font-weight:800;
+color:#888;
+display:block;
+margin-bottom:5px;
+text-transform:uppercase;
+}
+
+.order-select{
+width:100%;
+height:42px;
+font-weight:700;
+background:#fff;
+}
+
+.order-save-note{
+font-size:11px;
+color:#888;
+margin-top:8px;
+}
+
+.order-loading{
+padding:18px;
+text-align:center;
+color:#777;
+font-size:13px;
 }
 
 /* =========================
@@ -564,6 +854,26 @@ font-size:12px;
 font-weight:bold;
 }
 
+.banner-card,
+.reseller-card,
+.review-card{
+background:#fff;
+border:1px solid var(--border);
+border-radius:14px;
+padding:15px;
+margin-bottom:12px;
+box-shadow:0 3px 12px rgba(0,0,0,.04);
+}
+
+.banner-head,
+.reseller-head{
+display:flex;
+justify-content:space-between;
+align-items:flex-start;
+gap:10px;
+margin-bottom:12px;
+}
+
 /* =========================
 SIZE
 ========================= */
@@ -587,6 +897,26 @@ cursor:pointer;
 
 .size-label input{
 width:auto;
+}
+
+/* =========================
+ACTIONS
+========================= */
+
+.admin-actions{
+display:flex;
+gap:7px;
+flex-wrap:wrap;
+margin-top:12px;
+}
+
+.admin-actions .btn{
+margin:0;
+}
+
+.admin-actions select{
+width:auto;
+min-width:150px;
 }
 
 /* =========================
@@ -624,6 +954,15 @@ grid-template-columns:repeat(2,1fr);
 
 .banner-grid{
 grid-template-columns:1fr;
+}
+
+.orders-toolbar-top{
+flex-direction:column;
+align-items:stretch;
+}
+
+.order-search{
+max-width:none;
 }
 
 }
@@ -683,10 +1022,29 @@ padding:9px 5px;
 grid-template-columns:1fr;
 }
 
-.order-head,
-.reseller-head,
-.banner-head{
+.order-card-top{
+align-items:flex-start;
 flex-direction:column;
+}
+
+.order-badges{
+justify-content:flex-start;
+}
+
+.order-customer{
+grid-template-columns:1fr;
+}
+
+.order-control-grid{
+grid-template-columns:1fr;
+}
+
+.item-row{
+align-items:flex-start;
+}
+
+.item-total{
+font-size:12px;
 }
 
 .admin-actions{
@@ -698,16 +1056,51 @@ flex-direction:column;
 width:100%;
 }
 
+.payment-filter{
+overflow-x:auto;
+}
+
+}
+
+/* =========================
+TOAST
+========================= */
+
+.toast{
+position:fixed;
+right:18px;
+bottom:18px;
+background:#171717;
+color:#fff;
+padding:12px 16px;
+border-radius:11px;
+box-shadow:0 8px 30px rgba(0,0,0,.25);
+z-index:9999;
+font-size:13px;
+font-weight:700;
+opacity:0;
+transform:translateY(15px);
+pointer-events:none;
+transition:.25s;
+}
+
+.toast.show{
+opacity:1;
+transform:translateY(0);
+}
+
+.toast.success{
+background:#138a3c;
+}
+
+.toast.error{
+background:#c62828;
 }
 
 </style>
 </head>
 
 <body>
-
-<!-- =========================
-HEADER
-========================= -->
 
 <header>
 
@@ -748,9 +1141,7 @@ id="websiteButton"
 </header>
 
 
-<!-- =========================
-LOGIN
-========================= -->
+<!-- LOGIN -->
 
 <div
 id="loginSection"
@@ -825,104 +1216,41 @@ style="margin-top:12px;text-align:center;"
 </div>
 
 
-<!-- =========================
-ADMIN PANEL
-========================= -->
+<!-- ADMIN -->
 
 <div
 id="adminPanel"
 class="container hidden"
 >
 
-<!-- STATS -->
-
 <div class="stat-grid">
 
 <div class="stat">
-
-<div class="stat-icon">
-🛍️
+<div class="stat-icon">🛍️</div>
+<div class="stat-label">Products</div>
+<div class="stat-number" id="statProducts">0</div>
 </div>
-
-<div class="stat-label">
-Products
-</div>
-
-<div
-class="stat-number"
-id="statProducts"
->
-0
-</div>
-
-</div>
-
 
 <div class="stat">
-
-<div class="stat-icon">
-📦
+<div class="stat-icon">📦</div>
+<div class="stat-label">Orders</div>
+<div class="stat-number" id="statOrders">0</div>
 </div>
-
-<div class="stat-label">
-Orders
-</div>
-
-<div
-class="stat-number"
-id="statOrders"
->
-0
-</div>
-
-</div>
-
 
 <div class="stat">
-
-<div class="stat-icon">
-⏳
+<div class="stat-icon">⏳</div>
+<div class="stat-label">Pending Orders</div>
+<div class="stat-number" id="statPending">0</div>
 </div>
-
-<div class="stat-label">
-Pending Orders
-</div>
-
-<div
-class="stat-number"
-id="statPending"
->
-0
-</div>
-
-</div>
-
 
 <div class="stat">
-
-<div class="stat-icon">
-🤝
-</div>
-
-<div class="stat-label">
-Reseller Requests
-</div>
-
-<div
-class="stat-number"
-id="statResellers"
->
-0
+<div class="stat-icon">🤝</div>
+<div class="stat-label">Reseller Requests</div>
+<div class="stat-number" id="statResellers">0</div>
 </div>
 
 </div>
 
-</div>
-
-
-<!-- =========================
-NAVIGATION
-========================= -->
 
 <div class="card">
 
@@ -936,7 +1264,6 @@ data-section="orders"
 📦 Orders
 </button>
 
-
 <button
 type="button"
 class="btn btn-light"
@@ -944,7 +1271,6 @@ data-section="products"
 >
 🛍️ Products
 </button>
-
 
 <button
 type="button"
@@ -954,7 +1280,6 @@ data-section="addProduct"
 ➕ Add Product
 </button>
 
-
 <button
 type="button"
 class="btn btn-light"
@@ -962,7 +1287,6 @@ data-section="banners"
 >
 🖼️ Banners
 </button>
-
 
 <button
 type="button"
@@ -972,7 +1296,6 @@ data-section="resellers"
 🤝 Resellers
 </button>
 
-
 <button
 type="button"
 class="btn btn-light"
@@ -980,7 +1303,6 @@ data-section="reviews"
 >
 ⭐ Reviews
 </button>
-
 
 <button
 type="button"
@@ -995,22 +1317,15 @@ id="refreshButton"
 </div>
 
 
-<!-- MAIN CONTENT -->
-
 <div id="sectionContent">
 
 <div class="loading">
-
 <span class="spinner"></span>
-
 Loading...
-
 </div>
 
 </div>
 
-
-<!-- LOGOUT -->
 
 <button
 type="button"
@@ -1025,15 +1340,16 @@ id="logoutButton"
 
 <footer>
 
-<b>
-Gadhuli Admin Panel
-</b>
+<b>Gadhuli Admin Panel</b>
 
 <br><br>
 
 © 2026 Gadhuli. All Rights Reserved.
 
 </footer>
+
+
+<div id="toast" class="toast"></div>
 
 
 <script>
@@ -1051,17 +1367,18 @@ const SUPABASE_KEY =
 const ADMIN_EMAIL =
 "hridoyff974@gmail.com";
 
-
 const db =
 window.supabase.createClient(
 SUPABASE_URL,
 SUPABASE_KEY
 );
 
-
 let currentUser=null;
-
 let currentSection="orders";
+
+let orderSearchText="";
+let orderStatusFilter="All";
+let paymentStatusFilter="All";
 
 
 /* =====================================================
@@ -1117,10 +1434,41 @@ return String(value);
 }
 
 
+function showToast(message,type="success"){
+
+const toast=
+document.getElementById("toast");
+
+if(!toast)
+return;
+
+toast.textContent=message;
+
+toast.className=
+"toast show "+
+(type==="error" ? "error" : "success");
+
+clearTimeout(
+window.__toastTimer
+);
+
+window.__toastTimer=
+setTimeout(
+()=>{
+toast.className="toast";
+},
+2500
+);
+
+}
+
+
 function showError(message){
 
 const box=
-document.getElementById("sectionContent");
+document.getElementById(
+"sectionContent"
+);
 
 box.innerHTML=`
 
@@ -1168,14 +1516,12 @@ button.classList.remove("active");
 
 });
 
-
 const active=
 document.querySelector(
 '.admin-nav [data-section="'+
 section+
 '"]'
 );
-
 
 if(active){
 
@@ -1202,30 +1548,22 @@ document.getElementById(
 "passwordEye"
 );
 
-
 if(!input)
 return;
-
 
 if(input.type==="password"){
 
 input.type="text";
 
-if(eye){
-
+if(eye)
 eye.textContent="🙈";
-
-}
 
 }else{
 
 input.type="password";
 
-if(eye){
-
+if(eye)
 eye.textContent="👁️";
-
-}
 
 }
 
@@ -1242,12 +1580,10 @@ if(!currentUser){
 
 return {
 ok:false,
-message:
-"Supabase user পাওয়া যায়নি।"
+message:"Supabase user পাওয়া যায়নি।"
 };
 
 }
-
 
 const r=
 await db
@@ -1255,7 +1591,6 @@ await db
 .select("id,role")
 .eq("id",currentUser.id)
 .maybeSingle();
-
 
 if(r.error){
 
@@ -1267,7 +1602,6 @@ r.error.message
 };
 
 }
-
 
 if(!r.data){
 
@@ -1281,11 +1615,9 @@ currentUser.id
 
 }
 
-
 if(
-String(
-r.data.role || ""
-).toLowerCase()!=="admin"
+String(r.data.role || "")
+.toLowerCase()!=="admin"
 ){
 
 return {
@@ -1297,7 +1629,6 @@ message:
 };
 
 }
-
 
 return {
 ok:true,
@@ -1319,24 +1650,20 @@ document
 .value
 .trim();
 
-
 const password=
 document
 .getElementById("loginPassword")
 .value;
-
 
 const msg=
 document.getElementById(
 "loginMessage"
 );
 
-
 const button=
 document.getElementById(
 "loginButton"
 );
-
 
 if(!email || !password){
 
@@ -1349,30 +1676,21 @@ return;
 
 }
 
-
 button.disabled=true;
-
-button.textContent=
-"⏳ Login হচ্ছে...";
-
+button.textContent="⏳ Login হচ্ছে...";
 
 msg.innerHTML=
 '<span style="color:#777">'+
 "Supabase যাচাই করছে..."+
 "</span>";
 
-
 try{
 
 const r=
 await db.auth.signInWithPassword({
-
 email:email,
-
 password:password
-
 });
-
 
 if(r.error){
 
@@ -1385,7 +1703,6 @@ return;
 
 }
 
-
 if(!r.data?.user){
 
 msg.innerHTML=
@@ -1397,15 +1714,11 @@ return;
 
 }
 
-
-currentUser=
-r.data.user;
-
+currentUser=r.data.user;
 
 if(
-String(
-currentUser.email || ""
-).toLowerCase()
+String(currentUser.email || "")
+.toLowerCase()
 !==
 ADMIN_EMAIL.toLowerCase()
 ){
@@ -1413,7 +1726,6 @@ ADMIN_EMAIL.toLowerCase()
 await db.auth.signOut();
 
 currentUser=null;
-
 
 msg.innerHTML=
 '<span style="color:#d32f2f">'+
@@ -1424,10 +1736,8 @@ return;
 
 }
 
-
 const admin=
 await isAdmin();
-
 
 if(!admin.ok){
 
@@ -1435,12 +1745,10 @@ await db.auth.signOut();
 
 currentUser=null;
 
-
 msg.innerHTML=
 '<div style="color:#d32f2f;font-weight:bold">'+
 "Admin Login Check Failed ❌"+
 "</div>"+
-
 '<div style="margin-top:8px;color:#555;white-space:pre-line">'+
 esc(admin.message)+
 "</div>";
@@ -1449,23 +1757,16 @@ return;
 
 }
 
-
 msg.innerHTML=
 '<span style="color:#138a3c;font-weight:bold">'+
 "Admin Login Successful ✅"+
 "</span>";
 
-
 showAdmin();
-
 
 }catch(error){
 
-console.error(
-"LOGIN ERROR:",
-error
-);
-
+console.error("LOGIN ERROR:",error);
 
 msg.innerHTML=
 '<span style="color:#d32f2f">'+
@@ -1475,9 +1776,7 @@ esc(error.message || error)+
 }finally{
 
 button.disabled=false;
-
-button.textContent=
-"🔐 Login";
+button.textContent="🔐 Login";
 
 }
 
@@ -1495,12 +1794,10 @@ document
 .classList
 .add("hidden");
 
-
 document
 .getElementById("adminPanel")
 .classList
 .remove("hidden");
-
 
 loadStats();
 
@@ -1520,29 +1817,23 @@ try{
 const r=
 await db.auth.getSession();
 
-
 if(r.error){
 
 console.error(r.error);
-
 return;
 
 }
-
 
 currentUser=
 r.data.session?.user ||
 null;
 
-
 if(!currentUser)
 return;
 
-
 if(
-String(
-currentUser.email || ""
-).toLowerCase()
+String(currentUser.email || "")
+.toLowerCase()
 !==
 ADMIN_EMAIL.toLowerCase()
 ){
@@ -1555,10 +1846,8 @@ return;
 
 }
 
-
 const admin=
 await isAdmin();
-
 
 if(admin.ok){
 
@@ -1588,18 +1877,15 @@ await db.auth.signOut();
 
 currentUser=null;
 
-
 document
 .getElementById("adminPanel")
 .classList
 .add("hidden");
 
-
 document
 .getElementById("loginSection")
 .classList
 .remove("hidden");
-
 
 document
 .getElementById("loginMessage")
@@ -1614,18 +1900,14 @@ SECTION SWITCH
 
 async function showSection(section){
 
-currentSection=
-section;
-
+currentSection=section;
 
 setActiveNav(section);
-
 
 const content=
 document.getElementById(
 "sectionContent"
 );
-
 
 content.innerHTML=`
 
@@ -1639,44 +1921,25 @@ Loading...
 
 `;
 
-
 try{
 
-if(section==="orders"){
-
+if(section==="orders")
 await renderOrders();
 
-}
-
-else if(section==="products"){
-
+else if(section==="products")
 await renderProducts();
 
-}
-
-else if(section==="addProduct"){
-
+else if(section==="addProduct")
 renderAddProduct();
 
-}
-
-else if(section==="banners"){
-
+else if(section==="banners")
 await renderBanners();
 
-}
-
-else if(section==="resellers"){
-
+else if(section==="resellers")
 await renderResellers();
 
-}
-
-else if(section==="reviews"){
-
+else if(section==="reviews")
 await renderReviews();
-
-}
 
 }catch(error){
 
@@ -1684,7 +1947,6 @@ console.error(
 "SECTION ERROR:",
 error
 );
-
 
 showError(
 error.message ||
@@ -1707,24 +1969,19 @@ document.getElementById(
 "refreshButton"
 );
 
-
 if(button){
 
 button.disabled=true;
-
-button.textContent=
-"⏳ Refresh...";
+button.textContent="⏳ Refresh...";
 
 }
-
 
 try{
 
 await loadStats();
+await showSection(currentSection);
 
-await showSection(
-currentSection
-);
+showToast("Admin data refreshed ✅");
 
 }catch(error){
 
@@ -1735,9 +1992,7 @@ console.error(error);
 if(button){
 
 button.disabled=false;
-
-button.textContent=
-"🔄 Refresh";
+button.textContent="🔄 Refresh";
 
 }
 
@@ -1765,7 +2020,6 @@ head:true
 }
 );
 
-
 const orders=
 await db
 .from("orders")
@@ -1773,15 +2027,12 @@ await db
 "id,order_status"
 );
 
-
 let resellersData=[];
-
 
 const resellers=
 await db
 .from("resellers")
 .select("id,status");
-
 
 if(!resellers.error){
 
@@ -1790,22 +2041,18 @@ resellers.data || [];
 
 }
 
-
 document
 .getElementById("statProducts")
 .textContent=
 products.count || 0;
 
-
 const orderData=
 orders.data || [];
-
 
 document
 .getElementById("statOrders")
 .textContent=
 orderData.length;
-
 
 document
 .getElementById("statPending")
@@ -1820,7 +2067,6 @@ x.order_status ||
 ==="pending"
 ).length;
 
-
 document
 .getElementById("statResellers")
 .textContent=
@@ -1834,7 +2080,6 @@ x.status ||
 ==="pending"
 ).length;
 
-
 }catch(error){
 
 console.error(
@@ -1843,6 +2088,186 @@ error
 );
 
 }
+
+}
+
+
+/* =====================================================
+ORDER STATUS CLASS
+===================================================== */
+
+function orderStatusClass(status){
+
+const value=
+String(status || "Pending")
+.toLowerCase();
+
+return "order-status-"+value;
+
+}
+
+
+function paymentStatusClass(status){
+
+const value=
+String(status || "Pending")
+.toLowerCase();
+
+return "payment-status-"+value;
+
+}
+
+
+/* =====================================================
+ORDER FILTER UI
+===================================================== */
+
+function renderOrderToolbar(){
+
+return `
+
+<div class="orders-toolbar">
+
+<div class="orders-toolbar-top">
+
+<div>
+
+<div class="orders-title">
+📦 Order Management
+</div>
+
+<div class="orders-count">
+Manage customer orders from one place
+</div>
+
+</div>
+
+<div class="order-search">
+
+<span class="order-search-icon">
+🔎
+</span>
+
+<input
+id="orderSearch"
+type="search"
+placeholder="Search Order ID, customer or phone..."
+value="${esc(orderSearchText)}"
+>
+
+</div>
+
+</div>
+
+
+<div class="order-filters">
+
+${[
+"All",
+"Pending",
+"Confirmed",
+"Processing",
+"Shipped",
+"Delivered",
+"Cancelled"
+].map(status=>`
+
+<button
+type="button"
+class="order-filter ${
+orderStatusFilter===status
+?
+"active"
+:
+""
+}"
+data-order-filter="${esc(status)}"
+>
+${status}
+</button>
+
+`).join("")}
+
+</div>
+
+
+<div class="payment-filter">
+
+<button
+type="button"
+class="${
+paymentStatusFilter==="All"
+?
+"active"
+:
+""
+}"
+data-payment-filter="All"
+>
+💳 All Payments
+</button>
+
+<button
+type="button"
+class="${
+paymentStatusFilter==="Pending"
+?
+"active"
+:
+""
+}"
+data-payment-filter="Pending"
+>
+⏳ Pending
+</button>
+
+<button
+type="button"
+class="${
+paymentStatusFilter==="Paid"
+?
+"active"
+:
+""
+}"
+data-payment-filter="Paid"
+>
+✅ Paid
+</button>
+
+<button
+type="button"
+class="${
+paymentStatusFilter==="Failed"
+?
+"active"
+:
+""
+}"
+data-payment-filter="Failed"
+>
+❌ Failed
+</button>
+
+<button
+type="button"
+class="${
+paymentStatusFilter==="Refunded"
+?
+"active"
+:
+""
+}"
+data-payment-filter="Refunded"
+>
+↩️ Refunded
+</button>
+
+</div>
+
+</div>
+
+`;
 
 }
 
@@ -1858,7 +2283,6 @@ document.getElementById(
 "sectionContent"
 );
 
-
 const r=
 await db
 .from("orders")
@@ -1870,7 +2294,6 @@ ascending:false
 }
 );
 
-
 if(r.error){
 
 showError(
@@ -1881,26 +2304,36 @@ return;
 
 }
 
-
 if(!r.data?.length){
 
-box.innerHTML=`
-
+box.innerHTML=
+renderOrderToolbar()+
+`
 <div class="empty">
 
-📦 এখনো কোনো Order নেই।
-
+<div style="font-size:45px">
+📦
 </div>
 
+<br>
+
+<b>
+এখনো কোনো Order নেই।
+</b>
+
+</div>
 `;
+
+bindOrderToolbar([]);
 
 return;
 
 }
 
 
-let html="";
+/* LOAD ITEMS */
 
+const ordersWithItems=[];
 
 for(const order of r.data){
 
@@ -1913,178 +2346,397 @@ await db
 order.id
 );
 
+ordersWithItems.push({
+
+...order,
+
+_items:
+items.data || [],
+_itemsError:
+items.error?.message || ""
+
+});
+
+}
+
+
+/* FILTER */
+
+const filtered=
+ordersWithItems.filter(order=>{
+
+const currentStatus=
+String(
+order.order_status ||
+"Pending"
+);
+
+const paymentStatus=
+String(
+order.payment_status ||
+"Pending"
+);
+
+const search=
+orderSearchText
+.toLowerCase()
+.trim();
+
+const searchable=[
+order.id,
+order.customer_name,
+order.customer_phone,
+order.customer_district,
+order.district,
+order.customer_thana,
+order.thana
+]
+.map(x=>String(x || "").toLowerCase())
+.join(" ");
+
+const searchMatch=
+!search ||
+searchable.includes(search);
+
+const statusMatch=
+orderStatusFilter==="All" ||
+currentStatus.toLowerCase()===
+orderStatusFilter.toLowerCase();
+
+const paymentMatch=
+paymentStatusFilter==="All" ||
+paymentStatus.toLowerCase()===
+paymentStatusFilter.toLowerCase();
+
+return(
+searchMatch &&
+statusMatch &&
+paymentMatch
+);
+
+});
+
+
+let html=
+renderOrderToolbar();
+
 
 html+=`
 
-<div class="order-card">
+<div style="
+font-size:12px;
+color:#777;
+margin:0 2px 10px;
+">
 
-<div class="order-head">
-
-<div>
-
-<b>
-📦 Order #${esc(order.id)}
+Showing
+<b style="color:#333">
+${filtered.length}
 </b>
-
-<br>
-
-<small>
-${formatDate(order.created_at)}
-</small>
+of
+<b style="color:#333">
+${ordersWithItems.length}
+</b>
+orders
 
 </div>
 
-<span class="status">
+`;
 
-${esc(
+
+if(!filtered.length){
+
+html+=`
+
+<div class="empty">
+
+<div style="font-size:40px">
+🔎
+</div>
+
+<br>
+
+<b>
+এই filter/search অনুযায়ী কোনো Order পাওয়া যায়নি।
+</b>
+
+<br><br>
+
+<button
+type="button"
+class="btn btn-light"
+id="clearOrderFilters"
+>
+↻ Clear Filters
+</button>
+
+</div>
+
+`;
+
+box.innerHTML=html;
+
+bindOrderToolbar(ordersWithItems);
+
+return;
+
+}
+
+
+/* CARDS */
+
+html+=filtered.map(
+order=>{
+
+const items=
+order._items || [];
+
+const subtotal=
+items.reduce(
+(sum,item)=>
+sum+
+(
+Number(item.price || 0) *
+Number(item.quantity || 1)
+),
+0
+);
+
+const delivery=
+Number(
+order.delivery_charge || 0
+);
+
+const total=
+Number(
+order.total ??
+order.total_amount ??
+(
+subtotal+delivery
+)
+);
+
+const currentStatus=
 order.order_status ||
-"Pending"
-)}
+"Pending";
+
+const paymentStatus=
+order.payment_status ||
+"Pending";
+
+const address=
+order.customer_receive_place ||
+order.address ||
+"—";
+
+const district=
+order.customer_district ||
+order.district ||
+"—";
+
+const thana=
+order.customer_thana ||
+order.thana ||
+"—";
+
+
+return `
+
+<div
+class="order-card"
+data-order-id="${esc(order.id)}"
+>
+
+<div class="order-card-top">
+
+<div>
+
+<div class="order-number">
+
+📦 Order #${esc(order.id)}
+
+</div>
+
+<div class="order-date">
+
+${formatDate(order.created_at)}
+
+</div>
+
+</div>
+
+
+<div class="order-badges">
+
+<span class="
+order-status-badge
+${orderStatusClass(currentStatus)}
+">
+
+${esc(currentStatus)}
+
+</span>
+
+<span class="
+payment-status-badge
+${paymentStatusClass(paymentStatus)}
+">
+
+💳 ${esc(paymentStatus)}
 
 </span>
 
 </div>
 
+</div>
 
-<div class="order-info">
 
-<p>
+<div class="order-main">
 
-<b>Customer:</b>
 
-${esc(
+<div class="order-customer">
+
+<div class="info-box">
+
+<div class="info-label">
+Customer
+</div>
+
+<div class="info-value">
+👤 ${esc(
 order.customer_name ||
 "—"
 )}
+</div>
 
-</p>
+</div>
 
 
-<p>
+<div class="info-box">
 
-<b>Phone:</b>
+<div class="info-label">
+Phone
+</div>
 
-${esc(
+<div class="info-value">
+📞 ${esc(
 order.customer_phone ||
 "—"
 )}
+</div>
 
-</p>
-
-
-<p>
-
-<b>Address:</b>
-
-${esc(
-order.customer_receive_place ||
-order.address ||
-"—"
-)}
-
-</p>
+</div>
 
 
-<p>
+<div class="info-box">
 
-<b>District:</b>
+<div class="info-label">
+District / Thana
+</div>
 
-${esc(
-order.customer_district ||
-order.district ||
-"—"
-)}
+<div class="info-value">
 
-</p>
+📍 ${esc(district)}
 
+${
+thana!=="—"
+?
+" / "+esc(thana)
+:
+""
+}
 
-<p>
+</div>
 
-<b>Thana:</b>
-
-${esc(
-order.customer_thana ||
-order.thana ||
-"—"
-)}
-
-</p>
+</div>
 
 
-<p>
+<div class="info-box">
 
-<b>Delivery:</b>
+<div class="info-label">
+Receive Place
+</div>
 
-${esc(
+<div class="info-value">
+🏠 ${esc(address)}
+</div>
+
+</div>
+
+</div>
+
+
+<div class="info-box" style="margin-bottom:12px">
+
+<div class="info-label">
+Delivery
+</div>
+
+<div class="info-value">
+
+🚚 ${esc(
 order.delivery_area ||
-"—"
+"Delivery"
 )}
 
-—
-
-৳${money(
-order.delivery_charge
-)}
-
-</p>
-
-
-<p>
-
-<b>Payment:</b>
-
-${esc(
-order.payment_method ||
-"—"
-)}
-
-—
-
-${esc(
-order.payment_status ||
-"Pending"
-)}
-
-</p>
+</div>
 
 </div>
 
 
 <div class="items-box">
 
-<b>
-🛍️ Products
-</b>
+<div class="items-title">
+🛍️ Ordered Products
+</div>
 
 
 ${
-(items.data || [])
-.map(item=>`
+items.length
+?
+items.map(item=>`
 
 <div class="item-row">
+
+<div class="item-left">
+
+<div class="item-name">
 
 ${esc(
 item.product_name ||
 "Product"
 )}
 
+</div>
+
+<div class="item-details">
+
 ${
 item.size
 ?
-` — Size: ${esc(item.size)}`
+"Size: "+esc(item.size)+" • "
 :
 ""
 }
 
-×
-
+Qty:
 ${Number(
 item.quantity || 1
 )}
 
-=
+×
 
-<b>
+৳${money(
+item.price
+)}
+
+</div>
+
+</div>
+
+
+<div class="item-total">
+
 ৳${money(
 item.line_total ??
 (
@@ -2092,34 +2744,85 @@ Number(item.price || 0) *
 Number(item.quantity || 1)
 )
 )}
-</b>
 
 </div>
 
-`)
-.join("")
+</div>
+
+`).join("")
+
+:
+
+`
+<div class="order-loading">
+Product information পাওয়া যায়নি।
+</div>
+`
+
 }
 
 </div>
 
 
-<h3 style="color:var(--orange-dark)">
+<div class="order-summary">
 
-Total:
+<div class="summary-row">
 
-৳${money(
-order.total ??
-order.total_amount
-)}
+<span>
+Subtotal
+</span>
 
-</h3>
+<b>
+৳${money(subtotal)}
+</b>
+
+</div>
 
 
-<div class="admin-actions">
+<div class="summary-row">
 
+<span>
+Delivery
+</span>
+
+<b>
+৳${money(delivery)}
+</b>
+
+</div>
+
+
+<div class="summary-total">
+
+<span>
+Grand Total
+</span>
+
+<span>
+৳${money(total)}
+</span>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="order-bottom">
+
+<div class="order-control-grid">
+
+
+<div>
+
+<label class="control-label">
+Order Status
+</label>
 
 <select
-class="order-status-select"
+class="order-select order-status-select"
+data-order-id="${esc(order.id)}"
 >
 
 ${
@@ -2136,11 +2839,9 @@ ${
 <option
 value="${esc(status)}"
 ${
-status===
-(
-order.order_status ||
-"Pending"
-)
+status.toLowerCase()===
+String(currentStatus)
+.toLowerCase()
 ?
 "selected"
 :
@@ -2150,15 +2851,23 @@ order.order_status ||
 ${status}
 </option>
 
-`)
-.join("")
+`).join("")
 }
 
 </select>
 
+</div>
+
+
+<div>
+
+<label class="control-label">
+Payment Status
+</label>
 
 <select
-class="payment-status-select"
+class="order-select payment-status-select"
+data-order-id="${esc(order.id)}"
 >
 
 ${
@@ -2173,28 +2882,33 @@ ${
 <option
 value="${esc(status)}"
 ${
-status===
-(
-order.payment_status ||
-"Pending"
-)
+status.toLowerCase()===
+String(paymentStatus)
+.toLowerCase()
 ?
 "selected"
 :
 ""
 }
 >
-
-Payment: ${status}
-
+${status}
 </option>
 
-`)
-.join("")
+`).join("")
 }
 
 </select>
 
+</div>
+
+</div>
+
+
+<div class="order-save-note">
+
+💡 Status change করলে database-এ automatically save হবে।
+
+</div>
 
 </div>
 
@@ -2203,70 +2917,183 @@ Payment: ${status}
 `;
 
 }
+).join("");
 
 
 box.innerHTML=html;
 
+bindOrderToolbar(ordersWithItems);
 
-/* EVENT LISTENERS */
+bindOrderControls();
 
-const cards=
-box.querySelectorAll(
-".order-card"
+}
+
+
+/* =====================================================
+ORDER TOOLBAR EVENTS
+===================================================== */
+
+function bindOrderToolbar(){
+
+const search=
+document.getElementById(
+"orderSearch"
 );
 
+if(search){
 
-cards.forEach(
-(card,index)=>{
+let timer=null;
 
-const order=
-r.data[index];
+search.addEventListener(
+"input",
+function(){
+
+clearTimeout(timer);
+
+timer=
+setTimeout(
+()=>{
+
+orderSearchText=
+this.value;
+
+renderOrders();
+
+},
+180
+);
+
+});
+
+}
 
 
-const statusSelect=
-card.querySelector(
+document
+.querySelectorAll(
+"[data-order-filter]"
+)
+.forEach(button=>{
+
+button.addEventListener(
+"click",
+function(){
+
+orderStatusFilter=
+this.getAttribute(
+"data-order-filter"
+);
+
+renderOrders();
+
+});
+
+});
+
+
+document
+.querySelectorAll(
+"[data-payment-filter]"
+)
+.forEach(button=>{
+
+button.addEventListener(
+"click",
+function(){
+
+paymentStatusFilter=
+this.getAttribute(
+"data-payment-filter"
+);
+
+renderOrders();
+
+});
+
+});
+
+
+const clear=
+document.getElementById(
+"clearOrderFilters"
+);
+
+if(clear){
+
+clear.addEventListener(
+"click",
+function(){
+
+orderSearchText="";
+orderStatusFilter="All";
+paymentStatusFilter="All";
+
+renderOrders();
+
+});
+
+}
+
+}
+
+
+/* =====================================================
+ORDER CONTROLS
+===================================================== */
+
+function bindOrderControls(){
+
+document
+.querySelectorAll(
 ".order-status-select"
+)
+.forEach(select=>{
+
+select.addEventListener(
+"change",
+async function(){
+
+const id=
+this.dataset.orderId;
+
+const status=
+this.value;
+
+this.disabled=true;
+
+await updateOrderStatus(
+id,
+status
 );
 
+});
 
-const paymentSelect=
-card.querySelector(
+});
+
+
+document
+.querySelectorAll(
 ".payment-status-select"
-);
+)
+.forEach(select=>{
 
-
-if(statusSelect){
-
-statusSelect.addEventListener(
+select.addEventListener(
 "change",
-function(){
+async function(){
 
-updateOrderStatus(
-order.id,
-this.value
+const id=
+this.dataset.orderId;
+
+const status=
+this.value;
+
+this.disabled=true;
+
+await updatePaymentStatus(
+id,
+status
 );
 
-}
-);
-
-}
-
-
-if(paymentSelect){
-
-paymentSelect.addEventListener(
-"change",
-function(){
-
-updatePaymentStatus(
-order.id,
-this.value
-);
-
-}
-);
-
-}
+});
 
 });
 
@@ -2274,7 +3101,7 @@ this.value
 
 
 /* =====================================================
-ORDER STATUS UPDATE
+UPDATE ORDER STATUS
 ===================================================== */
 
 async function updateOrderStatus(
@@ -2293,23 +3120,24 @@ order_status:status
 id
 );
 
-
 if(r.error){
 
-alert(
-"Order status update হয়নি ❌\n\n"+
-r.error.message
+showToast(
+"Order status update হয়নি ❌",
+"error"
 );
+
+console.error(r.error);
+
+await renderOrders();
 
 return;
 
 }
 
-
-alert(
+showToast(
 "Order status update হয়েছে ✅"
 );
-
 
 await loadStats();
 
@@ -2319,7 +3147,7 @@ await renderOrders();
 
 
 /* =====================================================
-PAYMENT STATUS UPDATE
+UPDATE PAYMENT STATUS
 ===================================================== */
 
 async function updatePaymentStatus(
@@ -2338,23 +3166,24 @@ payment_status:status
 id
 );
 
-
 if(r.error){
 
-alert(
-"Payment status update হয়নি ❌\n\n"+
-r.error.message
+showToast(
+"Payment status update হয়নি ❌",
+"error"
 );
+
+console.error(r.error);
+
+await renderOrders();
 
 return;
 
 }
 
-
-alert(
+showToast(
 "Payment status update হয়েছে ✅"
 );
-
 
 await renderOrders();
 
@@ -2372,7 +3201,6 @@ document.getElementById(
 "sectionContent"
 );
 
-
 const r=
 await db
 .from("products")
@@ -2384,7 +3212,6 @@ ascending:false
 }
 );
 
-
 if(r.error){
 
 showError(
@@ -2394,7 +3221,6 @@ r.error.message
 return;
 
 }
-
 
 if(!r.data?.length){
 
@@ -2418,16 +3244,13 @@ id="emptyAddProduct"
 
 `;
 
-
 document
 .getElementById(
 "emptyAddProduct"
 )
 .addEventListener(
 "click",
-()=>showSection(
-"addProduct"
-)
+()=>showSection("addProduct")
 );
 
 return;
@@ -2443,7 +3266,6 @@ box.innerHTML=`
 
 </div>
 
-
 <div class="product-grid">
 
 ${
@@ -2452,10 +3274,7 @@ product=>{
 
 let image="";
 
-
-if(Array.isArray(
-product.images
-)){
+if(Array.isArray(product.images)){
 
 image=
 product.images[0] ||
@@ -2470,17 +3289,12 @@ typeof product.images==="string"
 try{
 
 const parsed=
-JSON.parse(
-product.images
-);
+JSON.parse(product.images);
 
 image=
 Array.isArray(parsed)
 ?
-(
-parsed[0] ||
-""
-)
+(parsed[0] || "")
 :
 product.images;
 
@@ -2493,7 +3307,6 @@ product.images;
 
 }
 
-
 image=
 image ||
 "https://via.placeholder.com/500x500?text=Gadhuli";
@@ -2503,7 +3316,6 @@ return `
 
 <div class="product-card">
 
-
 <img
 class="product-image"
 src="${esc(image)}"
@@ -2511,46 +3323,29 @@ alt="${esc(product.name)}"
 onerror="this.src='https://via.placeholder.com/500x500?text=Gadhuli'"
 >
 
-
 <div class="product-name">
-
-${esc(
-product.name
-)}
-
+${esc(product.name)}
 </div>
-
 
 <div class="product-price">
-
-৳${money(
-product.price
-)}
-
+৳${money(product.price)}
 </div>
-
 
 <div class="product-meta">
 
-${esc(
-product.category ||
-""
-)}
+${esc(product.category || "")}
 
 ${
 product.subcategory
 ?
-" • "+
-esc(product.subcategory)
+" • "+esc(product.subcategory)
 :
 ""
 }
 
 </div>
 
-
 <div style="margin-top:10px">
-
 
 <button
 type="button"
@@ -2559,14 +3354,12 @@ class="btn btn-light edit-product"
 ✏️ Edit
 </button>
 
-
 <button
 type="button"
 class="btn btn-danger delete-product"
 >
 🗑️ Delete
 </button>
-
 
 </div>
 
@@ -2588,13 +3381,11 @@ box.querySelectorAll(
 ".product-card"
 );
 
-
 cards.forEach(
 (card,index)=>{
 
 const product=
 r.data[index];
-
 
 card
 .querySelector(
@@ -2602,11 +3393,8 @@ card
 )
 .addEventListener(
 "click",
-()=>editProduct(
-product.id
-)
+()=>editProduct(product.id)
 );
-
 
 card
 .querySelector(
@@ -2614,9 +3402,7 @@ card
 )
 .addEventListener(
 "click",
-()=>deleteProduct(
-product.id
-)
+()=>deleteProduct(product.id)
 );
 
 });
@@ -2721,151 +3507,29 @@ SIZE DATA
 
 const sizeData={
 
-"T-Shirt":[
-"S",
-"M",
-"L",
-"XL",
-"2XL",
-"4XL"
-],
-
-"Polo T-Shirt":[
-"S",
-"M",
-"L",
-"XL",
-"2XL",
-"4XL"
-],
-
-"Shirt":[
-"S",
-"M",
-"L",
-"XL",
-"2XL",
-"4XL"
-],
-
-"Hoodie & Sweatshirt":[
-"S",
-"M",
-"L",
-"XL",
-"2XL",
-"4XL"
-],
-
-"Jacket":[
-"S",
-"M",
-"L",
-"XL",
-"2XL",
-"4XL"
-],
+"T-Shirt":["S","M","L","XL","2XL","4XL"],
+"Polo T-Shirt":["S","M","L","XL","2XL","4XL"],
+"Shirt":["S","M","L","XL","2XL","4XL"],
+"Hoodie & Sweatshirt":["S","M","L","XL","2XL","4XL"],
+"Jacket":["S","M","L","XL","2XL","4XL"],
 
 "Panjabi":[
-"28",
-"30",
-"32",
-"34",
-"36",
-"38",
-"40",
-"42",
-"44",
-"46",
-"48"
+"28","30","32","34","36","38",
+"40","42","44","46","48"
 ],
 
-"Pants":[
-"28",
-"30",
-"32",
-"34",
-"36",
-"38",
-"40"
-],
+"Pants":["28","30","32","34","36","38","40"],
+"Jeans":["28","30","32","34","36","38","40"],
+"Shorts":["28","30","32","34","36","38","40"],
 
-"Jeans":[
-"28",
-"30",
-"32",
-"34",
-"36",
-"38",
-"40"
-],
-
-"Shorts":[
-"28",
-"30",
-"32",
-"34",
-"36",
-"38",
-"40"
-],
-
-"Three Piece":[
-"S",
-"M",
-"L",
-"XL",
-"2XL"
-],
-
-"Kurti":[
-"S",
-"M",
-"L",
-"XL",
-"2XL"
-],
-
-"Tops":[
-"S",
-"M",
-"L",
-"XL",
-"2XL"
-],
-
-"Gown":[
-"S",
-"M",
-"L",
-"XL",
-"2XL"
-],
-
-"Abaya":[
-"S",
-"M",
-"L",
-"XL",
-"2XL"
-],
-
-"Women's Pants":[
-"28",
-"30",
-"32",
-"34",
-"36",
-"38"
-],
-
-"Saree":[
-"Free Size"
-],
-
-"Hijab":[
-"Free Size"
-]
+"Three Piece":["S","M","L","XL","2XL"],
+"Kurti":["S","M","L","XL","2XL"],
+"Tops":["S","M","L","XL","2XL"],
+"Gown":["S","M","L","XL","2XL"],
+"Abaya":["S","M","L","XL","2XL"],
+"Women's Pants":["28","30","32","34","36","38"],
+"Saree":["Free Size"],
+"Hijab":["Free Size"]
 
 };
 
@@ -2881,7 +3545,6 @@ document.getElementById(
 "sectionContent"
 );
 
-
 box.innerHTML=`
 
 <div class="card">
@@ -2889,7 +3552,6 @@ box.innerHTML=`
 <h2>
 ➕ Add New Product
 </h2>
-
 
 <div class="form-group">
 
@@ -2904,7 +3566,6 @@ placeholder="Product name"
 >
 
 </div>
-
 
 <div class="form-group">
 
@@ -2921,16 +3582,13 @@ placeholder="Price in ৳"
 
 </div>
 
-
 <div class="form-group">
 
 <label>
 Category *
 </label>
 
-<select
-id="productCategory"
->
+<select id="productCategory">
 
 <option value="">
 Select Category
@@ -2941,9 +3599,7 @@ Object.keys(categories)
 .map(
 category=>`
 
-<option
-value="${esc(category)}"
->
+<option value="${esc(category)}">
 ${esc(category)}
 </option>
 
@@ -2956,16 +3612,13 @@ ${esc(category)}
 
 </div>
 
-
 <div class="form-group">
 
 <label>
 Subcategory
 </label>
 
-<select
-id="productSubcategory"
->
+<select id="productSubcategory">
 
 <option value="">
 Select Subcategory
@@ -2974,7 +3627,6 @@ Select Subcategory
 </select>
 
 </div>
-
 
 <div class="form-group">
 
@@ -2991,7 +3643,6 @@ Subcategory select করুন।
 
 </div>
 
-
 <div class="form-group">
 
 <label>
@@ -3005,7 +3656,6 @@ placeholder="Product description"
 ></textarea>
 
 </div>
-
 
 <div class="form-group">
 
@@ -3024,14 +3674,12 @@ multiple
 ১ থেকে ৫টি ছবি select করুন।
 </small>
 
-
 <div
 id="imagePreview"
 class="image-preview"
 ></div>
 
 </div>
-
 
 <button
 type="button"
@@ -3047,39 +3695,28 @@ class="btn btn-orange full"
 
 
 document
-.getElementById(
-"productCategory"
-)
+.getElementById("productCategory")
 .addEventListener(
 "change",
 updateSubcategories
 );
 
-
 document
-.getElementById(
-"productSubcategory"
-)
+.getElementById("productSubcategory")
 .addEventListener(
 "change",
 updateSizes
 );
 
-
 document
-.getElementById(
-"productImages"
-)
+.getElementById("productImages")
 .addEventListener(
 "change",
 previewImages
 );
 
-
 document
-.getElementById(
-"saveProductButton"
-)
+.getElementById("saveProductButton")
 .addEventListener(
 "click",
 saveProduct
@@ -3096,43 +3733,30 @@ function updateSubcategories(){
 
 const category=
 document
-.getElementById(
-"productCategory"
-)
+.getElementById("productCategory")
 .value;
 
-
 const select=
-document.getElementById(
-"productSubcategory"
-);
-
+document
+.getElementById("productSubcategory");
 
 select.innerHTML=
 '<option value="">Select Subcategory</option>';
 
-
 (
-categories[category] ||
-[]
+categories[category] || []
 )
 .forEach(item=>{
 
 const option=
-document.createElement(
-"option"
-);
+document.createElement("option");
 
 option.value=item;
-
 option.textContent=item;
 
-select.appendChild(
-option
-);
+select.appendChild(option);
 
 });
-
 
 updateSizes();
 
@@ -3147,22 +3771,15 @@ function updateSizes(){
 
 const sub=
 document
-.getElementById(
-"productSubcategory"
-)
+.getElementById("productSubcategory")
 .value;
 
-
 const box=
-document.getElementById(
-"sizeOptions"
-);
-
+document
+.getElementById("sizeOptions");
 
 const sizes=
-sizeData[sub] ||
-[];
-
+sizeData[sub] || [];
 
 if(!sizes.length){
 
@@ -3172,7 +3789,6 @@ box.innerHTML=
 return;
 
 }
-
 
 box.innerHTML=
 sizes
@@ -3209,21 +3825,17 @@ document.getElementById(
 "productImages"
 );
 
-
 const box=
 document.getElementById(
 "imagePreview"
 );
 
-
 box.innerHTML="";
-
 
 const files=
 Array.from(
 input.files || []
 );
-
 
 if(files.length>5){
 
@@ -3237,25 +3849,16 @@ return;
 
 }
 
-
 files.forEach(
 file=>{
 
 const img=
-document.createElement(
-"img"
-);
-
+document.createElement("img");
 
 img.src=
-URL.createObjectURL(
-file
-);
+URL.createObjectURL(file);
 
-
-box.appendChild(
-img
-);
+box.appendChild(img);
 
 });
 
@@ -3270,59 +3873,38 @@ async function saveProduct(){
 
 const name=
 document
-.getElementById(
-"productName"
-)
+.getElementById("productName")
 .value
 .trim();
-
 
 const price=
 Number(
 document
-.getElementById(
-"productPrice"
-)
+.getElementById("productPrice")
 .value
 );
-
 
 const category=
 document
-.getElementById(
-"productCategory"
-)
+.getElementById("productCategory")
 .value;
-
 
 const subcategory=
 document
-.getElementById(
-"productSubcategory"
-)
+.getElementById("productSubcategory")
 .value;
-
 
 const description=
 document
-.getElementById(
-"productDescription"
-)
+.getElementById("productDescription")
 .value
 .trim();
 
-
 const input=
-document.getElementById(
-"productImages"
-);
-
+document.getElementById("productImages");
 
 const files=
-Array.from(
-input.files || []
-);
-
+Array.from(input.files || []);
 
 if(
 !name ||
@@ -3339,7 +3921,6 @@ return;
 
 }
 
-
 if(files.length>5){
 
 alert(
@@ -3350,34 +3931,25 @@ return;
 
 }
 
-
 const sizes=
 Array.from(
 document.querySelectorAll(
 ".size-check:checked"
 )
 )
-.map(
-x=>x.value
-);
-
+.map(x=>x.value);
 
 const button=
 document.getElementById(
 "saveProductButton"
 );
 
-
 try{
 
 button.disabled=true;
-
-button.textContent=
-"⏳ Uploading...";
-
+button.textContent="⏳ Uploading...";
 
 const urls=[];
-
 
 for(
 const file of files
@@ -3389,7 +3961,6 @@ file.name.replace(
 "_"
 );
 
-
 const path=
 "products/"+
 Date.now()+
@@ -3399,7 +3970,6 @@ Math.random()
 .substring(2,8)+
 "-"+
 safe;
-
 
 const upload=
 await db.storage
@@ -3412,18 +3982,13 @@ upsert:false
 }
 );
 
-
 if(upload.error)
 throw upload.error;
-
 
 const pub=
 db.storage
 .from("product-images")
-.getPublicUrl(
-path
-);
-
+.getPublicUrl(path);
 
 urls.push(
 pub.data.publicUrl
@@ -3431,62 +3996,45 @@ pub.data.publicUrl
 
 }
 
-
 const r=
 await db
 .from("products")
 .insert({
 
 name:name,
-
 price:price,
-
 category:category,
-
 subcategory:subcategory,
-
 sizes:sizes,
-
 description:description,
-
 images:urls
 
 });
 
-
 if(r.error)
 throw r.error;
-
 
 alert(
 "Product Save হয়েছে ✅"
 );
 
-
 await loadStats();
 
-await showSection(
-"products"
-);
-
+await showSection("products");
 
 }catch(error){
 
 console.error(error);
-
 
 alert(
 "Product Save হয়নি ❌\n\n"+
 (error.message || error)
 );
 
-
 }finally{
 
 button.disabled=false;
-
-button.textContent=
-"💾 Save Product";
+button.textContent="💾 Save Product";
 
 }
 
@@ -3520,7 +4068,6 @@ if(
 )
 return;
 
-
 const r=
 await db
 .from("products")
@@ -3529,7 +4076,6 @@ await db
 "id",
 id
 );
-
 
 if(r.error){
 
@@ -3542,11 +4088,9 @@ return;
 
 }
 
-
 alert(
 "Product Delete হয়েছে ✅"
 );
-
 
 await loadStats();
 
@@ -3566,7 +4110,6 @@ document.getElementById(
 "sectionContent"
 );
 
-
 const r=
 await db
 .from("advertisements")
@@ -3577,7 +4120,6 @@ await db
 ascending:true
 }
 );
-
 
 if(r.error){
 
@@ -3599,9 +4141,7 @@ Error:
 
 <br>
 
-${esc(
-r.error.message
-)}
+${esc(r.error.message)}
 
 </div>
 
@@ -3613,7 +4153,6 @@ return;
 
 }
 
-
 box.innerHTML=`
 
 <div class="card">
@@ -3621,7 +4160,6 @@ box.innerHTML=`
 <h2>
 🖼️ Add Banner
 </h2>
-
 
 <div class="form-group">
 
@@ -3635,7 +4173,6 @@ type="file"
 accept="image/*"
 >
 
-
 <div
 id="bannerPreview"
 class="image-preview"
@@ -3643,41 +4180,23 @@ class="image-preview"
 
 </div>
 
-
 <div class="form-group">
 
 <label>
 Sort Order
 </label>
 
-<select
-id="bannerSort"
->
+<select id="bannerSort">
 
-<option value="1">
-1
-</option>
-
-<option value="2">
-2
-</option>
-
-<option value="3">
-3
-</option>
-
-<option value="4">
-4
-</option>
-
-<option value="5">
-5
-</option>
+<option value="1">1</option>
+<option value="2">2</option>
+<option value="3">3</option>
+<option value="4">4</option>
+<option value="5">5</option>
 
 </select>
 
 </div>
-
 
 <div class="form-group">
 
@@ -3701,7 +4220,6 @@ Active
 
 </div>
 
-
 <button
 type="button"
 id="saveBannerButton"
@@ -3719,16 +4237,14 @@ class="btn btn-orange full"
 📋 Current Banners
 </h2>
 
-
 ${
 !r.data?.length
+
 ?
 
 `
 <div class="empty">
-
 এখনো কোনো Banner নেই।
-
 </div>
 `
 
@@ -3745,7 +4261,6 @@ b=>`
 
 <div class="banner-card">
 
-
 <div class="banner-head">
 
 <div>
@@ -3758,51 +4273,33 @@ Banner #${esc(b.id)}
 
 <small>
 Sort:
-${esc(
-b.sort_order ?? 1
-)}
+${esc(b.sort_order ?? 1)}
 </small>
 
 </div>
 
-
 ${
 b.active
-
 ?
-
-`<span class="banner-active">
-ACTIVE
-</span>`
-
+`<span class="banner-active">ACTIVE</span>`
 :
-
-`<span class="banner-inactive">
-HIDDEN
-</span>`
-
+`<span class="banner-inactive">HIDDEN</span>`
 }
 
 </div>
 
-
 <img
-src="${esc(
-b.image_url
-)}"
+src="${esc(b.image_url)}"
 class="banner-image"
 alt="Gadhuli Banner"
 >
 
-
 <div class="admin-actions">
-
 
 <button
 type="button"
 class="btn btn-light banner-toggle"
 >
-
 ${
 b.active
 ?
@@ -3810,9 +4307,7 @@ b.active
 :
 "👁️ Activate"
 }
-
 </button>
-
 
 <button
 type="button"
@@ -3820,7 +4315,6 @@ class="btn btn-danger banner-delete"
 >
 🗑️ Delete
 </button>
-
 
 </div>
 
@@ -3834,7 +4328,6 @@ class="btn btn-danger banner-delete"
 </div>
 
 `
-
 }
 
 </div>
@@ -3843,16 +4336,10 @@ class="btn btn-danger banner-delete"
 
 
 const input=
-document.getElementById(
-"bannerImage"
-);
-
+document.getElementById("bannerImage");
 
 const preview=
-document.getElementById(
-"bannerPreview"
-);
-
+document.getElementById("bannerPreview");
 
 input.addEventListener(
 "change",
@@ -3860,59 +4347,39 @@ function(){
 
 preview.innerHTML="";
 
-
 const file=
 this.files?.[0];
-
 
 if(!file)
 return;
 
-
 const img=
-document.createElement(
-"img"
-);
-
+document.createElement("img");
 
 img.src=
-URL.createObjectURL(
-file
-);
-
+URL.createObjectURL(file);
 
 img.style.width="220px";
-
 img.style.height="100px";
-
 img.style.objectFit="cover";
-
 img.style.borderRadius="9px";
 
-
-preview.appendChild(
-img
-);
+preview.appendChild(img);
 
 }
 );
 
-
 document
-.getElementById(
-"saveBannerButton"
-)
+.getElementById("saveBannerButton")
 .addEventListener(
 "click",
 saveBanner
 );
 
-
 const cards=
 box.querySelectorAll(
 ".banner-card"
 );
-
 
 cards.forEach(
 (card,index)=>{
@@ -3920,11 +4387,8 @@ cards.forEach(
 const banner=
 r.data[index];
 
-
 card
-.querySelector(
-".banner-toggle"
-)
+.querySelector(".banner-toggle")
 .addEventListener(
 "click",
 ()=>toggleBanner(
@@ -3933,11 +4397,8 @@ banner.id,
 )
 );
 
-
 card
-.querySelector(
-".banner-delete"
-)
+.querySelector(".banner-delete")
 .addEventListener(
 "click",
 ()=>deleteBanner(
@@ -3961,28 +4422,20 @@ document.getElementById(
 "bannerImage"
 );
 
-
 const file=
 input.files?.[0];
-
 
 const sort=
 Number(
 document
-.getElementById(
-"bannerSort"
-)
+.getElementById("bannerSort")
 .value
 );
 
-
 const active=
 document
-.getElementById(
-"bannerActive"
-)
+.getElementById("bannerActive")
 .checked;
-
 
 if(!file){
 
@@ -3994,27 +4447,21 @@ return;
 
 }
 
-
 const button=
 document.getElementById(
 "saveBannerButton"
 );
 
-
 try{
 
 button.disabled=true;
-
-button.textContent=
-"⏳ Uploading...";
-
+button.textContent="⏳ Uploading...";
 
 const safe=
 file.name.replace(
 /[^a-zA-Z0-9._-]/g,
 "_"
 );
-
 
 const path=
 "banners/"+
@@ -4025,7 +4472,6 @@ Math.random()
 .substring(2,8)+
 "-"+
 safe;
-
 
 const upload=
 await db.storage
@@ -4038,19 +4484,14 @@ upsert:false
 }
 );
 
-
 if(upload.error)
 throw upload.error;
-
 
 const publicUrl=
 db.storage
 .from("product-images")
-.getPublicUrl(
-path
-)
+.getPublicUrl(path)
 .data.publicUrl;
-
 
 const r=
 await db
@@ -4058,43 +4499,33 @@ await db
 .insert({
 
 image_url:publicUrl,
-
 sort_order:sort,
-
 active:active
 
 });
 
-
 if(r.error)
 throw r.error;
-
 
 alert(
 "Banner Upload হয়েছে ✅"
 );
 
-
 await renderBanners();
-
 
 }catch(error){
 
 console.error(error);
-
 
 alert(
 "Banner Upload হয়নি ❌\n\n"+
 (error.message || error)
 );
 
-
 }finally{
 
 button.disabled=false;
-
-button.textContent=
-"🖼️ Upload Banner";
+button.textContent="🖼️ Upload Banner";
 
 }
 
@@ -4121,7 +4552,6 @@ active:value
 id
 );
 
-
 if(r.error){
 
 alert(
@@ -4132,7 +4562,6 @@ r.error.message
 return;
 
 }
-
 
 await renderBanners();
 
@@ -4152,7 +4581,6 @@ if(
 )
 return;
 
-
 const r=
 await db
 .from("advertisements")
@@ -4161,7 +4589,6 @@ await db
 "id",
 id
 );
-
 
 if(r.error){
 
@@ -4174,11 +4601,9 @@ return;
 
 }
 
-
 alert(
 "Banner Delete হয়েছে ✅"
 );
-
 
 await renderBanners();
 
@@ -4196,7 +4621,6 @@ document.getElementById(
 "sectionContent"
 );
 
-
 const r=
 await db
 .from("resellers")
@@ -4208,7 +4632,6 @@ ascending:false
 }
 );
 
-
 if(r.error){
 
 showError(
@@ -4218,7 +4641,6 @@ r.error.message
 return;
 
 }
-
 
 if(!r.data?.length){
 
@@ -4236,9 +4658,7 @@ return;
 
 }
 
-
 let html="";
-
 
 for(
 const reseller of r.data
@@ -4256,40 +4676,32 @@ reseller.user_id
 )
 .maybeSingle();
 
-
 html+=`
 
 <div class="reseller-card">
-
 
 <div class="reseller-head">
 
 <div>
 
 <b>
-
 🤝 ${esc(
 profile.data?.full_name ||
 "Customer"
 )}
-
 </b>
 
 <br>
 
 <small>
-
 Code:
-
 ${esc(
 reseller.reseller_code ||
 "—"
 )}
-
 </small>
 
 </div>
-
 
 <span class="status">
 
@@ -4302,95 +4714,57 @@ reseller.status ||
 
 </div>
 
-
 <div class="reseller-info">
 
 <p>
-
-<b>
-Phone:
-</b>
-
+<b>Phone:</b>
 ${esc(
 profile.data?.phone ||
 "—"
 )}
-
 </p>
 
-
 <p>
-
-<b>
-Role:
-</b>
-
+<b>Role:</b>
 ${esc(
 profile.data?.role ||
 "customer"
 )}
-
 </p>
 
-
 <p>
-
-<b>
-Commission:
-</b>
-
+<b>Commission:</b>
 ${Number(
 reseller.commission_rate ||
 0
 )}%
-
 </p>
 
-
 <p>
-
-<b>
-Total Orders:
-</b>
-
+<b>Total Orders:</b>
 ${Number(
 reseller.total_orders ||
 0
 )}
-
 </p>
 
-
 <p>
-
-<b>
-Total Sales:
-</b>
-
+<b>Total Sales:</b>
 ৳${money(
 reseller.total_sales
 )}
-
 </p>
 
-
 <p>
-
-<b>
-Total Commission:
-</b>
-
+<b>Total Commission:</b>
 ৳${money(
 reseller.total_commission
 )}
-
 </p>
 
 </div>
 
-
 <div class="admin-actions">
-
 
 ${
 reseller.status!=="Approved"
@@ -4398,14 +4772,12 @@ reseller.status!=="Approved"
 ?
 
 `
-
 <button
 type="button"
 class="btn btn-orange approve-reseller"
 >
 ✅ Approve
 </button>
-
 `
 
 :
@@ -4414,21 +4786,18 @@ class="btn btn-orange approve-reseller"
 
 }
 
-
 ${
 reseller.status!=="Suspended"
 
 ?
 
 `
-
 <button
 type="button"
 class="btn btn-danger suspend-reseller"
 >
 🚫 Suspend
 </button>
-
 `
 
 :
@@ -4445,15 +4814,12 @@ class="btn btn-danger suspend-reseller"
 
 }
 
-
 box.innerHTML=html;
-
 
 const cards=
 box.querySelectorAll(
 ".reseller-card"
 );
-
 
 cards.forEach(
 (card,index)=>{
@@ -4461,18 +4827,15 @@ cards.forEach(
 const reseller=
 r.data[index];
 
-
 const approve=
 card.querySelector(
 ".approve-reseller"
 );
 
-
 const suspend=
 card.querySelector(
 ".suspend-reseller"
 );
-
 
 if(approve){
 
@@ -4485,7 +4848,6 @@ reseller.id
 );
 
 }
-
 
 if(suspend){
 
@@ -4524,7 +4886,6 @@ status:"Approved"
 id
 );
 
-
 if(r.error){
 
 alert(
@@ -4535,7 +4896,6 @@ r.error.message
 return;
 
 }
-
 
 const p=
 await db
@@ -4548,7 +4908,6 @@ role:"reseller"
 uid
 );
 
-
 if(p.error){
 
 alert(
@@ -4560,14 +4919,11 @@ return;
 
 }
 
-
 alert(
 "Reseller Approved হয়েছে ✅"
 );
 
-
 await loadStats();
-
 await renderResellers();
 
 }
@@ -4589,7 +4945,6 @@ if(
 )
 return;
 
-
 const r=
 await db
 .from("resellers")
@@ -4600,7 +4955,6 @@ status:"Suspended"
 "id",
 id
 );
-
 
 if(r.error){
 
@@ -4613,7 +4967,6 @@ return;
 
 }
 
-
 const p=
 await db
 .from("profiles")
@@ -4624,7 +4977,6 @@ role:"customer"
 "id",
 uid
 );
-
 
 if(p.error){
 
@@ -4637,14 +4989,11 @@ return;
 
 }
 
-
 alert(
 "Reseller Suspended হয়েছে 🚫"
 );
 
-
 await loadStats();
-
 await renderResellers();
 
 }
@@ -4661,7 +5010,6 @@ document.getElementById(
 "sectionContent"
 );
 
-
 const r=
 await db
 .from("reviews")
@@ -4673,7 +5021,6 @@ ascending:false
 }
 );
 
-
 if(r.error){
 
 showError(
@@ -4683,7 +5030,6 @@ r.error.message
 return;
 
 }
-
 
 if(!r.data?.length){
 
@@ -4701,7 +5047,6 @@ return;
 
 }
 
-
 box.innerHTML=
 r.data
 .map(
@@ -4709,19 +5054,14 @@ review=>`
 
 <div class="review-card">
 
-
 <b>
-
 ${esc(
 review.user_name ||
 "Customer"
 )}
-
 </b>
 
-
 <br>
-
 
 <span>
 
@@ -4738,10 +5078,7 @@ review.rating || 0
 
 </span>
 
-
-<p
-style="margin-top:7px"
->
+<p style="margin-top:7px">
 
 ${esc(
 review.review_text ||
@@ -4750,10 +5087,7 @@ review.review_text ||
 
 </p>
 
-
-<p
-style="margin-top:7px"
->
+<p style="margin-top:7px">
 
 Status:
 
@@ -4768,9 +5102,7 @@ review.status ||
 
 </p>
 
-
 <div class="admin-actions">
-
 
 <button
 type="button"
@@ -4779,14 +5111,12 @@ class="btn btn-orange review-approve"
 ✅ Approve
 </button>
 
-
 <button
 type="button"
 class="btn btn-danger review-reject"
 >
 ❌ Reject
 </button>
-
 
 </div>
 
@@ -4796,12 +5126,10 @@ class="btn btn-danger review-reject"
 )
 .join("");
 
-
 const cards=
 box.querySelectorAll(
 ".review-card"
 );
-
 
 cards.forEach(
 (card,index)=>{
@@ -4809,11 +5137,8 @@ cards.forEach(
 const review=
 r.data[index];
 
-
 card
-.querySelector(
-".review-approve"
-)
+.querySelector(".review-approve")
 .addEventListener(
 "click",
 ()=>updateReview(
@@ -4822,11 +5147,8 @@ review.id,
 )
 );
 
-
 card
-.querySelector(
-".review-reject"
-)
+.querySelector(".review-reject")
 .addEventListener(
 "click",
 ()=>updateReview(
@@ -4860,7 +5182,6 @@ status:status
 id
 );
 
-
 if(r.error){
 
 alert(
@@ -4872,19 +5193,16 @@ return;
 
 }
 
-
 await renderReviews();
 
 }
 
 
 /* =====================================================
-EVENT LISTENERS
+EVENTS
 ===================================================== */
 
 function setupEvents(){
-
-/* NAV */
 
 document
 .querySelectorAll(
@@ -4897,14 +5215,10 @@ button.addEventListener(
 "click",
 function(){
 
-const section=
+showSection(
 this.getAttribute(
 "data-section"
-);
-
-
-showSection(
-section
+)
 );
 
 }
@@ -4912,8 +5226,6 @@ section
 
 });
 
-
-/* REFRESH */
 
 document
 .getElementById(
@@ -4925,8 +5237,6 @@ refreshAdmin
 );
 
 
-/* WEBSITE */
-
 document
 .getElementById(
 "websiteButton"
@@ -4936,8 +5246,6 @@ document
 goHome
 );
 
-
-/* LOGIN */
 
 document
 .getElementById(
@@ -4949,8 +5257,6 @@ adminLogin
 );
 
 
-/* PASSWORD */
-
 document
 .getElementById(
 "passwordEye"
@@ -4960,8 +5266,6 @@ document
 togglePassword
 );
 
-
-/* LOGOUT */
 
 document
 .getElementById(
@@ -4973,8 +5277,6 @@ adminLogout
 );
 
 
-/* ENTER LOGIN */
-
 document
 .getElementById(
 "loginPassword"
@@ -4983,11 +5285,8 @@ document
 "keydown",
 function(event){
 
-if(event.key==="Enter"){
-
+if(event.key==="Enter")
 adminLogin();
-
-}
 
 });
 
@@ -5000,11 +5299,8 @@ document
 "keydown",
 function(event){
 
-if(event.key==="Enter"){
-
+if(event.key==="Enter")
 adminLogin();
-
-}
 
 });
 
