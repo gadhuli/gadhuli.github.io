@@ -67,10 +67,6 @@ max-width:100%;
 display:none!important;
 }
 
-/* =========================
-HEADER
-========================= */
-
 header{
 background:var(--gradient);
 padding:10px 15px;
@@ -118,10 +114,6 @@ font-size:12px;
 color:#fff;
 opacity:.9;
 }
-
-/* =========================
-GENERAL
-========================= */
 
 .container{
 max-width:1250px;
@@ -199,10 +191,6 @@ width:100%;
 margin:0;
 }
 
-/* =========================
-LOGIN
-========================= */
-
 .login-box{
 max-width:430px;
 margin:55px auto;
@@ -252,10 +240,6 @@ border-color:var(--orange);
 box-shadow:0 0 0 2px rgba(255,107,0,.08);
 }
 
-/* =========================
-PASSWORD
-========================= */
-
 .password-wrap{
 position:relative;
 }
@@ -282,10 +266,6 @@ padding:0;
 .password-eye:hover{
 background:var(--orange-light);
 }
-
-/* =========================
-STATS
-========================= */
 
 .stat-grid{
 display:grid;
@@ -323,10 +303,6 @@ font-weight:800;
 color:var(--orange-dark);
 }
 
-/* =========================
-NAVIGATION
-========================= */
-
 .admin-nav{
 display:grid;
 grid-template-columns:repeat(7,1fr);
@@ -343,10 +319,6 @@ background:var(--orange);
 color:#fff;
 border-color:var(--orange);
 }
-
-/* =========================
-CONTENT
-========================= */
 
 .notice{
 background:var(--orange-light);
@@ -386,10 +358,6 @@ to{
 transform:rotate(360deg);
 }
 }
-
-/* =========================
-PRODUCTS
-========================= */
 
 .product-grid{
 display:grid;
@@ -436,10 +404,6 @@ font-size:12px;
 color:#777;
 }
 
-/* =========================
-IMAGES
-========================= */
-
 .image-preview{
 display:flex;
 flex-wrap:wrap;
@@ -455,9 +419,7 @@ border-radius:9px;
 border:1px solid #ddd;
 }
 
-/* =========================
-PREMIUM ORDERS
-========================= */
+/* ORDER MANAGEMENT */
 
 .orders-toolbar{
 background:#fff;
@@ -538,6 +500,8 @@ border-color:var(--orange);
 margin-top:9px;
 display:flex;
 gap:8px;
+overflow-x:auto;
+padding-bottom:2px;
 }
 
 .payment-filter button{
@@ -547,6 +511,7 @@ border-radius:20px;
 padding:7px 12px;
 font-size:12px;
 font-weight:700;
+white-space:nowrap;
 }
 
 .payment-filter button.active{
@@ -573,11 +538,7 @@ transform:translateY(-1px);
 
 .order-card-top{
 padding:15px 17px;
-background:linear-gradient(
-135deg,
-#fffaf5,
-#fff
-);
+background:linear-gradient(135deg,#fffaf5,#fff);
 border-bottom:1px solid #eee;
 display:flex;
 justify-content:space-between;
@@ -809,6 +770,37 @@ color:#888;
 margin-top:8px;
 }
 
+.order-quick-actions{
+display:flex;
+gap:6px;
+flex-wrap:wrap;
+margin-top:10px;
+}
+
+.quick-status{
+border:1px solid #ddd;
+background:#fff;
+padding:7px 10px;
+border-radius:8px;
+font-size:11px;
+font-weight:800;
+}
+
+.quick-status:hover{
+background:var(--orange-light);
+border-color:#ffc79d;
+}
+
+.view-order-btn{
+background:#171717;
+color:#fff;
+border:0;
+padding:9px 13px;
+border-radius:9px;
+font-size:12px;
+font-weight:800;
+}
+
 .order-loading{
 padding:18px;
 text-align:center;
@@ -816,9 +808,139 @@ color:#777;
 font-size:13px;
 }
 
-/* =========================
-BANNERS
-========================= */
+/* ORDER MODAL */
+
+.order-modal{
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.62);
+display:none;
+align-items:center;
+justify-content:center;
+padding:15px;
+z-index:5000;
+}
+
+.order-modal.show{
+display:flex;
+}
+
+.order-modal-box{
+width:100%;
+max-width:760px;
+max-height:92vh;
+overflow-y:auto;
+background:#fff;
+border-radius:20px;
+box-shadow:0 20px 60px rgba(0,0,0,.3);
+}
+
+.order-modal-header{
+position:sticky;
+top:0;
+z-index:2;
+background:var(--gradient);
+color:#fff;
+padding:17px 18px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:12px;
+}
+
+.order-modal-title{
+font-size:18px;
+font-weight:900;
+}
+
+.order-modal-close{
+width:38px;
+height:38px;
+border:0;
+border-radius:50%;
+background:rgba(255,255,255,.18);
+color:#fff;
+font-size:20px;
+}
+
+.order-modal-body{
+padding:18px;
+}
+
+.modal-section{
+border:1px solid #eee;
+border-radius:13px;
+padding:13px;
+margin-bottom:13px;
+}
+
+.modal-section-title{
+font-size:14px;
+font-weight:900;
+color:var(--orange-dark);
+margin-bottom:10px;
+}
+
+.modal-grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:9px;
+}
+
+.modal-info{
+background:#fafafa;
+padding:10px;
+border-radius:9px;
+}
+
+.modal-info small{
+display:block;
+color:#999;
+font-size:10px;
+font-weight:800;
+text-transform:uppercase;
+margin-bottom:3px;
+}
+
+.modal-info b{
+font-size:13px;
+word-break:break-word;
+}
+
+.modal-item{
+display:flex;
+justify-content:space-between;
+gap:10px;
+padding:10px 0;
+border-bottom:1px solid #eee;
+}
+
+.modal-item:last-child{
+border-bottom:0;
+}
+
+.modal-total{
+font-size:20px;
+font-weight:900;
+color:var(--orange-dark);
+display:flex;
+justify-content:space-between;
+padding-top:10px;
+margin-top:8px;
+border-top:1px dashed #ddd;
+}
+
+.modal-actions{
+display:flex;
+gap:7px;
+flex-wrap:wrap;
+}
+
+.modal-actions .btn{
+margin:0;
+}
+
+/* BANNERS */
 
 .banner-grid{
 display:grid;
@@ -874,10 +996,6 @@ gap:10px;
 margin-bottom:12px;
 }
 
-/* =========================
-SIZE
-========================= */
-
 .size-list{
 display:flex;
 flex-wrap:wrap;
@@ -899,10 +1017,6 @@ cursor:pointer;
 width:auto;
 }
 
-/* =========================
-ACTIONS
-========================= */
-
 .admin-actions{
 display:flex;
 gap:7px;
@@ -919,20 +1033,12 @@ width:auto;
 min-width:150px;
 }
 
-/* =========================
-FOOTER
-========================= */
-
 footer{
 text-align:center;
 padding:30px 15px;
 color:#777;
 font-size:13px;
 }
-
-/* =========================
-MOBILE
-========================= */
 
 @media(max-width:1050px){
 
@@ -1056,15 +1162,24 @@ flex-direction:column;
 width:100%;
 }
 
+.modal-grid{
+grid-template-columns:1fr;
+}
+
+.order-modal{
+padding:8px;
+}
+
+.order-modal-box{
+max-height:95vh;
+border-radius:16px;
+}
+
 .payment-filter{
 overflow-x:auto;
 }
 
 }
-
-/* =========================
-TOAST
-========================= */
 
 .toast{
 position:fixed;
@@ -1141,8 +1256,6 @@ id="websiteButton"
 </header>
 
 
-<!-- LOGIN -->
-
 <div
 id="loginSection"
 class="container"
@@ -1216,8 +1329,6 @@ style="margin-top:12px;text-align:center;"
 </div>
 
 
-<!-- ADMIN -->
-
 <div
 id="adminPanel"
 class="container hidden"
@@ -1256,59 +1367,31 @@ class="container hidden"
 
 <div class="admin-nav">
 
-<button
-type="button"
-class="btn btn-light active"
-data-section="orders"
->
+<button type="button" class="btn btn-light active" data-section="orders">
 📦 Orders
 </button>
 
-<button
-type="button"
-class="btn btn-light"
-data-section="products"
->
+<button type="button" class="btn btn-light" data-section="products">
 🛍️ Products
 </button>
 
-<button
-type="button"
-class="btn btn-light"
-data-section="addProduct"
->
+<button type="button" class="btn btn-light" data-section="addProduct">
 ➕ Add Product
 </button>
 
-<button
-type="button"
-class="btn btn-light"
-data-section="banners"
->
+<button type="button" class="btn btn-light" data-section="banners">
 🖼️ Banners
 </button>
 
-<button
-type="button"
-class="btn btn-light"
-data-section="resellers"
->
+<button type="button" class="btn btn-light" data-section="resellers">
 🤝 Resellers
 </button>
 
-<button
-type="button"
-class="btn btn-light"
-data-section="reviews"
->
+<button type="button" class="btn btn-light" data-section="reviews">
 ⭐ Reviews
 </button>
 
-<button
-type="button"
-class="btn btn-light"
-id="refreshButton"
->
+<button type="button" class="btn btn-light" id="refreshButton">
 🔄 Refresh
 </button>
 
@@ -1352,6 +1435,42 @@ id="logoutButton"
 <div id="toast" class="toast"></div>
 
 
+<!-- ORDER DETAILS MODAL -->
+
+<div
+id="orderModal"
+class="order-modal"
+>
+
+<div class="order-modal-box">
+
+<div class="order-modal-header">
+
+<div class="order-modal-title" id="orderModalTitle">
+📦 Order Details
+</div>
+
+<button
+type="button"
+class="order-modal-close"
+id="closeOrderModal"
+>
+×
+</button>
+
+</div>
+
+<div
+id="orderModalBody"
+class="order-modal-body"
+>
+</div>
+
+</div>
+
+</div>
+
+
 <script>
 
 /* =====================================================
@@ -1379,6 +1498,8 @@ let currentSection="orders";
 let orderSearchText="";
 let orderStatusFilter="All";
 let paymentStatusFilter="All";
+
+let cachedOrders=[];
 
 
 /* =====================================================
@@ -1448,9 +1569,7 @@ toast.className=
 "toast show "+
 (type==="error" ? "error" : "success");
 
-clearTimeout(
-window.__toastTimer
-);
+clearTimeout(window.__toastTimer);
 
 window.__toastTimer=
 setTimeout(
@@ -1466,9 +1585,7 @@ toast.className="toast";
 function showError(message){
 
 const box=
-document.getElementById(
-"sectionContent"
-);
+document.getElementById("sectionContent");
 
 box.innerHTML=`
 
@@ -1511,23 +1628,16 @@ document
 ".admin-nav [data-section]"
 )
 .forEach(button=>{
-
 button.classList.remove("active");
-
 });
 
 const active=
 document.querySelector(
-'.admin-nav [data-section="'+
-section+
-'"]'
+'.admin-nav [data-section="'+section+'"]'
 );
 
-if(active){
-
+if(active)
 active.classList.add("active");
-
-}
 
 }
 
@@ -1539,14 +1649,10 @@ PASSWORD
 function togglePassword(){
 
 const input=
-document.getElementById(
-"loginPassword"
-);
+document.getElementById("loginPassword");
 
 const eye=
-document.getElementById(
-"passwordEye"
-);
+document.getElementById("passwordEye");
 
 if(!input)
 return;
@@ -1578,7 +1684,7 @@ async function isAdmin(){
 
 if(!currentUser){
 
-return {
+return{
 ok:false,
 message:"Supabase user পাওয়া যায়নি।"
 };
@@ -1594,7 +1700,7 @@ await db
 
 if(r.error){
 
-return {
+return{
 ok:false,
 message:
 "profiles table পড়া যাচ্ছে না:\n\n"+
@@ -1605,7 +1711,7 @@ r.error.message
 
 if(!r.data){
 
-return {
+return{
 ok:false,
 message:
 "এই Auth User-এর জন্য profiles table-এ কোনো row নেই.\n\n"+
@@ -1620,7 +1726,7 @@ String(r.data.role || "")
 .toLowerCase()!=="admin"
 ){
 
-return {
+return{
 ok:false,
 message:
 "এই profile-এর role = "+
@@ -1630,7 +1736,7 @@ message:
 
 }
 
-return {
+return{
 ok:true,
 data:r.data
 };
@@ -1645,25 +1751,18 @@ LOGIN
 async function adminLogin(){
 
 const email=
-document
-.getElementById("loginEmail")
-.value
-.trim();
+document.getElementById("loginEmail")
+.value.trim();
 
 const password=
-document
-.getElementById("loginPassword")
+document.getElementById("loginPassword")
 .value;
 
 const msg=
-document.getElementById(
-"loginMessage"
-);
+document.getElementById("loginMessage");
 
 const button=
-document.getElementById(
-"loginButton"
-);
+document.getElementById("loginButton");
 
 if(!email || !password){
 
@@ -1688,8 +1787,8 @@ try{
 
 const r=
 await db.auth.signInWithPassword({
-email:email,
-password:password
+email,
+password
 });
 
 if(r.error){
@@ -1718,8 +1817,7 @@ currentUser=r.data.user;
 
 if(
 String(currentUser.email || "")
-.toLowerCase()
-!==
+.toLowerCase() !==
 ADMIN_EMAIL.toLowerCase()
 ){
 
@@ -1736,8 +1834,7 @@ return;
 
 }
 
-const admin=
-await isAdmin();
+const admin=await isAdmin();
 
 if(!admin.ok){
 
@@ -1791,13 +1888,11 @@ function showAdmin(){
 
 document
 .getElementById("loginSection")
-.classList
-.add("hidden");
+.classList.add("hidden");
 
 document
 .getElementById("adminPanel")
-.classList
-.remove("hidden");
+.classList.remove("hidden");
 
 loadStats();
 
@@ -1818,23 +1913,19 @@ const r=
 await db.auth.getSession();
 
 if(r.error){
-
 console.error(r.error);
 return;
-
 }
 
 currentUser=
-r.data.session?.user ||
-null;
+r.data.session?.user || null;
 
 if(!currentUser)
 return;
 
 if(
 String(currentUser.email || "")
-.toLowerCase()
-!==
+.toLowerCase() !==
 ADMIN_EMAIL.toLowerCase()
 ){
 
@@ -1846,21 +1937,14 @@ return;
 
 }
 
-const admin=
-await isAdmin();
+const admin=await isAdmin();
 
-if(admin.ok){
-
+if(admin.ok)
 showAdmin();
-
-}
 
 }catch(error){
 
-console.error(
-"Session error:",
-error
-);
+console.error("Session error:",error);
 
 }
 
@@ -1879,13 +1963,11 @@ currentUser=null;
 
 document
 .getElementById("adminPanel")
-.classList
-.add("hidden");
+.classList.add("hidden");
 
 document
 .getElementById("loginSection")
-.classList
-.remove("hidden");
+.classList.remove("hidden");
 
 document
 .getElementById("loginMessage")
@@ -1895,7 +1977,7 @@ document
 
 
 /* =====================================================
-SECTION SWITCH
+SECTION
 ===================================================== */
 
 async function showSection(section){
@@ -1905,9 +1987,7 @@ currentSection=section;
 setActiveNav(section);
 
 const content=
-document.getElementById(
-"sectionContent"
-);
+document.getElementById("sectionContent");
 
 content.innerHTML=`
 
@@ -1943,14 +2023,10 @@ await renderReviews();
 
 }catch(error){
 
-console.error(
-"SECTION ERROR:",
-error
-);
+console.error("SECTION ERROR:",error);
 
 showError(
-error.message ||
-String(error)
+error.message || String(error)
 );
 
 }
@@ -1965,9 +2041,7 @@ REFRESH
 async function refreshAdmin(){
 
 const button=
-document.getElementById(
-"refreshButton"
-);
+document.getElementById("refreshButton");
 
 if(button){
 
@@ -2012,34 +2086,17 @@ try{
 const products=
 await db
 .from("products")
-.select(
-"id",
-{
-count:"exact",
-head:true
-}
-);
+.select("id",{count:"exact",head:true});
 
 const orders=
 await db
 .from("orders")
-.select(
-"id,order_status"
-);
-
-let resellersData=[];
+.select("id,order_status");
 
 const resellers=
 await db
 .from("resellers")
 .select("id,status");
-
-if(!resellers.error){
-
-resellersData=
-resellers.data || [];
-
-}
 
 document
 .getElementById("statProducts")
@@ -2059,33 +2116,22 @@ document
 .textContent=
 orderData.filter(
 x=>
-String(
-x.order_status ||
-"Pending"
-)
-.toLowerCase()
-==="pending"
+String(x.order_status || "Pending")
+.toLowerCase()==="pending"
 ).length;
 
 document
 .getElementById("statResellers")
 .textContent=
-resellersData.filter(
+(resellers.data || []).filter(
 x=>
-String(
-x.status ||
-"Pending"
-)
-.toLowerCase()
-==="pending"
+String(x.status || "Pending")
+.toLowerCase()==="pending"
 ).length;
 
 }catch(error){
 
-console.error(
-"Stats error:",
-error
-);
+console.error("Stats error:",error);
 
 }
 
@@ -2093,38 +2139,34 @@ error
 
 
 /* =====================================================
-ORDER STATUS CLASS
+STATUS CLASS
 ===================================================== */
 
 function orderStatusClass(status){
 
-const value=
-String(status || "Pending")
-.toLowerCase();
-
-return "order-status-"+value;
+return "order-status-"+String(
+status || "Pending"
+).toLowerCase();
 
 }
 
 
 function paymentStatusClass(status){
 
-const value=
-String(status || "Pending")
-.toLowerCase();
-
-return "payment-status-"+value;
+return "payment-status-"+String(
+status || "Pending"
+).toLowerCase();
 
 }
 
 
 /* =====================================================
-ORDER FILTER UI
+ORDER TOOLBAR
 ===================================================== */
 
 function renderOrderToolbar(){
 
-return `
+return`
 
 <div class="orders-toolbar">
 
@@ -2137,7 +2179,7 @@ return `
 </div>
 
 <div class="orders-count">
-Manage customer orders from one place
+Premium order control center
 </div>
 
 </div>
@@ -2175,11 +2217,7 @@ ${[
 <button
 type="button"
 class="order-filter ${
-orderStatusFilter===status
-?
-"active"
-:
-""
+orderStatusFilter===status?"active":""
 }"
 data-order-filter="${esc(status)}"
 >
@@ -2193,75 +2231,26 @@ ${status}
 
 <div class="payment-filter">
 
-<button
-type="button"
-class="${
-paymentStatusFilter==="All"
-?
-"active"
-:
-""
-}"
-data-payment-filter="All"
->
-💳 All Payments
-</button>
+${[
+["All","💳 All Payments"],
+["Pending","⏳ Pending"],
+["Paid","✅ Paid"],
+["Failed","❌ Failed"],
+["Refunded","↩️ Refunded"]
+].map(item=>`
 
 <button
 type="button"
 class="${
-paymentStatusFilter==="Pending"
-?
-"active"
-:
-""
+paymentStatusFilter===item[0]
+?"active":""
 }"
-data-payment-filter="Pending"
+data-payment-filter="${item[0]}"
 >
-⏳ Pending
+${item[1]}
 </button>
 
-<button
-type="button"
-class="${
-paymentStatusFilter==="Paid"
-?
-"active"
-:
-""
-}"
-data-payment-filter="Paid"
->
-✅ Paid
-</button>
-
-<button
-type="button"
-class="${
-paymentStatusFilter==="Failed"
-?
-"active"
-:
-""
-}"
-data-payment-filter="Failed"
->
-❌ Failed
-</button>
-
-<button
-type="button"
-class="${
-paymentStatusFilter==="Refunded"
-?
-"active"
-:
-""
-}"
-data-payment-filter="Refunded"
->
-↩️ Refunded
-</button>
+`).join("")}
 
 </div>
 
@@ -2279,108 +2268,50 @@ ORDERS
 async function renderOrders(){
 
 const box=
-document.getElementById(
-"sectionContent"
-);
+document.getElementById("sectionContent");
 
 const r=
 await db
 .from("orders")
 .select("*")
-.order(
-"created_at",
-{
-ascending:false
-}
-);
+.order("created_at",{ascending:false});
 
 if(r.error){
 
-showError(
-r.error.message
-);
+showError(r.error.message);
 
 return;
 
 }
 
-if(!r.data?.length){
+cachedOrders=[];
 
-box.innerHTML=
-renderOrderToolbar()+
-`
-<div class="empty">
-
-<div style="font-size:45px">
-📦
-</div>
-
-<br>
-
-<b>
-এখনো কোনো Order নেই।
-</b>
-
-</div>
-`;
-
-bindOrderToolbar([]);
-
-return;
-
-}
-
-
-/* LOAD ITEMS */
-
-const ordersWithItems=[];
-
-for(const order of r.data){
+for(const order of r.data || []){
 
 const items=
 await db
 .from("order_items")
 .select("*")
-.eq(
-"order_id",
-order.id
-);
+.eq("order_id",order.id);
 
-ordersWithItems.push({
-
+cachedOrders.push({
 ...order,
-
-_items:
-items.data || [],
-_itemsError:
-items.error?.message || ""
-
+_items:items.data || [],
+_itemsError:items.error?.message || ""
 });
 
 }
 
+let filtered=cachedOrders.filter(order=>{
 
-/* FILTER */
+const status=
+String(order.order_status || "Pending");
 
-const filtered=
-ordersWithItems.filter(order=>{
-
-const currentStatus=
-String(
-order.order_status ||
-"Pending"
-);
-
-const paymentStatus=
-String(
-order.payment_status ||
-"Pending"
-);
+const payment=
+String(order.payment_status || "Pending");
 
 const search=
-orderSearchText
-.toLowerCase()
-.trim();
+orderSearchText.toLowerCase().trim();
 
 const searchable=[
 order.id,
@@ -2389,37 +2320,31 @@ order.customer_phone,
 order.customer_district,
 order.district,
 order.customer_thana,
-order.thana
+order.thana,
+order.address,
+order.customer_receive_place
 ]
 .map(x=>String(x || "").toLowerCase())
 .join(" ");
 
-const searchMatch=
-!search ||
-searchable.includes(search);
-
-const statusMatch=
-orderStatusFilter==="All" ||
-currentStatus.toLowerCase()===
-orderStatusFilter.toLowerCase();
-
-const paymentMatch=
-paymentStatusFilter==="All" ||
-paymentStatus.toLowerCase()===
-paymentStatusFilter.toLowerCase();
-
 return(
-searchMatch &&
-statusMatch &&
-paymentMatch
+(!search || searchable.includes(search)) &&
+(
+orderStatusFilter==="All" ||
+status.toLowerCase()===
+orderStatusFilter.toLowerCase()
+) &&
+(
+paymentStatusFilter==="All" ||
+payment.toLowerCase()===
+paymentStatusFilter.toLowerCase()
+)
 );
 
 });
 
 
-let html=
-renderOrderToolbar();
-
+let html=renderOrderToolbar();
 
 html+=`
 
@@ -2430,13 +2355,9 @@ margin:0 2px 10px;
 ">
 
 Showing
-<b style="color:#333">
-${filtered.length}
-</b>
+<b style="color:#333">${filtered.length}</b>
 of
-<b style="color:#333">
-${ordersWithItems.length}
-</b>
+<b style="color:#333">${cachedOrders.length}</b>
 orders
 
 </div>
@@ -2450,7 +2371,7 @@ html+=`
 
 <div class="empty">
 
-<div style="font-size:40px">
+<div style="font-size:42px">
 🔎
 </div>
 
@@ -2476,20 +2397,16 @@ id="clearOrderFilters"
 
 box.innerHTML=html;
 
-bindOrderToolbar(ordersWithItems);
+bindOrderToolbar();
 
 return;
 
 }
 
 
-/* CARDS */
+html+=filtered.map(order=>{
 
-html+=filtered.map(
-order=>{
-
-const items=
-order._items || [];
+const items=order._items || [];
 
 const subtotal=
 items.reduce(
@@ -2503,26 +2420,20 @@ Number(item.quantity || 1)
 );
 
 const delivery=
-Number(
-order.delivery_charge || 0
-);
+Number(order.delivery_charge || 0);
 
 const total=
 Number(
 order.total ??
 order.total_amount ??
-(
-subtotal+delivery
-)
+(subtotal+delivery)
 );
 
-const currentStatus=
-order.order_status ||
-"Pending";
+const status=
+order.order_status || "Pending";
 
-const paymentStatus=
-order.payment_status ||
-"Pending";
+const payment=
+order.payment_status || "Pending";
 
 const address=
 order.customer_receive_place ||
@@ -2540,7 +2451,7 @@ order.thana ||
 "—";
 
 
-return `
+return`
 
 <div
 class="order-card"
@@ -2552,38 +2463,23 @@ data-order-id="${esc(order.id)}"
 <div>
 
 <div class="order-number">
-
 📦 Order #${esc(order.id)}
-
 </div>
 
 <div class="order-date">
-
 ${formatDate(order.created_at)}
-
 </div>
 
 </div>
-
 
 <div class="order-badges">
 
-<span class="
-order-status-badge
-${orderStatusClass(currentStatus)}
-">
-
-${esc(currentStatus)}
-
+<span class="order-status-badge ${orderStatusClass(status)}">
+${esc(status)}
 </span>
 
-<span class="
-payment-status-badge
-${paymentStatusClass(paymentStatus)}
-">
-
-💳 ${esc(paymentStatus)}
-
+<span class="payment-status-badge ${paymentStatusClass(payment)}">
+💳 ${esc(payment)}
 </span>
 
 </div>
@@ -2592,7 +2488,6 @@ ${paymentStatusClass(paymentStatus)}
 
 
 <div class="order-main">
-
 
 <div class="order-customer">
 
@@ -2603,10 +2498,7 @@ Customer
 </div>
 
 <div class="info-value">
-👤 ${esc(
-order.customer_name ||
-"—"
-)}
+👤 ${esc(order.customer_name || "—")}
 </div>
 
 </div>
@@ -2619,10 +2511,7 @@ Phone
 </div>
 
 <div class="info-value">
-📞 ${esc(
-order.customer_phone ||
-"—"
-)}
+📞 ${esc(order.customer_phone || "—")}
 </div>
 
 </div>
@@ -2637,14 +2526,7 @@ District / Thana
 <div class="info-value">
 
 📍 ${esc(district)}
-
-${
-thana!=="—"
-?
-" / "+esc(thana)
-:
-""
-}
+${thana!=="—" ? " / "+esc(thana) : ""}
 
 </div>
 
@@ -2673,12 +2555,7 @@ Delivery
 </div>
 
 <div class="info-value">
-
-🚚 ${esc(
-order.delivery_area ||
-"Delivery"
-)}
-
+🚚 ${esc(order.delivery_area || "Delivery")}
 </div>
 
 </div>
@@ -2690,7 +2567,6 @@ order.delivery_area ||
 🛍️ Ordered Products
 </div>
 
-
 ${
 items.length
 ?
@@ -2701,42 +2577,25 @@ items.map(item=>`
 <div class="item-left">
 
 <div class="item-name">
-
-${esc(
-item.product_name ||
-"Product"
-)}
-
+${esc(item.product_name || "Product")}
 </div>
 
 <div class="item-details">
 
-${
-item.size
-?
-"Size: "+esc(item.size)+" • "
-:
-""
-}
+${item.size ? "Size: "+esc(item.size)+" • " : ""}
 
 Qty:
-${Number(
-item.quantity || 1
-)}
+${Number(item.quantity || 1)}
 
 ×
 
-৳${money(
-item.price
-)}
+৳${money(item.price)}
 
 </div>
 
 </div>
-
 
 <div class="item-total">
-
 ৳${money(
 item.line_total ??
 (
@@ -2744,21 +2603,17 @@ Number(item.price || 0) *
 Number(item.quantity || 1)
 )
 )}
-
 </div>
 
 </div>
 
 `).join("")
-
 :
-
 `
 <div class="order-loading">
 Product information পাওয়া যায়নি।
 </div>
 `
-
 }
 
 </div>
@@ -2767,42 +2622,31 @@ Product information পাওয়া যায়নি।
 <div class="order-summary">
 
 <div class="summary-row">
-
-<span>
-Subtotal
-</span>
-
-<b>
-৳${money(subtotal)}
-</b>
-
+<span>Subtotal</span>
+<b>৳${money(subtotal)}</b>
 </div>
-
 
 <div class="summary-row">
-
-<span>
-Delivery
-</span>
-
-<b>
-৳${money(delivery)}
-</b>
-
+<span>Delivery</span>
+<b>৳${money(delivery)}</b>
 </div>
-
 
 <div class="summary-total">
-
-<span>
-Grand Total
-</span>
-
-<span>
-৳${money(total)}
-</span>
+<span>Grand Total</span>
+<span>৳${money(total)}</span>
+</div>
 
 </div>
+
+<div class="admin-actions">
+
+<button
+type="button"
+class="view-order-btn view-order"
+data-order-id="${esc(order.id)}"
+>
+👁️ Full Details
+</button>
 
 </div>
 
@@ -2812,7 +2656,6 @@ Grand Total
 <div class="order-bottom">
 
 <div class="order-control-grid">
-
 
 <div>
 
@@ -2833,22 +2676,13 @@ ${
 "Shipped",
 "Delivered",
 "Cancelled"
-]
-.map(status=>`
+].map(s=>`
 
 <option
-value="${esc(status)}"
-${
-status.toLowerCase()===
-String(currentStatus)
-.toLowerCase()
-?
-"selected"
-:
-""
-}
+value="${esc(s)}"
+${s.toLowerCase()===String(status).toLowerCase()?"selected":""}
 >
-${status}
+${s}
 </option>
 
 `).join("")
@@ -2876,22 +2710,13 @@ ${
 "Paid",
 "Failed",
 "Refunded"
-]
-.map(status=>`
+].map(s=>`
 
 <option
-value="${esc(status)}"
-${
-status.toLowerCase()===
-String(paymentStatus)
-.toLowerCase()
-?
-"selected"
-:
-""
-}
+value="${esc(s)}"
+${s.toLowerCase()===String(payment).toLowerCase()?"selected":""}
 >
-${status}
+${s}
 </option>
 
 `).join("")
@@ -2904,10 +2729,49 @@ ${status}
 </div>
 
 
+<div class="order-quick-actions">
+
+<button
+type="button"
+class="quick-status"
+data-quick-status="Confirmed"
+data-order-id="${esc(order.id)}"
+>
+✅ Confirm
+</button>
+
+<button
+type="button"
+class="quick-status"
+data-quick-status="Processing"
+data-order-id="${esc(order.id)}"
+>
+⚙️ Processing
+</button>
+
+<button
+type="button"
+class="quick-status"
+data-quick-status="Shipped"
+data-order-id="${esc(order.id)}"
+>
+🚚 Shipped
+</button>
+
+<button
+type="button"
+class="quick-status"
+data-quick-status="Delivered"
+data-order-id="${esc(order.id)}"
+>
+🎉 Delivered
+</button>
+
+</div>
+
+
 <div class="order-save-note">
-
 💡 Status change করলে database-এ automatically save হবে।
-
 </div>
 
 </div>
@@ -2916,14 +2780,11 @@ ${status}
 
 `;
 
-}
-).join("");
-
+}).join("");
 
 box.innerHTML=html;
 
-bindOrderToolbar(ordersWithItems);
-
+bindOrderToolbar();
 bindOrderControls();
 
 }
@@ -2936,9 +2797,7 @@ ORDER TOOLBAR EVENTS
 function bindOrderToolbar(){
 
 const search=
-document.getElementById(
-"orderSearch"
-);
+document.getElementById("orderSearch");
 
 if(search){
 
@@ -2950,12 +2809,10 @@ function(){
 
 clearTimeout(timer);
 
-timer=
-setTimeout(
+timer=setTimeout(
 ()=>{
 
-orderSearchText=
-this.value;
+orderSearchText=this.value;
 
 renderOrders();
 
@@ -2969,9 +2826,7 @@ renderOrders();
 
 
 document
-.querySelectorAll(
-"[data-order-filter]"
-)
+.querySelectorAll("[data-order-filter]")
 .forEach(button=>{
 
 button.addEventListener(
@@ -2979,9 +2834,7 @@ button.addEventListener(
 function(){
 
 orderStatusFilter=
-this.getAttribute(
-"data-order-filter"
-);
+this.getAttribute("data-order-filter");
 
 renderOrders();
 
@@ -2991,9 +2844,7 @@ renderOrders();
 
 
 document
-.querySelectorAll(
-"[data-payment-filter]"
-)
+.querySelectorAll("[data-payment-filter]")
 .forEach(button=>{
 
 button.addEventListener(
@@ -3001,9 +2852,7 @@ button.addEventListener(
 function(){
 
 paymentStatusFilter=
-this.getAttribute(
-"data-payment-filter"
-);
+this.getAttribute("data-payment-filter");
 
 renderOrders();
 
@@ -3013,9 +2862,7 @@ renderOrders();
 
 
 const clear=
-document.getElementById(
-"clearOrderFilters"
-);
+document.getElementById("clearOrderFilters");
 
 if(clear){
 
@@ -3033,6 +2880,23 @@ renderOrders();
 
 }
 
+
+document
+.querySelectorAll(".view-order")
+.forEach(button=>{
+
+button.addEventListener(
+"click",
+function(){
+
+openOrderModal(
+this.dataset.orderId
+);
+
+});
+
+});
+
 }
 
 
@@ -3043,27 +2907,19 @@ ORDER CONTROLS
 function bindOrderControls(){
 
 document
-.querySelectorAll(
-".order-status-select"
-)
+.querySelectorAll(".order-status-select")
 .forEach(select=>{
 
 select.addEventListener(
 "change",
 async function(){
 
-const id=
-this.dataset.orderId;
-
-const status=
-this.value;
+const id=this.dataset.orderId;
+const status=this.value;
 
 this.disabled=true;
 
-await updateOrderStatus(
-id,
-status
-);
+await updateOrderStatus(id,status);
 
 });
 
@@ -3071,26 +2927,341 @@ status
 
 
 document
-.querySelectorAll(
-".payment-status-select"
-)
+.querySelectorAll(".payment-status-select")
 .forEach(select=>{
 
 select.addEventListener(
 "change",
 async function(){
 
-const id=
-this.dataset.orderId;
-
-const status=
-this.value;
+const id=this.dataset.orderId;
+const status=this.value;
 
 this.disabled=true;
 
-await updatePaymentStatus(
-id,
-status
+await updatePaymentStatus(id,status);
+
+});
+
+});
+
+
+document
+.querySelectorAll(".quick-status")
+.forEach(button=>{
+
+button.addEventListener(
+"click",
+async function(){
+
+const id=this.dataset.orderId;
+const status=this.dataset.quickStatus;
+
+this.disabled=true;
+
+await updateOrderStatus(id,status);
+
+});
+
+});
+
+}
+
+
+/* =====================================================
+ORDER MODAL
+===================================================== */
+
+function openOrderModal(id){
+
+const order=
+cachedOrders.find(
+x=>String(x.id)===String(id)
+);
+
+if(!order){
+
+showToast(
+"Order পাওয়া যায়নি ❌",
+"error"
+);
+
+return;
+
+}
+
+const items=order._items || [];
+
+const subtotal=
+items.reduce(
+(sum,item)=>
+sum+
+(
+Number(item.price || 0) *
+Number(item.quantity || 1)
+),
+0
+);
+
+const delivery=
+Number(order.delivery_charge || 0);
+
+const total=
+Number(
+order.total ??
+order.total_amount ??
+(subtotal+delivery)
+);
+
+const address=
+order.customer_receive_place ||
+order.address ||
+"—";
+
+const district=
+order.customer_district ||
+order.district ||
+"—";
+
+const thana=
+order.customer_thana ||
+order.thana ||
+"—";
+
+document.getElementById("orderModalTitle")
+.textContent=
+"📦 Order #"+order.id;
+
+
+document.getElementById("orderModalBody")
+.innerHTML=`
+
+<div class="modal-section">
+
+<div class="modal-section-title">
+👤 Customer Information
+</div>
+
+<div class="modal-grid">
+
+<div class="modal-info">
+<small>Name</small>
+<b>${esc(order.customer_name || "—")}</b>
+</div>
+
+<div class="modal-info">
+<small>Phone</small>
+<b>${esc(order.customer_phone || "—")}</b>
+</div>
+
+<div class="modal-info">
+<small>District</small>
+<b>${esc(district)}</b>
+</div>
+
+<div class="modal-info">
+<small>Thana / Upazila</small>
+<b>${esc(thana)}</b>
+</div>
+
+<div class="modal-info" style="grid-column:1/-1">
+<small>Receive Address</small>
+<b>${esc(address)}</b>
+</div>
+
+</div>
+
+</div>
+
+
+<div class="modal-section">
+
+<div class="modal-section-title">
+📦 Order Information
+</div>
+
+<div class="modal-grid">
+
+<div class="modal-info">
+<small>Order Date</small>
+<b>${formatDate(order.created_at)}</b>
+</div>
+
+<div class="modal-info">
+<small>Delivery</small>
+<b>${esc(order.delivery_area || "Delivery")}</b>
+</div>
+
+<div class="modal-info">
+<small>Order Status</small>
+<b>${esc(order.order_status || "Pending")}</b>
+</div>
+
+<div class="modal-info">
+<small>Payment</small>
+<b>${esc(order.payment_method || "—")}</b>
+</div>
+
+<div class="modal-info">
+<small>Payment Status</small>
+<b>${esc(order.payment_status || "Pending")}</b>
+</div>
+
+</div>
+
+</div>
+
+
+<div class="modal-section">
+
+<div class="modal-section-title">
+🛍️ Ordered Products
+</div>
+
+${
+items.length
+?
+items.map(item=>`
+
+<div class="modal-item">
+
+<div>
+
+<b>
+${esc(item.product_name || "Product")}
+</b>
+
+<div style="font-size:11px;color:#777;margin-top:3px">
+
+${item.size ? "Size: "+esc(item.size)+" • " : ""}
+
+Qty:
+${Number(item.quantity || 1)}
+
+×
+
+৳${money(item.price)}
+
+</div>
+
+</div>
+
+<b>
+৳${money(
+item.line_total ??
+(
+Number(item.price || 0) *
+Number(item.quantity || 1)
+)
+)}
+</b>
+
+</div>
+
+`).join("")
+:
+`
+<div style="color:#888;text-align:center;padding:15px">
+No product information.
+</div>
+`
+}
+
+
+<div class="summary-row">
+<span>Subtotal</span>
+<b>৳${money(subtotal)}</b>
+</div>
+
+<div class="summary-row">
+<span>Delivery</span>
+<b>৳${money(delivery)}</b>
+</div>
+
+<div class="modal-total">
+<span>Grand Total</span>
+<span>৳${money(total)}</span>
+</div>
+
+</div>
+
+
+<div class="modal-section">
+
+<div class="modal-section-title">
+⚡ Quick Actions
+</div>
+
+<div class="modal-actions">
+
+<button
+type="button"
+class="btn btn-green modal-status-btn"
+data-id="${esc(order.id)}"
+data-status="Confirmed"
+>
+✅ Confirm
+</button>
+
+<button
+type="button"
+class="btn btn-blue modal-status-btn"
+data-id="${esc(order.id)}"
+data-status="Processing"
+>
+⚙️ Processing
+</button>
+
+<button
+type="button"
+class="btn btn-orange modal-status-btn"
+data-id="${esc(order.id)}"
+data-status="Shipped"
+>
+🚚 Shipped
+</button>
+
+<button
+type="button"
+class="btn btn-green modal-status-btn"
+data-id="${esc(order.id)}"
+data-status="Delivered"
+>
+🎉 Delivered
+</button>
+
+<button
+type="button"
+class="btn btn-danger modal-status-btn"
+data-id="${esc(order.id)}"
+data-status="Cancelled"
+>
+❌ Cancel
+</button>
+
+</div>
+
+</div>
+
+`;
+
+
+document
+.getElementById("orderModal")
+.classList.add("show");
+
+
+document
+.querySelectorAll(".modal-status-btn")
+.forEach(button=>{
+
+button.addEventListener(
+"click",
+async function(){
+
+await updateOrderStatus(
+this.dataset.id,
+this.dataset.status
 );
 
 });
@@ -3101,13 +3272,51 @@ status
 
 
 /* =====================================================
+CLOSE MODAL
+===================================================== */
+
+function closeOrderModal(){
+
+document
+.getElementById("orderModal")
+.classList.remove("show");
+
+}
+
+
+document
+.getElementById("closeOrderModal")
+.addEventListener(
+"click",
+closeOrderModal
+);
+
+document
+.getElementById("orderModal")
+.addEventListener(
+"click",
+function(event){
+
+if(event.target===this)
+closeOrderModal();
+
+});
+
+document.addEventListener(
+"keydown",
+function(event){
+
+if(event.key==="Escape")
+closeOrderModal();
+
+});
+
+
+/* =====================================================
 UPDATE ORDER STATUS
 ===================================================== */
 
-async function updateOrderStatus(
-id,
-status
-){
+async function updateOrderStatus(id,status){
 
 const r=
 await db
@@ -3115,10 +3324,7 @@ await db
 .update({
 order_status:status
 })
-.eq(
-"id",
-id
-);
+.eq("id",id);
 
 if(r.error){
 
@@ -3136,7 +3342,7 @@ return;
 }
 
 showToast(
-"Order status update হয়েছে ✅"
+"Order status: "+status+" ✅"
 );
 
 await loadStats();
@@ -3150,10 +3356,7 @@ await renderOrders();
 UPDATE PAYMENT STATUS
 ===================================================== */
 
-async function updatePaymentStatus(
-id,
-status
-){
+async function updatePaymentStatus(id,status){
 
 const r=
 await db
@@ -3161,10 +3364,7 @@ await db
 .update({
 payment_status:status
 })
-.eq(
-"id",
-id
-);
+.eq("id",id);
 
 if(r.error){
 
@@ -3182,7 +3382,7 @@ return;
 }
 
 showToast(
-"Payment status update হয়েছে ✅"
+"Payment status: "+status+" ✅"
 );
 
 await renderOrders();
@@ -3197,26 +3397,17 @@ PRODUCTS
 async function renderProducts(){
 
 const box=
-document.getElementById(
-"sectionContent"
-);
+document.getElementById("sectionContent");
 
 const r=
 await db
 .from("products")
 .select("*")
-.order(
-"id",
-{
-ascending:false
-}
-);
+.order("id",{ascending:false});
 
 if(r.error){
 
-showError(
-r.error.message
-);
+showError(r.error.message);
 
 return;
 
@@ -3245,9 +3436,7 @@ id="emptyAddProduct"
 `;
 
 document
-.getElementById(
-"emptyAddProduct"
-)
+.getElementById("emptyAddProduct")
 .addEventListener(
 "click",
 ()=>showSection("addProduct")
@@ -3269,22 +3458,15 @@ box.innerHTML=`
 <div class="product-grid">
 
 ${
-r.data.map(
-product=>{
+r.data.map(product=>{
 
 let image="";
 
 if(Array.isArray(product.images)){
 
-image=
-product.images[0] ||
-"";
+image=product.images[0] || "";
 
-}
-
-else if(
-typeof product.images==="string"
-){
+}else if(typeof product.images==="string"){
 
 try{
 
@@ -3300,8 +3482,7 @@ product.images;
 
 }catch(e){
 
-image=
-product.images;
+image=product.images;
 
 }
 
@@ -3312,7 +3493,7 @@ image ||
 "https://via.placeholder.com/500x500?text=Gadhuli";
 
 
-return `
+return`
 
 <div class="product-card">
 
@@ -3367,8 +3548,7 @@ class="btn btn-danger delete-product"
 
 `;
 
-}
-).join("")
+}).join("")
 }
 
 </div>
@@ -3377,29 +3557,21 @@ class="btn btn-danger delete-product"
 
 
 const cards=
-box.querySelectorAll(
-".product-card"
-);
+box.querySelectorAll(".product-card");
 
-cards.forEach(
-(card,index)=>{
+cards.forEach((card,index)=>{
 
-const product=
-r.data[index];
+const product=r.data[index];
 
 card
-.querySelector(
-".edit-product"
-)
+.querySelector(".edit-product")
 .addEventListener(
 "click",
 ()=>editProduct(product.id)
 );
 
 card
-.querySelector(
-".delete-product"
-)
+.querySelector(".delete-product")
 .addEventListener(
 "click",
 ()=>deleteProduct(product.id)
@@ -3541,9 +3713,7 @@ ADD PRODUCT
 function renderAddProduct(){
 
 const box=
-document.getElementById(
-"sectionContent"
-);
+document.getElementById("sectionContent");
 
 box.innerHTML=`
 
@@ -3596,16 +3766,13 @@ Select Category
 
 ${
 Object.keys(categories)
-.map(
-category=>`
+.map(category=>`
 
 <option value="${esc(category)}">
 ${esc(category)}
 </option>
 
-`
-)
-.join("")
+`).join("")
 }
 
 </select>
@@ -3725,28 +3892,18 @@ saveProduct
 }
 
 
-/* =====================================================
-SUBCATEGORIES
-===================================================== */
-
 function updateSubcategories(){
 
 const category=
-document
-.getElementById("productCategory")
-.value;
+document.getElementById("productCategory").value;
 
 const select=
-document
-.getElementById("productSubcategory");
+document.getElementById("productSubcategory");
 
 select.innerHTML=
 '<option value="">Select Subcategory</option>';
 
-(
-categories[category] || []
-)
-.forEach(item=>{
+(categories[category] || []).forEach(item=>{
 
 const option=
 document.createElement("option");
@@ -3763,23 +3920,15 @@ updateSizes();
 }
 
 
-/* =====================================================
-SIZES
-===================================================== */
-
 function updateSizes(){
 
 const sub=
-document
-.getElementById("productSubcategory")
-.value;
+document.getElementById("productSubcategory").value;
 
 const box=
-document
-.getElementById("sizeOptions");
+document.getElementById("sizeOptions");
 
-const sizes=
-sizeData[sub] || [];
+const sizes=sizeData[sub] || [];
 
 if(!sizes.length){
 
@@ -3791,9 +3940,7 @@ return;
 }
 
 box.innerHTML=
-sizes
-.map(
-size=>`
+sizes.map(size=>`
 
 <label class="size-label">
 
@@ -3807,35 +3954,23 @@ ${esc(size)}
 
 </label>
 
-`
-)
-.join("");
+`).join("");
 
 }
 
 
-/* =====================================================
-IMAGE PREVIEW
-===================================================== */
-
 function previewImages(){
 
 const input=
-document.getElementById(
-"productImages"
-);
+document.getElementById("productImages");
 
 const box=
-document.getElementById(
-"imagePreview"
-);
+document.getElementById("imagePreview");
 
 box.innerHTML="";
 
 const files=
-Array.from(
-input.files || []
-);
+Array.from(input.files || []);
 
 if(files.length>5){
 
@@ -3849,8 +3984,7 @@ return;
 
 }
 
-files.forEach(
-file=>{
+files.forEach(file=>{
 
 const img=
 document.createElement("img");
@@ -3865,40 +3999,25 @@ box.appendChild(img);
 }
 
 
-/* =====================================================
-SAVE PRODUCT
-===================================================== */
-
 async function saveProduct(){
 
 const name=
-document
-.getElementById("productName")
-.value
-.trim();
+document.getElementById("productName").value.trim();
 
 const price=
 Number(
-document
-.getElementById("productPrice")
-.value
+document.getElementById("productPrice").value
 );
 
 const category=
-document
-.getElementById("productCategory")
-.value;
+document.getElementById("productCategory").value;
 
 const subcategory=
-document
-.getElementById("productSubcategory")
-.value;
+document.getElementById("productSubcategory").value;
 
 const description=
-document
-.getElementById("productDescription")
-.value
-.trim();
+document.getElementById("productDescription")
+.value.trim();
 
 const input=
 document.getElementById("productImages");
@@ -3906,12 +4025,7 @@ document.getElementById("productImages");
 const files=
 Array.from(input.files || []);
 
-if(
-!name ||
-price<=0 ||
-!category ||
-!files.length
-){
+if(!name || price<=0 || !category || !files.length){
 
 alert(
 "Product Name, Price, Category এবং Image দিন।"
@@ -3933,16 +4047,11 @@ return;
 
 const sizes=
 Array.from(
-document.querySelectorAll(
-".size-check:checked"
-)
-)
-.map(x=>x.value);
+document.querySelectorAll(".size-check:checked")
+).map(x=>x.value);
 
 const button=
-document.getElementById(
-"saveProductButton"
-);
+document.getElementById("saveProductButton");
 
 try{
 
@@ -3951,9 +4060,7 @@ button.textContent="⏳ Uploading...";
 
 const urls=[];
 
-for(
-const file of files
-){
+for(const file of files){
 
 const safe=
 file.name.replace(
@@ -3977,9 +4084,7 @@ await db.storage
 .upload(
 path,
 file,
-{
-upsert:false
-}
+{upsert:false}
 );
 
 if(upload.error)
@@ -3990,9 +4095,7 @@ db.storage
 .from("product-images")
 .getPublicUrl(path);
 
-urls.push(
-pub.data.publicUrl
-);
+urls.push(pub.data.publicUrl);
 
 }
 
@@ -4001,12 +4104,12 @@ await db
 .from("products")
 .insert({
 
-name:name,
-price:price,
-category:category,
-subcategory:subcategory,
-sizes:sizes,
-description:description,
+name,
+price,
+category,
+subcategory,
+sizes,
+description,
 images:urls
 
 });
@@ -4014,9 +4117,7 @@ images:urls
 if(r.error)
 throw r.error;
 
-alert(
-"Product Save হয়েছে ✅"
-);
+alert("Product Save হয়েছে ✅");
 
 await loadStats();
 
@@ -4042,7 +4143,7 @@ button.textContent="💾 Save Product";
 
 
 /* =====================================================
-EDIT PRODUCT
+EDIT / DELETE
 ===================================================== */
 
 function editProduct(id){
@@ -4055,27 +4156,16 @@ alert(
 }
 
 
-/* =====================================================
-DELETE PRODUCT
-===================================================== */
-
 async function deleteProduct(id){
 
-if(
-!confirm(
-"এই Product Delete করবেন?"
-)
-)
+if(!confirm("এই Product Delete করবেন?"))
 return;
 
 const r=
 await db
 .from("products")
 .delete()
-.eq(
-"id",
-id
-);
+.eq("id",id);
 
 if(r.error){
 
@@ -4088,12 +4178,9 @@ return;
 
 }
 
-alert(
-"Product Delete হয়েছে ✅"
-);
+alert("Product Delete হয়েছে ✅");
 
 await loadStats();
-
 await renderProducts();
 
 }
@@ -4106,20 +4193,13 @@ BANNERS
 async function renderBanners(){
 
 const box=
-document.getElementById(
-"sectionContent"
-);
+document.getElementById("sectionContent");
 
 const r=
 await db
 .from("advertisements")
 .select("*")
-.order(
-"sort_order",
-{
-ascending:true
-}
-);
+.order("sort_order",{ascending:true});
 
 if(r.error){
 
@@ -4127,9 +4207,7 @@ box.innerHTML=`
 
 <div class="card">
 
-<h2>
-🖼️ Banner Management
-</h2>
+<h2>🖼️ Banner Management</h2>
 
 <div class="notice">
 
@@ -4200,13 +4278,11 @@ Sort Order
 
 <div class="form-group">
 
-<label
-style="
+<label style="
 display:flex;
 align-items:center;
 gap:8px;
-"
->
+">
 
 <input
 id="bannerActive"
@@ -4239,25 +4315,18 @@ class="btn btn-orange full"
 
 ${
 !r.data?.length
-
 ?
-
 `
 <div class="empty">
 এখনো কোনো Banner নেই।
 </div>
 `
-
 :
-
 `
-
 <div class="banner-grid">
 
 ${
-r.data
-.map(
-b=>`
+r.data.map(b=>`
 
 <div class="banner-card">
 
@@ -4272,8 +4341,7 @@ Banner #${esc(b.id)}
 <br>
 
 <small>
-Sort:
-${esc(b.sort_order ?? 1)}
+Sort: ${esc(b.sort_order ?? 1)}
 </small>
 
 </div>
@@ -4300,13 +4368,7 @@ alt="Gadhuli Banner"
 type="button"
 class="btn btn-light banner-toggle"
 >
-${
-b.active
-?
-"🙈 Hide"
-:
-"👁️ Activate"
-}
+${b.active ? "🙈 Hide" : "👁️ Activate"}
 </button>
 
 <button
@@ -4320,13 +4382,10 @@ class="btn btn-danger banner-delete"
 
 </div>
 
-`
-)
-.join("")
+`).join("")
 }
 
 </div>
-
 `
 }
 
@@ -4347,17 +4406,14 @@ function(){
 
 preview.innerHTML="";
 
-const file=
-this.files?.[0];
+const file=this.files?.[0];
 
 if(!file)
 return;
 
-const img=
-document.createElement("img");
+const img=document.createElement("img");
 
-img.src=
-URL.createObjectURL(file);
+img.src=URL.createObjectURL(file);
 
 img.style.width="220px";
 img.style.height="100px";
@@ -4369,6 +4425,7 @@ preview.appendChild(img);
 }
 );
 
+
 document
 .getElementById("saveBannerButton")
 .addEventListener(
@@ -4376,16 +4433,13 @@ document
 saveBanner
 );
 
+
 const cards=
-box.querySelectorAll(
-".banner-card"
-);
+box.querySelectorAll(".banner-card");
 
-cards.forEach(
-(card,index)=>{
+cards.forEach((card,index)=>{
 
-const banner=
-r.data[index];
+const banner=r.data[index];
 
 card
 .querySelector(".banner-toggle")
@@ -4401,9 +4455,7 @@ card
 .querySelector(".banner-delete")
 .addEventListener(
 "click",
-()=>deleteBanner(
-banner.id
-)
+()=>deleteBanner(banner.id)
 );
 
 });
@@ -4411,46 +4463,31 @@ banner.id
 }
 
 
-/* =====================================================
-SAVE BANNER
-===================================================== */
-
 async function saveBanner(){
 
 const input=
-document.getElementById(
-"bannerImage"
-);
+document.getElementById("bannerImage");
 
-const file=
-input.files?.[0];
+const file=input.files?.[0];
 
 const sort=
 Number(
-document
-.getElementById("bannerSort")
-.value
+document.getElementById("bannerSort").value
 );
 
 const active=
-document
-.getElementById("bannerActive")
-.checked;
+document.getElementById("bannerActive").checked;
 
 if(!file){
 
-alert(
-"Banner image select করুন।"
-);
+alert("Banner image select করুন।");
 
 return;
 
 }
 
 const button=
-document.getElementById(
-"saveBannerButton"
-);
+document.getElementById("saveBannerButton");
 
 try{
 
@@ -4479,9 +4516,7 @@ await db.storage
 .upload(
 path,
 file,
-{
-upsert:false
-}
+{upsert:false}
 );
 
 if(upload.error)
@@ -4500,16 +4535,14 @@ await db
 
 image_url:publicUrl,
 sort_order:sort,
-active:active
+active
 
 });
 
 if(r.error)
 throw r.error;
 
-alert(
-"Banner Upload হয়েছে ✅"
-);
+alert("Banner Upload হয়েছে ✅");
 
 await renderBanners();
 
@@ -4532,25 +4565,13 @@ button.textContent="🖼️ Upload Banner";
 }
 
 
-/* =====================================================
-TOGGLE BANNER
-===================================================== */
-
-async function toggleBanner(
-id,
-value
-){
+async function toggleBanner(id,value){
 
 const r=
 await db
 .from("advertisements")
-.update({
-active:value
-})
-.eq(
-"id",
-id
-);
+.update({active:value})
+.eq("id",id);
 
 if(r.error){
 
@@ -4568,27 +4589,16 @@ await renderBanners();
 }
 
 
-/* =====================================================
-DELETE BANNER
-===================================================== */
-
 async function deleteBanner(id){
 
-if(
-!confirm(
-"এই Banner Delete করবেন?"
-)
-)
+if(!confirm("এই Banner Delete করবেন?"))
 return;
 
 const r=
 await db
 .from("advertisements")
 .delete()
-.eq(
-"id",
-id
-);
+.eq("id",id);
 
 if(r.error){
 
@@ -4601,9 +4611,7 @@ return;
 
 }
 
-alert(
-"Banner Delete হয়েছে ✅"
-);
+alert("Banner Delete হয়েছে ✅");
 
 await renderBanners();
 
@@ -4617,26 +4625,17 @@ RESELLERS
 async function renderResellers(){
 
 const box=
-document.getElementById(
-"sectionContent"
-);
+document.getElementById("sectionContent");
 
 const r=
 await db
 .from("resellers")
 .select("*")
-.order(
-"created_at",
-{
-ascending:false
-}
-);
+.order("created_at",{ascending:false});
 
 if(r.error){
 
-showError(
-r.error.message
-);
+showError(r.error.message);
 
 return;
 
@@ -4660,20 +4659,13 @@ return;
 
 let html="";
 
-for(
-const reseller of r.data
-){
+for(const reseller of r.data){
 
 const profile=
 await db
 .from("profiles")
-.select(
-"full_name,phone,role"
-)
-.eq(
-"id",
-reseller.user_id
-)
+.select("full_name,phone,role")
+.eq("id",reseller.user_id)
 .maybeSingle();
 
 html+=`
@@ -4696,20 +4688,14 @@ profile.data?.full_name ||
 <small>
 Code:
 ${esc(
-reseller.reseller_code ||
-"—"
+reseller.reseller_code || "—"
 )}
 </small>
 
 </div>
 
 <span class="status">
-
-${esc(
-reseller.status ||
-"Pending"
-)}
-
+${esc(reseller.status || "Pending")}
 </span>
 
 </div>
@@ -4718,48 +4704,32 @@ reseller.status ||
 
 <p>
 <b>Phone:</b>
-${esc(
-profile.data?.phone ||
-"—"
-)}
+${esc(profile.data?.phone || "—")}
 </p>
 
 <p>
 <b>Role:</b>
-${esc(
-profile.data?.role ||
-"customer"
-)}
+${esc(profile.data?.role || "customer")}
 </p>
 
 <p>
 <b>Commission:</b>
-${Number(
-reseller.commission_rate ||
-0
-)}%
+${Number(reseller.commission_rate || 0)}%
 </p>
 
 <p>
 <b>Total Orders:</b>
-${Number(
-reseller.total_orders ||
-0
-)}
+${Number(reseller.total_orders || 0)}
 </p>
 
 <p>
 <b>Total Sales:</b>
-৳${money(
-reseller.total_sales
-)}
+৳${money(reseller.total_sales)}
 </p>
 
 <p>
 <b>Total Commission:</b>
-৳${money(
-reseller.total_commission
-)}
+৳${money(reseller.total_commission)}
 </p>
 
 </div>
@@ -4768,9 +4738,7 @@ reseller.total_commission
 
 ${
 reseller.status!=="Approved"
-
 ?
-
 `
 <button
 type="button"
@@ -4779,18 +4747,13 @@ class="btn btn-orange approve-reseller"
 ✅ Approve
 </button>
 `
-
 :
-
 ""
-
 }
 
 ${
 reseller.status!=="Suspended"
-
 ?
-
 `
 <button
 type="button"
@@ -4799,11 +4762,8 @@ class="btn btn-danger suspend-reseller"
 🚫 Suspend
 </button>
 `
-
 :
-
 ""
-
 }
 
 </div>
@@ -4817,25 +4777,17 @@ class="btn btn-danger suspend-reseller"
 box.innerHTML=html;
 
 const cards=
-box.querySelectorAll(
-".reseller-card"
-);
+box.querySelectorAll(".reseller-card");
 
-cards.forEach(
-(card,index)=>{
+cards.forEach((card,index)=>{
 
-const reseller=
-r.data[index];
+const reseller=r.data[index];
 
 const approve=
-card.querySelector(
-".approve-reseller"
-);
+card.querySelector(".approve-reseller");
 
 const suspend=
-card.querySelector(
-".suspend-reseller"
-);
+card.querySelector(".suspend-reseller");
 
 if(approve){
 
@@ -4866,25 +4818,13 @@ reseller.id
 }
 
 
-/* =====================================================
-APPROVE RESELLER
-===================================================== */
-
-async function approveReseller(
-uid,
-id
-){
+async function approveReseller(uid,id){
 
 const r=
 await db
 .from("resellers")
-.update({
-status:"Approved"
-})
-.eq(
-"id",
-id
-);
+.update({status:"Approved"})
+.eq("id",id);
 
 if(r.error){
 
@@ -4900,13 +4840,8 @@ return;
 const p=
 await db
 .from("profiles")
-.update({
-role:"reseller"
-})
-.eq(
-"id",
-uid
-);
+.update({role:"reseller"})
+.eq("id",uid);
 
 if(p.error){
 
@@ -4919,9 +4854,7 @@ return;
 
 }
 
-alert(
-"Reseller Approved হয়েছে ✅"
-);
+alert("Reseller Approved হয়েছে ✅");
 
 await loadStats();
 await renderResellers();
@@ -4929,32 +4862,16 @@ await renderResellers();
 }
 
 
-/* =====================================================
-SUSPEND RESELLER
-===================================================== */
+async function suspendReseller(uid,id){
 
-async function suspendReseller(
-uid,
-id
-){
-
-if(
-!confirm(
-"এই Reseller Suspend করবেন?"
-)
-)
+if(!confirm("এই Reseller Suspend করবেন?"))
 return;
 
 const r=
 await db
 .from("resellers")
-.update({
-status:"Suspended"
-})
-.eq(
-"id",
-id
-);
+.update({status:"Suspended"})
+.eq("id",id);
 
 if(r.error){
 
@@ -4970,13 +4887,8 @@ return;
 const p=
 await db
 .from("profiles")
-.update({
-role:"customer"
-})
-.eq(
-"id",
-uid
-);
+.update({role:"customer"})
+.eq("id",uid);
 
 if(p.error){
 
@@ -4989,9 +4901,7 @@ return;
 
 }
 
-alert(
-"Reseller Suspended হয়েছে 🚫"
-);
+alert("Reseller Suspended হয়েছে 🚫");
 
 await loadStats();
 await renderResellers();
@@ -5006,26 +4916,17 @@ REVIEWS
 async function renderReviews(){
 
 const box=
-document.getElementById(
-"sectionContent"
-);
+document.getElementById("sectionContent");
 
 const r=
 await db
 .from("reviews")
 .select("*")
-.order(
-"created_at",
-{
-ascending:false
-}
-);
+.order("created_at",{ascending:false});
 
 if(r.error){
 
-showError(
-r.error.message
-);
+showError(r.error.message);
 
 return;
 
@@ -5048,17 +4949,12 @@ return;
 }
 
 box.innerHTML=
-r.data
-.map(
-review=>`
+r.data.map(review=>`
 
 <div class="review-card">
 
 <b>
-${esc(
-review.user_name ||
-"Customer"
-)}
+${esc(review.user_name || "Customer")}
 </b>
 
 <br>
@@ -5069,9 +4965,7 @@ ${
 "⭐".repeat(
 Math.min(
 5,
-Number(
-review.rating || 0
-)
+Number(review.rating || 0)
 )
 )
 }
@@ -5080,10 +4974,7 @@ review.rating || 0
 
 <p style="margin-top:7px">
 
-${esc(
-review.review_text ||
-""
-)}
+${esc(review.review_text || "")}
 
 </p>
 
@@ -5092,12 +4983,7 @@ review.review_text ||
 Status:
 
 <span class="status">
-
-${esc(
-review.status ||
-"Pending"
-)}
-
+${esc(review.status || "Pending")}
 </span>
 
 </p>
@@ -5122,20 +5008,15 @@ class="btn btn-danger review-reject"
 
 </div>
 
-`
-)
-.join("");
+`).join("");
+
 
 const cards=
-box.querySelectorAll(
-".review-card"
-);
+box.querySelectorAll(".review-card");
 
-cards.forEach(
-(card,index)=>{
+cards.forEach((card,index)=>{
 
-const review=
-r.data[index];
+const review=r.data[index];
 
 card
 .querySelector(".review-approve")
@@ -5162,25 +5043,13 @@ review.id,
 }
 
 
-/* =====================================================
-UPDATE REVIEW
-===================================================== */
-
-async function updateReview(
-id,
-status
-){
+async function updateReview(id,status){
 
 const r=
 await db
 .from("reviews")
-.update({
-status:status
-})
-.eq(
-"id",
-id
-);
+.update({status})
+.eq("id",id);
 
 if(r.error){
 
@@ -5205,32 +5074,24 @@ EVENTS
 function setupEvents(){
 
 document
-.querySelectorAll(
-".admin-nav [data-section]"
-)
-.forEach(
-button=>{
+.querySelectorAll(".admin-nav [data-section]")
+.forEach(button=>{
 
 button.addEventListener(
 "click",
 function(){
 
 showSection(
-this.getAttribute(
-"data-section"
-)
+this.getAttribute("data-section")
 );
 
-}
-);
+});
 
 });
 
 
 document
-.getElementById(
-"refreshButton"
-)
+.getElementById("refreshButton")
 .addEventListener(
 "click",
 refreshAdmin
@@ -5238,9 +5099,7 @@ refreshAdmin
 
 
 document
-.getElementById(
-"websiteButton"
-)
+.getElementById("websiteButton")
 .addEventListener(
 "click",
 goHome
@@ -5248,9 +5107,7 @@ goHome
 
 
 document
-.getElementById(
-"loginButton"
-)
+.getElementById("loginButton")
 .addEventListener(
 "click",
 adminLogin
@@ -5258,9 +5115,7 @@ adminLogin
 
 
 document
-.getElementById(
-"passwordEye"
-)
+.getElementById("passwordEye")
 .addEventListener(
 "click",
 togglePassword
@@ -5268,9 +5123,7 @@ togglePassword
 
 
 document
-.getElementById(
-"logoutButton"
-)
+.getElementById("logoutButton")
 .addEventListener(
 "click",
 adminLogout
@@ -5278,9 +5131,7 @@ adminLogout
 
 
 document
-.getElementById(
-"loginPassword"
-)
+.getElementById("loginPassword")
 .addEventListener(
 "keydown",
 function(event){
@@ -5292,9 +5143,7 @@ adminLogin();
 
 
 document
-.getElementById(
-"loginEmail"
-)
+.getElementById("loginEmail")
 .addEventListener(
 "keydown",
 function(event){
