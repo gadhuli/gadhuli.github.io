@@ -14,6 +14,31 @@
   content="lkVxExaUcJinZDbyNwrJL4Jhc3kjkYTwQXLFYYKu_p8"
 >
 
+<meta
+  name="description"
+  content="Gadhuli - Shop smart, shop easy. Fashion, electronics, accessories and more."
+>
+
+<meta
+  name="theme-color"
+  content="#FF6B00"
+>
+
+<meta
+  property="og:title"
+  content="Gadhuli | Official Website"
+>
+
+<meta
+  property="og:description"
+  content="Shop smart. Shop easy."
+>
+
+<meta
+  property="og:type"
+  content="website"
+>
+
 <title>Gadhuli | Official Website</title>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -33,7 +58,9 @@
 :root{
   --orange:#FF6B00;
   --dark-orange:#E65100;
+  --orange-2:#FF8A00;
   --light-orange:#FFF3E8;
+  --lighter-orange:#FFF9F4;
   --gradient:linear-gradient(135deg,#FF8A00,#FF5A00);
   --white:#fff;
   --offwhite:#FFFDF9;
@@ -42,6 +69,7 @@
   --light-gray:#EEEEEE;
   --green:#25D366;
   --danger:#e53935;
+  --success:#16a34a;
   --shadow:0 5px 20px rgba(0,0,0,.08);
   --radius:14px;
 }
@@ -57,6 +85,10 @@ body{
   padding-bottom:92px;
 }
 
+body.modal-open{
+  overflow:hidden;
+}
+
 button,
 input,
 select,
@@ -67,6 +99,11 @@ textarea{
 button{
   cursor:pointer;
   border:none;
+}
+
+button:disabled{
+  cursor:not-allowed;
+  opacity:.65;
 }
 
 img{
@@ -360,6 +397,23 @@ a{
   display:flex;
   align-items:center;
   justify-content:center;
+  color:#fff;
+  text-align:center;
+}
+
+.banner-fallback-inner{
+  padding:20px;
+}
+
+.banner-fallback-title{
+  font-size:34px;
+  font-weight:900;
+}
+
+.banner-fallback-text{
+  margin-top:7px;
+  font-size:15px;
+  opacity:.95;
 }
 
 .banner-dots{
@@ -474,10 +528,41 @@ a{
   background:#fff;
   box-shadow:0 2px 8px rgba(0,0,0,.12);
   font-size:20px;
+  z-index:2;
 }
 
 .wishlist-card.active{
   color:#e91e63;
+}
+
+.stock-badge{
+  position:absolute;
+  left:9px;
+  top:9px;
+  padding:5px 8px;
+  border-radius:6px;
+  background:#fff;
+  color:var(--orange);
+  font-size:10px;
+  font-weight:800;
+  box-shadow:0 2px 7px rgba(0,0,0,.1);
+}
+
+.stock-badge.out{
+  background:#e53935;
+  color:#fff;
+}
+
+.discount-badge{
+  position:absolute;
+  left:9px;
+  bottom:9px;
+  padding:5px 8px;
+  border-radius:6px;
+  background:#e53935;
+  color:#fff;
+  font-size:10px;
+  font-weight:800;
 }
 
 .product-info{
@@ -496,7 +581,14 @@ a{
   color:var(--orange);
   font-size:19px;
   font-weight:800;
-  margin-bottom:8px;
+  margin-bottom:3px;
+}
+
+.old-price{
+  color:#999;
+  font-size:12px;
+  text-decoration:line-through;
+  margin-left:5px;
 }
 
 .product-category{
@@ -537,6 +629,13 @@ a{
 
 .btn-order:hover{
   background:var(--dark-orange);
+}
+
+.btn-disabled{
+  background:#ddd !important;
+  color:#888 !important;
+  border-color:#ddd !important;
+  cursor:not-allowed;
 }
 
 .no-products{
@@ -655,6 +754,7 @@ a{
   border-radius:50%;
   background:#f2f2f2;
   font-size:23px;
+  z-index:5;
 }
 
 .modal-title{
@@ -779,6 +879,13 @@ a{
   margin:10px 0;
 }
 
+.detail-old-price{
+  color:#999;
+  font-size:14px;
+  text-decoration:line-through;
+  margin-left:6px;
+}
+
 .detail-category{
   color:#777;
   font-size:13px;
@@ -810,6 +917,16 @@ a{
   background:var(--orange);
   color:#fff;
   border-color:var(--orange);
+}
+
+.detail-stock{
+  margin-top:12px;
+  padding:10px;
+  border-radius:8px;
+  background:var(--lighter-orange);
+  color:#9b4300;
+  font-size:13px;
+  font-weight:700;
 }
 
 
@@ -968,6 +1085,76 @@ a{
   margin-top:8px;
 }
 
+.order-items{
+  margin-top:10px;
+  border-top:1px solid #eee;
+  padding-top:8px;
+}
+
+.order-item-line{
+  display:flex;
+  justify-content:space-between;
+  gap:8px;
+  font-size:12px;
+  padding:5px 0;
+}
+
+.status-timeline{
+  display:flex;
+  justify-content:space-between;
+  gap:4px;
+  margin-top:14px;
+  position:relative;
+}
+
+.status-step{
+  flex:1;
+  text-align:center;
+  font-size:9px;
+  color:#999;
+  position:relative;
+}
+
+.status-step-dot{
+  width:22px;
+  height:22px;
+  border-radius:50%;
+  margin:0 auto 4px;
+  background:#ddd;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:10px;
+}
+
+.status-step.done{
+  color:var(--orange);
+  font-weight:bold;
+}
+
+.status-step.done .status-step-dot{
+  background:var(--orange);
+  color:#fff;
+}
+
+
+/* =====================================================
+   ADDRESS
+   ===================================================== */
+
+.address-card{
+  background:var(--light-orange);
+  border:1px solid #ffd2b0;
+  border-radius:10px;
+  padding:12px;
+  margin-bottom:12px;
+}
+
+.address-row{
+  font-size:13px;
+  line-height:21px;
+}
+
 
 /* =====================================================
    WHATSAPP
@@ -993,7 +1180,7 @@ a{
 
 
 /* =====================================================
-   BOTTOM NAVIGATION - BIG
+   BOTTOM NAVIGATION
    ===================================================== */
 
 .bottom-nav{
@@ -1317,7 +1504,7 @@ a{
 
 
 /* =====================================================
-   MOBILE: HIDE LONG HEADER LABELS
+   MOBILE HEADER LABEL
    ===================================================== */
 
 @media(min-width:801px){
@@ -1446,10 +1633,6 @@ a{
   </div>
 
 
-  <!-- =====================================================
-       CATEGORY
-       ===================================================== -->
-
   <div class="category-wrapper">
 
     <div class="category-bar">
@@ -1565,7 +1748,16 @@ a{
     class="banner-slider"
   >
 
-    <div class="banner-fallback"></div>
+    <div class="banner-fallback">
+      <div class="banner-fallback-inner">
+        <div class="banner-fallback-title">
+          Gadhuli
+        </div>
+        <div class="banner-fallback-text">
+          Shop Smart. Shop Easy.
+        </div>
+      </div>
+    </div>
 
   </div>
 
@@ -1632,10 +1824,10 @@ a{
       <h3>Shopping</h3>
 
       <ul>
-        <li>Men's Fashion</li>
-        <li>Women's Fashion</li>
-        <li>Kids & Baby</li>
-        <li>Shoes</li>
+        <li onclick="filterCategory('Men\'s Fashion')">Men's Fashion</li>
+        <li onclick="filterCategory('Women\'s Fashion')">Women's Fashion</li>
+        <li onclick="filterCategory('Kids & Baby')">Kids & Baby</li>
+        <li onclick="filterCategory('Shoes')">Shoes</li>
       </ul>
 
     </div>
@@ -1739,10 +1931,7 @@ a{
      DETAILS MODAL
      ===================================================== -->
 
-<div
-  id="detailsModal"
-  class="modal"
->
+<div id="detailsModal" class="modal">
 
   <div class="modal-box large">
 
@@ -1753,9 +1942,7 @@ a{
       ×
     </button>
 
-    <div
-      id="detailsContent"
-    ></div>
+    <div id="detailsContent"></div>
 
   </div>
 
@@ -1766,10 +1953,7 @@ a{
      CART MODAL
      ===================================================== -->
 
-<div
-  id="cartModal"
-  class="modal"
->
+<div id="cartModal" class="modal">
 
   <div class="modal-box">
 
@@ -1795,10 +1979,7 @@ a{
      ORDER MODAL
      ===================================================== -->
 
-<div
-  id="orderModal"
-  class="modal"
->
+<div id="orderModal" class="modal">
 
   <div class="modal-box">
 
@@ -1821,87 +2002,55 @@ a{
     >
 
       <div class="form-group">
-
-        <label>
-          Customer Name
-        </label>
-
+        <label>Customer Name</label>
         <input
           id="orderName"
           required
           placeholder="Your name"
         >
-
       </div>
 
-
       <div class="form-group">
-
-        <label>
-          Mobile Number
-        </label>
-
+        <label>Mobile Number</label>
         <input
           id="orderMobile"
           required
           inputmode="tel"
           placeholder="01XXXXXXXXX"
         >
-
       </div>
 
-
       <div class="form-group">
-
-        <label>
-          District
-        </label>
-
+        <label>District</label>
         <input
           id="orderDistrict"
           required
           placeholder="District"
         >
-
       </div>
 
-
       <div class="form-group">
-
-        <label>
-          Thana / Upazila
-        </label>
-
+        <label>Thana / Upazila</label>
         <input
           id="orderThana"
           required
           placeholder="Thana / Upazila"
         >
-
       </div>
 
-
       <div class="form-group">
-
-        <label>
-          Receive Place / Address
-        </label>
-
+        <label>Receive Place / Address</label>
         <textarea
           id="orderAddress"
           rows="3"
           required
           placeholder="Full delivery address"
         ></textarea>
-
       </div>
-
 
       <div class="form-group">
 
-        <label>
-          Delivery
-        </label>
+        <label>Delivery</label>
 
         <select
           id="deliverySelect"
@@ -1923,9 +2072,7 @@ a{
 
       <div class="form-group">
 
-        <label>
-          Payment Method
-        </label>
+        <label>Payment Method</label>
 
         <div class="payment-options">
 
@@ -1995,9 +2142,7 @@ a{
 
         <div class="form-group">
 
-          <label>
-            Payment Number
-          </label>
+          <label>Payment Number</label>
 
           <input
             id="paymentNumber"
@@ -2008,9 +2153,7 @@ a{
 
         <div class="form-group">
 
-          <label>
-            Transaction Reference
-          </label>
+          <label>Transaction Reference</label>
 
           <input
             id="paymentReference"
@@ -2018,6 +2161,37 @@ a{
           >
 
         </div>
+
+      </div>
+
+
+      <div
+        class="form-group"
+        style="margin-top:8px;"
+      >
+
+        <label
+          style="
+            display:flex;
+            align-items:center;
+            gap:8px;
+            font-weight:600;
+          "
+        >
+
+          <input
+            id="saveAddressCheck"
+            type="checkbox"
+            style="
+              width:18px;
+              height:18px;
+              min-height:18px;
+            "
+          >
+
+          Save this address for next order
+
+        </label>
 
       </div>
 
@@ -2051,10 +2225,7 @@ a{
      WISHLIST MODAL
      ===================================================== -->
 
-<div
-  id="wishlistModal"
-  class="modal"
->
+<div id="wishlistModal" class="modal">
 
   <div class="modal-box">
 
@@ -2080,10 +2251,7 @@ a{
      PROFILE MODAL
      ===================================================== -->
 
-<div
-  id="profileModal"
-  class="modal"
->
+<div id="profileModal" class="modal">
 
   <div class="modal-box">
 
@@ -2094,9 +2262,7 @@ a{
       ×
     </button>
 
-    <div
-      id="profileContent"
-    ></div>
+    <div id="profileContent"></div>
 
   </div>
 
@@ -2107,10 +2273,7 @@ a{
      LOGIN MODAL
      ===================================================== -->
 
-<div
-  id="loginModal"
-  class="modal"
->
+<div id="loginModal" class="modal">
 
   <div class="modal-box">
 
@@ -2129,9 +2292,7 @@ a{
 
       <div class="form-group">
 
-        <label>
-          Email
-        </label>
+        <label>Email</label>
 
         <input
           id="loginEmail"
@@ -2142,12 +2303,9 @@ a{
 
       </div>
 
-
       <div class="form-group">
 
-        <label>
-          Password
-        </label>
+        <label>Password</label>
 
         <input
           id="loginPassword"
@@ -2158,7 +2316,6 @@ a{
 
       </div>
 
-
       <button
         class="primary-btn"
         type="submit"
@@ -2168,14 +2325,12 @@ a{
 
     </form>
 
-
     <button
       class="link-btn"
       onclick="openSignup()"
     >
       Create Account
     </button>
-
 
     <button
       class="link-btn"
@@ -2193,10 +2348,7 @@ a{
      SIGNUP MODAL
      ===================================================== -->
 
-<div
-  id="signupModal"
-  class="modal"
->
+<div id="signupModal" class="modal">
 
   <div class="modal-box">
 
@@ -2215,9 +2367,7 @@ a{
 
       <div class="form-group">
 
-        <label>
-          Full Name
-        </label>
+        <label>Full Name</label>
 
         <input
           id="signupName"
@@ -2227,12 +2377,9 @@ a{
 
       </div>
 
-
       <div class="form-group">
 
-        <label>
-          Email
-        </label>
+        <label>Email</label>
 
         <input
           id="signupEmail"
@@ -2243,12 +2390,9 @@ a{
 
       </div>
 
-
       <div class="form-group">
 
-        <label>
-          Password
-        </label>
+        <label>Password</label>
 
         <input
           id="signupPassword"
@@ -2259,7 +2403,6 @@ a{
         >
 
       </div>
-
 
       <button
         class="primary-btn"
@@ -2279,10 +2422,7 @@ a{
      FORGOT PASSWORD
      ===================================================== -->
 
-<div
-  id="forgotModal"
-  class="modal"
->
+<div id="forgotModal" class="modal">
 
   <div class="modal-box">
 
@@ -2301,9 +2441,7 @@ a{
 
       <div class="form-group">
 
-        <label>
-          Email
-        </label>
+        <label>Email</label>
 
         <input
           id="forgotEmail"
@@ -2313,7 +2451,6 @@ a{
         >
 
       </div>
-
 
       <button
         class="primary-btn"
@@ -2333,10 +2470,7 @@ a{
      ORDERS
      ===================================================== -->
 
-<div
-  id="ordersModal"
-  class="modal"
->
+<div id="ordersModal" class="modal">
 
   <div class="modal-box">
 
@@ -2362,10 +2496,7 @@ a{
      TRACK
      ===================================================== -->
 
-<div
-  id="trackModal"
-  class="modal"
->
+<div id="trackModal" class="modal">
 
   <div class="modal-box">
 
@@ -2384,9 +2515,7 @@ a{
 
       <div class="form-group">
 
-        <label>
-          Order ID
-        </label>
+        <label>Order ID</label>
 
         <input
           id="trackOrderId"
@@ -2396,12 +2525,9 @@ a{
 
       </div>
 
-
       <div class="form-group">
 
-        <label>
-          Mobile Number
-        </label>
+        <label>Mobile Number</label>
 
         <input
           id="trackMobile"
@@ -2411,7 +2537,6 @@ a{
 
       </div>
 
-
       <button
         class="primary-btn"
         type="submit"
@@ -2420,7 +2545,6 @@ a{
       </button>
 
     </form>
-
 
     <div
       id="trackResult"
@@ -2436,10 +2560,7 @@ a{
      SAVED ADDRESS
      ===================================================== -->
 
-<div
-  id="addressModal"
-  class="modal"
->
+<div id="addressModal" class="modal">
 
   <div class="modal-box">
 
@@ -2454,20 +2575,64 @@ a{
       📍 Saved Address
     </div>
 
+    <div id="savedAddressContent"></div>
+
     <div class="form-group">
 
-      <label>
-        Address
-      </label>
+      <label>Full Name</label>
+
+      <input
+        id="savedAddressName"
+        placeholder="Your name"
+      >
+
+    </div>
+
+    <div class="form-group">
+
+      <label>Mobile</label>
+
+      <input
+        id="savedAddressMobile"
+        inputmode="tel"
+        placeholder="01XXXXXXXXX"
+      >
+
+    </div>
+
+    <div class="form-group">
+
+      <label>District</label>
+
+      <input
+        id="savedAddressDistrict"
+        placeholder="District"
+      >
+
+    </div>
+
+    <div class="form-group">
+
+      <label>Thana / Upazila</label>
+
+      <input
+        id="savedAddressThana"
+        placeholder="Thana / Upazila"
+      >
+
+    </div>
+
+    <div class="form-group">
+
+      <label>Address</label>
 
       <textarea
         id="savedAddressInput"
-        rows="5"
+        rows="4"
         placeholder="Enter your address"
       ></textarea>
 
     </div>
-
 
     <button
       class="primary-btn"
@@ -2485,10 +2650,7 @@ a{
      RESELLER
      ===================================================== -->
 
-<div
-  id="resellerModal"
-  class="modal"
->
+<div id="resellerModal" class="modal">
 
   <div class="modal-box">
 
@@ -2520,6 +2682,73 @@ a{
     >
       Login / Continue
     </button>
+
+  </div>
+
+</div>
+
+
+<!-- =====================================================
+     ORDER SUCCESS
+     ===================================================== -->
+
+<div id="successModal" class="modal">
+
+  <div class="modal-box">
+
+    <div
+      style="
+        text-align:center;
+        padding:10px 0;
+      "
+    >
+
+      <div
+        style="
+          width:75px;
+          height:75px;
+          border-radius:50%;
+          background:#e9f9ef;
+          color:#16a34a;
+          display:flex;
+          align-items:center;
+          justify-content:center;
+          font-size:40px;
+          margin:0 auto 15px;
+        "
+      >
+        ✓
+      </div>
+
+      <h2>
+        Order Placed!
+      </h2>
+
+      <p
+        id="successOrderNumber"
+        style="
+          margin-top:8px;
+          color:#666;
+          line-height:22px;
+        "
+      ></p>
+
+      <button
+        class="primary-btn"
+        style="margin-top:18px;"
+        onclick="closeModal('successModal');openOrders()"
+      >
+        View My Orders
+      </button>
+
+      <button
+        class="secondary-btn"
+        onclick="closeModal('successModal')"
+      >
+        Continue Shopping
+      </button>
+
+    </div>
 
   </div>
 
@@ -2563,7 +2792,8 @@ try{
         SUPABASE_KEY
       );
 
-    db = window.gadhuliSupabase;
+    db =
+      window.gadhuliSupabase;
 
   }
 
@@ -2578,11 +2808,20 @@ try{
 
 
 /* =====================================================
-   WHATSAPP
+   CONSTANTS
    ===================================================== */
 
 const WHATSAPP_HELPLINE =
 "8801333088194";
+
+const SAVED_ADDRESS_KEY =
+"gadhuli_saved_address";
+
+const CART_KEY =
+"gadhuli_cart";
+
+const WISHLIST_KEY =
+"gadhuli_wishlist";
 
 
 /* =====================================================
@@ -2636,10 +2875,13 @@ function showLoader(
     );
 
   if(textEl)
-    textEl.textContent = text;
+    textEl.textContent =
+      text;
 
   if(loader)
-    loader.classList.add("show");
+    loader.classList.add(
+      "show"
+    );
 
 }
 
@@ -2652,7 +2894,59 @@ function hideLoader(){
     );
 
   if(loader)
-    loader.classList.remove("show");
+    loader.classList.remove(
+      "show"
+    );
+
+}
+
+
+/* =====================================================
+   MODALS
+   ===================================================== */
+
+function showModal(id){
+
+  const el =
+    document.getElementById(id);
+
+  if(el){
+
+    el.classList.add(
+      "show"
+    );
+
+    document.body.classList.add(
+      "modal-open"
+    );
+
+  }
+
+}
+
+
+function closeModal(id){
+
+  const el =
+    document.getElementById(id);
+
+  if(el)
+    el.classList.remove(
+      "show"
+    );
+
+  const anyOpen =
+    document.querySelector(
+      ".modal.show"
+    );
+
+  if(!anyOpen){
+
+    document.body.classList.remove(
+      "modal-open"
+    );
+
+  }
 
 }
 
@@ -2665,12 +2959,17 @@ function loadLocalData(){
 
   try{
 
-    cart =
+    const savedCart =
       JSON.parse(
         localStorage.getItem(
-          "gadhuli_cart"
+          CART_KEY
         ) || "[]"
       );
+
+    cart =
+      Array.isArray(savedCart)
+        ? savedCart
+        : [];
 
   }catch(e){
 
@@ -2678,14 +2977,20 @@ function loadLocalData(){
 
   }
 
+
   try{
 
-    wishlist =
+    const savedWishlist =
       JSON.parse(
         localStorage.getItem(
-          "gadhuli_wishlist"
+          WISHLIST_KEY
         ) || "[]"
       );
+
+    wishlist =
+      Array.isArray(savedWishlist)
+        ? savedWishlist
+        : [];
 
   }catch(e){
 
@@ -2701,7 +3006,7 @@ function loadLocalData(){
 function saveCart(){
 
   localStorage.setItem(
-    "gadhuli_cart",
+    CART_KEY,
     JSON.stringify(cart)
   );
 
@@ -2713,7 +3018,7 @@ function saveCart(){
 function saveWishlist(){
 
   localStorage.setItem(
-    "gadhuli_wishlist",
+    WISHLIST_KEY,
     JSON.stringify(wishlist)
   );
 
@@ -2728,7 +3033,9 @@ function updateCounts(){
     cart.reduce(
       (sum,item)=>
         sum +
-        Number(item.qty || 1),
+        Number(
+          item.qty || 1
+        ),
       0
     );
 
@@ -2762,14 +3069,18 @@ function money(value){
   return "৳" +
     Number(
       value || 0
-    ).toLocaleString("en-BD");
+    ).toLocaleString(
+      "en-BD"
+    );
 
 }
 
 
 function norm(value){
 
-  return String(value || "")
+  return String(
+    value || ""
+  )
     .toLowerCase()
     .replace(/[’']/g,"'")
     .replace(/\s+/g," ")
@@ -2791,7 +3102,9 @@ function toast(message){
   el.textContent =
     message;
 
-  el.classList.add("show");
+  el.classList.add(
+    "show"
+  );
 
   clearTimeout(
     window.toastTimer
@@ -2804,7 +3117,7 @@ function toast(message){
           "show"
         );
       },
-      2500
+      2800
     );
 
 }
@@ -2812,7 +3125,9 @@ function toast(message){
 
 function escapeHTML(value){
 
-  return String(value ?? "")
+  return String(
+    value ?? ""
+  )
     .replace(/&/g,"&amp;")
     .replace(/</g,"&lt;")
     .replace(/>/g,"&gt;")
@@ -2822,28 +3137,40 @@ function escapeHTML(value){
 }
 
 
-function closeModal(id){
+function safeNumber(value){
 
-  const el =
-    document.getElementById(id);
+  const n =
+    Number(value);
 
-  if(el)
-    el.classList.remove(
-      "show"
-    );
+  return Number.isFinite(n)
+    ? n
+    : 0;
 
 }
 
 
-function showModal(id){
+function formatDate(value){
 
-  const el =
-    document.getElementById(id);
+  if(!value)
+    return "";
 
-  if(el)
-    el.classList.add(
-      "show"
+  try{
+
+    return new Date(
+      value
+    ).toLocaleString(
+      "en-BD",
+      {
+        dateStyle:"medium",
+        timeStyle:"short"
+      }
     );
+
+  }catch(e){
+
+    return "";
+
+  }
 
 }
 
@@ -2856,13 +3183,18 @@ function getImages(product){
 
   let images = [];
 
-  if(Array.isArray(product?.images)){
+  if(
+    Array.isArray(
+      product?.images
+    )
+  ){
 
     images =
       product.images;
 
   }else if(
-    typeof product?.images === "string"
+    typeof product?.images ===
+    "string"
   ){
 
     try{
@@ -2872,16 +3204,23 @@ function getImages(product){
           product.images
         );
 
-      if(Array.isArray(parsed)){
+      if(
+        Array.isArray(
+          parsed
+        )
+      ){
 
-        images = parsed;
+        images =
+          parsed;
 
       }else{
 
         images =
           product.images
             .split(",")
-            .map(x=>x.trim())
+            .map(
+              x=>x.trim()
+            )
             .filter(Boolean);
 
       }
@@ -2891,12 +3230,15 @@ function getImages(product){
       images =
         product.images
           .split(",")
-          .map(x=>x.trim())
+          .map(
+            x=>x.trim()
+          )
           .filter(Boolean);
 
     }
 
   }
+
 
   if(
     !images.length &&
@@ -2909,6 +3251,7 @@ function getImages(product){
 
   }
 
+
   if(
     !images.length &&
     product?.image
@@ -2920,7 +3263,9 @@ function getImages(product){
 
   }
 
-  return images.filter(Boolean);
+
+  return images
+    .filter(Boolean);
 
 }
 
@@ -2933,6 +3278,102 @@ function getProductImage(product){
   return (
     images[0] ||
     "https://via.placeholder.com/500x500?text=Gadhuli"
+  );
+
+}
+
+
+/* =====================================================
+   STOCK HELPERS
+   ===================================================== */
+
+function getStock(product){
+
+  if(!product)
+    return null;
+
+  const possible =
+    [
+      product.stock,
+      product.stock_quantity,
+      product.quantity,
+      product.inventory
+    ];
+
+  for(
+    const value of possible
+  ){
+
+    if(
+      value !== null &&
+      value !== undefined &&
+      value !== ""
+    ){
+
+      const number =
+        Number(value);
+
+      if(
+        Number.isFinite(number)
+      ){
+
+        return number;
+
+      }
+
+    }
+
+  }
+
+  return null;
+
+}
+
+
+function isOutOfStock(product){
+
+  const stock =
+    getStock(product);
+
+  return (
+    stock !== null &&
+    stock <= 0
+  );
+
+}
+
+
+function getDiscountPrice(product){
+
+  const discount =
+    safeNumber(
+      product?.discount_price
+    );
+
+  if(
+    discount > 0 &&
+    discount <
+      safeNumber(
+        product?.price
+      )
+  ){
+
+    return discount;
+
+  }
+
+  return null;
+
+}
+
+
+function getSellingPrice(product){
+
+  return (
+    getDiscountPrice(product) ??
+    safeNumber(
+      product?.price
+    )
   );
 
 }
@@ -3126,14 +3567,21 @@ function categoryMatches(
   selected
 ){
 
-  if(selected === "all")
+  if(
+    selected ===
+    "all"
+  )
     return true;
 
   const a =
-    norm(productCategory);
+    norm(
+      productCategory
+    );
 
   const b =
-    norm(selected);
+    norm(
+      selected
+    );
 
   if(a === b)
     return true;
@@ -3213,7 +3661,9 @@ function filterCategory(
         norm(
           btn.dataset.category
         ) ===
-        norm(category)
+        norm(
+          category
+        )
       );
 
     });
@@ -3238,7 +3688,8 @@ function renderSubcategories(){
     );
 
   if(
-    selectedCategory === "all" ||
+    selectedCategory ===
+      "all" ||
     !subcategories[
       selectedCategory
     ]
@@ -3248,7 +3699,8 @@ function renderSubcategories(){
       "show"
     );
 
-    list.innerHTML = "";
+    list.innerHTML =
+      "";
 
     return;
 
@@ -3258,7 +3710,8 @@ function renderSubcategories(){
     "show"
   );
 
-  list.innerHTML = "";
+  list.innerHTML =
+    "";
 
   const allBtn =
     document.createElement(
@@ -3297,6 +3750,7 @@ function renderSubcategories(){
   list.appendChild(
     allBtn
   );
+
 
   subcategories[
     selectedCategory
@@ -3359,52 +3813,58 @@ function applyFilters(){
     );
 
   filteredProducts =
-    products.filter(product=>{
+    products.filter(
+      product=>{
 
-      const categoryOK =
-        categoryMatches(
-          product.category,
-          selectedCategory
-        );
-
-      let subcategoryOK =
-        true;
-
-      if(selectedSubcategory){
-
-        subcategoryOK =
-          norm(
-            product.subcategory
-          ) ===
-          norm(
-            selectedSubcategory
+        const categoryOK =
+          categoryMatches(
+            product.category,
+            selectedCategory
           );
 
+        let subcategoryOK =
+          true;
+
+        if(
+          selectedSubcategory
+        ){
+
+          subcategoryOK =
+            norm(
+              product.subcategory
+            ) ===
+            norm(
+              selectedSubcategory
+            );
+
+        }
+
+        const text =
+          [
+            product.name,
+            product.category,
+            product.subcategory,
+            product.size,
+            product.sizes,
+            product.description
+          ]
+            .map(norm)
+            .join(" ");
+
+        const searchOK =
+          !search ||
+          text.includes(
+            search
+          );
+
+        return(
+          categoryOK &&
+          subcategoryOK &&
+          searchOK
+        );
+
       }
-
-      const text =
-        [
-          product.name,
-          product.category,
-          product.subcategory,
-          product.size,
-          product.sizes,
-          product.description
-        ]
-        .map(norm)
-        .join(" ");
-
-      const searchOK =
-        !search ||
-        text.includes(search);
-
-      return(
-        categoryOK &&
-        subcategoryOK &&
-        searchOK
-      );
-
-    });
+    );
 
   renderProducts();
 
@@ -3446,7 +3906,9 @@ function renderProducts(){
     productSlideTimer
   );
 
-  if(!filteredProducts.length){
+  if(
+    !filteredProducts.length
+  ){
 
     grid.innerHTML = `
 
@@ -3472,99 +3934,232 @@ function renderProducts(){
 
   }
 
+
   grid.innerHTML =
     filteredProducts
-      .map(product=>{
+      .map(
+        product=>{
 
-        const liked =
-          wishlist.includes(
-            product.id
-          );
+          const liked =
+            wishlist.includes(
+              product.id
+            );
 
-        return `
+          const outOfStock =
+            isOutOfStock(
+              product
+            );
 
-          <article
-            class="product-card"
-          >
+          const stock =
+            getStock(
+              product
+            );
 
-            <div
-              class="product-image-box"
-              onclick="openDetails('${escapeHTML(String(product.id))}')"
+          const oldPrice =
+            safeNumber(
+              product.price
+            );
+
+          const discountPrice =
+            getDiscountPrice(
+              product
+            );
+
+          const sellingPrice =
+            getSellingPrice(
+              product
+            );
+
+          let stockBadge =
+            "";
+
+          if(outOfStock){
+
+            stockBadge = `
+              <div class="stock-badge out">
+                Out of Stock
+              </div>
+            `;
+
+          }else if(
+            stock !== null
+          ){
+
+            stockBadge = `
+              <div class="stock-badge">
+                ${stock} left
+              </div>
+            `;
+
+          }
+
+
+          let discountBadge =
+            "";
+
+          if(
+            discountPrice &&
+            oldPrice > discountPrice
+          ){
+
+            const percent =
+              Math.round(
+                (
+                  (
+                    oldPrice -
+                    discountPrice
+                  ) /
+                  oldPrice
+                ) *
+                100
+              );
+
+            discountBadge = `
+              <div class="discount-badge">
+                -${percent}%
+              </div>
+            `;
+
+          }
+
+
+          return `
+
+            <article
+              class="product-card"
             >
 
-              <img
-                src="${escapeHTML(getProductImage(product))}"
-                alt="${escapeHTML(product.name || "Product")}"
-                loading="lazy"
-                onerror="this.src='https://via.placeholder.com/500x500?text=Gadhuli'"
+              <div
+                class="product-image-box"
+                onclick="openDetails('${escapeHTML(String(product.id))}')"
               >
 
-              <button
-                class="wishlist-card ${liked ? "active" : ""}"
-                onclick="event.stopPropagation();toggleWishlist('${escapeHTML(String(product.id))}')"
-              >
-                ${liked ? "♥" : "♡"}
-              </button>
+                <img
+                  src="${escapeHTML(
+                    getProductImage(product)
+                  )}"
+                  alt="${escapeHTML(
+                    product.name ||
+                    "Product"
+                  )}"
+                  loading="lazy"
+                  onerror="this.src='https://via.placeholder.com/500x500?text=Gadhuli'"
+                >
 
-            </div>
+                ${stockBadge}
 
-
-            <div class="product-info">
-
-              <div class="product-name">
-                ${escapeHTML(
-                  product.name ||
-                  "Unnamed Product"
-                )}
-              </div>
-
-              <div class="product-price">
-                ${money(
-                  product.price
-                )}
-              </div>
-
-              <div class="product-category">
-                ${escapeHTML(
-                  product.category ||
-                  ""
-                )}
-                ${
-                  product.subcategory
-                    ? " • " +
-                      escapeHTML(
-                        product.subcategory
-                      )
-                    : ""
-                }
-              </div>
-
-
-              <div class="product-actions">
+                ${discountBadge}
 
                 <button
-                  class="btn-cart"
-                  onclick="addToCart('${escapeHTML(String(product.id))}')"
+                  class="wishlist-card ${
+                    liked
+                      ? "active"
+                      : ""
+                  }"
+                  onclick="event.stopPropagation();toggleWishlist('${escapeHTML(String(product.id))}')"
                 >
-                  🛒 Add to Cart
-                </button>
-
-                <button
-                  class="btn-order"
-                  onclick="orderNow('${escapeHTML(String(product.id))}')"
-                >
-                  ⚡ Order Now
+                  ${
+                    liked
+                      ? "♥"
+                      : "♡"
+                  }
                 </button>
 
               </div>
 
-            </div>
 
-          </article>
+              <div class="product-info">
 
-        `;
+                <div class="product-name">
+                  ${escapeHTML(
+                    product.name ||
+                    "Unnamed Product"
+                  )}
+                </div>
 
-      })
+                <div class="product-price">
+
+                  ${money(
+                    sellingPrice
+                  )}
+
+                  ${
+                    discountPrice &&
+                    oldPrice >
+                      discountPrice
+                      ? `
+                        <span class="old-price">
+                          ${money(oldPrice)}
+                        </span>
+                      `
+                      : ""
+                  }
+
+                </div>
+
+                <div class="product-category">
+
+                  ${escapeHTML(
+                    product.category ||
+                    ""
+                  )}
+
+                  ${
+                    product.subcategory
+                      ? " • " +
+                        escapeHTML(
+                          product.subcategory
+                        )
+                      : ""
+                  }
+
+                </div>
+
+
+                <div class="product-actions">
+
+                  <button
+                    class="btn-cart ${
+                      outOfStock
+                        ? "btn-disabled"
+                        : ""
+                    }"
+                    ${
+                      outOfStock
+                        ? "disabled"
+                        : ""
+                    }
+                    onclick="addToCart('${escapeHTML(String(product.id))}')"
+                  >
+                    🛒 Add to Cart
+                  </button>
+
+                  <button
+                    class="btn-order ${
+                      outOfStock
+                        ? "btn-disabled"
+                        : ""
+                    }"
+                    ${
+                      outOfStock
+                        ? "disabled"
+                        : ""
+                    }
+                    onclick="orderNow('${escapeHTML(String(product.id))}')"
+                  >
+                    ⚡ Order Now
+                  </button>
+
+                </div>
+
+              </div>
+
+            </article>
+
+          `;
+
+        }
+      )
       .join("");
 
   startProductAutoSlide();
@@ -3600,35 +4195,39 @@ function startProductAutoSlide(){
   }
 
   productSlideTimer =
-    setInterval(()=>{
+    setInterval(
+      ()=>{
 
-      const maxScroll =
-        grid.scrollWidth -
-        grid.clientWidth;
+        const maxScroll =
+          grid.scrollWidth -
+          grid.clientWidth;
 
-      if(
-        grid.scrollLeft >=
-        maxScroll - 5
-      ){
+        if(
+          grid.scrollLeft >=
+          maxScroll - 5
+        ){
 
-        grid.scrollTo({
-          left:0,
-          behavior:"smooth"
-        });
+          grid.scrollTo({
+            left:0,
+            behavior:"smooth"
+          });
 
-      }else{
+        }else{
 
-        grid.scrollBy({
-          left:
-            window.innerWidth <= 500
-              ? 190
-              : 260,
-          behavior:"smooth"
-        });
+          grid.scrollBy({
+            left:
+              window.innerWidth <=
+              500
+                ? 190
+                : 260,
+            behavior:"smooth"
+          });
 
-      }
+        }
 
-    },3000);
+      },
+      3000
+    );
 
 }
 
@@ -3652,6 +4251,69 @@ function findProduct(id){
    PRODUCT DETAILS
    ===================================================== */
 
+function parseSizes(product){
+
+  let sizes = [];
+
+  if(
+    Array.isArray(
+      product?.sizes
+    )
+  ){
+
+    sizes =
+      product.sizes;
+
+  }else if(
+    typeof product?.sizes ===
+    "string"
+  ){
+
+    try{
+
+      const parsed =
+        JSON.parse(
+          product.sizes
+        );
+
+      if(
+        Array.isArray(parsed)
+      ){
+
+        sizes =
+          parsed;
+
+      }else{
+
+        sizes =
+          product.sizes
+            .split(",")
+            .map(
+              x=>x.trim()
+            )
+            .filter(Boolean);
+
+      }
+
+    }catch(e){
+
+      sizes =
+        product.sizes
+          .split(",")
+          .map(
+            x=>x.trim()
+          )
+          .filter(Boolean);
+
+    }
+
+  }
+
+  return sizes;
+
+}
+
+
 function openDetails(id){
 
   const product =
@@ -3670,6 +4332,11 @@ function openDetails(id){
   currentDetailProduct =
     product;
 
+  currentDetailProduct
+    ._selectedSize =
+      "";
+
+
   const images =
     getImages(product);
 
@@ -3677,60 +4344,36 @@ function openDetails(id){
     images[0] ||
     getProductImage(product);
 
-  let sizes = [];
+  const sizes =
+    parseSizes(product);
 
-  if(
-    Array.isArray(
-      product.sizes
-    )
-  ){
+  const outOfStock =
+    isOutOfStock(product);
 
-    sizes =
-      product.sizes;
+  const stock =
+    getStock(product);
 
-  }else if(
-    typeof product.sizes ===
-    "string"
-  ){
+  const oldPrice =
+    safeNumber(
+      product.price
+    );
 
-    try{
+  const discountPrice =
+    getDiscountPrice(
+      product
+    );
 
-      const parsed =
-        JSON.parse(
-          product.sizes
-        );
+  const sellingPrice =
+    getSellingPrice(
+      product
+    );
 
-      if(Array.isArray(parsed)){
-
-        sizes =
-          parsed;
-
-      }else{
-
-        sizes =
-          product.sizes
-            .split(",")
-            .map(x=>x.trim())
-            .filter(Boolean);
-
-      }
-
-    }catch(e){
-
-      sizes =
-        product.sizes
-          .split(",")
-          .map(x=>x.trim())
-          .filter(Boolean);
-
-    }
-
-  }
 
   const content =
     document.getElementById(
       "detailsContent"
     );
+
 
   content.innerHTML = `
 
@@ -3749,19 +4392,21 @@ function openDetails(id){
 
           ${
             images
-              .map((img,i)=>`
+              .map(
+                (img,i)=>`
 
-                <img
-                  class="detail-thumb ${
-                    i===0
-                      ? "active"
-                      : ""
-                  }"
-                  src="${escapeHTML(img)}"
-                  onclick="changeDetailImage(this,'${escapeHTML(img)}')"
-                >
+                  <img
+                    class="detail-thumb ${
+                      i === 0
+                        ? "active"
+                        : ""
+                    }"
+                    src="${escapeHTML(img)}"
+                    onclick="changeDetailImage(this,'${escapeHTML(img)}')"
+                  >
 
-              `)
+                `
+              )
               .join("")
           }
 
@@ -3779,17 +4424,35 @@ function openDetails(id){
           )}
         </h2>
 
+
         <div class="detail-price">
+
           ${money(
-            product.price
+            sellingPrice
           )}
+
+          ${
+            discountPrice &&
+            oldPrice >
+              discountPrice
+              ? `
+                <span class="detail-old-price">
+                  ${money(oldPrice)}
+                </span>
+              `
+              : ""
+          }
+
         </div>
 
+
         <div class="detail-category">
+
           ${escapeHTML(
             product.category ||
             ""
           )}
+
           ${
             product.subcategory
               ? " • " +
@@ -3798,6 +4461,22 @@ function openDetails(id){
                 )
               : ""
           }
+
+        </div>
+
+
+        <div class="detail-stock">
+
+          ${
+            outOfStock
+              ? "❌ Out of Stock"
+              : stock !== null
+                ? "✅ " +
+                  stock +
+                  " items available"
+                : "✅ Available"
+          }
+
         </div>
 
 
@@ -3813,16 +4492,18 @@ function openDetails(id){
 
                 ${
                   sizes
-                    .map(size=>`
+                    .map(
+                      size=>`
 
-                      <button
-                        class="size-btn"
-                        onclick="selectSize(this,'${escapeHTML(size)}')"
-                      >
-                        ${escapeHTML(size)}
-                      </button>
+                        <button
+                          class="size-btn"
+                          onclick="selectSize(this,'${escapeHTML(size)}')"
+                        >
+                          ${escapeHTML(size)}
+                        </button>
 
-                    `)
+                      `
+                    )
                     .join("")
                 }
 
@@ -3838,6 +4519,7 @@ function openDetails(id){
             margin-top:16px;
             line-height:23px;
             color:#555;
+            white-space:pre-line;
           "
         >
           ${escapeHTML(
@@ -3857,14 +4539,32 @@ function openDetails(id){
         >
 
           <button
-            class="btn-cart"
+            class="btn-cart ${
+              outOfStock
+                ? "btn-disabled"
+                : ""
+            }"
+            ${
+              outOfStock
+                ? "disabled"
+                : ""
+            }
             onclick="addCurrentDetailToCart()"
           >
             🛒 Add to Cart
           </button>
 
           <button
-            class="btn-order"
+            class="btn-order ${
+              outOfStock
+                ? "btn-disabled"
+                : ""
+            }"
+            ${
+              outOfStock
+                ? "disabled"
+                : ""
+            }
             onclick="orderCurrentDetail()"
           >
             ⚡ Order Now
@@ -3894,6 +4594,7 @@ function openDetails(id){
 
   `;
 
+
   showModal(
     "detailsModal"
   );
@@ -3912,16 +4613,18 @@ function changeDetailImage(
     );
 
   if(main)
-    main.src = url;
+    main.src =
+      url;
 
   document
     .querySelectorAll(
       ".detail-thumb"
     )
-    .forEach(x=>
-      x.classList.remove(
-        "active"
-      )
+    .forEach(
+      x=>
+        x.classList.remove(
+          "active"
+        )
     );
 
   el.classList.add(
@@ -3940,21 +4643,24 @@ function selectSize(
     .querySelectorAll(
       ".size-btn"
     )
-    .forEach(x=>
-      x.classList.remove(
-        "active"
-      )
+    .forEach(
+      x=>
+        x.classList.remove(
+          "active"
+        )
     );
 
   btn.classList.add(
     "active"
   );
 
-  if(currentDetailProduct){
+  if(
+    currentDetailProduct
+  ){
 
     currentDetailProduct
       ._selectedSize =
-      size;
+        size;
 
   }
 
@@ -3974,7 +4680,9 @@ function getSelectedSize(){
 
 function addCurrentDetailToCart(){
 
-  if(!currentDetailProduct)
+  if(
+    !currentDetailProduct
+  )
     return;
 
   addToCart(
@@ -3987,7 +4695,9 @@ function addCurrentDetailToCart(){
 
 function orderCurrentDetail(){
 
-  if(!currentDetailProduct)
+  if(
+    !currentDetailProduct
+  )
     return;
 
   orderNow(
@@ -3998,9 +4708,15 @@ function orderCurrentDetail(){
 }
 
 
+/* =====================================================
+   PRODUCT URL
+   ===================================================== */
+
 async function shareProduct(){
 
-  if(!currentDetailProduct)
+  if(
+    !currentDetailProduct
+  )
     return;
 
   const url =
@@ -4011,9 +4727,12 @@ async function shareProduct(){
       currentDetailProduct.id
     );
 
+
   try{
 
-    if(navigator.share){
+    if(
+      navigator.share
+    ){
 
       await navigator.share({
         title:
@@ -4024,13 +4743,22 @@ async function shareProduct(){
         url
       });
 
-    }else{
+    }else if(
+      navigator.clipboard
+    ){
 
       await navigator.clipboard
         .writeText(url);
 
       toast(
         "Product link copied!"
+      );
+
+    }else{
+
+      window.prompt(
+        "Copy product link:",
+        url
       );
 
     }
@@ -4040,13 +4768,38 @@ async function shareProduct(){
 }
 
 
-function resellProduct(){
+function openProductFromURL(){
 
-  closeModal(
-    "detailsModal"
-  );
+  const params =
+    new URLSearchParams(
+      window.location.search
+    );
 
-  openReseller();
+  const productId =
+    params.get(
+      "product"
+    );
+
+  if(!productId)
+    return;
+
+  const product =
+    findProduct(
+      productId
+    );
+
+  if(product){
+
+    setTimeout(
+      ()=>{
+        openDetails(
+          product.id
+        );
+      },
+      300
+    );
+
+  }
 
 }
 
@@ -4073,19 +4826,62 @@ function addToCart(
 
   }
 
-  const existing =
-    cart.find(item=>
-      String(item.id) ===
-      String(id) &&
-      String(
-        item.selectedSize || ""
-      ) ===
-      String(
-        size || ""
-      )
+
+  if(
+    isOutOfStock(product)
+  ){
+
+    toast(
+      "This product is out of stock."
     );
 
+    return;
+
+  }
+
+
+  const selectedSize =
+    size ||
+    product._selectedSize ||
+    "";
+
+
+  const existing =
+    cart.find(
+      item=>
+        String(item.id) ===
+        String(id) &&
+        String(
+          item.selectedSize ||
+          ""
+        ) ===
+        String(
+          selectedSize
+        )
+    );
+
+
   if(existing){
+
+    const stock =
+      getStock(
+        product
+      );
+
+    if(
+      stock !== null &&
+      Number(
+        existing.qty
+      ) >= stock
+    ){
+
+      toast(
+        "Maximum available stock reached."
+      );
+
+      return;
+
+    }
 
     existing.qty =
       Number(
@@ -4103,8 +4899,8 @@ function addToCart(
         product.name,
 
       price:
-        Number(
-          product.price || 0
+        getSellingPrice(
+          product
         ),
 
       image:
@@ -4114,12 +4910,12 @@ function addToCart(
 
       qty:1,
 
-      selectedSize:
-        size || ""
+      selectedSize
 
     });
 
   }
+
 
   saveCart();
 
@@ -4176,23 +4972,38 @@ function renderCart(){
 
   }
 
+
   let subtotal = 0;
+
 
   box.innerHTML =
     cart
       .map(
         (item,index)=>{
 
+          const product =
+            findProduct(
+              item.id
+            );
+
+          const currentPrice =
+            product
+              ? getSellingPrice(
+                  product
+                )
+              : safeNumber(
+                  item.price
+                );
+
           const total =
-            Number(
-              item.price || 0
-            ) *
+            currentPrice *
             Number(
               item.qty || 1
             );
 
           subtotal +=
             total;
+
 
           return `
 
@@ -4202,9 +5013,7 @@ function renderCart(){
                 src="${escapeHTML(
                   item.image ||
                   getProductImage(
-                    findProduct(
-                      item.id
-                    ) || {}
+                    product || {}
                   )
                 )}"
                 onerror="this.src='https://via.placeholder.com/100x100?text=Gadhuli'"
@@ -4222,7 +5031,7 @@ function renderCart(){
                 <div class="cart-meta">
 
                   ${money(
-                    item.price
+                    currentPrice
                   )}
 
                   ${
@@ -4280,6 +5089,7 @@ function renderCart(){
       )
       .join("");
 
+
   box.innerHTML += `
 
     <div class="cart-total">
@@ -4315,21 +5125,53 @@ function changeQty(
   if(!cart[index])
     return;
 
-  cart[index].qty =
+
+  const product =
+    findProduct(
+      cart[index].id
+    );
+
+  const next =
     Number(
       cart[index].qty || 1
-    ) + change;
+    ) +
+    change;
 
-  if(
-    cart[index].qty <= 0
-  ){
+
+  if(next <= 0){
 
     cart.splice(
       index,
       1
     );
 
+  }else{
+
+    const stock =
+      getStock(
+        product
+      );
+
+    if(
+      stock !== null &&
+      next > stock
+    ){
+
+      toast(
+        "Only " +
+        stock +
+        " items available."
+      );
+
+      return;
+
+    }
+
+    cart[index].qty =
+      next;
+
   }
+
 
   saveCart();
 
@@ -4376,6 +5218,20 @@ function orderNow(
 
   }
 
+
+  if(
+    isOutOfStock(product)
+  ){
+
+    toast(
+      "This product is out of stock."
+    );
+
+    return;
+
+  }
+
+
   currentOrderItems = [{
 
     id:
@@ -4385,8 +5241,8 @@ function orderNow(
       product.name,
 
     price:
-      Number(
-        product.price || 0
+      getSellingPrice(
+        product
       ),
 
     image:
@@ -4403,6 +5259,7 @@ function orderNow(
 
   }];
 
+
   closeModal(
     "detailsModal"
   );
@@ -4410,6 +5267,9 @@ function orderNow(
   closeModal(
     "cartModal"
   );
+
+
+  fillSavedAddressToOrder();
 
   renderOrderSummary();
 
@@ -4434,16 +5294,41 @@ function orderCart(){
 
   }
 
+
   currentOrderItems =
     cart.map(
-      item=>({
-        ...item
-      })
+      item=>{
+
+        const product =
+          findProduct(
+            item.id
+          );
+
+        return {
+
+          ...item,
+
+          price:
+            product
+              ? getSellingPrice(
+                  product
+                )
+              : safeNumber(
+                  item.price
+                )
+
+        };
+
+      }
     );
+
 
   closeModal(
     "cartModal"
   );
+
+
+  fillSavedAddressToOrder();
 
   renderOrderSummary();
 
@@ -4465,6 +5350,7 @@ function renderOrderSummary(){
 
   let subtotal = 0;
 
+
   box.innerHTML = `
 
     <div
@@ -4478,60 +5364,63 @@ function renderOrderSummary(){
 
       ${
         currentOrderItems
-          .map(item=>{
+          .map(
+            item=>{
 
-            const line =
-              Number(
-                item.price || 0
-              ) *
-              Number(
-                item.qty || 1
-              );
+              const line =
+                safeNumber(
+                  item.price
+                ) *
+                Number(
+                  item.qty || 1
+                );
 
-            subtotal +=
-              line;
+              subtotal +=
+                line;
 
-            return `
 
-              <div
-                style="
-                  display:flex;
-                  justify-content:space-between;
-                  gap:8px;
-                  padding:6px 0;
-                  font-size:13px;
-                "
-              >
+              return `
 
-                <span>
+                <div
+                  style="
+                    display:flex;
+                    justify-content:space-between;
+                    gap:8px;
+                    padding:6px 0;
+                    font-size:13px;
+                  "
+                >
 
-                  ${escapeHTML(
-                    item.name
-                  )}
+                  <span>
 
-                  × ${item.qty}
+                    ${escapeHTML(
+                      item.name
+                    )}
 
-                  ${
-                    item.selectedSize
-                      ? " (" +
-                        escapeHTML(
-                          item.selectedSize
-                        ) +
-                        ")"
-                      : ""
-                  }
+                    × ${item.qty}
 
-                </span>
+                    ${
+                      item.selectedSize
+                        ? " (" +
+                          escapeHTML(
+                            item.selectedSize
+                          ) +
+                          ")"
+                        : ""
+                    }
 
-                <b>
-                  ${money(line)}
-                </b>
+                  </span>
 
-              </div>
+                  <b>
+                    ${money(line)}
+                  </b>
 
-            `;
+                </div>
 
-          })
+              `;
+
+            }
+          )
           .join("")
       }
 
@@ -4573,12 +5462,13 @@ function updateOrderTotal(){
       60
     );
 
+
   const subtotal =
     currentOrderItems.reduce(
       (sum,item)=>
         sum +
-        Number(
-          item.price || 0
+        safeNumber(
+          item.price
         ) *
         Number(
           item.qty || 1
@@ -4586,14 +5476,17 @@ function updateOrderTotal(){
       0
     );
 
+
   const total =
     subtotal +
     delivery;
+
 
   const box =
     document.getElementById(
       "orderTotalBox"
     );
+
 
   if(box){
 
@@ -4678,28 +5571,34 @@ function selectPayment(
     .querySelectorAll(
       ".payment-option"
     )
-    .forEach(x=>
-      x.classList.remove(
-        "active"
-      )
+    .forEach(
+      x=>
+        x.classList.remove(
+          "active"
+        )
     );
+
 
   el.classList.add(
     "active"
   );
 
+
   selectedPayment =
     el.dataset.payment;
+
 
   document.getElementById(
     "paymentMethod"
   ).value =
     selectedPayment;
 
+
   const manual =
     document.getElementById(
       "manualPaymentBox"
     );
+
 
   if(manual){
 
@@ -4715,6 +5614,134 @@ function selectPayment(
 
 
 /* =====================================================
+   SAVED ADDRESS DATA
+   ===================================================== */
+
+function getSavedAddress(){
+
+  try{
+
+    const data =
+      JSON.parse(
+        localStorage.getItem(
+          SAVED_ADDRESS_KEY
+        ) || "null"
+      );
+
+    if(
+      data &&
+      typeof data ===
+      "object"
+    ){
+
+      return data;
+
+    }
+
+  }catch(e){}
+
+
+  return null;
+
+}
+
+
+function fillSavedAddressToOrder(){
+
+  const data =
+    getSavedAddress();
+
+  if(!data)
+    return;
+
+
+  const fields = {
+
+    orderName:
+      data.name || "",
+
+    orderMobile:
+      data.mobile || "",
+
+    orderDistrict:
+      data.district || "",
+
+    orderThana:
+      data.thana || "",
+
+    orderAddress:
+      data.address || ""
+
+  };
+
+
+  Object.entries(
+    fields
+  ).forEach(
+    ([id,value])=>{
+
+      const el =
+        document.getElementById(
+          id
+        );
+
+      if(
+        el &&
+        value
+      ){
+
+        el.value =
+          value;
+
+      }
+
+    }
+  );
+
+}
+
+
+function saveAddressFromOrder(){
+
+  const data = {
+
+    name:
+      document.getElementById(
+        "orderName"
+      ).value.trim(),
+
+    mobile:
+      document.getElementById(
+        "orderMobile"
+      ).value.trim(),
+
+    district:
+      document.getElementById(
+        "orderDistrict"
+      ).value.trim(),
+
+    thana:
+      document.getElementById(
+        "orderThana"
+      ).value.trim(),
+
+    address:
+      document.getElementById(
+        "orderAddress"
+      ).value.trim()
+
+  };
+
+
+  localStorage.setItem(
+    SAVED_ADDRESS_KEY,
+    JSON.stringify(data)
+  );
+
+}
+
+
+/* =====================================================
    SUBMIT ORDER
    ===================================================== */
 
@@ -4723,6 +5750,7 @@ async function submitOrder(
 ){
 
   event.preventDefault();
+
 
   if(!db){
 
@@ -4734,7 +5762,10 @@ async function submitOrder(
 
   }
 
-  if(!currentOrderItems.length){
+
+  if(
+    !currentOrderItems.length
+  ){
 
     toast(
       "No order items"
@@ -4744,30 +5775,36 @@ async function submitOrder(
 
   }
 
+
   const name =
     document.getElementById(
       "orderName"
     ).value.trim();
+
 
   const mobile =
     document.getElementById(
       "orderMobile"
     ).value.trim();
 
+
   const district =
     document.getElementById(
       "orderDistrict"
     ).value.trim();
+
 
   const thana =
     document.getElementById(
       "orderThana"
     ).value.trim();
 
+
   const address =
     document.getElementById(
       "orderAddress"
     ).value.trim();
+
 
   const delivery =
     Number(
@@ -4776,17 +5813,72 @@ async function submitOrder(
       ).value
     );
 
+
   const payment =
     document.getElementById(
       "paymentMethod"
     ).value;
 
+
+  const paymentNumber =
+    document.getElementById(
+      "paymentNumber"
+    )?.value.trim() ||
+    "";
+
+
+  const paymentReference =
+    document.getElementById(
+      "paymentReference"
+    )?.value.trim() ||
+    "";
+
+
+  const saveAddress =
+    document.getElementById(
+      "saveAddressCheck"
+    )?.checked;
+
+
+  if(
+    !/^01[0-9]{9}$/.test(
+      mobile.replace(
+        /\s|-/g,
+        ""
+      )
+    )
+  ){
+
+    toast(
+      "Please enter a valid 11-digit mobile number."
+    );
+
+    return;
+
+  }
+
+
+  if(
+    payment !==
+      "Cash on Delivery" &&
+    !paymentReference
+  ){
+
+    toast(
+      "Please enter transaction reference."
+    );
+
+    return;
+
+  }
+
+
   const subtotal =
     currentOrderItems.reduce(
       (sum,item)=>
         sum +
-        Number(
-          item.price || 0
+        safeNumber(
+          item.price
         ) *
         Number(
           item.qty || 1
@@ -4794,14 +5886,17 @@ async function submitOrder(
       0
     );
 
+
   const total =
     subtotal +
     delivery;
+
 
   const submitButton =
     document.querySelector(
       "#orderForm .primary-btn"
     );
+
 
   if(submitButton){
 
@@ -4813,6 +5908,7 @@ async function submitOrder(
 
   }
 
+
   try{
 
     const {
@@ -4822,54 +5918,150 @@ async function submitOrder(
     } =
       await db.auth.getUser();
 
-    const {
-      data:order,
-      error:orderError
-    } =
+
+    /*
+      Important:
+      The frontend never uses a service-role key.
+      Final stock/coupon/payment validation should
+      additionally be enforced by Supabase RLS/RPC.
+    */
+
+
+    const orderPayload = {
+
+      user_id:
+        user?.id ||
+        null,
+
+      customer_name:
+        name,
+
+      customer_phone:
+        mobile,
+
+      district:
+        district,
+
+      thana:
+        thana,
+
+      address:
+        address,
+
+      delivery_charge:
+        delivery,
+
+      payment_method:
+        payment,
+
+      payment_status:
+        "Pending",
+
+      status:
+        "Pending",
+
+      total_amount:
+        total
+
+    };
+
+
+    /*
+      Save payment reference only if those columns
+      exist in the current orders table.
+      We first try the extended payload.
+    */
+
+    let order = null;
+
+    let orderError = null;
+
+
+    const extendedPayload = {
+
+      ...orderPayload,
+
+      payment_number:
+        paymentNumber,
+
+      payment_reference:
+        paymentReference
+
+    };
+
+
+    let result =
       await db
         .from("orders")
-        .insert({
-
-          user_id:
-            user?.id ||
-            null,
-
-          customer_name:
-            name,
-
-          customer_phone:
-            mobile,
-
-          district:
-            district,
-
-          thana:
-            thana,
-
-          address:
-            address,
-
-          delivery_charge:
-            delivery,
-
-          payment_method:
-            payment,
-
-          payment_status:
-            "Pending",
-
-          status:
-            "Pending",
-
-          total_amount:
-            total
-
-        })
+        .insert(
+          extendedPayload
+        )
         .select()
         .single();
 
+
+    order =
+      result.data;
+
+    orderError =
+      result.error;
+
+
+    /*
+      Backward compatibility:
+      If the current orders table doesn't yet have
+      payment_number/payment_reference columns,
+      retry using the old compatible fields.
+    */
+
+    if(
+      orderError &&
+      (
+        String(
+          orderError.message ||
+          ""
+        ).toLowerCase()
+          .includes(
+            "payment_number"
+          ) ||
+        String(
+          orderError.message ||
+          ""
+        ).toLowerCase()
+          .includes(
+            "payment_reference"
+          ) ||
+        String(
+          orderError.message ||
+          ""
+        ).toLowerCase()
+          .includes(
+            "column"
+          )
+      )
+    ){
+
+      result =
+        await db
+          .from("orders")
+          .insert(
+            orderPayload
+          )
+          .select()
+          .single();
+
+      order =
+        result.data;
+
+      orderError =
+        result.error;
+
+    }
+
+
     if(orderError)
       throw orderError;
+
 
     const orderItems =
       currentOrderItems.map(
@@ -4885,8 +6077,8 @@ async function submitOrder(
             item.name,
 
           price:
-            Number(
-              item.price || 0
+            safeNumber(
+              item.price
             ),
 
           quantity:
@@ -4901,6 +6093,7 @@ async function submitOrder(
         })
       );
 
+
     const {
       error:itemError
     } =
@@ -4910,20 +6103,80 @@ async function submitOrder(
           orderItems
         );
 
-    if(itemError)
+
+    if(itemError){
+
+      /*
+        Try to clean the orphan order if
+        order_items insertion fails.
+      */
+
+      try{
+
+        await db
+          .from("orders")
+          .delete()
+          .eq(
+            "id",
+            order.id
+          );
+
+      }catch(cleanError){
+
+        console.warn(
+          "Order cleanup failed:",
+          cleanError
+        );
+
+      }
+
       throw itemError;
+
+    }
+
+
+    if(saveAddress){
+
+      saveAddressFromOrder();
+
+    }
+
 
     toast(
       "Order successfully placed! ✅"
     );
 
+
     cart = [];
 
     saveCart();
 
+
     closeModal(
       "orderModal"
     );
+
+
+    const successText =
+      document.getElementById(
+        "successOrderNumber"
+      );
+
+
+    if(successText){
+
+      successText.innerHTML = `
+        Your order has been received successfully.<br>
+        Order ID:<br>
+        <b style="color:#FF6B00;word-break:break-all;">
+          ${escapeHTML(
+            String(order.id)
+          )}
+        </b>
+      `;
+
+    }
+
 
     document
       .getElementById(
@@ -4931,8 +6184,10 @@ async function submitOrder(
       )
       .reset();
 
+
     selectedPayment =
       "Cash on Delivery";
+
 
     document
       .querySelectorAll(
@@ -4946,22 +6201,26 @@ async function submitOrder(
           )
       );
 
+
     document.getElementById(
       "paymentMethod"
     ).value =
       "Cash on Delivery";
+
 
     document.getElementById(
       "manualPaymentBox"
     ).style.display =
       "none";
 
+
     currentOrderItems = [];
 
-    setTimeout(
-      ()=>openOrders(),
-      700
+
+    showModal(
+      "successModal"
     );
+
 
   }catch(error){
 
@@ -5010,6 +6269,7 @@ function toggleWishlist(
         String(id)
     );
 
+
   if(index >= 0){
 
     wishlist.splice(
@@ -5033,6 +6293,7 @@ function toggleWishlist(
 
   }
 
+
   saveWishlist();
 
   renderProducts();
@@ -5047,15 +6308,19 @@ function openWishlist(){
       "wishlistContent"
     );
 
+
   const items =
     products.filter(
       product=>
         wishlist.some(
           id=>
             String(id) ===
-            String(product.id)
+            String(
+              product.id
+            )
         )
     );
+
 
   if(!items.length){
 
@@ -5085,70 +6350,97 @@ function openWishlist(){
 
     box.innerHTML =
       items
-        .map(product=>`
+        .map(
+          product=>{
 
-          <div
-            style="
-              display:grid;
-              grid-template-columns:65px 1fr auto;
-              gap:10px;
-              align-items:center;
-              padding:10px 0;
-              border-bottom:1px solid #eee;
-            "
-          >
+            const out =
+              isOutOfStock(
+                product
+              );
 
-            <img
-              src="${escapeHTML(
-                getProductImage(
-                  product
-                )
-              )}"
-              style="
-                width:65px;
-                height:65px;
-                object-fit:cover;
-                border-radius:8px;
-              "
-            >
-
-
-            <div>
-
-              <b>
-                ${escapeHTML(
-                  product.name
-                )}
-              </b>
+            return `
 
               <div
                 style="
-                  color:#FF6B00;
-                  font-weight:bold;
-                  margin-top:4px;
+                  display:grid;
+                  grid-template-columns:65px 1fr auto;
+                  gap:10px;
+                  align-items:center;
+                  padding:10px 0;
+                  border-bottom:1px solid #eee;
                 "
               >
-                ${money(
-                  product.price
-                )}
+
+                <img
+                  src="${escapeHTML(
+                    getProductImage(
+                      product
+                    )
+                  )}"
+                  style="
+                    width:65px;
+                    height:65px;
+                    object-fit:cover;
+                    border-radius:8px;
+                  "
+                >
+
+
+                <div>
+
+                  <b>
+                    ${escapeHTML(
+                      product.name
+                    )}
+                  </b>
+
+                  <div
+                    style="
+                      color:#FF6B00;
+                      font-weight:bold;
+                      margin-top:4px;
+                    "
+                  >
+                    ${money(
+                      getSellingPrice(
+                        product
+                      )
+                    )}
+                  </div>
+
+                </div>
+
+
+                <button
+                  class="${
+                    out
+                      ? "btn-cart btn-disabled"
+                      : "btn-order"
+                  }"
+                  ${
+                    out
+                      ? "disabled"
+                      : ""
+                  }
+                  onclick="orderNow('${escapeHTML(String(product.id))}')"
+                >
+                  ${
+                    out
+                      ? "Out"
+                      : "Order"
+                  }
+                </button>
+
               </div>
 
-            </div>
+            `;
 
-
-            <button
-              class="btn-order"
-              onclick="orderNow('${escapeHTML(String(product.id))}')"
-            >
-              Order
-            </button>
-
-          </div>
-
-        `)
+          }
+        )
         .join("");
 
   }
+
 
   showModal(
     "wishlistModal"
@@ -5168,7 +6460,9 @@ async function openProfile(){
       "profileContent"
     );
 
+
   let user = null;
+
 
   try{
 
@@ -5186,6 +6480,7 @@ async function openProfile(){
     }
 
   }catch(e){}
+
 
   if(!user){
 
@@ -5324,6 +6619,13 @@ async function openProfile(){
 
         <button
           class="profile-item"
+          onclick="openWhatsAppHelp()"
+        >
+          💬 WhatsApp Helpline
+        </button>
+
+        <button
+          class="profile-item"
           onclick="logoutUser()"
         >
           🚪 Logout
@@ -5334,6 +6636,7 @@ async function openProfile(){
     `;
 
   }
+
 
   showModal(
     "profileModal"
@@ -5403,6 +6706,7 @@ async function loginUser(
 
   event.preventDefault();
 
+
   if(!db){
 
     toast(
@@ -5413,15 +6717,18 @@ async function loginUser(
 
   }
 
+
   const email =
     document.getElementById(
       "loginEmail"
     ).value.trim();
 
+
   const password =
     document.getElementById(
       "loginPassword"
     ).value;
+
 
   try{
 
@@ -5434,21 +6741,26 @@ async function loginUser(
           password
         });
 
+
     if(error)
       throw error;
+
 
     toast(
       "Login successful ✅"
     );
 
+
     closeModal(
       "loginModal"
     );
+
 
     setTimeout(
       ()=>openProfile(),
       300
     );
+
 
   }catch(error){
 
@@ -5475,6 +6787,7 @@ async function signupUser(
 
   event.preventDefault();
 
+
   if(!db){
 
     toast(
@@ -5485,20 +6798,24 @@ async function signupUser(
 
   }
 
+
   const name =
     document.getElementById(
       "signupName"
     ).value.trim();
+
 
   const email =
     document.getElementById(
       "signupEmail"
     ).value.trim();
 
+
   const password =
     document.getElementById(
       "signupPassword"
     ).value;
+
 
   try{
 
@@ -5514,14 +6831,17 @@ async function signupUser(
 
         options:{
           data:{
-            full_name:name
+            full_name:
+              name
           }
         }
 
       });
 
+
     if(error)
       throw error;
+
 
     toast(
       data?.session
@@ -5529,9 +6849,11 @@ async function signupUser(
         : "Account created. Please verify your email."
     );
 
+
     closeModal(
       "signupModal"
     );
+
 
   }catch(error){
 
@@ -5558,6 +6880,7 @@ async function forgotPassword(
 
   event.preventDefault();
 
+
   if(!db){
 
     toast(
@@ -5568,10 +6891,12 @@ async function forgotPassword(
 
   }
 
+
   const email =
     document.getElementById(
       "forgotEmail"
     ).value.trim();
+
 
   try{
 
@@ -5588,16 +6913,20 @@ async function forgotPassword(
           }
         );
 
+
     if(error)
       throw error;
+
 
     toast(
       "Password reset link sent to your email."
     );
 
+
     closeModal(
       "forgotModal"
     );
+
 
   }catch(error){
 
@@ -5630,9 +6959,11 @@ async function logoutUser(){
 
   }
 
+
   closeModal(
     "profileModal"
   );
+
 
   toast(
     "Logout successful"
@@ -5657,15 +6988,20 @@ async function changePassword(){
 
   }
 
+
   const password =
     prompt(
       "Enter new password (minimum 6 characters):"
     );
 
+
   if(!password)
     return;
 
-  if(password.length < 6){
+
+  if(
+    password.length < 6
+  ){
 
     toast(
       "Password must be at least 6 characters."
@@ -5674,6 +7010,7 @@ async function changePassword(){
     return;
 
   }
+
 
   try{
 
@@ -5685,12 +7022,15 @@ async function changePassword(){
           password
         });
 
+
     if(error)
       throw error;
+
 
     toast(
       "Password changed successfully ✅"
     );
+
 
   }catch(error){
 
@@ -5708,6 +7048,116 @@ async function changePassword(){
 
 
 /* =====================================================
+   ORDER STATUS
+   ===================================================== */
+
+const ORDER_STEPS = [
+  "Pending",
+  "Confirmed",
+  "Processing",
+  "Shipped",
+  "Delivered"
+];
+
+
+function renderStatusTimeline(
+  status
+){
+
+  const normalized =
+    norm(
+      status ||
+      "Pending"
+    );
+
+
+  const cancelled =
+    normalized ===
+    "cancelled";
+
+
+  if(cancelled){
+
+    return `
+
+      <div
+        style="
+          margin-top:12px;
+          background:#fff0f0;
+          color:#c62828;
+          padding:10px;
+          border-radius:8px;
+          font-size:12px;
+          font-weight:bold;
+        "
+      >
+        ❌ This order has been cancelled.
+      </div>
+
+    `;
+
+  }
+
+
+  let currentIndex =
+    ORDER_STEPS.findIndex(
+      x=>
+        norm(x) ===
+        normalized
+    );
+
+
+  if(
+    currentIndex < 0
+  )
+    currentIndex = 0;
+
+
+  return `
+
+    <div class="status-timeline">
+
+      ${
+        ORDER_STEPS
+          .map(
+            (step,index)=>`
+
+              <div
+                class="status-step ${
+                  index <= currentIndex
+                    ? "done"
+                    : ""
+                }"
+              >
+
+                <div class="status-step-dot">
+
+                  ${
+                    index <=
+                    currentIndex
+                      ? "✓"
+                      : index + 1
+                  }
+
+                </div>
+
+                ${step}
+
+              </div>
+
+            `
+          )
+          .join("")
+      }
+
+    </div>
+
+  `;
+
+}
+
+
+/* =====================================================
    ORDERS
    ===================================================== */
 
@@ -5717,10 +7167,12 @@ async function openOrders(){
     "profileModal"
   );
 
+
   const box =
     document.getElementById(
       "ordersContent"
     );
+
 
   box.innerHTML = `
     <div class="loading">
@@ -5728,9 +7180,11 @@ async function openOrders(){
     </div>
   `;
 
+
   showModal(
     "ordersModal"
   );
+
 
   if(!db){
 
@@ -5744,6 +7198,7 @@ async function openOrders(){
 
   }
 
+
   try{
 
     const {
@@ -5752,6 +7207,7 @@ async function openOrders(){
       } = {}
     } =
       await db.auth.getUser();
+
 
     if(!user){
 
@@ -5788,6 +7244,7 @@ async function openOrders(){
 
     }
 
+
     const {
       data,
       error
@@ -5806,8 +7263,10 @@ async function openOrders(){
           }
         );
 
+
     if(error)
       throw error;
+
 
     if(!data?.length){
 
@@ -5820,7 +7279,19 @@ async function openOrders(){
             color:#777;
           "
         >
-          No orders yet.
+
+          <div style="font-size:42px;">
+            📦
+          </div>
+
+          <h3 style="margin-top:8px;">
+            No orders yet
+          </h3>
+
+          <p style="margin-top:6px;">
+            Your orders will appear here.
+          </p>
+
         </div>
 
       `;
@@ -5829,68 +7300,217 @@ async function openOrders(){
 
     }
 
+
+    const orderIds =
+      data.map(
+        order=>
+          order.id
+      );
+
+
+    let orderItems = [];
+
+
+    if(orderIds.length){
+
+      const {
+        data:itemData
+      } =
+        await db
+          .from("order_items")
+          .select("*")
+          .in(
+            "order_id",
+            orderIds
+          );
+
+      orderItems =
+        itemData || [];
+
+    }
+
+
     box.innerHTML =
       data
-        .map(order=>`
+        .map(
+          order=>{
 
-          <div class="order-card">
+            const items =
+              orderItems.filter(
+                item=>
+                  String(
+                    item.order_id
+                  ) ===
+                  String(
+                    order.id
+                  )
+              );
 
-            <div class="order-head">
 
-              <b>
-                Order #${escapeHTML(
-                  String(order.id)
-                )}
-              </b>
+            return `
 
-              <span class="order-status">
-                ${escapeHTML(
-                  order.status ||
-                  "Pending"
-                )}
-              </span>
+              <div class="order-card">
 
-            </div>
+                <div class="order-head">
 
-            <div class="order-date">
+                  <b>
+                    Order #${escapeHTML(
+                      String(
+                        order.id
+                      )
+                    )}
+                  </b>
 
-              ${escapeHTML(
-                order.created_at
-                  ? new Date(
+                  <span class="order-status">
+
+                    ${escapeHTML(
+                      order.status ||
+                      "Pending"
+                    )}
+
+                  </span>
+
+                </div>
+
+
+                <div class="order-date">
+
+                  ${escapeHTML(
+                    formatDate(
                       order.created_at
-                    ).toLocaleString(
-                      "en-BD"
                     )
-                  : ""
-              )}
+                  )}
 
-            </div>
+                </div>
 
-            <div class="order-total">
-              Total:
-              ${money(
-                order.total_amount
-              )}
-            </div>
 
-            <div
-              style="
-                margin-top:5px;
-                color:#777;
-                font-size:12px;
-              "
-            >
-              Payment:
-              ${escapeHTML(
-                order.payment_method ||
-                ""
-              )}
-            </div>
+                <div class="order-items">
 
-          </div>
+                  ${
+                    items.length
+                      ? items
+                          .map(
+                            item=>`
 
-        `)
+                              <div class="order-item-line">
+
+                                <span>
+
+                                  ${escapeHTML(
+                                    item.product_name ||
+                                    "Product"
+                                  )}
+
+                                  × ${safeNumber(
+                                    item.quantity
+                                  )}
+
+                                  ${
+                                    item.size
+                                      ? " • " +
+                                        escapeHTML(
+                                          item.size
+                                        )
+                                      : ""
+                                  }
+
+                                </span>
+
+                                <b>
+                                  ${money(
+                                    safeNumber(
+                                      item.price
+                                    ) *
+                                    safeNumber(
+                                      item.quantity
+                                    )
+                                  )}
+                                </b>
+
+                              </div>
+
+                            `
+                          )
+                          .join("")
+                      : `
+                        <div
+                          style="
+                            color:#999;
+                            font-size:12px;
+                          "
+                        >
+                          Order item details unavailable.
+                        </div>
+                      `
+                  }
+
+                </div>
+
+
+                <div class="order-total">
+
+                  Total:
+                  ${money(
+                    order.total_amount
+                  )}
+
+                </div>
+
+
+                <div
+                  style="
+                    margin-top:5px;
+                    color:#777;
+                    font-size:12px;
+                  "
+                >
+
+                  Delivery:
+                  ${money(
+                    order.delivery_charge
+                  )}
+
+                  <br>
+
+                  Payment:
+                  ${escapeHTML(
+                    order.payment_method ||
+                    ""
+                  )}
+
+                  <br>
+
+                  Payment Status:
+                  ${escapeHTML(
+                    order.payment_status ||
+                    "Pending"
+                  )}
+
+                </div>
+
+
+                ${
+                  renderStatusTimeline(
+                    order.status
+                  )
+                }
+
+
+                <button
+                  class="secondary-btn"
+                  onclick="trackMyOrder('${escapeHTML(String(order.id))}')"
+                >
+                  🚚 Track This Order
+                </button>
+
+              </div>
+
+            `;
+
+          }
+        )
         .join("");
+
 
   }catch(error){
 
@@ -5900,7 +7520,7 @@ async function openOrders(){
 
         Orders load failed.
 
-        <br>
+        <br><br>
 
         ${escapeHTML(
           error.message ||
@@ -5926,6 +7546,7 @@ async function openOrdersOrProfile(){
 
   }
 
+
   try{
 
     const {
@@ -5934,6 +7555,7 @@ async function openOrdersOrProfile(){
       } = {}
     } =
       await db.auth.getUser();
+
 
     if(user){
 
@@ -5971,11 +7593,36 @@ function openTrack(){
 }
 
 
+function trackMyOrder(
+  id
+){
+
+  closeModal(
+    "ordersModal"
+  );
+
+  showModal(
+    "trackModal"
+  );
+
+  const input =
+    document.getElementById(
+      "trackOrderId"
+    );
+
+  if(input)
+    input.value =
+      id;
+
+}
+
+
 async function trackOrder(
   event
 ){
 
   event.preventDefault();
+
 
   if(!db){
 
@@ -5987,23 +7634,28 @@ async function trackOrder(
 
   }
 
+
   const orderId =
     document.getElementById(
       "trackOrderId"
     ).value.trim();
+
 
   const mobile =
     document.getElementById(
       "trackMobile"
     ).value.trim();
 
+
   const result =
     document.getElementById(
       "trackResult"
     );
 
+
   result.innerHTML =
     `<div class="loading">Checking...</div>`;
+
 
   try{
 
@@ -6024,8 +7676,10 @@ async function trackOrder(
         )
         .maybeSingle();
 
+
     if(error)
       throw error;
+
 
     if(!data){
 
@@ -6048,15 +7702,19 @@ async function trackOrder(
 
     }
 
+
     result.innerHTML = `
 
       <div class="order-card">
 
         <b>
           Order #${escapeHTML(
-            String(data.id)
+            String(
+              data.id
+            )
           )}
         </b>
+
 
         <div
           style="
@@ -6077,9 +7735,15 @@ async function trackOrder(
 
         </div>
 
-        <div style="margin-top:6px;">
+
+        <div
+          style="
+            margin-top:6px;
+          "
+        >
 
           Total:
+
           <b>
             ${money(
               data.total_amount
@@ -6088,9 +7752,30 @@ async function trackOrder(
 
         </div>
 
-        <div style="margin-top:6px;">
+
+        <div
+          style="
+            margin-top:6px;
+          "
+        >
+
+          Delivery:
+
+          ${money(
+            data.delivery_charge
+          )}
+
+        </div>
+
+
+        <div
+          style="
+            margin-top:6px;
+          "
+        >
 
           Payment:
+
           ${escapeHTML(
             data.payment_method ||
             ""
@@ -6098,9 +7783,17 @@ async function trackOrder(
 
         </div>
 
+
+        ${
+          renderStatusTimeline(
+            data.status
+          )
+        }
+
       </div>
 
     `;
+
 
   }catch(error){
 
@@ -6112,10 +7805,12 @@ async function trackOrder(
           padding:10px;
         "
       >
+
         ${escapeHTML(
           error.message ||
           "Error"
         )}
+
       </div>
 
     `;
@@ -6135,15 +7830,99 @@ function openSavedAddress(){
     "profileModal"
   );
 
-  const input =
+
+  const data =
+    getSavedAddress();
+
+
+  document.getElementById(
+    "savedAddressName"
+  ).value =
+    data?.name ||
+    "";
+
+
+  document.getElementById(
+    "savedAddressMobile"
+  ).value =
+    data?.mobile ||
+    "";
+
+
+  document.getElementById(
+    "savedAddressDistrict"
+  ).value =
+    data?.district ||
+    "";
+
+
+  document.getElementById(
+    "savedAddressThana"
+  ).value =
+    data?.thana ||
+    "";
+
+
+  document.getElementById(
+    "savedAddressInput"
+  ).value =
+    data?.address ||
+    "";
+
+
+  const content =
     document.getElementById(
-      "savedAddressInput"
+      "savedAddressContent"
     );
 
-  input.value =
-    localStorage.getItem(
-      "gadhuli_saved_address"
-    ) || "";
+
+  content.innerHTML =
+    data
+      ? `
+        <div class="address-card">
+
+          <div class="address-row">
+            <b>
+              ${escapeHTML(
+                data.name ||
+                ""
+              )}
+            </b>
+          </div>
+
+          <div class="address-row">
+            📞 ${escapeHTML(
+              data.mobile ||
+              ""
+            )}
+          </div>
+
+          <div class="address-row">
+            📍 ${escapeHTML(
+              data.district ||
+              ""
+            )}
+            ${
+              data.thana
+                ? " • " +
+                  escapeHTML(
+                    data.thana
+                  )
+                : ""
+            }
+          </div>
+
+          <div class="address-row">
+            ${escapeHTML(
+              data.address ||
+              ""
+            )}
+          </div>
+
+        </div>
+      `
+      : "";
+
 
   showModal(
     "addressModal"
@@ -6154,19 +7933,61 @@ function openSavedAddress(){
 
 function saveAddress(){
 
-  const value =
-    document.getElementById(
-      "savedAddressInput"
-    ).value.trim();
+  const data = {
+
+    name:
+      document.getElementById(
+        "savedAddressName"
+      ).value.trim(),
+
+    mobile:
+      document.getElementById(
+        "savedAddressMobile"
+      ).value.trim(),
+
+    district:
+      document.getElementById(
+        "savedAddressDistrict"
+      ).value.trim(),
+
+    thana:
+      document.getElementById(
+        "savedAddressThana"
+      ).value.trim(),
+
+    address:
+      document.getElementById(
+        "savedAddressInput"
+      ).value.trim()
+
+  };
+
+
+  if(
+    !data.name &&
+    !data.mobile &&
+    !data.address
+  ){
+
+    toast(
+      "Please enter your address."
+    );
+
+    return;
+
+  }
+
 
   localStorage.setItem(
-    "gadhuli_saved_address",
-    value
+    SAVED_ADDRESS_KEY,
+    JSON.stringify(data)
   );
+
 
   toast(
     "Address saved ✅"
   );
+
 
   closeModal(
     "addressModal"
@@ -6203,9 +8024,19 @@ function openLoginFromReseller(){
 }
 
 
+function resellProduct(){
+
+  closeModal(
+    "detailsModal"
+  );
+
+  openReseller();
+
+}
+
+
 /* =====================================================
-   WHATSAPP HELPLINE
-   ENGLISH MESSAGE
+   WHATSAPP
    ===================================================== */
 
 function openWhatsAppHelp(){
@@ -6221,9 +8052,11 @@ function openWhatsAppHelp(){
       message
     );
 
+
   window.open(
     url,
-    "_blank"
+    "_blank",
+    "noopener"
   );
 
 }
@@ -6240,6 +8073,7 @@ async function loadAdvertisements(){
       "bannerSlider"
     );
 
+
   if(!db){
 
     renderFallbackBanner();
@@ -6247,6 +8081,7 @@ async function loadAdvertisements(){
     return;
 
   }
+
 
   try{
 
@@ -6271,20 +8106,29 @@ async function loadAdvertisements(){
         )
         .limit(5);
 
+
     if(error)
       throw error;
 
+
     const images =
       (data || [])
-        .map(item=>
-          item.image_url ||
-          item.image ||
-          item.url
+        .map(
+          item=>
+            item.image_url ||
+            item.image ||
+            item.url
         )
         .filter(Boolean)
-        .slice(0,5);
+        .slice(
+          0,
+          5
+        );
 
-    if(!images.length){
+
+    if(
+      !images.length
+    ){
 
       renderFallbackBanner();
 
@@ -6292,12 +8136,16 @@ async function loadAdvertisements(){
 
     }
 
+
     bannerImages =
       images;
 
-    bannerIndex = 0;
+    bannerIndex =
+      0;
+
 
     renderBanners();
+
 
   }catch(error){
 
@@ -6320,8 +8168,26 @@ function renderFallbackBanner(){
       "bannerSlider"
     );
 
-  slider.innerHTML =
-    `<div class="banner-fallback"></div>`;
+
+  slider.innerHTML = `
+
+    <div class="banner-fallback">
+
+      <div class="banner-fallback-inner">
+
+        <div class="banner-fallback-title">
+          Gadhuli
+        </div>
+
+        <div class="banner-fallback-text">
+          Shop Smart. Shop Easy.
+        </div>
+
+      </div>
+
+    </div>
+
+  `;
 
 }
 
@@ -6333,13 +8199,17 @@ function renderBanners(){
       "bannerSlider"
     );
 
-  if(!bannerImages.length){
+
+  if(
+    !bannerImages.length
+  ){
 
     renderFallbackBanner();
 
     return;
 
   }
+
 
   slider.innerHTML =
 
@@ -6349,7 +8219,7 @@ function renderBanners(){
 
           <div
             class="banner-slide ${
-              index===0
+              index === 0
                 ? "active"
                 : ""
             }"
@@ -6367,6 +8237,7 @@ function renderBanners(){
       )
       .join("") +
 
+
     `
 
       ${
@@ -6382,7 +8253,7 @@ function renderBanners(){
 
                       <div
                         class="banner-dot ${
-                          i===0
+                          i === 0
                             ? "active"
                             : ""
                         }"
@@ -6401,6 +8272,7 @@ function renderBanners(){
 
     `;
 
+
   if(
     bannerImages.length > 1
   ){
@@ -6408,6 +8280,7 @@ function renderBanners(){
     clearInterval(
       bannerTimer
     );
+
 
     bannerTimer =
       setInterval(
@@ -6427,13 +8300,16 @@ function nextBanner(){
       ".banner-slide"
     );
 
+
   const dots =
     document.querySelectorAll(
       ".banner-dot"
     );
 
+
   if(!slides.length)
     return;
+
 
   slides[
     bannerIndex
@@ -6441,12 +8317,17 @@ function nextBanner(){
     "active"
   );
 
-  if(dots[bannerIndex])
+
+  if(dots[bannerIndex]){
+
     dots[
       bannerIndex
     ].classList.remove(
       "active"
     );
+
+  }
+
 
   bannerIndex =
     (
@@ -6454,18 +8335,25 @@ function nextBanner(){
     ) %
     slides.length;
 
+
   slides[
     bannerIndex
   ].classList.add(
     "active"
   );
 
-  if(dots[bannerIndex])
+
+  if(
+    dots[bannerIndex]
+  ){
+
     dots[
       bannerIndex
     ].classList.add(
       "active"
     );
+
+  }
 
 }
 
@@ -6481,15 +8369,18 @@ function goHome(){
     behavior:"smooth"
   });
 
+
   document
     .querySelectorAll(
       ".bottom-nav button"
     )
-    .forEach(x=>
-      x.classList.remove(
-        "active"
-      )
+    .forEach(
+      x=>
+        x.classList.remove(
+          "active"
+        )
     );
+
 
   document
     .getElementById(
@@ -6522,8 +8413,8 @@ document
             modal
           ){
 
-            modal.classList.remove(
-              "show"
+            closeModal(
+              modal.id
             );
 
           }
@@ -6574,6 +8465,8 @@ document.addEventListener(
     ]);
 
     hideLoader();
+
+    openProductFromURL();
 
   }
 );
