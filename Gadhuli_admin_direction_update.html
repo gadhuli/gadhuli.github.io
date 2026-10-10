@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="theme-color" content="#ff6b00">
+<meta name="robots" content="noindex,nofollow,noarchive">
+<title>Gadhuli | Admin</title>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
+:root{--orange:#ff6b00;--orange2:#ff8a00;--dark:#171717;--bg:#f6f7f9;--card:#fff;--muted:#737373;--border:#e9e9e9;--green:#16a34a;--red:#dc2626;--blue:#2563eb;--shadow:0 8px 28px rgba(0,0,0,.07)}
+*{box-sizing:border-box}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:#202020}
+button,input,select,textarea{font:inherit}button{cursor:pointer;border:0}.hidden{display:none!important}
+.login-wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px;background:linear-gradient(135deg,#fff7ef,#fff)}
+.login-card{width:100%;max-width:410px;background:#fff;padding:30px;border-radius:22px;box-shadow:var(--shadow);border:1px solid var(--border)}
+.logo{font-size:31px;font-weight:900;color:var(--orange);text-align:center}.sub{text-align:center;color:var(--muted);margin:7px 0 25px}
+label{display:block;font-weight:700;font-size:13px;margin:14px 0 7px}.input,.select,.textarea{width:100%;padding:12px 13px;border:1px solid #ddd;border-radius:11px;outline:0;background:#fff}.input:focus,.select:focus,.textarea:focus{border-color:var(--orange);box-shadow:0 0 0 3px rgba(255,107,0,.1)}
+.btn{padding:11px 15px;border-radius:10px;font-weight:700;background:#eee}.btn.primary{background:var(--orange);color:#fff}.btn.primary:hover{background:#e85f00}.btn.green{background:#eaf8ef;color:#15803d}.btn.red{background:#feecec;color:#b91c1c}.btn.blue{background:#eaf1ff;color:#1d4ed8}.btn.dark{background:#222;color:#fff}.btn.small{padding:8px 10px;font-size:12px}
+.app{display:none;min-height:100vh}.sidebar{position:fixed;left:0;top:0;bottom:0;width:245px;background:#171717;color:#fff;padding:20px 14px;z-index:20;overflow:auto}.brand{font-size:27px;font-weight:900;color:#ff8a00;padding:8px 12px 22px}.nav-title{font-size:11px;color:#999;padding:12px}.nav button{width:100%;background:transparent;color:#ddd;text-align:left;padding:12px;border-radius:10px;margin:2px 0;font-weight:700}.nav button:hover,.nav button.active{background:#ff6b00;color:#fff}.main{margin-left:245px;padding:22px}.topbar{background:#fff;border:1px solid var(--border);border-radius:15px;padding:14px 17px;display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:18px}.topbar h2{margin:0;font-size:21px}.admin-user{font-size:12px;color:var(--muted)}
+.section{display:none}.section.active{display:block}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:18px}.stat{background:#fff;border:1px solid var(--border);border-radius:15px;padding:17px;box-shadow:0 3px 12px rgba(0,0,0,.03)}.stat .label{font-size:12px;color:var(--muted);font-weight:700}.stat .value{font-size:26px;font-weight:900;margin-top:8px}.stat.orange{border-left:4px solid var(--orange)}.stat.green{border-left:4px solid var(--green)}.stat.blue{border-left:4px solid var(--blue)}
+.card{background:#fff;border:1px solid var(--border);border-radius:15px;padding:17px;box-shadow:0 3px 12px rgba(0,0,0,.03);margin-bottom:17px}.card-head{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:14px;flex-wrap:wrap}.card-head h3{margin:0}.toolbar{display:flex;gap:8px;flex-wrap:wrap}.toolbar .input,.toolbar .select{width:auto;min-width:150px}
+.table-wrap{overflow:auto}table{width:100%;border-collapse:collapse;min-width:760px}th,td{text-align:left;padding:12px 10px;border-bottom:1px solid #eee;font-size:13px;vertical-align:top}th{font-size:12px;color:#666;background:#fafafa;position:sticky;top:0}.badge{display:inline-block;padding:5px 8px;border-radius:999px;font-size:11px;font-weight:800;background:#eee}.badge.green{background:#e9f8ee;color:#15803d}.badge.orange{background:#fff0e5;color:#c2410c}.badge.red{background:#feecec;color:#b91c1c}.badge.blue{background:#eaf1ff;color:#1d4ed8}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:15px}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}.form-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:4px 14px}.full{grid-column:1/-1}
+.empty{text-align:center;color:#888;padding:35px}.loading{text-align:center;padding:30px;color:#777}.error{padding:12px;border-radius:10px;background:#fff0f0;color:#b91c1c;font-size:13px}
+.product-img{width:52px;height:52px;object-fit:cover;border-radius:9px;border:1px solid #eee}.actions{display:flex;gap:6px;flex-wrap:wrap}
+.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:100;align-items:center;justify-content:center;padding:15px}.modal.show{display:flex}.modal-box{width:100%;max-width:720px;max-height:92vh;overflow:auto;background:#fff;border-radius:18px;padding:20px;position:relative}.close{position:absolute;right:13px;top:10px;width:34px;height:34px;border-radius:50%;background:#f1f1f1;font-size:22px}.modal-title{font-size:20px;font-weight:900;margin-bottom:15px;padding-right:40px}
+.invoice{background:#fff;padding:25px;color:#111}.invoice-head{display:flex;justify-content:space-between;border-bottom:2px solid #111;padding-bottom:15px}.invoice table{min-width:0}.invoice-total{margin-left:auto;max-width:280px}.print-only{display:none}
+.chart{display:flex;align-items:flex-end;gap:8px;height:210px;padding:15px 5px 0;border-bottom:1px solid #ddd}.bar{flex:1;min-width:20px;background:var(--orange);border-radius:6px 6px 0 0;position:relative}.bar span{position:absolute;bottom:100%;left:50%;transform:translateX(-50%);font-size:10px;white-space:nowrap;color:#555}.bar small{position:absolute;top:100%;left:50%;transform:translateX(-50%);font-size:10px;margin-top:5px}
+@media(max-width:900px){.sidebar{width:205px}.main{margin-left:205px}.stats{grid-template-columns:repeat(2,1fr)}.grid3{grid-template-columns:1fr 1fr}}
+@media(max-width:650px){.sidebar{position:static;width:100%;height:auto}.main{margin-left:0;padding:12px}.app{display:block}.nav{display:grid;grid-template-columns:repeat(2,1fr);gap:3px}.brand{text-align:center;padding-bottom:10px}.topbar{position:sticky;top:0;z-index:10}.stats,.grid2,.grid3,.form-grid{grid-template-columns:1fr}.toolbar .input,.toolbar .select{width:100%}.table-wrap{margin:0 -10px;padding:0 10px}}
+@media print{body{background:#fff}.sidebar,.topbar,.no-print{display:none!important}.main{margin:0;padding:0}.section{display:none!important}.invoice-section{display:block!important}.modal{position:static;background:none;padding:0}.modal-box{max-width:none;max-height:none;box-shadow:none}.print-only{display:block}}
+</style>
+</head>
+<body>
+
+<div id="loginPage" class="login-wrap">
+  <div class="login-card">
+    <div class="logo">Gadhuli</div>
+    <div class="sub">Premium Admin Panel</div>
+    <form onsubmit="adminLogin(event)">
+      <label>Email</label><input id="loginEmail" class="input" type="email" required>
+      <label>Password</label><input id="loginPassword" class="input" type="password" required>
+      <button class="btn primary" style="width:100%;margin-top:18px">Login</button>
+    </form>
+    <div id="loginError" class="error hidden" style="margin-top:12px"></div>
+  </div>
+</div>
+
+<div id="app" class="app">
+<aside class="sidebar">
+  <div class="brand">Gadhuli</div>
+  <div class="nav-title">MANAGEMENT</div>
+  <div class="nav">
+    <button data-section="dashboard" onclick="showSection('dashboard')">📊 Dashboard</button>
+    <button data-section="orders" onclick="showSection('orders')">🛒 Orders</button>
+    <button data-section="customers" onclick="showSection('customers')">👥 Customers</button>
+    <button data-section="products" onclick="showSection('products')">📦 Products</button>
+    <button data-section="stock" onclick="showSection('stock')">📋 Stock</button>
+    <button data-section="add-product" onclick="showSection('add-product')">➕ Add Product</button>
+      <button data-section="payments" onclick="showSection('payments')">💳 Payment Methods</button>
+    <button data-section="coupons" onclick="showSection('coupons')">🎟️ Coupons</button>
+    <button data-section="banners" onclick="showSection('banners')">🖼️ Banners</button>
+    <button data-section="resellers" onclick="showSection('resellers')">💼 Resellers</button>
+    <button data-section="reviews" onclick="showSection('reviews')">⭐ Reviews</button>
+    <button data-section="analytics" onclick="showSection('analytics')">📈 Analytics</button>
+  </div>
+  <div class="nav-title">SYSTEM</div>
+  <div class="nav">
+    <button onclick="location.href='index.html'">🏠 Visit Store</button>
+    <button onclick="adminLogout()">🚪 Logout</button>
+  </div>
+</aside>
+
+<main class="main">
+  <div class="topbar">
+    <div><h2 id="sectionTitle">Dashboard</h2><div class="admin-user" id="adminUser"></div></div>
+    <button class="btn primary" onclick="refreshCurrent()">↻ Refresh</button>
+  </div>
+
+  <section id="section-dashboard" class="section active">
+    <div class="stats">
+      <div class="stat orange"><div class="label">PRODUCTS</div><div id="statProducts" class="value">0</div></div>
+      <div class="stat blue"><div class="label">ORDERS</div><div id="statOrders" class="value">0</div></div>
+      <div class="stat orange"><div class="label">PENDING ORDERS</div><div id="statPending" class="value">0</div></div>
+      <div class="stat green"><div class="label">SALES</div><div id="statSales" class="value">৳0</div></div>
+    </div>
+    <div class="grid2">
+      <div class="card"><div class="card-head"><h3>Recent Orders</h3><button class="btn small" onclick="showSection('orders')">View all</button></div><div id="recentOrders"></div></div>
+      <div class="card"><div class="card-head"><h3>Low Stock</h3><button class="btn small" onclick="showSection('stock')">Manage</button></div><div id="lowStockDash"></div></div>
+    </div>
+  </section>
+
+  <section id="section-orders" class="section">
+    <div class="card">
+      <div class="card-head"><h3>Order Management</h3><div class="toolbar">
+        <input id="orderSearch" class="input" placeholder="Search order/customer..." oninput="renderOrders()">
+        <select id="orderStatus" class="select" onchange="renderOrders()"><option>All</option><option>Pending</option><option>Confirmed</option><option>Processing</option><option>Shipped</option><option>Delivered</option><option>Cancelled</option></select>
+        <select id="paymentStatus" class="select" onchange="renderOrders()"><option>All</option><option>Pending</option><option>Paid</option><option>Failed</option><option>Refunded</option></select>
+      </div></div>
+      <div id="ordersTable" class="table-wrap"></div>
+    </div>
+  </section>
+
+  <section id="section-customers" class="section">
+    <div class="card">
+      <div class="card-head"><h3>Customer Management</h3><div class="toolbar"><input id="customerSearch" class="input" placeholder="Name, email, mobile..." oninput="renderCustomers()"></div></div>
+      <div id="customersTable" class="table-wrap"></div>
+    </div>
+  </section>
+
+  <section id="section-products" class="section">
+    <div class="card">
+      <div class="card-head"><h3>Products</h3><div class="toolbar"><input id="productSearch" class="input" placeholder="Search product..." oninput="renderProducts()"><select id="productCategoryFilter" class="select" onchange="renderProducts()"><option value="All">All categories</option></select><button class="btn primary" onclick="showSection('add-product')">+ Add Product</button></div></div>
+      <div id="productsTable" class="table-wrap"></div>
+    </div>
+  </section>
+
+  <section id="section-stock" class="section">
+    <div class="card">
+      <div class="card-head"><h3>Stock Management</h3><div class="toolbar"><input id="stockSearch" class="input" placeholder="Search product..." oninput="renderStock()"><select id="stockFilter" class="select" onchange="renderStock()"><option value="all">All</option><option value="low">Low Stock</option><option value="out">Out of Stock</option><option value="ok">In Stock</option></select></div></div>
+      <p style="color:#777;font-size:12px">Stock uses the <b>stock</b> column in the products table. If your table does not have this column yet, add it in Supabase before saving stock.</p>
+      <div id="stockTable" class="table-wrap"></div>
+    </div>
+  </section>
+
+  <section id="section-add-product" class="section">
+    <div class="card">
+      <div class="card-head"><h3>Add Product</h3></div>
+      <form onsubmit="addProduct(event)">
+        <div class="form-grid">
+          <div><label>Product Name</label><input id="pName" class="input" required></div>
+          <div><label>Regular Price (৳)</label><input id="pPrice" class="input" type="number" min="0" required></div>
+          <div><label>Discount %</label><input id="pDiscount" class="input" type="number" min="0" max="100" value="0"></div>
+          <div><label>Initial Stock</label><input id="pStock" class="input" type="number" min="0" value="0"></div>
+          <div><label>Category</label><select id="pCategory" class="select" required onchange="loadSubcategories()"></select></div>
+          <div><label>Subcategory</label><select id="pSubcategory" class="select"></select></div>
+          <div class="full"><label>Sizes (comma separated)</label><input id="pSizes" class="input" placeholder="S, M, L, XL"></div>
+          <div class="full"><label>Description</label><textarea id="pDescription" class="textarea" rows="5"></textarea></div>
+          <div class="full"><label>1–5 Product Images</label><input id="pImages" class="input" type="file" accept="image/*" multiple onchange="previewImages()"><div id="imagePreview" style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px"></div></div>
+        </div>
+        <button class="btn primary" style="margin-top:18px">Save Product</button>
+      </form>
+    </div>
+  </section>
+
+  <section id="section-coupons" class="section">
+    <div class="card">
+      <div class="card-head"><h3>Coupon / Discount Management</h3></div>
+      <form onsubmit="createCoupon(event)">
+        <div class="form-grid">
+          <div><label>Coupon Code</label><input id="cCode" class="input" placeholder="GADHULI10" required></div>
+          <div><label>Discount Type</label><select id="cType" class="select"><option value="percent">Percentage</option><option value="fixed">Fixed Amount</option></select></div>
+          <div><label>Discount Value</label><input id="cValue" class="input" type="number" min="0" required></div>
+          <div><label>Minimum Order</label><input id="cMin" class="input" type="number" min="0" value="0"></div>
+          <div><label>Usage Limit</label><input id="cLimit" class="input" type="number" min="0" placeholder="0 = unlimited"></div>
+          <div><label>Expires At</label><input id="cExpiry" class="input" type="datetime-local"></div>
+        </div>
+        <button class="btn primary" style="margin-top:15px">Create Coupon</button>
+      </form>
+    </div>
+    <div class="card"><div class="card-head"><h3>Coupons</h3></div><div id="couponsTable" class="table-wrap"></div></div>
+  </section>
+
+  <section id="section-banners" class="section">
+    <div class="card">
+      <div class="card-head"><h3>Add Banner</h3></div>
+      <form onsubmit="addBanner(event)">
+        <div class="form-grid">
+          <div class="full"><label>Banner Image</label><input id="bannerFile" class="input" type="file" accept="image/*" required></div>
+          <div><label>Sort Order</label><input id="bannerSort" class="input" type="number" value="0"></div>
+          <div><label>Active</label><select id="bannerActive" class="select"><option value="true">Yes</option><option value="false">No</option></select></div>
+        </div>
+        <button class="btn primary" style="margin-top:15px">Upload Banner</button>
+      </form>
+    </div>
+    <div class="card"><div class="card-head"><h3>Banner Management</h3></div><div id="bannersTable" class="table-wrap"></div></div>
+  </section>
+
+  
+<section class="section" id="section-payments">
+  <div class="card">
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+      <div>
+        <h2 style="margin:0">💳 Payment Methods</h2>
+        <p style="margin:6px 0 0;color:#777">Customer checkout: only Cash on Delivery and Nagad. Admin can turn either method ON/OFF here.</p>
+      </div>
+      <button class="btn" onclick="initializePaymentMethods()">Set Default Payments</button>
+    </div>
+    <div id="paymentMethodsTable" style="margin-top:16px"></div>
+  </div>
+</section>
+<section id="section-resellers" class="section"><div class="card"><div class="card-head"><h3>Reseller Management</h3></div><div id="resellersTable" class="table-wrap"></div></div></section>
+  <section id="section-reviews" class="section"><div class="card"><div class="card-head"><h3>Review Management</h3><div class="toolbar"><input id="reviewSearch" class="input" placeholder="Search customer/product/review..." oninput="renderReviews()"><select id="reviewStatusFilter" class="select" onchange="renderReviews()"><option value="All">All statuses</option><option value="Pending">Pending</option><option value="Approved">Approved</option><option value="Rejected">Rejected</option></select></div></div><p style="font-size:12px;color:#777;margin:-4px 0 12px">Customer star ratings, written reviews and uploaded product photos appear here.</p><div id="reviewsTable" class="table-wrap"></div></div></section>
+
+  <section id="section-analytics" class="section">
+    <div class="stats">
+      <div class="stat green"><div class="label">TOTAL SALES</div><div id="aSales" class="value">৳0</div></div>
+      <div class="stat blue"><div class="label">TOTAL ORDERS</div><div id="aOrders" class="value">0</div></div>
+      <div class="stat orange"><div class="label">DELIVERED</div><div id="aDelivered" class="value">0</div></div>
+      <div class="stat"><div class="label">AVERAGE ORDER</div><div id="aAverage" class="value">৳0</div></div>
+    </div>
+    <div class="grid2"><div class="card"><div class="card-head"><h3>Last 7 Days Sales</h3></div><div id="salesChart" class="chart"></div></div><div class="card"><div class="card-head"><h3>Order Status</h3></div><div id="statusSummary"></div></div></div>
+  </section>
+</main>
+</div>
+
+<div id="orderModal" class="modal"><div class="modal-box"><button class="close" onclick="closeModal('orderModal')">×</button><div id="orderDetails"></div></div></div>
+<div id="customerModal" class="modal"><div class="modal-box"><button class="close" onclick="closeModal('customerModal')">×</button><div id="customerDetails"></div></div></div>
+<div id="invoiceModal" class="modal"><div class="modal-box"><button class="close no-print" onclick="closeModal('invoiceModal')">×</button><div id="invoice"></div></div></div>
+<div id="toast" style="position:fixed;right:18px;bottom:18px;z-index:300;background:#222;color:#fff;padding:12px 16px;border-radius:10px;display:none;box-shadow:var(--shadow)"></div>
+
+<script>
+const SUPABASE_URL="https://ypmmdytgfuhydzacjbkw.supabase.co";
+const SUPABASE_KEY="sb_publishable_ZhmwEV_6UngmzzxcJmETgw_smrA7qDL";
+const ADMIN_EMAIL="hridoyff974@gmail.com";
+const db=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
+
+let currentUser=null,currentSection="dashboard",cachedOrders=[],cachedProducts=[],cachedCustomers=[],cachedCoupons=[],cachedBanners=[],cachedResellers=[],cachedReviews=[];
+// Keep category names exactly aligned with the customer-facing store filters.
+const categories={
+"Men":["T-Shirts","Polo","Shirts","Panjabi","Hoodies","Jackets","Pants","Jeans","Shorts","Shoes","Watches","Accessories"],
+"Women":["Saree","Three Piece","Kameez","Tops","Kurti","Hijab","Pants","Shoes","Bags","Watches","Accessories"],
+"Kids":["Boys","Girls","Baby","Kids Shoes","Kids Clothing"],
+"Shoes":["Men Shoes","Women Shoes","Kids Shoes","Sneakers","Sandals","Formal Shoes"],
+"Bags":["Handbags","Backpacks","Wallets","Travel Bags","School Bags"],
+"Watches":["Men Watches","Women Watches","Smart Watches","Classic Watches"],
+"Electronics":["Mobiles","Headphones","Chargers","Smart Devices","Accessories","Computer Accessories"],
+"Beauty":["Skincare","Haircare","Makeup","Personal Care","Fragrance"],
+"Home":["Home Decor","Kitchen","Storage","Furniture","Lighting","Bedding"],
+"Accessories":["Wallets","Belts","Sunglasses","Caps","Jewellery","Fashion Accessories"],
+"Sports":["Fitness","Outdoor","Sportswear","Sports Accessories"]
+};
+const $=id=>document.getElementById(id);
+const money=n=>"৳"+Number(n||0).toLocaleString("en-BD",{maximumFractionDigits:0});
+const esc=s=>String(s??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]));
+const fmt=d=>d?new Date(d).toLocaleString("en-BD",{dateStyle:"medium",timeStyle:"short"}):"—";
+function toast(m){$("toast").textContent=m;$("toast").style.display="block";clearTimeout(window.tt);window.tt=setTimeout(()=>$("toast").style.display="none",2500)}
+function showError(m){toast(m)}
+function closeModal(id){$(id).classList.remove("show")}
+function openModal(id){$(id).classList.add("show")}
+function badge(v){const x=String(v||"Pending");let c=x==="Delivered"||x==="Paid"||x==="Approved"?"green":x==="Cancelled"||x==="Failed"||x==="Rejected"?"red":x==="Shipped"||x==="Confirmed"?"blue":"orange";return `<span class="badge ${c}">${esc(x)}</span>`}
+
+async function isAdmin(user){
+  if(!user) return false;
+
+  const email = String(user.email || "").trim().toLowerCase();
+  if(email !== ADMIN_EMAIL.toLowerCase()) return false;
+
+  const {data,error} = await db
+    .from("profiles")
+    .select("role")
+    .eq("id",user.id)
+    .maybeSingle();
+
+  if(error){
+    console.error("Admin role check:",error);
+    return false;
+  }
+
+  return String(data?.role || "").trim().toLowerCase() === "admin";
+}
+async function adminLogin(e){
+ e.preventDefault();$("loginError").classList.add("hidden");
+ try{
+  const {data,error}=await db.auth.signInWithPassword({email:$("loginEmail").value.trim(),password:$("loginPassword").value});
+  if(error)throw error;
+  if(!(await isAdmin(data.user))){await db.auth.signOut();throw new Error("This account does not have admin role.");}
+  currentUser=data.user;showAdmin();
+ }catch(err){$("loginError").textContent=err.message;$("loginError").classList.remove("hidden")}
+}
+async function checkSession(){
+ const {data}=await db.auth.getSession();
+ if(data.session&&await isAdmin(data.session.user)){currentUser=data.session.user;showAdmin()}else{$("loginPage").style.display="flex"}
+}
+function showAdmin(){
+ $("loginPage").style.display="none";$("app").style.display="block";$("adminUser").textContent=currentUser?.email||"";
+ initCategories();loadAll();showSection("dashboard");
+}
+async function adminLogout(){await db.auth.signOut();location.reload()}
+
+const titles={payments:"Payment Methods",dashboard:"Dashboard",orders:"Orders",customers:"Customers",products:"Products",stock:"Stock Management","add-product":"Add Product",coupons:"Coupons",banners:"Banners",resellers:"Resellers",reviews:"Reviews",analytics:"Sales Analytics"};
+function showSection(s){
+ currentSection=s;$("sectionTitle").textContent=titles[s]||s;
+ document.querySelectorAll(".section").forEach(x=>x.classList.remove("active"));
+ $("section-"+s)?.classList.add("active");
+ document.querySelectorAll(".nav button[data-section]").forEach(x=>x.classList.toggle("active",x.dataset.section===s));
+ if(s==="orders")loadOrders();if(s==="customers")loadCustomers();if(s==="products")loadProducts();if(s==="stock")loadProducts();
+ if(s==="coupons")loadCoupons();if(s==="payments")loadPaymentMethods();if(s==="banners")loadBanners();if(s==="resellers")loadResellers();if(s==="reviews")loadReviews();if(s==="analytics")loadAnalytics();
+}
+function refreshCurrent(){showSection(currentSection)}
+async function loadAll(){await Promise.allSettled([loadOrders(),loadProducts(),loadCustomers(),loadCoupons(),loadBanners(),loadResellers(),loadReviews(),loadPaymentMethods()]);updateDashboard()}
+
+async function loadOrders(){
+ const {data,error}=await db.from("orders").select("*").order("created_at",{ascending:false});
+ if(error){showError(error.message);return}
+ cachedOrders=(data||[]).map(o=>({
+   ...o,
+   status:o.order_status ?? o.status ?? "Pending",
+   total_amount:o.total ?? o.total_amount ?? 0,
+   email:o.customer_email ?? o.email ?? "",
+   district:o.customer_district ?? o.district ?? "",
+   thana:o.customer_thana ?? o.thana ?? "",
+   address:o.customer_receive_place ?? o.address ?? o.customer_address ?? ""
+ }));
+ renderOrders();updateDashboard()
+}
+function renderOrders(){
+ const q=($("orderSearch")?.value||"").toLowerCase(),sf=$("orderStatus")?.value||"All",pf=$("paymentStatus")?.value||"All";
+ const rows=cachedOrders.filter(o=>{
+  const txt=[o.id,o.order_number,o.customer_name,o.customer_phone,o.email,o.district,o.thana,o.address].join(" ").toLowerCase();
+  return (!q||txt.includes(q))&& (sf==="All"||o.status===sf) && (pf==="All"||o.payment_status===pf);
+ });
+ $("ordersTable").innerHTML=rows.length?`<table><thead><tr><th>Order</th><th>Customer</th><th>Total</th><th>Status</th><th>Payment</th><th>Date</th><th>Actions</th></tr></thead><tbody>${rows.map(o=>`<tr><td><b>#${esc(o.order_number||String(o.id).slice(0,8))}</b><br><small>${esc(String(o.id))}</small></td><td>${esc(o.customer_name||"Guest")}<br>${esc(o.customer_phone||"")}</td><td><b>${money(o.total_amount)}</b></td><td><select class="select" style="min-width:125px" onchange="updateOrderStatus('${esc(o.id)}',this.value)">${["Pending","Confirmed","Processing","Shipped","Delivered","Cancelled"].map(st=>`<option ${o.status===st?"selected":""}>${st}</option>`).join("")}</select></td><td><select class="select" style="min-width:105px" onchange="updatePaymentStatus('${esc(o.id)}',this.value)">${["Pending","Paid","Failed","Refunded"].map(st=>`<option ${o.payment_status===st?"selected":""}>${st}</option>`).join("")}</select></td><td>${fmt(o.created_at)}</td><td class="actions"><button class="btn small blue" onclick="openOrder('${esc(o.id)}')">Details</button><button class="btn small" onclick="openInvoice('${esc(o.id)}')">Invoice</button></td></tr>`).join("")}</tbody></table>`:`<div class="empty">No orders found.</div>`;
+}
+async function updateOrderStatus(id,status){
+ let {error}=await db.from("orders").update({order_status:status}).eq("id",id);
+ // Compatibility with an older orders table that still uses `status`.
+ if(error && String(error.message||"").toLowerCase().includes("order_status")){
+   const retry=await db.from("orders").update({status}).eq("id",id);
+   error=retry.error;
+ }
+ if(error){showError("Order status update failed: "+error.message);return}
+ toast("Order status: "+status+" ✅");
+ await loadOrders()
+}
+async function updatePaymentStatus(id,payment_status){
+ const {error}=await db.from("orders").update({payment_status}).eq("id",id);
+ if(error){showError("Payment status update failed: "+error.message);return}
+ toast("Payment status: "+payment_status+" ✅");await loadOrders()
+}
+async function openOrder(id){
+ const o=cachedOrders.find(x=>String(x.id)===String(id));if(!o)return;
+ let items=[];const r=await db.from("order_items").select("*").eq("order_id",id);if(!r.error)items=r.data||[];
+ $("orderDetails").innerHTML=`<div class="modal-title">Order #${esc(o.order_number||String(o.id).slice(0,8))}</div>
+ <div class="grid2"><div><b>Customer</b><p>${esc(o.customer_name||"Guest")}<br>${esc(o.customer_phone||"")}<br>${esc(o.email||"")}</p></div><div><b>Delivery</b><p>${esc(o.district||"")} ${esc(o.thana||"")}<br>${esc(o.address||"")}</p></div></div>
+ <div class="card" style="margin-top:10px"><b>Products</b>${items.length?items.map(i=>`<div style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #eee"><span>${esc(i.product_name||i.name||"Product")} × ${esc(i.quantity||1)}</span><b>${money((i.unit_price??i.price??0)*(i.quantity||1))}</b></div>`).join(""):"<p>No item details.</p>"}</div>
+ <div class="grid2"><div>Subtotal: <b>${money(o.subtotal)}</b><br>Delivery: <b>${money(o.delivery_charge)}</b></div><div style="text-align:right;font-size:20px">Total: <b>${money(o.total_amount)}</b></div></div>
+ <p><b>Payment:</b> ${esc(o.payment_method||"")} &nbsp; ${badge(o.payment_status)}</p>
+ <p><b>Placed:</b> ${fmt(o.created_at)}</p>`;
+ openModal("orderModal")
+}
+
+async function loadProducts(){
+ const {data,error}=await db.from("products").select("*").order("created_at",{ascending:false});
+ if(error){showError(error.message);return}cachedProducts=data||[];renderProducts();renderStock();updateDashboard()
+}
+function productPrice(p){return Number(p.discount_price||p.price||0)}
+function productImage(p){return Array.isArray(p.images)?p.images[0]:(p.images||"https://via.placeholder.com/100")}
+function renderProducts(){
+ const q=($("productSearch")?.value||"").toLowerCase();
+ const cf=$("productCategoryFilter")?.value||"All";
+ const rows=cachedProducts.filter(p=>[p.name,p.category,p.subcategory].join(" ").toLowerCase().includes(q) && (cf==="All" || canonicalCategory(p.category)===cf));
+ $("productsTable").innerHTML=rows.length?`<table><thead><tr><th>Image</th><th>Product</th><th>Category</th><th>Price</th><th>Stock</th><th>Actions</th></tr></thead><tbody>${rows.map(p=>`<tr><td><img class="product-img" src="${esc(productImage(p))}" onerror="this.src='https://via.placeholder.com/100'"></td><td><b>${esc(p.name)}</b><br><small>${esc(p.subcategory||"")}</small></td><td>${esc(canonicalCategory(p.category)||p.category||"")}</td><td>${money(productPrice(p))}${p.discount_price&&Number(p.discount_price)<Number(p.price)?`<br><del>${money(p.price)}</del>`:""}</td><td>${p.stock==null?'<span class="badge">Not set</span>':badge(Number(p.stock)<=0?"Out of Stock":Number(p.stock)<=5?"Low Stock":"In Stock")+" "+esc(p.stock)}</td><td class="actions"><button class="btn small blue" onclick="editProduct('${esc(p.id)}')">Edit</button><button class="btn small" onclick="showSection('stock')">Stock</button><button class="btn small red" onclick="deleteProduct('${esc(p.id)}')">Delete</button></td></tr>`).join("")}</tbody></table>`:`<div class="empty">No products found.</div>`;
+}
+function canonicalCategory(value){
+ const v=String(value||"").trim().toLowerCase();
+ const aliases={"men’s fashion":"Men","men's fashion":"Men","mens fashion":"Men","women’s fashion":"Women","women's fashion":"Women","womens fashion":"Women","kids & baby":"Kids","kids and baby":"Kids","bags & accessories":"Bags","beauty & personal care":"Beauty","home & living":"Home"};
+ if(aliases[v])return aliases[v];
+ return Object.keys(categories).find(k=>k.toLowerCase()===v)||"";
+}
+function editProduct(id){
+ const p=cachedProducts.find(x=>String(x.id)===String(id));if(!p)return;
+ const name=prompt("Product name:",p.name||"");if(name===null)return;
+ const price=prompt("Regular price (৳):",p.price??"");if(price===null)return;
+ const category=prompt("Category (Men, Women, Kids, Shoes, Bags, Watches, Electronics, Beauty, Home, Accessories, Sports):",canonicalCategory(p.category)||p.category||"Men");if(category===null)return;
+ const valid=Object.keys(categories).find(c=>c.toLowerCase()===category.trim().toLowerCase());if(!valid){showError("Use one of the listed category names exactly.");return;}
+ const description=prompt("Product description:",p.description||"");if(description===null)return;
+ saveProductEdit(id,{name:name.trim(),price:Number(price),category:valid,description:description.trim()});
+}
+async function saveProductEdit(id,patch){
+ if(!patch.name||!Number.isFinite(patch.price)||patch.price<0){showError("Enter a valid product name and price.");return;}
+ const {error}=await db.from("products").update(patch).eq("id",id);if(error){showError("Product update failed: "+error.message);return;}toast("Product updated");await loadProducts();
+}
+async function deleteProduct(id){if(!confirm("Delete this product?"))return;const {error}=await db.from("products").delete().eq("id",id);if(error){showError(error.message);return}toast("Product deleted");loadProducts()}
+function renderStock(){
+ const q=($("stockSearch")?.value||"").toLowerCase(),f=$("stockFilter")?.value||"all";
+ const rows=cachedProducts.filter(p=>{const n=Number(p.stock??0);return p.name?.toLowerCase().includes(q)&& (f==="all"||(f==="out"&&n<=0)||(f==="low"&&n>0&&n<=5)||(f==="ok"&&n>5))});
+ $("stockTable").innerHTML=rows.length?`<table><thead><tr><th>Product</th><th>Current Stock</th><th>Status</th><th>Update Stock</th></tr></thead><tbody>${rows.map(p=>{const n=Number(p.stock??0);return `<tr><td><b>${esc(p.name)}</b></td><td>${p.stock==null?"Not set":n}</td><td>${badge(n<=0?"Out of Stock":n<=5?"Low Stock":"In Stock")}</td><td><div class="actions"><input id="stock-${esc(p.id)}" class="input" style="width:110px" type="number" min="0" value="${n}"><button class="btn small primary" onclick="saveStock('${esc(p.id)}')">Save</button></div></td></tr>`}).join("")}</tbody></table>`:`<div class="empty">No stock items.</div>`;
+}
+async function saveStock(id){
+ const v=Number($("stock-"+id).value);const {error}=await db.from("products").update({stock:v}).eq("id",id);
+ if(error){showError("Stock save failed: "+error.message);return}toast("Stock updated");loadProducts()
+}
+function initCategories(){$("pCategory").innerHTML='<option value="">Select category</option>'+Object.keys(categories).map(x=>`<option>${esc(x)}</option>`).join("");const filter=$("productCategoryFilter");if(filter)filter.innerHTML='<option value="All">All categories</option>'+Object.keys(categories).map(x=>`<option>${esc(x)}</option>`).join("")}
+function loadSubcategories(){const c=$("pCategory").value;$("pSubcategory").innerHTML='<option value="">Select subcategory</option>'+(categories[c]||[]).map(x=>`<option>${esc(x)}</option>`).join("")}
+function previewImages(){$("imagePreview").innerHTML=[...$("pImages").files].slice(0,5).map(f=>{const u=URL.createObjectURL(f);return `<img src="${u}" style="width:75px;height:75px;object-fit:cover;border-radius:9px">`}).join("")}
+async function uploadFile(file,path){const {error}=await db.storage.from("product-images").upload(path,file,{upsert:false});if(error)throw error;const {data}=db.storage.from("product-images").getPublicUrl(path);return data.publicUrl}
+async function addProduct(e){
+ e.preventDefault();
+ try{
+  const files=[...$("pImages").files].slice(0,5);if(!files.length)throw new Error("Please select at least one image.");
+  const name=$("pName").value.trim(),price=Number($("pPrice").value),disc=Number($("pDiscount").value||0),stock=Number($("pStock").value||0);
+  const images=[];for(const f of files)images.push(await uploadFile(f,`products/${Date.now()}-${Math.random().toString(36).slice(2)}-${f.name.replace(/[^a-zA-Z0-9._-]/g,"")}`));
+  const row={name,price,discount_price:disc>0?Math.round(price-(price*disc/100)):null,category:$("pCategory").value,subcategory:$("pSubcategory").value,sizes:$("pSizes").value.split(",").map(x=>x.trim()).filter(Boolean),description:$("pDescription").value.trim(),images,stock};
+  const {error}=await db.from("products").insert(row);if(error)throw error;
+  toast("Product added");e.target.reset();$("imagePreview").innerHTML="";showSection("products");
+ }catch(err){showError(err.message)}
+}
+
+async function loadCustomers(){
+ const [{data:profiles,error:pErr},{data:orders,error:oErr}]=await Promise.all([db.from("profiles").select("*"),db.from("orders").select("*").order("created_at",{ascending:false})]);
+ if(pErr){showError(pErr.message);return}const normalizedOrders=(orders||[]).map(o=>({...o,status:o.order_status??o.status??"Pending",total_amount:o.total??o.total_amount??0}));cachedCustomers=(profiles||[]).map(p=>{const os=normalizedOrders.filter(o=>o.user_id===p.id);return {...p,orderCount:os.length,totalSpent:os.filter(o=>o.status!=="Cancelled").reduce((s,o)=>s+Number(o.total_amount||0),0),orders:os}});renderCustomers()
+}
+function renderCustomers(){
+ const q=($("customerSearch")?.value||"").toLowerCase();const rows=cachedCustomers.filter(c=>[c.full_name,c.email,c.phone,c.role].join(" ").toLowerCase().includes(q));
+ $("customersTable").innerHTML=rows.length?`<table><thead><tr><th>Customer</th><th>Contact</th><th>Role</th><th>Orders</th><th>Total Spent</th><th>Actions</th></tr></thead><tbody>${rows.map(c=>`<tr><td><b>${esc(c.full_name||"Unnamed")}</b><br><small>${esc(c.id)}</small></td><td>${esc(c.email||"")}<br>${esc(c.phone||"")}</td><td>${badge(c.role||"customer")}</td><td>${c.orderCount}</td><td>${money(c.totalSpent)}</td><td><button class="btn small blue" onclick="openCustomer('${esc(c.id)}')">View</button></td></tr>`).join("")}</tbody></table>`:`<div class="empty">No customers found.</div>`;
+}
+function openCustomer(id){
+ const c=cachedCustomers.find(x=>String(x.id)===String(id));if(!c)return;
+ $("customerDetails").innerHTML=`<div class="modal-title">Customer Details</div><div class="grid2"><div><b>Name</b><p>${esc(c.full_name||"Unnamed")}</p><b>Email</b><p>${esc(c.email||"—")}</p><b>Phone</b><p>${esc(c.phone||"—")}</p></div><div><b>Role</b><p>${badge(c.role||"customer")}</p><b>Orders</b><p>${c.orderCount}</p><b>Total Spent</b><p>${money(c.totalSpent)}</p></div></div><h3>Order History</h3>${c.orders.length?c.orders.map(o=>`<div style="padding:10px 0;border-bottom:1px solid #eee">#${esc(o.order_number||String(o.id).slice(0,8))} — ${money(o.total_amount)} — ${badge(o.status)} — ${fmt(o.created_at)}</div>`).join(""):"<div class='empty'>No orders.</div>"}`;
+ openModal("customerModal")
+}
+
+async function loadCoupons(){
+ const {data,error}=await db.from("coupons").select("*").order("created_at",{ascending:false});
+ if(error){$("couponsTable").innerHTML=`<div class="error">Coupons table is not available yet. Create a <b>coupons</b> table in Supabase to use this feature.<br><small>${esc(error.message)}</small></div>`;return}
+ cachedCoupons=data||[];renderCoupons()
+}
+function renderCoupons(){
+ $("couponsTable").innerHTML=cachedCoupons.length?`<table><thead><tr><th>Code</th><th>Discount</th><th>Minimum</th><th>Usage</th><th>Expiry</th><th>Active</th><th>Action</th></tr></thead><tbody>${cachedCoupons.map(c=>`<tr><td><b>${esc(c.code)}</b></td><td>${c.discount_type==="percent"?esc(c.discount_value)+"%":money(c.discount_value)}</td><td>${money(c.min_order||0)}</td><td>${esc(c.used_count||0)} / ${c.usage_limit?esc(c.usage_limit):"∞"}</td><td>${fmt(c.expires_at)}</td><td>${badge(c.active===false?"Inactive":"Active")}</td><td><button class="btn small red" onclick="deleteCoupon('${esc(c.id)}')">Delete</button></td></tr>`).join("")}</tbody></table>`:`<div class="empty">No coupons.</div>`;
+}
+async function createCoupon(e){
+ e.preventDefault();
+ const row={code:$("cCode").value.trim().toUpperCase(),discount_type:$("cType").value,discount_value:Number($("cValue").value),min_order:Number($("cMin").value||0),usage_limit:Number($("cLimit").value||0)||null,expires_at:$("cExpiry").value?new Date($("cExpiry").value).toISOString():null,active:true};
+ const {error}=await db.from("coupons").insert(row);if(error){showError(error.message);return}toast("Coupon created");e.target.reset();loadCoupons()
+}
+async function deleteCoupon(id){if(!confirm("Delete coupon?"))return;const {error}=await db.from("coupons").delete().eq("id",id);if(error){showError(error.message);return}loadCoupons()}
+
+async function loadBanners(){const {data,error}=await db.from("advertisements").select("*").order("sort_order",{ascending:true});if(error){showError(error.message);return}cachedBanners=data||[];renderBanners()}
+function renderBanners(){$("bannersTable").innerHTML=cachedBanners.length?`<table><thead><tr><th>Banner</th><th>Order</th><th>Active</th><th>Action</th></tr></thead><tbody>${cachedBanners.map(b=>`<tr><td><img class="product-img" src="${esc(b.image_url||b.image||"")}" onerror="this.style.display='none'"></td><td>${esc(b.sort_order||0)}</td><td>${badge(b.active?"Active":"Hidden")}</td><td class="actions"><button class="btn small blue" onclick="toggleBanner('${esc(b.id)}',${!b.active})">${b.active?"Hide":"Activate"}</button><button class="btn small red" onclick="deleteBanner('${esc(b.id)}')">Delete</button></td></tr>`).join("")}</tbody></table>`:`<div class="empty">No banners.</div>`}
+async function addBanner(e){
+ e.preventDefault();try{const f=$("bannerFile").files[0];if(!f)throw new Error("Select an image.");const url=await uploadFile(f,`banners/${Date.now()}-${f.name.replace(/[^a-zA-Z0-9._-]/g,"")}`);const {error}=await db.from("advertisements").insert({image_url:url,sort_order:Number($("bannerSort").value||0),active:$("bannerActive").value==="true"});if(error)throw error;toast("Banner uploaded");e.target.reset();loadBanners()}catch(err){showError(err.message)}}
+async function toggleBanner(id,v){const {error}=await db.from("advertisements").update({active:v}).eq("id",id);if(error){showError(error.message);return}loadBanners()}
+async function deleteBanner(id){if(!confirm("Delete banner?"))return;const {error}=await db.from("advertisements").delete().eq("id",id);if(error){showError(error.message);return}loadBanners()}
+
+async function loadResellers(){const {data,error}=await db.from("resellers").select("*").order("created_at",{ascending:false});if(error){showError(error.message);return}cachedResellers=data||[];renderResellers()}
+function renderResellers(){$("resellersTable").innerHTML=cachedResellers.length?`<table><thead><tr><th>User</th><th>Status</th><th>Commission</th><th>Actions</th></tr></thead><tbody>${cachedResellers.map(r=>`<tr><td>${esc(r.full_name||r.name||r.user_id||"—")}<br><small>${esc(r.email||"")}</small></td><td>${badge(r.status||"Pending")}</td><td>${esc(r.commission_rate||5)}%</td><td class="actions"><button class="btn small green" onclick="approveReseller('${esc(r.id)}','${esc(r.user_id||r.profile_id||"")}')">Approve</button><button class="btn small red" onclick="suspendReseller('${esc(r.id)}','${esc(r.user_id||r.profile_id||"")}')">Suspend</button></td></tr>`).join("")}</tbody></table>`:`<div class="empty">No reseller requests.</div>`}
+async function approveReseller(id,userId){const a=await db.from("resellers").update({status:"Approved"}).eq("id",id);if(a.error){showError(a.error.message);return}if(userId)await db.from("profiles").update({role:"reseller"}).eq("id",userId);loadResellers()}
+async function suspendReseller(id,userId){const a=await db.from("resellers").update({status:"Suspended"}).eq("id",id);if(a.error){showError(a.error.message);return}if(userId)await db.from("profiles").update({role:"customer"}).eq("id",userId);loadResellers()}
+
+async function loadReviews(){const {data,error}=await db.from("reviews").select("*").order("created_at",{ascending:false});if(error){showError(error.message);return}cachedReviews=data||[];renderReviews()}
+function renderReviews(){
+ const q=($("reviewSearch")?.value||"").toLowerCase(),sf=$("reviewStatusFilter")?.value||"All";
+ const rows=cachedReviews.filter(r=>{const status=String(r.status||"Pending");const txt=[r.customer_name,r.name,r.product_name,r.product_id,r.comment,r.review].join(" ").toLowerCase();return (!q||txt.includes(q))&&(sf==="All"||status.toLowerCase()===sf.toLowerCase());});
+ $("reviewsTable").innerHTML=rows.length?`<table><thead><tr><th>Customer / Product</th><th>Review & Photo</th><th>Rating</th><th>Status</th><th>Date</th><th>Action</th></tr></thead><tbody>${rows.map(r=>{const photo=r.image_url?`<a href="${esc(r.image_url)}" target="_blank" rel="noopener"><img src="${esc(r.image_url)}" alt="Customer review photo" style="display:block;width:100px;height:100px;object-fit:cover;border-radius:10px;border:1px solid #eee;margin-top:8px"></a>`:"<small style=\"color:#999\">No photo</small>";const stars="★".repeat(Math.max(0,Math.min(5,Number(r.rating)||0)))+"☆".repeat(Math.max(0,5-Math.min(5,Number(r.rating)||0)));return `<tr><td><b>${esc(r.customer_name||r.name||"Customer")}</b><br><small>Product: ${esc(r.product_name||r.product_id||"—")}</small></td><td>${esc(r.comment||r.review||"No written review")}${photo}</td><td><span style="color:#f59e0b;font-size:16px">${stars}</span><br><small>${Number(r.rating)||0}/5</small></td><td>${badge(r.status||"Pending")}</td><td>${fmt(r.created_at)}</td><td class="actions"><button class="btn small green" onclick="reviewStatus('${esc(r.id)}','Approved')">Approve</button><button class="btn small red" onclick="reviewStatus('${esc(r.id)}','Rejected')">Reject</button></td></tr>`}).join("")}</tbody></table>`:`<div class="empty">No reviews match this filter.</div>`;
+}
+async function reviewStatus(id,status){const {error}=await db.from("reviews").update({status}).eq("id",id);if(error){showError(error.message);return}loadReviews()}
+
+async function openInvoice(id){
+ const o=cachedOrders.find(x=>String(x.id)===String(id));if(!o)return;let items=[];const r=await db.from("order_items").select("*").eq("order_id",id);if(!r.error)items=r.data||[];
+ $("invoice").innerHTML=`<div class="invoice"><div class="invoice-head"><div><h1 style="margin:0;color:#ff6b00">Gadhuli</h1><p>Shop Smart. Shop Easy.</p></div><div style="text-align:right"><b>INVOICE</b><br>#${esc(o.order_number||String(o.id).slice(0,8))}<br>${fmt(o.created_at)}</div></div><div class="grid2" style="margin:20px 0"><div><b>Bill To</b><br>${esc(o.customer_name||"Guest")}<br>${esc(o.customer_phone||"")}<br>${esc(o.address||o.customer_address||"")}</div><div><b>Delivery</b><br>${esc(o.district||"")} ${esc(o.thana||"")}<br>Payment: ${esc(o.payment_method||"")}<br>Status: ${esc(o.status||"")}</div></div><table><thead><tr><th>Product</th><th>Qty</th><th>Price</th><th>Total</th></tr></thead><tbody>${items.map(i=>`<tr><td>${esc(i.product_name||i.name||"Product")}</td><td>${esc(i.quantity||1)}</td><td>${money(i.price)}</td><td>${money(Number(i.price||0)*Number(i.quantity||1))}</td></tr>`).join("")}</tbody></table><div class="invoice-total" style="margin-top:20px"><p>Subtotal: ${money(o.subtotal)}</p><p>Delivery: ${money(o.delivery_charge)}</p><h2>Total: ${money(o.total_amount)}</h2></div><div class="no-print" style="text-align:right;margin-top:20px"><button class="btn dark" onclick="window.print()">🖨️ Print Invoice</button></div></div>`;
+ openModal("invoiceModal")
+}
+
+async function loadAnalytics(){
+ const orders=cachedOrders.length?cachedOrders:(await db.from("orders").select("*")).data||[];const valid=orders.filter(o=>o.status!=="Cancelled"),sales=valid.reduce((s,o)=>s+Number(o.total_amount||0),0);
+ $("aSales").textContent=money(sales);$("aOrders").textContent=orders.length;$("aDelivered").textContent=orders.filter(o=>o.status==="Delivered").length;$("aAverage").textContent=money(valid.length?sales/valid.length:0);
+ const days=[];for(let i=6;i>=0;i--){const d=new Date();d.setHours(0,0,0,0);d.setDate(d.getDate()-i);days.push(d)}
+ const vals=days.map(d=>orders.filter(o=>{if(o.status==="Cancelled")return false;const x=new Date(o.created_at);return x>=d&&x<new Date(d.getTime()+86400000)}).reduce((s,o)=>s+Number(o.total_amount||0),0));const max=Math.max(...vals,1);
+ $("salesChart").innerHTML=vals.map((v,i)=>`<div class="bar" style="height:${Math.max(5,v/max*170)}px"><span>${money(v)}</span><small>${days[i].toLocaleDateString("en-BD",{day:"numeric",month:"short"})}</small></div>`).join("");
+ const statuses=["Pending","Confirmed","Processing","Shipped","Delivered","Cancelled"];$("statusSummary").innerHTML=statuses.map(s=>`<div style="display:flex;justify-content:space-between;padding:11px 0;border-bottom:1px solid #eee">${badge(s)} <b>${orders.filter(o=>o.status===s).length}</b></div>`).join("")
+}
+function updateDashboard(){
+ $("statProducts").textContent=cachedProducts.length;$("statOrders").textContent=cachedOrders.length;$("statPending").textContent=cachedOrders.filter(o=>o.status==="Pending").length;$("statSales").textContent=money(cachedOrders.filter(o=>o.status!=="Cancelled").reduce((s,o)=>s+Number(o.total_amount||0),0));
+ $("recentOrders").innerHTML=cachedOrders.slice(0,6).map(o=>`<div style="display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid #eee"><span>#${esc(o.order_number||String(o.id).slice(0,8))}<br><small>${esc(o.customer_name||"Guest")}</small></span><span>${money(o.total_amount)}<br>${badge(o.status)}</span></div>`).join("")||'<div class="empty">No orders.</div>';
+ const low=cachedProducts.filter(p=>Number(p.stock??0)<=5).slice(0,6);$("lowStockDash").innerHTML=low.map(p=>`<div style="display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid #eee"><span>${esc(p.name)}</span><b>${Number(p.stock??0)}</b></div>`).join("")||'<div class="empty">No low-stock products.</div>'
+}
+
+window.addEventListener("load",checkSession);
+
+async function loadPaymentMethods(){
+ const box=document.getElementById("paymentMethodsTable");if(!box)return;
+ box.innerHTML='<div class="empty">Loading payment methods...</div>';
+ const {data,error}=await db.from("payment_methods").select("*").order("sort_order",{ascending:true}).order("id",{ascending:true});
+ if(error){box.innerHTML=`<div class="empty">Payment methods table error: ${esc(error.message)}</div>`;return}
+ const rows=(data||[]).filter(p=>["cash_on_delivery","nagad"].includes(String(p.code||"").toLowerCase()));
+ const cod=rows.find(p=>String(p.code||"").toLowerCase()==="cash_on_delivery");
+ const nagad=rows.find(p=>String(p.code||"").toLowerCase()==="nagad");
+ box.innerHTML=`<table><thead><tr><th>Method</th><th>Status</th><th>Control</th></tr></thead><tbody>
+ <tr><td><b>💵 Cash on Delivery</b></td><td>${cod?.active?'<span class="badge green">Shown</span>':'<span class="badge red">Hidden</span>'}</td><td>${cod?`<button class="btn small ${cod.active?'red':'green'}" onclick="togglePaymentMethod(${Number(cod.id)},${cod.active?'false':'true'})">${cod.active?'Hide from Main Page':'Show on Main Page'}</button>`:'<button class="btn small primary" onclick="initializePaymentMethods()">Enable COD</button>'}</td></tr>
+ <tr><td><b>🟠 Nagad</b></td><td>${nagad?.active?'<span class="badge green">Shown</span>':'<span class="badge red">Hidden</span>'}</td><td>${nagad?`<button class="btn small ${nagad.active?'red':'green'}" onclick="togglePaymentMethod(${Number(nagad.id)},${nagad.active?'false':'true'})">${nagad.active?'Hide from Main Page':'Show on Main Page'}</button>`:'<button class="btn small primary" onclick="initializePaymentMethods()">Enable Nagad</button>'}</td></tr>
+ </tbody></table><p style="margin:12px 0 0;color:#777;font-size:12px">bKash, Rocket, Visa ও Mastercard এই setup-এ customer checkout-এ দেখানো হবে না।</p>`;
+}
+async function initializePaymentMethods(){
+ const methods=[
+  {code:"cash_on_delivery",name:"Cash on Delivery",sort_order:1,active:true},
+  {code:"nagad",name:"Nagad",sort_order:2,active:true}
+ ];
+ const {error}=await db.from("payment_methods").upsert(methods,{onConflict:"code"});
+ if(error){showError("Payment setup save failed: "+error.message);return}
+ await db.from("payment_methods").update({active:false}).in("code",["bkash","rocket","visa","mastercard"]);
+ toast("Payment setup saved: COD + Nagad ✅");
+ await loadPaymentMethods();
+}
+async function togglePaymentMethod(id,active){
+ const {error}=await db.from("payment_methods").update({active}).eq("id",id);
+ if(error){showError("Payment method update failed: "+error.message);return}
+ toast(active?"Payment method shown on main page ✅":"Payment method hidden from main page ✅");
+ await loadPaymentMethods();
+}
+</script>
+</body>
+</html>
