@@ -3,250 +3,158 @@
    supabase.js
 ===================================================== */
 
-const SUPABASE_URL =
-"https://ypmmdytgfuhydzacjbkw.supabase.co";
+(function () {
+  "use strict";
 
-const SUPABASE_KEY =
-"sb_publishable_ZhmwEV_6UngmzzxcJmETgw_smrA7qDL";
+  const SUPABASE_URL =
+    "https://ypmmdytgfuhydzacjbkw.supabase.co";
 
-/* =====================================================
-   CREATE SUPABASE CLIENT
-===================================================== */
+  const SUPABASE_KEY =
+    "sb_publishable_ZhmwEV_6UngmzzxcJmETgw_smrA7qDL";
 
-try {
-
-  if (!window.supabase) {
-
-    console.error(
-      "Supabase JS library load হয়নি।"
-    );
-
-  } else {
-
-    window.gadhuliSupabase =
-      window.supabase.createClient(
-        SUPABASE_URL,
-        SUPABASE_KEY
-      );
-
-    console.log(
-      "Gadhuli Supabase Connected ✅"
-    );
-
+  // Prevent accidental duplicate initialization
+  if (window.gadhuliSupabase) {
+    console.info("Gadhuli Supabase already initialized.");
+    return;
   }
 
-} catch (error) {
+  if (!window.supabase?.createClient) {
+    console.error(
+      "Supabase JS load হয়নি। আগে Supabase CDN load করো।"
+    );
+    return;
+  }
 
-  console.error(
-    "Supabase connection error:",
-    error
-  );
-
-}
-
-
-/* =====================================================
-   CONNECTION CHECK
-===================================================== */
-
-window.gadhuliSupabaseCheck =
-async function () {
+  let client;
 
   try {
-
-    if (!window.gadhuliSupabase) {
-
-      console.error(
-        "Gadhuli Supabase client পাওয়া যায়নি ❌"
-      );
-
-      return false;
-
-    }
-
-    const {
-      data,
-      error
-    } =
-    await window.gadhuliSupabase
-      .from("products")
-      .select("id")
-      .limit(1);
-
-    if (error) {
-
-      console.error(
-        "Supabase Database Error:",
-        error
-      );
-
-      return false;
-
-    }
-
-    console.log(
-      "Gadhuli Database Connected ✅",
-      data
+    client = window.supabase.createClient(
+      SUPABASE_URL,
+      SUPABASE_KEY,
+      {
+        auth: {
+          persistSession: true,
+          autoRefreshToken: true,
+          detectSessionInUrl: true
+        }
+      }
     );
 
-    return true;
+    window.gadhuliSupabase = client;
+    window.gadhuliDB = client;
 
   } catch (error) {
+    console.error("Supabase initialization failed:", error);
+    return;
+  }
 
-    console.error(
-      "Supabase Check Failed:",
-      error
+  /* DATABASE CONNECTION CHECK */
+
+  window.gadhuliSupabaseCheck = async function () {
+    try {
+      const { data, error } = await client
+        .from("products")
+        .select("id")
+        .limit(1);
+
+      if (error) {
+        console.error(
+          "Products table / permission error:",
+          error.message,
+          error.code
+        );
+        return false;
+      }
+
+      console.info("Gadhuli database query successful.");
+      return true;
+
+    } catch (error) {
+      console.error("Database check failed:", error);
+      return false;
+    }
+  };
+
+  /* AUTH HELPERS */
+
+  window.gadhuliAuth = {
+    async getUser() {
+      try {
+        const { data, error } =
+          await client.auth.getUser();
+
+        if (error) {
+          console.error("Get user failed:", error.message);
+          return null;
+        }
+
+        return data?.user ?? null;
+
+      } catch (error) {
+        console.error("Auth user error:", error);
+        return null;
+      }
+    },
+
+    async getSession() {
+      try {
+        const { data, error } =
+          await client.auth.getSession();
+
+        if (error) {
+          console.error("Get session failed:", error.message);
+          return null;
+        }
+
+        return data?.session ?? null;
+
+      } catch (error) {
+        console.error("Auth session error:", error);
+        return null;
+      }
+    },
+
+    async signOut() {
+      try {
+        const { error } = await client.auth.signOut();
+
+        if (error) {
+          console.error("Logout failed:", error.message);
+          return false;
+        }
+
+        return true;
+
+      } catch (error) {
+        console.error("Logout error:", error);
+        return false;
+      }
+    }
+  };
+
+  /* AUTH STATE CHANGES */
+
+  client.auth.onAuthStateChange((event, session) => {
+    window.dispatchEvent(
+      new CustomEvent("gadhuli-auth-change", {
+        detail: {
+          event,
+          session
+        }
+      })
     );
+  });
 
-    return false;
+  /* READY EVENT */
 
-  }
-
-};
-
-
-/* =====================================================
-   GLOBAL DATABASE VARIABLE
-===================================================== */
-
-window.gadhuliDB =
-window.gadhuliSupabase;
-
-
-/* =====================================================
-   AUTH HELPER
-===================================================== */
-
-window.gadhuliAuth =
-{
-
-  async getUser() {
-
-    if (!window.gadhuliSupabase) {
-      return null;
-    }
-
-    try {
-
-      const {
-        data,
-        error
-      } =
-      await window.gadhuliSupabase.auth.getUser();
-
-      if (error) {
-
-        console.error(
-          "Auth User Error:",
-          error
-        );
-
-        return null;
-
+  window.dispatchEvent(
+    new CustomEvent("gadhuli-supabase-ready", {
+      detail: {
+        connected: true,
+        client
       }
-
-      return data?.user || null;
-
-    } catch (error) {
-
-      console.error(error);
-
-      return null;
-
-    }
-
-  },
-
-
-  async getSession() {
-
-    if (!window.gadhuliSupabase) {
-      return null;
-    }
-
-    try {
-
-      const {
-        data,
-        error
-      } =
-      await window.gadhuliSupabase.auth.getSession();
-
-      if (error) {
-
-        console.error(
-          "Auth Session Error:",
-          error
-        );
-
-        return null;
-
-      }
-
-      return data?.session || null;
-
-    } catch (error) {
-
-      console.error(error);
-
-      return null;
-
-    }
-
-  }
-
-};
-
-
-/* =====================================================
-   SUPABASE AUTH STATE
-===================================================== */
-
-if (window.gadhuliSupabase) {
-
-  window.gadhuliSupabase.auth.onAuthStateChange(
-    (event, session) => {
-
-      console.log(
-        "Gadhuli Auth:",
-        event,
-        session?.user?.email || "No user"
-      );
-
-      window.dispatchEvent(
-        new CustomEvent(
-          "gadhuli-auth-change",
-          {
-            detail: {
-              event: event,
-              session: session
-            }
-          }
-        )
-      );
-
-    }
+    })
   );
 
-}
-
-
-/* =====================================================
-   READY EVENT
-===================================================== */
-
-window.dispatchEvent(
-  new CustomEvent(
-    "gadhuli-supabase-ready",
-    {
-      detail: {
-        connected:
-          !!window.gadhuliSupabase
-      }
-    }
-  )
-);
-
-console.log(
-  "Gadhuli Supabase System Ready 🚀"
-);
+  console.info("Gadhuli Supabase client initialized.");
+})();
